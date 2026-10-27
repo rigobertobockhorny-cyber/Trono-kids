@@ -1,9 +1,11 @@
-const CACHE_VERSION = 'vortice-trono-kids-v2.0.0';
+const CACHE_VERSION = 'vortice-trono-kids-v2.1.0';
 const ASSETS_TO_CACHE = [
   './index.html',
   './manifest.json',
   './politica_privacidade.html',
   './pinturas_base64.js',
+  './2_ASSETS_UI_BOTOES/icon_512.png',
+  './2_ASSETS_UI_BOTOES/icon_192.png',
   './2_ASSETS_UI_BOTOES/logo_base_trono.png'
 ];
 

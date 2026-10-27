@@ -47,18 +47,23 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      width: 100vw;
+      height: 100dvh;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
       overflow: hidden;
+      touch-action: manipulation;
     }
 
     /* Moldura Vertical 9:16 Oficial */
     #app-shell {
       position: relative;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
       max-width: 450px;
-      max-height: 860px;
-      aspect-ratio: 9 / 16;
+      height: 100dvh;
+      height: 100vh;
+      max-height: 100dvh;
       background-image: url('./2_ASSETS_UI_BOTOES/ui_asset_01.jpg');
       background-size: cover;
       background-position: center;
@@ -67,6 +72,8 @@
       flex-direction: column;
       box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
       transition: background 0.35s ease;
+      box-sizing: border-box;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
     }
 
     /* Modo Noturno do Cantinho de Dormir: Preto Vivo Puro (#000000) destacando o Roxo, Azul e Verde! */
@@ -158,9 +165,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 16px 14px 4px 14px;
+      padding: 10px 14px 2px 14px;
       flex-shrink: 0;
-      gap: 4px;
+      gap: 2px;
     }
 
     .brand-logo-wrap {
@@ -173,8 +180,8 @@
 
     .brand-logo {
       width: 100%;
-      max-width: 255px;
-      height: 74px;
+      max-width: 215px;
+      height: 56px;
       object-fit: contain;
       filter: brightness(1.18) contrast(1.08) drop-shadow(0 0 12px rgba(250, 204, 21, 0.45)) drop-shadow(0 5px 10px rgba(0, 0, 0, 0.95));
       animation: floatGentle 4s ease-in-out infinite;
@@ -270,9 +277,17 @@
       flex: 1;
       display: none;
       flex-direction: column;
-      padding: 2px 12px 10px 12px;
-      overflow: hidden;
+      padding: 2px 10px 8px 10px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
       min-height: 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      box-sizing: border-box;
+    }
+    .screen::-webkit-scrollbar {
+      display: none;
     }
     .screen.active {
       display: flex;
@@ -291,13 +306,13 @@
     .dashboard-grid {
       width: 100%;
       flex: 1;
-      max-height: 540px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(3, 1fr);
-      gap: 6px 12px;
+      gap: 4px 10px;
       align-items: center;
       justify-items: center;
+      min-height: 0;
     }
 
     .module-card {
@@ -316,8 +331,9 @@
     }
 
     .mod-icon-3d {
-      width: 92px;
-      height: 92px;
+      width: 76px;
+      height: 76px;
+      max-height: 18vw;
       object-fit: contain;
       filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.8));
       animation: floatGentle 3.2s ease-in-out infinite;
@@ -327,10 +343,10 @@
     }
 
     .mod-title {
-      margin-top: -1px;
+      margin-top: 1px;
       font-family: 'Fredoka', sans-serif;
       font-weight: 700;
-      font-size: 16.5px;
+      font-size: 14px;
       background: linear-gradient(180deg, #fffde7 0%, #fde047 50%, #f59e0b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -506,10 +522,9 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
-      gap: 10px 10px;
-      padding: 2px 6px 6px 6px;
+      gap: 8px 8px;
+      padding: 2px 4px 4px 4px;
       min-height: 0;
-      touch-action: none;
       user-select: none;
     }
 
@@ -536,15 +551,15 @@
       position: relative;
       height: 100%;
       max-height: 100%;
-      width: auto;
-      max-width: 92%;
-      aspect-ratio: 9 / 14;
-      border-radius: 20px;
-      padding: 4px;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 16px;
+      padding: 3px;
       background: linear-gradient(125deg, #38bdf8, #a855f7, #facc15, #34d399, #38bdf8);
       background-size: 250% 250%;
       animation: magicFlow 5s ease infinite;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.85);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.85);
+      box-sizing: border-box;
     }
 
     .story-thumb-inner {
@@ -639,7 +654,9 @@
     #puzzle-canvas {
       width: 100%;
       height: 100%;
-      max-height: 670px;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
       touch-action: none;
       cursor: grab;
     }
@@ -1002,17 +1019,22 @@
     /* ===================================================================== */
     .sleep-list {
       flex: 1;
-      overflow: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 4px;
-      padding: 2px 2px 6px 2px;
+      gap: 6px;
+      padding: 2px 2px 14px 2px;
       min-height: 0;
+      scrollbar-width: none;
+    }
+    .sleep-list::-webkit-scrollbar {
+      display: none;
     }
     .sleep-track {
-      flex: 1;
-      min-height: 0;
+      min-height: 52px;
+      height: 52px;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1254,6 +1276,12 @@
       opacity: 0.95;
     }
   </style>
+  <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./2_ASSETS_UI_BOTOES/icon_512.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Trono Kids">
 </head>
 <body>
 
@@ -1323,7 +1351,7 @@
     </div>
 
     <!-- Botão Direto na Tela Principal para o Papai e a Mamãe (Sem precisar jogar tudo de novo para assinar ou ver a Política!) -->
-    <button class="btn-gold" style="margin-top: 6px; padding: 7px 16px; font-size: 13px; background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%); border: 1.5px solid #f3e5f5; box-shadow: 0 4px 10px rgba(0,0,0,0.75);" onclick="openSubscribeModal('Clube Trono da Promessa & Privacidade')">
+    <button class="btn-gold" style="margin-top: 4px; margin-bottom: 6px; padding: 6px 14px; font-size: 12.5px; background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%); border: 1.5px solid #f3e5f5; box-shadow: 0 4px 10px rgba(0,0,0,0.75); flex-shrink: 0; z-index: 20;" onclick="openSubscribeModal('Clube Trono da Promessa & Privacidade')">
       <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Pais" style="width:18px; height:18px; object-fit:contain;">
       <span>Área dos Pais • Assinar & Privacidade</span>
     </button>
@@ -4404,7 +4432,13 @@ function printOrSaveBlankPDF() {
           border-radius: 12px;
         }
       </style>
-    </head>
+      <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./2_ASSETS_UI_BOTOES/icon_512.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Trono Kids">
+</head>
     <body>
       <h1>Trono da Promessa Kids — ${currentStory.title}</h1>
       <p>Atividade de Colorir • Nome da Criança: _____________________________________</p>
