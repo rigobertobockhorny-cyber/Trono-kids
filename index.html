@@ -1587,14 +1587,14 @@
         Acesso opcional para pais e responsáveis: libera todas as 20 histórias bíblicas, atividades para imprimir em PDF e envio pelo WhatsApp.
       </div>
 
-      <!-- CAMPO EXCLUSIVO DE CONVITE VIP / CUPOM FAMILIA -->
-      <div class="vip-coupon-box" style="margin: 10px 0 12px 0; padding: 10px 12px; background: rgba(253, 224, 71, 0.1); border: 1.5px dashed #fde047; border-radius: 14px; text-align: center;">
-        <div style="font-weight: 700; font-size: 13.5px; color: #fde047; margin-bottom: 6px;">👑 Possui um Convite VIP ou Cupom Família?</div>
+      <!-- RESGATAR CUPOM OU CÓDIGO PROMOCIONAL (PADRÃO COMERCIAL IGUAL IFOOD / NETFLIX / PLAY STORE) -->
+      <div class="vip-coupon-box" style="margin: 10px 0 12px 0; padding: 10px 12px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(253, 224, 71, 0.35); border-radius: 14px; text-align: center;">
+        <div style="font-weight: 600; font-size: 12.5px; color: #fde047; margin-bottom: 6px;">Possui um cupom de desconto ou código de acesso?</div>
         <div style="display: flex; gap: 6px; justify-content: center; align-items: center;">
-          <input type="text" id="input-vip-code" placeholder="Digite seu convite VIP..." style="flex: 1; padding: 8px 10px; border-radius: 9px; border: 1.5px solid #fde047; background: #0f172a; color: #ffffff; font-size: 13px; text-align: center; font-weight: bold; text-transform: uppercase;">
-          <button class="btn-gold" style="padding: 8px 14px; font-size: 13px; background: linear-gradient(180deg, #10b981 0%, #059669 100%); border-color: #6ee7b7; border-radius: 9px;" onclick="redeemVipCoupon()">Ativar</button>
+          <input type="text" id="input-vip-code" placeholder="Digite o cupom aqui..." style="flex: 1; padding: 8px 10px; border-radius: 9px; border: 1px solid rgba(253, 224, 71, 0.5); background: #0f172a; color: #ffffff; font-size: 13px; text-align: center; font-weight: bold; text-transform: uppercase;">
+          <button class="btn-gold" style="padding: 8px 14px; font-size: 12.5px; background: linear-gradient(180deg, #10b981 0%, #059669 100%); border-color: #6ee7b7; border-radius: 9px;" onclick="redeemVipCoupon()">Aplicar</button>
         </div>
-        <div id="vip-feedback-msg" style="font-size: 12px; margin-top: 6px; min-height: 16px; font-weight: bold;"></div>
+        <div id="vip-feedback-msg" style="font-size: 11.5px; margin-top: 5px; min-height: 14px; font-weight: bold;"></div>
       </div>
 
       <div class="plan-card" onclick="startGooglePlayCheckout('mensal')">
@@ -2811,29 +2811,27 @@ function redeemVipCoupon() {
   const rawCode = (inputEl.value || '').trim().toUpperCase();
   if (!rawCode) {
     msgEl.style.color = '#f87171';
-    msgEl.textContent = 'Por favor, digite o código do seu convite.';
+    msgEl.textContent = 'Por favor, digite o código do seu cupom.';
     return;
   }
 
-  // Lista oficial de Codigos VIP autorizados (Familia e Testadores Oficiais):
-  const validVipCodes = new Set([
-    'FAMILIA-BOCK',
+  // Lista de Códigos Promocionais Válidos:
+  const validPromoCodes = new Set([
+    'TRONO2026',
     'TRONO-FAMILIA',
-    'TESTADOR-VIP',
-    'TESTADOR-VIP-2026',
-    'VORTICE-KIDS-VIP',
-    'TESTE-TRONO-01',
-    'TESTE-TRONO-02',
-    'TESTE-TRONO-03',
-    'TESTE-TRONO-04',
-    'TESTE-TRONO-05'
+    'BOCK2026',
+    'PROMO-TRONO-01',
+    'PROMO-TRONO-02',
+    'PROMO-TRONO-03',
+    'PROMO-TRONO-04',
+    'PROMO-TRONO-05'
   ]);
 
-  if (validVipCodes.has(rawCode)) {
+  if (validPromoCodes.has(rawCode)) {
     isVipUnlocked = true;
     localStorage.setItem('trono_vip_active_v4', '1');
     msgEl.style.color = '#34d399';
-    msgEl.textContent = '✨ CONVITE VIP ATIVADO! Acesso completo liberado!';
+    msgEl.textContent = '✨ Cupom aplicado com sucesso! Acesso completo ativado!';
     playSoundWinCelebration();
     launchCelebrationConfetti();
 
@@ -2846,7 +2844,7 @@ function redeemVipCoupon() {
     }, 1500);
   } else {
     msgEl.style.color = '#f87171';
-    msgEl.textContent = 'Código inválido ou expirado. Verifique a digitação.';
+    msgEl.textContent = 'Cupom inválido ou expirado. Verifique a digitação.';
     playSoundCardFlip();
   }
 }
