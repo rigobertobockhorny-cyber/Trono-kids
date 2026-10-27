@@ -1,0 +1,4488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0a1e40">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Trono Kids">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/logo_base_trono.png">
+  <title>Trono da Promessa Kids</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').then(reg => {
+          reg.update();
+          reg.addEventListener('updatefound', () => {
+            const newWorker = reg.installing;
+            if (newWorker) {
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  console.log('Nova atualização do App Trono da Promessa Kids instalada automaticamente!');
+                }
+              });
+            }
+          });
+        }).catch(() => {});
+      });
+    }
+  </script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      font-family: 'Fredoka', 'Nunito', sans-serif;
+    }
+
+    body {
+      background: #070b14;
+      color: #fde68a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Moldura Vertical 9:16 Oficial */
+    #app-shell {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      max-width: 450px;
+      max-height: 860px;
+      aspect-ratio: 9 / 16;
+      background-image: url('./2_ASSETS_UI_BOTOES/ui_asset_01.jpg');
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
+      transition: background 0.35s ease;
+    }
+
+    /* Modo Noturno do Cantinho de Dormir: Preto Vivo Puro (#000000) destacando o Roxo, Azul e Verde! */
+    #app-shell.sleep-dark-mode {
+      background: #000000 !important;
+      background-image: none !important;
+    }
+
+    @media (min-width: 480px) {
+      #app-shell {
+        height: 95vh;
+        width: calc(95vh * 9 / 16);
+        border-radius: 34px;
+        border: 3px solid rgba(253, 224, 71, 0.65);
+      }
+      #app-shell.sleep-dark-mode {
+        border-color: rgba(192, 132, 252, 0.55);
+      }
+    }
+
+    /* ===================================================================== */
+    /* ANIMAÇÕES SUAVES E VIVAS                                              */
+    /* ===================================================================== */
+    @keyframes floatGentle {
+      0%, 100% { transform: translateY(0px); }
+      50%      { transform: translateY(-4px); }
+    }
+
+    @keyframes btnAliveFloat {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50%      { transform: translateY(-2px) scale(1.03); }
+    }
+
+    /* Estrelinha balançando e pulsando dentro da bolinha! */
+    @keyframes starRockPulse {
+      0%, 100% { transform: scale(1) rotate(-8deg); }
+      50%      { transform: scale(1.18) rotate(8deg); }
+    }
+
+    /* Alto-falante pulsando como se estivesse falando/tocando quando está ON! */
+    @keyframes speakerTalkingPulse {
+      0%, 100% { transform: scale(1); }
+      35%      { transform: scale(1.22) rotate(-4deg); }
+      70%      { transform: scale(1.12) rotate(4deg); }
+    }
+
+    @keyframes magicFlow {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes pulse3DGlow {
+      0%, 100% {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.85), 0 0 14px rgba(56, 189, 248, 0.4);
+      }
+      50% {
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.9), 0 0 22px rgba(250, 204, 21, 0.7);
+      }
+    }
+
+    .gold-text-3d {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      background: linear-gradient(180deg, #fffde7 0%, #fde047 50%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 0 #3b1704) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.95));
+      letter-spacing: 0.2px;
+      line-height: 1.15;
+    }
+
+    .frame-3d-alive {
+      padding: 5px;
+      border-radius: 22px;
+      background: linear-gradient(125deg, #38bdf8, #a855f7, #facc15, #34d399, #38bdf8);
+      background-size: 300% 300%;
+      animation: magicFlow 5s ease infinite, pulse3DGlow 3.2s ease-in-out infinite;
+      position: relative;
+    }
+
+    /* ===================================================================== */
+    /* TOPO COM AMPLO RESPIRO + 2 BOLINHAS REDONDINHAS NOS CANTINHOS!        */
+    /* ===================================================================== */
+    .topbar {
+      position: relative;
+      z-index: 30;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 14px 4px 14px;
+      flex-shrink: 0;
+      gap: 4px;
+    }
+
+    .brand-logo-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .brand-logo {
+      width: 100%;
+      max-width: 255px;
+      height: 74px;
+      object-fit: contain;
+      filter: brightness(1.18) contrast(1.08) drop-shadow(0 0 12px rgba(250, 204, 21, 0.45)) drop-shadow(0 5px 10px rgba(0, 0, 0, 0.95));
+      animation: floatGentle 4s ease-in-out infinite;
+      transition: transform 0.2s;
+    }
+    .brand-logo:active {
+      transform: scale(0.95);
+    }
+
+    /* Linha de Cima: Bolinha da Estrela (Esquerda) + Nome do Jogo no Meio + Bolinha do Som (Direita)! */
+    .topbar-controls-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2px;
+      gap: 6px;
+    }
+
+    .topbar-screen-title {
+      flex: 1;
+      text-align: center;
+      font-size: 22px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 1ª COR: BOLINHAS DE CIMA (ESTRELA E SOM) -> AZUL CIANO FORTE E VIVO (SEM LINHA DURA EMBAIXO!) */
+    .top-circle-btn {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #00e5ff 0%, #00b0ff 50%, #0066ff 100%);
+      border: 2px solid #b3e5fc;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.75);
+      cursor: pointer;
+      animation: btnAliveFloat 3s ease-in-out infinite;
+      transition: transform 0.12s;
+    }
+    #btn-ambient-sound {
+      animation-delay: 1.5s;
+    }
+    .top-circle-btn:active {
+      animation: none;
+      transform: translateY(2px) scale(0.94);
+    }
+
+    /* Estrelinha dentro da bolinha da esquerda sempre balançando/pulsando! */
+    .star-icon-anim {
+      animation: starRockPulse 2s ease-in-out infinite;
+      transform-origin: center;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.65));
+    }
+
+    /* Contador pequenininho na base da bolinha da estrela */
+    .star-mini-count {
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      background: #00c853;
+      color: #ffffff;
+      border: 1.5px solid #ffffff;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 0px 5px;
+      line-height: 1.25;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.85);
+    }
+
+    /* Alto-falante pulsando quando o som está ligado (ON)! */
+    .speaker-talking {
+      animation: speakerTalkingPulse 0.85s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    /* ===================================================================== */
+    /* TELAS DO APLICATIVO                                                   */
+    /* ===================================================================== */
+    .screen {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      padding: 2px 12px 10px 12px;
+      overflow: hidden;
+      min-height: 0;
+    }
+    .screen.active {
+      display: flex;
+    }
+
+    /* ===================================================================== */
+    /* TELA INICIAL: 6 ÍCONES PROPORCIONAIS E COM RESPIRO                    */
+    /* ===================================================================== */
+    #screen-home {
+      justify-content: flex-end;
+      align-items: center;
+      padding-top: 8px;
+      padding-bottom: 16px;
+    }
+
+    .dashboard-grid {
+      width: 100%;
+      flex: 1;
+      max-height: 540px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 6px 12px;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .module-card {
+      background: transparent;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.15s ease;
+    }
+    .module-card:active {
+      transform: scale(0.92);
+    }
+
+    .mod-icon-3d {
+      width: 92px;
+      height: 92px;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.8));
+      animation: floatGentle 3.2s ease-in-out infinite;
+    }
+    .module-card:nth-child(even) .mod-icon-3d {
+      animation-delay: 1.5s;
+    }
+
+    .mod-title {
+      margin-top: -1px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 16.5px;
+      background: linear-gradient(180deg, #fffde7 0%, #fde047 50%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 0 #3b1704) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.95));
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* ===================================================================== */
+    /* BARRA DIDÁTICA E COMPACTA DOS JOGOS (BOLINHAS REDONDAS + CASINHAS)    */
+    /* ===================================================================== */
+    .module-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-top: 7px;
+      padding: 6px 2px 6px 2px;
+      flex-shrink: 0;
+      z-index: 25;
+      overflow: visible;
+    }
+
+    /* 2ª COR: BOLINHAS DE DIREITA E ESQUERDA (SETINHAS) -> VERDE BEM VIVO (SEM LINHA DURA EMBAIXO!) */
+    .btn-nav-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #00e676 0%, #00c853 55%, #009624 100%);
+      border: 2px solid #b9f6ca;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.75);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      animation: btnAliveFloat 3s ease-in-out infinite;
+      transition: transform 0.12s;
+    }
+    .btn-nav-circle svg path {
+      stroke: #ffffff !important;
+    }
+    .btn-nav-circle:active {
+      animation: none;
+      transform: translateY(2px) scale(0.92);
+    }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #ffffff;
+      background: linear-gradient(180deg, #00e676 0%, #00c853 55%, #009624 100%);
+      border: 2px solid #b9f6ca;
+      border-radius: 999px;
+      padding: 6px 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.72);
+      transition: transform 0.12s;
+    }
+    .btn-gold:active {
+      transform: translateY(2px) scale(0.95);
+    }
+
+    /* Card Roxo Central com Bolinhas Azul e Verde (Padrão Unificado: Quiz, Memória, Quebra-Cabeça e Pintura!) */
+    .houses-trail {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%);
+      border: 2px solid #f3e5f5;
+      border-radius: 999px;
+      padding: 4px 6px;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.72);
+    }
+
+    .house-step {
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 11.5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: linear-gradient(180deg, #00b0ff 0%, #0066ff 100%);
+      color: #ffffff;
+      border: 1.5px solid #b3e5fc;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+    .house-step.done {
+      background: linear-gradient(180deg, #00e676 0%, #00c853 100%);
+      color: #ffffff;
+      border-color: #ffffff;
+      box-shadow: 0 0 8px rgba(0, 230, 118, 0.8);
+    }
+    .house-step.current {
+      background: linear-gradient(180deg, #00e676 0%, #00c853 100%);
+      color: #ffffff;
+      border-color: #ffffff;
+      transform: scale(1.12);
+      box-shadow: 0 0 12px rgba(0, 230, 118, 0.95);
+    }
+    .house-step.locked {
+      width: auto;
+      border-radius: 999px;
+      padding: 0 5px;
+      gap: 2px;
+      font-size: 10px;
+      background: #4a0072;
+      border-color: #fde047;
+      color: #fde047;
+      white-space: nowrap;
+    }
+    .house-step.rules-btn {
+      background: linear-gradient(180deg, #00b0ff 0%, #0066ff 100%);
+      border-color: #fde047;
+      color: #fde047;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* BOTÕEZINHOS DENTRO DO CARD ROXO: NÃO SELECIONADO = AZUL VIVO | SELECIONADO = VERDE VIVO! */
+    .btn-tool-3d {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: #ffffff;
+      background: linear-gradient(180deg, #00b0ff 0%, #0066ff 100%);
+      border: 1.5px solid #b3e5fc;
+      border-radius: 999px;
+      padding: 4px 9px;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.45);
+      transition: all 0.12s;
+    }
+    .btn-tool-3d:active {
+      transform: translateY(1px) scale(0.95);
+    }
+    .btn-tool-3d.active {
+      color: #ffffff;
+      background: linear-gradient(180deg, #00e676 0%, #00c853 100%);
+      border-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 230, 118, 0.85);
+    }
+
+    /* ===================================================================== */
+    /* GALERIA DE 4 IMAGENS INTEIRAS POR VEZ (2x2 SEM IMAGEM CORTADA!)       */
+    /* ===================================================================== */
+    @keyframes galleryCardFadeIn {
+      0%   { opacity: 0.35; transform: translateY(8px) scale(0.97); }
+      100% { opacity: 1;    transform: translateY(0) scale(1); }
+    }
+
+    .stories-gallery {
+      flex: 1;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 10px 10px;
+      padding: 2px 6px 6px 6px;
+      min-height: 0;
+      touch-action: none;
+      user-select: none;
+    }
+
+    .story-card {
+      background: transparent;
+      border: none;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      animation: galleryCardFadeIn 0.22s ease-out;
+      transition: transform 0.15s;
+    }
+    .story-card:active {
+      transform: scale(0.95);
+    }
+
+    .story-thumb-wrap {
+      position: relative;
+      height: 100%;
+      max-height: 100%;
+      width: auto;
+      max-width: 92%;
+      aspect-ratio: 9 / 14;
+      border-radius: 20px;
+      padding: 4px;
+      background: linear-gradient(125deg, #38bdf8, #a855f7, #facc15, #34d399, #38bdf8);
+      background-size: 250% 250%;
+      animation: magicFlow 5s ease infinite;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.85);
+    }
+
+    .story-thumb-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .story-card-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .story-title-inside {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 22px 6px 6px 6px;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(15, 23, 42, 0.9) 55%, rgba(15, 23, 42, 0.98) 100%);
+      font-weight: 700;
+      font-size: 12.5px;
+      color: #fde047;
+      text-align: center;
+      line-height: 1.12;
+    }
+
+    .lock-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 16px;
+    }
+    .lock-overlay img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.9));
+      animation: floatGentle 2.8s ease-in-out infinite;
+    }
+
+    .sticker-star-corner {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #16a34a;
+      border: 1.5px solid #86efac;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.8);
+    }
+
+    /* ===================================================================== */
+    /* QUEBRA-CABEÇA E OFICINA DE PINTURA (CARD ROXO + BOLINHAS VERDE/AZUL)  */
+    /* ===================================================================== */
+    .puzzle-diff-bar {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%);
+      border: 2px solid #f3e5f5;
+      border-radius: 999px;
+      padding: 5px 8px;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.72);
+    }
+
+    .puzzle-stage-wrap {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 0;
+    }
+
+    #puzzle-canvas {
+      width: 100%;
+      height: 100%;
+      max-height: 670px;
+      touch-action: none;
+      cursor: grab;
+    }
+    #puzzle-canvas:active {
+      cursor: grabbing;
+    }
+
+    /* Card Roxo Grandão na Pintura Mágica com as 6 bolinhas/pílulas Azul (inativo) e Verde (selecionado)! */
+    .paint-toolbar-modes {
+      flex: 1;
+      min-width: 0;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 3px;
+      margin-bottom: 0;
+      background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%);
+      border: 2px solid #f3e5f5;
+      border-radius: 999px;
+      padding: 4px 5px;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.72);
+    }
+
+    .paint-toolbar-modes .btn-tool-3d {
+      padding: 5px 1px;
+      font-size: 10px;
+      letter-spacing: -0.25px;
+      border-radius: 999px;
+      min-width: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .paint-canvas-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+      padding: 2px;
+    }
+
+    .paint-3d-wrapper {
+      height: 100%;
+      max-width: 100%;
+      aspect-ratio: 9 / 16;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #paint-canvas {
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      background: #ffffff;
+      display: block;
+      touch-action: none;
+    }
+
+    .palette-bar {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 5px;
+      padding: 5px 2px 2px 2px;
+      flex-shrink: 0;
+      justify-items: center;
+    }
+    .color-swatch {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1.5px solid #ffffff;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.75);
+      cursor: pointer;
+      transition: transform 0.14s;
+    }
+    .color-swatch.active {
+      transform: scale(1.24);
+      border-color: #fde047;
+      box-shadow: 0 0 10px #facc15, 0 4px 8px rgba(0,0,0,0.9);
+      z-index: 2;
+    }
+
+    /* ===================================================================== */
+    /* QUIZ DO VOVÔ NÉSIO (IMAGEM MAIOR + CORES QUENTES NOBRES SEM AZUL!)    */
+    /* ===================================================================== */
+    .quiz-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2px 2px 6px 2px;
+      gap: 5px;
+      min-height: 0;
+    }
+
+    .quiz-image-wrap {
+      flex: 1;
+      min-height: 0;
+      max-height: 41%;
+      aspect-ratio: 9 / 16;
+    }
+
+    .quiz-question-plaque {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%);
+      border: 2px solid #f3e5f5;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.78);
+      text-align: center;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 1.2;
+      color: #ffffff;
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.85);
+      flex-shrink: 0;
+    }
+
+    .quiz-options {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    /* Botões do Quiz no Azul Vibrante com tamanho compacto para nunca cortar a 3ª opção! */
+    .quiz-opt-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      text-align: left;
+      padding: 7px 11px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #ffffff;
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.85);
+      background: linear-gradient(180deg, #00b0ff 0%, #0066ff 100%);
+      border: 2px solid #b3e5fc;
+      border-radius: 15px;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.75);
+      cursor: pointer;
+      transition: transform 0.1s, background 0.15s;
+    }
+    .quiz-opt-btn:active {
+      transform: translateY(2px) scale(0.98);
+    }
+
+    .quiz-opt-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #0f172a;
+      text-shadow: none;
+      font-weight: 700;
+      font-size: 14.5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    }
+
+    .quiz-opt-btn.correct {
+      background: linear-gradient(180deg, #00e676 0%, #00c853 100%) !important;
+      border-color: #ffffff !important;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.78) !important;
+      color: #ffffff !important;
+    }
+    .quiz-opt-btn.correct .quiz-opt-num {
+      background: #ffffff;
+      color: #00600f;
+    }
+
+    .quiz-opt-btn.wrong {
+      background: linear-gradient(180deg, #ff1744 0%, #b71c1c 100%) !important;
+      border-color: #ffcdd2 !important;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.78) !important;
+      color: #ffffff !important;
+    }
+    .quiz-opt-btn.wrong .quiz-opt-num {
+      background: #ffffff;
+      color: #9f1239;
+    }
+
+    /* ===================================================================== */
+    /* JOGO DA MEMÓRIA (CARD ROXO AMETISTA 3D VIBRANTE - SEM MARROM/AZUL!)   */
+    /* ===================================================================== */
+    .memory-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 8px;
+      padding: 2px;
+      min-height: 0;
+    }
+    .mem-card {
+      perspective: 700px;
+      cursor: pointer;
+    }
+    .mem-card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .mem-card.flipped .mem-card-inner,
+    .mem-card.matched .mem-card-inner {
+      transform: rotateY(180deg);
+    }
+    .mem-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2.5px solid #2dd4bf;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.82);
+    }
+    .mem-back {
+      background: linear-gradient(145deg, #c084fc 0%, #9333ea 50%, #581c87 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-color: #e9d5ff;
+    }
+    .mem-back img {
+      width: 82%;
+      height: 82%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.85));
+      animation: floatGentle 3s ease-in-out infinite;
+    }
+    .mem-front {
+      transform: rotateY(180deg);
+      background: #000;
+    }
+    .mem-card.matched .mem-front {
+      border-color: #34d399;
+      box-shadow: 0 0 14px #34d399;
+    }
+    .mem-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .mem-front span {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      font-weight: 700;
+      font-size: 11px;
+      color: #ffffff;
+      text-align: center;
+      padding: 4px 3px;
+      background: linear-gradient(180deg, transparent, rgba(59, 7, 100, 0.95));
+      line-height: 1.05;
+    }
+
+    /* ===================================================================== */
+    /* CAMINHO SINUOSO DO ÁLBUM DA FÉ (ESTRADINHA EM CURVAS + CASINHAS 3D!)  */
+    /* ===================================================================== */
+    .ludo-board-grid {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      overflow: hidden;
+      border-radius: 22px;
+      background: radial-gradient(circle at 50% 35%, rgba(88, 28, 135, 0.78) 0%, rgba(30, 27, 75, 0.92) 100%);
+      border: 2px solid rgba(0, 229, 255, 0.55);
+      box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.8), 0 8px 20px rgba(0, 0, 0, 0.85);
+    }
+
+    .sinuous-road-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Quadradinho / Casinha em cima da Estradinha Sinuosa! */
+    .road-node-house {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      transform: translate(-50%, -50%);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 5;
+      background: linear-gradient(180deg, #9333ea 0%, #581c87 100%);
+      border: 2px solid #e9d5ff;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.82);
+      transition: transform 0.15s;
+    }
+    .road-node-house:active {
+      transform: translate(-50%, -46%) scale(0.92);
+    }
+
+    /* Casinha Desbloqueada (Conquistada) -> VERDE BEM VIVO! */
+    .road-node-house.conquered {
+      background: linear-gradient(180deg, #00e676 0%, #00c853 55%, #009624 100%);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 14px rgba(0, 230, 118, 0.75);
+    }
+
+    /* Próxima Casinha do Caminho -> AZUL CIANO FORTE VIVO! */
+    .road-node-house.active-walker {
+      background: linear-gradient(180deg, #00e5ff 0%, #00b0ff 55%, #0066ff 100%);
+      border: 2.5px solid #ffffff;
+      box-shadow: 0 0 18px rgba(0, 229, 255, 0.95);
+      z-index: 8;
+    }
+
+    .road-node-num {
+      font-weight: 700;
+      font-size: 16px;
+      color: #ffffff;
+      line-height: 1;
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.85);
+    }
+
+    .road-node-subicon {
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .road-walker-badge {
+      position: absolute;
+      top: -26px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 38px;
+      height: 38px;
+      pointer-events: none;
+      z-index: 10;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.95));
+      animation: floatGentle 1.8s ease-in-out infinite;
+    }
+
+    /* ===================================================================== */
+    /* CANTINHO DE DORMIR: CREPÚSCULO ROXO SUAVE (SEM AQUELE PRETO PURO!)    */
+    /* ===================================================================== */
+    .sleep-list {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 4px;
+      padding: 2px 2px 6px 2px;
+      min-height: 0;
+    }
+    .sleep-track {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      border-radius: 13px;
+      background: linear-gradient(180deg, #aa00ff 0%, #6b21a8 100%);
+      border: 1.5px solid #e9d5ff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.85);
+      cursor: pointer;
+    }
+    .sleep-track.playing {
+      background: linear-gradient(180deg, #00e676 0%, #00c853 100%);
+      border-color: #ffffff;
+      box-shadow: 0 0 14px rgba(0, 230, 118, 0.55);
+    }
+    .sleep-track-title {
+      font-weight: 700;
+      font-size: 13.5px;
+      color: #ffffff;
+      flex: 1;
+      padding-right: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .btn-sleep-dark {
+      background: linear-gradient(180deg, #00e676 0%, #00c853 100%);
+      color: #ffffff;
+      border: 1.5px solid #b9f6ca;
+      border-radius: 999px;
+      padding: 3px 12px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      cursor: pointer;
+    }
+    .sleep-track.playing .btn-sleep-dark {
+      background: #ffffff;
+      border-color: #ffffff;
+      color: #065f46;
+    }
+
+    /* ===================================================================== */
+    /* MODAIS                                                                */
+    /* ===================================================================== */
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 345px;
+      border-radius: 26px;
+      padding: 20px 18px;
+      background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);
+      border: 2px solid #facc15;
+      text-align: center;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.92);
+      animation: popInCard 0.28s ease-out, aliveFloat3D 3.2s ease-in-out 0.28s infinite;
+    }
+
+    @keyframes popInCard {
+      0% { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* ===================================================================== */
+    /* VIDA 3D E MOVIMENTO FLUTUANTE EM TODOS OS BOTÕES E CARDS DO APP       */
+    /* ===================================================================== */
+    @keyframes aliveBtnFloat {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50%      { transform: translateY(-2.5px) scale(1.015); }
+    }
+
+    @keyframes innerPillAlive {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.045); }
+    }
+
+    @keyframes ballWaveDance {
+      0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
+      35%      { transform: translateY(-10px) scale(1.13) rotate(-5deg); }
+      70%      { transform: translateY(2px) scale(0.97) rotate(4deg); }
+    }
+
+    @keyframes ballCurrentHero {
+      0%, 100% { transform: translateY(-2px) scale(1.18) rotate(-4deg); box-shadow: 0 0 18px rgba(253, 224, 71, 0.95), 0 0 28px rgba(0, 230, 118, 0.9); }
+      50%      { transform: translateY(-13px) scale(1.30) rotate(5deg);  box-shadow: 0 0 26px rgba(253, 224, 71, 1), 0 0 38px rgba(0, 230, 118, 1); }
+    }
+
+    @keyframes starTrophyPulse {
+      0%, 100% { transform: translateY(0px) scale(1) rotate(-4deg); }
+      50%      { transform: translateY(-8px) scale(1.15) rotate(6deg); }
+    }
+
+    @keyframes titlePopBounce {
+      0%, 100% { transform: scale(1) translateY(0px); }
+      50%      { transform: scale(1.07) translateY(-3px); }
+    }
+
+    .btn-gold,
+    .plan-card,
+    .quiz-opt-btn,
+    .quiz-question-card,
+    .quiz-question-plaque,
+    .sleep-track,
+    .btn-nav-circle,
+    .btn-sound-circle,
+    .top-circle-btn,
+    .counter-pill,
+    .story-card,
+    .mem-card,
+    .ludo-house,
+    .color-swatch,
+    .puzzle-diff-bar,
+    .paint-toolbar-modes,
+    .houses-trail {
+      animation: aliveBtnFloat 2.8s ease-in-out infinite;
+    }
+
+    .btn-tool-3d,
+    .diff-pill,
+    .paint-mode-pill,
+    .house-step {
+      animation: innerPillAlive 2.2s ease-in-out infinite;
+    }
+
+    .btn-gold:nth-child(2n),
+    .quiz-opt-btn:nth-child(2n),
+    .btn-tool-3d:nth-child(2n),
+    .diff-pill:nth-child(2n),
+    .paint-mode-pill:nth-child(2n),
+    .house-step:nth-child(2n),
+    .sleep-track:nth-child(2n),
+    .story-card:nth-child(2n),
+    .mem-card:nth-child(2n),
+    .ludo-house:nth-child(2n),
+    .color-swatch:nth-child(2n) {
+      animation-delay: 0.4s;
+    }
+
+    .btn-gold:nth-child(3n),
+    .quiz-opt-btn:nth-child(3n),
+    .btn-tool-3d:nth-child(3n),
+    .diff-pill:nth-child(3n),
+    .paint-mode-pill:nth-child(3n),
+    .house-step:nth-child(3n),
+    .sleep-track:nth-child(3n),
+    .story-card:nth-child(3n),
+    .mem-card:nth-child(3n),
+    .ludo-house:nth-child(3n),
+    .color-swatch:nth-child(3n) {
+      animation-delay: 0.8s;
+    }
+
+    .celebration-dot-item {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+      font-weight: 700;
+      color: #ffffff;
+      border: 2.5px solid #ffffff;
+      position: relative;
+      animation: ballWaveDance 1.35s ease-in-out infinite;
+    }
+    .celebration-dot-item.done {
+      background: linear-gradient(180deg, #00e676 0%, #00c853 100%);
+      box-shadow: 0 0 14px rgba(0, 230, 118, 0.9);
+    }
+    .celebration-dot-item.just-won {
+      background: linear-gradient(180deg, #00e676 0%, #00c853 100%);
+      border-color: #fde047;
+      animation: ballCurrentHero 1.05s ease-in-out infinite !important;
+      z-index: 3;
+    }
+    .celebration-dot-item.pending {
+      background: linear-gradient(180deg, #00b0ff 0%, #0066ff 100%);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55);
+      opacity: 0.92;
+    }
+
+    .reward-img-frame {
+      width: 160px;
+      height: 235px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 2.5px solid #fde047;
+      box-shadow: 0 0 22px rgba(253, 224, 71, 0.65), 0 8px 20px rgba(0, 0, 0, 0.85);
+      margin-bottom: 10px;
+      animation: aliveFloat3D 2.6s ease-in-out infinite;
+    }
+
+    .modal-subtitle {
+      font-weight: 700;
+      font-size: 13.5px;
+      color: #fef08a;
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+
+    .plan-card {
+      background: linear-gradient(180deg, #312e81 0%, #1e1b4b 100%);
+      border: 1.5px solid #38bdf8;
+      border-radius: 16px;
+      padding: 10px 12px;
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      text-align: left;
+    }
+    .plan-card-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: #fde047;
+    }
+    .plan-card-sub {
+      font-weight: 600;
+      font-size: 12px;
+      color: #ffffff;
+      opacity: 0.95;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app-shell">
+  <!-- TOPO COM AMPLO RESPIRO: LOGO SOZINHA EM CIMA + 2 BOLINHAS REDONDINHAS NOS CANTINHOS! -->
+  <header class="topbar">
+    <div class="brand-logo-wrap" onclick="goHome()">
+      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_base_trono.png?v=12" alt="Trono da Promessa" class="brand-logo">
+    </div>
+
+    <div class="topbar-controls-row">
+      <!-- Bolinha Redondinha 3D da Esquerda (AZUL VIVO): Abre o Caminho de Casinhas! -->
+      <button class="top-circle-btn" onclick="openLudoTrailBoard()" title="Caminho das Casinhas / Álbum da Fé">
+        <svg class="star-icon-anim" width="23" height="23" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L15.1 8.2L22 9.2L17 14.1L18.2 21L12 17.8L5.8 21L7 14.1L2 9.2L8.9 8.2L12 2Z" fill="#fde047" stroke="#ffffff" stroke-width="1.2"/>
+        </svg>
+        <span class="star-mini-count" id="sticker-count">1</span>
+      </button>
+
+      <!-- NOME DO JOGO NA MESMA LINHA ENTRE O BOTÃO DA ESTRELA E O BOTÃO DO SOM! -->
+      <div id="topbar-game-title" class="gold-text-3d topbar-screen-title"></div>
+
+      <!-- Bolinha Redondinha 3D da Direita (AZUL VIVO): Alto-Falante Pulsando -->
+      <button class="top-circle-btn" id="btn-ambient-sound" onclick="toggleAmbientSound()" title="Ligar ou Desligar Música">
+        <svg id="sound-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#ffffff"/>
+          <path d="M22 9L16 15M16 9L22 15" stroke="#fde047" stroke-width="2.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================================================================== -->
+  <!-- TELA 0: DASHBOARD PRINCIPAL                                          -->
+  <!-- ==================================================================== -->
+  <section id="screen-home" class="screen active">
+    <div class="dashboard-grid">
+      <div class="module-card" onclick="openGalleryFor('puzzle')">
+        <img src="./2_ASSETS_UI_BOTOES/ui_icon_02.png" alt="Quebra-Cabeça" class="mod-icon-3d">
+        <div class="mod-title">Quebra-Cabeça</div>
+      </div>
+
+      <div class="module-card" onclick="openGalleryFor('paint')">
+        <img src="./2_ASSETS_UI_BOTOES/ui_icon_03.png" alt="Pintura Mágica" class="mod-icon-3d">
+        <div class="mod-title">Pintura Mágica</div>
+      </div>
+
+      <div class="module-card" onclick="openModule('quiz')">
+        <img src="./2_ASSETS_UI_BOTOES/ui_icon_04.png" alt="Quiz do Vovô" class="mod-icon-3d">
+        <div class="mod-title">Quiz do Vovô</div>
+      </div>
+
+      <div class="module-card" onclick="openModule('memory')">
+        <img src="./2_ASSETS_UI_BOTOES/ui_icon_05.png" alt="Jogo da Memória" class="mod-icon-3d">
+        <div class="mod-title">Jogo da Memória</div>
+      </div>
+
+      <div class="module-card" onclick="openLudoTrailBoard()">
+        <img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" alt="Álbum da Fé" class="mod-icon-3d">
+        <div class="mod-title">Álbum da Fé</div>
+      </div>
+
+      <div class="module-card" onclick="openModule('sleep')">
+        <img src="./2_ASSETS_UI_BOTOES/ui_icon_07.png" alt="Cantinho de Dormir" class="mod-icon-3d">
+        <div class="mod-title">Cantinho de Dormir</div>
+      </div>
+    </div>
+
+    <!-- Botão Direto na Tela Principal para o Papai e a Mamãe (Sem precisar jogar tudo de novo para assinar ou ver a Política!) -->
+    <button class="btn-gold" style="margin-top: 6px; padding: 7px 16px; font-size: 13px; background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%); border: 1.5px solid #f3e5f5; box-shadow: 0 4px 10px rgba(0,0,0,0.75);" onclick="openSubscribeModal('Clube Trono da Promessa & Privacidade')">
+      <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Pais" style="width:18px; height:18px; object-fit:contain;">
+      <span>Área dos Pais • Assinar & Privacidade</span>
+    </button>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA 1: GALERIA                                                      -->
+  <!-- ==================================================================== -->
+  <section id="screen-gallery" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="goHome()" title="Voltar ao Início">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div id="gallery-header-title" style="display:none;">Quebra-Cabeça</div>
+      <div class="houses-trail" id="gallery-houses-trail"></div>
+      <button class="btn-nav-circle" onclick="stepGallery(2)" title="Próximas Imagens">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div id="gallery-grid" class="stories-gallery"></div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA 2: QUEBRA-CABEÇA                                                -->
+  <!-- ==================================================================== -->
+  <section id="screen-puzzle" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="openGalleryFor('puzzle')" title="Voltar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="puzzle-diff-bar">
+        <button id="diff-6" class="btn-tool-3d active" onclick="setPuzzleDifficulty(2, 3)">6 Peças</button>
+        <button id="diff-9" class="btn-tool-3d" onclick="setPuzzleDifficulty(3, 3)">9 Peças</button>
+        <button id="diff-12" class="btn-tool-3d" onclick="setPuzzleDifficulty(3, 4)">12 Peças</button>
+      </div>
+      <button class="btn-nav-circle" onclick="goToNextStory('puzzle')" title="Próximo">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div class="puzzle-stage-wrap">
+      <canvas id="puzzle-canvas" width="540" height="840"></canvas>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA 3: OFICINA DA PINTURA MÁGICA                                    -->
+  <!-- ==================================================================== -->
+  <section id="screen-paint" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="openGalleryFor('paint')" title="Voltar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="paint-toolbar-modes">
+        <button id="tool-bucket" class="btn-tool-3d active" onclick="setPaintTool('bucket')">Toque</button>
+        <button id="tool-brush" class="btn-tool-3d" onclick="setPaintTool('brush')">Lápis</button>
+        <button id="tool-undo" class="btn-tool-3d" onclick="highlightPaintAction('tool-undo'); undoLastPaintStep()" title="Desfazer última pintura (Ctrl+Z)">Voltar</button>
+        <button id="tool-auto" class="btn-tool-3d" onclick="highlightPaintAction('tool-auto'); autoPaintEntireDrawing()">Pintar</button>
+        <button id="tool-clear" class="btn-tool-3d" onclick="highlightPaintAction('tool-clear'); resetCurrentPainting()">Limpar</button>
+        <button id="tool-download" class="btn-tool-3d" onclick="highlightPaintAction('tool-download'); onPaintDownloadOrPrintClick()">Baixar</button>
+      </div>
+      <button class="btn-nav-circle" onclick="goToNextStory('paint')" title="Próximo">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div class="paint-canvas-container">
+      <div class="paint-3d-wrapper frame-3d-alive">
+        <canvas id="paint-canvas" width="540" height="960"></canvas>
+      </div>
+    </div>
+
+    <div class="palette-bar" id="palette-bar"></div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA 4: QUIZ DO VOVÔ NÉSIO                                           -->
+  <!-- ==================================================================== -->
+  <section id="screen-quiz" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="goHome()" title="Início">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="houses-trail" id="quiz-houses-trail"></div>
+
+      <button class="btn-nav-circle" onclick="skipQuizQuestion()" title="Próxima">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div class="quiz-card">
+      <div class="frame-3d-alive quiz-image-wrap">
+        <img id="quiz-image" style="width:100%; height:100%; object-fit:cover; border-radius:16px;" src="./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_09.jpg" alt="Quiz">
+      </div>
+
+      <div id="quiz-question-text" class="quiz-question-plaque">Carregando pergunta...</div>
+
+      <div class="quiz-options" id="quiz-options-box"></div>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA 5: JOGO DA MEMÓRIA                                              -->
+  <!-- ==================================================================== -->
+  <section id="screen-memory" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="goHome()" title="Início">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="houses-trail" id="memory-houses-trail"></div>
+
+      <button class="btn-nav-circle" onclick="goToNextMemoryPhase()" title="Próximo">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div id="memory-grid" class="memory-grid"></div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA 6: ÁLBUM DA FÉ (CARTINHAS 4 POR VEZ)                            -->
+  <!-- ==================================================================== -->
+  <section id="screen-album" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="goHome()" title="Início">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="puzzle-diff-bar">
+        <button class="btn-tool-3d" onclick="openLudoTrailBoard()">Caminho</button>
+        <button class="btn-tool-3d active">Cartinhas</button>
+        <button class="btn-tool-3d" onclick="openGameRulesModal()">Regras</button>
+      </div>
+      <button class="btn-nav-circle" onclick="stepAlbum(2)" title="Próximas Imagens">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div id="album-grid" class="stories-gallery"></div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA 6B: CAMINHO DAS CASINHAS (ESTILO JOGO DA VIDA / LUDO!)          -->
+  <!-- ==================================================================== -->
+  <section id="screen-ludo-trail" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="goHome()" title="Início">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="puzzle-diff-bar">
+        <button class="btn-tool-3d active">Caminho</button>
+        <button class="btn-tool-3d" onclick="openModule('album')">Cartinhas</button>
+        <button class="btn-tool-3d" onclick="openGameRulesModal()">Regras</button>
+      </div>
+      <button class="btn-nav-circle" onclick="openModule('album')" title="Ver Cartinhas">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div id="ludo-board-grid" class="ludo-board-grid"></div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA 7: CANTINHO DE DORMIR (CREPÚSCULO ROXO SUAVE)                   -->
+  <!-- ==================================================================== -->
+  <section id="screen-sleep" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="goHome()" title="Início">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div style="flex:1;"></div>
+      <div style="width:38px;"></div>
+    </div>
+    <div class="sleep-list" id="sleep-list"></div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- MODAL DE DOWNLOAD / IMPRESSÃO / WHATSAPP (EXCLUSIVO ASSINANTES)      -->
+  <!-- ==================================================================== -->
+  <div id="modal-download-paint" class="modal-backdrop">
+    <div class="modal-card">
+      <div style="font-size:20px; font-weight:700; color:#fde047; margin-bottom:6px;">Baixar, Imprimir e WhatsApp</div>
+      <div class="modal-subtitle">
+        Escolha como deseja salvar ou enviar este desenho:
+      </div>
+
+      <button class="btn-gold" style="width:100%; margin-bottom:9px; padding:11px; font-size:14.5px;" onclick="printOrSaveBlankPDF()">
+        Imprimir / PDF (Desenho p/ Colorir no Papel)
+      </button>
+
+      <button class="btn-gold" style="width:100%; margin-bottom:9px; padding:11px; font-size:14.5px;" onclick="downloadColoredPaintingPNG()">
+        Baixar Pintura Colorida (Celular / PC)
+      </button>
+
+      <button class="btn-gold" style="width:100%; margin-bottom:9px; padding:11px; font-size:14.5px; background:linear-gradient(180deg, #22c55e 0%, #15803d 100%); color:#fff;" onclick="sharePaintingOnWhatsApp()">
+        Enviar pelo WhatsApp
+      </button>
+
+      <button class="btn-gold" style="width:100%; margin-top:4px; padding:9px; font-size:14px;" onclick="closeModal('modal-download-paint')">Fechar</button>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- PARENTAL GATE OBRIGATÓRIO (GOOGLE PLAY FAMILIES / COPPA / LGPD)      -->
+  <!-- ==================================================================== -->
+  <div id="modal-parental-gate" class="modal-backdrop">
+    <div class="modal-card" style="padding: 30px 22px; max-width: 355px;">
+      <div style="font-size: 24px; font-weight: 700; color: #00e5ff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9); line-height: 1.2; margin-bottom: 14px;">
+        Área para Papai e Mamãe
+      </div>
+      <div class="modal-subtitle" style="font-size: 13.5px; color: #f1f5f9; line-height: 1.42; margin-bottom: 24px;">
+        Para proteção infantil (Google Play / LGPD / COPPA), peça a um adulto para responder:
+      </div>
+      <div id="parental-gate-question" style="font-size: 20px; font-weight: 700; color: #ffffff; text-shadow: 0 2px 3px rgba(0,0,0,0.85); background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%); border: 2px solid #f3e5f5; box-shadow: 0 5px 12px rgba(0,0,0,0.65); padding: 14px 12px; border-radius: 16px; margin-bottom: 22px;">
+        Quanto é SETE + CINCO?
+      </div>
+      <div id="parental-gate-options" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 26px;"></div>
+      <button class="btn-gold" style="width: 100%; padding: 12px; font-size: 16px; background: linear-gradient(180deg, #00e676 0%, #00c853 100%); border-color: #b9f6ca; box-shadow: 0 5px 12px rgba(0,0,0,0.6);" onclick="onBackToPlayFromParentalOrSubscribe()">
+        Voltar para a Brincadeira
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- MODAL DE ASSINATURA PAGA (DIRECIONADO AOS PAIS - SEM DARK PATTERNS)  -->
+  <!-- ==================================================================== -->
+  <div id="modal-subscribe" class="modal-backdrop">
+    <div class="modal-card">
+      <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Cadeado VIP" style="width:60px; height:60px; object-fit:contain; margin-bottom:6px; animation: floatGentle 2.5s ease-in-out infinite;">
+      <div id="subscribe-modal-title" style="font-size:19px; font-weight:700; color:#fde047; margin-bottom:6px;">Área dos Pais • Clube Trono da Promessa</div>
+      <div class="modal-subtitle" id="subscribe-modal-desc">
+        Acesso opcional para pais e responsáveis: libera todas as 20 histórias bíblicas, atividades para imprimir em PDF e envio pelo WhatsApp.
+      </div>
+
+      <div class="plan-card" onclick="startGooglePlayCheckout('mensal')">
+        <div>
+          <div class="plan-card-title">Plano Mensal</div>
+          <div class="plan-card-sub">Cancele quando quiser no Google Play</div>
+        </div>
+        <button class="btn-gold">R$ 7,90/mês</button>
+      </div>
+
+      <div class="plan-card" onclick="startGooglePlayCheckout('anual')">
+        <div>
+          <div class="plan-card-title">Plano Anual (Desconto Família)</div>
+          <div class="plan-card-sub">Equivalente a R$ 4,99/mês</div>
+        </div>
+        <button class="btn-gold">R$ 59,90/ano</button>
+      </div>
+
+      <div style="font-size:11px; color:#cbd5e1; line-height:1.35; margin:8px 0;">
+        Renovação automática via Google Play. Cancele quando quiser em "Assinaturas" no Google Play. Sem anúncios e 100% seguro para crianças.
+      </div>
+
+      <div style="display:flex; gap:6px; margin-bottom:8px;">
+        <button class="btn-gold" style="flex:1; padding:8px 6px; font-size:12px; background:linear-gradient(180deg, #00b0ff 0%, #0066ff 100%); border-color:#b3e5fc;" onclick="restoreGooglePlayPurchases()">
+          Restaurar Assinatura
+        </button>
+        <button class="btn-gold" style="flex:1; padding:8px 6px; font-size:12px; background:linear-gradient(180deg, #aa00ff 0%, #7200ca 100%); border-color:#f3e5f5;" onclick="openPrivacyPolicyModal()">
+          Política de Privacidade
+        </button>
+      </div>
+
+      <button class="btn-gold" style="width:100%; padding:10px; font-size:15px;" onclick="onBackToPlayFromParentalOrSubscribe()">Voltar para a Brincadeira</button>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- MODAL DE POLÍTICA DE PRIVACIDADE E TERMOS (DOCUMENTO COMPLETO 18 CLÁUSULAS) -->
+  <!-- ==================================================================== -->
+  <div id="modal-privacy-policy" class="modal-backdrop">
+    <div class="modal-card" style="max-width:368px; text-align:left; padding:18px 16px;">
+      <div style="font-size:18px; font-weight:700; color:#00e5ff; text-align:center; margin-bottom:4px;">
+        Política de Privacidade e Termos de Uso
+      </div>
+      <div style="font-size:11px; color:#fde047; text-align:center; margin-bottom:10px; font-weight:600;">
+        Documento Oficial • LGPD • ECA • CDC • Marco Civil • COPPA • Google Play
+      </div>
+      <div style="font-size:12px; color:#f1f5f9; line-height:1.5; max-height:385px; overflow-y:auto; padding:10px 10px; margin-bottom:12px; background:rgba(9,13,22,0.72); border:1.5px solid rgba(0,229,255,0.35); border-radius:14px;">
+        <p style="margin-bottom:8px; color:#86efac; font-weight:700;">PARTE I — POLÍTICA DE PRIVACIDADE E PROTEÇÃO DE DADOS INFANTIS</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 1ª — Identificação do Controlador e Escopo Legal:</strong> O aplicativo <strong>Trono da Promessa Kids</strong> (pacote oficial <code>com.vorticemidia.tronodapromessa</code>) é desenvolvido, mantido e licenciado por <strong>Vórtice Mídia Produções e Tecnologia Digital ("Vórtice Mídia")</strong>. Este instrumento rege o uso do aplicativo em total conformidade com o Art. 227 da Constituição Federal, a <strong>Lei Geral de Proteção de Dados Pessoais (LGPD — Lei Federal nº 13.709/2018, em especial seu Art. 14)</strong>, o Enunciado CD/ANPD nº 1/2023, o <strong>Estatuto da Criança e do Adolescente (ECA — Lei Federal nº 8.069/1990)</strong>, o Marco Legal da Primeira Infância (Lei nº 13.257/2016), o <strong>ECA Digital (Lei Federal nº 15.211/2025)</strong>, o <strong>Marco Civil da Internet (Lei nº 12.965/2014)</strong>, o <strong>Código de Defesa do Consumidor (CDC — Lei nº 8.078/1990)</strong>, a legislação norte-americana <strong>COPPA (15 U.S.C. §§ 6501–6506 — FTC)</strong>, o Art. 8º do <strong>GDPR Europeu</strong> e a <strong>Política do Programa para a Família do Google Play (Designed for Families)</strong>.</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 2ª — Definições Legais (Art. 5º da LGPD e Art. 2º do ECA):</strong> Considera-se <em>Criança</em> a pessoa até 12 anos incompletos (ECA) ou menor de 13 anos (COPPA); <em>Dado Pessoal</em> qualquer informação relacionada a pessoa natural identificada ou identificável; <em>Responsável Legal</em> o pai, mãe, tutor ou guardião legal; <em>Armazenamento Local (localStorage)</em> a memória interna restrita e isolada do próprio aparelho do usuário; e <em>Portão Parental (Parental Gate)</em> a verificação cognitiva adulta ("Área para Papai e Mamãe").</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 3ª — Melhor Interesse da Criança e Não Condicionamento (Art. 14, § 4º, da LGPD):</strong> O aplicativo foi projetado sob os princípios de <em>Privacy by Design</em> e <em>Privacy by Default</em>. Nos termos do § 4º do Art. 14 da LGPD, a participação da criança nos jogos jamais é condicionada ao fornecimento de dados pessoais: o aplicativo funciona 100% sem cadastro, sem criação de conta, sem login e sem senha.</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 4ª — Declaração Expressa de Zero Coleta de Dados Pessoais de Crianças:</strong> A Vórtice Mídia declara formalmente que o aplicativo <strong>NÃO coleta, NÃO solicita, NÃO acessa e NÃO transmite para servidores externos</strong>: (a) nome, apelido, data de nascimento, CPF ou RG; (b) endereço de e-mail, número de telefone ou lista de contatos; (c) geolocalização precisa ou aproximada via GPS, Wi-Fi ou rede móvel; (d) fotos, câmera fotográfica, microfone, gravação de voz ou dados biométricos; (e) Identificador de Publicidade do Android (AAID/GAID) ou histórico de navegação.</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 5ª — Armazenamento Estritamente Local (No Aparelho) e Exportação de Desenhos:</strong> O progresso das 20 casinhas e figurinhas do <em>Álbum da Fé</em> e os desenhos coloridos na <em>Oficina da Pintura Mágica</em> são salvos exclusivamente na memória interna do próprio aparelho (<code>localStorage</code>: chaves técnicas <code>trono_unlocked_stickers_v1</code>, <code>trono_house_step_progress_v1</code>, <code>trono_vip_subscriber_v1</code> e <code>trono_saved_paintings_v1</code>), sem envio para nuvem. A função de baixar desenhos ou compartilhar imagens exige aprovação prévia do adulto no <em>Parental Gate</em> e gera o arquivo diretamente no aparelho via sistema nativo do Android.</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 6ª — Mecanismo Obrigatório de Verificação Parental (Parental Gate):</strong> Em cumprimento às regras da Google Play Families, da COPPA e do ECA Digital, o acesso a planos de assinatura, restauração de compras, abertura de páginas externas e exportação de arquivos é protegido pela barreira <em>"Área para Papai e Mamãe"</em>, exigindo a resolução de desafio aritmético dinâmico por um adulto.</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 7ª — Ausência Total de Publicidade de Terceiros e de Práticas Manipulativas (Dark Patterns):</strong> O aplicativo não exibe anúncios de terceiros (zero banners, zero vídeos publicitários e zero SDKs de redes de anúncios) e veda o uso de <em>dark patterns</em> (pressão psicológica, temporizadores punitivos ou indução a compras acidentais).</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 8ª — Processamento de Assinaturas e Pagamentos via Google Play Billing:</strong> Todas as transações financeiras do <em>Clube Trono da Promessa</em> são processadas exclusiva e diretamente pela <strong>Google LLC / Google Brasil Internet Ltda.</strong> por meio do sistema oficial <strong>Google Play Billing</strong>. A Vórtice Mídia jamais visualiza, recebe ou armazena números de cartão de crédito, código CVV, chave PIX ou dados bancários dos pais, recebendo apenas o token anônimo de confirmação de licença ativa.</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 9ª — Compartilhamento de Dados e Transferência Internacional:</strong> Como não há coleta de dados pessoais em servidores próprios, a Vórtice Mídia não vende, não aluga, não cede e não compartilha dados com terceiros, anunciantes ou corretores de dados (<em>data brokers</em>).</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 10ª — Segurança da Informação (Art. 46 a 49 da LGPD):</strong> O aplicativo opera em ambiente isolado (<em>Application Sandbox</em>) do Android, com pacote assinado criptograficamente via <em>Google Play App Signing</em> e funcionamento offline integral das atividades educativas.</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 11ª — Retenção e Exclusão Imediata de Dados Locais (Art. 15 e 16 da LGPD):</strong> Os registros locais de progresso permanecem no aparelho apenas enquanto o aplicativo estiver instalado e podem ser apagados instantaneamente pelos pais limpando o armazenamento do aplicativo nas Configurações do Android ou desinstalando-o.</p>
+
+        <p style="margin-bottom:10px;"><strong>Cláusula 12ª — Direitos dos Pais e Titulares (Art. 18 da LGPD e COPPA):</strong> Os pais e responsáveis têm direito gratuito à confirmação da inexistência de tratamento de dados pessoais da criança em servidores, transparência técnica e atendimento direto pelo Encarregado de Dados (DPO), além do direito de petição perante a ANPD e órgãos de defesa do consumidor.</p>
+
+        <p style="margin-bottom:8px; color:#fde047; font-weight:700;">PARTE II — TERMOS E CONDIÇÕES GERAIS DE USO E ASSINATURA (EULA)</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 13ª — Licença de Uso e Propriedade Intelectual (Leis nº 9.609/1998 e nº 9.610/1998):</strong> A Vórtice Mídia concede licença pessoal, familiar, não exclusiva, intransferível e não comercial de uso do aplicativo. Todos os personagens originais (<em>Vovô Nésio, Pedrinho, Aninha e Ovelhinha</em>), as 20 ilustrações 3D, contornos de pintura, quizes, músicas originais e código-fonte são propriedade intelectual exclusiva da Vórtice Mídia.</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 14ª — Conteúdo Gratuito e Assinatura Opcional ("Clube Trono da Promessa"):</strong> O aplicativo oferece gratuitamente as 6 primeiras fases de cada jogo (Quebra-Cabeça, Pintura Mágica, Quiz do Vovô e Jogo da Memória), as 4 primeiras Casinhas do Álbum da Fé e as músicas do Cantinho de Dormir. A assinatura opcional libera todas as 20 histórias bíblicas nos 4 jogos (80 atividades), as 20 Casinhas e Cards do Álbum da Fé e a exportação em alta resolução / PDF para impressão e envio no WhatsApp.</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 15ª — Preços, Renovação Automática, Cancelamento e Direito de Arrependimento (Art. 49 do CDC):</strong> Planos disponíveis via Google Play: <strong>Plano Mensal (R$ 14,90/mês)</strong> e <strong>Plano Anual com 50% de desconto (R$ 89,90/ano)</strong>. A renovação é automática ao fim de cada ciclo, podendo ser cancelada a qualquer momento sem multa diretamente no app <strong>Google Play Store ➔ Perfil ➔ Pagamentos e assinaturas ➔ Assinaturas ➔ Trono da Promessa Kids ➔ Cancelar assinatura</strong>. É garantido o <strong>Direito de Arrependimento em até 7 (sete) dias corridos</strong> após a contratação inicial com reembolso integral nos termos do Art. 49 do Código de Defesa do Consumidor. O botão <em>"Restaurar Assinatura"</em> permite reativar o acesso gratuitamente ao trocar de aparelho.</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 16ª — Disponibilidade Offline e Requisitos:</strong> Todos os jogos e músicas funcionam 100% offline após a instalação, exigindo internet apenas para processar ou restaurar a assinatura junto ao Google Play.</p>
+
+        <p style="margin-bottom:8px;"><strong>Cláusula 17ª — Atualizações deste Instrumento:</strong> Eventuais revisões jurídicas ou técnicas serão atualizadas neste documento com indicação da data de vigência.</p>
+
+        <p style="margin-bottom:4px;"><strong>Cláusula 18ª — Encarregado de Dados (DPO), Suporte e Foro (Art. 101, I, do CDC):</strong> Controladora: <strong>Vórtice Mídia Produções e Tecnologia Digital</strong> • Canal Oficial de Suporte e Privacidade (DPO): <strong>suporte@vorticemidia.com</strong>. Regido pelas leis da República Federativa do Brasil, ficando assegurado o foro do domicílio do consumidor/responsável legal.</p>
+      </div>
+      <button class="btn-gold" style="width:100%; padding:10px; font-size:13.5px; margin-bottom:8px; background:linear-gradient(180deg, #00b0ff 0%, #0066ff 100%); border-color:#b3e5fc;" onclick="window.open('politica_privacidade.html', '_blank')">
+        Abrir Documento Completo em Tela Cheia (Público)
+      </button>
+      <button class="btn-gold" style="width:100%; padding:10px; font-size:15px;" onclick="closeModal('modal-privacy-policy')">
+        Fechar e Voltar
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- MOTOR DE CONFETES 3D, SERPENTINAS E FOGOS DE ESTRELAS DE COMEMORAÇÃO -->
+  <!-- ==================================================================== -->
+  <canvas id="confetti-canvas" width="430" height="780" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:135; display:none;"></canvas>
+
+  <!-- ==================================================================== -->
+  <!-- SUPER CARD VIVO DE COMEMORAÇÃO ENTRE FASES (1 DE 6 ATÉ 5 DE 6)       -->
+  <!-- ==================================================================== -->
+  <div id="toast-progress" class="modal-backdrop" style="z-index:120;">
+    <div class="modal-card" style="width:94%; max-width:356px; padding:20px 16px; border:3px solid #fde047; background:linear-gradient(180deg, #aa00ff 0%, #581c87 100%); box-shadow:0 0 32px rgba(170,0,255,0.85), 0 18px 44px rgba(0,0,0,0.95); text-align:center; position:relative; overflow:hidden;">
+
+      <!-- Troféu / Estrela 3D Viva Pulsando + Miniatura 3D da História -->
+      <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:6px;">
+        <img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" style="width:74px; height:74px; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,0.75)); animation:starTrophyPulse 1.5s ease-in-out infinite;" alt="Estrela Troféu">
+        <img id="toast-progress-story-img" src="./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_09.jpg" style="width:72px; height:96px; object-fit:cover; border-radius:14px; border:2.5px solid #fde047; box-shadow:0 0 16px rgba(253,224,71,0.8), 0 6px 14px rgba(0,0,0,0.8); animation:aliveFloat3D 2.2s ease-in-out infinite;" alt="História">
+      </div>
+
+      <div style="position:relative; z-index:2; font-size:28px; font-weight:700; color:#fde047; text-shadow:0 3px 8px rgba(0,0,0,0.9); line-height:1.1; margin-bottom:4px; animation:titlePopBounce 1.3s ease-in-out infinite;">
+        PARABÉNS! MUITO BEM!
+      </div>
+
+      <div id="toast-progress-game" style="position:relative; z-index:2; font-size:20px; font-weight:700; color:#ffffff; text-shadow:0 2px 5px rgba(0,0,0,0.85); margin-bottom:10px;">
+        Jogo da Memória
+      </div>
+
+      <div id="toast-progress-badge" style="position:relative; z-index:2; display:inline-block; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2.5px solid #ffffff; color:#ffffff; font-size:22px; font-weight:700; padding:7px 22px; border-radius:999px; text-shadow:0 2px 4px rgba(0,0,0,0.65); box-shadow:0 0 18px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.55); margin-bottom:16px; animation:aliveBtnFloat 1.8s ease-in-out infinite;">
+        Concluído: 1 de 6
+      </div>
+
+      <!-- Bolinhas Vivas Dançando em Onda -->
+      <div id="toast-progress-dots" style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:14px; min-height:54px;"></div>
+
+      <div id="toast-progress-sub" style="position:relative; z-index:2; font-size:17px; font-weight:700; color:#fef08a; line-height:1.3; text-shadow:0 2px 5px rgba(0,0,0,0.9); margin-bottom:14px;">
+        Faltam 5 atividades para liberar +1 Casinha no Álbum da Fé!
+      </div>
+
+      <button id="toast-progress-btn" class="btn-gold" style="position:relative; z-index:2; width:100%; padding:12px; font-size:18px; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2.5px solid #ffffff; box-shadow:0 0 20px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75); animation:aliveBtnFloat 1.9s ease-in-out infinite;" onclick="advanceFromStepProgressCard()">
+        Continuar Brincando
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- MODAL DO CARD GRANDE COLECIONADO (ABRE AO CLICAR NA CASINHA VERDE!)  -->
+  <!-- ==================================================================== -->
+  <div id="modal-collector-card" class="modal-backdrop">
+    <div class="modal-card" style="padding: 16px;">
+      <div class="frame-3d-alive" style="width: 78%; aspect-ratio: 9/14; margin: 0 auto 10px auto;">
+        <img id="collector-card-img" style="width:100%; height:100%; object-fit:cover; border-radius:16px; display:block;" src="./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_09.jpg" alt="Card Desbloqueado">
+      </div>
+      <div id="collector-card-title" style="font-size:18px; font-weight:700; color:#fde047; margin-bottom:12px;">Vovô Nésio, Pedrinho e Aninha</div>
+
+      <button class="btn-gold" style="width:100%; margin-bottom:8px; padding:10px; font-size:15px;" onclick="downloadOrShareCollectorCard()">
+        Baixar Figurinha / Enviar no WhatsApp
+      </button>
+
+      <button class="btn-gold" style="width:100%; padding:10px; font-size:15px; background:linear-gradient(180deg, #00b0ff 0%, #0066ff 100%); border-color:#b3e5fc;" onclick="closeModal('modal-collector-card')">
+        Voltar para o Álbum da Fé
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- MODAL DE COMEMORAÇÃO (NOVA CASINHA / FIGURINHA CONQUISTADA!)         -->
+  <!-- ==================================================================== -->
+  <div id="modal-reward" class="modal-backdrop" style="z-index:120;">
+    <div class="modal-card" style="background:linear-gradient(180deg, #aa00ff 0%, #4c1d95 100%); border:3px solid #fde047; position:relative; overflow:hidden;">
+      <div style="position:relative; z-index:2; font-size:24px; font-weight:700; color:#fde047; text-shadow:0 3px 6px rgba(0,0,0,0.9); margin-bottom:4px; animation:titlePopBounce 1.3s ease-in-out infinite;">
+        NOVA CASINHA LIBERADA!
+      </div>
+      <div id="reward-badge-top" style="position:relative; z-index:2; display:inline-block; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2px solid #ffffff; border-radius:999px; padding:5px 16px; font-size:15px; font-weight:700; color:#ffffff; margin-bottom:10px; box-shadow:0 0 14px rgba(0,230,118,0.8);">
+        6 de 6 Concluídos • Avançou 1 Casinha!
+      </div>
+      <div style="position:relative; z-index:2;">
+        <img id="reward-sticker-img" class="reward-img-frame" src="./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_09.jpg" alt="História Concluída">
+      </div>
+      <div id="reward-title" style="position:relative; z-index:2; font-size:20px; font-weight:700; color:#ffffff; text-shadow:0 2px 4px rgba(0,0,0,0.85); margin-bottom:14px;">Vovô Nésio, Pedrinho e Aninha</div>
+      <button class="btn-gold" style="position:relative; z-index:2; width:100%; padding:12px; font-size:18px; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2.5px solid #ffffff; box-shadow:0 0 18px rgba(0, 230, 118, 0.85), 0 6px 14px rgba(0,0,0,0.75); animation:aliveBtnFloat 2.0s ease-in-out infinite;" onclick="onContinuePlayingClick()">Continuar Brincando</button>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- MODAL EXPLICATIVO DE REGRAS DOS 4 JOGUINHOS E DO ÁLBUM DA FÉ         -->
+  <!-- ==================================================================== -->
+  <div id="modal-game-rules" class="modal-backdrop" style="z-index:130;">
+    <div class="modal-card" style="width:92%; max-width:348px; padding:12px 12px; border:2.5px solid #fde047; background:linear-gradient(180deg, #6a00f4 0%, #3b0764 100%); text-align:left;">
+      <div style="font-size:16.5px; font-weight:700; color:#fde047; text-align:center; margin-bottom:6px; text-shadow:0 2px 5px rgba(0,0,0,0.85);">
+        Regras dos Joguinhos e Casinhas
+      </div>
+
+      <div style="background:rgba(15, 23, 42, 0.65); border:1.5px solid #38bdf8; border-radius:12px; padding:8px 10px; font-size:11.5px; color:#ffffff; line-height:1.32; margin-bottom:8px;">
+        <div style="color:#fde047; font-weight:700; font-size:12.5px; margin-bottom:3px;">
+          1. Como Liberar as Casinhas no Álbum da Fé:
+        </div>
+        <div style="margin-bottom:3px;">• São <strong>4 Joguinhos</strong> com <strong>6 Fases Grátis (1 a 6)</strong> cada.</div>
+        <div style="margin-bottom:3px;">• <strong>Regra (6 de 6 = +1 Casinha):</strong> Ao completar as <strong>6 fases (6 de 6)</strong> de um joguinho, você libera <strong>+1 Casinha</strong> no Álbum da Fé:</div>
+        <div style="margin-bottom:1px; color:#86efac;">• <strong>Casinha 1:</strong> Completar 6 de 6 no <strong>Quebra-Cabeça</strong></div>
+        <div style="margin-bottom:1px; color:#86efac;">• <strong>Casinha 2:</strong> Completar 6 de 6 na <strong>Pintura Mágica</strong></div>
+        <div style="margin-bottom:1px; color:#86efac;">• <strong>Casinha 3:</strong> Completar 6 de 6 no <strong>Quiz do Vovô</strong></div>
+        <div style="margin-bottom:3px; color:#86efac;">• <strong>Casinha 4:</strong> Completar 6 de 6 no <strong>Jogo da Memória</strong></div>
+        <div style="color:#fef08a;">• <strong>Casinhas 5 a 20 (+16 Bloqueadas):</strong> Modo Assinante!</div>
+      </div>
+
+      <div style="background:rgba(15, 23, 42, 0.65); border:1.5px solid #a855f7; border-radius:12px; padding:8px 10px; font-size:11.5px; color:#ffffff; line-height:1.32; margin-bottom:9px;">
+        <div style="color:#fde047; font-weight:700; font-size:12.5px; margin-bottom:3px;">
+          2. Quantidade Total em Cada Joguinho:
+        </div>
+        <div style="margin-bottom:2px;">• <strong>Quebra-Cabeça (20):</strong> 6 Grátis + <span style="color:#fde047;">14 Bloqueados</span></div>
+        <div style="margin-bottom:2px;">• <strong>Pintura Mágica (20):</strong> 6 Grátis + <span style="color:#fde047;">14 Bloqueadas</span></div>
+        <div style="margin-bottom:2px;">• <strong>Quiz do Vovô (50):</strong> 6 Grátis + <span style="color:#fde047;">44 Bloqueadas</span></div>
+        <div style="margin-bottom:2px;">• <strong>Jogo da Memória (20):</strong> 6 Grátis + <span style="color:#fde047;">14 Bloqueadas</span></div>
+        <div>• <strong>Álbum da Fé (20 Casinhas):</strong> 4 Grátis + <span style="color:#fde047;">16 Bloqueadas</span></div>
+      </div>
+
+      <button class="btn-gold" style="width:100%; padding:8px 12px; font-size:14.5px;" onclick="closeModal('modal-game-rules')">
+        Entendi! Voltar para o Álbum
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="pinturas_base64.js"></script>
+<script>
+// ============================================================================
+// CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
+// ============================================================================
+const STORIES = [
+  { id: 1,  seqColor: '09', seqPaint: '19', free: true,  title: 'Vovô Nésio, Pedrinho e Aninha' },
+  { id: 2,  seqColor: '10', seqPaint: '20', free: true,  title: 'Davi Tocando Harpa' },
+  { id: 3,  seqColor: '11', seqPaint: '25', free: true,  title: 'Davi e o Gigante Golias' },
+  { id: 4,  seqColor: '12', seqPaint: '21', free: true,  title: 'A Arca de Noé e a Promessa' },
+  { id: 5,  seqColor: '13', seqPaint: '22', free: true,  title: 'Jesus e as Criancinhas' },
+  { id: 6,  seqColor: '14', seqPaint: '23', free: true,  title: 'Jonas e a Grande Baleia' },
+  { id: 7,  seqColor: '15', seqPaint: '24', free: false, title: 'Daniel na Cova dos Leões' },
+  { id: 8,  seqColor: '16', seqPaint: '26', free: false, title: 'Moisés Abrindo o Mar Vermelho' },
+  { id: 9,  seqColor: '17', seqPaint: '27', free: false, title: 'A Força de Sansão' },
+  { id: 10, seqColor: '18', seqPaint: '28', free: false, title: 'Abraão, Pai de Multidões' },
+  { id: 11, seqColor: '29', seqPaint: '39', free: false, title: 'Adão e Eva no Jardim do Éden' },
+  { id: 12, seqColor: '30', seqPaint: '40', free: false, title: 'Jacó e a Escada para o Céu' },
+  { id: 13, seqColor: '31', seqPaint: '41', free: false, title: 'José e a Túnica Colorida' },
+  { id: 14, seqColor: '32', seqPaint: '42', free: false, title: 'Josué e as Muralhas de Jericó' },
+  { id: 15, seqColor: '33', seqPaint: '43', free: false, title: 'A Sabedoria do Rei Salomão' },
+  { id: 16, seqColor: '34', seqPaint: '44', free: false, title: 'A Corajosa Rainha Ester' },
+  { id: 17, seqColor: '35', seqPaint: '45', free: false, title: 'Elias e a Carruagem de Fogo' },
+  { id: 18, seqColor: '36', seqPaint: '46', free: false, title: 'O Nascimento de Jesus em Belém' },
+  { id: 19, seqColor: '37', seqPaint: '47', free: false, title: 'Pedro, Tiago e João no Barquinho' },
+  { id: 20, seqColor: '38', seqPaint: '48', free: false, title: 'As Viagens do Apóstolo Paulo' }
+];
+
+// Limpa flag antiga de teste para garantir que inicie no Modo Grátis Oficial (6 Liberados + 14/44 Bloqueados com Cadeado!)
+localStorage.removeItem('trono_vip_active');
+let isVipUnlocked = localStorage.getItem('trono_vip_active_v4') === '1';
+let unlockedStickers = new Set(JSON.parse(localStorage.getItem('trono_stickers_v2') || '[]'));
+let gameBatchCounts = JSON.parse(localStorage.getItem('trono_batch_counts_v2') || '{"puzzle":0,"paint":0,"quiz":0,"memory":0}');
+let completedPuzzles  = new Set(JSON.parse(localStorage.getItem('trono_done_puzzle_v1') || '[]'));
+let completedPaints   = new Set(JSON.parse(localStorage.getItem('trono_done_paint_v1')  || '[]'));
+let completedQuizzes  = new Set(JSON.parse(localStorage.getItem('trono_done_quiz_v1')   || '[]'));
+let completedMemories = new Set(JSON.parse(localStorage.getItem('trono_done_memory_v1') || '[]'));
+
+function saveGameProgressSets() {
+  localStorage.setItem('trono_done_puzzle_v1', JSON.stringify(Array.from(completedPuzzles)));
+  localStorage.setItem('trono_done_paint_v1',  JSON.stringify(Array.from(completedPaints)));
+  localStorage.setItem('trono_done_quiz_v1',   JSON.stringify(Array.from(completedQuizzes)));
+  localStorage.setItem('trono_done_memory_v1', JSON.stringify(Array.from(completedMemories)));
+}
+
+let currentPaintingTouched = false;
+let toastTimerId = null;
+let pendingStepAdvanceCallback = null;
+let currentGalleryTarget = 'puzzle';
+let currentStory = STORIES[0];
+let lastCompletedMode = 'puzzle';
+
+const SLEEP_TRACKS = [
+  { id: 1,  title: 'O Livro Brilhante do Vovô Nésio', file: './6_ASSETS_AUDIO/01_tema_trono_da_promessa.mp3' },
+  { id: 2,  title: 'A Harpa Dourada de Davi', file: './6_ASSETS_AUDIO/02_melodia_familiar_01.mp3' },
+  { id: 3,  title: 'A Grande Arca de Noé', file: './6_ASSETS_AUDIO/03_melodia_familiar_02.mp3' },
+  { id: 4,  title: 'As Estrelas de Abraão', file: './6_ASSETS_AUDIO/04_melodia_familiar_03.mp3' },
+  { id: 5,  title: 'Davi e o Gigante Golias', file: './6_ASSETS_AUDIO/05_melodia_familiar_04.mp3' },
+  { id: 6,  title: 'O Sonho de Jacó', file: './6_ASSETS_AUDIO/06_melodia_criacao_01.mp3' },
+  { id: 7,  title: 'Daniel na Cova dos Leões', file: './6_ASSETS_AUDIO/07_melodia_criacao_02.mp3' },
+  { id: 8,  title: 'Paz no Barquinho com Jesus', file: './6_ASSETS_AUDIO/08_melodia_criacao_03.mp3' },
+  { id: 9,  title: 'Jesus e as Criancinhas', file: './6_ASSETS_AUDIO/09_melodia_criacao_04.mp3' },
+  { id: 10, title: 'Noite de Paz no Jardim', file: './6_ASSETS_AUDIO/10_chuva_suave_dormir.mp3' }
+];
+
+let bgAudioPlayer = new Audio();
+bgAudioPlayer.loop = false;
+let activeTrackId = 1;
+let ambientPlaying = true;
+let audioCtx = null;
+
+// Inicializa já na Música 1 (Vinheta Oficial: "O Livro Brilhante do Vovô Nésio / Venha descobrir histórias da Bíblia")
+bgAudioPlayer.src = SLEEP_TRACKS[0].file;
+bgAudioPlayer.volume = 0.65;
+
+// Quando uma música termina, avança automaticamente em ordem (1 -> 2 -> 3 ... -> 10 -> 1)
+bgAudioPlayer.addEventListener('ended', () => {
+  if (!ambientPlaying) return;
+  const currentIndex = SLEEP_TRACKS.findIndex(t => t.id === activeTrackId);
+  const nextIndex = (currentIndex + 1) % SLEEP_TRACKS.length;
+  const nextTrack = SLEEP_TRACKS[nextIndex];
+  activeTrackId = nextTrack.id;
+  bgAudioPlayer.src = nextTrack.file;
+  bgAudioPlayer.play().catch(() => {});
+  if (document.getElementById('screen-sleep').classList.contains('active')) {
+    renderSleepCorner();
+  }
+});
+
+// Garante que a música tema comece a tocar ao abrir o app (e destrava no primeiro toque se o navegador exigir)
+function startInitialThemeMusic() {
+  if (!ambientPlaying) return;
+  bgAudioPlayer.play().catch(() => {
+    const unlockOnFirstTouch = (ev) => {
+      if (ev.target && ev.target.closest && ev.target.closest('#btn-ambient-sound')) {
+        window.removeEventListener('pointerdown', unlockOnFirstTouch, true);
+        window.removeEventListener('keydown', unlockOnFirstTouch, true);
+        return;
+      }
+      if (ambientPlaying && bgAudioPlayer.paused) {
+        bgAudioPlayer.play().catch(() => {});
+      }
+      window.removeEventListener('pointerdown', unlockOnFirstTouch, true);
+      window.removeEventListener('keydown', unlockOnFirstTouch, true);
+    };
+    window.addEventListener('pointerdown', unlockOnFirstTouch, true);
+    window.addEventListener('keydown', unlockOnFirstTouch, true);
+  });
+}
+
+function ensureAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+
+function playSoundClick() {
+  try {
+    ensureAudio();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(620, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(1040, audioCtx.currentTime + 0.07);
+    gain.gain.setValueAtTime(0.28, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.075);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.08);
+  } catch(e) {}
+}
+
+function playSoundSnapGreen() {
+  try {
+    ensureAudio();
+    const sparkleNotes = [659.25, 880.0, 1174.66, 1567.98];
+    sparkleNotes.forEach((freq, idx) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      const t = audioCtx.currentTime + idx * 0.055;
+      osc.frequency.setValueAtTime(freq, t);
+      gain.gain.setValueAtTime(0.52, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(t);
+      osc.stop(t + 0.26);
+    });
+  } catch(e) {}
+}
+
+function playSoundWrongRed() {
+  try {
+    ensureAudio();
+    if (bgAudioPlayer && !bgAudioPlayer.paused) {
+      bgAudioPlayer.volume = 0.22;
+      setTimeout(() => {
+        if (bgAudioPlayer) bgAudioPlayer.volume = 0.65;
+      }, 480);
+    }
+    const notes = [
+      { f1: 330, f2: 220, t: 0.00, d: 0.16 },
+      { f1: 230, f2: 135, t: 0.15, d: 0.24 }
+    ];
+    notes.forEach(n => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      const startT = audioCtx.currentTime + n.t;
+      osc.frequency.setValueAtTime(n.f1, startT);
+      osc.frequency.linearRampToValueAtTime(n.f2, startT + n.d);
+      gain.gain.setValueAtTime(0.68, startT);
+      gain.gain.exponentialRampToValueAtTime(0.001, startT + n.d + 0.02);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(startT);
+      osc.stop(startT + n.d + 0.03);
+    });
+  } catch(e) {}
+}
+
+let celebrationAudioPlayer = null;
+let bgDuckRestoreTimer = null;
+
+function playSoundCelebrationClaps() {
+  try {
+    // 1. Abaixa suavemente a música de fundo (ducking) para a fanfarra, aplausos e comemoração das crianças brilharem por cima!
+    if (bgAudioPlayer && !bgAudioPlayer.paused) {
+      bgAudioPlayer.volume = 0.16;
+      if (bgDuckRestoreTimer) clearTimeout(bgDuckRestoreTimer);
+      bgDuckRestoreTimer = setTimeout(() => {
+        if (bgAudioPlayer) bgAudioPlayer.volume = 0.65;
+      }, 3700);
+    }
+
+    // 2. Toca o áudio estéreo oficial de Festa, Fanfarra, Palmas e Crianças Comemorando ("Êêê!")
+    if (!celebrationAudioPlayer) {
+      celebrationAudioPlayer = new Audio('./6_ASSETS_AUDIO/11_festa_comemoracao_aplausos.wav');
+    }
+    celebrationAudioPlayer.currentTime = 0;
+    celebrationAudioPlayer.volume = 1.0;
+    celebrationAudioPlayer.play().catch(() => {});
+
+    // 3. Camada extra de brilho musical e palmas via WebAudio
+    ensureAudio();
+    const fanfare = [
+      { f: 523.25, t: 0.00, d: 0.14 },
+      { f: 659.25, t: 0.12, d: 0.14 },
+      { f: 783.99, t: 0.24, d: 0.14 },
+      { f: 1046.50, t: 0.36, d: 0.35 },
+      { f: 783.99, t: 0.56, d: 0.14 },
+      { f: 1046.50, t: 0.70, d: 0.65 },
+      { f: 1318.51, t: 0.70, d: 0.65 },
+      { f: 1567.98, t: 1.10, d: 0.55 }
+    ];
+    fanfare.forEach(n => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      const startT = audioCtx.currentTime + n.t;
+      osc.frequency.setValueAtTime(n.f, startT);
+      gain.gain.setValueAtTime(0.42, startT);
+      gain.gain.exponentialRampToValueAtTime(0.001, startT + n.d);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(startT);
+      osc.stop(startT + n.d + 0.02);
+    });
+
+    const clapTimes = [0.06, 0.18, 0.30, 0.42, 0.54, 0.66, 0.78, 0.90, 1.05, 1.20, 1.35, 1.50];
+    clapTimes.forEach(ct => {
+      const bufferSize = audioCtx.sampleRate * 0.08;
+      const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        output[i] = (Math.random() * 2 - 1) * Math.exp(-i / (audioCtx.sampleRate * 0.018));
+      }
+      const whiteNoise = audioCtx.createBufferSource();
+      whiteNoise.buffer = noiseBuffer;
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.frequency.value = 1350;
+      filter.Q.value = 1.4;
+      const gain = audioCtx.createGain();
+      const startT = audioCtx.currentTime + ct;
+      gain.gain.setValueAtTime(0.55, startT);
+      gain.gain.exponentialRampToValueAtTime(0.01, startT + 0.075);
+      whiteNoise.connect(filter);
+      filter.connect(gain);
+      gain.connect(audioCtx.destination);
+      whiteNoise.start(startT);
+    });
+  } catch(e) {}
+}
+
+// ============================================================================
+// MOTOR DE CONFETES 3D VOANDO, SERPENTINAS E FOGOS DE ESTRELAS
+// ============================================================================
+let confettiAnimId = null;
+let confettiParticles = [];
+let fireworkSparks = [];
+
+function spawnFireworkBurst(cx, cy) {
+  const colors = ['#fde047', '#00e676', '#00e5ff', '#ff4081', '#e040fb', '#ff9100', '#ffffff'];
+  const count = 26;
+  for (let i = 0; i < count; i++) {
+    const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.15;
+    const speed = 2.2 + Math.random() * 4.5;
+    fireworkSparks.push({
+      x: cx,
+      y: cy,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 0.8,
+      size: 3.5 + Math.random() * 4.5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 1,
+      decay: 0.014 + Math.random() * 0.012
+    });
+  }
+}
+
+function startCelebrationConfetti() {
+  const cvs = document.getElementById('confetti-canvas');
+  if (!cvs) return;
+  cvs.style.display = 'block';
+  const ctx = cvs.getContext('2d');
+  const W = cvs.width;
+  const H = cvs.height;
+
+  const colors = ['#fde047', '#00e676', '#00e5ff', '#ff4081', '#aa00ff', '#ff9100', '#ffffff'];
+  confettiParticles = [];
+  fireworkSparks = [];
+
+  for (let i = 0; i < 95; i++) {
+    const fromLeft = i % 2 === 0;
+    confettiParticles.push({
+      x: Math.random() * W,
+      y: -20 - Math.random() * H * 0.7,
+      vx: (Math.random() - 0.5) * 3.4 + (fromLeft ? 0.6 : -0.6),
+      vy: 2.2 + Math.random() * 3.8,
+      w: 8 + Math.random() * 8,
+      h: 12 + Math.random() * 10,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rot: Math.random() * Math.PI * 2,
+      vRot: (Math.random() - 0.5) * 0.18,
+      tilt: Math.random() * Math.PI * 2,
+      vTilt: 0.08 + Math.random() * 0.12,
+      shape: i % 5 === 0 ? 'star' : 'ribbon'
+    });
+  }
+
+  spawnFireworkBurst(W * 0.25, H * 0.22);
+  spawnFireworkBurst(W * 0.75, H * 0.22);
+  spawnFireworkBurst(W * 0.50, H * 0.16);
+
+  let frameCount = 0;
+  if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
+
+  function renderConfettiFrame() {
+    frameCount++;
+    ctx.clearRect(0, 0, W, H);
+
+    if (frameCount % 38 === 0) {
+      spawnFireworkBurst(W * (0.18 + Math.random() * 0.64), H * (0.14 + Math.random() * 0.28));
+    }
+
+    // Desenha fogos de estrelas
+    for (let i = fireworkSparks.length - 1; i >= 0; i--) {
+      const sp = fireworkSparks[i];
+      sp.x += sp.vx;
+      sp.y += sp.vy;
+      sp.vy += 0.06;
+      sp.alpha -= sp.decay;
+      if (sp.alpha <= 0) {
+        fireworkSparks.splice(i, 1);
+        continue;
+      }
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, sp.alpha);
+      ctx.fillStyle = sp.color;
+      ctx.shadowColor = sp.color;
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // Desenha confetes 3D voando
+    confettiParticles.forEach(p => {
+      p.x += p.vx + Math.sin(p.tilt) * 0.9;
+      p.y += p.vy;
+      p.rot += p.vRot;
+      p.tilt += p.vTilt;
+
+      if (p.y > H + 25) {
+        p.y = -18;
+        p.x = Math.random() * W;
+      }
+      if (p.x < -20) p.x = W + 15;
+      if (p.x > W + 20) p.x = -15;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.scale(Math.cos(p.tilt), 1);
+      ctx.fillStyle = p.color;
+      if (p.shape === 'star') {
+        ctx.beginPath();
+        ctx.arc(0, 0, p.w * 0.55, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      }
+      ctx.restore();
+    });
+
+    confettiAnimId = requestAnimationFrame(renderConfettiFrame);
+  }
+
+  confettiAnimId = requestAnimationFrame(renderConfettiFrame);
+}
+
+function stopCelebrationConfetti() {
+  if (confettiAnimId) {
+    cancelAnimationFrame(confettiAnimId);
+    confettiAnimId = null;
+  }
+  const cvs = document.getElementById('confetti-canvas');
+  if (cvs) {
+    const ctx = cvs.getContext('2d');
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
+    cvs.style.display = 'none';
+  }
+}
+
+// Atualiza o ícone dentro da bolinha de som:
+// - Desligado (Fechado): Alto-falante com um X em cima
+// - Ligado (ON): Sem X, com ondinhas sonoras e o alto-falante pulsando como se estivesse falando!
+function updateSoundButtonIcon() {
+  const svg = document.getElementById('sound-icon-svg');
+  if (!svg) return;
+  if (ambientPlaying) {
+    svg.classList.add('speaker-talking');
+    svg.innerHTML = `
+      <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#ffffff"/>
+      <path d="M15.5 8.5C16.5 9.5 17 10.7 17 12C17 13.3 16.5 14.5 15.5 15.5" stroke="#fde047" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M19 5.5C20.8 7.2 21.8 9.5 21.8 12C21.8 14.5 20.8 16.8 19 18.5" stroke="#fde047" stroke-width="2.6" stroke-linecap="round"/>
+    `;
+  } else {
+    svg.classList.remove('speaker-talking');
+    svg.innerHTML = `
+      <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#ffffff"/>
+      <path d="M22 9L16 15M16 9L22 15" stroke="#fde047" stroke-width="2.8" stroke-linecap="round"/>
+    `;
+  }
+}
+
+function toggleAmbientSound() {
+  playSoundClick();
+  if (ambientPlaying && !bgAudioPlayer.paused) {
+    bgAudioPlayer.pause();
+    ambientPlaying = false;
+  } else if (ambientPlaying && bgAudioPlayer.paused) {
+    // Se estava marcado como ativo mas o navegador bloqueou autoplay antes do clique, toca agora!
+    const tr = SLEEP_TRACKS.find(t => t.id === activeTrackId) || SLEEP_TRACKS[0];
+    if (!bgAudioPlayer.src) bgAudioPlayer.src = tr.file;
+    bgAudioPlayer.volume = 0.65;
+    bgAudioPlayer.play().catch(() => {});
+    ambientPlaying = true;
+  } else {
+    const tr = SLEEP_TRACKS.find(t => t.id === activeTrackId) || SLEEP_TRACKS[0];
+    bgAudioPlayer.src = tr.file;
+    bgAudioPlayer.volume = 0.65;
+    bgAudioPlayer.play().catch(() => {});
+    ambientPlaying = true;
+  }
+  updateSoundButtonIcon();
+  if (document.getElementById('screen-sleep').classList.contains('active')) {
+    renderSleepCorner();
+  }
+}
+
+function updateTopCounters() {
+  if (!isVipUnlocked) {
+    for (const id of Array.from(unlockedStickers)) {
+      if (id > 4) unlockedStickers.delete(id);
+    }
+  }
+  document.getElementById('sticker-count').textContent = `${unlockedStickers.size}`;
+}
+
+// ============================================================================
+// PARENTAL GATE OBRIGATÓRIO (GOOGLE PLAY FAMILIES POLICY / COPPA / LGPD)
+// ============================================================================
+const PARENTAL_CHALLENGES = [
+  { q: 'Quanto é SETE + CINCO?', ans: 12, opts: [10, 12, 14, 16] },
+  { q: 'Quanto é OITO + SEIS?',  ans: 14, opts: [11, 13, 14, 17] },
+  { q: 'Quanto é NOVE + QUATRO?', ans: 13, opts: [12, 13, 15, 18] },
+  { q: 'Quanto é SEIS + SETE?',  ans: 13, opts: [11, 13, 15, 16] }
+];
+
+function requestParentalGate(onAdultVerified) {
+  playSoundClick();
+  const item = PARENTAL_CHALLENGES[Math.floor(Math.random() * PARENTAL_CHALLENGES.length)];
+  document.getElementById('parental-gate-question').textContent = item.q;
+  const box = document.getElementById('parental-gate-options');
+  box.innerHTML = '';
+
+  item.opts.forEach(val => {
+    const btn = document.createElement('button');
+    btn.className = 'btn-gold';
+    btn.style.padding = '12px';
+    btn.style.fontSize = '17px';
+    btn.style.background = 'linear-gradient(180deg, #00b0ff 0%, #0066ff 100%)';
+    btn.style.borderColor = '#b3e5fc';
+    btn.style.boxShadow = '0 5px 12px rgba(0,0,0,0.6)';
+    btn.textContent = val;
+    btn.onclick = () => {
+      if (val === item.ans) {
+        playSoundSnapGreen();
+        document.getElementById('modal-parental-gate').classList.remove('active');
+        onAdultVerified();
+      } else {
+        playSoundWrongRed();
+        document.getElementById('modal-parental-gate').classList.remove('active');
+      }
+    };
+    box.appendChild(btn);
+  });
+
+  document.getElementById('modal-parental-gate').classList.add('active');
+}
+
+function openSubscribeModal(titleText, customDesc) {
+  stopCelebrationConfetti();
+  requestParentalGate(() => {
+    document.getElementById('subscribe-modal-title').textContent = titleText ? `Área dos Pais • ${titleText}` : 'Área dos Pais • Clube Trono da Promessa';
+    document.getElementById('subscribe-modal-desc').textContent = customDesc ||
+      'Acesso opcional para pais e responsáveis: libera todas as 20 histórias bíblicas, atividades para imprimir em PDF e envio pelo WhatsApp:';
+    document.getElementById('modal-subscribe').classList.add('active');
+  });
+}
+
+let puzzleWinTimerId = null;
+
+function showScreen(screenId) {
+  playSoundClick();
+  if (puzzleWinTimerId) {
+    clearTimeout(puzzleWinTimerId);
+    puzzleWinTimerId = null;
+  }
+  if (toastTimerId) {
+    clearTimeout(toastTimerId);
+    toastTimerId = null;
+  }
+  const toastEl = document.getElementById('toast-progress');
+  if (toastEl) toastEl.classList.remove('active');
+  stopCelebrationConfetti();
+
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+
+  const topTitleEl = document.getElementById('topbar-game-title');
+  if (topTitleEl) {
+    if (screenId === 'screen-home') {
+      topTitleEl.textContent = '';
+    } else if (screenId === 'screen-gallery') {
+      topTitleEl.textContent = currentGalleryTarget === 'puzzle' ? 'Quebra-Cabeça' : 'Pintura Mágica';
+    } else if (screenId === 'screen-puzzle') {
+      topTitleEl.textContent = 'Quebra-Cabeça';
+    } else if (screenId === 'screen-paint') {
+      topTitleEl.textContent = 'Pintura Mágica';
+    } else if (screenId === 'screen-quiz') {
+      topTitleEl.textContent = 'Quiz do Vovô';
+    } else if (screenId === 'screen-memory') {
+      topTitleEl.textContent = 'Jogo da Memória';
+    } else if (screenId === 'screen-album' || screenId === 'screen-ludo-trail') {
+      topTitleEl.textContent = 'Álbum da Fé';
+    } else if (screenId === 'screen-sleep') {
+      topTitleEl.textContent = 'Cantinho de Dormir';
+    }
+  }
+
+  const shell = document.getElementById('app-shell');
+  if (screenId === 'screen-sleep') {
+    shell.classList.add('sleep-dark-mode');
+  } else {
+    shell.classList.remove('sleep-dark-mode');
+  }
+}
+
+function goHome() {
+  showScreen('screen-home');
+}
+
+function onBackToPlayFromParentalOrSubscribe() {
+  playSoundClick();
+  document.getElementById('modal-parental-gate').classList.remove('active');
+  document.getElementById('modal-subscribe').classList.remove('active');
+  goHome();
+}
+
+function goToNextStory(mode, skipPaintCheck = false) {
+  playSoundClick();
+  if (mode === 'paint' && !skipPaintCheck && currentPaintingTouched) {
+    currentPaintingTouched = false;
+    registerGameStepCompleted('paint', currentStory);
+    return;
+  }
+  const currentIdx = STORIES.findIndex(s => s.id === currentStory.id);
+  const nextStory = STORIES[(currentIdx + 1) % STORIES.length];
+  const isLocked = !nextStory.free && !isVipUnlocked;
+
+  if (isLocked) {
+    openSubscribeModal(nextStory.title);
+  } else {
+    currentStory = nextStory;
+    if (mode === 'puzzle') {
+      startPuzzleWithStory(nextStory);
+    } else {
+      startPaintWithStory(nextStory);
+    }
+  }
+}
+
+function showProgressToast(text, durationMs = 3600) {
+  const el = document.getElementById('toast-progress');
+  if (!el) return;
+  const gameEl = document.getElementById('toast-progress-game');
+  const badgeEl = document.getElementById('toast-progress-badge');
+  const dotsEl = document.getElementById('toast-progress-dots');
+  const subEl = document.getElementById('toast-progress-sub');
+
+  if (gameEl) gameEl.textContent = 'Trono da Promessa';
+  if (badgeEl) badgeEl.textContent = 'Aviso';
+  if (dotsEl) dotsEl.innerHTML = '';
+  if (subEl) subEl.textContent = text;
+
+  pendingStepAdvanceCallback = null;
+  el.classList.add('active');
+  if (toastTimerId) clearTimeout(toastTimerId);
+  toastTimerId = setTimeout(() => {
+    el.classList.remove('active');
+    stopCelebrationConfetti();
+  }, durationMs);
+}
+
+function advanceFromStepProgressCard() {
+  playSoundClick();
+  if (toastTimerId) {
+    clearTimeout(toastTimerId);
+    toastTimerId = null;
+  }
+  const el = document.getElementById('toast-progress');
+  if (el) el.classList.remove('active');
+  stopCelebrationConfetti();
+  if (pendingStepAdvanceCallback) {
+    const cb = pendingStepAdvanceCallback;
+    pendingStepAdvanceCallback = null;
+    cb();
+  }
+}
+
+function showStepProgressCard(label, count, targetSteps, storyObj, onAfterDelay) {
+  const el = document.getElementById('toast-progress');
+  if (!el) {
+    if (onAfterDelay) onAfterDelay();
+    return;
+  }
+  const gameEl = document.getElementById('toast-progress-game');
+  const badgeEl = document.getElementById('toast-progress-badge');
+  const dotsEl = document.getElementById('toast-progress-dots');
+  const subEl = document.getElementById('toast-progress-sub');
+  const imgEl = document.getElementById('toast-progress-story-img');
+
+  if (imgEl && storyObj && storyObj.seqColor) {
+    imgEl.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${storyObj.seqColor}.jpg`;
+  }
+  if (gameEl) gameEl.textContent = storyObj && storyObj.title ? `${label} • ${storyObj.title}` : label;
+  if (badgeEl) badgeEl.textContent = `Concluído: ${count} de ${targetSteps}`;
+
+  if (dotsEl) {
+    dotsEl.innerHTML = '';
+    for (let i = 1; i <= targetSteps; i++) {
+      const dot = document.createElement('div');
+      const isJustWon = i === count;
+      const isDone = i < count;
+      dot.className = 'celebration-dot-item ' + (isJustWon ? 'just-won' : (isDone ? 'done' : 'pending'));
+      dot.style.animationDelay = `${(i - 1) * 0.14}s`;
+      if (isJustWon) {
+        dot.innerHTML = `
+          <span>${i}</span>
+          <img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" style="position:absolute; top:-14px; right:-8px; width:22px; height:22px; object-fit:contain; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));" alt="Estrela">
+        `;
+      } else {
+        dot.textContent = i;
+      }
+      dotsEl.appendChild(dot);
+    }
+  }
+
+  if (subEl) {
+    const remaining = Math.max(0, targetSteps - count);
+    if (remaining > 0) {
+      subEl.textContent = remaining === 1
+        ? `Falta só 1 fase neste joguinho (até 6 de 6) para liberar +1 Casinha no Álbum da Fé!`
+        : `Faltam ${remaining} fases neste joguinho (até 6 de 6) para liberar +1 Casinha no Álbum da Fé!`;
+    } else {
+      const unlockedCount = (typeof unlockedStickers !== 'undefined' && unlockedStickers) ? unlockedStickers.size : 1;
+      subEl.textContent = `6 de 6 Concluído! Você liberou a Casinha ${unlockedCount} no Álbum da Fé!`;
+    }
+  }
+
+  pendingStepAdvanceCallback = onAfterDelay || null;
+  if (!celebrationAudioPlayer || celebrationAudioPlayer.paused || celebrationAudioPlayer.currentTime > 2.5) {
+    playSoundCelebrationClaps();
+  }
+  startCelebrationConfetti();
+  el.classList.add('active');
+
+  if (toastTimerId) clearTimeout(toastTimerId);
+  toastTimerId = setTimeout(() => {
+    advanceFromStepProgressCard();
+  }, 12000);
+}
+
+// Regra Oficial Documentada:
+// - Existem 4 Joguinhos no app (Quebra-Cabeça, Pintura Mágica, Quiz do Vovô e Jogo da Memória).
+// - Cada Joguinho tem 6 Fases Grátis (1 a 6) + Fases Bloqueadas (+14 nos jogos de 20 e +44 no Quiz de 50).
+// - A cada 6 fases concluídas (6 de 6) em um joguinho -> Libera +1 Casinha no Álbum da Fé!
+// - 4 Joguinhos x 6 Fases = 4 Casinhas Grátis (Casinhas 1, 2, 3 e 4) + 16 Casinhas Bloqueadas (5 a 20)!
+function unlockNextSequentialHouse() {
+  const maxAllowedHouse = isVipUnlocked ? 20 : 4;
+  for (let i = 1; i <= maxAllowedHouse; i++) {
+    if (!unlockedStickers.has(i)) {
+      unlockedStickers.add(i);
+      localStorage.setItem('trono_stickers_v2', JSON.stringify(Array.from(unlockedStickers)));
+      updateTopCounters();
+      return STORIES[i - 1];
+    }
+  }
+  const lastId = Math.min(maxAllowedHouse, Math.max(1, unlockedStickers.size));
+  return STORIES[lastId - 1] || STORIES[0];
+}
+
+function syncAlbumHousesWithCompletedGames() {
+  // No Modo Grátis, garante que apenas as Casinhas 1 a 4 possam ficar verdes (remove 5..20 se existirem no cache antigo)
+  if (!isVipUnlocked) {
+    for (const id of Array.from(unlockedStickers)) {
+      if (id > 4) unlockedStickers.delete(id);
+    }
+  }
+  let completedFullGames = 0;
+  if (completedPuzzles.size >= 6)  completedFullGames++;
+  if (completedPaints.size >= 6)   completedFullGames++;
+  if (completedQuizzes.size >= 6)  completedFullGames++;
+  if (completedMemories.size >= 6) completedFullGames++;
+
+  const maxAllowed = isVipUnlocked ? 20 : 4;
+  const targetHouses = Math.min(maxAllowed, Math.max(unlockedStickers.size, completedFullGames));
+  for (let i = 1; i <= targetHouses; i++) {
+    unlockedStickers.add(i);
+  }
+  localStorage.setItem('trono_stickers_v2', JSON.stringify(Array.from(unlockedStickers)));
+  updateTopCounters();
+}
+
+function registerGameStepCompleted(mode, storyObj) {
+  lastCompletedMode = mode;
+
+  const modeNames = {
+    puzzle: 'Quebra-Cabeça',
+    paint: 'Pintura Mágica',
+    quiz: 'Quiz do Vovô',
+    memory: 'Jogo da Memória'
+  };
+  const label = modeNames[mode] || 'Jogo';
+
+  const displayStory = (storyObj && storyObj.seqColor) ? storyObj : STORIES[0];
+  const dotTarget = 6;
+  let dotCurrent = 1;
+
+  if (mode === 'puzzle' && displayStory && displayStory.id) {
+    completedPuzzles.add(displayStory.id);
+    dotCurrent = isVipUnlocked ? (((completedPuzzles.size - 1) % 6) + 1) : Math.min(6, completedPuzzles.size);
+  } else if (mode === 'paint' && displayStory && displayStory.id) {
+    completedPaints.add(displayStory.id);
+    dotCurrent = isVipUnlocked ? (((completedPaints.size - 1) % 6) + 1) : Math.min(6, completedPaints.size);
+  } else if (mode === 'memory' && typeof memoryPhase === 'number') {
+    completedMemories.add(memoryPhase);
+    dotCurrent = isVipUnlocked ? (((completedMemories.size - 1) % 6) + 1) : Math.min(6, completedMemories.size);
+  } else if (mode === 'quiz' && typeof quizIndex === 'number') {
+    completedQuizzes.add(quizIndex + 1);
+    dotCurrent = isVipUnlocked ? (((completedQuizzes.size - 1) % 6) + 1) : Math.min(6, completedQuizzes.size);
+  }
+  saveGameProgressSets();
+
+  // Quando fecha 6 de 6 no joguinho, libera +1 Casinha no Álbum da Fé!
+  if (dotCurrent >= 6) {
+    unlockNextSequentialHouse();
+  }
+  syncAlbumHousesWithCompletedGames();
+
+  showStepProgressCard(
+    label,
+    dotCurrent,
+    dotTarget,
+    displayStory,
+    () => {
+      if (mode === 'puzzle' || mode === 'paint') {
+        goToNextStory(mode, true);
+      } else if (mode === 'memory') {
+        goToNextMemoryPhase();
+      } else if (mode === 'quiz') {
+        advanceQuizIndex();
+      }
+    }
+  );
+}
+
+function awardSticker(storyObj, mode = 'puzzle', targetSteps = 6) {
+  registerGameStepCompleted(mode, storyObj);
+}
+
+function onContinuePlayingClick() {
+  stopCelebrationConfetti();
+  closeModal('modal-reward');
+  if (lastCompletedMode === 'puzzle' || lastCompletedMode === 'paint') {
+    goToNextStory(lastCompletedMode, true);
+  } else if (lastCompletedMode === 'memory') {
+    goToNextMemoryPhase();
+  } else if (lastCompletedMode === 'quiz') {
+    advanceQuizIndex();
+  }
+}
+
+function closeModal(id) {
+  playSoundClick();
+  if (id === 'modal-reward' || id === 'toast-progress') {
+    stopCelebrationConfetti();
+  }
+  document.getElementById(id).classList.remove('active');
+}
+
+function openGameRulesModal() {
+  playSoundClick();
+  document.getElementById('modal-game-rules').classList.add('active');
+}
+
+function renderVisualHousesTrail(containerId, currentStepOneBased, maxFreeSteps, onSelectStep, onLockedClick, completedSet = null, lockedBadgeText = '+14 (20)') {
+  const box = document.getElementById(containerId);
+  if (!box) return;
+  box.innerHTML = '';
+
+  for (let i = 1; i <= maxFreeSteps; i++) {
+    const dot = document.createElement('div');
+    const isCompleted = completedSet ? completedSet.has(i) : (i < currentStepOneBased);
+    const isCurrent = (i === currentStepOneBased);
+    dot.className = 'house-step'
+      + (isCompleted ? ' done' : '')
+      + (isCurrent ? ' current' : '');
+    dot.textContent = i;
+    dot.onclick = () => {
+      playSoundClick();
+      onSelectStep(i);
+    };
+    box.appendChild(dot);
+  }
+
+  if (!isVipUnlocked) {
+    const lockDot = document.createElement('div');
+    lockDot.className = 'house-step locked';
+    lockDot.title = 'Fases Bloqueadas (Modo Assinante) • Clique para ver';
+    lockDot.innerHTML = `<img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" style="width:12px;height:12px;object-fit:contain;" alt="Bloqueado"><span>${lockedBadgeText}</span>`;
+    lockDot.onclick = () => {
+      playSoundClick();
+      onLockedClick();
+    };
+    box.appendChild(lockDot);
+  }
+}
+
+let galleryOffset = 0;
+let albumOffset = 0;
+let lastWheelTime = 0;
+
+function getNextUncompletedStep(doneSet, maxFree = 6) {
+  for (let i = 1; i <= maxFree; i++) {
+    if (!doneSet.has(i)) return i;
+  }
+  return maxFree;
+}
+
+function openGalleryFor(mode) {
+  currentGalleryTarget = mode;
+  const doneSet = mode === 'puzzle' ? completedPuzzles : completedPaints;
+  const nextStep = getNextUncompletedStep(doneSet, 6);
+  // Abre a galeria mostrando automaticamente onde a criança parou (se já fez 1..4, já mostra 5 e 6!)
+  galleryOffset = nextStep <= 4 ? 0 : 2;
+  document.getElementById('gallery-header-title').textContent =
+    mode === 'puzzle' ? 'Quebra-Cabeça' : 'Pintura Mágica';
+  renderGalleryPage();
+  showScreen('screen-gallery');
+}
+
+function stepGallery(delta) {
+  playSoundClick();
+  const maxStart = Math.max(0, STORIES.length - 4);
+  let next = galleryOffset + delta;
+  if (next > maxStart) next = 0;
+  if (next < 0) next = maxStart;
+  galleryOffset = next;
+  renderGalleryPage();
+}
+
+function renderGalleryPage() {
+  const mode = currentGalleryTarget;
+  const grid = document.getElementById('gallery-grid');
+  grid.innerHTML = '';
+
+  const doneSet = mode === 'puzzle' ? completedPuzzles : completedPaints;
+  const nextStep = getNextUncompletedStep(doneSet, 6);
+  const activeFreeDot = galleryOffset < 6 ? nextStep : 6;
+
+  renderVisualHousesTrail(
+    'gallery-houses-trail',
+    activeFreeDot,
+    6,
+    (step) => {
+      const targetStory = STORIES[step - 1];
+      if (targetStory) {
+        currentStory = targetStory;
+        if (mode === 'puzzle') startPuzzleWithStory(targetStory);
+        else startPaintWithStory(targetStory);
+      }
+    },
+    () => {
+      if (galleryOffset < 6) {
+        galleryOffset = 6;
+        renderGalleryPage();
+      } else {
+        openSubscribeModal(mode === 'puzzle' ? 'Liberar os 20 Quebra-Cabeças!' : 'Liberar as 20 Pinturas Mágicas!');
+      }
+    },
+    doneSet
+  );
+
+  const visibleStories = STORIES.slice(galleryOffset, galleryOffset + 4);
+  visibleStories.forEach(st => {
+    const locked = !st.free && !isVipUnlocked;
+    const isDone = doneSet.has(st.id);
+    const imgSrc = mode === 'puzzle'
+      ? `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg`
+      : `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg`;
+
+    const doneBadgeHtml = (!locked && isDone)
+      ? `<div style="position:absolute; top:8px; right:8px; z-index:5; width:30px; height:30px; border-radius:50%; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2px solid #ffffff; box-shadow:0 0 12px rgba(0,230,118,0.9), 0 3px 8px rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center;">
+           <img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" style="width:20px; height:20px; object-fit:contain;" alt="Concluído">
+         </div>`
+      : '';
+
+    const card = document.createElement('div');
+    card.className = 'story-card';
+    card.innerHTML = `
+      <div class="story-thumb-wrap">
+        <div class="story-thumb-inner">
+          <img src="${imgSrc}" class="story-card-thumb" style="${locked ? 'filter:grayscale(45%) brightness(0.55);' : ''}" alt="${st.title}">
+          ${doneBadgeHtml}
+          ${locked ? '<div class="lock-overlay"><img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Bloqueado"></div>' : ''}
+          <div class="story-title-inside">${st.title}</div>
+        </div>
+      </div>
+    `;
+    card.onclick = () => {
+      if (locked) {
+        openSubscribeModal(st.title);
+      } else {
+        currentStory = st;
+        if (mode === 'puzzle') startPuzzleWithStory(st);
+        else startPaintWithStory(st);
+      }
+    };
+    grid.appendChild(card);
+  });
+}
+
+function attachFourCardSwipeAndWheel(gridId, onStep) {
+  const el = document.getElementById(gridId);
+  if (!el) return;
+
+  el.addEventListener('wheel', (ev) => {
+    ev.preventDefault();
+    const now = Date.now();
+    if (now - lastWheelTime < 220) return;
+    if (Math.abs(ev.deltaY) < 8) return;
+    lastWheelTime = now;
+    onStep(ev.deltaY > 0 ? 2 : -2);
+  }, { passive: false });
+
+  let startY = null;
+  el.addEventListener('pointerdown', (ev) => {
+    startY = ev.clientY;
+  });
+  el.addEventListener('pointerup', (ev) => {
+    if (startY === null) return;
+    const dy = startY - ev.clientY;
+    startY = null;
+    if (Math.abs(dy) > 28) {
+      onStep(dy > 0 ? 2 : -2);
+    }
+  });
+}
+
+function startGooglePlayCheckout(plano) {
+  playSoundSnapGreen();
+  const liberarTeste = confirm(
+    `Na Google Play Store, este botão abre o pagamento oficial (${plano === 'anual' ? 'Plano Anual R$ 89,90/ano (R$ 7,49/mês)' : 'Plano Mensal R$ 14,90/mês'}).\n\nDeseja SIMULAR a assinatura ativa agora para testar as 20 histórias e o botão de Baixar / Imprimir / WhatsApp?`
+  );
+  if (liberarTeste) {
+    isVipUnlocked = true;
+    localStorage.setItem('trono_vip_active_v4', '1');
+    if (document.getElementById('screen-gallery').classList.contains('active')) renderGalleryPage();
+    if (document.getElementById('screen-album').classList.contains('active')) renderStickerAlbum();
+    if (document.getElementById('screen-ludo-trail').classList.contains('active')) renderLudoTrailBoard();
+  }
+  closeModal('modal-subscribe');
+}
+
+function restoreGooglePlayPurchases() {
+  playSoundSnapGreen();
+  if (isVipUnlocked) {
+    const voltarGratis = confirm(
+      'O Modo Assinante VIP está ativo neste aparelho.\n\nDeseja VOLTAR PARA O MODO GRÁTIS (6 Liberados + 14/44 Bloqueados com Cadeado) para testar os cadeados?'
+    );
+    if (voltarGratis) {
+      isVipUnlocked = false;
+      localStorage.removeItem('trono_vip_active_v4');
+      if (document.getElementById('screen-gallery').classList.contains('active')) renderGalleryPage();
+      if (document.getElementById('screen-album').classList.contains('active')) renderStickerAlbum();
+      if (document.getElementById('screen-ludo-trail').classList.contains('active')) renderLudoTrailBoard();
+      closeModal('modal-subscribe');
+    }
+    return;
+  }
+  const restaurar = confirm(
+    'Verificando assinaturas ativas vinculadas à sua conta Google Play...\n\nDeseja ativar/simular o acesso Assinante neste aparelho? (Clique em Cancelar para manter o Modo Grátis com 6 Liberados e os demais Bloqueados com Cadeado)'
+  );
+  if (restaurar) {
+    isVipUnlocked = true;
+    localStorage.setItem('trono_vip_active_v4', '1');
+    if (document.getElementById('screen-gallery').classList.contains('active')) renderGalleryPage();
+    if (document.getElementById('screen-album').classList.contains('active')) renderStickerAlbum();
+    if (document.getElementById('screen-ludo-trail').classList.contains('active')) renderLudoTrailBoard();
+    closeModal('modal-subscribe');
+  }
+}
+
+function openPrivacyPolicyModal() {
+  playSoundClick();
+  document.getElementById('modal-privacy-policy').classList.add('active');
+}
+
+function openModule(mod) {
+  if (mod === 'quiz') {
+    initQuiz();
+    showScreen('screen-quiz');
+  } else if (mod === 'memory') {
+    const nextMem = getNextUncompletedStep(completedMemories, 6);
+    startMemoryPhase(nextMem);
+    showScreen('screen-memory');
+  } else if (mod === 'album') {
+    albumOffset = 0;
+    renderStickerAlbum();
+    showScreen('screen-album');
+  } else if (mod === 'sleep') {
+    renderSleepCorner();
+    showScreen('screen-sleep');
+  }
+}
+
+// ============================================================================
+// MÓDULO 1: QUEBRA-CABEÇA COM NICHOS ORGANIZADOS (ESTILO PUZZLE KIDS 3+!)
+// ============================================================================
+let puzzleImg = new Image();
+let pCols = 2, pRows = 3;
+let jigsawPieces = [];
+let draggingPiece = null;
+let dragOffsetX = 0, dragOffsetY = 0;
+let puzzleSolved = false;
+let puzzleAnimHue = 0;
+let puzzleAnimLoopId = null;
+let BOARD_RECT = { x: 95, y: 12, w: 350, h: 546 };
+let PILE_AREA  = { x: 16, y: 572, w: 508, h: 256 };
+
+function updatePuzzleLayoutRects() {
+  BOARD_RECT = { x: 95,  y: 12, w: 350, h: 546 };
+  PILE_AREA  = { x: 16,  y: 572, w: 508, h: 256 };
+}
+
+function startPuzzleWithStory(st) {
+  showScreen('screen-puzzle');
+  puzzleImg = new Image();
+  puzzleImg.onload = () => {
+    initJigsawPuzzle();
+    startPuzzle3DAnimationLoop();
+  };
+  puzzleImg.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg`;
+}
+
+function startPuzzle3DAnimationLoop() {
+  if (puzzleAnimLoopId) cancelAnimationFrame(puzzleAnimLoopId);
+  function step() {
+    if (!document.getElementById('screen-puzzle').classList.contains('active')) return;
+    puzzleAnimHue = (puzzleAnimHue + 1.2) % 360;
+    renderJigsawScene();
+    puzzleAnimLoopId = requestAnimationFrame(step);
+  }
+  puzzleAnimLoopId = requestAnimationFrame(step);
+}
+
+function setPuzzleDifficulty(cols, rows) {
+  playSoundClick();
+  pCols = cols;
+  pRows = rows;
+  document.getElementById('diff-6').classList.toggle('active', cols*rows === 6);
+  document.getElementById('diff-9').classList.toggle('active', cols*rows === 9);
+  document.getElementById('diff-12').classList.toggle('active', cols*rows === 12);
+  initJigsawPuzzle();
+}
+
+function drawJigsawEdge(ctx, x1, y1, x2, y2, tabSign) {
+  if (tabSign === 0) {
+    ctx.lineTo(x2, y2);
+    return;
+  }
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const len = Math.hypot(dx, dy);
+  const ux = dx / len, uy = dy / len;
+  const nx = -uy * tabSign, ny = ux * tabSign;
+
+  const pt = (along, perp) => [
+    x1 + ux * (along * len) + nx * (perp * len),
+    y1 + uy * (along * len) + ny * (perp * len)
+  ];
+
+  const [p1x, p1y] = pt(0.36, 0.0);
+  ctx.lineTo(p1x, p1y);
+
+  const [c1x, c1y] = pt(0.31, 0.11);
+  const [c2x, c2y] = pt(0.35, 0.25);
+  const [topX, topY] = pt(0.50, 0.25);
+  ctx.bezierCurveTo(c1x, c1y, c2x, c2y, topX, topY);
+
+  const [c3x, c3y] = pt(0.65, 0.25);
+  const [c4x, c4y] = pt(0.69, 0.11);
+  const [p2x, p2y] = pt(0.64, 0.0);
+  ctx.bezierCurveTo(c3x, c3y, c4x, c4y, p2x, p2y);
+
+  ctx.lineTo(x2, y2);
+}
+
+function tracePieceShape(ctx, x, y, w, h, edges) {
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  drawJigsawEdge(ctx, x, y, x + w, y, edges.top);
+  drawJigsawEdge(ctx, x + w, y, x + w, y + h, edges.right);
+  drawJigsawEdge(ctx, x + w, y + h, x, y + h, edges.bottom);
+  drawJigsawEdge(ctx, x, y + h, x, y, edges.left);
+  ctx.closePath();
+}
+
+function initJigsawPuzzle() {
+  updatePuzzleLayoutRects();
+  jigsawPieces = [];
+  draggingPiece = null;
+  puzzleSolved = false;
+
+  const pw = BOARD_RECT.w / pCols;
+  const ph = BOARD_RECT.h / pRows;
+
+  const horizTabs = Array.from({ length: pRows + 1 }, () => Array(pCols).fill(0));
+  const vertTabs  = Array.from({ length: pRows }, () => Array(pCols + 1).fill(0));
+
+  for (let r = 1; r < pRows; r++) {
+    for (let c = 0; c < pCols; c++) {
+      horizTabs[r][c] = Math.random() < 0.5 ? 1 : -1;
+    }
+  }
+  for (let r = 0; r < pRows; r++) {
+    for (let c = 1; c < pCols; c++) {
+      vertTabs[r][c] = Math.random() < 0.5 ? 1 : -1;
+    }
+  }
+
+  const rawPieces = [];
+  for (let r = 0; r < pRows; r++) {
+    for (let c = 0; c < pCols; c++) {
+      const edges = {
+        top:    r === 0 ? 0 : horizTabs[r][c],
+        right:  c === pCols - 1 ? 0 : vertTabs[r][c + 1],
+        bottom: r === pRows - 1 ? 0 : -horizTabs[r + 1][c],
+        left:   c === 0 ? 0 : -vertTabs[r][c]
+      };
+
+      const targetX = BOARD_RECT.x + c * pw;
+      const targetY = BOARD_RECT.y + r * ph;
+
+      rawPieces.push({
+        id: r * pCols + c,
+        row: r,
+        col: c,
+        w: pw,
+        h: ph,
+        edges,
+        targetX,
+        targetY,
+        x: 0,
+        y: 0,
+        homeX: 0,
+        homeY: 0,
+        slotX: 0,
+        slotY: 0,
+        slotW: 0,
+        slotH: 0,
+        trayScale: 0.55,
+        angle: 0,
+        homeAngle: 0,
+        locked: false,
+        flashState: null,
+        flashAlpha: 0
+      });
+    }
+  }
+
+  rawPieces.sort(() => Math.random() - 0.5);
+
+  const totalPieces = rawPieces.length;
+  const trayCols = totalPieces === 6 ? 3 : (totalPieces === 9 ? 5 : 6);
+  const trayRows = 2;
+
+  const padX = 8, padY = 8, gapX = 4, gapY = 4;
+  const slotW = (PILE_AREA.w - padX * 2 - gapX * (trayCols - 1)) / trayCols;
+  const slotH = (PILE_AREA.h - padY * 2 - gapY * (trayRows - 1)) / trayRows;
+  const trayScale = Math.min(slotW / (pw * 1.18), slotH / (ph * 1.18), 0.85);
+
+  rawPieces.forEach((p, idx) => {
+    const sr = Math.floor(idx / trayCols);
+    const sc = idx % trayCols;
+    const itemsInThisRow = (sr === trayRows - 1 && totalPieces % trayCols !== 0)
+      ? (totalPieces % trayCols)
+      : trayCols;
+    const rowWidth = itemsInThisRow * slotW + (itemsInThisRow - 1) * gapX;
+    const rowStartX = PILE_AREA.x + (PILE_AREA.w - rowWidth) / 2;
+
+    const sx = rowStartX + sc * (slotW + gapX);
+    const sy = PILE_AREA.y + padY + sr * (slotH + gapY);
+
+    p.slotX = sx;
+    p.slotY = sy;
+    p.slotW = slotW;
+    p.slotH = slotH;
+    p.trayScale = trayScale;
+
+    p.homeX = sx + (slotW - pw) / 2;
+    p.homeY = sy + (slotH - ph) / 2;
+    p.x = p.homeX;
+    p.y = p.homeY;
+  });
+
+  jigsawPieces = rawPieces;
+  renderJigsawScene();
+}
+
+function draw3DMagicFrameOnCanvas(ctx, x, y, w, h, radius, theme = 'purple') {
+  ctx.save();
+  const rad = (puzzleAnimHue * Math.PI) / 180;
+  const gx1 = x + w / 2 + Math.cos(rad) * (w / 2);
+  const gy1 = y + h / 2 + Math.sin(rad) * (h / 2);
+  const gx2 = x + w / 2 - Math.cos(rad) * (w / 2);
+  const gy2 = y + h / 2 - Math.sin(rad) * (h / 2);
+
+  const borderGrad = ctx.createLinearGradient(gx1, gy1, gx2, gy2);
+  borderGrad.addColorStop(0, '#00e676');
+  borderGrad.addColorStop(0.5, '#00e5ff');
+  borderGrad.addColorStop(1, '#aa00ff');
+
+  ctx.shadowColor = theme === 'purple' ? 'rgba(170, 0, 255, 0.55)' : 'rgba(0, 176, 255, 0.55)';
+  ctx.shadowBlur = 14;
+  ctx.shadowOffsetY = 5;
+
+  ctx.fillStyle = borderGrad;
+  ctx.beginPath();
+  ctx.roundRect(x - 5, y - 5, w + 10, h + 10, radius + 4);
+  ctx.fill();
+
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetY = 0;
+  const innerGrad = ctx.createLinearGradient(x, y, x, y + h);
+  if (theme === 'purple') {
+    // Bloco de cima onde monta o Quebra-Cabeça -> Roxo Vibrante!
+    innerGrad.addColorStop(0, '#7e22ce');
+    innerGrad.addColorStop(1, '#4c1d95');
+  } else {
+    // Bloco de baixo onde ficam as pecinhas expostas -> Azul Vibrante!
+    innerGrad.addColorStop(0, '#0091ea');
+    innerGrad.addColorStop(1, '#004ba0');
+  }
+  ctx.fillStyle = innerGrad;
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, radius);
+  ctx.fill();
+  ctx.restore();
+}
+
+function renderJigsawScene() {
+  const canvas = document.getElementById('puzzle-canvas');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (!puzzleImg.complete) return;
+
+  const imgW = puzzleImg.naturalWidth;
+  const imgH = puzzleImg.naturalHeight;
+
+  // Bloco Superior (Onde monta o quebra-cabeça) = ROXO
+  draw3DMagicFrameOnCanvas(ctx, BOARD_RECT.x - 2, BOARD_RECT.y - 2, BOARD_RECT.w + 4, BOARD_RECT.h + 4, 14, 'purple');
+
+  // Bloco Inferior (Onde as pecinhas ficam expostas) = AZUL
+  draw3DMagicFrameOnCanvas(ctx, PILE_AREA.x, PILE_AREA.y, PILE_AREA.w, PILE_AREA.h, 16, 'blue');
+
+  // Se o Quebra-Cabeça acabou de ser completado, exibe a IMAGEM INTEIRA PRONTA E BRILHANDO por 2.7s antes de abrir o card!
+  if (puzzleSolved) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.roundRect(BOARD_RECT.x, BOARD_RECT.y, BOARD_RECT.w, BOARD_RECT.h, 12);
+    ctx.clip();
+    ctx.drawImage(puzzleImg, 0, 0, imgW, imgH, BOARD_RECT.x, BOARD_RECT.y, BOARD_RECT.w, BOARD_RECT.h);
+    ctx.restore();
+
+    ctx.save();
+    ctx.strokeStyle = '#fde047';
+    ctx.lineWidth = 5;
+    ctx.shadowColor = '#fde047';
+    ctx.shadowBlur = 18;
+    ctx.beginPath();
+    ctx.roundRect(BOARD_RECT.x, BOARD_RECT.y, BOARD_RECT.w, BOARD_RECT.h, 12);
+    ctx.stroke();
+    ctx.restore();
+
+    // Banner festivo vivo na bandeja inferior enquanto a criança admira a imagem pronta!
+    ctx.save();
+    const bounceY = Math.sin(puzzleAnimHue * 0.12) * 5;
+    ctx.font = '700 30px Fredoka, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#fde047';
+    ctx.shadowColor = 'rgba(0,0,0,0.9)';
+    ctx.shadowBlur = 8;
+    ctx.fillText('IMAGEM COMPLETA! PARABÉNS!', canvas.width / 2, PILE_AREA.y + 115 + bounceY);
+    ctx.font = '700 22px Fredoka, sans-serif';
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(currentStory.title || '', canvas.width / 2, PILE_AREA.y + 158 + bounceY);
+    ctx.restore();
+    return;
+  }
+
+  jigsawPieces.forEach(p => {
+    ctx.save();
+    tracePieceShape(ctx, p.targetX, p.targetY, p.w, p.h, p.edges);
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.72)';
+    ctx.lineWidth = 2.2;
+    ctx.setLineDash([6, 4]);
+    ctx.stroke();
+    ctx.restore();
+  });
+
+  const ordered = [
+    ...jigsawPieces.filter(p => p.locked),
+    ...jigsawPieces.filter(p => !p.locked && p !== draggingPiece),
+    ...(draggingPiece ? [draggingPiece] : [])
+  ];
+
+  ordered.forEach(p => {
+    const curScale = (p.locked || p === draggingPiece) ? 1.0 : p.trayScale;
+    const floatDy = (!p.locked && p !== draggingPiece)
+      ? Math.sin((puzzleAnimHue * 0.065) + p.id * 0.9) * 3.2
+      : 0;
+    const drawX = p.x;
+    const drawY = p.y + floatDy;
+    const cx = drawX + p.w / 2;
+    const cy = drawY + p.h / 2;
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(curScale, curScale);
+    ctx.translate(-cx, -cy);
+
+    if (!p.locked) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+      ctx.shadowBlur = p === draggingPiece ? 22 : 8;
+      ctx.shadowOffsetY = p === draggingPiece ? 10 : 4;
+    }
+
+    tracePieceShape(ctx, drawX, drawY, p.w, p.h, p.edges);
+    ctx.clip();
+
+    const drawOriginX = drawX - p.col * p.w;
+    const drawOriginY = drawY - p.row * p.h;
+    ctx.drawImage(
+      puzzleImg,
+      0, 0, imgW, imgH,
+      drawOriginX, drawOriginY, BOARD_RECT.w, BOARD_RECT.h
+    );
+
+    if (p.flashState === 'green' && p.flashAlpha > 0) {
+      ctx.fillStyle = `rgba(34, 197, 94, ${p.flashAlpha * 0.55})`;
+      ctx.fillRect(drawX - p.w * 0.4, drawY - p.h * 0.4, p.w * 1.8, p.h * 1.8);
+    } else if (p.flashState === 'red' && p.flashAlpha > 0) {
+      ctx.fillStyle = `rgba(239, 68, 68, ${p.flashAlpha * 0.65})`;
+      ctx.fillRect(drawX - p.w * 0.4, drawY - p.h * 0.4, p.w * 1.8, p.h * 1.8);
+    }
+
+    ctx.restore();
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(curScale, curScale);
+    ctx.translate(-cx, -cy);
+    tracePieceShape(ctx, drawX, drawY, p.w, p.h, p.edges);
+    if (p.flashState === 'green' && p.flashAlpha > 0) {
+      ctx.strokeStyle = '#22c55e';
+      ctx.lineWidth = 6;
+    } else if (p.flashState === 'red' && p.flashAlpha > 0) {
+      ctx.strokeStyle = '#ef4444';
+      ctx.lineWidth = 6;
+    } else if (p.locked) {
+      ctx.strokeStyle = 'rgba(250, 204, 21, 0.45)';
+      ctx.lineWidth = 1.5;
+    } else {
+      ctx.strokeStyle = '#fde047';
+      ctx.lineWidth = p === draggingPiece ? 3.8 : 2.8;
+    }
+    ctx.stroke();
+    ctx.restore();
+  });
+}
+
+function triggerPieceFlash(piece, color, onDone) {
+  piece.flashState = color;
+  piece.flashAlpha = 1.0;
+  const timer = setInterval(() => {
+    piece.flashAlpha -= 0.14;
+    if (piece.flashAlpha <= 0) {
+      piece.flashAlpha = 0;
+      piece.flashState = null;
+      clearInterval(timer);
+      if (onDone) onDone();
+    }
+  }, 45);
+}
+
+const puzCanvasEl = document.getElementById('puzzle-canvas');
+
+function getPuzzleCoords(ev) {
+  const rect = puzCanvasEl.getBoundingClientRect();
+  return {
+    x: (ev.clientX - rect.left) * (puzCanvasEl.width / rect.width),
+    y: (ev.clientY - rect.top) * (puzCanvasEl.height / rect.height)
+  };
+}
+
+puzCanvasEl.addEventListener('pointerdown', (ev) => {
+  if (puzzleSolved) return;
+  const pt = getPuzzleCoords(ev);
+
+  for (let i = jigsawPieces.length - 1; i >= 0; i--) {
+    const p = jigsawPieces[i];
+    if (p.locked) continue;
+
+    const clickedInSlot = (
+      pt.x >= p.slotX && pt.x <= p.slotX + p.slotW &&
+      pt.y >= p.slotY && pt.y <= p.slotY + p.slotH
+    );
+
+    if (clickedInSlot) {
+      playSoundClick();
+      draggingPiece = p;
+      dragOffsetX = p.w / 2;
+      dragOffsetY = p.h / 2;
+      p.x = pt.x - dragOffsetX;
+      p.y = pt.y - dragOffsetY;
+
+      jigsawPieces.splice(i, 1);
+      jigsawPieces.push(p);
+      puzCanvasEl.setPointerCapture(ev.pointerId);
+      break;
+    }
+  }
+});
+
+puzCanvasEl.addEventListener('pointermove', (ev) => {
+  if (!draggingPiece) return;
+  const pt = getPuzzleCoords(ev);
+  draggingPiece.x = pt.x - dragOffsetX;
+  draggingPiece.y = pt.y - dragOffsetY;
+});
+
+puzCanvasEl.addEventListener('pointerup', () => {
+  if (!draggingPiece) return;
+  const p = draggingPiece;
+  draggingPiece = null;
+
+  const distToTarget = Math.hypot((p.x - p.targetX), (p.y - p.targetY));
+  const cx = p.x + p.w / 2;
+  const cy = p.y + p.h / 2;
+  const insideBoard = (
+    cx >= BOARD_RECT.x - 20 && cx <= BOARD_RECT.x + BOARD_RECT.w + 20 &&
+    cy >= BOARD_RECT.y - 20 && cy <= BOARD_RECT.y + BOARD_RECT.h + 20
+  );
+
+  if (distToTarget < 58) {
+    p.x = p.targetX;
+    p.y = p.targetY;
+    p.locked = true;
+    playSoundSnapGreen();
+    triggerPieceFlash(p, 'green', () => {
+      if (jigsawPieces.every(item => item.locked) && !puzzleSolved) {
+        puzzleSolved = true;
+        // Começa imediatamente a comemoração (fanfarra + aplausos + confetes) com a imagem pronta aberta por 1.5s e abre o Card X de 6!
+        playSoundCelebrationClaps();
+        startCelebrationConfetti();
+        if (puzzleWinTimerId) clearTimeout(puzzleWinTimerId);
+        puzzleWinTimerId = setTimeout(() => {
+          puzzleWinTimerId = null;
+          if (document.getElementById('screen-puzzle').classList.contains('active')) {
+            registerGameStepCompleted('puzzle', currentStory);
+          }
+        }, 1500);
+      }
+    });
+  } else if (insideBoard) {
+    playSoundWrongRed();
+    triggerPieceFlash(p, 'red', () => {
+      p.x = p.homeX;
+      p.y = p.homeY;
+    });
+  } else {
+    p.x = p.homeX;
+    p.y = p.homeY;
+  }
+});
+
+// ============================================================================
+// MÓDULO 2: OFICINA DA PINTURA MÁGICA
+// ============================================================================
+const PALETTE_COLORS = [
+  { name: 'Verde Limão Vivo',   hex: '#65e717', rgb: [101, 231, 23] },
+  { name: 'Verde Folha Vivo',   hex: '#16c60c', rgb: [22, 198, 12] },
+  { name: 'Verde Esmeralda',    hex: '#00b294', rgb: [0, 178, 148] },
+  { name: 'Azul Céu Vivo',      hex: '#00b4ff', rgb: [0, 180, 255] },
+  { name: 'Azul Royal Vivo',    hex: '#2563eb', rgb: [37, 99, 235] },
+  { name: 'Amarelo Sol Vivo',   hex: '#ffe600', rgb: [255, 230, 0] },
+  { name: 'Laranja Vivo',       hex: '#ff6d00', rgb: [255, 109, 0] },
+  { name: 'Vermelho Vivo',      hex: '#ff1744', rgb: [255, 23, 68] },
+  { name: 'Rosa Choque Vivo',   hex: '#ff2a85', rgb: [255, 42, 133] },
+  { name: 'Rosa Flor Suave',    hex: '#ff80ab', rgb: [255, 128, 171] },
+  { name: 'Roxo Real Vivo',     hex: '#9c27b0', rgb: [156, 39, 176] },
+  { name: 'Lilás Suave',        hex: '#b388ff', rgb: [179, 136, 255] },
+  { name: 'Dourado Coroa',      hex: '#ffb300', rgb: [255, 179, 0] },
+  { name: 'Pele Clara',         hex: '#ffcc99', rgb: [255, 204, 153] },
+  { name: 'Pele Rosada',        hex: '#ffab91', rgb: [255, 171, 145] },
+  { name: 'Pele Morena',        hex: '#c68642', rgb: [198, 134, 66] },
+  { name: 'Marrom Tronco',      hex: '#8d5524', rgb: [141, 85, 36] },
+  { name: 'Marrom Escuro',      hex: '#4e342e', rgb: [78, 52, 46] },
+  { name: 'Branco Nuvem',       hex: '#ffffff', rgb: [255, 255, 255] },
+  { name: 'Preto Cabelo',       hex: '#1e293b', rgb: [30, 41, 59] }
+];
+
+let activeColor = PALETTE_COLORS[0];
+let activePaintTool = 'bucket';
+let paintBaseImg = new Image();
+let outlineMask = null;
+let isDrawingBrush = false;
+let lastBrushPt = null;
+let paintUndoStack = [];
+
+function updatePaintCanvasCursor() {
+  const canvas = document.getElementById('paint-canvas');
+  const hex = activeColor.hex;
+  const svgPencil = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+    <path d="M2 26 L6 17 L11 22 Z" fill="#fde68a" stroke="#1e293b" stroke-width="1.2"/>
+    <path d="M2 26 L4.2 21 L6.8 23.6 Z" fill="${hex}"/>
+    <path d="M6 17 L19 4 L24 9 L11 22 Z" fill="${hex}" stroke="#1e293b" stroke-width="1.4"/>
+    <path d="M19 4 L21.5 1.5 L26.5 6.5 L24 9 Z" fill="#f472b6" stroke="#1e293b" stroke-width="1.2"/>
+  </svg>`;
+  const encoded = encodeURIComponent(svgPencil);
+  canvas.style.cursor = `url("data:image/svg+xml;utf8,${encoded}") 2 26, pointer`;
+}
+
+function saveUndoSnapshot() {
+  const canvas = document.getElementById('paint-canvas');
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  if (paintUndoStack.length >= 25) paintUndoStack.shift();
+  paintUndoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+}
+
+function undoLastPaintStep() {
+  playSoundClick();
+  if (paintUndoStack.length === 0) return;
+  const canvas = document.getElementById('paint-canvas');
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  const prevData = paintUndoStack.pop();
+  ctx.putImageData(prevData, 0, 0);
+}
+
+function buildPaletteUI() {
+  const bar = document.getElementById('palette-bar');
+  bar.innerHTML = '';
+  PALETTE_COLORS.forEach((c, idx) => {
+    const sw = document.createElement('div');
+    sw.className = 'color-swatch' + (idx === 0 ? ' active' : '');
+    sw.style.backgroundColor = c.hex;
+    sw.title = c.name;
+    sw.onclick = () => {
+      playSoundClick();
+      activeColor = c;
+      document.querySelectorAll('.color-swatch').forEach(el => el.classList.remove('active'));
+      sw.classList.add('active');
+      updatePaintCanvasCursor();
+    };
+    bar.appendChild(sw);
+  });
+  updatePaintCanvasCursor();
+}
+
+function setPaintTool(tool) {
+  playSoundClick();
+  activePaintTool = tool;
+  document.querySelectorAll('.paint-toolbar-modes .btn-tool-3d').forEach(btn => btn.classList.remove('active'));
+  document.getElementById('tool-bucket').classList.toggle('active', tool === 'bucket');
+  document.getElementById('tool-brush').classList.toggle('active', tool === 'brush');
+  updatePaintCanvasCursor();
+}
+
+function highlightPaintAction(btnId) {
+  document.querySelectorAll('.paint-toolbar-modes .btn-tool-3d').forEach(btn => btn.classList.remove('active'));
+  const target = document.getElementById(btnId);
+  if (target) target.classList.add('active');
+  setTimeout(() => {
+    document.querySelectorAll('.paint-toolbar-modes .btn-tool-3d').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(activePaintTool === 'brush' ? 'tool-brush' : 'tool-bucket').classList.add('active');
+  }, 550);
+}
+
+function startPaintWithStory(st) {
+  buildPaletteUI();
+  showScreen('screen-paint');
+
+  paintBaseImg = new Image();
+  paintBaseImg.onload = () => {
+    paintUndoStack = [];
+    currentPaintingTouched = false;
+    resetCurrentPainting(false);
+  };
+  if (window.PINTURAS_B64 && window.PINTURAS_B64[st.seqPaint]) {
+    paintBaseImg.src = window.PINTURAS_B64[st.seqPaint];
+  } else {
+    paintBaseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg`;
+  }
+}
+
+function resetCurrentPainting(saveHistory = true) {
+  if (saveHistory) {
+    playSoundClick();
+    saveUndoSnapshot();
+  }
+  const canvas = document.getElementById('paint-canvas');
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  if (!paintBaseImg.complete) return;
+  ctx.drawImage(paintBaseImg, 0, 0, canvas.width, canvas.height);
+
+  const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const d = imgData.data;
+  outlineMask = new Uint8Array(canvas.width * canvas.height);
+  for (let i = 0, p = 0; i < d.length; i += 4, p++) {
+    const lum = (d[i] * 0.299 + d[i+1] * 0.587 + d[i+2] * 0.114);
+    if (lum < 128) {
+      outlineMask[p] = 1;
+      d[i] = 18; d[i+1] = 24; d[i+2] = 38; d[i+3] = 255;
+    } else {
+      outlineMask[p] = 0;
+      d[i] = 255; d[i+1] = 255; d[i+2] = 255; d[i+3] = 255;
+    }
+  }
+  ctx.putImageData(imgData, 0, 0);
+}
+
+// ============================================================================
+// TOLERÂNCIA INTELIGENTE PARA PINTAR FLORZINHAS E DETALHES PEQUENOS NO TOQUE
+// ============================================================================
+function measureBoundedRegionSize(seedPos, w, h, maxCheck = 1100) {
+  if (!outlineMask || outlineMask[seedPos] === 1) return Infinity;
+  const seen = new Set([seedPos]);
+  const q = [seedPos];
+  while (q.length > 0 && seen.size <= maxCheck) {
+    const p = q.pop();
+    const x = p % w, y = (p - x) / w;
+    if (x > 0 && outlineMask[p - 1] === 0 && !seen.has(p - 1)) { seen.add(p - 1); q.push(p - 1); }
+    if (x < w - 1 && outlineMask[p + 1] === 0 && !seen.has(p + 1)) { seen.add(p + 1); q.push(p + 1); }
+    if (y > 0 && outlineMask[p - w] === 0 && !seen.has(p - w)) { seen.add(p - w); q.push(p - w); }
+    if (y < h - 1 && outlineMask[p + w] === 0 && !seen.has(p + w)) { seen.add(p + w); q.push(p + w); }
+  }
+  return seen.size;
+}
+
+function findSmartSeedForTouch(startX, startY, w, h) {
+  let startPos = startY * w + startX;
+  const directSize = measureBoundedRegionSize(startPos, w, h, 1100);
+  if (directSize >= 4 && directSize <= 1050) {
+    return startPos;
+  }
+
+  // Se clicou no traço preto ou se há uma pétala/florzinha pequena a até 6px do toque,
+  // prioriza automaticamente a pequena região fechada mais próxima!
+  let bestSmallPos = -1;
+  let bestSmallDist = 999;
+  let nearestOpenPos = -1;
+  let nearestOpenDist = 999;
+
+  for (let dy = -6; dy <= 6; dy++) {
+    for (let dx = -6; dx <= 6; dx++) {
+      const nx = startX + dx, ny = startY + dy;
+      if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue;
+      const np = ny * w + nx;
+      if (outlineMask && outlineMask[np] === 1) continue;
+      const dist = Math.hypot(dx, dy);
+      if (dist < nearestOpenDist) {
+        nearestOpenDist = dist;
+        nearestOpenPos = np;
+      }
+      if (dist <= 5.5 && dist < bestSmallDist) {
+        const regSize = measureBoundedRegionSize(np, w, h, 950);
+        if (regSize >= 4 && regSize <= 900) {
+          bestSmallDist = dist;
+          bestSmallPos = np;
+        }
+      }
+    }
+  }
+
+  if (bestSmallPos !== -1) return bestSmallPos;
+  if (outlineMask && outlineMask[startPos] === 1 && nearestOpenPos !== -1) return nearestOpenPos;
+  return startPos;
+}
+
+function floodFillRegion(startX, startY, fillRgb) {
+  const canvas = document.getElementById('paint-canvas');
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  const w = canvas.width, h = canvas.height;
+  if (startX < 0 || startX >= w || startY < 0 || startY >= h) return;
+
+  const startPos = findSmartSeedForTouch(startX, startY, w, h);
+  if (outlineMask && outlineMask[startPos] === 1) return;
+
+  const imgData = ctx.getImageData(0, 0, w, h);
+  const d = imgData.data;
+  const startIdx = startPos * 4;
+  const targetR = d[startIdx], targetG = d[startIdx+1], targetB = d[startIdx+2];
+  if (targetR === fillRgb[0] && targetG === fillRgb[1] && targetB === fillRgb[2]) return;
+
+  saveUndoSnapshot();
+  currentPaintingTouched = true;
+
+  const visited = new Uint8Array(w * h);
+  const stack = [startPos];
+  visited[startPos] = 1;
+
+  while (stack.length > 0) {
+    const p = stack.pop();
+    const idx = p * 4;
+    d[idx] = fillRgb[0]; d[idx+1] = fillRgb[1]; d[idx+2] = fillRgb[2]; d[idx+3] = 255;
+    const x = p % w;
+    const y = (p - x) / w;
+    const neighbors = [];
+    if (x > 0) neighbors.push(p - 1);
+    if (x < w - 1) neighbors.push(p + 1);
+    if (y > 0) neighbors.push(p - w);
+    if (y < h - 1) neighbors.push(p + w);
+
+    for (let i = 0; i < neighbors.length; i++) {
+      const np = neighbors[i];
+      if (!visited[np] && (!outlineMask || outlineMask[np] === 0)) {
+        const nIdx = np * 4;
+        if (Math.abs(d[nIdx] - targetR) <= 28 && Math.abs(d[nIdx+1] - targetG) <= 28 && Math.abs(d[nIdx+2] - targetB) <= 28) {
+          visited[np] = 1;
+          stack.push(np);
+        }
+      }
+    }
+  }
+  ctx.putImageData(imgData, 0, 0);
+}
+
+// ============================================================================
+// PINTURA AUTOMÁTICA INTELIGENTE E SIMÉTRICA (CORES REAIS E UNIFICADAS!)
+// ============================================================================
+function autoPaintEntireDrawing() {
+  playSoundSnapGreen();
+  saveUndoSnapshot();
+  currentPaintingTouched = true;
+  const canvas = document.getElementById('paint-canvas');
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  const w = canvas.width, h = canvas.height;
+  if (!outlineMask) resetCurrentPainting(false);
+
+  const imgData = ctx.getImageData(0, 0, w, h);
+  const d = imgData.data;
+  const visited = new Uint8Array(w * h);
+
+  const flowerClusterPalettes = [
+    [244, 114, 182],  // Flor Rosa
+    [251, 113, 133],  // Flor Coral
+    [56, 189, 248],   // Flor Azul
+    [192, 132, 252]   // Flor Lilás
+  ];
+
+  const seqPaint = currentStory ? currentStory.seqPaint : '19';
+
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const startP = y * w + x;
+      if (visited[startP] || outlineMask[startP] === 1) continue;
+
+      const regionPixels = [];
+      const stack = [startP];
+      visited[startP] = 1;
+      let minX = x, maxX = x, minY = y, maxY = y;
+
+      while (stack.length > 0) {
+        const p = stack.pop();
+        regionPixels.push(p);
+        const px = p % w, py = (p - px) / w;
+        if (px < minX) minX = px;
+        if (px > maxX) maxX = px;
+        if (py < minY) minY = py;
+        if (py > maxY) maxY = py;
+
+        if (px > 0 && !visited[p - 1] && outlineMask[p - 1] === 0) { visited[p - 1] = 1; stack.push(p - 1); }
+        if (px < w - 1 && !visited[p + 1] && outlineMask[p + 1] === 0) { visited[p + 1] = 1; stack.push(p + 1); }
+        if (py > 0 && !visited[p - w] && outlineMask[p - w] === 0) { visited[p - w] = 1; stack.push(p - w); }
+        if (py < h - 1 && !visited[p + w] && outlineMask[p + w] === 0) { visited[p + w] = 1; stack.push(p + w); }
+      }
+
+      const area = regionPixels.length;
+      const nx = ((minX + maxX) / 2) / w;
+      const ny = ((minY + maxY) / 2) / h;
+      const nrw = (maxX - minX) / w;
+      const nrh = (maxY - minY) / h;
+      const nMinY = minY / h;
+      const nMaxY = maxY / h;
+
+      let rgb;
+
+      // 1. Brilho dos olhos e dentinhos pequenos: Branco Puro
+      if (area < 55) {
+        rgb = [255, 255, 255];
+      }
+      // ======================================================================
+      // REGRAS EXATAS PARA O DESENHO 1 ("Vovô Nésio, Pedrinho e Aninha" - 19)
+      // ======================================================================
+      else if (seqPaint === '19') {
+        // Céu e vãos de céu entre os personagens
+        if ((nMinY < 0.02 && area > 20000) || (ny > 0.60 && ny < 0.70 && ((nx > 0.24 && nx < 0.28) || (nx > 0.49 && nx < 0.56)) && area > 1200)) {
+          rgb = [186, 230, 253]; // Azul Céu Claro
+        }
+        // Nuvens brancas no céu
+        else if (ny < 0.34 && area > 4000 && (nx < 0.32 || nx > 0.75)) {
+          rgb = [248, 250, 252]; // Branco Nuvem
+        }
+        // Sol e Raios do Sol
+        else if (ny < 0.28 && nx > 0.32 && nx < 0.58) {
+          rgb = [253, 224, 71]; // Amarelo Sol Ouro
+        }
+        // Copa da Árvore e folhagens entre os galhos superiores
+        else if ((nx > 0.52 && ny < 0.48 && area > 8000) || (nx > 0.76 && ny > 0.40 && ny < 0.48)) {
+          rgb = [34, 197, 94]; // Verde Folha Vivo
+        }
+        // Tronco da Árvore (inteiro + lateral direita -> Marrom Madeira!)
+        else if (nx > 0.75 && ny > 0.48 && ny < 0.80 && area > 400) {
+          rgb = [139, 90, 43]; // Marrom Madeira Real
+        }
+        // Gramado principal e vãos de grama entre as pernas
+        else if ((nMaxY > 0.96 && area > 15000) || (ny > 0.72 && ny < 0.81 && ((nx > 0.25 && nx < 0.29 && area > 800) || (nx > 0.74 && nx < 0.80 && area > 1200)))) {
+          rgb = [134, 239, 172]; // Verde Grama Macio
+        }
+        // Florzinhas e tufos de grama no chão (ny > 0.75)
+        else if (ny > 0.83 || (ny > 0.72 && area < 900 && (nx < 0.10 || (nx > 0.49 && nx < 0.56) || nx > 0.74))) {
+          if (area < 145) {
+            rgb = [250, 204, 21]; // Miolo Amarelo da Flor
+          } else {
+            const cId = Math.floor(nx * 8) + Math.floor(ny * 8) * 3;
+            rgb = flowerClusterPalettes[Math.abs(cId) % flowerClusterPalettes.length];
+          }
+        }
+        // Boina do Vovô Nésio
+        else if (nx > 0.27 && nx < 0.50 && ny > 0.34 && ny < 0.39) {
+          rgb = [194, 154, 108]; // Bege Clássico da Boina
+        }
+        // Cabelo Grisalho do Vovô (têmporas e sobrancelhas)
+        else if (nx > 0.28 && nx < 0.48 && ny >= 0.39 && ny < 0.43 && area < 450) {
+          rgb = [226, 232, 240]; // Grisalho Prateado
+        }
+        // Rosto, Testa, Orelhas e Pescoço do Vovô Nésio
+        else if (nx > 0.28 && nx < 0.48 && ny >= 0.39 && ny < 0.49) {
+          rgb = [255, 204, 153]; // Tom de Pele Natural
+        }
+        // Gola da Camisa do Vovô Nésio
+        else if (nx > 0.33 && nx < 0.44 && ny >= 0.49 && ny < 0.525 && area < 800) {
+          rgb = [186, 230, 253]; // Azul Claro da Camisa
+        }
+        // Casaco / Cardigã do Vovô Nésio (Lado Esquerdo + Lado Direito + Barra = 100% MESMA COR!)
+        else if (nx > 0.20 && nx < 0.55 && ny >= 0.49 && ny < 0.645) {
+          rgb = [217, 155, 82]; // Caramelo Dourado Unificado no Casaco Inteiro!
+        }
+        // Calça do Vovô Nésio
+        else if (nx > 0.27 && nx < 0.50 && ny >= 0.645 && ny < 0.79) {
+          rgb = [120, 68, 33]; // Marrom Calça do Vovô
+        }
+        // Sapatos do Vovô Nésio
+        else if (nx > 0.28 && nx < 0.52 && ny >= 0.79 && ny < 0.84) {
+          rgb = [78, 52, 46]; // Marrom Escuro Sapatos
+        }
+        // PEDRINHO (Menino na esquerda, nx < 0.27):
+        // Cabelo do Pedrinho
+        else if (nx < 0.25 && ny > 0.55 && ny < 0.61) {
+          rgb = [120, 53, 15]; // Castanho Cabelo
+        }
+        // Rosto, Orelha e Braços/Mãos do Pedrinho
+        else if (nx < 0.27 && ((ny >= 0.61 && ny < 0.665) || (ny > 0.71 && ny < 0.76 && (nx < 0.12 || nx > 0.23)))) {
+          rgb = [255, 204, 153]; // Tom de Pele Natural
+        }
+        // Camiseta interna do Pedrinho (mangas e gola)
+        else if (nx < 0.25 && ny >= 0.665 && ny < 0.715 && (nx < 0.15 || (nx > 0.17 && nx < 0.21 && area < 350) || nx > 0.22)) {
+          rgb = [253, 224, 71]; // Amarelo Suave da Camiseta
+        }
+        // Macacão Jeans do Pedrinho (alças, peito, bolso, pernas e barras = 100% MESMO AZUL!)
+        else if (nx < 0.26 && ny >= 0.665 && ny < 0.82) {
+          rgb = [56, 189, 248]; // Azul Jeans Unificado no Macacão Inteiro!
+        }
+        // Tênis do Pedrinho
+        else if (nx < 0.27 && ny >= 0.82 && ny < 0.85) {
+          rgb = [217, 155, 82]; // Tênis Caramelo
+        }
+        // ANINHA (Menina na direita, nx >= 0.50):
+        // Lacinhos do cabelo da Aninha
+        else if (nx > 0.54 && nx < 0.78 && ny > 0.55 && ny < 0.605 && area < 240) {
+          rgb = [244, 114, 182]; // Rosa dos Lacinhos
+        }
+        // Cabelo e Maria-Chiquinhas da Aninha
+        else if (nx > 0.54 && nx < 0.82 && ny > 0.55 && ny < 0.61) {
+          rgb = [120, 53, 15]; // Castanho Cabelo
+        }
+        // Rosto, Orelhas, Braços/Mãos e Pernas da Aninha
+        else if (
+          nx > 0.50 && nx < 0.77 &&
+          ((ny >= 0.61 && ny < 0.66) ||
+           (ny >= 0.65 && ny < 0.75 && (nx < 0.58 || nx > 0.71)) ||
+           (ny >= 0.78 && ny < 0.805))
+        ) {
+          rgb = [255, 204, 153]; // Tom de Pele Natural
+        }
+        // Vestido Inteiro da Aninha (gola, mangas, blusa, saia e barra = 100% MESMA COR ROSA!)
+        else if (nx > 0.56 && nx < 0.74 && ny >= 0.66 && ny < 0.78) {
+          rgb = [244, 114, 182]; // Vestido Rosa Doce Unificado!
+        }
+        // Meias e Sapatinhos da Aninha
+        else if (nx > 0.56 && nx < 0.73 && ny >= 0.805 && ny < 0.845) {
+          rgb = ny < 0.818 ? [255, 255, 255] : [120, 53, 15];
+        }
+        else {
+          rgb = [255, 204, 153];
+        }
+      }
+      // ======================================================================
+      // REGRAS INTELIGENTES PARA OS DEMAIS DESENHOS (20, 21, 22, 23, 25, ETC.)
+      // ======================================================================
+      else {
+        // Céu no topo
+        if (nMinY < 0.03 && area > 12000) {
+          rgb = [186, 230, 253];
+        }
+        // Sol e raios no topo
+        else if (ny < 0.30 && area >= 70 && area < 14000 && ((seqPaint === '20' && nx < 0.46) || (seqPaint === '22' && nx > 0.60) || (seqPaint === '23' && nx > 0.60))) {
+          rgb = [253, 224, 71];
+        }
+        // Nuvens no céu
+        else if (ny < 0.36 && nrw > nrh * 1.15 && area > 650 && area < 18000 && nx < 0.75) {
+          rgb = [248, 250, 252];
+        }
+        // Copa da Árvore (Davi 20)
+        else if (seqPaint === '20' && nx > 0.52 && ny < 0.45 && area > 5000) {
+          rgb = [34, 197, 94];
+        }
+        // Tronco da Árvore (Davi 20)
+        else if (seqPaint === '20' && nx > 0.78 && ny > 0.34 && ny < 0.70 && area > 400) {
+          rgb = [139, 90, 43];
+        }
+        // Ovelhinhas brancas/creme (Davi 20)
+        else if (seqPaint === '20' && nx < 0.45 && ny > 0.50 && ny < 0.80 && area > 350) {
+          rgb = area > 2200 ? [248, 250, 252] : [255, 204, 153];
+        }
+        // Gramado / Colina na base
+        else if (nMaxY > 0.96 && area > 8000) {
+          rgb = (seqPaint === '21' || seqPaint === '23') ? [56, 189, 248] : [134, 239, 172];
+        }
+        // Baleia e Mar (Jonas 23) e Ondas (Arca 21)
+        else if (seqPaint === '23' && ny > 0.28) {
+          rgb = ny < 0.68 && nx < 0.72 ? [56, 189, 248] : [186, 230, 253];
+        }
+        // Arca de Noé em Madeira (21)
+        else if (seqPaint === '21' && ny > 0.38 && ny < 0.75) {
+          rgb = [180, 115, 55];
+        }
+        // Cabelos dos personagens (topo da cabeça)
+        else if (ny > 0.22 && ny < 0.54 && nrw > nrh * 0.8 && area > 800 && area < 5500) {
+          rgb = [120, 53, 15];
+        }
+        // Rostos, mãos e pés (Tom de Pele Natural)
+        else if (ny > 0.25 && ny < 0.78 && area >= 95 && area < 4800 && Math.abs(nrw - nrh) < 0.09) {
+          rgb = [255, 204, 153];
+        }
+        // Túnica/Roupa unificada na mesma cor por altura
+        else {
+          rgb = [56, 189, 248];
+        }
+      }
+
+      for (let i = 0; i < regionPixels.length; i++) {
+        const idx = regionPixels[i] * 4;
+        d[idx] = rgb[0];
+        d[idx+1] = rgb[1];
+        d[idx+2] = rgb[2];
+        d[idx+3] = 255;
+      }
+    }
+  }
+  ctx.putImageData(imgData, 0, 0);
+}
+
+// Suporte ao atalho de teclado Ctrl+Z / Cmd+Z na Oficina da Pintura Mágica
+window.addEventListener('keydown', (ev) => {
+  if ((ev.ctrlKey || ev.metaKey) && (ev.key === 'z' || ev.key === 'Z')) {
+    const paintScreen = document.getElementById('screen-paint');
+    if (paintScreen && paintScreen.classList.contains('active')) {
+      ev.preventDefault();
+      undoLastPaintStep();
+    }
+  }
+});
+
+const paintCanvasEl = document.getElementById('paint-canvas');
+function getPaintCoords(ev) {
+  const rect = paintCanvasEl.getBoundingClientRect();
+  return {
+    x: Math.floor((ev.clientX - rect.left) * (paintCanvasEl.width / rect.width)),
+    y: Math.floor((ev.clientY - rect.top) * (paintCanvasEl.height / rect.height))
+  };
+}
+
+paintCanvasEl.addEventListener('pointerdown', (ev) => {
+  const pt = getPaintCoords(ev);
+  if (activePaintTool === 'bucket') {
+    playSoundSnapGreen();
+    floodFillRegion(pt.x, pt.y, activeColor.rgb);
+  } else if (activePaintTool === 'brush') {
+    saveUndoSnapshot();
+  currentPaintingTouched = true;
+    isDrawingBrush = true;
+    lastBrushPt = pt;
+    paintCanvasEl.setPointerCapture(ev.pointerId);
+    drawFinePencilSegment(pt, pt);
+  }
+});
+
+paintCanvasEl.addEventListener('pointermove', (ev) => {
+  if (!isDrawingBrush || activePaintTool !== 'brush') return;
+  const pt = getPaintCoords(ev);
+  drawFinePencilSegment(lastBrushPt || pt, pt);
+  lastBrushPt = pt;
+});
+
+window.addEventListener('pointerup', () => {
+  if (isDrawingBrush) {
+    isDrawingBrush = false;
+    lastBrushPt = null;
+    if (!outlineMask) return;
+    const ctx = paintCanvasEl.getContext('2d', { willReadFrequently: true });
+    const imgData = ctx.getImageData(0, 0, paintCanvasEl.width, paintCanvasEl.height);
+    const d = imgData.data;
+    for (let p = 0, i = 0; p < outlineMask.length; p++, i += 4) {
+      if (outlineMask[p] === 1) {
+        d[i] = 18; d[i+1] = 24; d[i+2] = 38; d[i+3] = 255;
+      }
+    }
+    ctx.putImageData(imgData, 0, 0);
+  }
+});
+
+function drawFinePencilSegment(p1, p2) {
+  const ctx = paintCanvasEl.getContext('2d');
+  ctx.strokeStyle = activeColor.hex;
+  ctx.lineWidth = 6;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.beginPath();
+  ctx.moveTo(p1.x, p1.y);
+  ctx.lineTo(p2.x, p2.y);
+  ctx.stroke();
+}
+
+// ============================================================================
+// MÓDULO 3: QUIZ DO VOVÔ NÉSIO (50 PERGUNTAS BÍBLICAS: 6 GRÁTIS + 44 BLOQUEADAS)
+// ============================================================================
+const QUIZ_QUESTIONS = [
+  // 6 PERGUNTAS GRATUITAS (FASES 1 A 6)
+  { free: true, storyId: 1, q: 'Com quem o Vovô Nésio compartilha as lindas histórias da Bíblia?', opts: ['Com Pedrinho e Aninha', 'Com os soldados do rei', 'Com os mercadores'], ans: 0 },
+  { free: true, storyId: 2, q: 'Qual instrumento musical o pastorzinho Davi tocava no campo?', opts: ['Uma Harpa Dourada', 'Um Tambor Grande', 'Uma Trombeta'], ans: 0 },
+  { free: true, storyId: 3, q: 'Com a ajuda de Deus, quem o pequeno Davi venceu no vale?', opts: ['O Faraó do Egito', 'O Gigante Golias', 'O exército romano'], ans: 1 },
+  { free: true, storyId: 4, q: 'Qual sinal colorido Deus colocou no céu após o dilúvio?', opts: ['Uma Estrela Cadente', 'O Arco-Íris da Aliança', 'Um Cometa Azul'], ans: 1 },
+  { free: true, storyId: 5, q: 'O que Jesus disse quando as criancinhas quiseram chegar perto Dele?', opts: ['Deixai vir a Mim as criancinhas', 'Voltem outro dia', 'Fiquem longe'], ans: 0 },
+  { free: true, storyId: 6, q: 'Qual grande animal do mar engoliu o profeta Jonas?', opts: ['Um Grande Peixe / Baleia', 'Um Tubarão Branco', 'Um Polvo Gigante'], ans: 0 },
+
+  // 44 PERGUNTAS ASSINANTES VIP (PERGUNTAS 7 A 50)
+  { free: false, storyId: 7,  q: 'Quem fechou a boca dos leões para proteger o fiel Daniel?', opts: ['Os guardas do rei', 'O Anjo enviado por Deus', 'Uma grade de ferro'], ans: 1 },
+  { free: false, storyId: 8,  q: 'Qual mar se abriu ao meio quando Moisés estendeu o cajado?', opts: ['O Mar Vermelho', 'O Rio Jordão', 'O Mar da Galileia'], ans: 0 },
+  { free: false, storyId: 9,  q: 'Onde estava o segredo do compromisso e da grande força de Sansão?', opts: ['Na promessa a Deus e cabelos não cortados', 'Na sua armadura pesada', 'No seu escudo dourado'], ans: 0 },
+  { free: false, storyId: 10, q: 'Deus prometeu a Abraão uma família tão numerosa quanto o quê?', opts: ['Quanto as folhas de uma árvore', 'Quanto as estrelas do céu', 'Quanto as nuvens da manhã'], ans: 1 },
+  { free: false, storyId: 11, q: 'Qual era o nome do lindo jardim que Deus criou no princípio?', opts: ['O Jardim do Éden', 'O Jardim da Babilônia', 'O Bosque Real'], ans: 0 },
+  { free: false, storyId: 12, q: 'O que Jacó viu em seu sonho especial ligando a terra até o céu?', opts: ['Uma ponte de madeira', 'Uma Escada Brilhante com Anjos', 'Uma montanha de neve'], ans: 1 },
+  { free: false, storyId: 13, q: 'Que presente especial José ganhou de seu pai Jacó?', opts: ['Uma linda Túnica Colorida', 'Uma espada dourada', 'Um cavalo branco'], ans: 0 },
+  { free: false, storyId: 14, q: 'O que aconteceu quando Josué e o povo marcharam com fé ao redor de Jericó?', opts: ['As grandes muralhas caíram!', 'Começou a chover forte', 'Os portões foram pintados'], ans: 0 },
+  { free: false, storyId: 15, q: 'O que o jovem Rei Salomão pediu a Deus em oração?', opts: ['Um coração cheio de Sabedoria', 'Muitas moedas de ouro', 'Um palácio maior'], ans: 0 },
+  { free: false, storyId: 16, q: 'Qual rainha corajosa orou, jejuou e salvou o povo de Deus na Pérsia?', opts: ['A Rainha Ester', 'A Rainha de Sabá', 'A Princesa Miriã'], ans: 0 },
+  { free: false, storyId: 17, q: 'Como o profeta Elias subiu ao céu diante de seu ajudante Eliseu?', opts: ['Em uma Carruagem de Fogo e redemoinho', 'Em um barco a vela', 'Subindo uma escada de corda'], ans: 0 },
+  { free: false, storyId: 18, q: 'Em qual cidade nasceu o menino Jesus, o Salvador do mundo?', opts: ['Em Belém da Judeia', 'Em Roma', 'Em Damasco'], ans: 0 },
+  { free: false, storyId: 19, q: 'Quais pescadores deixaram as redes para seguir Jesus como discípulos?', opts: ['Pedro, Tiago e João', 'Moisés e Arão', 'Davi e Jônatas'], ans: 0 },
+  { free: false, storyId: 20, q: 'Quem viajou por muitas terras e mares anunciando o amor de Jesus?', opts: ['O Apóstolo Paulo', 'O Rei Saul', 'O Faraó'], ans: 0 },
+  { free: false, storyId: 2,  q: 'Quais animaizinhos o jovem Davi cuidava com tanto carinho?', opts: ['Das ovelhinhas do rebanho', 'Dos camelos do deserto', 'Dos cavalos reais'], ans: 0 },
+  { free: false, storyId: 3,  q: 'Quantas pedrinhas lisas Davi pegou no riacho antes de enfrentar Golias?', opts: ['Cinco pedrinhas', 'Cem pedrinhas', 'Apenas uma folha'], ans: 0 },
+  { free: false, storyId: 4,  q: 'O que Deus pediu para Noé construir para salvar sua família e os animais?', opts: ['Uma Grande Arca de Madeira', 'Um Castelo de Pedra', 'Uma Torre Alta'], ans: 0 },
+  { free: false, storyId: 4,  q: 'Qual passarinho voltou para Noé trazendo um raminho verde de oliveira?', opts: ['Uma Pombinha Branca', 'Uma Águia Dourada', 'Um Pardal'], ans: 0 },
+  { free: false, storyId: 5,  q: 'Como Jesus recebia as crianças que vinham até Ele?', opts: ['Com amor, abraços e bênçãos', 'Com pressa', 'Em silêncio'], ans: 0 },
+  { free: false, storyId: 6,  q: 'Por quantos dias e noites Jonas ficou dentro da barriga do grande peixe?', opts: ['Três dias e três noites', 'Dez dias seguidos', 'Apenas uma hora'], ans: 0 },
+  { free: false, storyId: 6,  q: 'O que Jonas fez dentro da barriga do grande peixe?', opts: ['Orou pedindo perdão a Deus', 'Dormiu o tempo todo', 'Construiu um barco'], ans: 0 },
+  { free: false, storyId: 1,  q: 'O que brilha no livro aberto do Vovô Nésio quando ele conta histórias?', opts: ['A Luz das Promessas de Deus', 'Uma lanterna comum', 'Fogo de artifício'], ans: 0 },
+  { free: false, storyId: 2,  q: 'Quem escrevia lindos Salmos de louvor a Deus enquanto cuidava das ovelhas?', opts: ['O jovem Davi', 'O gigante Golias', 'O rei Nabucodonosor'], ans: 0 },
+  { free: false, storyId: 7,  q: 'Quantas vezes por dia Daniel orava a Deus olhando para Jerusalém?', opts: ['Três vezes ao dia', 'Uma vez por ano', 'Nunca orava'], ans: 0 },
+  { free: false, storyId: 8,  q: 'O que guiava o povo de Deus pelo deserto durante a noite?', opts: ['Uma Coluna de Fogo brilhante', 'Uma tocha pequena', 'Um mapa de papel'], ans: 0 },
+  { free: false, storyId: 8,  q: 'Qual alimento especial caía do céu todas as manhãs no deserto?', opts: ['O Maná do céu', 'Maçãs verdes', 'Trigo torrado'], ans: 0 },
+  { free: false, storyId: 9,  q: 'Quem deu a Sansão uma força extraordinária para defender o povo?', opts: ['O Espírito do Senhor Deus', 'Um elixir mágico', 'Um treinador real'], ans: 0 },
+  { free: false, storyId: 10, q: 'Qual era o nome do filho da promessa que nasceu para Abraão e Sara?', opts: ['Isaque, que significa riso e alegria', 'Golias', 'Faraó'], ans: 0 },
+  { free: false, storyId: 11, q: 'Em quantos dias Deus criou o mundo e no sétimo dia descansou?', opts: ['Criou em 6 dias e descansou no 7º', 'Em 30 dias', 'Em 1 hora'], ans: 0 },
+  { free: false, storyId: 11, q: 'Quem deu nome a todos os animaizinhos lá no Jardim do Éden?', opts: ['Adão', 'O Rei Saul', 'Jonas'], ans: 0 },
+  { free: false, storyId: 12, q: 'O que Deus prometeu a Jacó quando ele viu a escada brilhante?', opts: ['Eu estarei com você por onde você for', 'Que ele teria um barco', 'Que nunca choveria'], ans: 0 },
+  { free: false, storyId: 13, q: 'Em qual país José se tornou governador e salvou muitas famílias da fome?', opts: ['No Egito', 'Na Grécia', 'Na Espanha'], ans: 0 },
+  { free: false, storyId: 13, q: 'O que José fez quando reencontrou seus irmãos no Egito?', opts: ['Perdoou e abraçou todos com amor', 'Ficou bravo e fugiu', 'Escondeu-se no palácio'], ans: 0 },
+  { free: false, storyId: 14, q: 'Quais instrumentos os sacerdotes tocaram ao redor das muralhas de Jericó?', opts: ['As Trombetas (Shofares)', 'Violinos', 'Pandeiros de prata'], ans: 0 },
+  { free: false, storyId: 15, q: 'Qual grande obra o Rei Salomão construiu para adorar a Deus em Jerusalém?', opts: ['O belo Templo do Senhor', 'Uma pirâmide alta', 'Um coliseu'], ans: 0 },
+  { free: false, storyId: 16, q: 'Quem era o primo bondoso que cuidou e aconselhou a Rainha Ester?', opts: ['Mardoqueu', 'Nabucodonosor', 'Balaão'], ans: 0 },
+  { free: false, storyId: 17, q: 'Quais aves levaram pão e alimento para o profeta Elias junto ao ribeiro?', opts: ['Os corvos enviados por Deus', 'Os flamingos', 'Os cisnes'], ans: 0 },
+  { free: false, storyId: 17, q: 'Quem recebeu a capa do profeta Elias e continuou sua missão?', opts: ['O profeta Eliseu', 'O rei Acabe', 'Geazi'], ans: 0 },
+  { free: false, storyId: 18, q: 'Quem apareceu no campo à noite para anunciar aos pastores que Jesus nasceu?', opts: ['Um Anjo do Senhor e um coro celestial', 'Soldados a cavalo', 'Viajantes do mar'], ans: 0 },
+  { free: false, storyId: 18, q: 'O que guiou os Reis Magos do Oriente até o menino Jesus em Belém?', opts: ['Uma grande Estrela Brilhante no céu', 'Uma bússola de madeira', 'Um barco a remo'], ans: 0 },
+  { free: false, storyId: 19, q: 'O que aconteceu quando Jesus mandou Pedro lançar as redes ao mar?', opts: ['Pegaram tantos peixes que a rede encheu!', 'Não pegaram nada', 'Acharam uma âncora'], ans: 0 },
+  { free: false, storyId: 19, q: 'O que Jesus disse para acalmar a grande tempestade e o vento no mar?', opts: ['Aquietai-vos! E tudo ficou calmo', 'Remem mais rápido!', 'Pulem na água!'], ans: 0 },
+  { free: false, storyId: 20, q: 'O que Paulo e Silas fizeram à meia-noite mostrando sua fé em Deus?', opts: ['Oraram e cantaram hinos de louvor a Deus', 'Reclamaram sem parar', 'Dormiram tristes'], ans: 0 },
+  { free: false, storyId: 20, q: 'O que o Apóstolo Paulo escrevia para ensinar e encorajar as igrejas?', opts: ['As Cartas (Epístolas) cheias de amor e fé', 'Livros de receitas', 'Mapas de tesouro'], ans: 0 },
+  { free: false, storyId: 1,  q: 'Qual é o maior ensinamento que o Vovô Nésio mostra na Bíblia para as crianças?', opts: ['Amar a Deus e amar ao próximo', 'Guardar brinquedos sozinho', 'Correr mais rápido'], ans: 0 }
+];
+
+let quizIndex = parseInt(localStorage.getItem('trono_last_quiz_idx_v1') || '0', 10) || 0;
+let quizAnsweredLock = false;
+let quizWinTimerId = null;
+
+function initQuiz() {
+  // Continua exatamente onde a criança parou (primeira pergunta não respondida ou última posição salva)
+  const nextStep = getNextUncompletedStep(completedQuizzes, 6);
+  if (!isVipUnlocked) {
+    quizIndex = Math.max(0, Math.min(5, nextStep - 1));
+  }
+  localStorage.setItem('trono_last_quiz_idx_v1', String(quizIndex));
+  renderQuizStep();
+}
+
+function skipQuizQuestion() {
+  playSoundClick();
+  advanceQuizIndex();
+}
+
+function advanceQuizIndex() {
+  const nextIdx = (quizIndex + 1) % QUIZ_QUESTIONS.length;
+  if (nextIdx >= 6 && !isVipUnlocked) {
+    openSubscribeModal('Liberar as 50 Perguntas do Quiz!');
+    quizIndex = 0;
+    localStorage.setItem('trono_last_quiz_idx_v1', String(quizIndex));
+    renderQuizStep();
+    return;
+  }
+  quizIndex = nextIdx;
+  localStorage.setItem('trono_last_quiz_idx_v1', String(quizIndex));
+  renderQuizStep();
+}
+
+function renderQuizStep() {
+  quizAnsweredLock = false;
+  if (quizWinTimerId) {
+    clearTimeout(quizWinTimerId);
+    quizWinTimerId = null;
+  }
+  const item = QUIZ_QUESTIONS[quizIndex % QUIZ_QUESTIONS.length];
+  const st = STORIES.find(s => s.id === item.storyId) || STORIES[0];
+
+  renderVisualHousesTrail(
+    'quiz-houses-trail',
+    (quizIndex % 6) + 1,
+    6,
+    (step) => {
+      quizIndex = step - 1;
+      localStorage.setItem('trono_last_quiz_idx_v1', String(quizIndex));
+      renderQuizStep();
+    },
+    () => openSubscribeModal('Liberar Todas as 50 Perguntas do Quiz!'),
+    completedQuizzes,
+    '+44 (50)'
+  );
+
+  document.getElementById('quiz-image').src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg`;
+  document.getElementById('quiz-question-text').textContent = item.q;
+
+  const box = document.getElementById('quiz-options-box');
+  box.innerHTML = '';
+  item.opts.forEach((optText, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt-btn';
+    btn.innerHTML = `
+      <span class="quiz-opt-num">${idx + 1}</span>
+      <span style="flex:1;">${optText}</span>
+    `;
+    btn.onclick = () => {
+      if (quizAnsweredLock) return;
+      if (idx === item.ans) {
+        quizAnsweredLock = true;
+        btn.classList.add('correct');
+        playSoundSnapGreen();
+        playSoundCelebrationClaps();
+        startCelebrationConfetti();
+
+        quizWinTimerId = setTimeout(() => {
+          quizWinTimerId = null;
+          if (document.getElementById('screen-quiz').classList.contains('active')) {
+            registerGameStepCompleted('quiz', st);
+          }
+        }, 850);
+      } else {
+        if (!btn.classList.contains('wrong')) {
+          btn.classList.add('wrong');
+          playSoundWrongRed();
+        }
+      }
+    };
+    box.appendChild(btn);
+  });
+}
+
+// ============================================================================
+// MÓDULO 4: JOGO DA MEMÓRIA BÍBLICO (20 FASES: 6 GRÁTIS + 14 BLOQUEADAS)
+// ============================================================================
+let memoryPhase = parseInt(localStorage.getItem('trono_last_mem_phase_v1') || '1', 10) || 1;
+let memFlipped = [];
+let memMatchedCount = 0;
+
+function goToNextMemoryPhase() {
+  playSoundClick();
+  const nextPhase = memoryPhase + 1;
+  if (nextPhase > 6 && !isVipUnlocked) {
+    openSubscribeModal('Liberar Todas as 20 Fases da Memória!');
+    startMemoryPhase(1);
+    return;
+  }
+  startMemoryPhase(nextPhase);
+}
+
+function startMemoryPhase(phaseNum) {
+  if (!phaseNum) {
+    phaseNum = getNextUncompletedStep(completedMemories, 6);
+  }
+  memoryPhase = phaseNum;
+  localStorage.setItem('trono_last_mem_phase_v1', String(memoryPhase));
+  memFlipped = [];
+  memMatchedCount = 0;
+
+  renderVisualHousesTrail(
+    'memory-houses-trail',
+    ((memoryPhase - 1) % 6) + 1,
+    6,
+    (step) => startMemoryPhase(step),
+    () => openSubscribeModal('Liberar Todas as 20 Fases da Memória!'),
+    completedMemories
+  );
+
+  let pool;
+  if (!isVipUnlocked) {
+    pool = [...STORIES.slice(0, 6)];
+  } else {
+    const startIdx = ((phaseNum - 1) * 2) % (STORIES.length - 6);
+    pool = STORIES.slice(startIdx, startIdx + 6);
+  }
+
+  const deck = [...pool, ...pool].sort(() => Math.random() - 0.5);
+  const grid = document.getElementById('memory-grid');
+  grid.innerHTML = '';
+
+  deck.forEach(st => {
+    const card = document.createElement('div');
+    card.className = 'mem-card';
+    card.innerHTML = `
+      <div class="mem-card-inner">
+        <div class="mem-face mem-back">
+          <img src="./2_ASSETS_UI_BOTOES/ui_icon_04.png" alt="Vovô Nésio">
+        </div>
+        <div class="mem-face mem-front">
+          <img src="./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg" alt="${st.title}">
+          <span>${st.title}</span>
+        </div>
+      </div>
+    `;
+    card.onclick = () => {
+      if (card.classList.contains('flipped') || card.classList.contains('matched') || memFlipped.length >= 2) return;
+      playSoundClick();
+      card.classList.add('flipped');
+      memFlipped.push({ card, st });
+
+      if (memFlipped.length === 2) {
+        const [a, b] = memFlipped;
+        if (a.st.id === b.st.id) {
+          a.card.classList.add('matched');
+          b.card.classList.add('matched');
+          memFlipped = [];
+          memMatchedCount++;
+          playSoundSnapGreen();
+
+          if (memMatchedCount >= 6) {
+            const prizeStory = pool[(memoryPhase - 1) % pool.length] || st;
+            // Inicia comemoração imediata com todas as 12 cartinhas abertas por 2.2s antes de abrir o card!
+            playSoundCelebrationClaps();
+            startCelebrationConfetti();
+            setTimeout(() => {
+              registerGameStepCompleted('memory', prizeStory);
+            }, 2200);
+          }
+        } else {
+          playSoundWrongRed();
+          setTimeout(() => {
+            a.card.classList.remove('flipped');
+            b.card.classList.remove('flipped');
+            memFlipped = [];
+          }, 780);
+        }
+      }
+    };
+    grid.appendChild(card);
+  });
+}
+
+// ============================================================================
+// CAMINHO SINUOSO DO ÁLBUM DA FÉ + CARD GRANDE COLECIONÁVEL!
+// ============================================================================
+let selectedCollectorStory = STORIES[0];
+
+// Coordenadas exatas (x%, y%) das 20 casinhas ao longo da Estradinha Sinuosa em "S"
+const SINUOUS_ROAD_POINTS = [
+  // Curva 1 (Esquerda -> Direita)
+  { x: 16, y: 10 }, { x: 38, y: 10 }, { x: 60, y: 10 }, { x: 82, y: 13 },
+  // Curva 2 (Direita -> Esquerda)
+  { x: 82, y: 29 }, { x: 60, y: 31 }, { x: 38, y: 31 }, { x: 16, y: 34 },
+  // Curva 3 (Esquerda -> Direita)
+  { x: 16, y: 50 }, { x: 38, y: 52 }, { x: 60, y: 52 }, { x: 82, y: 55 },
+  // Curva 4 (Direita -> Esquerda)
+  { x: 82, y: 71 }, { x: 60, y: 73 }, { x: 38, y: 73 }, { x: 16, y: 76 },
+  // Curva 5 (Esquerda -> Direita)
+  { x: 16, y: 90 }, { x: 38, y: 91 }, { x: 60, y: 91 }, { x: 84, y: 90 }
+];
+
+function openLudoTrailBoard() {
+  renderLudoTrailBoard();
+  showScreen('screen-ludo-trail');
+}
+
+function renderLudoTrailBoard() {
+  syncAlbumHousesWithCompletedGames();
+  updateTopCounters();
+  const grid = document.getElementById('ludo-board-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  // Regra Oficial: 4 Joguinhos (x 6 fases cada) = 4 Casinhas Grátis (Casinhas 1, 2, 3 e 4) + 16 Bloqueadas (5 a 20)!
+  const maxFreeHouses = 4;
+  const pool = isVipUnlocked ? STORIES : STORIES.slice(0, maxFreeHouses);
+  const nextTargetStory = pool.find(s => !unlockedStickers.has(s.id)) || pool[pool.length - 1] || STORIES[0];
+
+  // Desenha a Estradinha Sinuosa em "S" conectando todas as 20 casinhas
+  const roadPathD = `
+    M 16 10
+    L 60 10
+    C 92 10, 92 31, 60 31
+    L 38 31
+    C 6 31, 6 52, 38 52
+    L 60 52
+    C 92 52, 92 73, 60 73
+    L 38 73
+    C 6 73, 6 91, 38 91
+    L 84 90
+  `;
+
+  const svgHtml = `
+    <svg class="sinuous-road-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <!-- Borda Dourada da Estrada Sinuosa -->
+      <path d="${roadPathD}" fill="none" stroke="#fde047" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+      <!-- Leito Roxo Escuro da Estrada -->
+      <path d="${roadPathD}" fill="none" stroke="#3b0764" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Trilha Pontilhada Brilhante no Meio da Estrada -->
+      <path d="${roadPathD}" fill="none" stroke="#00e5ff" stroke-width="1.3" stroke-dasharray="2.5 2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  `;
+  grid.insertAdjacentHTML('beforeend', svgHtml);
+
+  STORIES.forEach((st, idx) => {
+    const pt = SINUOUS_ROAD_POINTS[idx] || { x: 50, y: 50 };
+    const isFreeStory = (st.id <= maxFreeHouses) || isVipUnlocked;
+    const isConquered = isFreeStory && unlockedStickers.has(st.id);
+    const isCurrentWalker = (st.id === nextTargetStory.id);
+
+    const node = document.createElement('div');
+    node.className = 'road-node-house'
+      + (isConquered ? ' conquered' : '')
+      + (isCurrentWalker ? ' active-walker' : '');
+    node.style.left = `${pt.x}%`;
+    node.style.top = `${pt.y}%`;
+
+    let subIconHtml = '';
+    if (!isFreeStory) {
+      subIconHtml = `<img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" style="width:15px; height:15px; object-fit:contain;" alt="Bloqueado">`;
+    } else if (isConquered) {
+      subIconHtml = `<svg width="14" height="14" viewBox="0 0 24 24" fill="#fde047"><path d="M12 2L15.1 8.2L22 9.2L17 14.1L18.2 21L12 17.8L5.8 21L7 14.1L2 9.2L8.9 8.2L12 2Z"/></svg>`;
+    } else {
+      subIconHtml = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" fill="#b3e5fc"/></svg>`;
+    }
+
+    const walkerHtml = isCurrentWalker
+      ? `<img src="./2_ASSETS_UI_BOTOES/ui_icon_04.png" class="road-walker-badge" alt="Vovô Nésio">`
+      : '';
+
+    node.innerHTML = `
+      ${walkerHtml}
+      <div class="road-node-num">${st.id}</div>
+      <div class="road-node-subicon">${subIconHtml}</div>
+    `;
+
+    node.onclick = () => {
+      playSoundClick();
+      if (!isFreeStory) {
+        openSubscribeModal(st.title);
+      } else {
+        // Abre o Card Grande da Casinha (sem mandar de volta para o Quebra-Cabeça repetido!)
+        openCollectorCardModal(st);
+      }
+    };
+
+    grid.appendChild(node);
+  });
+}
+
+function openCollectorCardModal(st) {
+  selectedCollectorStory = st;
+  document.getElementById('collector-card-img').src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg`;
+  document.getElementById('collector-card-title').textContent = `Casinha ${st.id}: ${st.title}`;
+  document.getElementById('modal-collector-card').classList.add('active');
+}
+
+function playCollectorCardStory() {
+  closeModal('modal-collector-card');
+  goHome();
+}
+
+function downloadOrShareCollectorCard() {
+  closeModal('modal-collector-card');
+  if (!isVipUnlocked) {
+    openSubscribeModal(
+      'Baixar Capa / Enviar no WhatsApp',
+      'Exclusivo para Assinantes! Libere o Clube Trono da Promessa para baixar os cards em alta resolução (para usar de capa no celular/WhatsApp ou compartilhar):'
+    );
+    return;
+  }
+  requestParentalGate(async () => {
+    const st = selectedCollectorStory;
+    const imgUrl = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg`;
+    const safeName = (st.title || 'card').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+
+    try {
+      const resp = await fetch(imgUrl);
+      const blob = await resp.blob();
+      const file = new File([blob], `card_trono_${safeName}.jpg`, { type: 'image/jpeg' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          title: `Card Trono da Promessa - ${st.title}`,
+          text: `Olha o Card "${st.title}" que desbloqueamos no Caminho do app Trono da Promessa!`,
+          files: [file]
+        });
+        return;
+      }
+    } catch (e) {}
+
+    const a = document.createElement('a');
+    a.href = imgUrl;
+    a.download = `card_trono_${safeName}.jpg`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+}
+
+// ============================================================================
+// MÓDULO 5: ÁLBUM DA FÉ (SEMPRE 4 IMAGENS INTEIRAS POR VEZ - ZERO CORTE!)
+// ============================================================================
+function stepAlbum(delta) {
+  playSoundClick();
+  const maxStart = Math.max(0, STORIES.length - 4);
+  let next = albumOffset + delta;
+  if (next > maxStart) next = 0;
+  if (next < 0) next = maxStart;
+  albumOffset = next;
+  renderStickerAlbum();
+}
+
+function renderStickerAlbum() {
+  syncAlbumHousesWithCompletedGames();
+  updateTopCounters();
+  const grid = document.getElementById('album-grid');
+  grid.innerHTML = '';
+
+  const visibleStories = STORIES.slice(albumOffset, albumOffset + 4);
+  visibleStories.forEach(st => {
+    const isFreeStory = (st.id <= 4) || isVipUnlocked;
+    const hasSticker = unlockedStickers.has(st.id);
+
+    const card = document.createElement('div');
+    card.className = 'story-card';
+
+    let overlayHtml = '';
+    let imgFilter = 'none';
+
+    if (!isFreeStory) {
+      imgFilter = 'grayscale(55%) brightness(0.55)';
+      overlayHtml = `
+        <div class="lock-overlay">
+          <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Exclusivo Assinante">
+        </div>
+      `;
+    } else if (hasSticker) {
+      overlayHtml = `
+        <div class="sticker-star-corner">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#fde047"><path d="M12 2L15.1 8.2L22 9.2L17 14.1L18.2 21L12 17.8L5.8 21L7 14.1L2 9.2L8.9 8.2L12 2Z"/></svg>
+        </div>
+      `;
+    } else {
+      imgFilter = 'grayscale(85%) brightness(0.45)';
+    }
+
+    card.innerHTML = `
+      <div class="story-thumb-wrap">
+        <div class="story-thumb-inner">
+          <img src="./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg" class="story-card-thumb"
+               style="filter: ${imgFilter};" alt="${st.title}">
+          ${overlayHtml}
+          <div class="story-title-inside">${st.title}</div>
+        </div>
+      </div>
+    `;
+
+    card.onclick = () => {
+      if (!isFreeStory) {
+        openSubscribeModal(st.title);
+      } else {
+        openCollectorCardModal(st);
+      }
+    };
+    grid.appendChild(card);
+  });
+}
+
+// ============================================================================
+// DOWNLOAD / IMPRESSÃO PDF / WHATSAPP DA PINTURA (EXCLUSIVO ASSINANTES!)
+// ============================================================================
+function onPaintDownloadOrPrintClick() {
+  if (!isVipUnlocked) {
+    openSubscribeModal(
+      'Baixar, Imprimir e WhatsApp',
+      'Exclusivo para Assinantes! Acesso para Pais: libere todas as 20 histórias para baixar em PDF/Imagem, imprimir ou enviar pelo WhatsApp:'
+    );
+    return;
+  }
+  requestParentalGate(() => {
+    document.getElementById('modal-download-paint').classList.add('active');
+  });
+}
+
+function downloadColoredPaintingPNG() {
+  playSoundSnapGreen();
+  const canvas = document.getElementById('paint-canvas');
+  const dataUrl = canvas.toDataURL('image/png');
+  const a = document.createElement('a');
+  const safeName = (currentStory.title || 'pintura').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+  a.href = dataUrl;
+  a.download = `trono_da_promessa_${safeName}.png`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  closeModal('modal-download-paint');
+}
+
+function printOrSaveBlankPDF() {
+  playSoundSnapGreen();
+  const seq = currentStory.seqPaint;
+  const imgSrc = (window.PINTURAS_B64 && window.PINTURAS_B64[seq])
+    ? window.PINTURAS_B64[seq]
+    : `./4_ASSETS_PINTURA/pintura_contorno_${seq}.jpg`;
+
+  const printWin = window.open('', '_blank');
+  if (!printWin) {
+    downloadColoredPaintingPNG();
+    return;
+  }
+  printWin.document.write(`
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+      <meta charset="UTF-8">
+      <title>Trono da Promessa - ${currentStory.title}</title>
+      <style>
+        @page { size: A4 portrait; margin: 12mm; }
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin: 0;
+          padding: 10px;
+          background: #fff;
+          color: #111;
+        }
+        h1 { font-size: 22px; margin: 0 0 4px 0; }
+        p  { font-size: 14px; margin: 0 0 12px 0; color: #444; }
+        img {
+          max-width: 100%;
+          max-height: 245mm;
+          border: 2px solid #222;
+          border-radius: 12px;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Trono da Promessa Kids — ${currentStory.title}</h1>
+      <p>Atividade de Colorir • Nome da Criança: _____________________________________</p>
+      <img src="${imgSrc}" onload="setTimeout(() => { window.print(); }, 300);">
+    </body>
+    </html>
+  `);
+  printWin.document.close();
+  closeModal('modal-download-paint');
+}
+
+async function sharePaintingOnWhatsApp() {
+  playSoundSnapGreen();
+  const canvas = document.getElementById('paint-canvas');
+  try {
+    const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
+    const safeName = (currentStory.title || 'pintura').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+    const file = new File([blob], `trono_da_promessa_${safeName}.png`, { type: 'image/png' });
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        title: `Trono da Promessa - ${currentStory.title}`,
+        text: `Olha a pintura da história "${currentStory.title}" que fizemos no app Trono da Promessa!`,
+        files: [file]
+      });
+      closeModal('modal-download-paint');
+      return;
+    }
+  } catch (e) {}
+
+  downloadColoredPaintingPNG();
+  const text = encodeURIComponent(`Olha a pintura da história "${currentStory.title}" do app Trono da Promessa! (A imagem foi baixada no seu aparelho para anexar na conversa)`);
+  window.open(`https://wa.me/?text=${text}`, '_blank');
+}
+
+// ============================================================================
+// MÓDULO 6: CANTINHO DE DORMIR (MODO ESCURO NOTURNO - ZERO SCROLL!)
+// ============================================================================
+function renderSleepCorner() {
+  const list = document.getElementById('sleep-list');
+  list.innerHTML = '';
+  SLEEP_TRACKS.forEach(tr => {
+    const isPlaying = activeTrackId === tr.id && ambientPlaying;
+    const row = document.createElement('div');
+    row.className = 'sleep-track' + (isPlaying ? ' playing' : '');
+    row.innerHTML = `
+      <div class="sleep-track-title">${tr.title}</div>
+      <button class="btn-sleep-dark">
+        ${isPlaying ? 'Tocando' : 'Ouvir'}
+      </button>
+    `;
+    row.onclick = () => {
+      playSoundClick();
+      if (activeTrackId === tr.id && ambientPlaying) {
+        bgAudioPlayer.pause();
+        ambientPlaying = false;
+      } else {
+        activeTrackId = tr.id;
+        bgAudioPlayer.src = tr.file;
+        bgAudioPlayer.volume = 0.65;
+        bgAudioPlayer.play().catch(() => {});
+        ambientPlaying = true;
+      }
+      updateSoundButtonIcon();
+      renderSleepCorner();
+    };
+    list.appendChild(row);
+  });
+}
+
+if (window.LOGO_TRONO_B64) {
+  document.getElementById('main-brand-logo').src = window.LOGO_TRONO_B64;
+}
+attachFourCardSwipeAndWheel('gallery-grid', stepGallery);
+attachFourCardSwipeAndWheel('album-grid', stepAlbum);
+updateTopCounters();
+updateSoundButtonIcon();
+startInitialThemeMusic();
+</script>
+</body>
+</html>

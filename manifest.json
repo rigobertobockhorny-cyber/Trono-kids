@@ -1,0 +1,19 @@
+{
+  "name": "Trono da Promessa Kids — Jogos e Histórias Bíblicas",
+  "short_name": "Trono Kids",
+  "description": "Aplicativo oficial infantil do canal Trono da Promessa (Vórtice Mídia). Quebra-Cabeça, Oficina de Pintura Mágica, Quiz do Vovô Nésio, Jogo da Memória, Álbum de Figurinhas da Fé e Músicas de Ninar.",
+  "start_url": "./index.html?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#061126",
+  "theme_color": "#0a1e40",
+  "icons": [
+    {
+      "src": "./2_ASSETS_UI_BOTOES/logo_base_trono.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade, Proteção de Dados e Termos de Uso — Vórtice Mídia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Orbitron:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --piano-void: #000000;
+      --piano-deep: #06070a;
+      --piano-surface: #0c0e14;
+      --piano-elevated: #12151e;
+      --border-subtle: rgba(255, 255, 255, 0.12);
+      --border-specular: rgba(255, 255, 255, 0.28);
+      --text-white: #ffffff;
+      --text-silver: #d8dde6;
+      --text-muted: #8e96a4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--piano-void);
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 55%),
+        linear-gradient(180deg, #000000 0%, #050608 50%, #000000 100%);
+      color: var(--text-silver);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.72;
+      padding: 40px 18px 90px;
+    }
+
+    .top-bar {
+      max-width: 980px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 22px;
+      background: linear-gradient(180deg, #11141c 0%, #06070a 100%);
+      border: 1px solid var(--border-subtle);
+      border-top: 1px solid var(--border-specular);
+      border-radius: 8px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.95);
+    }
+
+    .brand-title {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      color: var(--text-white);
+      text-transform: uppercase;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid var(--border-specular);
+      color: var(--text-white);
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      background: linear-gradient(165deg, #0d1017 0%, #050609 45%, #090b10 100%);
+      border: 1px solid var(--border-subtle);
+      border-top: 1px solid var(--border-specular);
+      border-radius: 10px;
+      padding: 44px 42px;
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.98),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(180deg, #1a1e29 0%, #0b0d12 100%);
+      border: 1px solid var(--border-specular);
+      color: var(--text-white);
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 11.5px;
+      padding: 6px 14px;
+      border-radius: 4px;
+      margin-bottom: 18px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(22px, 2.6vw, 30px);
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 18px;
+      line-height: 1.3;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .meta {
+      font-size: 13.5px;
+      color: var(--text-silver);
+      margin-bottom: 26px;
+      padding: 18px 22px;
+      background: var(--piano-deep);
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--text-white);
+    }
+
+    .highlight-box {
+      background: linear-gradient(180deg, #12151e 0%, #080a0f 100%);
+      border: 1px solid var(--border-specular);
+      border-left: 3px solid var(--text-white);
+      padding: 20px 24px;
+      border-radius: 6px;
+      margin: 22px 0 30px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85);
+    }
+
+    .toc {
+      background: var(--piano-deep);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 22px 26px;
+      margin-bottom: 34px;
+    }
+
+    .toc-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-white);
+      margin-bottom: 14px;
+    }
+
+    .toc ol {
+      padding-left: 20px;
+      columns: 2;
+      column-gap: 32px;
+    }
+
+    .toc li {
+      font-size: 13px;
+      margin-bottom: 7px;
+      color: var(--text-muted);
+    }
+
+    .toc a {
+      color: var(--text-silver);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .toc a:hover {
+      color: var(--text-white);
+      text-decoration: underline;
+    }
+
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-white);
+      margin: 34px 0 14px 0;
+      padding: 12px 16px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.01) 100%);
+      border-left: 3px solid var(--text-white);
+      border-radius: 4px;
+    }
+
+    p, li {
+      font-size: 14.5px;
+      color: var(--text-silver);
+      margin-bottom: 12px;
+      text-align: justify;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    strong {
+      color: var(--text-white);
+    }
+
+    code {
+      font-family: 'Chakra Petch', monospace;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--text-white);
+      font-size: 13px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 18px 0 26px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      background: var(--piano-deep);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+
+    th, td {
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      padding: 12px 15px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #141822;
+      color: var(--text-white);
+      font-family: 'Chakra Petch', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+    }
+
+    .footer {
+      margin-top: 46px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    @media (max-width: 680px) {
+      .container { padding: 26px 18px; }
+      .toc ol { columns: 1; }
+      h1 { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <span class="brand-title">VÓRTICE MÍDIA &bull; GOVERNANÇA &amp; PRIVACIDADE</span>
+    <a href="javascript:history.back()" class="back-btn">&larr; Voltar ao Portal</a>
+  </div>
+
+  <div class="container">
+    <div class="badge">DIRETRIZES OFICIAIS &bull; LGPD &bull; ECA &bull; CDC &bull; MARCO CIVIL &bull; COPPA &bull; GOOGLE PLAY FAMILIES</div>
+    <h1>Política de Privacidade, Proteção de Dados e Termos de Uso</h1>
+
+    <div class="meta">
+      <strong>Controladora e Desenvolvedora:</strong> Vórtice Mídia Produções e Tecnologia Digital ("Vórtice Mídia")<br>
+      <strong>Ecossistema Abrangido:</strong> Portal Oficial Vórtice Mídia, Canais Oficiais e Aplicativo Trono da Promessa Kids (<code>com.vorticemidia.tronodapromessa</code>)<br>
+      <strong>Classificação Indicativa do App Infantil (IARC / Ministério da Justiça):</strong> Livre para Todas as Idades (Crianças até 12 anos e Famílias)<br>
+      <strong>Versão Consolidada:</strong> 2.1 &bull; <strong>Vigência e Atualização:</strong> Outubro de 2026
+    </div>
+
+    <div class="highlight-box">
+      <strong>COMPROMISSO INSTITUCIONAL COM A PRIVACIDADE E A PROTEÇÃO INTEGRAL DA CRIANÇA:</strong><br>
+      O ecossistema digital da <strong>Vórtice Mídia</strong> e o aplicativo <strong>Trono da Promessa Kids</strong> foram projetados desde a concepção (<em>Privacy by Design</em> e <em>Privacy by Default</em>) em estrita conformidade com: (i) o Artigo 227 da Constituição Federal; (ii) a <strong>Lei Geral de Proteção de Dados Pessoais (LGPD — Lei Federal nº 13.709/2018, em especial seu Artigo 14)</strong>; (iii) o <strong>Estatuto da Criança e do Adolescente (ECA — Lei Federal nº 8.069/1990)</strong> e o ECA Digital (Lei Federal nº 15.211/2025); (iv) o <strong>Marco Civil da Internet (Lei Federal nº 12.965/2014)</strong> e o <strong>Código de Defesa do Consumidor (CDC — Lei Federal nº 8.078/1990)</strong>; (v) a legislação norte-americana <strong>COPPA (15 U.S.C. §§ 6501–6506)</strong>; e (vi) a <strong>Política do Programa para a Família do Google Play (<em>Designed for Families</em>)</strong>.<br><br>
+      <strong>SÍNTESE EXECUTIVA:</strong> O aplicativo <strong>Trono da Promessa Kids NÃO exige cadastro, NÃO solicita nome, e-mail, telefone, foto, voz ou localização, NÃO coleta nem transmite dados pessoais de crianças para servidores externos, NÃO exibe anúncios de terceiros e NÃO compartilha dados com redes de marketing.</strong>
+    </div>
+
+    <div class="toc">
+      <div class="toc-title">Índice de Seções</div>
+      <ol>
+        <li><a href="#s1">Identificação da Controladora e Escopo</a></li>
+        <li><a href="#s2">Definições Técnicas e Legais (Art. 5º da LGPD)</a></li>
+        <li><a href="#s3">Melhor Interesse da Criança (Art. 14 da LGPD)</a></li>
+        <li><a href="#s4">Garantia de Zero Coleta de Dados Infantis</a></li>
+        <li><a href="#s5">Armazenamento Local no Aparelho e Exportação</a></li>
+        <li><a href="#s6">Verificação Parental Obrigatória (Parental Gate)</a></li>
+        <li><a href="#s7">Ausência de Publicidade e de Práticas Manipulativas</a></li>
+        <li><a href="#s8">Pagamentos e Assinaturas via Google Play Billing</a></li>
+        <li><a href="#s9">Não Compartilhamento de Dados com Terceiros</a></li>
+        <li><a href="#s10">Segurança da Informação e Execução Isolada</a></li>
+        <li><a href="#s11">Retenção e Exclusão Imediata de Dados Locais</a></li>
+        <li><a href="#s12">Direitos dos Pais, Responsáveis e Titulares</a></li>
+        <li><a href="#s13">Licença de Uso e Propriedade Intelectual</a></li>
+        <li><a href="#s14">Acesso Gratuito e Assinatura Clube Trono da Promessa</a></li>
+        <li><a href="#s15">Planos, Cancelamento e Direito de Arrependimento</a></li>
+        <li><a href="#s16">Funcionamento Offline e Suporte Técnico</a></li>
+        <li><a href="#s17">Atualizações desta Política</a></li>
+        <li><a href="#s18">Encarregado de Dados (DPO), Contato e Foro</a></li>
+      </ol>
+    </div>
+
+    <h2 id="s1">1. Identificação da Controladora e Escopo</h2>
+    <p><strong>1.1.</strong> A presente Política de Privacidade e Termos de Uso regula o portal oficial da holding <strong>Vórtice Mídia Produções e Tecnologia Digital</strong> ("Vórtice Mídia") e a utilização do aplicativo móvel <strong>Trono da Promessa Kids</strong> ("Aplicativo"), distribuído sob o identificador oficial <code>com.vorticemidia.tronodapromessa</code>.</p>
+    <p><strong>1.2.</strong> Este instrumento aplica-se a todos os visitantes, usuários, pais, mães, tutores ou responsáveis legais ("Responsáveis Legais") que acessem os canais da Vórtice Mídia ou realizem o download, instalação, acesso gratuito ou assinatura opcional do Aplicativo em smartphones, tablets e dispositivos compatíveis.</p>
+
+    <h2 id="s2">2. Definições Técnicas e Legais (Art. 5º da LGPD)</h2>
+    <ul>
+      <li><strong>Criança e Adolescente:</strong> Nos termos do Art. 2º do ECA (Lei nº 8.069/1990), considera-se criança a pessoa até 12 (doze) anos de idade incompletos, e adolescente aquela entre 12 (doze) e 18 (dezoito) anos. Para fins da norma internacional COPPA, considera-se criança o menor de 13 (treze) anos.</li>
+      <li><strong>Dado Pessoal (Art. 5º, I, da LGPD):</strong> Qualquer informação relacionada a pessoa natural identificada ou identificável, como nome, CPF, e-mail, telefone, fotografia, gravação de voz ou coordenadas de GPS.</li>
+      <li><strong>Armazenamento Local (<code>localStorage</code>):</strong> Espaço de memória interna restrito ao próprio aparelho do usuário, isolado pelo sistema operacional (<em>sandbox</em>), cujos registros permanecem exclusivamente no dispositivo físico e não são enviados pela internet.</li>
+      <li><strong>Portão Parental (<em>Parental Gate</em>):</strong> Barreira técnica destinada exclusivamente aos adultos ("Área para Papai e Mamãe"), composta por desafio matemático dinâmico que impede que crianças pequenas acessem configurações de pagamento ou links externos sem supervisão adulta.</li>
+    </ul>
+
+    <h2 id="s3">3. Melhor Interesse da Criança e Não Condicionamento (Art. 14 da LGPD)</h2>
+    <p><strong>3.1.</strong> Em cumprimento ao <strong>Art. 14, caput e § 4º, da LGPD</strong>, toda a arquitetura do Aplicativo foi estruturada visando ao melhor interesse da criança. A <strong>Vórtice Mídia não exige criação de conta, login, senha ou fornecimento de qualquer dado pessoal</strong> para que a criança utilize o Quebra-Cabeça, a Pintura Mágica, o Quiz do Vovô Nésio, o Jogo da Memória, o Álbum da Fé ou o Cantinho de Dormir.</p>
+
+    <h2 id="s4">4. Garantia de Zero Coleta de Dados Infantis</h2>
+    <p><strong>4.1.</strong> A <strong>Vórtice Mídia</strong> declara expressamente que o Aplicativo <strong>Trono da Promessa Kids NÃO coleta, NÃO capta, NÃO armazena em nuvem e NÃO trata dados pessoais de crianças</strong>:</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Categoria de Dado / Permissão</th>
+            <th>Status no Aplicativo</th>
+            <th>Justificativa Técnica e Jurídica</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Nome, Data de Nascimento, CPF ou Documento</strong></td>
+            <td><strong>NÃO COLETADO</strong></td>
+            <td>O Aplicativo funciona 100% sem cadastro ou perfil nominal.</td>
+          </tr>
+          <tr>
+            <td><strong>E-mail, Telefone ou Agenda de Contatos</strong></td>
+            <td><strong>NÃO COLETADO</strong></td>
+            <td>Não há formulários infantis, chat ou captação de contatos no app.</td>
+          </tr>
+          <tr>
+            <td><strong>Geolocalização (GPS / Wi-Fi / Rede Celular)</strong></td>
+            <td><strong>NÃO COLETADO</strong></td>
+            <td>O Aplicativo não solicita permissão <code>ACCESS_FINE_LOCATION</code> nem <code>ACCESS_COARSE_LOCATION</code>.</td>
+          </tr>
+          <tr>
+            <td><strong>Câmera, Microfone, Áudio de Voz ou Biometria</strong></td>
+            <td><strong>NÃO COLETADO</strong></td>
+            <td>O Aplicativo não solicita permissão <code>CAMERA</code> nem <code>RECORD_AUDIO</code>.</td>
+          </tr>
+          <tr>
+            <td><strong>Identificador de Publicidade Android (AAID / GAID)</strong></td>
+            <td><strong>NÃO COLETADO</strong></td>
+            <td>O Aplicativo não exibe anúncios e não realiza rastreamento entre aplicativos.</td>
+          </tr>
+          <tr>
+            <td><strong>Progresso nos Jogos e Pinturas da Criança</strong></td>
+            <td><strong>APENAS LOCAL (NO APARELHO)</strong></td>
+            <td>Salvo exclusivamente na memória interna do próprio dispositivo (<code>localStorage</code>).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="s5">5. Armazenamento Local no Aparelho e Exportação de Desenhos</h2>
+    <p><strong>5.1.</strong> Para preservar as figurinhas conquistadas no <em>Álbum da Fé</em> e os desenhos coloridos na <em>Oficina da Pintura Mágica</em>, o estado do jogo é gravado unicamente na memória local do próprio aparelho (<code>window.localStorage</code>) por meio das chaves técnicas <code>trono_unlocked_stickers_v1</code>, <code>trono_house_step_progress_v1</code>, <code>trono_vip_subscriber_v1</code> e <code>trono_saved_paintings_v1</code>.</p>
+    <p><strong>5.2.</strong> Quando o adulto aprova a exportação de um desenho no <strong>Portão Parental</strong>, a imagem é gerada localmente no aparelho e entregue ao compartilhamento nativo do sistema operacional Android, sem passar por servidores externos.</p>
+
+    <h2 id="s6">6. Verificação Parental Obrigatória (Parental Gate)</h2>
+    <p><strong>6.1.</strong> Em cumprimento ao programa <strong>Google Play Designed for Families</strong>, à norma <strong>COPPA</strong> e ao <strong>ECA Digital (Lei nº 15.211/2025)</strong>, qualquer tentativa de acesso a planos de assinatura, restauração de compras, compartilhamento externo ou abertura desta Política apresenta um desafio matemático dinâmico na <strong>"Área para Papai e Mamãe"</strong>, garantindo que decisões financeiras ou externas ocorram exclusivamente sob supervisão adulta.</p>
+
+    <h2 id="s7">7. Ausência de Publicidade e de Práticas Manipulativas</h2>
+    <p><strong>7.1.</strong> O Aplicativo <strong>Trono da Promessa Kids</strong> é 100% livre de publicidade comercial de terceiros e não utiliza técnicas de design manipulativo (<em>dark patterns</em>), cronômetros de urgência falsa ou mensagens de pressão direcionadas à criança.</p>
+
+    <h2 id="s8">8. Pagamentos e Assinaturas via Google Play Billing</h2>
+    <p><strong>8.1.</strong> Caso o Responsável Legal opte por assinar o <em>Clube Trono da Promessa</em>, a transação é processada direta e exclusivamente pelo <strong>Google Play Billing</strong> (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color:#ffffff;">https://policies.google.com/privacy</a>). A <strong>Vórtice Mídia jamais tem acesso nem armazena</strong> dados de cartão de crédito, CVV, chaves PIX ou senhas bancárias.</p>
+
+    <h2 id="s9">9. Não Compartilhamento de Dados com Terceiros</h2>
+    <p><strong>9.1.</strong> Como a Vórtice Mídia não coleta dados pessoais infantis em servidores próprios, não existe venda, cessão ou compartilhamento de bancos de dados com terceiros, anunciantes ou corretores de dados (<em>data brokers</em>).</p>
+
+    <h2 id="s10">10. Segurança da Informação e Execução Isolada</h2>
+    <p><strong>10.1.</strong> Todos os jogos, ilustrações e áudios são executados dentro do ambiente isolado (<em>Application Sandbox</em>) do sistema Android e distribuídos sob assinatura criptográfica verificada, funcionando 100% offline durante a recreação infantil.</p>
+
+    <h2 id="s11">11. Retenção e Exclusão Imediata de Dados Locais</h2>
+    <p><strong>11.1.</strong> O Responsável Legal pode apagar instantaneamente todo o histórico local de progresso e desenhos a qualquer momento acessando <em>Configurações do Android &rarr; Aplicativos &rarr; Trono da Promessa Kids &rarr; Armazenamento &rarr; Limpar Dados</em>, ou desinstalando o Aplicativo.</p>
+
+    <h2 id="s12">12. Direitos dos Pais, Responsáveis e Titulares (Art. 18 da LGPD)</h2>
+    <p><strong>12.1.</strong> São assegurados aos Pais, Responsáveis Legais e titulares de dados, a qualquer momento e gratuitamente, a confirmação da inexistência de tratamento de dados infantis em servidores da Controladora, informações técnicas transparentes e a eliminação imediata de mensagens enviadas ao suporte.</p>
+
+    <h2 id="s13">13. Licença de Uso e Propriedade Intelectual (Leis nº 9.609/1998 e nº 9.610/1998)</h2>
+    <p><strong>13.1.</strong> Todos os canais, marcas (<em>Vórtice Mídia, Rock Incorruptível, Sacronia, Neon Asher, Iago Cordeiro, Patinhas &amp; Canções, Águas de Descanso, Trono da Promessa, Incorruptível, Aliens da Bíblia e Aquário dos Felinos</em>), personagens originais (incluindo <em>Vovô Nésio, Pedrinho, Aninha e Ovelhinha</em>), ilustrações 3D, roteiros, gravações fonográficas e códigos-fonte constituem propriedade intelectual exclusiva da <strong>Vórtice Mídia</strong>, sendo vedada a reprodução comercial não autorizada.</p>
+
+    <h2 id="s14">14. Acesso Gratuito e Assinatura "Clube Trono da Promessa"</h2>
+    <p><strong>14.1. Modo Gratuito Permanente:</strong> Disponibiliza gratuitamente as 6 primeiras histórias completas no Quebra-Cabeça, Pintura Mágica, Quiz do Vovô e Jogo da Memória, as 4 primeiras Casinhas do Álbum da Fé e as canções do Cantinho de Dormir.</p>
+    <p><strong>14.2. Modo Assinante VIP:</strong> Desbloqueia todas as 20 histórias bíblicas completas nos 4 jogos (80 atividades interativas), todas as 20 Casinhas e Cards do Álbum da Fé e a exportação de desenhos em alta resolução/PDF.</p>
+
+    <h2 id="s15">15. Planos, Cancelamento e Direito de Arrependimento (Art. 49 do CDC)</h2>
+    <p><strong>15.1. Planos:</strong> Plano Mensal (R$ 14,90/mês) ou Plano Anual com desconto (R$ 89,90/ano). O cancelamento pode ser realizado a qualquer momento pelo Responsável Legal no menu <em>Pagamentos e assinaturas &rarr; Assinaturas</em> da Google Play Store, sem multa ou fidelidade. Fica assegurado o prazo legal de <strong>7 (sete) dias corridos</strong> para exercício do direito de arrependimento e reembolso integral nos termos do Art. 49 do Código de Defesa do Consumidor.</p>
+
+    <h2 id="s16">16. Funcionamento Offline e Suporte Técnico</h2>
+    <p><strong>16.1.</strong> Após a instalação ou atualização automática (PWA / Android), os recursos educativos do Aplicativo operam 100% offline com máxima segurança e estabilidade.</p>
+
+    <h2 id="s17">17. Atualizações desta Política</h2>
+    <p><strong>17.1.</strong> Eventuais aprimoramentos normativos ou técnicos serão refletidos neste instrumento, constando sempre a data de atualização no cabeçalho oficial.</p>
+
+    <h2 id="s18">18. Encarregado de Dados (DPO), Canal Oficial de Contato e Foro</h2>
+    <ul>
+      <li><strong>Controladora e Produtora:</strong> Vórtice Mídia Produções e Tecnologia Digital</li>
+      <li><strong>Encarregado de Proteção de Dados (DPO) e Suporte Jurídico:</strong> Departamento de Governança e Privacidade — Vórtice Mídia</li>
+      <li><strong>E-mail Oficial:</strong> <code>suporte@vorticemidia.com</code></li>
+      <li><strong>Foro de Eleição:</strong> Regido pelas leis da República Federativa do Brasil, ficando assegurado o foro do domicílio do consumidor (Art. 101, I, do CDC).</li>
+    </ul>
+
+    <div class="footer">
+      &copy; 2026 Vórtice Mídia Produções &bull; Todos os direitos reservados.<br>
+      Instrumento Jurídico Oficial em conformidade com a LGPD (Lei nº 13.709/2018), ECA (Lei nº 8.069/1990), ECA Digital (Lei nº 15.211/2025), CDC (Lei nº 8.078/1990), Marco Civil da Internet (Lei nº 12.965/2014), COPPA e Google Play Families.
+    </div>
+  </div>
+</body>
+</html>
