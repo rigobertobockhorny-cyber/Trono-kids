@@ -165,9 +165,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 10px 14px 2px 14px;
+      padding: 6px 12px 2px 12px;
       flex-shrink: 0;
-      gap: 2px;
+      gap: 3px;
     }
 
     .brand-logo-wrap {
@@ -176,19 +176,25 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      padding: 2px 0;
     }
 
     .brand-logo {
       width: 100%;
-      max-width: 215px;
-      height: 56px;
+      max-width: 320px;
+      height: 82px;
+      max-height: 12vh;
       object-fit: contain;
-      filter: brightness(1.18) contrast(1.08) drop-shadow(0 0 12px rgba(250, 204, 21, 0.45)) drop-shadow(0 5px 10px rgba(0, 0, 0, 0.95));
+      filter: brightness(1.22) contrast(1.12) drop-shadow(0 0 16px rgba(250, 204, 21, 0.65)) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.95));
       animation: floatGentle 4s ease-in-out infinite;
-      transition: transform 0.2s;
+      transition: all 0.25s ease;
     }
     .brand-logo:active {
-      transform: scale(0.95);
+      transform: scale(0.96);
+    }
+    .brand-logo-compact {
+      max-width: 195px !important;
+      height: 50px !important;
     }
 
     /* Linha de Cima: Bolinha da Estrela (Esquerda) + Nome do Jogo no Meio + Bolinha do Som (Direita)! */
@@ -217,16 +223,16 @@
     /* 1ª COR: BOLINHAS DE CIMA (ESTRELA E SOM) -> AZUL CIANO FORTE E VIVO (SEM LINHA DURA EMBAIXO!) */
     .top-circle-btn {
       position: relative;
-      width: 42px;
-      height: 42px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       flex-shrink: 0;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       background: linear-gradient(180deg, #00e5ff 0%, #00b0ff 50%, #0066ff 100%);
-      border: 2px solid #b3e5fc;
-      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.75);
+      border: 2.5px solid #b3e5fc;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.85);
       cursor: pointer;
       animation: btnAliveFloat 3s ease-in-out infinite;
       transition: transform 0.12s;
@@ -243,23 +249,23 @@
     .star-icon-anim {
       animation: starRockPulse 2s ease-in-out infinite;
       transform-origin: center;
-      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.65));
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.65));
     }
 
     /* Contador pequenininho na base da bolinha da estrela */
     .star-mini-count {
       position: absolute;
-      bottom: -4px;
-      right: -4px;
+      bottom: -3px;
+      right: -3px;
       background: #00c853;
       color: #ffffff;
-      border: 1.5px solid #ffffff;
+      border: 1.8px solid #ffffff;
       border-radius: 999px;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 0px 5px;
-      line-height: 1.25;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.85);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 1px 6px;
+      line-height: 1.2;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.85);
     }
 
     /* Alto-falante pulsando quando o som está ligado (ON)! */
@@ -294,25 +300,28 @@
     }
 
     /* ===================================================================== */
-    /* TELA INICIAL: 6 ÍCONES PROPORCIONAIS E COM RESPIRO                    */
+    /* TELA INICIAL: 6 ÍCONES PROPORCIONAIS, PRÓXIMOS E COM DESTAQUE         */
     /* ===================================================================== */
     #screen-home {
-      justify-content: flex-end;
+      justify-content: flex-start;
       align-items: center;
-      padding-top: 8px;
-      padding-bottom: 16px;
+      padding-top: 2px;
+      padding-bottom: 12px;
+      gap: 6px;
     }
 
     .dashboard-grid {
       width: 100%;
-      flex: 1;
+      max-width: 380px;
+      flex: 0 0 auto;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      gap: 4px 10px;
+      grid-template-rows: repeat(3, auto);
+      row-gap: 8px;
+      column-gap: 14px;
       align-items: center;
       justify-items: center;
-      min-height: 0;
+      margin: 2px auto 6px auto;
     }
 
     .module-card {
@@ -323,19 +332,21 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      padding: 0;
+      padding: 2px;
       transition: transform 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
     }
     .module-card:active {
       transform: scale(0.92);
     }
 
     .mod-icon-3d {
-      width: 76px;
-      height: 76px;
-      max-height: 18vw;
+      width: 96px;
+      height: 96px;
+      max-width: 25vw;
+      max-height: 25vw;
       object-fit: contain;
-      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.8));
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.88));
       animation: floatGentle 3.2s ease-in-out infinite;
     }
     .module-card:nth-child(even) .mod-icon-3d {
@@ -343,16 +354,33 @@
     }
 
     .mod-title {
-      margin-top: 1px;
+      margin-top: 3px;
       font-family: 'Fredoka', sans-serif;
-      font-weight: 700;
-      font-size: 14px;
+      font-weight: 800;
+      font-size: 16.5px;
       background: linear-gradient(180deg, #fffde7 0%, #fde047 50%, #f59e0b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       filter: drop-shadow(0 2px 0 #3b1704) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.95));
       text-align: center;
       white-space: nowrap;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-parents-home {
+      margin: 6px auto 14px auto !important;
+      padding: 8px 18px !important;
+      font-size: 13.5px !important;
+      font-weight: 700 !important;
+      background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%) !important;
+      border: 1.8px solid #f3e5f5 !important;
+      border-radius: 999px !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8) !important;
+      flex-shrink: 0;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
     }
 
     /* ===================================================================== */
@@ -1295,7 +1323,7 @@
     <div class="topbar-controls-row">
       <!-- Bolinha Redondinha 3D da Esquerda (AZUL VIVO): Abre o Caminho de Casinhas! -->
       <button class="top-circle-btn" onclick="openLudoTrailBoard()" title="Caminho das Casinhas / Álbum da Fé">
-        <svg class="star-icon-anim" width="23" height="23" viewBox="0 0 24 24" fill="none">
+        <svg class="star-icon-anim" width="27" height="27" viewBox="0 0 24 24" fill="none">
           <path d="M12 2L15.1 8.2L22 9.2L17 14.1L18.2 21L12 17.8L5.8 21L7 14.1L2 9.2L8.9 8.2L12 2Z" fill="#fde047" stroke="#ffffff" stroke-width="1.2"/>
         </svg>
         <span class="star-mini-count" id="sticker-count">1</span>
@@ -1306,7 +1334,7 @@
 
       <!-- Bolinha Redondinha 3D da Direita (AZUL VIVO): Alto-Falante Pulsando -->
       <button class="top-circle-btn" id="btn-ambient-sound" onclick="toggleAmbientSound()" title="Ligar ou Desligar Música">
-        <svg id="sound-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <svg id="sound-icon-svg" width="26" height="26" viewBox="0 0 24 24" fill="none">
           <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#ffffff"/>
           <path d="M22 9L16 15M16 9L22 15" stroke="#fde047" stroke-width="2.8" stroke-linecap="round"/>
         </svg>
@@ -1351,8 +1379,8 @@
     </div>
 
     <!-- Botão Direto na Tela Principal para o Papai e a Mamãe (Sem precisar jogar tudo de novo para assinar ou ver a Política!) -->
-    <button class="btn-gold" style="margin-top: 4px; margin-bottom: 6px; padding: 6px 14px; font-size: 12.5px; background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%); border: 1.5px solid #f3e5f5; box-shadow: 0 4px 10px rgba(0,0,0,0.75); flex-shrink: 0; z-index: 20;" onclick="openSubscribeModal('Clube Trono da Promessa & Privacidade')">
-      <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Pais" style="width:18px; height:18px; object-fit:contain;">
+    <button class="btn-gold btn-parents-home" onclick="openSubscribeModal('Clube Trono da Promessa & Privacidade')">
+      <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Pais" style="width:20px; height:20px; object-fit:contain;">
       <span>Área dos Pais • Assinar & Privacidade</span>
     </button>
   </section>
@@ -1904,22 +1932,31 @@ bgAudioPlayer.addEventListener('ended', () => {
 // Garante que a música tema comece a tocar ao abrir o app (e destrava no primeiro toque se o navegador exigir)
 function startInitialThemeMusic() {
   if (!ambientPlaying) return;
-  bgAudioPlayer.play().catch(() => {
-    const unlockOnFirstTouch = (ev) => {
-      if (ev.target && ev.target.closest && ev.target.closest('#btn-ambient-sound')) {
-        window.removeEventListener('pointerdown', unlockOnFirstTouch, true);
-        window.removeEventListener('keydown', unlockOnFirstTouch, true);
-        return;
-      }
-      if (ambientPlaying && bgAudioPlayer.paused) {
-        bgAudioPlayer.play().catch(() => {});
-      }
-      window.removeEventListener('pointerdown', unlockOnFirstTouch, true);
-      window.removeEventListener('keydown', unlockOnFirstTouch, true);
-    };
-    window.addEventListener('pointerdown', unlockOnFirstTouch, true);
-    window.addEventListener('keydown', unlockOnFirstTouch, true);
-  });
+  const playPromise = bgAudioPlayer.play();
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
+      updateSoundButtonIcon();
+    }).catch(() => {
+      const unlockOnFirstTouch = (ev) => {
+        if (ev.target && ev.target.closest && ev.target.closest('#btn-ambient-sound')) {
+          return;
+        }
+        if (ambientPlaying && bgAudioPlayer.paused) {
+          bgAudioPlayer.play().then(() => {
+            updateSoundButtonIcon();
+          }).catch(() => {});
+        }
+        ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown'].forEach(evt => {
+          window.removeEventListener(evt, unlockOnFirstTouch, true);
+          document.removeEventListener(evt, unlockOnFirstTouch, true);
+        });
+      };
+      ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown'].forEach(evt => {
+        window.addEventListener(evt, unlockOnFirstTouch, { capture: true, passive: true });
+        document.addEventListener(evt, unlockOnFirstTouch, { capture: true, passive: true });
+      });
+    });
+  }
 }
 
 function ensureAudio() {
@@ -1930,6 +1967,11 @@ function ensureAudio() {
 function playSoundClick() {
   try {
     ensureAudio();
+    if (ambientPlaying && bgAudioPlayer && bgAudioPlayer.paused) {
+      bgAudioPlayer.play().then(() => {
+        updateSoundButtonIcon();
+      }).catch(() => {});
+    }
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     osc.type = 'sine';
@@ -2335,6 +2377,15 @@ function showScreen(screenId) {
 
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(screenId).classList.add('active');
+
+  const logoEl = document.getElementById('main-brand-logo');
+  if (logoEl) {
+    if (screenId === 'screen-home') {
+      logoEl.classList.remove('brand-logo-compact');
+    } else {
+      logoEl.classList.add('brand-logo-compact');
+    }
+  }
 
   const topTitleEl = document.getElementById('topbar-game-title');
   if (topTitleEl) {
