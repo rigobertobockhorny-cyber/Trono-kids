@@ -1587,6 +1587,16 @@
         Acesso opcional para pais e responsáveis: libera todas as 20 histórias bíblicas, atividades para imprimir em PDF e envio pelo WhatsApp.
       </div>
 
+      <!-- CAMPO EXCLUSIVO DE CONVITE VIP / CUPOM FAMILIA -->
+      <div class="vip-coupon-box" style="margin: 10px 0 12px 0; padding: 10px 12px; background: rgba(253, 224, 71, 0.1); border: 1.5px dashed #fde047; border-radius: 14px; text-align: center;">
+        <div style="font-weight: 700; font-size: 13.5px; color: #fde047; margin-bottom: 6px;">👑 Possui um Convite VIP ou Cupom Família?</div>
+        <div style="display: flex; gap: 6px; justify-content: center; align-items: center;">
+          <input type="text" id="input-vip-code" placeholder="Digite seu convite VIP..." style="flex: 1; padding: 8px 10px; border-radius: 9px; border: 1.5px solid #fde047; background: #0f172a; color: #ffffff; font-size: 13px; text-align: center; font-weight: bold; text-transform: uppercase;">
+          <button class="btn-gold" style="padding: 8px 14px; font-size: 13px; background: linear-gradient(180deg, #10b981 0%, #059669 100%); border-color: #6ee7b7; border-radius: 9px;" onclick="redeemVipCoupon()">Ativar</button>
+        </div>
+        <div id="vip-feedback-msg" style="font-size: 12px; margin-top: 6px; min-height: 16px; font-weight: bold;"></div>
+      </div>
+
       <div class="plan-card" onclick="startGooglePlayCheckout('mensal')">
         <div>
           <div class="plan-card-title">Plano Mensal</div>
@@ -2790,6 +2800,55 @@ function startGooglePlayCheckout(plano) {
     if (document.getElementById('screen-ludo-trail').classList.contains('active')) renderLudoTrailBoard();
   }
   closeModal('modal-subscribe');
+}
+
+function redeemVipCoupon() {
+  playSoundClick();
+  const inputEl = document.getElementById('input-vip-code');
+  const msgEl = document.getElementById('vip-feedback-msg');
+  if (!inputEl || !msgEl) return;
+
+  const rawCode = (inputEl.value || '').trim().toUpperCase();
+  if (!rawCode) {
+    msgEl.style.color = '#f87171';
+    msgEl.textContent = 'Por favor, digite o código do seu convite.';
+    return;
+  }
+
+  // Lista oficial de Codigos VIP autorizados (Familia e Testadores Oficiais):
+  const validVipCodes = new Set([
+    'FAMILIA-BOCK',
+    'TRONO-FAMILIA',
+    'TESTADOR-VIP',
+    'TESTADOR-VIP-2026',
+    'VORTICE-KIDS-VIP',
+    'TESTE-TRONO-01',
+    'TESTE-TRONO-02',
+    'TESTE-TRONO-03',
+    'TESTE-TRONO-04',
+    'TESTE-TRONO-05'
+  ]);
+
+  if (validVipCodes.has(rawCode)) {
+    isVipUnlocked = true;
+    localStorage.setItem('trono_vip_active_v4', '1');
+    msgEl.style.color = '#34d399';
+    msgEl.textContent = '✨ CONVITE VIP ATIVADO! Acesso completo liberado!';
+    playSoundWinCelebration();
+    launchCelebrationConfetti();
+
+    setTimeout(() => {
+      if (document.getElementById('screen-gallery').classList.contains('active')) renderGalleryPage();
+      if (document.getElementById('screen-album').classList.contains('active')) renderStickerAlbum();
+      if (document.getElementById('screen-sleep').classList.contains('active')) renderSleepCorner();
+      updateTopCounters();
+      closeModal('modal-subscribe');
+    }, 1500);
+  } else {
+    msgEl.style.color = '#f87171';
+    msgEl.textContent = 'Código inválido ou expirado. Verifique a digitação.';
+    playSoundCardFlip();
+  }
 }
 
 function restoreGooglePlayPurchases() {
