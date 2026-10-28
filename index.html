@@ -158,16 +158,16 @@
     /* ===================================================================== */
     /* TOPO COM AMPLO RESPIRO + 2 BOLINHAS REDONDINHAS NOS CANTINHOS!        */
     /* ===================================================================== */
-    .topbar {
+        .topbar {
       position: relative;
       z-index: 30;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 6px 12px 2px 12px;
+      padding: 10px 14px 4px 14px;
       flex-shrink: 0;
-      gap: 3px;
+      gap: 8px;
     }
 
     .brand-logo-wrap {
@@ -176,16 +176,16 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      padding: 2px 0;
+      padding: 4px 0 2px 0;
     }
 
     .brand-logo {
       width: 100%;
-      max-width: 320px;
-      height: 82px;
-      max-height: 12vh;
+      max-width: 350px;
+      height: 94px;
+      max-height: 13vh;
       object-fit: contain;
-      filter: brightness(1.22) contrast(1.12) drop-shadow(0 0 16px rgba(250, 204, 21, 0.65)) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.95));
+      filter: brightness(1.22) contrast(1.12) drop-shadow(0 0 18px rgba(250, 204, 21, 0.7)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.95));
       animation: floatGentle 4s ease-in-out infinite;
       transition: all 0.25s ease;
     }
@@ -194,7 +194,7 @@
     }
     .brand-logo-compact {
       max-width: 195px !important;
-      height: 50px !important;
+      height: 48px !important;
     }
 
     /* Linha de Cima: Bolinha da Estrela (Esquerda) + Nome do Jogo no Meio + Bolinha do Som (Direita)! */
@@ -203,8 +203,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 2px;
-      gap: 6px;
+      padding: 0 6px;
+      margin-top: 2px;
+      margin-bottom: 12px;
+      gap: 8px;
     }
 
     .topbar-screen-title {
@@ -223,8 +225,8 @@
     /* 1ª COR: BOLINHAS DE CIMA (ESTRELA E SOM) -> AZUL CIANO FORTE E VIVO (SEM LINHA DURA EMBAIXO!) */
     .top-circle-btn {
       position: relative;
-      width: 48px;
-      height: 48px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       flex-shrink: 0;
       display: inline-flex;
@@ -303,25 +305,30 @@
     /* TELA INICIAL: 6 ÍCONES PROPORCIONAIS, PRÓXIMOS E COM DESTAQUE         */
     /* ===================================================================== */
     #screen-home {
-      justify-content: flex-start;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      padding-top: 2px;
-      padding-bottom: 12px;
-      gap: 6px;
+      padding: 4px 14px max(20px, env(safe-area-inset-bottom, 20px)) 14px;
+      gap: 0;
+      flex: 1;
+      min-height: 0;
+      box-sizing: border-box;
     }
 
     .dashboard-grid {
       width: 100%;
-      max-width: 380px;
-      flex: 0 0 auto;
+      max-width: 410px;
+      flex: 1;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(3, auto);
-      row-gap: 8px;
-      column-gap: 14px;
-      align-items: center;
+      align-content: space-evenly;
       justify-items: center;
-      margin: 2px auto 6px auto;
+      column-gap: 22px;
+      row-gap: clamp(12px, 2.5vh, 26px);
+      margin: 0 auto;
+      min-height: 0;
     }
 
     .module-card {
@@ -341,10 +348,10 @@
     }
 
     .mod-icon-3d {
-      width: 96px;
-      height: 96px;
-      max-width: 25vw;
-      max-height: 25vw;
+      width: 114px;
+      height: 114px;
+      max-width: 28.5vw;
+      max-height: 13.8vh;
       object-fit: contain;
       filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.88));
       animation: floatGentle 3.2s ease-in-out infinite;
@@ -354,10 +361,10 @@
     }
 
     .mod-title {
-      margin-top: 3px;
+      margin-top: 4px;
       font-family: 'Fredoka', sans-serif;
       font-weight: 800;
-      font-size: 16.5px;
+      font-size: 17px;
       background: linear-gradient(180deg, #fffde7 0%, #fde047 50%, #f59e0b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -368,19 +375,19 @@
     }
 
     .btn-parents-home {
-      margin: 6px auto 14px auto !important;
-      padding: 8px 18px !important;
-      font-size: 13.5px !important;
+      margin: 8px auto 0 auto !important;
+      padding: 9px 24px !important;
+      font-size: 14px !important;
       font-weight: 700 !important;
       background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%) !important;
       border: 1.8px solid #f3e5f5 !important;
       border-radius: 999px !important;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8) !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.85) !important;
       flex-shrink: 0;
       z-index: 20;
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 8px;
     }
 
     /* ===================================================================== */
