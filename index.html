@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#0a1e40">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Trono Kids">
+  <meta name="apple-mobile-web-app-title" content="Trono EBD">
   <link rel="manifest" href="./manifest.json">
-  <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/logo_base_trono.png">
-  <title>Trono da Promessa Kids</title>
+  <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/logo_trono_ebd.png">
+  <title>Trono da Promessa EBD • Revista Digital & Jogos Bíblicos</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
   <script>
     if ('serviceWorker' in navigator) {
@@ -39,6 +39,13 @@
       -webkit-user-select: none;
       -webkit-tap-highlight-color: transparent;
       font-family: 'Fredoka', 'Nunito', sans-serif;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    *::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
     }
 
     body {
@@ -181,9 +188,12 @@
 
     .brand-logo {
       width: 100%;
-      max-width: 350px;
-      height: 94px;
-      max-height: 13vh;
+      max-width: 425px;
+      height: 134px;
+      max-height: 18vh;
+      margin-bottom: -18px;
+      position: relative;
+      z-index: 35;
       object-fit: contain;
       filter: brightness(1.22) contrast(1.12) drop-shadow(0 0 18px rgba(250, 204, 21, 0.7)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.95));
       animation: floatGentle 4s ease-in-out infinite;
@@ -193,8 +203,9 @@
       transform: scale(0.96);
     }
     .brand-logo-compact {
-      max-width: 195px !important;
-      height: 48px !important;
+      max-width: 270px !important;
+      height: 70px !important;
+      margin-bottom: -10px !important;
     }
 
     /* Linha de Cima: Bolinha da Estrela (Esquerda) + Nome do Jogo no Meio + Bolinha do Som (Direita)! */
@@ -300,11 +311,14 @@
     .screen.active {
       display: flex;
     }
+    .screen:not(.active) {
+      display: none !important;
+    }
 
     /* ===================================================================== */
     /* TELA INICIAL: 6 ÍCONES PROPORCIONAIS, PRÓXIMOS E COM DESTAQUE         */
     /* ===================================================================== */
-    #screen-home {
+    #screen-home.active {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -1310,21 +1324,95 @@
       color: #ffffff;
       opacity: 0.95;
     }
+
+    /* ===================================================================== */
+    /* ESTILOS EXCLUSIVOS TRONO DA PROMESSA EBD (QUADRO VIVO NA LIÇÃO)       */
+    /* ===================================================================== */
+    #screen-lesson-hub.active {
+      overflow: hidden !important;
+      justify-content: space-between;
+    }
+    .lesson-vovo-banner-wrap {
+      width: 100%;
+      max-width: 392px;
+      margin: 0 auto 3px auto;
+      flex-shrink: 0;
+    }
+    .lesson-vovo-banner-inner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 960 / 410;
+      height: auto;
+      max-height: 112px;
+      border-radius: 17px;
+      overflow: hidden;
+      background: #0f172a;
+    }
+    .lesson-vovo-banner-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+    #screen-lesson-hub .dashboard-grid {
+      flex: 1;
+      min-height: 0;
+      row-gap: 4px !important;
+      align-content: space-evenly;
+    }
+    #screen-lesson-hub .mod-icon-3d {
+      width: 72px !important;
+      height: 72px !important;
+      max-height: 9.2vh;
+    }
+    #screen-lesson-hub .mod-title {
+      font-size: 13.5px !important;
+      margin-top: -4px !important;
+    }
+    .ebd-glass-card {
+      background: linear-gradient(180deg, rgba(30, 27, 75, 0.92) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 2.5px solid #fde047;
+      border-radius: 18px;
+      padding: 12px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
+      margin-bottom: 8px;
+    }
+    .ebd-badge-era {
+      display: inline-block;
+      background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%);
+      color: #ffffff;
+      border: 1.5px solid #f3e5f5;
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .houses-trail::-webkit-scrollbar,
+    .puzzle-diff-bar::-webkit-scrollbar {
+      display: none;
+    }
+    .houses-trail,
+    .puzzle-diff-bar {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
   </style>
   <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512.png">
   <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="./2_ASSETS_UI_BOTOES/icon_512.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Trono Kids">
+  <meta name="apple-mobile-web-app-title" content="Trono EBD">
 </head>
 <body>
 
 <div id="app-shell">
-  <!-- TOPO COM AMPLO RESPIRO: LOGO SOZINHA EM CIMA + 2 BOLINHAS REDONDINHAS NOS CANTINHOS! -->
+  <!-- TOPO COM AMPLO RESPIRO: LOGO EBD 3D EM CIMA + 2 BOLINHAS REDONDINHAS NOS CANTINHOS! -->
   <header class="topbar">
     <div class="brand-logo-wrap" onclick="goHome()">
-      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_base_trono.png?v=12" alt="Trono da Promessa" class="brand-logo">
+      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_trono_ebd.png?v=30" alt="Trono da Promessa EBD" class="brand-logo">
     </div>
 
     <div class="topbar-controls-row">
@@ -1336,7 +1424,7 @@
         <span class="star-mini-count" id="sticker-count">1</span>
       </button>
 
-      <!-- NOME DO JOGO NA MESMA LINHA ENTRE O BOTÃO DA ESTRELA E O BOTÃO DO SOM! -->
+      <!-- NOME DO MÓDULO NA MESMA LINHA ENTRE O BOTÃO DA ESTRELA E O BOTÃO DO SOM! -->
       <div id="topbar-game-title" class="gold-text-3d topbar-screen-title"></div>
 
       <!-- Bolinha Redondinha 3D da Direita (AZUL VIVO): Alto-Falante Pulsando -->
@@ -1350,46 +1438,195 @@
   </header>
 
   <!-- ==================================================================== -->
-  <!-- TELA 0: DASHBOARD PRINCIPAL                                          -->
+  <!-- TELA 0: DASHBOARD PRINCIPAL EBD (LIMPA: SÓ OS 6 BOTÕES 3D GRANDES!)  -->
   <!-- ==================================================================== -->
   <section id="screen-home" class="screen active">
     <div class="dashboard-grid">
-      <div class="module-card" onclick="openGalleryFor('puzzle')">
-        <img src="./2_ASSETS_UI_BOTOES/ui_icon_02.png" alt="Quebra-Cabeça" class="mod-icon-3d">
-        <div class="mod-title">Quebra-Cabeça</div>
+      <div class="module-card" onclick="openLessonHubScreen()">
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_licao.png" alt="Lição da Semana" class="mod-icon-3d">
+        <div class="mod-title">Lição da Semana</div>
+      </div>
+
+      <div class="module-card" onclick="openChronologyScreen()">
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png" alt="Cronologia Bíblica" class="mod-icon-3d">
+        <div class="mod-title">Cronologia Bíblica</div>
+      </div>
+
+      <div class="module-card" onclick="openGamesHubScreen()">
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_netos.png" alt="Sala de Jogos" class="mod-icon-3d">
+        <div class="mod-title">Sala de Jogos</div>
       </div>
 
       <div class="module-card" onclick="openGalleryFor('paint')">
-        <img src="./2_ASSETS_UI_BOTOES/ui_icon_03.png" alt="Pintura Mágica" class="mod-icon-3d">
+        <img src="./2_ASSETS_UI_BOTOES/ui_icon_03.png" alt="Oficina de Pintura" class="mod-icon-3d">
         <div class="mod-title">Pintura Mágica</div>
       </div>
 
-      <div class="module-card" onclick="openModule('quiz')">
-        <img src="./2_ASSETS_UI_BOTOES/ui_icon_04.png" alt="Quiz do Vovô" class="mod-icon-3d">
-        <div class="mod-title">Quiz do Vovô</div>
-      </div>
-
-      <div class="module-card" onclick="openModule('memory')">
-        <img src="./2_ASSETS_UI_BOTOES/ui_icon_05.png" alt="Jogo da Memória" class="mod-icon-3d">
-        <div class="mod-title">Jogo da Memória</div>
-      </div>
-
-      <div class="module-card" onclick="openLudoTrailBoard()">
-        <img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" alt="Álbum da Fé" class="mod-icon-3d">
-        <div class="mod-title">Álbum da Fé</div>
-      </div>
-
       <div class="module-card" onclick="openModule('sleep')">
-        <img src="./2_ASSETS_UI_BOTOES/ui_icon_07.png" alt="Cantinho de Dormir" class="mod-icon-3d">
-        <div class="mod-title">Cantinho de Dormir</div>
+        <img src="./2_ASSETS_UI_BOTOES/ui_icon_07.png" alt="Louvor e Dormir" class="mod-icon-3d">
+        <div class="mod-title">Louvor & Dormir</div>
+      </div>
+
+      <div class="module-card" onclick="openTeacherAndFamilyPortal()">
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_professor.png" alt="Família e Professor" class="mod-icon-3d">
+        <div class="mod-title">Família & Professor</div>
       </div>
     </div>
 
-    <!-- Botão Direto na Tela Principal para o Papai e a Mamãe (Sem precisar jogar tudo de novo para assinar ou ver a Política!) -->
-    <button class="btn-gold btn-parents-home" onclick="openSubscribeModal('Clube Trono da Promessa & Privacidade')">
-      <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Pais" style="width:20px; height:20px; object-fit:contain;">
-      <span>Área dos Pais • Assinar & Privacidade</span>
+    <!-- Botão Direto na Tela Principal para Pais, Professores e Igrejas -->
+    <button class="btn-gold btn-parents-home" onclick="openTeacherAndFamilyPortal()">
+      <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Pais e Professores" style="width:18px; height:18px; object-fit:contain;">
+      <span>Guia do Professor • Família & Semanas</span>
     </button>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA EBD 1: HUB DA LIÇÃO DA SEMANA (QUADRO VIVO VOVÔ + 6 BOTÕES 3D)  -->
+  <!-- ==================================================================== -->
+  <section id="screen-lesson-hub" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="stepLessonWeekBackOrHome()" title="Voltar Semana ou Início">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="houses-trail" id="lesson-weeks-trail"></div>
+      <button class="btn-nav-circle" onclick="stepLessonWeek(1)" title="Próxima Semana">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <!-- AQUI DENTRO DE "LIÇÃO DA SEMANA" APARECE O QUADRO VIVO DO VOVÔ NÉSIO, PEDRINHO E ANINHA (SEM BARRA AZUL EMBAIXO E SEM CORTE NA ANINHA)! -->
+    <div class="lesson-vovo-banner-wrap">
+      <div class="frame-3d-alive" style="padding:3px; border-radius:20px;">
+        <div class="lesson-vovo-banner-inner">
+          <img src="./2_ASSETS_UI_BOTOES/banner_vovo_e_netos_oficial.jpg?v=40" alt="Vovô Nésio, Pedrinho e Aninha">
+        </div>
+      </div>
+      <div id="lesson-hub-age-pills" class="houses-trail" style="margin-top:4px; padding:4px 10px; gap:14px;"></div>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="module-card" onclick="openLessonModule('texto')">
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png" alt="Texto e Cronologia" class="mod-icon-3d">
+        <div class="mod-title">Texto & Cronologia</div>
+      </div>
+
+      <div class="module-card" onclick="openLessonModule('vovo')">
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_vovo.png" alt="História com o Vovô" class="mod-icon-3d">
+        <div class="mod-title">História do Vovô</div>
+      </div>
+
+      <div class="module-card" onclick="openLessonModule('sementinha')">
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" alt="Sementinha no Coração" class="mod-icon-3d">
+        <div class="mod-title">Sementinha (Verso)</div>
+      </div>
+
+      <div class="module-card" onclick="openLessonModule('fe_acao')">
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png" alt="Fé em Ação" class="mod-icon-3d">
+        <div class="mod-title">Fé em Ação</div>
+      </div>
+
+      <div class="module-card" onclick="openLessonModule('jogos_licao')">
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png" alt="Jogos da Lição" class="mod-icon-3d">
+        <div class="mod-title">Jogos da Lição</div>
+      </div>
+
+      <div class="module-card" onclick="openLessonModule('devocional')">
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_devocional.png" alt="Devocional 5 Dias" class="mod-icon-3d">
+        <div class="mod-title">Devocional 5 Dias</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA EBD 2: MÓDULO INTERNO DA LIÇÃO (TEXTO, VOVÔ, SEMENTINHA, ETC.)  -->
+  <!-- ==================================================================== -->
+  <section id="screen-lesson-module" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="stopVovoStoryNarration(); openLessonHubScreen()" title="Voltar para a Lição">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="puzzle-diff-bar">
+        <button class="btn-tool-3d" onclick="openLessonModule('texto')">Texto</button>
+        <button class="btn-tool-3d" onclick="openLessonModule('vovo')">Vovô</button>
+        <button class="btn-tool-3d" onclick="openLessonModule('sementinha')">Verso</button>
+        <button class="btn-tool-3d" onclick="openLessonModule('devocional')">5 Dias</button>
+      </div>
+      <button class="btn-nav-circle" onclick="stopVovoStoryNarration(); goHome()" title="Início">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 10L12 3L21 10V20H15V14H9V20H3V10Z" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div id="lesson-module-content" style="flex:1; overflow-y:auto; padding:4px 2px;"></div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA EBD 3: CRONOLOGIA BÍBLICA & LINHA DO TEMPO (12 SEMANAS)         -->
+  <!-- ==================================================================== -->
+  <section id="screen-chronology" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="goHome()" title="Voltar ao Início">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="puzzle-diff-bar">
+        <button class="btn-tool-3d active">Linha do Tempo (22)</button>
+        <button class="btn-tool-3d" onclick="openEduGame('chronology')">Jogar Ordem Cronológica ➔</button>
+      </div>
+      <button class="btn-nav-circle" onclick="openEduGame('chronology')" title="Jogar Cronologia">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div id="chronology-timeline-list" style="flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:7px; padding:4px 2px;"></div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA EBD 4: SALA DE JOGOS (NOVOS JOGOS EDUCATIVOS + TEEN + CLÁSSICOS)-->
+  <!-- ==================================================================== -->
+  <section id="screen-games-hub" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="goHome()" title="Voltar ao Início">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div id="games-hub-filter-bar" class="puzzle-diff-bar" style="overflow-x:auto;"></div>
+      <button class="btn-nav-circle" onclick="openLessonHubScreen()" title="Ir para a Lição">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div id="games-hub-grid" style="flex:1; overflow-y:auto; display:grid; grid-template-columns:repeat(2,1fr); gap:8px; padding:4px 2px; align-content:start;"></div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA EBD 5: PALCO DOS NOVOS JOGOS EDUCATIVOS E DESAFIO TEEN          -->
+  <!-- ==================================================================== -->
+  <section id="screen-edu-game" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="stopTeenTimer(); openGamesHubScreen()" title="Voltar para a Sala de Jogos">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="puzzle-diff-bar">
+        <span id="edu-game-header-title" style="font-size:13px; font-weight:800; color:#fde047;">Desafio Bíblico</span>
+      </div>
+      <button class="btn-nav-circle" onclick="stopTeenTimer(); openLessonHubScreen()" title="Lição da Semana">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div id="edu-game-stage" style="flex:1; overflow-y:auto; padding:4px 2px;"></div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- TELA EBD 6: PORTAL DO PROFESSOR EBD & FAMÍLIA                        -->
+  <!-- ==================================================================== -->
+  <section id="screen-teacher-portal" class="screen">
+    <div class="module-header">
+      <button class="btn-nav-circle" onclick="goHome()" title="Voltar ao Início">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="puzzle-diff-bar">
+        <span style="font-size:13px; font-weight:800; color:#fde047;">Área do Professor EBD & Família</span>
+      </div>
+      <button class="btn-nav-circle" onclick="openLessonHubScreen()" title="Ver Lição">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div id="teacher-portal-content" style="flex:1; overflow-y:auto; padding:4px 2px;"></div>
   </section>
 
   <!-- ==================================================================== -->
@@ -1414,7 +1651,7 @@
   <!-- ==================================================================== -->
   <section id="screen-puzzle" class="screen">
     <div class="module-header">
-      <button class="btn-nav-circle" onclick="openGalleryFor('puzzle')" title="Voltar">
+      <button class="btn-nav-circle" onclick="if(window.EBD_STATE && window.EBD_STATE.fromLessonGames){openLessonModule('jogos_licao');}else{openGalleryFor('puzzle');}" title="Voltar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="puzzle-diff-bar">
@@ -1437,7 +1674,7 @@
   <!-- ==================================================================== -->
   <section id="screen-paint" class="screen">
     <div class="module-header">
-      <button class="btn-nav-circle" onclick="openGalleryFor('paint')" title="Voltar">
+      <button class="btn-nav-circle" onclick="if(window.EBD_STATE && window.EBD_STATE.fromLessonGames){openLessonModule('jogos_licao');}else{openGalleryFor('paint');}" title="Voltar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="paint-toolbar-modes">
@@ -1783,7 +2020,7 @@
       </button>
 
       <button class="btn-gold" style="width:100%; padding:10px; font-size:15px; background:linear-gradient(180deg, #00b0ff 0%, #0066ff 100%); border-color:#b3e5fc;" onclick="closeModal('modal-collector-card')">
-        Voltar para o Álbum da Fé
+        Fechar e Voltar
       </button>
     </div>
   </div>
@@ -1848,6 +2085,7 @@
 </div>
 
 <script src="pinturas_base64.js"></script>
+<script src="ebd_modulos_educativos.js"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -1859,10 +2097,10 @@ const STORIES = [
   { id: 4,  seqColor: '12', seqPaint: '21', free: true,  title: 'A Arca de Noé e a Promessa' },
   { id: 5,  seqColor: '13', seqPaint: '22', free: true,  title: 'Jesus e as Criancinhas' },
   { id: 6,  seqColor: '14', seqPaint: '23', free: true,  title: 'Jonas e a Grande Baleia' },
-  { id: 7,  seqColor: '15', seqPaint: '24', free: false, title: 'Daniel na Cova dos Leões' },
-  { id: 8,  seqColor: '16', seqPaint: '26', free: false, title: 'Moisés Abrindo o Mar Vermelho' },
-  { id: 9,  seqColor: '17', seqPaint: '27', free: false, title: 'A Força de Sansão' },
-  { id: 10, seqColor: '18', seqPaint: '28', free: false, title: 'Abraão, Pai de Multidões' },
+  { id: 7,  seqColor: '15', seqPaint: '24', free: true,  title: 'Daniel na Cova dos Leões' },
+  { id: 8,  seqColor: '16', seqPaint: '26', free: true,  title: 'Moisés Abrindo o Mar Vermelho' },
+  { id: 9,  seqColor: '17', seqPaint: '27', free: true,  title: 'A Força de Sansão' },
+  { id: 10, seqColor: '18', seqPaint: '28', free: true,  title: 'Abraão, Pai de Multidões' },
   { id: 11, seqColor: '29', seqPaint: '39', free: false, title: 'Adão e Eva no Jardim do Éden' },
   { id: 12, seqColor: '30', seqPaint: '40', free: false, title: 'Jacó e a Escada para o Céu' },
   { id: 13, seqColor: '31', seqPaint: '41', free: false, title: 'José e a Túnica Colorida' },
@@ -2411,15 +2649,27 @@ function showScreen(screenId) {
     } else if (screenId === 'screen-album' || screenId === 'screen-ludo-trail') {
       topTitleEl.textContent = 'Álbum da Fé';
     } else if (screenId === 'screen-sleep') {
-      topTitleEl.textContent = 'Cantinho de Dormir';
+      topTitleEl.textContent = 'Louvor & Dormir';
+    } else if (screenId === 'screen-lesson-hub' || screenId === 'screen-lesson-module') {
+      topTitleEl.textContent = 'Lição da Semana';
+    } else if (screenId === 'screen-chronology') {
+      topTitleEl.textContent = 'Cronologia Bíblica';
+    } else if (screenId === 'screen-games-hub' || screenId === 'screen-edu-game') {
+      topTitleEl.textContent = 'Sala de Jogos';
+    } else if (screenId === 'screen-teacher-portal') {
+      topTitleEl.textContent = 'Família & Professor';
     }
   }
 
-  const shell = document.getElementById('app-shell');
-  if (screenId === 'screen-sleep') {
-    shell.classList.add('sleep-dark-mode');
+  if (typeof applyEbdBackgroundForScreen === 'function') {
+    applyEbdBackgroundForScreen(screenId);
   } else {
-    shell.classList.remove('sleep-dark-mode');
+    const shell = document.getElementById('app-shell');
+    if (screenId === 'screen-sleep') {
+      shell.classList.add('sleep-dark-mode');
+    } else {
+      shell.classList.remove('sleep-dark-mode');
+    }
   }
 }
 
@@ -2681,7 +2931,7 @@ function openGameRulesModal() {
   document.getElementById('modal-game-rules').classList.add('active');
 }
 
-function renderVisualHousesTrail(containerId, currentStepOneBased, maxFreeSteps, onSelectStep, onLockedClick, completedSet = null, lockedBadgeText = '+14 (20)') {
+function renderVisualHousesTrail(containerId, currentStepOneBased, maxFreeSteps, onSelectStep, onLockedClick, completedSet = null, lockedBadgeText = '+10 (20)') {
   const box = document.getElementById(containerId);
   if (!box) return;
   box.innerHTML = '';
@@ -2728,7 +2978,7 @@ function getNextUncompletedStep(doneSet, maxFree = 6) {
 function openGalleryFor(mode) {
   currentGalleryTarget = mode;
   const doneSet = mode === 'puzzle' ? completedPuzzles : completedPaints;
-  const nextStep = getNextUncompletedStep(doneSet, 6);
+  const nextStep = getNextUncompletedStep(doneSet, 10);
   // Abre a galeria mostrando automaticamente onde a criança parou (se já fez 1..4, já mostra 5 e 6!)
   galleryOffset = nextStep <= 4 ? 0 : 2;
   document.getElementById('gallery-header-title').textContent =
@@ -2753,13 +3003,13 @@ function renderGalleryPage() {
   grid.innerHTML = '';
 
   const doneSet = mode === 'puzzle' ? completedPuzzles : completedPaints;
-  const nextStep = getNextUncompletedStep(doneSet, 6);
-  const activeFreeDot = galleryOffset < 6 ? nextStep : 6;
+  const nextStep = getNextUncompletedStep(doneSet, 10);
+  const activeFreeDot = galleryOffset < 10 ? nextStep : 10;
 
   renderVisualHousesTrail(
     'gallery-houses-trail',
     activeFreeDot,
-    6,
+    10,
     (step) => {
       const targetStory = STORIES[step - 1];
       if (targetStory) {
@@ -2959,7 +3209,7 @@ function openModule(mod) {
     initQuiz();
     showScreen('screen-quiz');
   } else if (mod === 'memory') {
-    const nextMem = getNextUncompletedStep(completedMemories, 6);
+    const nextMem = getNextUncompletedStep(completedMemories, 10);
     startMemoryPhase(nextMem);
     showScreen('screen-memory');
   } else if (mod === 'album') {
@@ -4026,10 +4276,10 @@ const QUIZ_QUESTIONS = [
   { free: true, storyId: 6, q: 'Qual grande animal do mar engoliu o profeta Jonas?', opts: ['Um Grande Peixe / Baleia', 'Um Tubarão Branco', 'Um Polvo Gigante'], ans: 0 },
 
   // 44 PERGUNTAS ASSINANTES VIP (PERGUNTAS 7 A 50)
-  { free: false, storyId: 7,  q: 'Quem fechou a boca dos leões para proteger o fiel Daniel?', opts: ['Os guardas do rei', 'O Anjo enviado por Deus', 'Uma grade de ferro'], ans: 1 },
-  { free: false, storyId: 8,  q: 'Qual mar se abriu ao meio quando Moisés estendeu o cajado?', opts: ['O Mar Vermelho', 'O Rio Jordão', 'O Mar da Galileia'], ans: 0 },
-  { free: false, storyId: 9,  q: 'Onde estava o segredo do compromisso e da grande força de Sansão?', opts: ['Na promessa a Deus e cabelos não cortados', 'Na sua armadura pesada', 'No seu escudo dourado'], ans: 0 },
-  { free: false, storyId: 10, q: 'Deus prometeu a Abraão uma família tão numerosa quanto o quê?', opts: ['Quanto as folhas de uma árvore', 'Quanto as estrelas do céu', 'Quanto as nuvens da manhã'], ans: 1 },
+  { free: true, storyId: 7,  q: 'Quem fechou a boca dos leões para proteger o fiel Daniel?', opts: ['Os guardas do rei', 'O Anjo enviado por Deus', 'Uma grade de ferro'], ans: 1 },
+  { free: true, storyId: 8,  q: 'Qual mar se abriu ao meio quando Moisés estendeu o cajado?', opts: ['O Mar Vermelho', 'O Rio Jordão', 'O Mar da Galileia'], ans: 0 },
+  { free: true, storyId: 9,  q: 'Onde estava o segredo do compromisso e da grande força de Sansão?', opts: ['Na promessa a Deus e cabelos não cortados', 'Na sua armadura pesada', 'No seu escudo dourado'], ans: 0 },
+  { free: true, storyId: 10, q: 'Deus prometeu a Abraão uma família tão numerosa quanto o quê?', opts: ['Quanto as folhas de uma árvore', 'Quanto as estrelas do céu', 'Quanto as nuvens da manhã'], ans: 1 },
   { free: false, storyId: 11, q: 'Qual era o nome do lindo jardim que Deus criou no princípio?', opts: ['O Jardim do Éden', 'O Jardim da Babilônia', 'O Bosque Real'], ans: 0 },
   { free: false, storyId: 12, q: 'O que Jacó viu em seu sonho especial ligando a terra até o céu?', opts: ['Uma ponte de madeira', 'Uma Escada Brilhante com Anjos', 'Uma montanha de neve'], ans: 1 },
   { free: false, storyId: 13, q: 'Que presente especial José ganhou de seu pai Jacó?', opts: ['Uma linda Túnica Colorida', 'Uma espada dourada', 'Um cavalo branco'], ans: 0 },
@@ -4079,9 +4329,9 @@ let quizWinTimerId = null;
 
 function initQuiz() {
   // Continua exatamente onde a criança parou (primeira pergunta não respondida ou última posição salva)
-  const nextStep = getNextUncompletedStep(completedQuizzes, 6);
+  const nextStep = getNextUncompletedStep(completedQuizzes, 10);
   if (!isVipUnlocked) {
-    quizIndex = Math.max(0, Math.min(5, nextStep - 1));
+    quizIndex = Math.max(0, Math.min(9, nextStep - 1));
   }
   localStorage.setItem('trono_last_quiz_idx_v1', String(quizIndex));
   renderQuizStep();
@@ -4094,7 +4344,7 @@ function skipQuizQuestion() {
 
 function advanceQuizIndex() {
   const nextIdx = (quizIndex + 1) % QUIZ_QUESTIONS.length;
-  if (nextIdx >= 6 && !isVipUnlocked) {
+  if (nextIdx >= 10 && !isVipUnlocked) {
     openSubscribeModal('Liberar as 50 Perguntas do Quiz!');
     quizIndex = 0;
     localStorage.setItem('trono_last_quiz_idx_v1', String(quizIndex));
@@ -4117,8 +4367,8 @@ function renderQuizStep() {
 
   renderVisualHousesTrail(
     'quiz-houses-trail',
-    (quizIndex % 6) + 1,
-    6,
+    (quizIndex % 10) + 1,
+    10,
     (step) => {
       quizIndex = step - 1;
       localStorage.setItem('trono_last_quiz_idx_v1', String(quizIndex));
@@ -4126,7 +4376,7 @@ function renderQuizStep() {
     },
     () => openSubscribeModal('Liberar Todas as 50 Perguntas do Quiz!'),
     completedQuizzes,
-    '+44 (50)'
+    '+40 (50)'
   );
 
   document.getElementById('quiz-image').src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg`;
@@ -4177,7 +4427,7 @@ let memMatchedCount = 0;
 function goToNextMemoryPhase() {
   playSoundClick();
   const nextPhase = memoryPhase + 1;
-  if (nextPhase > 6 && !isVipUnlocked) {
+  if (nextPhase > 10 && !isVipUnlocked) {
     openSubscribeModal('Liberar Todas as 20 Fases da Memória!');
     startMemoryPhase(1);
     return;
@@ -4187,7 +4437,7 @@ function goToNextMemoryPhase() {
 
 function startMemoryPhase(phaseNum) {
   if (!phaseNum) {
-    phaseNum = getNextUncompletedStep(completedMemories, 6);
+    phaseNum = getNextUncompletedStep(completedMemories, 10);
   }
   memoryPhase = phaseNum;
   localStorage.setItem('trono_last_mem_phase_v1', String(memoryPhase));
@@ -4196,8 +4446,8 @@ function startMemoryPhase(phaseNum) {
 
   renderVisualHousesTrail(
     'memory-houses-trail',
-    ((memoryPhase - 1) % 6) + 1,
-    6,
+    ((memoryPhase - 1) % 10) + 1,
+    10,
     (step) => startMemoryPhase(step),
     () => openSubscribeModal('Liberar Todas as 20 Fases da Memória!'),
     completedMemories
@@ -4637,9 +4887,11 @@ function renderSleepCorner() {
   });
 }
 
-if (window.LOGO_TRONO_B64) {
-  document.getElementById('main-brand-logo').src = window.LOGO_TRONO_B64;
-}
+// Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_trono_ebd.png?v=30';
+if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
+if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
+if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');
 attachFourCardSwipeAndWheel('gallery-grid', stepGallery);
 attachFourCardSwipeAndWheel('album-grid', stepAlbum);
 updateTopCounters();
