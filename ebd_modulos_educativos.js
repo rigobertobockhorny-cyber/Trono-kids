@@ -3117,1212 +3117,57 @@ window.setEbdAgeBracket = function(bracket) {
 };
 
 // Renderiza a Central da Lição da Semana com trilha limpa (1, 2 e cadeado 🔒 3 a 12)
-window.renderLessonHubScreen = function() {
-  const lesson = window.getCurrentLessonObj();
-  if (!lesson) return;
+window.enableHorizontalDragScroll = function(el) {
+  if (!el || el._dragScrollAttached) return;
+  el._dragScrollAttached = true;
 
-  const badgeEl = document.getElementById("lesson-hub-era-badge");
-  const titleEl = document.getElementById("lesson-hub-title");
-  const refEl = document.getElementById("lesson-hub-ref");
-  const backBtnEl = document.getElementById("lesson-hub-back-btn");
-
-  if (badgeEl) badgeEl.textContent = `SEMANA ${lesson.week} DE 12 • ${lesson.eraName.toUpperCase()}`;
-  if (titleEl) titleEl.textContent = `Lição ${lesson.week}: ${lesson.title}`;
-  if (refEl) refEl.textContent = `📖 ${lesson.bibleRef} • ${lesson.chronologyDate}`;
-  if (backBtnEl) {
-    backBtnEl.title = lesson.week > 1 ? `Voltar para a Semana ${lesson.week - 1}` : "Voltar ao Início";
-  }
-
-  // Trilha compacta das semanas: mostra as semanas desbloqueadas + 1 selo de cadeado (🔒 Semanas 3 a 12) sem barra de rolagem
-  const trailEl = document.getElementById("lesson-weeks-trail");
-  if (trailEl) {
-    const vip = typeof isVipUnlocked === "function" && isVipUnlocked();
-    const completed = JSON.parse(localStorage.getItem("trono_ebd_completed_weeks") || "[]");
-    let html = "";
-
-    window.EBD_LESSONS_CURRICULUM.forEach(item => {
-      const unlocked = window.isLessonWeekUnlocked(item.week);
-      const isDone = completed.includes(item.week);
-      const active = item.week === lesson.week;
-      if (unlocked) {
-        html += `<button type="button" class="week-node-btn ${active ? "active" : ""} ${isDone ? "done" : ""}" onclick="selectLessonWeek(${item.week})" title="Semana ${item.week}: ${item.title}">
-          <span>Lição ${item.week}${isDone ? " ⭐" : ""}</span>
-        </button>`;
-      }
-    });
-
-    if (!vip) {
-      html += `<button type="button" class="week-node-btn locked-pack" onclick="openParentGate()" title="Desbloquear Semanas 3 a 12">
-        <span>🔒 Lições 3 a 12</span>
-      </button>`;
+  // Roda do mouse rola na horizontal suavemente
+  el.addEventListener("wheel", function(e) {
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      el.scrollLeft += e.deltaY;
     }
+  }, { passive: false });
 
-    trailEl.innerHTML = html;
-  }
+  // Arrastar com o mouse no PC (no celular o touch nativo já desliza automaticamente)
+  let isDown = false;
+  let startX = 0;
+  let scrollLeftStart = 0;
+  let moved = false;
 
-  // Atualiza pílulas de faixa etária
-  document.querySelectorAll(".age-pill-btn").forEach(btn => {
-    btn.classList.toggle("active", btn.getAttribute("data-age") === window.EBD_STATE.ageBracket);
+  el.addEventListener("mousedown", function(e) {
+    isDown = true;
+    moved = false;
+    startX = e.pageX - el.offsetLeft;
+    scrollLeftStart = el.scrollLeft;
   });
-};
-
-window.syncEbdTopBanner = function() {
-  const lesson = window.getCurrentLessonObj();
-  if (!lesson) return;
-  const subEl = document.getElementById("ebd-home-week-subtitle");
-  if (subEl) {
-    subEl.textContent = `Lição ${lesson.week}: ${lesson.title} (${lesson.bibleRef})`;
-  }
-};
-
-// ============================================================================
-// 5. OS 6 BOTÕES ISOLADOS DENTRO DA LIÇÃO DA SEMANA (ZERO MISTURA DE TELAS!)
-// ============================================================================
-
-// BOTÃO 1 DA LIÇÃO: TEXTO BÍBLICO & CRONOLOGIA (Apenas leitura e linha do tempo, sem botões cruzados)
-window.openLessonReaderScreen = function() {
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.lessonReturnContext = true;
-  window.renderLessonReaderScreen();
-  if (typeof showScreen === "function") showScreen("screen-lesson-reader");
-};
-
-window.renderLessonReaderScreen = function() {
-  const lesson = window.getCurrentLessonObj();
-  const ageData = (lesson.byAge && lesson.byAge[window.EBD_STATE.ageBracket]) || lesson.byAge["6-8"];
-
-  const titleEl = document.getElementById("reader-lesson-title");
-  const eraEl = document.getElementById("reader-era-pill");
-  const imgEl = document.getElementById("reader-lesson-img");
-  const bodyEl = document.getElementById("reader-lesson-body");
-  const verseEl = document.getElementById("reader-lesson-verse");
-  const chronoEl = document.getElementById("reader-chrono-connection");
-
-  if (titleEl) titleEl.textContent = `Semana ${lesson.week} • ${lesson.title}`;
-  if (eraEl) eraEl.textContent = `${lesson.eraName} • ${lesson.chronologyDate} (${lesson.bibleRef})`;
-  if (imgEl) imgEl.src = lesson.thumbImg;
-  if (bodyEl) bodyEl.textContent = ageData.text;
-  if (verseEl) verseEl.textContent = `"${ageData.verse}"`;
-  if (chronoEl) chronoEl.textContent = lesson.chronologyConnection;
-
-  const progressEl = document.getElementById("reader-chrono-progress-bar");
-  if (progressEl) {
-    progressEl.innerHTML = window.EBD_LESSONS_CURRICULUM.map(l => {
-      const active = l.week === lesson.week;
-      const passed = l.week < lesson.week;
-      return `<div class="chrono-step-dot ${active ? "active" : ""} ${passed ? "passed" : ""}" title="Semana ${l.week}: ${l.title}">${l.week}</div>`;
-    }).join("");
-  }
-};
-
-// BOTÃO 2 DA LIÇÃO: HISTÓRIA COM O VOVÔ NÉSIO (Voz oficial Arturo Casares + 4 Cenas Ilustradas 3D)
-window.openVovoStoryScreen = function() {
-  if (typeof playClick === "function") playClick();
-  window.stopVovoStoryNarration();
-  window.EBD_STATE.lessonReturnContext = true;
-  window.EBD_STATE.vovoActiveSceneIdx = 0;
-
-  const lesson = window.getCurrentLessonObj();
-  const titleEl = document.getElementById("vovo-story-title");
-  const textEl = document.getElementById("vovo-story-text");
-  const statusEl = document.getElementById("vovo-audio-status");
-
-  if (titleEl) titleEl.textContent = `Semana ${lesson.week} • ${lesson.title}`;
-  if (textEl) textEl.textContent = lesson.vovoStoryScript;
-  if (statusEl) statusEl.textContent = "Toque em 'Ouvir a Voz do Vovô Nésio' para escutar a história completa!";
-
-  window.renderVovoStoryScene(0);
-  if (typeof showScreen === "function") showScreen("screen-vovo-story");
-};
-
-window.renderVovoStoryScene = function(sceneIdx) {
-  const lesson = window.getCurrentLessonObj();
-  const scenes = lesson.storyScenes || [{ img: lesson.thumbImg, caption: lesson.title }];
-  const idx = Math.max(0, Math.min(sceneIdx, scenes.length - 1));
-  window.EBD_STATE.vovoActiveSceneIdx = idx;
-
-  const imgEl = document.getElementById("vovo-story-scene-img");
-  const capEl = document.getElementById("vovo-story-scene-caption");
-  const dotsEl = document.getElementById("vovo-story-scene-dots");
-
-  if (imgEl && scenes[idx]) imgEl.src = scenes[idx].img;
-  if (capEl && scenes[idx]) capEl.textContent = scenes[idx].caption;
-
-  if (dotsEl) {
-    dotsEl.innerHTML = scenes.map((sc, i) =>
-      `<button type="button" class="vovo-scene-pill ${i === idx ? "active" : ""}" onclick="renderVovoStoryScene(${i})">Cena ${i + 1}</button>`
-    ).join("");
-  }
-};
-
-window.toggleVovoStoryNarration = function() {
-  const lesson = window.getCurrentLessonObj();
-  const ageBracket = ["3-5", "6-8"].includes(window.EBD_STATE.ageBracket) ? window.EBD_STATE.ageBracket : "6-8";
-  const ageData = (lesson.byAge && lesson.byAge[ageBracket]) || lesson.byAge["6-8"];
-  const statusEl = document.getElementById("vovo-audio-status");
-  const playBtnEl = document.getElementById("vovo-play-btn");
-
-  if (window.EBD_STATE.vovoAudioPlaying && window.EBD_STATE.vovoAudioEl) {
-    window.stopVovoStoryNarration();
-    return;
-  }
-
-  // Pausa música de fundo enquanto o Vovô Nésio conta a história
-  if (typeof bgAudioPlayer !== "undefined" && bgAudioPlayer && !bgAudioPlayer.paused) {
-    bgAudioPlayer.pause();
-  }
-  const bgm = document.getElementById("bgm-player");
-  if (bgm && !bgm.paused) {
-    bgm.pause();
-  }
-
-  const defaultMp3 = ageBracket === "3-5"
-    ? `./6_ASSETS_AUDIO/licoes_vovo/licao_${String(lesson.week).padStart(2, "0")}_3a5.mp3`
-    : `./6_ASSETS_AUDIO/licoes_vovo/licao_${String(lesson.week).padStart(2, "0")}_vovo.mp3`;
-  const audioSrc = (ageData && ageData.vovoAudioMp3) || lesson.vovoAudioMp3 || defaultMp3;
-
-  const audio = new Audio(audioSrc);
-  window.EBD_STATE.vovoAudioEl = audio;
-  window.EBD_STATE.vovoAudioPlaying = true;
-
-  if (statusEl) statusEl.textContent = `Vovô Nésio está contando a história (${ageBracket.replace("-", " a ")} anos)...`;
-  if (playBtnEl) playBtnEl.textContent = "Pausar Voz do Vovô Nésio";
-
-  // Troca automática das 4 cenas ilustradas conforme o progresso do áudio
-  audio.ontimeupdate = function() {
-    if (!audio.duration || !lesson.storyScenes) return;
-    const progress = audio.currentTime / audio.duration;
-    const totalScenes = lesson.storyScenes.length;
-    const targetScene = Math.min(totalScenes - 1, Math.floor(progress * totalScenes));
-    if (targetScene !== window.EBD_STATE.vovoActiveSceneIdx) {
-      if (typeof window.selectVovoStoryScene === "function") {
-        window.selectVovoStoryScene(targetScene, true);
-      }
-    }
-    const mins = Math.floor(audio.currentTime / 60);
-    const secs = String(Math.floor(audio.currentTime % 60)).padStart(2, "0");
-    const totMins = Math.floor(audio.duration / 60);
-    const totSecs = String(Math.floor(audio.duration % 60)).padStart(2, "0");
-    if (statusEl) {
-      statusEl.textContent = `Narração do Vovô (${ageBracket.replace("-", " a ")} anos) • ${mins}:${secs} / ${totMins}:${totSecs}`;
-    }
-  };
-
-  audio.onended = function() {
-    window.EBD_STATE.vovoAudioPlaying = false;
-    if (statusEl) statusEl.textContent = "Que história abençoada! Você ouviu toda a lição com o Vovô Nésio!";
-    if (playBtnEl) playBtnEl.textContent = "Ouvir Novamente o Vovô Nésio";
-  };
-
-  audio.onerror = function() {
-    window.EBD_STATE.vovoAudioPlaying = false;
-    if (statusEl) statusEl.textContent = "Toque novamente para iniciar o áudio da história.";
-    if (playBtnEl) playBtnEl.textContent = "Ouvir a Voz do Vovô Nésio";
-  };
-
-  audio.play().catch(() => {
-    window.EBD_STATE.vovoAudioPlaying = false;
-  });
-};
-
-window.stopVovoStoryNarration = function() {
-  if (window.EBD_STATE.vovoAudioEl) {
-    try {
-      window.EBD_STATE.vovoAudioEl.pause();
-      window.EBD_STATE.vovoAudioEl.currentTime = 0;
-    } catch (e) {}
-    window.EBD_STATE.vovoAudioEl = null;
-  }
-  window.EBD_STATE.vovoAudioPlaying = false;
-  const statusEl = document.getElementById("vovo-audio-status");
-  const playBtnEl = document.getElementById("vovo-play-btn");
-  if (statusEl) statusEl.textContent = "Toque no botão acima para ouvir a narração do Vovô Nésio!";
-  if (playBtnEl) playBtnEl.textContent = "Ouvir a Voz do Vovô Nésio";
-};
-
-// Abre qualquer ilustração de Texto & Cronologia ou História do Vovô em Tela Cheia com opção de Baixar / WhatsApp!
-window.openLessonImageFullModal = function(imgSrc, titleText) {
-  if (typeof window.ebdClick === "function") window.ebdClick();
-  const m = String(imgSrc || "").match(/quebra_cabeca_(\d+)\.jpg/);
-  const seqColor = m ? m[1] : "09";
-  const lesson = window.getCurrentLessonObj();
-  const fakeStory = {
-    id: lesson ? lesson.week : 1,
-    seqColor: seqColor,
-    title: titleText || (lesson ? lesson.title : "Ilustração da Lição")
-  };
-  if (typeof selectedCollectorStory !== "undefined") {
-    selectedCollectorStory = fakeStory;
-  }
-  const imgEl = document.getElementById("collector-card-img");
-  const titleEl = document.getElementById("collector-card-title");
-  const modalEl = document.getElementById("modal-collector-card");
-  if (imgEl) {
-    imgEl.src = imgSrc;
-    imgEl.style.objectFit = "contain";
-  }
-  if (titleEl) titleEl.textContent = fakeStory.title;
-  if (modalEl) modalEl.classList.add("active");
-};
-
-// BOTÃO 3 DA LIÇÃO: SEMENTINHA DA LIÇÃO (Abre somente a Sementinha daquela semana e volta para a Lição)
-window.openLessonSementinhaModule = function() {
-  if (typeof playClick === "function") playClick();
-  const lesson = window.getCurrentLessonObj();
-  window.EBD_STATE.lessonReturnContext = true;
-  if (typeof currentSementinhaIdx !== "undefined" && typeof STORIES !== "undefined") {
-    const idx = STORIES.findIndex(s => s.id === lesson.storyIdUnlock);
-    currentSementinhaIdx = idx >= 0 ? idx : 0;
-  }
-  if (typeof renderSementinhaCard === "function") renderSementinhaCard();
-  if (typeof showScreen === "function") showScreen("screen-sementinha");
-};
-
-// BOTÃO 4 DA LIÇÃO: FÉ EM AÇÃO DA LIÇÃO (Abre somente a missão prática daquela semana e volta para a Lição)
-window.openLessonFeAcaoModule = function() {
-  if (typeof playClick === "function") playClick();
-  const lesson = window.getCurrentLessonObj();
-  window.EBD_STATE.lessonReturnContext = true;
-  if (typeof currentFeAcaoIdx !== "undefined" && typeof STORIES !== "undefined") {
-    const idx = STORIES.findIndex(s => s.id === lesson.storyIdUnlock);
-    currentFeAcaoIdx = idx >= 0 ? idx : 0;
-  }
-  if (typeof renderFeAcaoCard === "function") renderFeAcaoCard();
-  if (typeof showScreen === "function") showScreen("screen-fe-acao");
-};
-
-// Retorno inteligente para Sementinha e Fé em Ação:
-// Se abriu pela Lição da Semana -> volta para a Lição da Semana! Se abriu pela Home -> volta para a Home!
-window.backFromModuleOrHome = function() {
-  if (typeof stopNarration === "function") stopNarration();
-  if (window.EBD_STATE.lessonReturnContext) {
-    window.openLessonHubScreen();
-  } else if (typeof goHome === "function") {
-    goHome();
-  }
-};
-
-// BOTÃO 5 DA LIÇÃO: JOGOS DA LIÇÃO (Tela exclusiva #screen-lesson-games apenas com as atividades da semana ativa!)
-window.openLessonGamesScreen = function() {
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.lessonReturnContext = true;
-  window.EBD_STATE.lessonGameReturnContext = true;
-
-  const lesson = window.getCurrentLessonObj();
-  const titleEl = document.getElementById("lesson-games-screen-title");
-  const subEl = document.getElementById("lesson-games-screen-subtitle");
-  if (titleEl) titleEl.textContent = `Jogos da Lição ${lesson.week}`;
-  if (subEl) subEl.textContent = `Atividades exclusivas sobre: ${lesson.title} (${lesson.bibleRef})`;
-
-  if (typeof showScreen === "function") showScreen("screen-lesson-games");
-};
-
-// Abre um jogo específico já posicionado exatamente na fase correspondente à Lição da Semana ativa
-window.launchLessonSpecificGame = function(gameType) {
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.lessonGameReturnContext = true;
-  const lesson = window.getCurrentLessonObj();
-  const wk = lesson.week;
-
-  if (gameType === "chronology") {
-    const idx = window.CHRONOLOGY_LEVELS.findIndex(l => l.lessonWeek === wk);
-    window.EBD_STATE.chronologyIdx = idx >= 0 ? idx : 0;
-    window.renderChronologyGame();
-    if (typeof showScreen === "function") showScreen("screen-game-chronology");
-  } else if (gameType === "verse") {
-    // Usa as palavras do versículo adaptadas à faixa etária da lição atual!
-    const ageData = (lesson.byAge && lesson.byAge[window.EBD_STATE.ageBracket]) || lesson.byAge["6-8"];
-    window.EBD_STATE.customLessonVerse = {
-      ref: `Semana ${lesson.week} • ${lesson.bibleRef}`,
-      words: ageData.verseWords || ["No", "princípio", "criou", "Deus", "os", "céus", "e", "a", "terra."]
-    };
-    window.renderVerseBuilderGame(true);
-    if (typeof showScreen === "function") showScreen("screen-game-verse");
-  } else if (gameType === "wordsearch") {
-    window.EBD_STATE.customLessonWordSearch = {
-      title: `Semana ${lesson.week} • ${lesson.title}`,
-      words: lesson.wordSearchWords || ["CRIACAO", "LUZ", "TERRA", "EDEN", "DEUS"]
-    };
-    window.renderWordSearchGame(true);
-    if (typeof showScreen === "function") showScreen("screen-game-wordsearch");
-  } else if (gameType === "whoami") {
-    const idx = window.WHO_AM_I_BANK.findIndex(l => l.lessonWeek === wk);
-    window.EBD_STATE.whoAmIIdx = idx >= 0 ? idx : 0;
-    window.EBD_STATE.whoAmIClueCount = 1;
-    window.renderWhoAmIGame();
-    if (typeof showScreen === "function") showScreen("screen-game-whoami");
-  } else if (gameType === "truemyth") {
-    const idx = window.TRUE_OR_MYTH_BANK.findIndex(l => l.lessonWeek === wk);
-    window.EBD_STATE.trueMythIdx = idx >= 0 ? idx : 0;
-    window.renderTrueOrMythGame();
-    if (typeof showScreen === "function") showScreen("screen-game-truemyth");
-  } else if (gameType === "secretword") {
-    const idx = window.SECRET_WORD_BANK.findIndex(l => l.lessonWeek === wk);
-    window.EBD_STATE.secretWordIdx = idx >= 0 ? idx : 0;
-    window.initSecretWordRound();
-    if (typeof showScreen === "function") showScreen("screen-game-secretword");
-  } else if (gameType === "puzzle" && typeof openPuzzle === "function") {
-    openPuzzle(lesson.storyIdUnlock || 1);
-  } else if (gameType === "paint" && typeof openPaint === "function") {
-    openPaint(lesson.storyIdUnlock || 1);
-  } else if (gameType === "quiz" && typeof openQuiz === "function") {
-    openQuiz(lesson.storyIdUnlock || 1);
-  }
-};
-
-// Retorno inteligente dos jogos:
-// Se entrou pelo botão "Jogos da Lição" -> volta para #screen-lesson-games!
-// Se entrou pela "Sala de Jogos" geral -> volta para #screen-games-hub!
-window.returnFromGameScreen = function() {
-  if (typeof playClick === "function") playClick();
-  window.clearMimicaTimer();
-  window.EBD_STATE.customLessonVerse = null;
-  window.EBD_STATE.customLessonWordSearch = null;
-  if (window.EBD_STATE.lessonGameReturnContext) {
-    if (typeof showScreen === "function") showScreen("screen-lesson-games");
-  } else if (typeof openGamesHub === "function") {
-    openGamesHub();
-  }
-};
-
-// BOTÃO 6 DA LIÇÃO: DEVOCIONAL 5 DIAS EM FAMÍLIA
-window.openDevotionalScreen = function() {
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.lessonReturnContext = true;
-  const lesson = window.getCurrentLessonObj();
-  const titleEl = document.getElementById("devotional-lesson-title");
-  const listEl = document.getElementById("devotional-days-list");
-  if (titleEl) titleEl.textContent = `Devocional da Semana ${lesson.week} • ${lesson.title}`;
-
-  const checkedMap = JSON.parse(localStorage.getItem("trono_ebd_devotional_checks") || "{}");
-  if (listEl) {
-    listEl.innerHTML = lesson.devotional5Days.map(d => {
-      const key = `w${lesson.week}_d${d.day}`;
-      const isDone = !!checkedMap[key];
-      return `<div class="devotional-day-card ${isDone ? "done" : ""}" onclick="toggleDevotionalDay('${key}')">
-        <div class="devotional-day-check">${isDone ? "✅" : "⬜"}</div>
-        <div class="devotional-day-info">
-          <h4>${d.title}</h4>
-          <p>${d.text}</p>
-        </div>
-      </div>`;
-    }).join("");
-  }
-  if (typeof showScreen === "function") showScreen("screen-devotional");
-};
-
-window.toggleDevotionalDay = function(key) {
-  if (typeof playClick === "function") playClick();
-  const checkedMap = JSON.parse(localStorage.getItem("trono_ebd_devotional_checks") || "{}");
-  checkedMap[key] = !checkedMap[key];
-  localStorage.setItem("trono_ebd_devotional_checks", JSON.stringify(checkedMap));
-  window.openDevotionalScreen();
-};
-
-// Concluir a Lição da Semana e ganhar figurinha no Álbum da Fé
-window.completeCurrentWeekLesson = function() {
-  const lesson = window.getCurrentLessonObj();
-  const completed = JSON.parse(localStorage.getItem("trono_ebd_completed_weeks") || "[]");
-  if (!completed.includes(lesson.week)) {
-    completed.push(lesson.week);
-    localStorage.setItem("trono_ebd_completed_weeks", JSON.stringify(completed));
-  }
-  if (typeof unlockStorySticker === "function" && lesson.storyIdUnlock) {
-    unlockStorySticker(lesson.storyIdUnlock);
-  }
-  if (typeof triggerConfetti === "function") triggerConfetti();
-  if (typeof playApplause === "function") playApplause();
-
-  const modal = document.getElementById("modal-victory");
-  if (modal) {
-    const titleEl = document.getElementById("victory-title");
-    const msgEl = document.getElementById("victory-msg");
-    if (titleEl) titleEl.textContent = `Lição ${lesson.week} Concluída!`;
-    if (msgEl) msgEl.textContent = `Parabéns! Você concluiu "${lesson.title}" e liberou novas fases e sua figurinha no Álbum da Fé!`;
-    modal.classList.add("active");
-  }
-  window.renderLessonHubScreen();
-};
-
-// ============================================================================
-// 6. PORTAL DO PROFESSOR E FAMÍLIA (COM PIN E PLANO DE AULA IMPRIMÍVEL)
-// ============================================================================
-window.openTeacherPortalScreen = function() {
-  if (typeof playClick === "function") playClick();
-  const lesson = window.getCurrentLessonObj();
-  const titleEl = document.getElementById("teacher-lesson-title");
-  const objEl = document.getElementById("teacher-guide-objective");
-  const matEl = document.getElementById("teacher-guide-materials");
-  const dynEl = document.getElementById("teacher-guide-dynamic");
-  const wlChurchEl = document.getElementById("wl-church-input");
-  const wlQuarterEl = document.getElementById("wl-quarter-input");
-
-  if (titleEl) titleEl.textContent = `Guia Pedagógico • Lição ${lesson.week}: ${lesson.title}`;
-  if (objEl) objEl.textContent = lesson.teacherGuide.objective;
-  if (matEl) matEl.textContent = lesson.teacherGuide.materials;
-  if (dynEl) dynEl.textContent = lesson.teacherGuide.classroomDynamic;
-  if (wlChurchEl) wlChurchEl.value = localStorage.getItem("trono_ebd_church_name") || window.EBD_WHITE_LABEL_CONFIG.churchName;
-  if (wlQuarterEl) wlQuarterEl.value = localStorage.getItem("trono_ebd_quarter_title") || window.EBD_WHITE_LABEL_CONFIG.quarterTitle;
-
-  if (typeof showScreen === "function") showScreen("screen-teacher-portal");
-};
-
-window.saveWhiteLabelConfig = function() {
-  if (typeof playClick === "function") playClick();
-  const wlChurchEl = document.getElementById("wl-church-input");
-  const wlQuarterEl = document.getElementById("wl-quarter-input");
-  if (wlChurchEl && wlChurchEl.value.trim()) {
-    localStorage.setItem("trono_ebd_church_name", wlChurchEl.value.trim());
-  }
-  if (wlQuarterEl && wlQuarterEl.value.trim()) {
-    localStorage.setItem("trono_ebd_quarter_title", wlQuarterEl.value.trim());
-  }
-  const feedbackEl = document.getElementById("wl-save-feedback");
-  if (feedbackEl) {
-    feedbackEl.textContent = "✅ Identidade da Igreja/Escola Bíblica salva com sucesso!";
-    setTimeout(() => { feedbackEl.textContent = ""; }, 3500);
-  }
-};
-
-// ============================================================================
-// 7. MOTORES DOS 7 JOGOS EDUCATIVOS NA SALA DE JOGOS (COM BARRA DE 10 FASES LIVRES + BLOQUEADAS)
-// ============================================================================
-
-// Helper para desenhar a barra de fases (1..10 livres + 11..20 com cadeado) no topo de cada jogo
-window.renderGamePhaseSelectorBar = function(containerId, bankArray, activeIdx, selectFnName) {
-  const barEl = document.getElementById(containerId);
-  if (!barEl || !bankArray) return;
-  // Se estiver jogando a atividade exclusiva de dentro da Lição da Semana, mostra selo da Lição
-  if (window.EBD_STATE.lessonGameReturnContext) {
-    const lesson = window.getCurrentLessonObj();
-    barEl.innerHTML = `<div class="phase-lesson-mode-pill">📖 Atividade da Lição ${lesson.week}: ${lesson.title}</div>`;
-    return;
-  }
-  barEl.innerHTML = bankArray.map((item, idx) => {
-    const unlocked = window.isGameLevelUnlocked(item);
-    const active = idx === activeIdx;
-    return `<button type="button" class="game-phase-pill ${active ? "active" : ""} ${unlocked ? "" : "locked"}" onclick="${selectFnName}(${idx})">
-      ${unlocked ? `Fase ${idx + 1}` : `🔒 ${idx + 1}`}
-    </button>`;
-  }).join("");
-};
-
-// ----------------------------------------------------------------------------
-// JOGO 1: ORDEM CRONOLÓGICA DA BÍBLIA
-// ----------------------------------------------------------------------------
-window.openChronologyGameScreen = function() {
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.lessonGameReturnContext = false;
-  window.EBD_STATE.chronologyIdx = 0;
-  window.renderChronologyGame();
-  if (typeof showScreen === "function") showScreen("screen-game-chronology");
-};
-
-window.selectChronologyPhase = function(idx) {
-  const item = window.CHRONOLOGY_LEVELS[idx];
-  if (!window.isGameLevelUnlocked(item)) {
-    if (typeof openParentGate === "function") openParentGate();
-    return;
-  }
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.chronologyIdx = idx;
-  window.renderChronologyGame();
-};
-
-window.renderChronologyGame = function() {
-  const levelObj = window.CHRONOLOGY_LEVELS[window.EBD_STATE.chronologyIdx] || window.CHRONOLOGY_LEVELS[0];
-  window.EBD_STATE.chronologyStep = 1;
-
-  window.renderGamePhaseSelectorBar("chrono-phases-bar", window.CHRONOLOGY_LEVELS, window.EBD_STATE.chronologyIdx, "selectChronologyPhase");
-
-  const titleEl = document.getElementById("chrono-game-title");
-  const subEl = document.getElementById("chrono-game-subtitle");
-  const feedbackEl = document.getElementById("chrono-game-feedback");
-  if (titleEl) titleEl.textContent = levelObj.title;
-  if (subEl) subEl.textContent = levelObj.subtitle;
-  if (feedbackEl) feedbackEl.textContent = "Toque no 1º acontecimento mais antigo da história!";
-
-  const slotsEl = document.getElementById("chrono-slots-row");
-  if (slotsEl) {
-    slotsEl.innerHTML = [1, 2, 3, 4].map(n =>
-      `<div class="chrono-slot-box" id="chrono-slot-${n}"><span>${n}º na Linha do Tempo</span></div>`
-    ).join("");
-  }
-
-  const shuffled = [...levelObj.cards].sort(() => Math.random() - 0.5);
-  const gridEl = document.getElementById("chrono-cards-grid");
-  if (gridEl) {
-    gridEl.innerHTML = shuffled.map(c => `
-      <div class="chrono-card-item" id="chrono-card-${c.id}" onclick="pickChronologyCard('${c.id}', ${c.order})">
-        <img src="${c.img}" alt="${c.title}">
-        <div class="chrono-card-caption">${c.title}</div>
-      </div>
-    `).join("");
-  }
-};
-
-window.pickChronologyCard = function(cardId, cardOrder) {
-  const levelObj = window.CHRONOLOGY_LEVELS[window.EBD_STATE.chronologyIdx] || window.CHRONOLOGY_LEVELS[0];
-  const expected = window.EBD_STATE.chronologyStep;
-  const feedbackEl = document.getElementById("chrono-game-feedback");
-  const cardEl = document.getElementById(`chrono-card-${cardId}`);
-
-  if (cardOrder === expected) {
-    if (typeof playSuccessSound === "function") playSuccessSound();
-    if (cardEl) cardEl.classList.add("correct-picked");
-    const cardObj = levelObj.cards.find(c => c.id === cardId);
-    const slotEl = document.getElementById(`chrono-slot-${expected}`);
-    if (slotEl && cardObj) {
-      slotEl.classList.add("filled");
-      slotEl.innerHTML = `<strong>${expected}º • ${cardObj.era}</strong><span>${cardObj.title}</span>`;
-    }
-    window.EBD_STATE.chronologyStep += 1;
-    if (window.EBD_STATE.chronologyStep > 4) {
-      if (feedbackEl) feedbackEl.textContent = "🎉 Perfeito! Você colocou toda a Linha do Tempo na ordem certa!";
-      if (typeof triggerConfetti === "function") triggerConfetti();
-    } else {
-      if (feedbackEl) feedbackEl.textContent = `✅ Muito bem! Agora toque no ${window.EBD_STATE.chronologyStep}º acontecimento!`;
-    }
-  } else {
-    if (typeof playErrorSound === "function") playErrorSound();
-    if (cardEl) {
-      cardEl.classList.add("shake-err");
-      setTimeout(() => cardEl.classList.remove("shake-err"), 450);
-    }
-    if (feedbackEl) feedbackEl.textContent = `💡 Pense na ordem da Bíblia: qual acontecimento veio no ${expected}º lugar?`;
-  }
-};
-
-window.nextChronologyLevel = function() {
-  if (window.EBD_STATE.lessonGameReturnContext) {
-    window.renderChronologyGame();
-    return;
-  }
-  const nextIdx = (window.EBD_STATE.chronologyIdx + 1) % window.CHRONOLOGY_LEVELS.length;
-  window.selectChronologyPhase(nextIdx);
-};
-
-// ----------------------------------------------------------------------------
-// JOGO 2: CONSTRUTOR DE VERSÍCULOS
-// ----------------------------------------------------------------------------
-window.openVerseBuilderGameScreen = function() {
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.lessonGameReturnContext = false;
-  window.EBD_STATE.customLessonVerse = null;
-  window.EBD_STATE.verseIdx = 0;
-  window.renderVerseBuilderGame(false);
-  if (typeof showScreen === "function") showScreen("screen-game-verse");
-};
-
-window.selectVerseBuilderPhase = function(idx) {
-  const item = window.VERSE_BUILDER_BANK[idx];
-  if (!window.isGameLevelUnlocked(item)) {
-    if (typeof openParentGate === "function") openParentGate();
-    return;
-  }
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.verseIdx = idx;
-  window.renderVerseBuilderGame(false);
-};
-
-window.renderVerseBuilderGame = function(useCustomLesson) {
-  let item = window.VERSE_BUILDER_BANK[window.EBD_STATE.verseIdx] || window.VERSE_BUILDER_BANK[0];
-  if (useCustomLesson && window.EBD_STATE.customLessonVerse) {
-    item = window.EBD_STATE.customLessonVerse;
-  }
-  window.EBD_STATE.activeVerseWords = item.words;
-  window.EBD_STATE.verseBuilt = [];
-
-  window.renderGamePhaseSelectorBar("verse-phases-bar", window.VERSE_BUILDER_BANK, window.EBD_STATE.verseIdx, "selectVerseBuilderPhase");
-
-  const refEl = document.getElementById("verse-builder-ref");
-  const targetEl = document.getElementById("verse-builder-target");
-  const poolEl = document.getElementById("verse-builder-pool");
-  const feedbackEl = document.getElementById("verse-builder-feedback");
-
-  if (refEl) refEl.textContent = `📖 Versículo de Ouro • ${item.ref}`;
-  if (targetEl) targetEl.innerHTML = `<span class="verse-placeholder">Toque na 1ª palavra abaixo para montar o versículo...</span>`;
-  if (feedbackEl) feedbackEl.textContent = `Dica: A primeira palavra é "${item.words[0]}"`;
-
-  const shuffled = item.words.map((w, i) => ({ word: w, idx: i })).sort(() => Math.random() - 0.5);
-  if (poolEl) {
-    poolEl.innerHTML = shuffled.map(obj =>
-      `<button type="button" class="verse-word-chip" id="vword-${obj.idx}" onclick="pickVerseWord(${obj.idx})">${obj.word}</button>`
-    ).join("");
-  }
-};
-
-window.pickVerseWord = function(wordIdx) {
-  const words = window.EBD_STATE.activeVerseWords || [];
-  const nextExpectedIdx = window.EBD_STATE.verseBuilt.length;
-  const clickedWord = words[wordIdx];
-  const expectedWord = words[nextExpectedIdx];
-  const chipEl = document.getElementById(`vword-${wordIdx}`);
-  const targetEl = document.getElementById("verse-builder-target");
-  const feedbackEl = document.getElementById("verse-builder-feedback");
-
-  if (clickedWord === expectedWord && (!chipEl || !chipEl.disabled)) {
-    if (typeof playSuccessSound === "function") playSuccessSound();
-    if (chipEl) {
-      chipEl.disabled = true;
-      chipEl.classList.add("used");
-    }
-    window.EBD_STATE.verseBuilt.push(clickedWord);
-    if (targetEl) {
-      targetEl.innerHTML = window.EBD_STATE.verseBuilt.map(w => `<span class="verse-built-chip">${w}</span>`).join(" ");
-    }
-    if (window.EBD_STATE.verseBuilt.length === words.length) {
-      if (feedbackEl) feedbackEl.textContent = "🌟 Parabéns! Você guardou a Palavra de Deus no coração!";
-      if (typeof triggerConfetti === "function") triggerConfetti();
-    } else {
-      if (feedbackEl) feedbackEl.textContent = "✅ Muito bem! Continue montando o versículo!";
-    }
-  } else {
-    if (typeof playErrorSound === "function") playErrorSound();
-    if (feedbackEl) feedbackEl.textContent = `💡 Tente a palavra "${expectedWord}" agora!`;
-  }
-};
-
-window.nextVerseBuilderLevel = function() {
-  if (window.EBD_STATE.lessonGameReturnContext) {
-    window.renderVerseBuilderGame(true);
-    return;
-  }
-  const nextIdx = (window.EBD_STATE.verseIdx + 1) % window.VERSE_BUILDER_BANK.length;
-  window.selectVerseBuilderPhase(nextIdx);
-};
-
-// ----------------------------------------------------------------------------
-// JOGO 3: MÍMICA & DESAFIO NA TESTA (JOGO EM GRUPO / TEENS / FAMÍLIA)
-// ----------------------------------------------------------------------------
-window.openMimicaGameScreen = function() {
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.lessonGameReturnContext = false;
-  window.clearMimicaTimer();
-  window.EBD_STATE.mimicaIdx = 0;
-  window.renderMimicaCard();
-  if (typeof showScreen === "function") showScreen("screen-game-mimica");
-};
-
-window.selectMimicaPhase = function(idx) {
-  const item = window.MIMICA_CARDS[idx];
-  if (!window.isGameLevelUnlocked(item)) {
-    if (typeof openParentGate === "function") openParentGate();
-    return;
-  }
-  if (typeof playClick === "function") playClick();
-  window.clearMimicaTimer();
-  window.EBD_STATE.mimicaIdx = idx;
-  window.renderMimicaCard();
-};
-
-window.renderMimicaCard = function() {
-  const card = window.MIMICA_CARDS[window.EBD_STATE.mimicaIdx] || window.MIMICA_CARDS[0];
-  window.renderGamePhaseSelectorBar("mimica-phases-bar", window.MIMICA_CARDS, window.EBD_STATE.mimicaIdx, "selectMimicaPhase");
-
-  const catEl = document.getElementById("mimica-card-category");
-  const targetEl = document.getElementById("mimica-card-target");
-  const forbEl = document.getElementById("mimica-card-forbidden");
-  const tipEl = document.getElementById("mimica-card-tip");
-  const timerEl = document.getElementById("mimica-timer-display");
-  const scoreAEl = document.getElementById("mimica-score-a");
-  const scoreBEl = document.getElementById("mimica-score-b");
-
-  if (catEl) catEl.textContent = card.category;
-  if (targetEl) targetEl.textContent = card.target;
-  if (forbEl) forbEl.textContent = `🚫 Palavras Proibidas (se falar): ${card.forbidden.join(" • ")}`;
-  if (tipEl) tipEl.textContent = `🎭 Dica de Mímica: ${card.tip}`;
-  if (timerEl) timerEl.textContent = "⏱️ 45s";
-  if (scoreAEl) scoreAEl.textContent = window.EBD_STATE.mimicaTeamA;
-  if (scoreBEl) scoreBEl.textContent = window.EBD_STATE.mimicaTeamB;
-};
-
-window.startMimicaTimer = function() {
-  if (typeof playClick === "function") playClick();
-  window.clearMimicaTimer();
-  window.EBD_STATE.mimicaSeconds = 45;
-  const timerEl = document.getElementById("mimica-timer-display");
-  if (timerEl) timerEl.textContent = `⏱️ ${window.EBD_STATE.mimicaSeconds}s`;
-
-  window.EBD_STATE.mimicaTimer = setInterval(() => {
-    window.EBD_STATE.mimicaSeconds -= 1;
-    if (timerEl) timerEl.textContent = `⏱️ ${window.EBD_STATE.mimicaSeconds}s`;
-    if (window.EBD_STATE.mimicaSeconds <= 0) {
-      window.clearMimicaTimer();
-      if (timerEl) timerEl.textContent = "⏰ Tempo Esgotado!";
-      if (typeof playErrorSound === "function") playErrorSound();
-    }
-  }, 1000);
-};
-
-window.clearMimicaTimer = function() {
-  if (window.EBD_STATE.mimicaTimer) {
-    clearInterval(window.EBD_STATE.mimicaTimer);
-    window.EBD_STATE.mimicaTimer = null;
-  }
-};
-
-window.scoreMimicaTeam = function(team) {
-  if (typeof playSuccessSound === "function") playSuccessSound();
-  if (team === "A") window.EBD_STATE.mimicaTeamA += 1;
-  if (team === "B") window.EBD_STATE.mimicaTeamB += 1;
-  window.clearMimicaTimer();
-  const nextIdx = (window.EBD_STATE.mimicaIdx + 1) % window.MIMICA_CARDS.length;
-  if (window.isGameLevelUnlocked(window.MIMICA_CARDS[nextIdx])) {
-    window.EBD_STATE.mimicaIdx = nextIdx;
-  } else {
-    window.EBD_STATE.mimicaIdx = 0;
-  }
-  window.renderMimicaCard();
-};
-
-// ----------------------------------------------------------------------------
-// JOGO 4: CAÇA-PALAVRAS BÍBLICO
-// ----------------------------------------------------------------------------
-window.openWordSearchGameScreen = function() {
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.lessonGameReturnContext = false;
-  window.EBD_STATE.customLessonWordSearch = null;
-  window.EBD_STATE.wordSearchIdx = 0;
-  window.renderWordSearchGame(false);
-  if (typeof showScreen === "function") showScreen("screen-game-wordsearch");
-};
-
-window.selectWordSearchPhase = function(idx) {
-  const item = window.WORD_SEARCH_LEVELS[idx];
-  if (!window.isGameLevelUnlocked(item)) {
-    if (typeof openParentGate === "function") openParentGate();
-    return;
-  }
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.wordSearchIdx = idx;
-  window.renderWordSearchGame(false);
-};
-
-window.renderWordSearchGame = function(useCustomLesson) {
-  let pack = window.WORD_SEARCH_LEVELS[window.EBD_STATE.wordSearchIdx] || window.WORD_SEARCH_LEVELS[0];
-  if (useCustomLesson && window.EBD_STATE.customLessonWordSearch) {
-    pack = window.EBD_STATE.customLessonWordSearch;
-  }
-  const words = pack.words || ["CRIACAO", "LUZ", "TERRA", "EDEN", "ADAO"];
-  window.EBD_STATE.wordSearchActiveWords = words;
-  window.EBD_STATE.wordSearchFound = [];
-
-  window.renderGamePhaseSelectorBar("ws-phases-bar", window.WORD_SEARCH_LEVELS, window.EBD_STATE.wordSearchIdx, "selectWordSearchPhase");
-
-  const titleEl = document.getElementById("ws-lesson-title");
-  if (titleEl) titleEl.textContent = pack.title;
-
-  const size = 8;
-  const grid = Array.from({ length: size }, () => Array(size).fill(""));
-  const placements = {};
-
-  words.forEach((word, idx) => {
-    const clean = word.substring(0, size);
-    const row = idx % size;
-    const startCol = Math.max(0, Math.floor((size - clean.length) / 2));
-    placements[clean] = [];
-    for (let c = 0; c < clean.length; c++) {
-      grid[row][startCol + c] = clean[c];
-      placements[clean].push(`${row}-${startCol + c}`);
+  el.addEventListener("mouseleave", function() { isDown = false; });
+  el.addEventListener("mouseup", function() { isDown = false; });
+  el.addEventListener("mousemove", function(e) {
+    if (!isDown) return;
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - startX) * 1.4;
+    if (Math.abs(walk) > 5) moved = true;
+    if (moved) {
+      e.preventDefault();
+      el.scrollLeft = scrollLeftStart - walk;
     }
   });
-
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  for (let r = 0; r < size; r++) {
-    for (let c = 0; c < size; c++) {
-      if (!grid[r][c]) grid[r][c] = letters[Math.floor(Math.random() * letters.length)];
-    }
-  }
-
-  window.EBD_STATE.wsPlacements = placements;
-  const gridEl = document.getElementById("ws-grid-board");
-  if (gridEl) {
-    let html = "";
-    for (let r = 0; r < size; r++) {
-      for (let c = 0; c < size; c++) {
-        const cellId = `${r}-${c}`;
-        html += `<button type="button" class="ws-cell-btn" id="ws-cell-${cellId}" onclick="tapWordSearchCell('${cellId}')">${grid[r][c]}</button>`;
-      }
-    }
-    gridEl.innerHTML = html;
-  }
-  window.updateWordSearchPills();
-};
-
-window.updateWordSearchPills = function() {
-  const words = window.EBD_STATE.wordSearchActiveWords || [];
-  const pillsEl = document.getElementById("ws-words-list");
-  if (pillsEl) {
-    pillsEl.innerHTML = words.map(w => {
-      const found = window.EBD_STATE.wordSearchFound.includes(w);
-      return `<span class="ws-word-pill ${found ? "found" : ""}">${found ? "✅ " : ""}${w}</span>`;
-    }).join("");
-  }
-};
-
-window.tapWordSearchCell = function(cellId) {
-  const placements = window.EBD_STATE.wsPlacements || {};
-  for (const [word, coords] of Object.entries(placements)) {
-    if (coords.includes(cellId) && !window.EBD_STATE.wordSearchFound.includes(word)) {
-      if (typeof playSuccessSound === "function") playSuccessSound();
-      window.EBD_STATE.wordSearchFound.push(word);
-      coords.forEach(cid => {
-        const el = document.getElementById(`ws-cell-${cid}`);
-        if (el) el.classList.add("found");
-      });
-      window.updateWordSearchPills();
-      if (window.EBD_STATE.wordSearchFound.length === Object.keys(placements).length) {
-        if (typeof triggerConfetti === "function") triggerConfetti();
-      }
-      return;
-    }
-  }
-  if (typeof playClick === "function") playClick();
-};
-
-window.nextWordSearchLevel = function() {
-  if (window.EBD_STATE.lessonGameReturnContext) {
-    window.renderWordSearchGame(true);
-    return;
-  }
-  const nextIdx = (window.EBD_STATE.wordSearchIdx + 1) % window.WORD_SEARCH_LEVELS.length;
-  window.selectWordSearchPhase(nextIdx);
-};
-
-// ----------------------------------------------------------------------------
-// JOGO 5: QUEM SOU EU NA BÍBLIA?
-// ----------------------------------------------------------------------------
-window.openWhoAmIGameScreen = function() {
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.lessonGameReturnContext = false;
-  window.EBD_STATE.whoAmIIdx = 0;
-  window.EBD_STATE.whoAmIClueCount = 1;
-  window.renderWhoAmIGame();
-  if (typeof showScreen === "function") showScreen("screen-game-whoami");
-};
-
-window.selectWhoAmIPhase = function(idx) {
-  const item = window.WHO_AM_I_BANK[idx];
-  if (!window.isGameLevelUnlocked(item)) {
-    if (typeof openParentGate === "function") openParentGate();
-    return;
-  }
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.whoAmIIdx = idx;
-  window.EBD_STATE.whoAmIClueCount = 1;
-  window.renderWhoAmIGame();
-};
-
-window.renderWhoAmIGame = function() {
-  const item = window.WHO_AM_I_BANK[window.EBD_STATE.whoAmIIdx] || window.WHO_AM_I_BANK[0];
-  window.renderGamePhaseSelectorBar("whoami-phases-bar", window.WHO_AM_I_BANK, window.EBD_STATE.whoAmIIdx, "selectWhoAmIPhase");
-
-  const cluesEl = document.getElementById("whoami-clues-box");
-  const optsEl = document.getElementById("whoami-options-grid");
-  const feedbackEl = document.getElementById("whoami-feedback");
-
-  if (cluesEl) {
-    cluesEl.innerHTML = item.clues.slice(0, window.EBD_STATE.whoAmIClueCount).map(c =>
-      `<div class="whoami-clue-item">🔎 ${c}</div>`
-    ).join("");
-  }
-  const shuffled = [...item.options].sort(() => Math.random() - 0.5);
-  if (optsEl) {
-    optsEl.innerHTML = shuffled.map(opt =>
-      `<button type="button" class="whoami-opt-btn" onclick="checkWhoAmIAnswer('${opt}')">${opt}</button>`
-    ).join("");
-  }
-  if (feedbackEl) feedbackEl.textContent = `Valendo ${4 - window.EBD_STATE.whoAmIClueCount} estrelas! Ou peça mais uma pista!`;
-};
-
-window.revealNextWhoAmIClue = function() {
-  if (typeof playClick === "function") playClick();
-  if (window.EBD_STATE.whoAmIClueCount < 3) {
-    window.EBD_STATE.whoAmIClueCount += 1;
-    window.renderWhoAmIGame();
-  }
-};
-
-window.checkWhoAmIAnswer = function(selected) {
-  const item = window.WHO_AM_I_BANK[window.EBD_STATE.whoAmIIdx] || window.WHO_AM_I_BANK[0];
-  const feedbackEl = document.getElementById("whoami-feedback");
-  if (selected === item.answer) {
-    if (typeof playSuccessSound === "function") playSuccessSound();
-    if (typeof triggerConfetti === "function") triggerConfetti();
-    if (feedbackEl) feedbackEl.textContent = `🎉 Acertou! Era ${item.answer}!`;
-    setTimeout(() => {
-      if (window.EBD_STATE.lessonGameReturnContext) return;
-      const nextIdx = (window.EBD_STATE.whoAmIIdx + 1) % window.WHO_AM_I_BANK.length;
-      if (window.isGameLevelUnlocked(window.WHO_AM_I_BANK[nextIdx])) {
-        window.EBD_STATE.whoAmIIdx = nextIdx;
-        window.EBD_STATE.whoAmIClueCount = 1;
-        window.renderWhoAmIGame();
-      }
-    }, 1800);
-  } else {
-    if (typeof playErrorSound === "function") playErrorSound();
-    if (feedbackEl) feedbackEl.textContent = "💡 Quase! Revele mais uma pista e tente de novo!";
-  }
-};
-
-// ----------------------------------------------------------------------------
-// JOGO 6: VERDADEIRO OU MITO?
-// ----------------------------------------------------------------------------
-window.openTrueOrMythGameScreen = function() {
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.lessonGameReturnContext = false;
-  window.EBD_STATE.trueMythIdx = 0;
-  window.renderTrueOrMythGame();
-  if (typeof showScreen === "function") showScreen("screen-game-truemyth");
-};
-
-window.selectTrueOrMythPhase = function(idx) {
-  const item = window.TRUE_OR_MYTH_BANK[idx];
-  if (!window.isGameLevelUnlocked(item)) {
-    if (typeof openParentGate === "function") openParentGate();
-    return;
-  }
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.trueMythIdx = idx;
-  window.renderTrueOrMythGame();
-};
-
-window.renderTrueOrMythGame = function() {
-  const item = window.TRUE_OR_MYTH_BANK[window.EBD_STATE.trueMythIdx] || window.TRUE_OR_MYTH_BANK[0];
-  window.renderGamePhaseSelectorBar("truemyth-phases-bar", window.TRUE_OR_MYTH_BANK, window.EBD_STATE.trueMythIdx, "selectTrueOrMythPhase");
-
-  const stmtEl = document.getElementById("truemyth-statement");
-  const expEl = document.getElementById("truemyth-explanation");
-  if (stmtEl) stmtEl.textContent = `"${item.statement}"`;
-  if (expEl) expEl.textContent = "Toque em VERDADEIRO ou MITO para responder!";
-};
-
-window.answerTrueOrMyth = function(userChoice) {
-  const item = window.TRUE_OR_MYTH_BANK[window.EBD_STATE.trueMythIdx] || window.TRUE_OR_MYTH_BANK[0];
-  const expEl = document.getElementById("truemyth-explanation");
-  if (userChoice === item.isTrue) {
-    if (typeof playSuccessSound === "function") playSuccessSound();
-    if (typeof triggerConfetti === "function") triggerConfetti();
-    if (expEl) expEl.textContent = `🎉 Acertou! ${item.explanation}`;
-  } else {
-    if (typeof playErrorSound === "function") playErrorSound();
-    if (expEl) expEl.textContent = `💡 Aprenda com a Bíblia: ${item.explanation}`;
-  }
-};
-
-window.nextTrueOrMythCard = function() {
-  if (window.EBD_STATE.lessonGameReturnContext) {
-    window.renderTrueOrMythGame();
-    return;
-  }
-  const nextIdx = (window.EBD_STATE.trueMythIdx + 1) % window.TRUE_OR_MYTH_BANK.length;
-  window.selectTrueOrMythPhase(nextIdx);
-};
-
-// ----------------------------------------------------------------------------
-// JOGO 7: PALAVRA SECRETA BÍBLICA
-// ----------------------------------------------------------------------------
-window.openSecretWordGameScreen = function() {
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.lessonGameReturnContext = false;
-  window.EBD_STATE.secretWordIdx = 0;
-  window.initSecretWordRound();
-  if (typeof showScreen === "function") showScreen("screen-game-secretword");
-};
-
-window.selectSecretWordPhase = function(idx) {
-  const item = window.SECRET_WORD_BANK[idx];
-  if (!window.isGameLevelUnlocked(item)) {
-    if (typeof openParentGate === "function") openParentGate();
-    return;
-  }
-  if (typeof playClick === "function") playClick();
-  window.EBD_STATE.secretWordIdx = idx;
-  window.initSecretWordRound();
-};
-
-window.initSecretWordRound = function() {
-  window.EBD_STATE.secretWordGuessed = [];
-  window.EBD_STATE.secretWordErrors = 0;
-  window.renderSecretWordGame();
-};
-
-window.renderSecretWordGame = function() {
-  const item = window.SECRET_WORD_BANK[window.EBD_STATE.secretWordIdx] || window.SECRET_WORD_BANK[0];
-  window.renderGamePhaseSelectorBar("sw-phases-bar", window.SECRET_WORD_BANK, window.EBD_STATE.secretWordIdx, "selectSecretWordPhase");
-
-  const hintEl = document.getElementById("sw-hint-text");
-  const slotsEl = document.getElementById("sw-word-slots");
-  const starsEl = document.getElementById("sw-stars-left");
-  const kbEl = document.getElementById("sw-keyboard");
-
-  if (hintEl) hintEl.textContent = `💡 Pista: ${item.hint}`;
-  const starsLeft = Math.max(0, 6 - window.EBD_STATE.secretWordErrors);
-  if (starsEl) starsEl.textContent = "⭐".repeat(starsLeft) + "☆".repeat(6 - starsLeft);
-
-  const letters = item.word.split("");
-  const allFound = letters.every(ch => window.EBD_STATE.secretWordGuessed.includes(ch));
-
-  if (slotsEl) {
-    slotsEl.innerHTML = letters.map(ch =>
-      `<span class="sw-letter-box">${window.EBD_STATE.secretWordGuessed.includes(ch) ? ch : "_"}</span>`
-    ).join("");
-  }
-
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  if (kbEl) {
-    kbEl.innerHTML = alphabet.map(ch => {
-      const used = window.EBD_STATE.secretWordGuessed.includes(ch);
-      return `<button type="button" class="sw-key-btn ${used ? "used" : ""}" ${used || allFound ? "disabled" : ""} onclick="guessSecretLetter('${ch}')">${ch}</button>`;
-    }).join("");
-  }
-
-  if (allFound) {
-    if (typeof triggerConfetti === "function") triggerConfetti();
-    if (hintEl) hintEl.textContent = `🎉 Parabéns! A Palavra Secreta era ${item.word}!`;
-  }
-};
-
-window.guessSecretLetter = function(ch) {
-  const item = window.SECRET_WORD_BANK[window.EBD_STATE.secretWordIdx] || window.SECRET_WORD_BANK[0];
-  if (window.EBD_STATE.secretWordGuessed.includes(ch)) return;
-  window.EBD_STATE.secretWordGuessed.push(ch);
-  if (item.word.includes(ch)) {
-    if (typeof playSuccessSound === "function") playSuccessSound();
-  } else {
-    window.EBD_STATE.secretWordErrors += 1;
-    if (typeof playErrorSound === "function") playErrorSound();
-  }
-  window.renderSecretWordGame();
-};
-
-window.nextSecretWordRound = function() {
-  if (window.EBD_STATE.lessonGameReturnContext) {
-    window.initSecretWordRound();
-    return;
-  }
-  const nextIdx = (window.EBD_STATE.secretWordIdx + 1) % window.SECRET_WORD_BANK.length;
-  window.selectSecretWordPhase(nextIdx);
-};
-
-// Inicialização automática ao carregar o DOM
-document.addEventListener("DOMContentLoaded", () => {
-  window.syncEbdTopBanner();
-});
-
-
-// ============================================================================
-// 8. CONTROLADOR INTEGRADO DO DOM OFICIAL (INDEX.HTML) — ZERO CONFLITOS!
-// ============================================================================
-
-window.EBD_STATE.fromLessonGames = false;
-window.EBD_STATE.activeEduGameKey = "chronology";
-window.EBD_STATE.gamesHubFilter = "all";
-
-// 8.1 Helpers de Som e Confete compatíveis com index.html
-window.ebdClick = function() {
-  if (typeof playSoundClick === "function") playSoundClick();
-};
-window.ebdWinSound = function() {
-  if (typeof playSoundSnapGreen === "function") playSoundSnapGreen();
-};
-window.ebdErrSound = function() {
-  if (typeof playSoundWrongRed === "function") playSoundWrongRed();
-};
-window.ebdConfetti = function() {
-  if (typeof playSoundCelebrationClaps === "function") playSoundCelebrationClaps();
-  if (typeof startCelebrationConfetti === "function") startCelebrationConfetti();
-};
-window.ebdAskSubscribe = function(title) {
-  if (typeof openSubscribeModal === "function") {
-    openSubscribeModal(title || "Liberar Todas as Semanas e Fases EBD!");
-  }
-};
-
-// 8.2 Verifica VIP e Desbloqueio de Lições (10 Lições Grátis na Série 1 + 12 Lições na Série 2)
-window.isLessonWeekUnlocked = function(weekNum) {
-  if (typeof isVipUnlocked !== "undefined" && isVipUnlocked) return true;
-  const maxFree = (window.EBD_WHITE_LABEL_CONFIG && window.EBD_WHITE_LABEL_CONFIG.freeWeeksLimit) || 10;
-  if (weekNum <= maxFree) return true;
-  const completed = JSON.parse(localStorage.getItem("trono_ebd_completed_weeks") || "[]");
-  return completed.includes(weekNum);
-};
-
-window.isGameLevelUnlocked = function(itemObj) {
-  if (!itemObj) return false;
-  if (typeof isVipUnlocked !== "undefined" && isVipUnlocked) return true;
-  if (itemObj.free) return true;
-  if (itemObj.lessonWeek && window.isLessonWeekUnlocked(itemObj.lessonWeek)) return true;
-  return false;
-};
-
-// 8.3 Navegação da Lição (< volta para lição anterior se > 1, ou volta ao Início se na Lição 1)
-window.stepLessonWeekBackOrHome = function() {
-  window.ebdClick();
-  const cur = window.EBD_STATE.currentWeek || 1;
-  if (cur > 1) {
-    window.EBD_STATE.currentWeek = cur - 1;
-    localStorage.setItem("trono_ebd_week", String(window.EBD_STATE.currentWeek));
-    window.renderLessonHubScreen();
-  } else if (typeof goHome === "function") {
-    goHome();
-  }
-};
-
-window.stepLessonWeek = function(delta) {
-  window.ebdClick();
-  const total = window.EBD_LESSONS_CURRICULUM.length;
-  let next = (window.EBD_STATE.currentWeek || 1) + delta;
-  if (next < 1) {
-    if (typeof goHome === "function") goHome();
-    return;
-  }
-  if (next > total) next = 1;
-  if (!window.isLessonWeekUnlocked(next)) {
-    window.ebdAskSubscribe("Liberar Série 2 Completa (Lições 11 a 22 da EBD)");
-    return;
-  }
-  window.EBD_STATE.currentWeek = next;
-  localStorage.setItem("trono_ebd_week", String(next));
-  window.renderLessonHubScreen();
-};
-
-window.selectLessonWeek = function(weekNum) {
-  window.ebdClick();
-  if (!window.isLessonWeekUnlocked(weekNum)) {
-    window.ebdAskSubscribe("Liberar Série 2 Completa (Lições 11 a 22 da EBD)");
-    return;
-  }
-  window.EBD_STATE.currentWeek = weekNum;
-  localStorage.setItem("trono_ebd_week", String(weekNum));
-  window.renderLessonHubScreen();
-};
-
-window.openLessonHubScreen = function() {
-  window.ebdClick();
-  window.stopVovoStoryNarration();
-  window.EBD_STATE.fromLessonGames = false;
-  if (!["3-5", "6-8"].includes(window.EBD_STATE.ageBracket)) {
-    window.EBD_STATE.ageBracket = "6-8";
-    localStorage.setItem("trono_ebd_age", "6-8");
-  }
-  if (typeof showScreen === "function") showScreen("screen-lesson-hub");
-  window.renderLessonHubScreen();
 };
 
 window.renderLessonHubScreen = function() {
   const lesson = window.getCurrentLessonObj();
   if (!lesson) return;
 
-  // Atualiza título compacto no topo (entre a Estrela e o Som) mostrando a Lição ativa sem criar barra azul embaixo da foto!
+  // Mantém o título do topo limpo como "Lição da Semana" para nunca cortar entre a Estrela e o Som!
   const topTitleEl = document.getElementById("topbar-game-title");
   const modScreen = document.getElementById("screen-lesson-hub");
   if (topTitleEl && modScreen && modScreen.classList.contains("active")) {
-    topTitleEl.textContent = `Lição ${lesson.week} • ${lesson.title.split(" e ")[0]}`;
+    topTitleEl.textContent = "Lição da Semana";
   }
 
-  // Trilha das Lições no topo: mostra as 10 bolinhas numeradas (1 a 10) da Série 1 Gratuita + "🔒 Mais Lições" (Lições 11 a 22 da Série 2)
+  // Carrossel Deslizante no Bloco Roxo (#lesson-weeks-trail):
+  // Aparecem ~4 lições grandes por vez (Lição 1, Lição 2, Lição 3, Lição 4...) e basta passar o dedo ou o mouse para ver 5..10 e 🔒 Mais Lições!
   const trailEl = document.getElementById("lesson-weeks-trail");
   if (trailEl) {
     const vip = typeof isVipUnlocked !== "undefined" && isVipUnlocked;
@@ -4335,17 +3180,26 @@ window.renderLessonHubScreen = function() {
       const isDone = completed.includes(item.week);
       const isCur = item.week === lesson.week;
       if (unlocked && (vip || item.week <= maxFree)) {
-        html += `<button type="button" class="house-step ${isDone ? "done" : ""} ${isCur ? "current" : ""}" style="width:22px; height:22px; font-size:11px; flex-shrink:0; padding:0;" onclick="selectLessonWeek(${item.week})" title="${item.seriesName || "Série 1"} • Lição ${item.week}: ${item.title}">${item.week}</button>`;
+        html += `<button type="button" id="lesson-pill-${item.week}" class="lesson-scroll-pill ${isDone ? "done" : ""} ${isCur ? "current" : ""}" onclick="selectLessonWeek(${item.week})" title="${item.seriesName || "Série 1"} • Lição ${item.week}: ${item.title}">Lição ${item.week}</button>`;
       }
     });
 
     if (!vip) {
-      html += `<button type="button" class="house-step locked" style="padding:2px 7px; height:22px; font-size:10px; flex-shrink:0; cursor:pointer;" onclick="ebdAskSubscribe('Liberar Série 2: Lições 11 a 22')" title="Série 2: Jornada Completa da Promessa (Lições 11 a 22)">
-        <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" style="width:11px;height:11px;object-fit:contain;" alt="Cadeado">
+      html += `<button type="button" class="lesson-scroll-pill locked" onclick="ebdAskSubscribe('Liberar Série 2: Lições 11 a 22')" title="Série 2: Jornada Completa da Promessa (Lições 11 a 22)">
+        <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" style="width:12px;height:12px;object-fit:contain;" alt="Cadeado">
         <span>Mais Lições</span>
       </button>`;
     }
     trailEl.innerHTML = html;
+    window.enableHorizontalDragScroll(trailEl);
+
+    // Centraliza suavemente a lição ativa dentro do bloco roxo
+    setTimeout(() => {
+      const curBtn = document.getElementById(`lesson-pill-${lesson.week}`);
+      if (curBtn && typeof curBtn.scrollIntoView === "function") {
+        curBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
+    }, 40);
   }
 
   // Pílulas das 2 Faixas Etárias (APENAS 3 a 5 anos e 6 a 8 anos, bem espaçadas!)
@@ -4359,7 +3213,7 @@ window.renderLessonHubScreen = function() {
       { id: "6-8", label: "6 a 8 anos" }
     ];
     ageBox.innerHTML = brackets.map(b =>
-      `<button type="button" class="btn-tool-3d ${window.EBD_STATE.ageBracket === b.id ? "active" : ""}" style="flex:1; font-size:13px; font-weight:800; padding:6px 10px;" onclick="changeLessonAgeBracket('${b.id}')">${b.label}</button>`
+      `<button type="button" class="btn-tool-3d ${window.EBD_STATE.ageBracket === b.id ? "active" : ""}" style="flex:1; font-size:13px; font-weight:800; padding:5px 10px;" onclick="changeLessonAgeBracket('${b.id}')">${b.label}</button>`
     ).join("");
   }
 };
@@ -4394,21 +3248,21 @@ window.openLessonModule = function(modType) {
 
   const titlesMap = {
     texto: `Texto & Cronologia • Lição ${lesson.week}`,
-    vovo: `História do Vovô Nésio • Lição ${lesson.week}`,
+    vovo: `História do Vovô • Lição ${lesson.week}`,
     sementinha: `Sementinha no Coração • Lição ${lesson.week}`,
     fe_acao: `Fé em Ação • Lição ${lesson.week}`,
     jogos_licao: `Jogos da Lição ${lesson.week}`,
     devocional: `Devocional 5 Dias • Lição ${lesson.week}`
   };
   if (headerBar) {
-    headerBar.innerHTML = `<span style="font-size:13px; font-weight:800; color:#fde047; padding:2px 6px;">${titlesMap[modType] || lesson.title}</span>`;
+    headerBar.innerHTML = `<span style="font-size:12.5px; font-weight:800; color:#fde047; padding:2px 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${titlesMap[modType] || lesson.title}</span>`;
   }
 
-  // Seletor rápido de faixa etária dentro do módulo para testar 3-5 vs 6-8 na hora
+  // Seletor rápido de faixa etária dentro do módulo (3 a 5 anos vs 6 a 8 anos)
   const ageSwitchHtml = `
-    <div style="display:flex; justify-content:center; gap:12px; margin-bottom:8px;">
-      <button type="button" class="btn-tool-3d ${ageBracket === "3-5" ? "active" : ""}" style="flex:1; max-width:145px; font-size:12px; padding:5px 10px;" onclick="changeLessonAgeBracket('3-5')">3 a 5 anos</button>
-      <button type="button" class="btn-tool-3d ${ageBracket === "6-8" ? "active" : ""}" style="flex:1; max-width:145px; font-size:12px; padding:5px 10px;" onclick="changeLessonAgeBracket('6-8')">6 a 8 anos</button>
+    <div style="display:flex; justify-content:center; gap:12px; margin-bottom:6px; flex-shrink:0;">
+      <button type="button" class="btn-tool-3d ${ageBracket === "3-5" ? "active" : ""}" style="flex:1; max-width:145px; font-size:12px; padding:4px 10px;" onclick="changeLessonAgeBracket('3-5')">3 a 5 anos</button>
+      <button type="button" class="btn-tool-3d ${ageBracket === "6-8" ? "active" : ""}" style="flex:1; max-width:145px; font-size:12px; padding:4px 10px;" onclick="changeLessonAgeBracket('6-8')">6 a 8 anos</button>
     </div>
   `;
 
@@ -4416,23 +3270,22 @@ window.openLessonModule = function(modType) {
   if (modType === "texto") {
     const safeTitle = lesson.title.replace(/'/g, "\'");
     box.innerHTML = `
-      <div class="ebd-glass-card">
-        <div class="ebd-badge-era" style="margin-bottom:5px;">${lesson.seriesName || "Série 1"} • ${lesson.eraName}</div>
-        <h3 style="color:#fde047; font-size:16.5px; margin-bottom:4px;">Lição ${lesson.week}: ${lesson.title}</h3>
-        <div style="color:#38bdf8; font-size:12px; font-weight:800; margin-bottom:8px;">Leitura Bíblica: ${lesson.bibleRef} • Faixa: ${ageBracket.replace("-", " a ")} anos</div>
+      <div class="ebd-glass-card" style="margin-bottom:4px; padding:10px;">
+        <h3 style="color:#fde047; font-size:15.5px; margin-bottom:2px;">Lição ${lesson.week}: ${lesson.title}</h3>
+        <div style="color:#38bdf8; font-size:11.5px; font-weight:800; margin-bottom:6px;">${lesson.seriesName || "Série 1"} • ${lesson.bibleRef}</div>
         ${ageSwitchHtml}
-        <div class="frame-3d-alive" style="width:152px; aspect-ratio:9/16; height:auto; margin:0 auto 5px auto; cursor:pointer; background:#0f172a;" onclick="openLessonImageFullModal('${lesson.thumbImg}', 'Lição ${lesson.week}: ${safeTitle}')" title="Toque para abrir a imagem inteira">
-          <img src="${lesson.thumbImg}" alt="${lesson.title}" style="width:100%; height:100%; object-fit:contain; border-radius:16px; display:block;">
+        <div class="frame-3d-alive" style="width:136px; aspect-ratio:9/16; height:auto; margin:0 auto 4px auto; cursor:pointer; background:#0f172a;" onclick="openLessonImageFullModal('${lesson.thumbImg}', 'Lição ${lesson.week}: ${safeTitle}')" title="Toque para abrir a imagem inteira">
+          <img src="${lesson.thumbImg}" alt="${lesson.title}" style="width:100%; height:100%; object-fit:contain; border-radius:15px; display:block;">
         </div>
-        <div style="font-size:11px; color:#fde047; font-weight:700; margin-bottom:8px; cursor:pointer;" onclick="openLessonImageFullModal('${lesson.thumbImg}', 'Lição ${lesson.week}: ${safeTitle}')">
+        <div style="font-size:10.5px; color:#fde047; font-weight:700; margin-bottom:6px; cursor:pointer;" onclick="openLessonImageFullModal('${lesson.thumbImg}', 'Lição ${lesson.week}: ${safeTitle}')">
           Toque na imagem para ampliar ou baixar
         </div>
-        <p style="color:#ffffff; font-size:14.5px; line-height:1.5; text-align:left; background:rgba(15,23,42,0.78); padding:12px; border-radius:14px; border:1.5px solid rgba(56,189,248,0.45); margin-bottom:10px;">
+        <p style="color:#ffffff; font-size:13.5px; line-height:1.42; text-align:left; background:rgba(15,23,42,0.82); padding:10px; border-radius:12px; border:1.5px solid rgba(56,189,248,0.45); margin-bottom:8px;">
           ${ageData.text}
         </p>
-        <div style="background:linear-gradient(180deg, rgba(88,28,135,0.85), rgba(49,46,129,0.9)); border:2px solid #fde047; border-radius:14px; padding:10px; text-align:left;">
-          <div style="color:#fde047; font-size:12.5px; font-weight:800; margin-bottom:4px;">Onde fica na Linha do Tempo da Bíblia:</div>
-          <div style="color:#f1f5f9; font-size:13px; line-height:1.4;">${lesson.chronologyConnection}</div>
+        <div style="background:linear-gradient(180deg, rgba(88,28,135,0.85), rgba(49,46,129,0.9)); border:2px solid #fde047; border-radius:12px; padding:8px 10px; text-align:left;">
+          <div style="color:#fde047; font-size:12px; font-weight:800; margin-bottom:2px;">Onde fica na Linha do Tempo da Bíblia:</div>
+          <div style="color:#f1f5f9; font-size:12.5px; line-height:1.35;">${lesson.chronologyConnection}</div>
         </div>
       </div>
     `;
@@ -4445,118 +3298,126 @@ window.openLessonModule = function(modType) {
     const storyScript = (ageData && ageData.vovoStoryScript) || lesson.vovoStoryScript;
     const safeTitle = lesson.title.replace(/'/g, "\'");
     box.innerHTML = `
-      <div class="ebd-glass-card">
-        <h3 style="color:#fde047; font-size:16.5px; margin-bottom:6px;">Lição ${lesson.week}: ${lesson.title}</h3>
+      <div class="ebd-glass-card" style="margin-bottom:4px; padding:10px;">
+        <h3 style="color:#fde047; font-size:15.5px; margin-bottom:5px;">Lição ${lesson.week}: ${lesson.title}</h3>
         ${ageSwitchHtml}
 
         <!-- Palco Visual 3D Vertical 9:16 INTEIRO (Sem cortar a cabeça do Vovô nem a Arca de Noé!) -->
-        <div class="frame-3d-alive" style="width:158px; aspect-ratio:9/16; height:auto; margin:0 auto 5px auto; overflow:hidden; cursor:pointer; background:#0f172a;" onclick="openLessonImageFullModal(document.getElementById('vovo-story-scene-img').src, 'Lição ${lesson.week}: ${safeTitle}')" title="Toque para abrir a imagem inteira">
-          <img id="vovo-story-scene-img" src="${scenes[0].img}" alt="Cena da História" style="width:100%; height:100%; object-fit:contain; border-radius:16px; display:block; transition: opacity 0.3s ease;">
+        <div class="frame-3d-alive" style="width:142px; aspect-ratio:9/16; height:auto; margin:0 auto 4px auto; overflow:hidden; cursor:pointer; background:#0f172a;" onclick="openLessonImageFullModal(document.getElementById('vovo-story-scene-img').src, 'Lição ${lesson.week}: ${safeTitle}')" title="Toque para abrir a imagem inteira">
+          <img id="vovo-story-scene-img" src="${scenes[0].img}" alt="Cena da História" style="width:100%; height:100%; object-fit:contain; border-radius:15px; display:block; transition: opacity 0.3s ease;">
         </div>
-        <div style="font-size:11px; color:#fde047; font-weight:700; margin-bottom:6px; cursor:pointer;" onclick="openLessonImageFullModal(document.getElementById('vovo-story-scene-img').src, 'Lição ${lesson.week}: ${safeTitle}')">
+        <div style="font-size:10.5px; color:#fde047; font-weight:700; margin-bottom:5px; cursor:pointer;" onclick="openLessonImageFullModal(document.getElementById('vovo-story-scene-img').src, 'Lição ${lesson.week}: ${safeTitle}')">
           Toque na imagem para ampliar ou baixar
         </div>
 
-        <div id="vovo-story-scene-caption" style="font-size:13px; font-weight:800; color:#fde047; background:rgba(15,23,42,0.85); border:1.5px solid #38bdf8; border-radius:12px; padding:7px 10px; margin-bottom:8px; line-height:1.3;">
+        <div id="vovo-story-scene-caption" style="font-size:12.5px; font-weight:800; color:#fde047; background:rgba(15,23,42,0.85); border:1.5px solid #38bdf8; border-radius:11px; padding:6px 9px; margin-bottom:7px; line-height:1.28;">
           ${scenes[0].caption}
         </div>
 
         <!-- Seletor das 4 Cenas -->
-        <div id="vovo-story-scene-dots" style="display:flex; justify-content:center; gap:6px; margin-bottom:10px;">
+        <div id="vovo-story-scene-dots" style="display:flex; justify-content:center; gap:6px; margin-bottom:8px;">
           ${scenes.map((sc, i) => `<button type="button" class="btn-tool-3d ${i === 0 ? "active" : ""}" onclick="selectVovoStoryScene(${i})">Cena ${i + 1}</button>`).join("")}
         </div>
 
         <!-- Botão de Áudio Real (Arturo Casares) — SEM EMOJI DE ALTO-FALANTE OU MICROFONE! -->
-        <button id="vovo-play-btn" type="button" class="btn-gold" style="width:100%; padding:11px; font-size:15px; margin-bottom:6px;" onclick="toggleVovoStoryNarration()">
+        <button id="vovo-play-btn" type="button" class="btn-gold" style="width:100%; padding:10px; font-size:14.5px; margin-bottom:5px;" onclick="toggleVovoStoryNarration()">
           Ouvir a Voz do Vovô Nésio
         </button>
-        <div id="vovo-audio-status" style="font-size:12px; color:#86efac; font-weight:700; margin-bottom:10px;">
+        <div id="vovo-audio-status" style="font-size:11.5px; color:#86efac; font-weight:700; margin-bottom:8px;">
           Toque no botão acima para ouvir a narração do Vovô Nésio (${ageBracket.replace("-", " a ")} anos)!
         </div>
 
-        <div style="text-align:left; background:rgba(15,23,42,0.78); border:1.5px solid rgba(253,224,71,0.4); border-radius:14px; padding:11px; color:#ffffff; font-size:13.5px; line-height:1.48;">
+        <div style="text-align:left; background:rgba(15,23,42,0.82); border:1.5px solid rgba(253,224,71,0.4); border-radius:12px; padding:10px; color:#ffffff; font-size:13px; line-height:1.45;">
           ${storyScript}
         </div>
       </div>
     `;
   }
 
-  // MÓDULO 3: SEMENTINHA NO CORAÇÃO (Somente o Versículo de Ouro da Lição)
+  // MÓDULO 3: SEMENTINHA NO CORAÇÃO (Cabe 100% na tela sem cortar no topo nem embaixo!)
   else if (modType === "sementinha") {
     const savedSeeds = JSON.parse(localStorage.getItem("trono_ebd_seeds_done") || "[]");
     const isMemorized = savedSeeds.includes(lesson.week);
     box.innerHTML = `
-      <div class="ebd-glass-card">
-        <div class="ebd-badge-era" style="margin-bottom:6px;">Sementinha no Coração • Versículo de Ouro</div>
-        <h3 style="color:#fde047; font-size:17px; margin-bottom:6px;">Lição ${lesson.week}: ${lesson.title}</h3>
-        ${ageSwitchHtml}
-        <div class="frame-3d-alive" style="width:104px; height:104px; margin:0 auto 10px auto; border-radius:50%;">
+      <div class="ebd-glass-card" style="flex:1; display:flex; flex-direction:column; justify-content:space-between; margin-bottom:0; padding:12px 12px;">
+        <div>
+          <h3 style="color:#fde047; font-size:16px; margin-bottom:6px; line-height:1.2;">Lição ${lesson.week}: ${lesson.title}</h3>
+          ${ageSwitchHtml}
+        </div>
+
+        <div class="frame-3d-alive" style="width:84px; height:84px; margin:2px auto 6px auto; border-radius:50%; flex-shrink:0;">
           <img src="./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" alt="Sementinha" style="width:100%; height:100%; object-fit:contain;">
         </div>
-        <div style="background:linear-gradient(180deg, #aa00ff 0%, #581c87 100%); border:2.5px solid #fde047; border-radius:18px; padding:14px 12px; margin-bottom:12px; box-shadow:0 6px 16px rgba(0,0,0,0.8);">
-          <div style="font-size:16.5px; font-weight:900; color:#ffffff; line-height:1.38; margin-bottom:6px;">
+
+        <div style="background:linear-gradient(180deg, #aa00ff 0%, #581c87 100%); border:2.5px solid #fde047; border-radius:16px; padding:12px 10px; margin-bottom:8px; box-shadow:0 5px 14px rgba(0,0,0,0.8);">
+          <div style="font-size:15.5px; font-weight:900; color:#ffffff; line-height:1.34; margin-bottom:5px;">
             "${ageData.verse}"
           </div>
-          <div style="font-size:12px; font-weight:800; color:#fde047;">Faixa Etária: ${ageBracket.replace("-", " a ")} anos</div>
+          <div style="font-size:11.5px; font-weight:800; color:#fde047;">Versículo de Ouro • Faixa: ${ageBracket.replace("-", " a ")} anos</div>
         </div>
-        <p style="font-size:13px; color:#e2e8f0; line-height:1.4; margin-bottom:12px;">
+
+        <p style="font-size:12.5px; color:#e2e8f0; line-height:1.35; margin-bottom:8px;">
           Leia o versículo em voz alta 3 vezes com sua família ou turma da EBD para guardar a Palavra de Deus no coração!
         </p>
-        <button type="button" class="btn-gold" style="width:100%; padding:11px; font-size:15px;" onclick="markLessonSeedMemorized(${lesson.week})">
+
+        <button type="button" class="btn-gold" style="width:100%; padding:10px; font-size:14.5px; flex-shrink:0;" onclick="markLessonSeedMemorized(${lesson.week})">
           ${isMemorized ? "Versículo já Guardado no Coração!" : "Já Memorizei este Versículo!"}
         </button>
       </div>
     `;
   }
 
-  // MÓDULO 4: FÉ EM AÇÃO (Somente a Missão Prática da Lição)
+  // MÓDULO 4: FÉ EM AÇÃO (Cabe 100% na tela sem cortar no topo nem embaixo!)
   else if (modType === "fe_acao") {
     const savedActions = JSON.parse(localStorage.getItem("trono_ebd_actions_done") || "[]");
     const isActionDone = savedActions.includes(lesson.week);
     box.innerHTML = `
-      <div class="ebd-glass-card">
-        <div class="ebd-badge-era" style="margin-bottom:6px;">Fé em Ação • Desafio Prático da Lição</div>
-        <h3 style="color:#fde047; font-size:17px; margin-bottom:6px;">${ageData.actionTitle}</h3>
-        ${ageSwitchHtml}
-        <div class="frame-3d-alive" style="width:104px; height:104px; margin:0 auto 10px auto; border-radius:50%;">
+      <div class="ebd-glass-card" style="flex:1; display:flex; flex-direction:column; justify-content:space-between; margin-bottom:0; padding:12px 12px;">
+        <div>
+          <h3 style="color:#fde047; font-size:16px; margin-bottom:6px; line-height:1.2;">${ageData.actionTitle}</h3>
+          ${ageSwitchHtml}
+        </div>
+
+        <div class="frame-3d-alive" style="width:84px; height:84px; margin:2px auto 6px auto; border-radius:50%; flex-shrink:0;">
           <img src="./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png" alt="Fé em Ação" style="width:100%; height:100%; object-fit:contain;">
         </div>
-        <div style="background:rgba(15,23,42,0.85); border:2px solid #00e676; border-radius:16px; padding:14px 12px; margin-bottom:12px; text-align:left;">
-          <div style="font-size:13px; font-weight:800; color:#86efac; margin-bottom:4px;">Sua Missão Prática desta Lição (${ageBracket.replace("-", " a ")} anos):</div>
-          <div style="font-size:15px; font-weight:700; color:#ffffff; line-height:1.45;">
+
+        <div style="background:rgba(15,23,42,0.88); border:2px solid #00e676; border-radius:16px; padding:12px 11px; margin-bottom:8px; text-align:left;">
+          <div style="font-size:12.5px; font-weight:800; color:#86efac; margin-bottom:4px;">Missão Prática da Lição ${lesson.week} (${ageBracket.replace("-", " a ")} anos):</div>
+          <div style="font-size:14.5px; font-weight:700; color:#ffffff; line-height:1.42;">
             ${ageData.actionDesc}
           </div>
         </div>
-        <button type="button" class="btn-gold" style="width:100%; padding:11px; font-size:15px;" onclick="markLessonActionCompleted(${lesson.week})">
+
+        <button type="button" class="btn-gold" style="width:100%; padding:10px; font-size:14.5px; flex-shrink:0;" onclick="markLessonActionCompleted(${lesson.week})">
           ${isActionDone ? "Missão da Lição Concluída!" : "Marcar Missão como Concluída!"}
         </button>
       </div>
     `;
   }
 
-  // MÓDULO 5: JOGOS DA LIÇÃO
+  // MÓDULO 5: JOGOS DA LIÇÃO (Cabe 100% na tela sem cortar!)
   else if (modType === "jogos_licao") {
     window.EBD_STATE.fromLessonGames = true;
     const lessonGames = [
-      { key: "chronology", title: "Ordem Cronológica da Lição", sub: "Ordene as cenas desta história", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png" },
-      { key: "verse_builder", title: "Construtor do Versículo", sub: `Monte ${lesson.bibleRef}`, icon: "./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" },
-      { key: "word_search", title: "Caça-Palavras da Lição", sub: "Encontre as 5 palavras-chave", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png" },
-      { key: "who_am_i", title: "Quem Sou Eu na Lição?", sub: "Descubra pelas 3 pistas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_vovo.png" },
-      { key: "true_or_myth", title: "Verdadeiro ou Mito?", sub: "Desafio sobre a lição de hoje", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png" },
-      { key: "secret_word", title: "Palavra Secreta da Lição", sub: "Descubra letra por letra", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png" },
-      { key: "lesson_puzzle", title: "Quebra-Cabeça da Lição", sub: "Monte o quadro desta história", icon: "./2_ASSETS_UI_BOTOES/ui_icon_01.png" },
-      { key: "lesson_paint", title: "Pintura da Lição", sub: "Pinte o desenho desta lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_03.png" }
+      { key: "chronology", title: "Ordem Cronológica", sub: "Ordene as cenas desta história", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png" },
+      { key: "verse_builder", title: "Construtor do Verso", sub: `Monte ${lesson.bibleRef}`, icon: "./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" },
+      { key: "word_search", title: "Caça-Palavras", sub: "Encontre as 5 palavras-chave", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png" },
+      { key: "who_am_i", title: "Quem Sou Eu?", sub: "Descubra pelas 3 pistas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_vovo.png" },
+      { key: "true_or_myth", title: "Verdadeiro ou Mito?", sub: "Desafio sobre a lição", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png" },
+      { key: "secret_word", title: "Palavra Secreta", sub: "Descubra letra por letra", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png" },
+      { key: "lesson_puzzle", title: "Quebra-Cabeça", sub: "Monte o quadro da lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_01.png" },
+      { key: "lesson_paint", title: "Pintura da Lição", sub: "Pinte o desenho da lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_03.png" }
     ];
     box.innerHTML = `
-      <div class="ebd-glass-card" style="padding:10px;">
-        <div class="ebd-badge-era" style="margin-bottom:4px;">Atividades Exclusivas • Lição ${lesson.week}</div>
-        <div style="font-size:14px; font-weight:800; color:#fde047; margin-bottom:8px;">${lesson.title}</div>
-        <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:8px;">
+      <div class="ebd-glass-card" style="margin-bottom:0; padding:8px;">
+        <div style="font-size:13.5px; font-weight:800; color:#fde047; margin-bottom:6px;">Lição ${lesson.week}: ${lesson.title}</div>
+        <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:6px;">
           ${lessonGames.map(g => `
-            <div onclick="openGameFromLesson('${g.key}')" style="background:linear-gradient(180deg, rgba(49,46,129,0.92), rgba(15,23,42,0.95)); border:2px solid #38bdf8; border-radius:15px; padding:8px 6px; display:flex; flex-direction:column; align-items:center; text-align:center; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,0.75);">
-              <img src="${g.icon}" alt="${g.title}" style="width:54px; height:54px; object-fit:contain; margin-bottom:4px;">
-              <div style="font-size:12.5px; font-weight:800; color:#fde047; line-height:1.15;">${g.title}</div>
-              <div style="font-size:10.5px; color:#cbd5e1; margin-top:2px;">${g.sub}</div>
+            <div onclick="openGameFromLesson('${g.key}')" style="background:linear-gradient(180deg, rgba(49,46,129,0.92), rgba(15,23,42,0.95)); border:2px solid #38bdf8; border-radius:14px; padding:6px 5px; display:flex; flex-direction:column; align-items:center; text-align:center; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,0.75);">
+              <img src="${g.icon}" alt="${g.title}" style="width:44px; height:44px; object-fit:contain; margin-bottom:3px;">
+              <div style="font-size:12px; font-weight:800; color:#fde047; line-height:1.12;">${g.title}</div>
+              <div style="font-size:10px; color:#cbd5e1; margin-top:1px;">${g.sub}</div>
             </div>
           `).join("")}
         </div>
@@ -4568,25 +3429,24 @@ window.openLessonModule = function(modType) {
   else if (modType === "devocional") {
     const checkedMap = JSON.parse(localStorage.getItem("trono_ebd_devotional_checks") || "{}");
     box.innerHTML = `
-      <div class="ebd-glass-card">
-        <div class="ebd-badge-era" style="margin-bottom:6px;">Devocional Familiar de 5 Dias</div>
-        <h3 style="color:#fde047; font-size:16.5px; margin-bottom:8px;">Lição ${lesson.week}: ${lesson.title}</h3>
-        <div style="display:flex; flex-direction:column; gap:7px; text-align:left; margin-bottom:10px;">
+      <div class="ebd-glass-card" style="margin-bottom:2px; padding:9px;">
+        <h3 style="color:#fde047; font-size:15px; margin-bottom:6px;">Lição ${lesson.week}: ${lesson.title}</h3>
+        <div style="display:flex; flex-direction:column; gap:5px; text-align:left; margin-bottom:8px;">
           ${lesson.devotional5Days.map(d => {
             const key = `w${lesson.week}_d${d.day}`;
             const done = !!checkedMap[key];
             return `
-              <div onclick="toggleLessonDevotionalDay('${key}')" style="background:${done ? "linear-gradient(180deg, rgba(6,95,70,0.9), rgba(4,47,46,0.95))" : "rgba(15,23,42,0.85)"}; border:2px solid ${done ? "#00e676" : "#38bdf8"}; border-radius:14px; padding:9px 11px; display:flex; align-items:flex-start; gap:9px; cursor:pointer;">
-                <div style="font-size:18px; line-height:1;">${done ? "✅" : "⬜"}</div>
+              <div onclick="toggleLessonDevotionalDay('${key}')" style="background:${done ? "linear-gradient(180deg, rgba(6,95,70,0.9), rgba(4,47,46,0.95))" : "rgba(15,23,42,0.85)"}; border:1.5px solid ${done ? "#00e676" : "#38bdf8"}; border-radius:12px; padding:6px 9px; display:flex; align-items:flex-start; gap:8px; cursor:pointer;">
+                <div style="font-size:16px; line-height:1.1;">${done ? "✅" : "⬜"}</div>
                 <div style="flex:1;">
-                  <div style="font-size:13px; font-weight:800; color:#fde047; margin-bottom:2px;">${d.title}</div>
-                  <div style="font-size:12.5px; color:#ffffff; line-height:1.35;">${d.text}</div>
+                  <div style="font-size:12px; font-weight:800; color:#fde047; margin-bottom:1px;">${d.title}</div>
+                  <div style="font-size:11.5px; color:#ffffff; line-height:1.28;">${d.text}</div>
                 </div>
               </div>
             `;
           }).join("")}
         </div>
-        <button type="button" class="btn-gold" style="width:100%; padding:10px; font-size:14.5px;" onclick="completeCurrentWeekLesson()">
+        <button type="button" class="btn-gold" style="width:100%; padding:9px; font-size:14px;" onclick="completeCurrentWeekLesson()">
           Concluir Lição ${lesson.week} e Ganhar Estrela!
         </button>
       </div>
@@ -4594,6 +3454,7 @@ window.openLessonModule = function(modType) {
   }
 
   if (typeof showScreen === "function") showScreen("screen-lesson-module");
+  box.scrollTop = 0;
 };
 
 window.selectVovoStoryScene = function(sceneIdx, silent) {
@@ -4705,13 +3566,13 @@ window.openGamesHubScreen = function(filterCat) {
   const curFilter = window.EBD_STATE.gamesHubFilter || "all";
   if (filterBar) {
     const filters = [
-      { id: "all", label: "Todos (11)" },
-      { id: "ebd", label: "Desafios Bíblicos" },
-      { id: "teen", label: "Grupo & Teen" },
+      { id: "all", label: "Todos" },
+      { id: "ebd", label: "Bíblicos" },
+      { id: "teen", label: "Grupo" },
       { id: "kids", label: "Clássicos" }
     ];
     filterBar.innerHTML = filters.map(f =>
-      `<button type="button" class="btn-tool-3d ${curFilter === f.id ? "active" : ""}" onclick="openGamesHubScreen('${f.id}')">${f.label}</button>`
+      `<button type="button" class="btn-tool-3d ${curFilter === f.id ? "active" : ""}" style="flex:1; font-size:11px; padding:4px 5px;" onclick="openGamesHubScreen('${f.id}')">${f.label}</button>`
     ).join("");
   }
 
@@ -4782,8 +3643,8 @@ window.buildTenPhasesBarHtml = function(bankArray, activeIdx, selectFnName) {
   if (window.EBD_STATE.fromLessonGames) {
     const lesson = window.getCurrentLessonObj();
     return `
-      <div class="houses-trail" style="margin-bottom:8px; padding:5px 10px;">
-        <span style="font-size:12px; font-weight:800; color:#fde047;">📖 Atividade da Lição ${lesson.week}: ${lesson.title}</span>
+      <div class="houses-trail" style="margin-bottom:6px; padding:5px 10px;">
+        <span style="font-size:12px; font-weight:800; color:#fde047;">Atividade da Lição ${lesson.week}: ${lesson.title}</span>
       </div>
     `;
   }
@@ -4793,12 +3654,22 @@ window.buildTenPhasesBarHtml = function(bankArray, activeIdx, selectFnName) {
   let btns = "";
   for (let i = 0; i < limit; i++) {
     const isCur = i === activeIdx;
-    btns += `<button type="button" class="house-step ${isCur ? "current" : ""}" onclick="${selectFnName}(${i})">${i + 1}</button>`;
+    btns += `<button type="button" id="stage-phase-pill-${i}" class="lesson-scroll-pill ${isCur ? "current" : ""}" onclick="${selectFnName}(${i})">Fase ${i + 1}</button>`;
   }
   if (!vip && bankArray.length > maxFree) {
-    btns += `<button type="button" class="house-step locked" onclick="ebdAskSubscribe('Liberar Todas as 20 Fases deste Jogo!')">🔒 +${bankArray.length - maxFree}</button>`;
+    btns += `<button type="button" class="lesson-scroll-pill locked" onclick="ebdAskSubscribe('Liberar Todas as 20 Fases deste Jogo!')">🔒 Mais Fases</button>`;
   }
-  return `<div class="houses-trail" style="margin-bottom:8px; flex-wrap:wrap; gap:4px; padding:5px 8px;">${btns}</div>`;
+  setTimeout(() => {
+    const strip = document.getElementById("active-edu-phases-strip");
+    if (strip && typeof window.enableHorizontalDragScroll === "function") {
+      window.enableHorizontalDragScroll(strip);
+      const curEl = document.getElementById(`stage-phase-pill-${activeIdx}`);
+      if (curEl && typeof curEl.scrollIntoView === "function") {
+        curEl.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
+    }
+  }, 40);
+  return `<div id="active-edu-phases-strip" class="houses-trail ebd-phases-scroll-trail" style="margin-bottom:6px;">${btns}</div>`;
 };
 
 window.openEduGame = function(gameKey, fromLesson) {

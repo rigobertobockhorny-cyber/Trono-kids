@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v4.2.0';
+const CACHE_VERSION = 'vortice-trono-ebd-v4.3.0';
 const ASSETS_TO_CACHE = [
   './index.html',
   './manifest.json',
