@@ -2237,34 +2237,41 @@ bgAudioPlayer.addEventListener('ended', () => {
   }
 });
 
-// Garante que a música tema comece a tocar ao abrir o app (e destrava no primeiro toque se o navegador exigir)
+// Garante que a música tema comece a tocar ao abrir o app (e destrava ao mover o mouse ou tocar se o navegador exigir)
 function startInitialThemeMusic() {
   if (!ambientPlaying) return;
-  const playPromise = bgAudioPlayer.play();
-  if (playPromise !== undefined) {
-    playPromise.then(() => {
-      updateSoundButtonIcon();
-    }).catch(() => {
-      const unlockOnFirstTouch = (ev) => {
-        if (ev.target && ev.target.closest && ev.target.closest('#btn-ambient-sound')) {
-          return;
-        }
-        if (ambientPlaying && bgAudioPlayer.paused) {
-          bgAudioPlayer.play().then(() => {
-            updateSoundButtonIcon();
-          }).catch(() => {});
-        }
-        ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown'].forEach(evt => {
-          window.removeEventListener(evt, unlockOnFirstTouch, true);
-          document.removeEventListener(evt, unlockOnFirstTouch, true);
-        });
-      };
-      ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown'].forEach(evt => {
-        window.addEventListener(evt, unlockOnFirstTouch, { capture: true, passive: true });
-        document.addEventListener(evt, unlockOnFirstTouch, { capture: true, passive: true });
+  const tryPlayNow = () => {
+    if (!ambientPlaying || !bgAudioPlayer.paused) return;
+    const p = bgAudioPlayer.play();
+    if (p !== undefined) {
+      p.then(() => {
+        updateSoundButtonIcon();
+        removeUnlockListeners();
+      }).catch(() => {
+        updateSoundButtonIcon();
       });
+    }
+  };
+  const unlockEvents = ['pointerdown', 'pointermove', 'mousemove', 'touchstart', 'touchend', 'wheel', 'click', 'keydown'];
+  const unlockOnGesture = (ev) => {
+    if (ev && ev.target && ev.target.closest && ev.target.closest('#btn-ambient-sound')) {
+      return;
+    }
+    tryPlayNow();
+  };
+  function removeUnlockListeners() {
+    unlockEvents.forEach(evt => {
+      window.removeEventListener(evt, unlockOnGesture, true);
+      document.removeEventListener(evt, unlockOnGesture, true);
     });
   }
+  unlockEvents.forEach(evt => {
+    window.addEventListener(evt, unlockOnGesture, { capture: true, passive: true });
+    document.addEventListener(evt, unlockOnGesture, { capture: true, passive: true });
+  });
+  tryPlayNow();
+  window.addEventListener('load', tryPlayNow, { once: true });
+  document.addEventListener('DOMContentLoaded', tryPlayNow, { once: true });
 }
 
 function ensureAudio() {
@@ -2994,19 +3001,22 @@ function openGameRulesModal() {
   document.getElementById('modal-game-rules').classList.add('active');
 }
 
-function renderVisualHousesTrail(containerId, currentStepOneBased, maxFreeSteps, onSelectStep, onLockedClick, completedSet = null, lockedBadgeText = '+10 (20)') {
+function renderVisualHousesTrail(containerId, currentStepOneBased, maxFreeSteps, onSelectStep, onLockedClick, completedSet = null, lockedBadgeText = 'Mais Fases') {
   const box = document.getElementById(containerId);
   if (!box) return;
   box.innerHTML = '';
+  box.classList.add('ebd-phases-scroll-trail');
 
   for (let i = 1; i <= maxFreeSteps; i++) {
-    const dot = document.createElement('div');
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.id = `${containerId}-pill-${i}`;
     const isCompleted = completedSet ? completedSet.has(i) : (i < currentStepOneBased);
     const isCurrent = (i === currentStepOneBased);
-    dot.className = 'house-step'
+    dot.className = 'lesson-scroll-pill'
       + (isCompleted ? ' done' : '')
       + (isCurrent ? ' current' : '');
-    dot.textContent = i;
+    dot.textContent = `Fase ${i}`;
     dot.onclick = () => {
       playSoundClick();
       onSelectStep(i);
@@ -3015,16 +3025,27 @@ function renderVisualHousesTrail(containerId, currentStepOneBased, maxFreeSteps,
   }
 
   if (!isVipUnlocked) {
-    const lockDot = document.createElement('div');
-    lockDot.className = 'house-step locked';
+    const lockDot = document.createElement('button');
+    lockDot.type = 'button';
+    lockDot.className = 'lesson-scroll-pill locked';
     lockDot.title = 'Fases Bloqueadas (Modo Assinante) • Clique para ver';
-    lockDot.innerHTML = `<img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" style="width:12px;height:12px;object-fit:contain;" alt="Bloqueado"><span>${lockedBadgeText}</span>`;
+    lockDot.innerHTML = `<img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" style="width:12px;height:12px;object-fit:contain;" alt="Bloqueado"><span>Mais Fases</span>`;
     lockDot.onclick = () => {
       playSoundClick();
       onLockedClick();
     };
     box.appendChild(lockDot);
   }
+
+  if (typeof window.enableHorizontalDragScroll === 'function') {
+    window.enableHorizontalDragScroll(box);
+  }
+  setTimeout(() => {
+    const curEl = document.getElementById(`${containerId}-pill-${currentStepOneBased}`);
+    if (curEl && typeof curEl.scrollIntoView === 'function') {
+      curEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  }, 40);
 }
 
 let galleryOffset = 0;
