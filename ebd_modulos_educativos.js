@@ -1158,17 +1158,17 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "O Jardim do Éden (Gênesis 2)",
     "title": "O Jardim do Éden e o Cuidado com a Criação",
     "bibleRef": "Gênesis 2:8–20",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_02.jpg",
+    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg",
     "storyIdUnlock": 2,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_11_3a5.mp3",
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_11_vovo.mp3",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_01.jpg",
+        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg",
         "caption": "Cena 1 • Deus plantou um jardim exuberante no Éden, com rios cristalinos e árvores cheias de frutos!"
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_02.jpg",
+        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg",
         "caption": "Cena 2 • Deus colocou Adão e Eva no Jardim do Éden para cultivarem e guardarem a natureza com amor!"
       },
       {
@@ -1271,21 +1271,21 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Infância e Chamado de Moisés (Êxodo 2–3)",
     "title": "O Bebê Moisés no Cestinho e a Sarça Ardente",
     "bibleRef": "Êxodo 2:1–10; 3:1–12",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_05.jpg",
+    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
     "storyIdUnlock": 5,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_12_3a5.mp3",
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_12_vovo.mp3",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_05.jpg",
+        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
         "caption": "Cena 1 • Com fé em Deus, Joquebede colocou o bebê Moisés em um cestinho impermeável nas águas do rio Nilo!"
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_05.jpg",
+        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
         "caption": "Cena 2 • A jovem Miriã vigiou o cestinho de perto até que a filha de Faraó encontrou e acolheu o bebê Moisés!"
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_24.jpg",
+        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
         "caption": "Cena 3 • Anos depois, no monte Horebe, Moisés viu uma sarça que ardia em fogo sem se queimar!"
       },
       {
@@ -1378,13 +1378,13 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Maná e Monte Sinai (Êxodo 16–20)",
     "title": "O Maná do Céu e as Tábuas no Monte Sinai",
     "bibleRef": "Êxodo 16:11–18; 20:1–17",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_25.jpg",
+    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
     "storyIdUnlock": 6,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_13_3a5.mp3",
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_13_vovo.mp3",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_25.jpg",
+        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
         "caption": "Cena 1 • No deserto, Deus enviava todas as manhãs o maná branquinho e doce como mel para alimentar as famílias!"
       },
       {
@@ -1489,25 +1489,25 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Tempo dos Juízes (~1200–1100 a.C. • Juízes 7; Rute)",
     "title": "A Coragem de Gideão e a Bondosa Rute",
     "bibleRef": "Juízes 7:15–22; Rute 1:16; 2:1–12",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_28.jpg",
+    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg",
     "storyIdUnlock": 9,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_14_3a5.mp3",
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_14_vovo.mp3",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_26.jpg",
+        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg",
         "caption": "Cena 1 • O anjo do Senhor chamou Gideão de 'homem valente' e prometeu que Deus daria a vitória!"
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_26.jpg",
+        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg",
         "caption": "Cena 2 • Com apenas 300 homens segurando tochas acesas e buzinas, Gideão confiou no poder de Deus!"
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_28.jpg",
+        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg",
         "caption": "Cena 3 • Na mesma época, a jovem Rute cuidou com amor de sua sogra Noemi, colhendo espigas nos campos de Belém!"
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_28.jpg",
+        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg",
         "caption": "Cena 4 • Boaz abençoou a bondade de Rute, e ela entrou para a árvore genealógica do Rei Davi!"
       }
     ],
@@ -1827,7 +1827,7 @@ window.EBD_LESSONS_CURRICULUM = [
         "caption": "Cena 1 • Após Elias subir ao céu, seu discípulo Eliseu continuou a missão ajudando o povo com compaixão!"
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_25.jpg",
+        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
         "caption": "Cena 2 • Pela fé, Deus multiplicou o azeite da viúva pobre, enchendo todas as vasilhas da casa!"
       },
       {
@@ -2480,10 +2480,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 1 • A Ordem dos Dias da Criação",
     subtitle: "Toque nos 4 acontecimentos na ordem em que Deus criou (Gênesis 1):",
     cards: [
-      { id: "c1", order: 1, era: "1º Evento", title: "Haja Luz! (Dia 1)", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_01.jpg" },
-      { id: "c2", order: 2, era: "2º Evento", title: "Terra Seca, Árvores e Flores (Dia 3)", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg" },
-      { id: "c3", order: 3, era: "3º Evento", title: "Peixes no Mar e Aves no Céu (Dia 5)", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_15.jpg" },
-      { id: "c4", order: 4, era: "4º Evento", title: "Animais Terrestres e o Ser Humano (Dia 6)", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_02.jpg" }
+      { id: "c1", order: 1, era: "1º Evento", title: "Haja Luz e Céu Iluminado! (Dia 1 e 2)", img: "./2_ASSETS_UI_BOTOES/bg_ebd_05_ceu.jpg" },
+      { id: "c2", order: 2, era: "2º Evento", title: "Terra Seca, Árvores e Flores (Dia 3)", img: "./2_ASSETS_UI_BOTOES/bg_ebd_02_jardim.jpg" },
+      { id: "c3", order: 3, era: "3º Evento", title: "Grandes Peixes no Mar e Aves (Dia 5)", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_14.jpg" },
+      { id: "c4", order: 4, era: "4º Evento", title: "Animais Terrestres, Adão e Eva (Dia 6)", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg" }
     ]
   },
   {
@@ -2491,10 +2491,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 2 • Do Jardim do Éden à Arca de Noé",
     subtitle: "Coloque em ordem cronológica os primeiros capítulos de Gênesis:",
     cards: [
-      { id: "c5", order: 1, era: "Gênesis 1", title: "Deus Cria a Luz no Princípio", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_01.jpg" },
-      { id: "c6", order: 2, era: "Gênesis 2", title: "Adão Dá Nome aos Animais no Éden", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_02.jpg" },
-      { id: "c7", order: 3, era: "Gênesis 6", title: "Noé Constrói a Grande Arca", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_03.jpg" },
-      { id: "c8", order: 4, era: "Gênesis 9", title: "O Arco-Íris da Aliança no Céu", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_19.jpg" }
+      { id: "c5", order: 1, era: "Gênesis 1", title: "Deus Cria a Luz no Princípio", img: "./2_ASSETS_UI_BOTOES/bg_ebd_05_ceu.jpg" },
+      { id: "c6", order: 2, era: "Gênesis 2", title: "O Lindo Jardim do Éden Florido", img: "./2_ASSETS_UI_BOTOES/bg_ebd_02_jardim.jpg" },
+      { id: "c7", order: 3, era: "Gênesis 2:19", title: "Adão e Eva com os Animais no Éden", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg" },
+      { id: "c8", order: 4, era: "Gênesis 6–9", title: "A Arca de Noé e o Arco-Íris da Aliança", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_12.jpg" }
     ]
   },
   {
@@ -2502,10 +2502,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 3 • As 4 Primeiras Eras da Bíblia",
     subtitle: "Ordene do acontecimento mais antigo para o mais recente:",
     cards: [
-      { id: "c9", order: 1, era: "1ª Era", title: "A Criação do Mundo no Éden", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_01.jpg" },
-      { id: "c10", order: 2, era: "2ª Era", title: "A Grande Arca de Noé", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_03.jpg" },
-      { id: "c11", order: 3, era: "3ª Era", title: "Abraão Olha as Estrelas da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_08.jpg" },
-      { id: "c12", order: 4, era: "4ª Era", title: "Moisés e a Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_06.jpg" }
+      { id: "c9", order: 1, era: "1ª Era", title: "A Criação do Mundo no Éden", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg" },
+      { id: "c10", order: 2, era: "2ª Era", title: "A Grande Arca de Noé", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_12.jpg" },
+      { id: "c11", order: 3, era: "3ª Era", title: "Abraão Olha as Estrelas da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_18.jpg" },
+      { id: "c12", order: 4, era: "4ª Era", title: "Moisés e a Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg" }
     ]
   },
   {
@@ -2513,10 +2513,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 4 • Os Patriarcas em Gênesis",
     subtitle: "Qual é a ordem correta da família da promessa em Gênesis?",
     cards: [
-      { id: "c13", order: 1, era: "Gênesis 12–15", title: "O Chamado de Abraão", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_08.jpg" },
-      { id: "c14", order: 2, era: "Gênesis 28", title: "O Sonho da Escada de Jacó", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_22.jpg" },
+      { id: "c13", order: 1, era: "Gênesis 12–15", title: "O Chamado de Abraão", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_18.jpg" },
+      { id: "c14", order: 2, era: "Gênesis 28", title: "O Sonho da Escada de Jacó", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_30.jpg" },
       { id: "c15", order: 3, era: "Gênesis 37", title: "José Ganha a Túnica Colorida", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_12.jpg" },
-      { id: "c16", order: 4, era: "Gênesis 41–45", title: "José Governador do Egito Abraça os Irmãos", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_23.jpg" }
+      { id: "c16", order: 4, era: "Gênesis 41–45", title: "José Governador do Egito Abraça os Irmãos", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_31.jpg" }
     ]
   },
   {
@@ -2524,10 +2524,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 5 • A Jornada de Moisés no Êxodo",
     subtitle: "Ordene a vida de Moisés desde bebê até o Monte Sinai:",
     cards: [
-      { id: "c17", order: 1, era: "Êxodo 2", title: "Bebê Moisés no Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_05.jpg" },
-      { id: "c18", order: 2, era: "Êxodo 3", title: "Deus Fala com Moisés na Sarça Ardente", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_24.jpg" },
-      { id: "c19", order: 3, era: "Êxodo 14", title: "A Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_06.jpg" },
-      { id: "c20", order: 4, era: "Êxodo 16", title: "O Maná que Caiu do Céu no Deserto", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_25.jpg" }
+      { id: "c17", order: 1, era: "Êxodo 2", title: "Bebê Moisés no Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg" },
+      { id: "c18", order: 2, era: "Êxodo 3", title: "Deus Fala com Moisés na Sarça Ardente", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg" },
+      { id: "c19", order: 3, era: "Êxodo 14", title: "A Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg" },
+      { id: "c20", order: 4, era: "Êxodo 16", title: "O Maná que Caiu do Céu no Deserto", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg" }
     ]
   },
   {
@@ -2535,10 +2535,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 6 • Da Terra Prometida aos Juízes",
     subtitle: "Coloque em ordem as vitórias do povo de Israel:",
     cards: [
-      { id: "c21", order: 1, era: "Josué 3", title: "A Travessia do Rio Jordão", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_06.jpg" },
+      { id: "c21", order: 1, era: "Josué 3", title: "A Travessia do Rio Jordão", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg" },
       { id: "c22", order: 2, era: "Josué 6", title: "As Trombetas e as Muralhas de Jericó", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_11.jpg" },
-      { id: "c23", order: 3, era: "Juízes 7", title: "Gideão e os 300 com Tochas", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_26.jpg" },
-      { id: "c24", order: 4, era: "Rute 2", title: "A Bondosa Rute nos Campos de Boaz", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_28.jpg" }
+      { id: "c23", order: 3, era: "Juízes 7", title: "Gideão e os 300 com Tochas", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg" },
+      { id: "c24", order: 4, era: "Rute 2", title: "A Bondosa Rute nos Campos de Boaz", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg" }
     ]
   },
   {
@@ -2548,7 +2548,7 @@ window.CHRONOLOGY_LEVELS = [
     cards: [
       { id: "c25", order: 1, era: "1 Samuel 3", title: "O Pequeno Samuel Ouve a Voz de Deus", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg" },
       { id: "c26", order: 2, era: "1 Samuel 16", title: "Davi Pastorzinho Tocando Harpa", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_14.jpg" },
-      { id: "c27", order: 3, era: "1 Samuel 17", title: "A Coragem de Davi Diante de Golias", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_04.jpg" },
+      { id: "c27", order: 3, era: "1 Samuel 17", title: "A Coragem de Davi Diante de Golias", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_11.jpg" },
       { id: "c28", order: 4, era: "1 Reis 3", title: "O Sábio Rei Salomão em Jerusalém", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_30.jpg" }
     ]
   },
@@ -2560,7 +2560,7 @@ window.CHRONOLOGY_LEVELS = [
       { id: "c29", order: 1, era: "1 Reis 17", title: "O Profeta Elias Alimentado pelos Corvos", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_31.jpg" },
       { id: "c30", order: 2, era: "2 Reis 2", title: "A Carruagem de Fogo de Elias", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg" },
       { id: "c31", order: 3, era: "Jonas 1–3", title: "Jonas e o Grande Peixe no Mar", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_10.jpg" },
-      { id: "c32", order: 4, era: "Daniel 6", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_07.jpg" }
+      { id: "c32", order: 4, era: "Daniel 6", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_15.jpg" }
     ]
   },
   {
@@ -2571,7 +2571,7 @@ window.CHRONOLOGY_LEVELS = [
       { id: "c33", order: 1, era: "Lucas 2", title: "O Nascimento de Jesus em Belém", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_36.jpg" },
       { id: "c34", order: 2, era: "Marcos 4", title: "Jesus Acalma a Tempestade no Mar", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_37.jpg" },
       { id: "c35", order: 3, era: "Marcos 10", title: "Jesus Abençoa as Criancinhas", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_13.jpg" },
-      { id: "c36", order: 4, era: "Lucas 15", title: "A Parábola do Bom Pastor e a Ovelhinha", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_40.jpg" }
+      { id: "c36", order: 4, era: "Lucas 15", title: "A Parábola do Bom Pastor e a Ovelhinha", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_10.jpg" }
     ]
   },
   {
@@ -2579,8 +2579,8 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 10 • Grande Linha do Tempo (Gênesis a Apocalipse)",
     subtitle: "Ordene a Bíblia inteira do Princípio até a Cidade Eterna:",
     cards: [
-      { id: "c37", order: 1, era: "Gênesis", title: "A Criação e o Jardim do Éden", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_01.jpg" },
-      { id: "c38", order: 2, era: "Êxodo a Reis", title: "Moisés, Davi e o Povo de Israel", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_06.jpg" },
+      { id: "c37", order: 1, era: "Gênesis", title: "A Criação e o Jardim do Éden", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg" },
+      { id: "c38", order: 2, era: "Êxodo a Reis", title: "Moisés, Davi e o Povo de Israel", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg" },
       { id: "c39", order: 3, era: "Evangelhos", title: "Jesus, o Salvador Prometido", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_13.jpg" },
       { id: "c40", order: 4, era: "Atos e Apocalipse", title: "As Viagens de Paulo e a Cidade Dourada", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_38.jpg" }
     ]
@@ -2591,10 +2591,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 11 • Semana 3: A Fé de Abraão",
     subtitle: "Ordene a caminhada de Abraão em Gênesis:",
     cards: [
-      { id: "c41", order: 1, era: "1º Passo", title: "Deus Chama Abraão para Sair de Ur", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_08.jpg" },
-      { id: "c42", order: 2, era: "2º Passo", title: "Abraão Conta as Estrelas do Céu", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_08.jpg" },
-      { id: "c43", order: 3, era: "3º Passo", title: "Nasce Isaque, o Filho da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_22.jpg" },
-      { id: "c44", order: 4, era: "4º Passo", title: "Nasce Jacó, Neto de Abraão", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_22.jpg" }
+      { id: "c41", order: 1, era: "1º Passo", title: "Deus Chama Abraão para Sair de Ur", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_18.jpg" },
+      { id: "c42", order: 2, era: "2º Passo", title: "Abraão Conta as Estrelas do Céu", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_18.jpg" },
+      { id: "c43", order: 3, era: "3º Passo", title: "Nasce Isaque, o Filho da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_30.jpg" },
+      { id: "c44", order: 4, era: "4º Passo", title: "Nasce Jacó, Neto de Abraão", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_30.jpg" }
     ]
   },
   {
@@ -2604,8 +2604,8 @@ window.CHRONOLOGY_LEVELS = [
     cards: [
       { id: "c45", order: 1, era: "1º Passo", title: "Jacó Dá a Túnica Colorida a José", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_12.jpg" },
       { id: "c46", order: 2, era: "2º Passo", title: "José Permanece Fiel a Deus no Egito", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_12.jpg" },
-      { id: "c47", order: 3, era: "3º Passo", title: "José Interpreta o Sonho de Faraó", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_23.jpg" },
-      { id: "c48", order: 4, era: "4º Passo", title: "José Perdoa e Abraça Seus Irmãos", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_23.jpg" }
+      { id: "c47", order: 3, era: "3º Passo", title: "José Interpreta o Sonho de Faraó", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_31.jpg" },
+      { id: "c48", order: 4, era: "4º Passo", title: "José Perdoa e Abraça Seus Irmãos", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_31.jpg" }
     ]
   },
   {
@@ -2613,10 +2613,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 13 • Semana 5: Moisés e o Libertador",
     subtitle: "Ordene a história da libertação do Egito:",
     cards: [
-      { id: "c49", order: 1, era: "1º Passo", title: "Miriam Vigia o Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_05.jpg" },
-      { id: "c50", order: 2, era: "2º Passo", title: "A Sarça Ardente no Monte Horebe", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_24.jpg" },
-      { id: "c51", order: 3, era: "3º Passo", title: "Deus Abre o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_06.jpg" },
-      { id: "c52", order: 4, era: "4º Passo", title: "O Cântico de Vitória e o Maná do Céu", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_25.jpg" }
+      { id: "c49", order: 1, era: "1º Passo", title: "Miriam Vigia o Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg" },
+      { id: "c50", order: 2, era: "2º Passo", title: "A Sarça Ardente no Monte Horebe", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg" },
+      { id: "c51", order: 3, era: "3º Passo", title: "Deus Abre o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg" },
+      { id: "c52", order: 4, era: "4º Passo", title: "O Cântico de Vitória e o Maná do Céu", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg" }
     ]
   },
   {
@@ -2627,7 +2627,7 @@ window.CHRONOLOGY_LEVELS = [
       { id: "c53", order: 1, era: "1º Passo", title: "Deus Diz a Josué: 'Sê Forte e Corajoso'", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_11.jpg" },
       { id: "c54", order: 2, era: "2º Passo", title: "Seis Dias Caminhando em Silêncio", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_11.jpg" },
       { id: "c55", order: 3, era: "3º Passo", title: "Sete Voltas e o Toque das Trombetas", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_11.jpg" },
-      { id: "c56", order: 4, era: "4º Passo", title: "As Muralhas Caem pelo Poder de Deus", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_26.jpg" }
+      { id: "c56", order: 4, era: "4º Passo", title: "As Muralhas Caem pelo Poder de Deus", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg" }
     ]
   },
   {
@@ -2635,8 +2635,8 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 15 • Semana 7: Gideão, Rute e Samuel",
     subtitle: "Ordene os acontecimentos da época dos Juízes:",
     cards: [
-      { id: "c57", order: 1, era: "Juízes 7", title: "Gideão Vence com 300 Tochas Acesas", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_26.jpg" },
-      { id: "c58", order: 2, era: "Rute 2", title: "Rute Colhe Espigas no Campo de Boaz", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_28.jpg" },
+      { id: "c57", order: 1, era: "Juízes 7", title: "Gideão Vence com 300 Tochas Acesas", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg" },
+      { id: "c58", order: 2, era: "Rute 2", title: "Rute Colhe Espigas no Campo de Boaz", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg" },
       { id: "c59", order: 3, era: "1 Samuel 3", title: "Samuel Ouve o Chamado de Deus no Templo", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg" },
       { id: "c60", order: 4, era: "1 Samuel 16", title: "Samuel Unge o Jovem Davi em Belém", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_14.jpg" }
     ]
@@ -2647,7 +2647,7 @@ window.CHRONOLOGY_LEVELS = [
     subtitle: "Ordene o Reino de Israel:",
     cards: [
       { id: "c61", order: 1, era: "1º Passo", title: "Davi Cuida das Ovelhas e Toca Harpa", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_14.jpg" },
-      { id: "c62", order: 2, era: "2º Passo", title: "Davi Vence Golias em Nome do Senhor", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_04.jpg" },
+      { id: "c62", order: 2, era: "2º Passo", title: "Davi Vence Golias em Nome do Senhor", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_11.jpg" },
       { id: "c63", order: 3, era: "3º Passo", title: "Salomão Pede um Coração Sábio a Deus", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_30.jpg" },
       { id: "c64", order: 4, era: "4º Passo", title: "Salomão Constrói o Templo em Jerusalém", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_30.jpg" }
     ]
@@ -2669,7 +2669,7 @@ window.CHRONOLOGY_LEVELS = [
     subtitle: "Ordene o Exílio e o Retorno a Jerusalém:",
     cards: [
       { id: "c69", order: 1, era: "Daniel 1", title: "Daniel e Seus Amigos Decidem Ser Fiéis", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_33.jpg" },
-      { id: "c70", order: 2, era: "Daniel 6", title: "O Anjo Fecha a Boca dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_07.jpg" },
+      { id: "c70", order: 2, era: "Daniel 6", title: "O Anjo Fecha a Boca dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_15.jpg" },
       { id: "c71", order: 3, era: "Ester 4–8", title: "A Rainha Ester Salva o Povo de Deus", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg" },
       { id: "c72", order: 4, era: "Neemias 6", title: "Neemias Reconstrói os Muros de Jerusalém", img: "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_35.jpg" }
     ]
@@ -2971,27 +2971,27 @@ window.TRUE_OR_MYTH_BANK = [
 // JOGO 7: PALAVRA SECRETA BÍBLICA (10 Fases Livres + 10 Fases Semanais = 20 Desafios)
 window.SECRET_WORD_BANK = [
   // 10 FASES LIVRES
-  { level: 1, free: true, lessonWeek: 1, word: "CRIACAO", hint: "A obra maravilhosa que Deus fez em 6 dias no livro de Gênesis!" },
-  { level: 2, free: true, lessonWeek: 2, word: "ALIANCA", hint: "O arco-íris no céu foi o sinal da promessa fiel de Deus com Noé!" },
-  { level: 3, free: true, lessonWeek: 1, word: "JARDIM", hint: "Lugar lindo onde Adão e Eva moravam e davam nome aos animais!" },
-  { level: 4, free: true, lessonWeek: 2, word: "OLIVEIRA", hint: "Árvore da qual a pombinha trouxe uma folha fresca para Noé na Arca!" },
-  { level: 5, free: true, lessonWeek: 1, word: "ESTRELAS", hint: "Deus mandou Abraão olhar para o céu à noite e contá-las!" },
-  { level: 6, free: true, lessonWeek: 2, word: "TUNICA", hint: "Presente colorido que Jacó deu ao seu filho José!" },
-  { level: 7, free: true, lessonWeek: 1, word: "JERICO", hint: "Cidade cujas muralhas caíram após o toque das trombetas com Josué!" },
-  { level: 8, free: true, lessonWeek: 2, word: "GOLIAS", hint: "Gigante filisteu que o jovem pastor Davi venceu com fé em Deus!" },
-  { level: 9, free: true, lessonWeek: 1, word: "DANIEL", hint: "Servo fiel de Deus que orava três vezes ao dia e foi salvo na cova dos leões!" },
-  { level: 10, free: true, lessonWeek: 2, word: "BELEM", hint: "Cidade onde Jesus nasceu sob o brilho da estrela!" },
-  // FASES 11 A 20 (Semanas 3 a 12)
-  { level: 11, free: false, lessonWeek: 3, word: "ISAQUE", hint: "Semana 3: O filho da promessa de Abraão e Sara!" },
-  { level: 12, free: false, lessonWeek: 4, word: "PERDAO", hint: "Semana 4: Atitude linda de José ao abraçar seus irmãos no Egito!" },
-  { level: 13, free: false, lessonWeek: 5, word: "MOISES", hint: "Semana 5: Libertador que Deus chamou na sarça ardente!" },
-  { level: 14, free: false, lessonWeek: 6, word: "TROMBETA", hint: "Semana 6: Instrumento tocado pelos sacerdotes ao redor de Jericó!" },
-  { level: 15, free: false, lessonWeek: 7, word: "SAMUEL", hint: "Semana 7: Menino que ouviu a voz de Deus no templo dizendo: 'Fala, Senhor!'" },
-  { level: 16, free: false, lessonWeek: 8, word: "SALOMAO", hint: "Semana 8: Rei sábio de Israel que construiu o Templo em Jerusalém!" },
-  { level: 17, free: false, lessonWeek: 9, word: "NINIVE", hint: "Semana 9: Grande cidade onde o profeta Jonas pregou e todos se arrependeram!" },
-  { level: 18, free: false, lessonWeek: 10, word: "ESTER", hint: "Semana 10: Rainha corajosa que salvou seu povo na Pérsia!" },
-  { level: 19, free: false, lessonWeek: 11, word: "EVANGELHO", hint: "Semana 11: Nome que significa 'Boas Novas' de Jesus (Mateus, Marcos, Lucas e João)!" },
-  { level: 20, free: false, lessonWeek: 12, word: "PAULO", hint: "Semana 12: Apóstolo que viajou de navio e escreveu cartas às igrejas!" }
+  { level: 1, free: true, lessonWeek: 1, word: "CRIACAO", hint: "Tudo o que Deus fez no princípio: o céu, a terra, os animais e o ser humano (A _______ do Mundo)!" },
+  { level: 2, free: true, lessonWeek: 2, word: "ARCA", hint: "O grande barco de madeira que Noé construiu para salvar sua família e os animais!" },
+  { level: 3, free: true, lessonWeek: 3, word: "ESTRELAS", hint: "Brilham no céu à noite! Deus mandou Abraão olhar para o alto e contá-las!" },
+  { level: 4, free: true, lessonWeek: 4, word: "TUNICA", hint: "Roupa especial e toda colorida que Jacó deu de presente ao seu filho José!" },
+  { level: 5, free: true, lessonWeek: 5, word: "MOISES", hint: "Foi colocado num cestinho no rio Nilo quando bebê e depois abriu o Mar Vermelho!" },
+  { level: 6, free: true, lessonWeek: 6, word: "JERICO", hint: "Cidade cercada por grandes muralhas que caíram ao som das trombetas com Josué!" },
+  { level: 7, free: true, lessonWeek: 7, word: "GOLIAS", hint: "O soldado gigante que o jovem pastorzinho Davi venceu com uma funda e fé em Deus!" },
+  { level: 8, free: true, lessonWeek: 8, word: "HARPA", hint: "Instrumento musical de cordas que o pastorzinho Davi tocava para louvar a Deus!" },
+  { level: 9, free: true, lessonWeek: 9, word: "DANIEL", hint: "Amigo fiel de Deus que orava todos os dias e foi protegido pelo anjo na cova dos leões!" },
+  { level: 10, free: true, lessonWeek: 10, word: "JONAS", hint: "Profeta que orou a Deus dentro da barriga de um grande peixe e pregou em Nínive!" },
+  // FASES 11 A 20 (Série 2)
+  { level: 11, free: false, lessonWeek: 11, word: "EDEN", hint: "Nome do lindo jardim que Deus plantou no princípio para Adão e Eva morarem!" },
+  { level: 12, free: false, lessonWeek: 12, word: "ESCADA", hint: "No sonho de Jacó em Betel, ela brilhava ligando a terra até o céu com os anjos!" },
+  { level: 13, free: false, lessonWeek: 13, word: "PERDAO", hint: "Atitude de amor que José teve no coração ao abraçar seus irmãos no Egito!" },
+  { level: 14, free: false, lessonWeek: 14, word: "TROMBETA", hint: "Instrumento tocado pelos sacerdotes na 7ª volta ao redor das muralhas!" },
+  { level: 15, free: false, lessonWeek: 15, word: "SALOMAO", hint: "Filho de Davi que pediu a Deus um coração cheio de sabedoria para governar!" },
+  { level: 16, free: false, lessonWeek: 16, word: "ESTER", hint: "Rainha corajosa que entrou diante do rei para salvar todo o povo de Deus!" },
+  { level: 17, free: false, lessonWeek: 17, word: "ELIAS", hint: "Profeta fiel que subiu aos céus em uma carruagem de fogo enviada por Deus!" },
+  { level: 18, free: false, lessonWeek: 18, word: "SANSAO", hint: "Juiz de Israel a quem Deus deu uma força extraordinária!" },
+  { level: 19, free: false, lessonWeek: 19, word: "BELEM", hint: "Cidadezinha onde o menino Jesus nasceu sob o brilho da grande estrela!" },
+  { level: 20, free: false, lessonWeek: 20, word: "PAULO", hint: "Apóstolo que viajou de navio levando as Boas Novas de Jesus para muitas cidades!" }
 ];
 
 // ============================================================================
@@ -4584,7 +4584,7 @@ window.openLessonModule = function(modType) {
       { key: "who_am_i", title: "Quem Sou Eu?", sub: "Descubra pelas 3 pistas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_vovo.png" },
       { key: "true_or_myth", title: "Verdadeiro ou Mito?", sub: "Desafio sobre a lição", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png" },
       { key: "secret_word", title: "Palavra Secreta", sub: "Descubra letra por letra", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png" },
-      { key: "lesson_puzzle", title: "Quebra-Cabeça", sub: "Monte o quadro da lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_01.png" },
+      { key: "lesson_puzzle", title: "Quebra-Cabeça", sub: "Monte o quadro da lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_02.png" },
       { key: "lesson_paint", title: "Pintura da Lição", sub: "Pinte o desenho da lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_03.png" }
     ];
     box.innerHTML = `
@@ -4761,7 +4761,7 @@ window.openGamesHubScreen = function(filterCat) {
     { id: "true_or_myth", cat: "teen", title: "Verdadeiro ou Mito?", badge: "10 Grátis + 10 VIP", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png", action: "openEduGame('true_or_myth', false)" },
     { id: "secret_word", cat: "ebd", title: "Palavra Secreta", badge: "10 Grátis + 10 VIP", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png", action: "openEduGame('secret_word', false)" },
     { id: "quiz", cat: "kids", title: "Quiz do Vovô Nésio", badge: "10 Grátis + 40 VIP", icon: "./2_ASSETS_UI_BOTOES/ui_icon_04.png", action: "openModule('quiz')" },
-    { id: "puzzle", cat: "kids", title: "Quebra-Cabeça 3D", badge: "10 Grátis + 10 VIP", icon: "./2_ASSETS_UI_BOTOES/ui_icon_01.png", action: "openGalleryFor('puzzle')" },
+    { id: "puzzle", cat: "kids", title: "Quebra-Cabeça 3D", badge: "10 Grátis + 10 VIP", icon: "./2_ASSETS_UI_BOTOES/ui_icon_02.png", action: "openGalleryFor('puzzle')" },
     { id: "paint", cat: "kids", title: "Pintura Mágica", badge: "10 Grátis + 10 VIP", icon: "./2_ASSETS_UI_BOTOES/ui_icon_03.png", action: "openGalleryFor('paint')" },
     { id: "memory", cat: "kids", title: "Jogo da Memória", badge: "10 Grátis + 10 VIP", icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png", action: "openModule('memory')" }
   ];
@@ -4789,10 +4789,12 @@ window.openGameFromLesson = function(gameKey) {
   const st = (typeof STORIES !== "undefined" && STORIES.find(s => s.id === lesson.storyIdUnlock)) || (typeof STORIES !== "undefined" ? STORIES[0] : null);
 
   if (gameKey === "lesson_puzzle" && st && typeof startPuzzleWithStory === "function") {
+    if (typeof currentStory !== "undefined") currentStory = st;
     startPuzzleWithStory(st);
     return;
   }
   if (gameKey === "lesson_paint" && st && typeof startPaintWithStory === "function") {
+    if (typeof currentStory !== "undefined") currentStory = st;
     startPaintWithStory(st);
     return;
   }
@@ -4975,7 +4977,7 @@ window.renderStageChronology = function() {
           </div>
         `).join("")}
       </div>
-      <button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageChronoPhase()">Próxima Fase ➔</button>
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageChronoPhase()">Próxima Fase ➔</button>`}
     </div>
   `;
 };
@@ -5066,7 +5068,7 @@ window.renderStageVerseBuilder = function() {
           <button type="button" id="vword-${obj.idx}" class="btn-tool-3d" style="font-size:14.5px; padding:8px 13px;" onclick="tapStageVerseWord(${obj.idx})">${obj.word}</button>
         `).join("")}
       </div>
-      <button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="advanceStageVersePhase()">Próximo Versículo ➔</button>
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="advanceStageVersePhase()">Próximo Versículo ➔</button>`}
     </div>
   `;
 };
@@ -5228,7 +5230,7 @@ window.renderStageWordSearch = function() {
       <div style="display:grid; grid-template-columns:repeat(8,1fr); gap:4px; margin-bottom:10px;">
         ${cellsHtml}
       </div>
-      <button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageWSPhase()">Próximo Caça-Palavras ➔</button>
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageWSPhase()">Próximo Caça-Palavras ➔</button>`}
     </div>
   `;
   window.updateStageWSPills();
@@ -5319,6 +5321,7 @@ window.renderStageWhoAmI = function() {
           <button type="button" class="quiz-opt-btn" style="justify-content:center; text-align:center;" onclick="answerStageWhoAmI('${opt}')">${opt}</button>
         `).join("")}
       </div>
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px; margin-top:10px;" onclick="openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : ""}
     </div>
   `;
 };
@@ -5379,7 +5382,7 @@ window.renderStageTrueOrMyth = function() {
       <div id="truemyth-explanation" style="font-size:13.5px; color:#fde047; font-weight:700; line-height:1.4; min-height:44px; margin-bottom:10px;">
         Toque em VERDADEIRO ou MITO para descobrir!
       </div>
-      <button type="button" class="btn-tool-3d" style="padding:8px 18px; font-size:13px;" onclick="advanceStageTrueMythPhase()">Próxima Pergunta ➔</button>
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-tool-3d" style="padding:8px 18px; font-size:13px;" onclick="advanceStageTrueMythPhase()">Próxima Pergunta ➔</button>`}
     </div>
   `;
 };
@@ -5454,7 +5457,7 @@ window.renderStageSecretWord = function() {
           return `<button type="button" ${used || allFound ? "disabled" : ""} onclick="tapStageSWLetter('${ch}')" style="height:34px; border-radius:8px; border:1.5px solid #b3e5fc; background:${used ? "#1e293b" : "linear-gradient(180deg,#00b0ff,#0066ff)"}; color:#fff; font-weight:800; font-size:13px; opacity:${used ? "0.35" : "1"}; cursor:pointer;">${ch}</button>`;
         }).join("")}
       </div>
-      <button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageSWPhase()">Próxima Palavra Secreta ➔</button>
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageSWPhase()">Próxima Palavra Secreta ➔</button>`}
     </div>
   `;
 };

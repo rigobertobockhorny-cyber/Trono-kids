@@ -1722,7 +1722,7 @@
         <button id="diff-9" class="btn-tool-3d" onclick="setPuzzleDifficulty(3, 3)">9 Peças</button>
         <button id="diff-12" class="btn-tool-3d" onclick="setPuzzleDifficulty(3, 4)">12 Peças</button>
       </div>
-      <button class="btn-nav-circle" onclick="goToNextStory('puzzle')" title="Próximo">
+      <button id="btn-puzzle-next" class="btn-nav-circle" onclick="goToNextStory('puzzle')" title="Próximo">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
@@ -1748,7 +1748,7 @@
         <button id="tool-clear" class="btn-tool-3d" onclick="highlightPaintAction('tool-clear'); resetCurrentPainting()">Limpar</button>
         <button id="tool-download" class="btn-tool-3d" onclick="highlightPaintAction('tool-download'); onPaintDownloadOrPrintClick()">Baixar</button>
       </div>
-      <button class="btn-nav-circle" onclick="goToNextStory('paint')" title="Próximo">
+      <button id="btn-paint-next" class="btn-nav-circle" onclick="goToNextStory('paint')" title="Próximo">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
@@ -2148,7 +2148,7 @@
 </div>
 
 <script src="pinturas_base64.js"></script>
-<script src="ebd_modulos_educativos.js?v=44"></script>
+<script src="ebd_modulos_educativos.js?v=45"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -2731,6 +2731,12 @@ function showScreen(screenId) {
     }
   }
 
+  const isFromLesson = !!(window.EBD_STATE && window.EBD_STATE.fromLessonGames);
+  const puzNextBtn = document.getElementById('btn-puzzle-next');
+  if (puzNextBtn) puzNextBtn.style.visibility = isFromLesson ? 'hidden' : 'visible';
+  const paintNextBtn = document.getElementById('btn-paint-next');
+  if (paintNextBtn) paintNextBtn.style.visibility = isFromLesson ? 'hidden' : 'visible';
+
   if (typeof applyEbdBackgroundForScreen === 'function') {
     applyEbdBackgroundForScreen(screenId);
   } else {
@@ -2759,6 +2765,10 @@ function goToNextStory(mode, skipPaintCheck = false) {
   if (mode === 'paint' && !skipPaintCheck && currentPaintingTouched) {
     currentPaintingTouched = false;
     registerGameStepCompleted('paint', currentStory);
+    return;
+  }
+  if (window.EBD_STATE && window.EBD_STATE.fromLessonGames && typeof openLessonModule === 'function') {
+    openLessonModule('jogos_licao');
     return;
   }
   const currentIdx = STORIES.findIndex(s => s.id === currentStory.id);
@@ -2961,6 +2971,10 @@ function registerGameStepCompleted(mode, storyObj) {
     dotTarget,
     displayStory,
     () => {
+      if (window.EBD_STATE && window.EBD_STATE.fromLessonGames && typeof openLessonModule === 'function') {
+        openLessonModule('jogos_licao');
+        return;
+      }
       if (mode === 'puzzle' || mode === 'paint') {
         goToNextStory(mode, true);
       } else if (mode === 'memory') {
@@ -2979,6 +2993,10 @@ function awardSticker(storyObj, mode = 'puzzle', targetSteps = 6) {
 function onContinuePlayingClick() {
   stopCelebrationConfetti();
   closeModal('modal-reward');
+  if (window.EBD_STATE && window.EBD_STATE.fromLessonGames && typeof openLessonModule === 'function') {
+    openLessonModule('jogos_licao');
+    return;
+  }
   if (lastCompletedMode === 'puzzle' || lastCompletedMode === 'paint') {
     goToNextStory(lastCompletedMode, true);
   } else if (lastCompletedMode === 'memory') {
@@ -3060,6 +3078,7 @@ function getNextUncompletedStep(doneSet, maxFree = 6) {
 }
 
 function openGalleryFor(mode) {
+  if (window.EBD_STATE) window.EBD_STATE.fromLessonGames = false;
   currentGalleryTarget = mode;
   const doneSet = mode === 'puzzle' ? completedPuzzles : completedPaints;
   const nextStep = getNextUncompletedStep(doneSet, 10);
