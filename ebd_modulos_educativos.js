@@ -5368,9 +5368,25 @@ window.ebdWinSound = function() {
 window.ebdErrSound = function() {
   if (typeof playSoundWrongRed === "function") playSoundWrongRed();
 };
+window.ebdStopConfetti = function() {
+  if (window._ebdConfettiTimer) {
+    clearTimeout(window._ebdConfettiTimer);
+    window._ebdConfettiTimer = null;
+  }
+  if (typeof stopCelebrationConfetti === "function") {
+    stopCelebrationConfetti();
+  }
+};
 window.ebdConfetti = function() {
+  if (window._ebdConfettiTimer) {
+    clearTimeout(window._ebdConfettiTimer);
+    window._ebdConfettiTimer = null;
+  }
   if (typeof playSoundCelebrationClaps === "function") playSoundCelebrationClaps();
   if (typeof startCelebrationConfetti === "function") startCelebrationConfetti();
+  window._ebdConfettiTimer = setTimeout(() => {
+    window.ebdStopConfetti();
+  }, 4500);
 };
 window.ebdAskSubscribe = function(title) {
   if (typeof openSubscribeModal === "function") {
@@ -6134,14 +6150,30 @@ window.openEduGame = function(gameKey, fromLesson) {
   if (typeof showScreen === "function") showScreen("screen-edu-game");
 };
 
+// Avança para a próxima fase do jogo ativo no palco #screen-edu-game (usado também pela seta direita do topo)
+window.advanceActiveEduGamePhase = function() {
+  window.ebdStopConfetti();
+  window.ebdClick();
+  const gk = window.EBD_STATE.activeEduGameKey;
+  if (gk === "chronology") window.advanceStageChronoPhase();
+  else if (gk === "verse_builder") window.advanceStageVersePhase();
+  else if (gk === "mimica_teen") window.advanceStageMimicaPhase();
+  else if (gk === "word_search") window.advanceStageWSPhase();
+  else if (gk === "who_am_i") window.advanceStageWhoAmIPhase();
+  else if (gk === "true_or_myth") window.advanceStageTrueMythPhase();
+  else if (gk === "secret_word") window.advanceStageSWPhase();
+};
+
 // --- RENDERIZADOR 1 NO PALCO: ORDEM CRONOLÓGICA ---
 window.selectStageChronoPhase = function(idx) {
+  window.ebdStopConfetti();
   window.ebdClick();
   window.EBD_STATE.chronologyIdx = idx;
   window.renderStageChronology();
 };
 
 window.renderStageChronology = function() {
+  window.ebdStopConfetti();
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
   if (headerEl) headerEl.textContent = "🧭 Ordem Cronológica da Bíblia";
@@ -6174,7 +6206,7 @@ window.renderStageChronology = function() {
           </div>
         `).join("")}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageChronoPhase()">Próxima Fase ➔</button>`}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageChronoPhase()">Próxima Fase ➔</button>`}
     </div>
   `;
 };
@@ -6213,6 +6245,8 @@ window.tapStageChronoCard = function(cardId, cardOrder) {
 };
 
 window.advanceStageChronoPhase = function() {
+  window.ebdStopConfetti();
+  window.ebdClick();
   if (window.EBD_STATE.fromLessonGames) {
     window.renderStageChronology();
     return;
@@ -6231,12 +6265,14 @@ window.advanceStageChronoPhase = function() {
 
 // --- RENDERIZADOR 2 NO PALCO: CONSTRUTOR DE VERSÍCULOS ---
 window.selectStageVersePhase = function(idx) {
+  window.ebdStopConfetti();
   window.ebdClick();
   window.EBD_STATE.verseIdx = idx;
   window.renderStageVerseBuilder();
 };
 
 window.renderStageVerseBuilder = function() {
+  window.ebdStopConfetti();
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
   if (headerEl) headerEl.textContent = "🧱 Construtor de Versículos";
@@ -6265,7 +6301,7 @@ window.renderStageVerseBuilder = function() {
           <button type="button" id="vword-${obj.idx}" class="btn-tool-3d" style="font-size:14.5px; padding:8px 13px;" onclick="tapStageVerseWord(${obj.idx})">${obj.word}</button>
         `).join("")}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="advanceStageVersePhase()">Próximo Versículo ➔</button>`}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="advanceStageVersePhase()">Próximo Versículo ➔</button>`}
     </div>
   `;
 };
@@ -6302,6 +6338,8 @@ window.tapStageVerseWord = function(wordIdx) {
 };
 
 window.advanceStageVersePhase = function() {
+  window.ebdStopConfetti();
+  window.ebdClick();
   if (window.EBD_STATE.fromLessonGames) {
     window.renderStageVerseBuilder();
     return;
@@ -6320,6 +6358,7 @@ window.advanceStageVersePhase = function() {
 
 // --- RENDERIZADOR 3 NO PALCO: MÍMICA & DESAFIO NA TESTA ---
 window.selectStageMimicaPhase = function(idx) {
+  window.ebdStopConfetti();
   window.ebdClick();
   window.stopTeenTimer();
   window.EBD_STATE.mimicaIdx = idx;
@@ -6327,6 +6366,7 @@ window.selectStageMimicaPhase = function(idx) {
 };
 
 window.renderStageMimica = function() {
+  window.ebdStopConfetti();
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
   if (headerEl) headerEl.textContent = "🎭 Mímica & Desafio Teen";
@@ -6341,40 +6381,64 @@ window.renderStageMimica = function() {
         <div style="font-size:19px; font-weight:900; color:#fde047; line-height:1.2; margin-bottom:6px;">${card.target}</div>
         <div style="font-size:12px; color:#fca5a5; font-weight:800;">🚫 Palavras Proibidas: ${card.forbidden.join(" • ")}</div>
       </div>
-      <div style="font-size:13px; color:#e2e8f0; background:rgba(15,23,42,0.8); border-radius:12px; padding:9px; margin-bottom:10px;">
+      <div style="font-size:13px; color:#e2e8f0; background:rgba(15,23,42,0.8); border-radius:12px; padding:9px; margin-bottom:8px;">
         🎭 <strong>Como fazer:</strong> ${card.tip}
+      </div>
+      <div id="mimica-feedback-msg" style="font-size:12.5px; font-weight:800; color:#86efac; margin-bottom:8px;">
+        Faça a mímica antes do tempo acabar e marque ponto para a equipe!
       </div>
       <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px;">
         <div id="mimica-timer-display" style="font-size:22px; font-weight:900; color:#fde047; background:#0f172a; border:2px solid #38bdf8; border-radius:14px; padding:6px 16px;">⏱️ 45s</div>
         <button type="button" class="btn-gold" onclick="startMimicaTimer()">▶️ Iniciar Relógio</button>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px;">
-        <button type="button" class="btn-gold" style="padding:10px;" onclick="scoreMimicaTeamStage('A')">✅ Ponto Equipe A (${window.EBD_STATE.mimicaTeamA})</button>
-        <button type="button" class="btn-gold" style="padding:10px; background:linear-gradient(180deg,#00b0ff,#0066ff);" onclick="scoreMimicaTeamStage('B')">✅ Ponto Equipe B (${window.EBD_STATE.mimicaTeamB})</button>
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:8px;">
+        <button type="button" id="btn-mimica-team-a" class="btn-gold" style="padding:10px;" onclick="scoreMimicaTeamStage('A')">✅ Ponto Equipe A (${window.EBD_STATE.mimicaTeamA})</button>
+        <button type="button" id="btn-mimica-team-b" class="btn-gold" style="padding:10px; background:linear-gradient(180deg,#00b0ff,#0066ff);" onclick="scoreMimicaTeamStage('B')">✅ Ponto Equipe B (${window.EBD_STATE.mimicaTeamB})</button>
       </div>
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageMimicaPhase()">Próximo Desafio ➔</button>`}
     </div>
   `;
 };
 
 window.scoreMimicaTeamStage = function(team) {
-  window.ebdConfetti();
+  window.stopTeenTimer();
   if (team === "A") window.EBD_STATE.mimicaTeamA += 1;
   if (team === "B") window.EBD_STATE.mimicaTeamB += 1;
+  const btnA = document.getElementById("btn-mimica-team-a");
+  const btnB = document.getElementById("btn-mimica-team-b");
+  const fb = document.getElementById("mimica-feedback-msg");
+  if (btnA) btnA.textContent = `✅ Ponto Equipe A (${window.EBD_STATE.mimicaTeamA})`;
+  if (btnB) btnB.textContent = `✅ Ponto Equipe B (${window.EBD_STATE.mimicaTeamB})`;
+  if (fb) fb.textContent = `🎉 Ponto para a Equipe ${team}! Toque em "Próximo Desafio ➔" para continuar!`;
+  window.ebdConfetti();
+};
+
+window.advanceStageMimicaPhase = function() {
+  window.ebdStopConfetti();
+  window.ebdClick();
   window.stopTeenTimer();
   const vip = typeof isVipUnlocked !== "undefined" && isVipUnlocked;
   const maxAllowed = vip ? window.MIMICA_CARDS.length : 10;
-  window.EBD_STATE.mimicaIdx = (window.EBD_STATE.mimicaIdx + 1) % maxAllowed;
+  const next = window.EBD_STATE.mimicaIdx + 1;
+  if (next >= maxAllowed) {
+    window.ebdAskSubscribe("Liberar Todos os 20 Cartões de Mímica & Desafio Teen!");
+    window.EBD_STATE.mimicaIdx = 0;
+  } else {
+    window.EBD_STATE.mimicaIdx = next;
+  }
   window.renderStageMimica();
 };
 
 // --- RENDERIZADOR 4 NO PALCO: CAÇA-PALAVRAS BÍBLICO ---
 window.selectStageWSPhase = function(idx) {
+  window.ebdStopConfetti();
   window.ebdClick();
   window.EBD_STATE.wordSearchIdx = idx;
   window.renderStageWordSearch();
 };
 
 window.renderStageWordSearch = function() {
+  window.ebdStopConfetti();
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
   if (headerEl) headerEl.textContent = "🔤 Caça-Palavras Bíblico";
@@ -6427,7 +6491,7 @@ window.renderStageWordSearch = function() {
       <div style="display:grid; grid-template-columns:repeat(8,1fr); gap:4px; margin-bottom:10px;">
         ${cellsHtml}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageWSPhase()">Próximo Caça-Palavras ➔</button>`}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageWSPhase()">Próximo Caça-Palavras ➔</button>`}
     </div>
   `;
   window.updateStageWSPills();
@@ -6467,6 +6531,8 @@ window.tapStageWSCell = function(cellId) {
 };
 
 window.advanceStageWSPhase = function() {
+  window.ebdStopConfetti();
+  window.ebdClick();
   if (window.EBD_STATE.fromLessonGames) {
     window.renderStageWordSearch();
     return;
@@ -6485,6 +6551,7 @@ window.advanceStageWSPhase = function() {
 
 // --- RENDERIZADOR 5 NO PALCO: QUEM SOU EU NA BÍBLIA? ---
 window.selectStageWhoAmIPhase = function(idx) {
+  window.ebdStopConfetti();
   window.ebdClick();
   window.EBD_STATE.whoAmIIdx = idx;
   window.EBD_STATE.whoAmIClueCount = 1;
@@ -6492,6 +6559,7 @@ window.selectStageWhoAmIPhase = function(idx) {
 };
 
 window.renderStageWhoAmI = function() {
+  window.ebdStopConfetti();
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
   if (headerEl) headerEl.textContent = "🕵️ Quem Sou Eu na Bíblia?";
@@ -6513,12 +6581,12 @@ window.renderStageWhoAmI = function() {
         <button type="button" class="btn-tool-3d" style="margin-bottom:10px; padding:6px 14px; font-size:12.5px;" onclick="revealStageWhoAmIClue()">💡 Revelar Próxima Pista (${window.EBD_STATE.whoAmIClueCount}/3)</button>
       ` : ""}
       <div id="whoami-feedback" style="font-size:13px; font-weight:800; color:#86efac; margin-bottom:10px;">Quem é este personagem bíblico?</div>
-      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px;">
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:10px;">
         ${shuffled.map(opt => `
           <button type="button" class="quiz-opt-btn" style="justify-content:center; text-align:center;" onclick="answerStageWhoAmI('${opt}')">${opt}</button>
         `).join("")}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px; margin-top:10px;" onclick="openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : ""}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageWhoAmIPhase()">Próximo Desafio ➔</button>`}
     </div>
   `;
 };
@@ -6536,29 +6604,44 @@ window.answerStageWhoAmI = function(selected) {
   const fb = document.getElementById("whoami-feedback");
   if (selected === item.answer) {
     window.ebdConfetti();
-    if (fb) fb.textContent = `🎉 Acertou! Era ${item.answer}!`;
-    setTimeout(() => {
-      if (window.EBD_STATE.fromLessonGames) return;
-      const vip = typeof isVipUnlocked !== "undefined" && isVipUnlocked;
-      const maxAllowed = vip ? window.WHO_AM_I_BANK.length : 10;
-      window.EBD_STATE.whoAmIIdx = (window.EBD_STATE.whoAmIIdx + 1) % maxAllowed;
-      window.EBD_STATE.whoAmIClueCount = 1;
-      window.renderStageWhoAmI();
-    }, 1600);
+    if (fb) fb.textContent = `🎉 Acertou! Era ${item.answer}! Toque em "Próximo Desafio ➔" para continuar!`;
   } else {
     window.ebdErrSound();
     if (fb) fb.textContent = "💡 Quase! Revele mais uma pista e tente novamente!";
   }
 };
 
+window.advanceStageWhoAmIPhase = function() {
+  window.ebdStopConfetti();
+  window.ebdClick();
+  if (window.EBD_STATE.fromLessonGames) {
+    window.EBD_STATE.whoAmIClueCount = 1;
+    window.renderStageWhoAmI();
+    return;
+  }
+  const vip = typeof isVipUnlocked !== "undefined" && isVipUnlocked;
+  const maxAllowed = vip ? window.WHO_AM_I_BANK.length : 10;
+  const next = window.EBD_STATE.whoAmIIdx + 1;
+  if (next >= maxAllowed) {
+    window.ebdAskSubscribe("Liberar Todos os 20 Desafios de Quem Sou Eu na Bíblia!");
+    window.EBD_STATE.whoAmIIdx = 0;
+  } else {
+    window.EBD_STATE.whoAmIIdx = next;
+  }
+  window.EBD_STATE.whoAmIClueCount = 1;
+  window.renderStageWhoAmI();
+};
+
 // --- RENDERIZADOR 6 NO PALCO: VERDADEIRO OU MITO? ---
 window.selectStageTrueMythPhase = function(idx) {
+  window.ebdStopConfetti();
   window.ebdClick();
   window.EBD_STATE.trueMythIdx = idx;
   window.renderStageTrueOrMyth();
 };
 
 window.renderStageTrueOrMyth = function() {
+  window.ebdStopConfetti();
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
   if (headerEl) headerEl.textContent = "⚡ Verdadeiro ou Mito?";
@@ -6579,7 +6662,7 @@ window.renderStageTrueOrMyth = function() {
       <div id="truemyth-explanation" style="font-size:13.5px; color:#fde047; font-weight:700; line-height:1.4; min-height:44px; margin-bottom:10px;">
         Toque em VERDADEIRO ou MITO para descobrir!
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-tool-3d" style="padding:8px 18px; font-size:13px;" onclick="advanceStageTrueMythPhase()">Próxima Pergunta ➔</button>`}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-tool-3d" style="padding:8px 18px; font-size:13px;" onclick="advanceStageTrueMythPhase()">Próxima Pergunta ➔</button>`}
     </div>
   `;
 };
@@ -6597,6 +6680,8 @@ window.answerStageTrueMyth = function(choice) {
 };
 
 window.advanceStageTrueMythPhase = function() {
+  window.ebdStopConfetti();
+  window.ebdClick();
   if (window.EBD_STATE.fromLessonGames) {
     window.renderStageTrueOrMyth();
     return;
@@ -6615,6 +6700,7 @@ window.advanceStageTrueMythPhase = function() {
 
 // --- RENDERIZADOR 7 NO PALCO: PALAVRA SECRETA BÍBLICA ---
 window.selectStageSWPhase = function(idx) {
+  window.ebdStopConfetti();
   window.ebdClick();
   window.EBD_STATE.secretWordIdx = idx;
   window.EBD_STATE.secretWordGuessed = [];
@@ -6623,6 +6709,9 @@ window.selectStageSWPhase = function(idx) {
 };
 
 window.renderStageSecretWord = function() {
+  if (!window.EBD_STATE.secretWordGuessed || window.EBD_STATE.secretWordGuessed.length === 0) {
+    window.ebdStopConfetti();
+  }
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
   if (headerEl) headerEl.textContent = "🔐 Palavra Secreta Bíblica";
@@ -6654,7 +6743,7 @@ window.renderStageSecretWord = function() {
           return `<button type="button" ${used || allFound ? "disabled" : ""} onclick="tapStageSWLetter('${ch}')" style="height:34px; border-radius:8px; border:1.5px solid #b3e5fc; background:${used ? "#1e293b" : "linear-gradient(180deg,#00b0ff,#0066ff)"}; color:#fff; font-weight:800; font-size:13px; opacity:${used ? "0.35" : "1"}; cursor:pointer;">${ch}</button>`;
         }).join("")}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageSWPhase()">Próxima Palavra Secreta ➔</button>`}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageSWPhase()">Próxima Palavra Secreta ➔</button>`}
     </div>
   `;
 };
@@ -6675,6 +6764,8 @@ window.tapStageSWLetter = function(ch) {
 };
 
 window.advanceStageSWPhase = function() {
+  window.ebdStopConfetti();
+  window.ebdClick();
   if (window.EBD_STATE.fromLessonGames) {
     window.EBD_STATE.secretWordGuessed = [];
     window.EBD_STATE.secretWordErrors = 0;

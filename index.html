@@ -7,8 +7,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Trono EBD">
-  <link rel="manifest" href="./manifest.json?v=50">
-  <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_v50.png?v=50">
+  <link rel="manifest" href="./manifest.json?v=54">
+  <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_v50.png?v=54">
   <title>Trono da Promessa EBD • Revista Digital & Jogos Bíblicos</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
   <script>
@@ -25,7 +25,7 @@
             navigator.serviceWorker.getRegistrations().then(regs => {
               Promise.all(regs.map(r => r.unregister())).then(() => {
                 if (urlParams.get('limpar') === '1') {
-                  window.location.replace(window.location.pathname + '?v=50');
+                  window.location.replace(window.location.pathname + '?v=54');
                 }
               });
             });
@@ -35,7 +35,7 @@
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=50').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=54').then(reg => {
           reg.update();
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
@@ -1524,9 +1524,9 @@
     }
 
   </style>
-  <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_v50.png?v=50">
-  <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192_v50.png?v=50">
-  <link rel="icon" type="image/png" sizes="512x512" href="./2_ASSETS_UI_BOTOES/icon_512_v50.png?v=50">
+  <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_v50.png?v=54">
+  <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192_v50.png?v=54">
+  <link rel="icon" type="image/png" sizes="512x512" href="./2_ASSETS_UI_BOTOES/icon_512_v50.png?v=54">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Trono EBD">
@@ -1537,7 +1537,7 @@
   <!-- TOPO COM AMPLO RESPIRO: LOGO EBD 3D EM CIMA + 2 BOLINHAS REDONDINHAS NOS CANTINHOS! -->
   <header class="topbar">
     <div class="brand-logo-wrap" onclick="goHome()">
-      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=50" alt="Trono da Promessa EBD" class="brand-logo">
+      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=54" alt="Trono da Promessa EBD" class="brand-logo">
     </div>
 
     <div class="topbar-controls-row">
@@ -1727,7 +1727,7 @@
       <div class="puzzle-diff-bar">
         <span id="edu-game-header-title" style="font-size:13px; font-weight:800; color:#fde047;">Desafio Bíblico</span>
       </div>
-      <button id="btn-edu-header-right" class="btn-nav-circle" onclick="stopTeenTimer(); openLessonHubScreen()" title="Lição da Semana">
+      <button id="btn-edu-header-right" class="btn-nav-circle" onclick="if(typeof advanceActiveEduGamePhase === 'function'){advanceActiveEduGamePhase();}else{stopTeenTimer();openLessonHubScreen();}" title="Próxima Fase">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
@@ -2208,7 +2208,7 @@
 </div>
 
 <script src="pinturas_base64.js"></script>
-<script src="ebd_modulos_educativos.js?v=53"></script>
+<script src="ebd_modulos_educativos.js?v=54"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -2617,6 +2617,23 @@ function stopCelebrationConfetti() {
   if (confettiAnimId) {
     cancelAnimationFrame(confettiAnimId);
     confettiAnimId = null;
+  }
+  if (window._ebdConfettiTimer) {
+    clearTimeout(window._ebdConfettiTimer);
+    window._ebdConfettiTimer = null;
+  }
+  if (celebrationAudioPlayer) {
+    try {
+      celebrationAudioPlayer.pause();
+      celebrationAudioPlayer.currentTime = 0;
+    } catch (e) {}
+  }
+  if (bgDuckRestoreTimer) {
+    clearTimeout(bgDuckRestoreTimer);
+    bgDuckRestoreTimer = null;
+  }
+  if (typeof bgAudioPlayer !== 'undefined' && bgAudioPlayer && !bgAudioPlayer.paused) {
+    bgAudioPlayer.volume = 0.65;
   }
   const cvs = document.getElementById('confetti-canvas');
   if (cvs) {
@@ -3478,6 +3495,7 @@ function tracePieceShape(ctx, x, y, w, h, edges) {
 }
 
 function initJigsawPuzzle() {
+  stopCelebrationConfetti();
   updatePuzzleLayoutRects();
   jigsawPieces = [];
   draggingPiece = null;
@@ -4520,6 +4538,7 @@ function advanceQuizIndex() {
 }
 
 function renderQuizStep() {
+  stopCelebrationConfetti();
   quizAnsweredLock = false;
   if (quizWinTimerId) {
     clearTimeout(quizWinTimerId);
@@ -4599,6 +4618,7 @@ function goToNextMemoryPhase() {
 }
 
 function startMemoryPhase(phaseNum) {
+  stopCelebrationConfetti();
   if (!phaseNum) {
     phaseNum = getNextUncompletedStep(completedMemories, 10);
   }
@@ -4973,9 +4993,9 @@ function printOrSaveBlankPDF() {
           border-radius: 12px;
         }
       </style>
-      <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_v50.png?v=50">
-  <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192_v50.png?v=50">
-  <link rel="icon" type="image/png" sizes="512x512" href="./2_ASSETS_UI_BOTOES/icon_512_v50.png?v=50">
+      <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_v50.png?v=54">
+  <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192_v50.png?v=54">
+  <link rel="icon" type="image/png" sizes="512x512" href="./2_ASSETS_UI_BOTOES/icon_512_v50.png?v=54">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Trono Kids">
@@ -5051,7 +5071,7 @@ function renderSleepCorner() {
 }
 
 // Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
-document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=50';
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=54';
 if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
 if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
 if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');
