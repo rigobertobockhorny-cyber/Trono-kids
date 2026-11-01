@@ -1,8 +1,8 @@
 {
-  "name": "Trono da Promessa Kids — Jogos e Histórias Bíblicas",
-  "short_name": "Trono Kids",
-  "description": "Aplicativo oficial infantil do canal Trono da Promessa (Vórtice Mídia). Quebra-Cabeça, Oficina de Pintura Mágica, Quiz do Vovô Násio, Jogo da Memória, Álbum de Figurinhas da Fé e Músicas de Ninar.",
-  "start_url": "./index.html?source=pwa",
+  "name": "Trono da Promessa EBD — Revista Digital & Jogos Bíblicos",
+  "short_name": "Trono EBD",
+  "description": "Aplicativo oficial infantil e Revista Digital EBD do canal Trono da Promessa (Vórtice Mídia).",
+  "start_url": "./index.html?v=50",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
@@ -10,13 +10,13 @@
   "theme_color": "#0a1e40",
   "icons": [
     {
-      "src": "./2_ASSETS_UI_BOTOES/icon_192.png",
+      "src": "./2_ASSETS_UI_BOTOES/icon_192_v50.png?v=50",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "./2_ASSETS_UI_BOTOES/icon_512.png",
+      "src": "./2_ASSETS_UI_BOTOES/icon_512_v50.png?v=50",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

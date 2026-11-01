@@ -1,36 +1,21 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v4.5.0';
+const CACHE_VERSION = 'vortice-trono-ebd-v50.0';
 const ASSETS_TO_CACHE = [
-  './index.html',
-  './manifest.json',
-  './politica_privacidade.html',
-  './pinturas_base64.js',
-  './ebd_modulos_educativos.js',
-  './2_ASSETS_UI_BOTOES/icon_512.png',
-  './2_ASSETS_UI_BOTOES/icon_192.png',
-  './2_ASSETS_UI_BOTOES/logo_trono_ebd.png',
-  './2_ASSETS_UI_BOTOES/banner_vovo_e_netos_oficial.jpg',
-  './2_ASSETS_UI_BOTOES/bg_ebd_01_biblioteca.jpg',
-  './2_ASSETS_UI_BOTOES/bg_ebd_02_jardim.jpg',
-  './2_ASSETS_UI_BOTOES/bg_ebd_03_trono.jpg',
-  './2_ASSETS_UI_BOTOES/bg_ebd_04_lareira.jpg',
-  './2_ASSETS_UI_BOTOES/bg_ebd_05_ceu.jpg',
-  './2_ASSETS_UI_BOTOES/ebd_icon_vovo.png',
-  './2_ASSETS_UI_BOTOES/ebd_icon_netos.png',
-  './2_ASSETS_UI_BOTOES/ebd_icon_licao.png',
-  './2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png',
-  './2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png',
-  './2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png',
-  './2_ASSETS_UI_BOTOES/ebd_icon_devocional.png',
-  './2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png',
-  './2_ASSETS_UI_BOTOES/ebd_icon_professor.png'
+  './index.html?v=50',
+  './manifest.json?v=50',
+  './2_ASSETS_UI_BOTOES/icon_512_v50.png',
+  './2_ASSETS_UI_BOTOES/icon_192_v50.png',
+  './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png',
+  './2_ASSETS_UI_BOTOES/logo_oficial_kids_v50.png'
 ];
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_VERSION).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE).catch(() => {});
-    })
+    caches.keys().then((keys) =>
+      Promise.all(keys.map((k) => caches.delete(k)))
+    ).then(() =>
+      caches.open(CACHE_VERSION).then((cache) => cache.addAll(ASSETS_TO_CACHE).catch(() => {}))
+    )
   );
 });
 
@@ -48,12 +33,10 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Estratégia Offline-First com atualização inteligente em segundo plano:
-// Funciona 100% sem internet no celular da criança ou na sala da EBD!
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   event.respondWith(
-    fetch(event.request)
+    fetch(event.request, { cache: 'no-cache' })
       .then((networkResponse) => {
         const cloned = networkResponse.clone();
         caches.open(CACHE_VERSION).then((cache) => {
