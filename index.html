@@ -1482,6 +1482,47 @@
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
+  
+    /* === UPGRADE V52: ÍCONES GRANDES NA TELA DA LIÇÃO (SEM BANNER DO VOVÔ) + 22 PÍLULAS IGUAIS + PLAYER VOVÔ === */
+    #screen-lesson-hub .dashboard-grid.lesson-big-grid {
+      gap: 8px 10px !important;
+      padding: 2px 4px 6px 4px !important;
+    }
+    #screen-lesson-hub .dashboard-grid.lesson-big-grid .mod-icon-3d {
+      width: 98px !important;
+      height: 98px !important;
+      max-height: 12.8vh !important;
+      margin-bottom: -4px !important;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,0.92)) !important;
+    }
+    #screen-lesson-hub .dashboard-grid.lesson-big-grid .mod-title {
+      font-size: 14.5px !important;
+      padding: 2px 6px !important;
+    }
+    #lesson-weeks-trail .lesson-scroll-pill {
+      min-width: 78px !important;
+      max-width: 78px !important;
+      padding: 5px 4px !important;
+      font-size: 11.5px !important;
+      justify-content: center !important;
+      text-align: center !important;
+      flex: 0 0 78px !important;
+    }
+    #lesson-weeks-trail .lesson-scroll-pill.locked-week {
+      background: linear-gradient(180deg, #475569 0%, #1e293b 100%) !important;
+      border-color: #94a3b8 !important;
+      color: #e2e8f0 !important;
+      opacity: 0.92;
+    }
+    @keyframes vovoKenBurns {
+      0% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(1.06) translate(-1%, -1%); }
+      100% { transform: scale(1) translate(0, 0); }
+    }
+    .vovo-video-playing-img {
+      animation: vovoKenBurns 14s ease-in-out infinite;
+    }
+
   </style>
   <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_v50.png?v=50">
   <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192_v50.png?v=50">
@@ -1569,29 +1610,27 @@
   <!-- ==================================================================== -->
   <section id="screen-lesson-hub" class="screen">
     <div class="module-header">
-      <button class="btn-nav-circle" onclick="stepLessonWeekBackOrHome()" title="Voltar Semana ou Início">
+      <button class="btn-nav-circle" onclick="goHome()" title="Voltar à Tela Principal">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="houses-trail" id="lesson-weeks-trail"></div>
-      <button class="btn-nav-circle" onclick="stepLessonWeek(1)" title="Próxima Semana">
+      <button class="btn-nav-circle" onclick="stepLessonWeek(1)" title="Próxima Lição">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
 
-    <!-- AQUI DENTRO DE "LIÇÃO DA SEMANA" APARECE O QUADRO VIVO DO VOVÔ NÉSIO, PEDRINHO E ANINHA (SEM BARRA AZUL EMBAIXO E SEM CORTE NA ANINHA)! -->
-    <div class="lesson-vovo-banner-wrap">
-      <div class="frame-3d-alive" style="padding:3px; border-radius:20px;">
-        <div class="lesson-vovo-banner-inner">
-          <img src="./2_ASSETS_UI_BOTOES/banner_vovo_e_netos_oficial.jpg?v=40" alt="Vovô Nésio, Pedrinho e Aninha">
-        </div>
+    <!-- BARRA DE TÍTULO DA LIÇÃO ATIVA + FAIXA ETÁRIA (SEM BANNER DO VOVÔ, SUBINDO OS ÍCONES!) -->
+    <div class="lesson-vovo-banner-wrap" style="margin-bottom:4px;">
+      <div id="lesson-hub-current-title" style="background:linear-gradient(180deg, rgba(88,28,135,0.92), rgba(30,27,75,0.96)); border:2px solid #fde047; border-radius:14px; padding:5px 10px; text-align:center; color:#fde047; font-size:13.5px; font-weight:900; box-shadow:0 4px 10px rgba(0,0,0,0.75); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+        Lição 1: A Criação Maravilhosa de Deus
       </div>
       <div id="lesson-hub-age-pills" class="houses-trail" style="margin-top:4px; padding:4px 10px; gap:14px;"></div>
     </div>
 
-    <div class="dashboard-grid">
+    <div class="dashboard-grid lesson-big-grid">
       <div class="module-card" onclick="openLessonModule('texto')">
-        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png" alt="Texto e Cronologia" class="mod-icon-3d">
-        <div class="mod-title">Texto & Cronologia</div>
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png" alt="Cronologia Bíblica" class="mod-icon-3d">
+        <div class="mod-title">Cronologia Bíblica</div>
       </div>
 
       <div class="module-card" onclick="openLessonModule('vovo')">
@@ -1688,7 +1727,7 @@
       <div class="puzzle-diff-bar">
         <span id="edu-game-header-title" style="font-size:13px; font-weight:800; color:#fde047;">Desafio Bíblico</span>
       </div>
-      <button class="btn-nav-circle" onclick="stopTeenTimer(); openLessonHubScreen()" title="Lição da Semana">
+      <button id="btn-edu-header-right" class="btn-nav-circle" onclick="stopTeenTimer(); openLessonHubScreen()" title="Lição da Semana">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
@@ -2169,7 +2208,7 @@
 </div>
 
 <script src="pinturas_base64.js"></script>
-<script src="ebd_modulos_educativos.js?v=50"></script>
+<script src="ebd_modulos_educativos.js?v=52"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
