@@ -46,29 +46,63 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "O Princípio de Tudo (Gênesis 1–2)",
     "title": "A Criação Maravilhosa de Deus",
     "bibleRef": "Gênesis 1:1–31",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_01.jpg",
     "storyIdUnlock": 11,
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_01_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_01_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_09.jpg",
-        "caption": "Cena 1 • No princípio, Deus falou com amor: 'Haja luz!' E um clarão dourado iluminou o universo, separando o dia da noite."
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_01.jpg",
+        "caption": "Cena 1/10 • No princípio, antes de existir o sol ou as estrelas, o Espírito de Deus se movia sobre as águas profundas.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg",
-        "caption": "Cena 2 • Deus formou o céu azul, os mares, a terra seca e fez brotar árvores frutíferas e flores de todas as cores!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_02.jpg",
+        "caption": "Cena 2/10 • 1º Dia da Criação: Deus disse 'Haja luz!' e um clarão dourado separou o dia claro da noite tranquila.",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_18.jpg",
-        "caption": "Cena 3 • No 4º e 5º dia, Deus acendeu o Sol, a Lua e milhões de estrelinhas, e encheu os mares de peixes e o céu de aves!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_03.jpg",
+        "caption": "Cena 3/10 • 2º Dia da Criação: O Criador ergueu o imenso céu azul e espalhou nuvens branquinhas como algodão.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_12.jpg",
-        "caption": "Cena 4 • No 6º dia, Deus criou os animais da terra e formou o ser humano com amor especial, descansando no 7º dia!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_04.jpg",
+        "caption": "Cena 4/10 • 3º Dia da Criação: Deus reuniu as águas nos oceanos e fez surgir a terra seca, as colinas e as cachoeiras.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_05.jpg",
+        "caption": "Cena 5/10 • 3º Dia da Criação: A terra vestiu-se de grama verde, flores perfumadas e árvores carregadas de frutas docinhas!",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_06.jpg",
+        "caption": "Cena 6/10 • 4º Dia da Criação: Deus acendeu o Sol radiante para o dia e a Lua prateada com milhões de estrelinhas para a noite.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_07.jpg",
+        "caption": "Cena 7/10 • 5º Dia da Criação: Os oceanos ganharam vida com peixinhos coloridos, golfinhos brincalhões e grandes baleias!",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_08.jpg",
+        "caption": "Cena 8/10 • 5º Dia da Criação: O céu encheu-se de araras azuis, pombas brancas e passarinhos cantando de alegria!",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_09.jpg",
+        "caption": "Cena 9/10 • 6º Dia da Criação: Deus formou os animais do campo — o leão mansinho, as girafas, os cordeirinhos e os cervos.",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg",
+        "caption": "Cena 10/10 • Coroa da Criação: Deus criou Adão e Eva à Sua imagem no Jardim do Éden e abençoou toda a Sua obra!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "1ª etapa da Linha do Tempo da Bíblia! Antes de existir o sol, os mares, as árvores ou as pessoas, Deus criou todo o universo com a Sua Palavra de luz, ordem e amor.",
-    "vovoStoryScript": "Olá, minha criança querida! Que alegria ter você aqui comigo para abrirmos juntos o Grande Livro das Promessas de Deus! Hoje vamos viajar até o comecinho de tudo, lá na primeira página da Bíblia, para descobrir como o nosso mundo tão lindo foi criado. Muito antes de existir o sol brilhante, antes de existirem os oceanos azuis, as montanhas verdinhas ou qualquer cachorrinho brincando no quintal, tudo era escuro, vazio e silencioso. Mas Deus já estava lá, cheio de amor e sabedoria! Então, no primeiro dia, Deus falou com a Sua voz poderosa e doce: Haja luz! E no mesmo instante, um clarão dourado iluminou o universo, separando o dia da noite. No segundo dia, Deus preparou o grande céu azul lá no alto e formou as nuvens branquinhas como algodão. No terceiro dia, Ele juntou as águas para formar os mares e fez aparecer a terra sequinha. E da terra brotaram tapetes de grama verde, flores perfumadas de todas as cores e árvores cheias de frutas deliciosas! No quarto dia, Deus enfeitou o céu: colocou o Sol para aquecer o nosso dia, e a Lua com milhões de estrelinhas cintilantes para iluminar a noite. No quinto dia, Deus encheu os mares de peixinhos coloridos, golfinhos e grandes baleias, e encheu o céu de passarinhos cantando de alegria! No sexto dia, Deus criou os animais da terra e, como coroa de toda a Criação, formou o ser humano à Sua imagem e semelhança! No sétimo dia, Deus viu que tudo era muito bom, abençoou aquele dia e descansou.",
+    "vovoStoryScript": "Vocês já pararam para imaginar como era o universo antes de existir a primeira estrelinha no céu, antes de existir o sol quentinho ou o barulhinho das ondas do mar? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos abrir a primeira página da Bíblia Sagrada, lá no livro de Gênesis, para descobrir o maior mistério do começo do mundo! No princípio de tudo, a terra era um imenso vazio coberto por águas profundas e uma escuridão total. Não havia nem uma florzinha, nem um passarinho cantando. Mas o Espírito de Deus já se movia sobre as águas, preparando uma surpresa maravilhosa! Então, no primeiro dia, Deus quebrou aquele silêncio com a Sua voz doce e poderosa: Haja luz! Naquele exato segundo, um clarão dourado esplêndido rasgou a escuridão! Deus viu que a luz era boa e separou o dia claro da noite tranquila. No segundo dia, o Criador ergueu um céu azul imenso bem lá no alto, separando as águas e espalhando nuvens branquinhas e macias como flocos de algodão. No terceiro dia, Deus reuniu as águas para formar os grandes oceanos e fez surgir o chão firme e sequinho. E num piscar de olhos, a terra inteira se vestiu de tapetes de grama verde, flores perfumadas de todas as cores e árvores carregadas de maçãs, figos e uvas docinhas! No quarto dia, Deus acendeu no céu duas grandes lâmpadas: o sol radiante para aquecer o nosso dia, e a lua prateada cercada por milhões de estrelinhas brilhantes para iluminar a noite. No quinto dia, as águas ganharam vida! Deus criou os peixinhos coloridos, os golfinhos brincalhões e as grandes baleias no mar, e encheu o céu de araras, pombas e passarinhos cantores! No sexto dia, Deus fez os animais do campo: o leão de juba dourada, a girafa comprida, o cordeirinho macio e o cachorrinho fiel. E para completar a Sua obra-prima, Deus formou Adão e Eva à Sua imagem e semelhança, colocando-os no lindo Jardim do Éden! Deus olhou para tudo o que havia feito e viu que era muito bom! E no sétimo dia, descansou e abençoou a criação. Quando cuidamos da natureza com carinho, alegramos o coração do nosso Criador!",
     "byAge": {
       "3-5": {
         "text": "Deus fez o mundo inteiro com a Sua Palavra! Ele fez a luz brilhar, o céu azul, as florzinhas, os bichinhos e fez você com muito amor!",
@@ -86,8 +120,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão dos Pequenininhos: Cuidar da Criação",
         "actionDesc": "Regue uma plantinha em casa ou dê carinho em um bichinho de estimação agradecendo ao Papai do Céu pelo mundo lindo!",
-        "vovoStoryScript": "Oi, meu pequenininho! Oi, minha pequenininha! Vem cá pertinho do Vovô Nésio! Olha só pela janela: quem fez o sol amarelinho brilhar lá no céu? Foi o Papai do Céu! No comecinho de tudo, estava tudo escurinho. Aí Deus falou bem bonito: Haja luz! E a luz brilhou! Depois o Papai do Céu fez o céu azul, a água do mar, as florzinhas cheirosas e as frutinhas gostosas! Ele fez os peixinhos que nadam, os passarinhos que cantam piu-piu, os cachorrinhos e os gatinhos! E sabe qual foi a obra mais especial que o Papai do Céu fez com tanto amor? Foi você! Deus ama muito você!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_01_3a5.mp3"
+        "vovoStoryScript": "Vocês já pararam para imaginar como era o universo antes de existir a primeira estrelinha no céu, antes de existir o sol quentinho ou o barulhinho das ondas do mar? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos abrir a primeira página da Bíblia Sagrada, lá no livro de Gênesis, para descobrir o maior mistério do começo do mundo! No princípio de tudo, a terra era um imenso vazio coberto por águas profundas e uma escuridão total. Não havia nem uma florzinha, nem um passarinho cantando. Mas o Espírito de Deus já se movia sobre as águas, preparando uma surpresa maravilhosa! Então, no primeiro dia, Deus quebrou aquele silêncio com a Sua voz doce e poderosa: Haja luz! Naquele exato segundo, um clarão dourado esplêndido rasgou a escuridão! Deus viu que a luz era boa e separou o dia claro da noite tranquila. No segundo dia, o Criador ergueu um céu azul imenso bem lá no alto, separando as águas e espalhando nuvens branquinhas e macias como flocos de algodão. No terceiro dia, Deus reuniu as águas para formar os grandes oceanos e fez surgir o chão firme e sequinho. E num piscar de olhos, a terra inteira se vestiu de tapetes de grama verde, flores perfumadas de todas as cores e árvores carregadas de maçãs, figos e uvas docinhas! No quarto dia, Deus acendeu no céu duas grandes lâmpadas: o sol radiante para aquecer o nosso dia, e a lua prateada cercada por milhões de estrelinhas brilhantes para iluminar a noite. No quinto dia, as águas ganharam vida! Deus criou os peixinhos coloridos, os golfinhos brincalhões e as grandes baleias no mar, e encheu o céu de araras, pombas e passarinhos cantores! No sexto dia, Deus fez os animais do campo: o leão de juba dourada, a girafa comprida, o cordeirinho macio e o cachorrinho fiel. E para completar a Sua obra-prima, Deus formou Adão e Eva à Sua imagem e semelhança, colocando-os no lindo Jardim do Éden! Deus olhou para tudo o que havia feito e viu que era muito bom! E no sétimo dia, descansou e abençoou a criação. Quando cuidamos da natureza com carinho, alegramos o coração do nosso Criador!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_01_3a5.mp3?v=53"
       },
       "6-8": {
         "text": "Em 6 dias, Deus organizou toda a Criação em ordem perfeita: primeiro a luz e o céu, depois a terra e as plantas, o sol e as estrelas, os peixes e aves, e por fim os animais e o ser humano!",
@@ -105,8 +139,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão Explorador: Guardião da Natureza",
         "actionDesc": "Ajude sua família a separar o lixo reciclável e não desperdiçar água durante toda esta semana!",
-        "vovoStoryScript": "Olá, minha criança querida! Que alegria ter você aqui comigo para abrirmos juntos o Grande Livro das Promessas de Deus! Hoje vamos viajar até o comecinho de tudo, lá na primeira página da Bíblia, para descobrir como o nosso mundo tão lindo foi criado. Muito antes de existir o sol brilhante, antes de existirem os oceanos azuis, as montanhas verdinhas ou qualquer cachorrinho brincando no quintal, tudo era escuro, vazio e silencioso. Mas Deus já estava lá, cheio de amor e sabedoria! Então, no primeiro dia, Deus falou com a Sua voz poderosa e doce: Haja luz! E no mesmo instante, um clarão dourado iluminou o universo, separando o dia da noite. No segundo dia, Deus preparou o grande céu azul lá no alto e formou as nuvens branquinhas como algodão. No terceiro dia, Ele juntou as águas para formar os mares e fez aparecer a terra sequinha. E da terra brotaram tapetes de grama verde, flores perfumadas de todas as cores e árvores cheias de frutas deliciosas! No quarto dia, Deus enfeitou o céu: colocou o Sol para aquecer o nosso dia, e a Lua com milhões de estrelinhas cintilantes para iluminar a noite. No quinto dia, Deus encheu os mares de peixinhos coloridos, golfinhos e grandes baleias, e encheu o céu de passarinhos cantando de alegria! No sexto dia, Deus criou os animais da terra e, como coroa de toda a Criação, formou o ser humano à Sua imagem e semelhança! No sétimo dia, Deus viu que tudo era muito bom, abençoou aquele dia e descansou.",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_01_vovo.mp3"
+        "vovoStoryScript": "Vocês já pararam para imaginar como era o universo antes de existir a primeira estrelinha no céu, antes de existir o sol quentinho ou o barulhinho das ondas do mar? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos abrir a primeira página da Bíblia Sagrada, lá no livro de Gênesis, para descobrir o maior mistério do começo do mundo! No princípio de tudo, a terra era um imenso vazio coberto por águas profundas e uma escuridão total. Não havia nem uma florzinha, nem um passarinho cantando. Mas o Espírito de Deus já se movia sobre as águas, preparando uma surpresa maravilhosa! Então, no primeiro dia, Deus quebrou aquele silêncio com a Sua voz doce e poderosa: Haja luz! Naquele exato segundo, um clarão dourado esplêndido rasgou a escuridão! Deus viu que a luz era boa e separou o dia claro da noite tranquila. No segundo dia, o Criador ergueu um céu azul imenso bem lá no alto, separando as águas e espalhando nuvens branquinhas e macias como flocos de algodão. No terceiro dia, Deus reuniu as águas para formar os grandes oceanos e fez surgir o chão firme e sequinho. E num piscar de olhos, a terra inteira se vestiu de tapetes de grama verde, flores perfumadas de todas as cores e árvores carregadas de maçãs, figos e uvas docinhas! No quarto dia, Deus acendeu no céu duas grandes lâmpadas: o sol radiante para aquecer o nosso dia, e a lua prateada cercada por milhões de estrelinhas brilhantes para iluminar a noite. No quinto dia, as águas ganharam vida! Deus criou os peixinhos coloridos, os golfinhos brincalhões e as grandes baleias no mar, e encheu o céu de araras, pombas e passarinhos cantores! No sexto dia, Deus fez os animais do campo: o leão de juba dourada, a girafa comprida, o cordeirinho macio e o cachorrinho fiel. E para completar a Sua obra-prima, Deus formou Adão e Eva à Sua imagem e semelhança, colocando-os no lindo Jardim do Éden! Deus olhou para tudo o que havia feito e viu que era muito bom! E no sétimo dia, descansou e abençoou a criação. Quando cuidamos da natureza com carinho, alegramos o coração do nosso Criador!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_01_vovo.mp3?v=53"
       }
     },
     "devotional5Days": [
@@ -177,29 +211,63 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Mundo Antigo • Dilúvio e Recomeço (Gênesis 6–9)",
     "title": "Noé e o Arco da Promessa",
     "bibleRef": "Gênesis 6:9–9:17",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_12.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_01.jpg",
     "storyIdUnlock": 4,
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_02_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_02_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_12.jpg",
-        "caption": "Cena 1 • Noé andava com Deus e construiu com sua família uma grande Arca de madeira, confiando na Palavra do Senhor!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_01.jpg",
+        "caption": "Cena 1/10 • Noé era um homem justo e bondoso que caminhava com Deus e ouvia a voz do Senhor com fé.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg",
-        "caption": "Cena 2 • Vieram os animais de dois em dois entrando pela porta da Arca, e o próprio Deus fechou a porta por fora!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_02.jpg",
+        "caption": "Cena 2/10 • Obedecendo a Deus, Noé e seus três filhos cortaram madeiras fortes para construir a grande arca em terra seca.",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_37.jpg",
-        "caption": "Cena 3 • Durante a grande chuva, a Arca flutuou segura sobre as águas, protegendo Noé, sua família e todos os bichinhos!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_03.jpg",
+        "caption": "Cena 3/10 • A imensa arca de três andares subia sob o céu azul enquanto Noé confiava fielmente na promessa de Deus.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_12.jpg",
-        "caption": "Cena 4 • A pombinha trouxe o ramo de oliveira e Deus desenhou no céu o arco-íris da Sua aliança fiel!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_04.jpg",
+        "caption": "Cena 4/10 • Noé e sua família guardaram cestos de grãos, feno fresquinho, frutas e água limpa para todos os animais.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_05.jpg",
+        "caption": "Cena 5/10 • Guiados por Deus, os animais vieram de dois em dois — elefantes, girafas, leões e zebras subindo pela rampa!",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_06.jpg",
+        "caption": "Cena 6/10 • Araras coloridas, pombinhas e coelhinhos entraram na arca, e o próprio Deus fechou a grande porta por fora.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_07.jpg",
+        "caption": "Cena 7/10 • A chuva caiu por 40 dias e 40 noites, mas a grande arca flutuou firme e segura sobre as águas!",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_08.jpg",
+        "caption": "Cena 8/10 • Lá dentro da arca iluminada, Noé e sua família cuidavam dos animaizinhos em perfeita paz e harmonia.",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_09.jpg",
+        "caption": "Cena 9/10 • Quando as águas baixaram, a pombinha branca voltou para a janela da arca trazendo um raminho verde de oliveira!",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_10.jpg",
+        "caption": "Cena 10/10 • Todos saíram com alegria para a terra renovada, e Deus desenhou no céu o lindo arco-íris da Sua aliança!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "2ª etapa da Linha do Tempo: gerações depois de Adão, Noé permaneceu justo diante de Deus. Através da Arca, Deus preservou a vida e firmou a Aliança do arco-íris!",
-    "vovoStoryScript": "Paz e alegria no seu coração, minha criança querida! Sente-se bem confortável, porque hoje o Vovô Nésio vai contar para você uma das aventuras mais extraordinárias de toda a Bíblia: a história de Noé e a Grande Arca da Promessa! Muito tempo depois da Criação, as pessoas da Terra começaram a ficar egoístas e esqueceram de fazer o bem. Mas havia um homem bom e fiel chamado Noé, que andava com Deus todos os dias! O Senhor pediu que Noé construísse uma embarcação gigante de madeira chamada Arca. Junto com a sua família, Noé construiu a Arca exatamente como Deus havia mandado. Quando tudo ficou pronto, vieram animais de todas as espécies, de dois em dois, entrando pela grande porta da Arca! Depois que Noé e sua família entraram, o próprio Deus fechou a porta por fora! Quando as águas baixaram, Noé soltou uma pombinha branca, que voltou trazendo no bico uma folhinha verde de oliveira! Ao saírem da Arca, Deus desenhou nas nuvens o primeiro arco-íris de sete cores brilhantes, prometendo que sempre cuidaria da Terra!",
+    "vovoStoryScript": "Imaginem só, meus queridos netos, se alguém começasse a construir um navio do tamanho de um prédio de três andares bem no meio de um campo seco, longe de qualquer praia, num dia de sol bem quente! Sentem-se aqui pertinho do vovô, porque hoje vamos descobrir como a fé e a obediência de um homem chamado Noé salvaram a sua família e todos os animaizinhos da terra! Tempos depois da criação, as pessoas da terra começaram a brigar e a se esquecer dos caminhos de Deus. Mas Noé era diferente: ele tinha um coração bondoso, justo e conversava com o Senhor todos os dias. Então Deus contou um segredo muito importante a Noé: viria uma chuva tão grande sobre a terra que cobriria até os montes, e Noé precisava construir uma imensa arca de madeira resinosa para abrigar a sua família e um casal de cada espécie de animal! Noé não duvidou nem um segundo! Junto com seus três filhos, ele cortou troncos fortes, serrou tábuas, bateu pregos de madeira e passou betume para não entrar nem uma gotinha de água. Os vizinhos passavam, olhavam para o céu azul sem nenhuma nuvem e riam de Noé, mas ele continuava trabalhando firme, confiando na palavra de Deus. Quando a grande arca ficou pronta, aconteceu uma cena extraordinária! Pelos caminhos da floresta e das colinas, os animais começaram a vir de dois em dois, guiados pelo próprio Deus: vieram os elefantes trombeteando, as girafas, os leões mansinhos, as ovelhinhas e os passarinhos coloridos, todos subindo pela grande rampa de madeira! Assim que Noé, sua família e os animais entraram e guardaram bastante alimento, o próprio Deus fechou a grande porta da arca por fora. Logo depois, o céu escureceu e a chuva caiu por quarenta dias e quarenta noites. Lá fora as águas subiram alto, mas dentro da arca todos estavam sequinhos, aquecidos e em perfeita paz! Quando a chuva parou e o vento secou a terra, Noé abriu a janela da arca e soltou uma pombinha branca, que voltou trazendo no bico uma folhinha verde de oliveira! Ao descerem da arca em terra firme, Noé e sua família ajoelharam-se para agradecer a Deus. E o Senhor desenhou nas nuvens um lindo arco-íris de sete cores, como sinal eterno da Sua aliança de amor e proteção!",
     "byAge": {
       "3-5": {
         "text": "Noé obedeceu a Deus e construiu uma grande Arca para salvar sua família e os bichinhos da grande chuva. Depois, Deus colocou um lindo arco-íris no céu!",
@@ -215,8 +283,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão dos Pequenininhos: Obediência Alegre",
         "actionDesc": "Quando o papai ou a mamãe pedir para guardar os brinquedos, obedeça na primeira vez com um sorriso, igual a Noé!",
-        "vovoStoryScript": "Oi, minha criança linda! Hoje o Vovô Nésio vai contar a história do vovô Noé e do grande barcão chamado Arca! O Papai do Céu pediu para Noé construir um barco bem grandão de madeira: toc, toc, toc, fazia o martelo de Noé! Quando a Arca ficou pronta, vieram os bichinhos de dois em dois: dois leõezinhos, duas girafas bem compridas, dois elefantes e dois passarinhos! Todos entraram na Arca e o Papai do Céu fechou a porta para proteger todo mundo da chuvona! Depois que a chuva passou, o sol voltou a brilhar e Deus desenhou no céu um arco-íris lindo e colorido!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_02_3a5.mp3"
+        "vovoStoryScript": "Imaginem só, meus queridos netos, se alguém começasse a construir um navio do tamanho de um prédio de três andares bem no meio de um campo seco, longe de qualquer praia, num dia de sol bem quente! Sentem-se aqui pertinho do vovô, porque hoje vamos descobrir como a fé e a obediência de um homem chamado Noé salvaram a sua família e todos os animaizinhos da terra! Tempos depois da criação, as pessoas da terra começaram a brigar e a se esquecer dos caminhos de Deus. Mas Noé era diferente: ele tinha um coração bondoso, justo e conversava com o Senhor todos os dias. Então Deus contou um segredo muito importante a Noé: viria uma chuva tão grande sobre a terra que cobriria até os montes, e Noé precisava construir uma imensa arca de madeira resinosa para abrigar a sua família e um casal de cada espécie de animal! Noé não duvidou nem um segundo! Junto com seus três filhos, ele cortou troncos fortes, serrou tábuas, bateu pregos de madeira e passou betume para não entrar nem uma gotinha de água. Os vizinhos passavam, olhavam para o céu azul sem nenhuma nuvem e riam de Noé, mas ele continuava trabalhando firme, confiando na palavra de Deus. Quando a grande arca ficou pronta, aconteceu uma cena extraordinária! Pelos caminhos da floresta e das colinas, os animais começaram a vir de dois em dois, guiados pelo próprio Deus: vieram os elefantes trombeteando, as girafas, os leões mansinhos, as ovelhinhas e os passarinhos coloridos, todos subindo pela grande rampa de madeira! Assim que Noé, sua família e os animais entraram e guardaram bastante alimento, o próprio Deus fechou a grande porta da arca por fora. Logo depois, o céu escureceu e a chuva caiu por quarenta dias e quarenta noites. Lá fora as águas subiram alto, mas dentro da arca todos estavam sequinhos, aquecidos e em perfeita paz! Quando a chuva parou e o vento secou a terra, Noé abriu a janela da arca e soltou uma pombinha branca, que voltou trazendo no bico uma folhinha verde de oliveira! Ao descerem da arca em terra firme, Noé e sua família ajoelharam-se para agradecer a Deus. E o Senhor desenhou nas nuvens um lindo arco-íris de sete cores, como sinal eterno da Sua aliança de amor e proteção!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_02_3a5.mp3?v=53"
       },
       "6-8": {
         "text": "Mesmo quando todos riam dele, Noé continuou construindo a Arca com fé e paciência. A obediência de Noé protegeu sua casa e todos os animais!",
@@ -233,8 +301,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão Explorador: Construtor da Paz",
         "actionDesc": "Desenhe um arco-íris das promessas de Deus e faça uma boa ação para ajudar na arrumação da sua casa.",
-        "vovoStoryScript": "Paz e alegria no seu coração, minha criança querida! Sente-se bem confortável, porque hoje o Vovô Nésio vai contar para você uma das aventuras mais extraordinárias de toda a Bíblia: a história de Noé e a Grande Arca da Promessa! Muito tempo depois da Criação, as pessoas da Terra começaram a ficar egoístas e esqueceram de fazer o bem. Mas havia um homem bom e fiel chamado Noé, que andava com Deus todos os dias! O Senhor pediu que Noé construísse uma embarcação gigante de madeira chamada Arca. Junto com a sua família, Noé construiu a Arca exatamente como Deus havia mandado. Quando tudo ficou pronto, vieram animais de todas as espécies, de dois em dois, entrando pela grande porta da Arca! Depois que Noé e sua família entraram, o próprio Deus fechou a porta por fora! Quando as águas baixaram, Noé soltou uma pombinha branca, que voltou trazendo no bico uma folhinha verde de oliveira! Ao saírem da Arca, Deus desenhou nas nuvens o primeiro arco-íris de sete cores brilhantes, prometendo que sempre cuidaria da Terra!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_02_vovo.mp3"
+        "vovoStoryScript": "Imaginem só, meus queridos netos, se alguém começasse a construir um navio do tamanho de um prédio de três andares bem no meio de um campo seco, longe de qualquer praia, num dia de sol bem quente! Sentem-se aqui pertinho do vovô, porque hoje vamos descobrir como a fé e a obediência de um homem chamado Noé salvaram a sua família e todos os animaizinhos da terra! Tempos depois da criação, as pessoas da terra começaram a brigar e a se esquecer dos caminhos de Deus. Mas Noé era diferente: ele tinha um coração bondoso, justo e conversava com o Senhor todos os dias. Então Deus contou um segredo muito importante a Noé: viria uma chuva tão grande sobre a terra que cobriria até os montes, e Noé precisava construir uma imensa arca de madeira resinosa para abrigar a sua família e um casal de cada espécie de animal! Noé não duvidou nem um segundo! Junto com seus três filhos, ele cortou troncos fortes, serrou tábuas, bateu pregos de madeira e passou betume para não entrar nem uma gotinha de água. Os vizinhos passavam, olhavam para o céu azul sem nenhuma nuvem e riam de Noé, mas ele continuava trabalhando firme, confiando na palavra de Deus. Quando a grande arca ficou pronta, aconteceu uma cena extraordinária! Pelos caminhos da floresta e das colinas, os animais começaram a vir de dois em dois, guiados pelo próprio Deus: vieram os elefantes trombeteando, as girafas, os leões mansinhos, as ovelhinhas e os passarinhos coloridos, todos subindo pela grande rampa de madeira! Assim que Noé, sua família e os animais entraram e guardaram bastante alimento, o próprio Deus fechou a grande porta da arca por fora. Logo depois, o céu escureceu e a chuva caiu por quarenta dias e quarenta noites. Lá fora as águas subiram alto, mas dentro da arca todos estavam sequinhos, aquecidos e em perfeita paz! Quando a chuva parou e o vento secou a terra, Noé abriu a janela da arca e soltou uma pombinha branca, que voltou trazendo no bico uma folhinha verde de oliveira! Ao descerem da arca em terra firme, Noé e sua família ajoelharam-se para agradecer a Deus. E o Senhor desenhou nas nuvens um lindo arco-íris de sete cores, como sinal eterno da Sua aliança de amor e proteção!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_02_vovo.mp3?v=53"
       }
     },
     "devotional5Days": [
@@ -305,29 +373,63 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Chamado de Abraão (~2000 a.C. • Gênesis 12–22)",
     "title": "Abraão e o Céu Cheio de Estrelas",
     "bibleRef": "Gênesis 12:1–5; 15:5–6",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_18.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_01.jpg",
     "storyIdUnlock": 10,
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_03_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_03_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_18.jpg",
-        "caption": "Cena 1 • Deus chamou Abraão para sair de sua cidade rumo à terra que o Senhor lhe mostraria!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_01.jpg",
+        "caption": "Cena 1/10 • Na antiga cidade de Ur, o bondoso Abraão orou a Deus e ouviu o chamado para uma grande jornada de fé.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_30.jpg",
-        "caption": "Cena 2 • Abraão viajou pelo deserto confiando de todo o coração na direção e no cuidado de Deus!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_02.jpg",
+        "caption": "Cena 2/10 • Confiando no Senhor, Abraão e Sara partiram com seus camelos e ovelhas pelo deserto rumo à terra de Canaã.",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_18.jpg",
-        "caption": "Cena 3 • Sob o céu estrelado, Deus prometeu: 'Conte as estrelas! Assim será a sua descendência!'"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_03.jpg",
+        "caption": "Cena 3/10 • Ao chegar a Canaã, Abraão ergueu um altar de pedras debaixo dos carvalhos para agradecer a proteção de Deus.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_09.jpg",
-        "caption": "Cena 4 • Deus cumpriu Sua promessa: nasceu Isaque, trazendo alegria para Abraão e Sara!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_04.jpg",
+        "caption": "Cena 4/10 • Abraão foi pacífico e generoso com seu sobrinho Ló, escolhendo manter a paz e a união na família.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_05.jpg",
+        "caption": "Cena 5/10 • Na tenda iluminada pela lamparina, Abraão conversava com Deus com esperança de um dia ter um filhinho.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_06.jpg",
+        "caption": "Cena 6/10 • Deus levou Abraão para fora da tenda à noite e prometeu: 'Conte as estrelas! Assim será a sua descendência!'",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_07.jpg",
+        "caption": "Cena 7/10 • Debaixo dos carvalhos de Manre, Abraão acolheu três mensageiros celestiais que anunciaram o milagre para o ano seguinte.",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_08.jpg",
+        "caption": "Cena 8/10 • Sara ouviu a promessa na porta da tenda e seu coração se encheu de admiração pelo poder de Deus.",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_09.jpg",
+        "caption": "Cena 9/10 • No tempo marcado por Deus, nasceu o pequeno Isaque, trazendo sorriso e festa para Abraão e Sara!",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_10.jpg",
+        "caption": "Cena 10/10 • Sob o céu estrelado da promessa, o menino Isaque crescia feliz ao lado de seus pais, provando que Deus é fiel!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "3ª etapa da Linha do Tempo (Era dos Patriarcas): Deus chamou Abraão para ir a Canaã, prometendo que dele nasceria um grande povo pelo qual todas as famílias da Terra seriam abençoadas!",
-    "vovoStoryScript": "Olá, minha criança querida! Olhe só pela janela para o céu da noite: você já tentou contar quantas estrelinhas existem lá no alto? Hoje o Vovô Nésio vai contar a história de um grande amigo de Deus chamado Abraão! Deus falou ao coração de Abraão com uma promessa maravilhosa: Sai da tua terra e vai para a terra que Eu vou te mostrar, porque farei de você uma grande nação e abençoarei todas as famílias do mundo através da sua família! Certa noite, lá no deserto silencioso, Deus chamou Abraão para fora da tenda e disse: Olhe para o céu e conte as estrelas! Assim será o tamanho da sua família! E no tempo exato, Deus cumpriu a promessa: nasceu o pequeno Isaque, cujo nome significa riso e alegria!",
+    "vovoStoryScript": "Vocês já saíram no quintal numa noite bem escura e tentaram contar uma por uma todas as estrelinhas que piscam lá no céu? Quando a gente chega no cem, já perde a conta, não é verdade? Ajeitem-se aqui pertinho do vovô, meus netos queridos, porque hoje vamos viajar pelo deserto com Abraão, o amigo de Deus que recebeu uma promessa mais brilhante do que todas as estrelas do universo! Abraão morava com sua esposa Sara numa cidade confortável chamada Ur. Ele já tinha setenta e cinco anos quando ouviu a voz de Deus fazendo um convite corajoso: Abraão, deixe a sua terra e vá para o lugar que Eu vou lhe mostrar! Eu farei de você uma grande nação, e por meio da sua família todas as famílias da terra serão abençoadas! Abraão não tinha mapa no papel, mas tinha fé no coração! Ele arrumou suas tendas, preparou seus camelos e ovelhas, e partiu com Sara e seu sobrinho Ló seguindo a direção do Senhor até chegarem à terra de Canaã. Quando houve uma disputa entre os pastores por causa do pasto das ovelhas, Abraão foi pacífico e generoso, deixando seu sobrinho Ló escolher primeiro e mantendo a paz na família. Os anos foram passando, e Abraão e Sara tinham um grande sonho no coração: eles queriam muito ter um filhinho, mas já eram bem velhinhos e ainda não tinham nenhum bebê. Certa noite, Deus chamou Abraão para sair da tenda, apontou para o céu infinito do deserto e disse: Olhe para o alto, Abraão, e conte as estrelas, se você puder contar! Assim será o número dos seus descendentes! Abraão olhou para aquele manto de estrelas douradas e creu no Senhor de todo o coração! Mais tarde, três mensageiros celestiais visitaram a tenda de Abraão debaixo dos carvalhos e confirmaram que no ano seguinte Sara teria um filho! E no tempo exato marcado por Deus, quando Abraão tinha cem anos e Sara noventa, o milagre aconteceu: nasceu o pequeno Isaque! O nome Isaque quer dizer sorriso, porque Deus encheu a vida deles de festa e alegria! Deus sempre cumpre cada promessa que faz!",
     "byAge": {
       "3-5": {
         "text": "Deus pediu para Abraão olhar para as estrelinhas do céu e prometeu que ele teria uma família bem grande. Abraão confiou no Papai do Céu!",
@@ -343,8 +445,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão dos Pequenininhos: Abençoar a Família",
         "actionDesc": "Dê um abraço apertado no papai, na mamãe e nos avós dizendo: 'Deus abençoe a nossa família!'",
-        "vovoStoryScript": "Olá, meu netinho e minha netinha do coração! Você já olhou para o céu de noite e viu um montão de estrelinhas brilhando: plim, plim, plim? O Papai do Céu tinha um grande amigo chamado Abraão! Certa noite, Deus chamou Abraão para olhar para o céu e disse: Abraão, tente contar as estrelinhas! Assim bem grandona e abençoada vai ser a sua família! Abraão confiou no Papai do Céu de todo o coração, e Deus deu para ele e para a mamãe Sara um bebezinho lindo chamado Isaque, que trouxe muita alegria e risada para a casa deles!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_03_3a5.mp3"
+        "vovoStoryScript": "Vocês já saíram no quintal numa noite bem escura e tentaram contar uma por uma todas as estrelinhas que piscam lá no céu? Quando a gente chega no cem, já perde a conta, não é verdade? Ajeitem-se aqui pertinho do vovô, meus netos queridos, porque hoje vamos viajar pelo deserto com Abraão, o amigo de Deus que recebeu uma promessa mais brilhante do que todas as estrelas do universo! Abraão morava com sua esposa Sara numa cidade confortável chamada Ur. Ele já tinha setenta e cinco anos quando ouviu a voz de Deus fazendo um convite corajoso: Abraão, deixe a sua terra e vá para o lugar que Eu vou lhe mostrar! Eu farei de você uma grande nação, e por meio da sua família todas as famílias da terra serão abençoadas! Abraão não tinha mapa no papel, mas tinha fé no coração! Ele arrumou suas tendas, preparou seus camelos e ovelhas, e partiu com Sara e seu sobrinho Ló seguindo a direção do Senhor até chegarem à terra de Canaã. Quando houve uma disputa entre os pastores por causa do pasto das ovelhas, Abraão foi pacífico e generoso, deixando seu sobrinho Ló escolher primeiro e mantendo a paz na família. Os anos foram passando, e Abraão e Sara tinham um grande sonho no coração: eles queriam muito ter um filhinho, mas já eram bem velhinhos e ainda não tinham nenhum bebê. Certa noite, Deus chamou Abraão para sair da tenda, apontou para o céu infinito do deserto e disse: Olhe para o alto, Abraão, e conte as estrelas, se você puder contar! Assim será o número dos seus descendentes! Abraão olhou para aquele manto de estrelas douradas e creu no Senhor de todo o coração! Mais tarde, três mensageiros celestiais visitaram a tenda de Abraão debaixo dos carvalhos e confirmaram que no ano seguinte Sara teria um filho! E no tempo exato marcado por Deus, quando Abraão tinha cem anos e Sara noventa, o milagre aconteceu: nasceu o pequeno Isaque! O nome Isaque quer dizer sorriso, porque Deus encheu a vida deles de festa e alegria! Deus sempre cumpre cada promessa que faz!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_03_3a5.mp3?v=53"
       },
       "6-8": {
         "text": "Abraão deixou sua cidade e viajou confiando na promessa de Deus. Sob o céu estrelado, Deus prometeu que a família de Abraão seria numerosa como as estrelas!",
@@ -361,8 +463,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão Explorador: Amigo Generoso",
         "actionDesc": "Assim como Abraão repartiu a terra com seu sobrinho Ló para manter a paz, divida algo seu com um irmão ou amigo!",
-        "vovoStoryScript": "Olá, minha criança querida! Olhe só pela janela para o céu da noite: você já tentou contar quantas estrelinhas existem lá no alto? Hoje o Vovô Nésio vai contar a história de um grande amigo de Deus chamado Abraão! Deus falou ao coração de Abraão com uma promessa maravilhosa: Sai da tua terra e vai para a terra que Eu vou te mostrar, porque farei de você uma grande nação e abençoarei todas as famílias do mundo através da sua família! Certa noite, lá no deserto silencioso, Deus chamou Abraão para fora da tenda e disse: Olhe para o céu e conte as estrelas! Assim será o tamanho da sua família! E no tempo exato, Deus cumpriu a promessa: nasceu o pequeno Isaque, cujo nome significa riso e alegria!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_03_vovo.mp3"
+        "vovoStoryScript": "Vocês já saíram no quintal numa noite bem escura e tentaram contar uma por uma todas as estrelinhas que piscam lá no céu? Quando a gente chega no cem, já perde a conta, não é verdade? Ajeitem-se aqui pertinho do vovô, meus netos queridos, porque hoje vamos viajar pelo deserto com Abraão, o amigo de Deus que recebeu uma promessa mais brilhante do que todas as estrelas do universo! Abraão morava com sua esposa Sara numa cidade confortável chamada Ur. Ele já tinha setenta e cinco anos quando ouviu a voz de Deus fazendo um convite corajoso: Abraão, deixe a sua terra e vá para o lugar que Eu vou lhe mostrar! Eu farei de você uma grande nação, e por meio da sua família todas as famílias da terra serão abençoadas! Abraão não tinha mapa no papel, mas tinha fé no coração! Ele arrumou suas tendas, preparou seus camelos e ovelhas, e partiu com Sara e seu sobrinho Ló seguindo a direção do Senhor até chegarem à terra de Canaã. Quando houve uma disputa entre os pastores por causa do pasto das ovelhas, Abraão foi pacífico e generoso, deixando seu sobrinho Ló escolher primeiro e mantendo a paz na família. Os anos foram passando, e Abraão e Sara tinham um grande sonho no coração: eles queriam muito ter um filhinho, mas já eram bem velhinhos e ainda não tinham nenhum bebê. Certa noite, Deus chamou Abraão para sair da tenda, apontou para o céu infinito do deserto e disse: Olhe para o alto, Abraão, e conte as estrelas, se você puder contar! Assim será o número dos seus descendentes! Abraão olhou para aquele manto de estrelas douradas e creu no Senhor de todo o coração! Mais tarde, três mensageiros celestiais visitaram a tenda de Abraão debaixo dos carvalhos e confirmaram que no ano seguinte Sara teria um filho! E no tempo exato marcado por Deus, quando Abraão tinha cem anos e Sara noventa, o milagre aconteceu: nasceu o pequeno Isaque! O nome Isaque quer dizer sorriso, porque Deus encheu a vida deles de festa e alegria! Deus sempre cumpre cada promessa que faz!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_03_vovo.mp3?v=53"
       }
     },
     "devotional5Days": [
@@ -433,29 +535,63 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Jornada de Jacó (~1900 a.C. • Gênesis 28)",
     "title": "Jacó e a Escada para o Céu",
     "bibleRef": "Gênesis 28:10–22",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_30.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_01.jpg",
     "storyIdUnlock": 12,
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_04_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_04_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_30.jpg",
-        "caption": "Cena 1 • Jacó viajava pelo deserto e, ao anoitecer, apoiou a cabeça em uma pedra e adormeceu."
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_01.jpg",
+        "caption": "Cena 1/10 • Nas colinas de Canaã, o patriarca Jacó presenteou seu filho José com uma linda túnica toda colorida.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_18.jpg",
-        "caption": "Cena 2 • Em sonho, Jacó viu uma escada luminosa que tocava o Céu, com anjos de Deus subindo e descendo!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_02.jpg",
+        "caption": "Cena 2/10 • O jovem José contou aos irmãos os sonhos especiais que Deus lhe dera com feixes de trigo e estrelas brilhantes.",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_30.jpg",
-        "caption": "Cena 3 • Deus prometeu a Jacó: 'Eu estou com você e guardarei você por onde quer que for!'"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_03.jpg",
+        "caption": "Cena 3/10 • Levado por uma caravana de mercadores pelo deserto, José chegou à terra distante do Egito sem perder a fé.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_31.jpg",
-        "caption": "Cena 4 • Jacó chamou aquele lugar de Betel (Casa de Deus) e dele nasceram as 12 Tribos de Israel!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_04.jpg",
+        "caption": "Cena 4/10 • Mesmo longe de casa, José trabalhava com honestidade, alegria e oração, e o Senhor abençoava tudo o que ele fazia.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_05.jpg",
+        "caption": "Cena 5/10 • Com sabedoria dada por Deus, José consolou os servos reais e explicou o significado dos seus sonhos.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_06.jpg",
+        "caption": "Cena 6/10 • Diante do Faraó no grande palácio do Egito, José revelou o sonho dos sete anos de fartura e sete anos de seca.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_07.jpg",
+        "caption": "Cena 7/10 • O Faraó colocou o anel real na mão de José e o nomeou governador de toda a terra do Egito!",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_08.jpg",
+        "caption": "Cena 8/10 • Durante os sete anos de colheita abundante, José organizou celeiros gigantescos cheios de trigo dourado.",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_09.jpg",
+        "caption": "Cena 9/10 • Quando seus irmãos vieram pedir alimento, José abriu os braços em lágrimas e perdoou a todos de coração!",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_10.jpg",
+        "caption": "Cena 10/10 • Que festa emocionante quando José abraçou seu idoso pai Jacó no Egito, reunindo toda a família em amor!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "Seguindo a Linha do Tempo dos Patriarcas: Abraão teve Isaque, e Isaque teve Jacó! Em Betel, Deus renovou com Jacó a promessa feita ao seu avô Abraão.",
-    "vovoStoryScript": "Que a paz de Deus esteja com você, minha criança querida! Hoje vamos continuar viajando pela Linha do Tempo da Bíblia para conhecer a história de Jacó, o neto de Abraão e filho de Isaque! Certa vez, Jacó precisou fazer uma longa viagem pelo deserto. Quando a noite caiu, ele escolheu uma pedra para apoiar a cabeça e adormeceu. Então Jacó viu em sonho uma escada resplandecente de luz dourada que começava na terra e subia até tocar o Céu, com anjos de Deus subindo e descendo! E Deus lhe disse: Não tenha medo, Eu estou com você e guardarei os seus passos por onde quer que você for! Jacó despertou cheio de alegria e chamou aquele lugar de Betel, a Casa de Deus!",
+    "vovoStoryScript": "Meus netos queridos, imaginem um menino que ganhou do papai a roupa mais linda e colorida de toda a região, mas que por causa da inveja dos irmãos acabou indo parar num país muito distante! Será que ele ficou com raiva, ou será que o amor de Deus transformou tudo numa grande bênção? Escutem com atenção o que o vovô vai contar agora: é a emocionante história de José do Egito! José era um dos doze filhos de Jacó, na terra de Canaã. Seu pai o amava demais e costurou para ele uma túnica especial, toda bordada com cores vibrantes! Além disso, Deus dava sonhos proféticos a José, mostrando que um dia os feixes de trigo e até as estrelas se inclinariam diante dele. Isso despertou um ciúme muito feio no coração dos seus irmãos mais velhos. Certo dia, longe de casa, os irmãos tomaram a túnica colorida de José e o enviaram numa caravana de mercadores que descia para o Egito. Lá no Egito, José estava sozinho e longe do pai, trabalhando na casa de Potifar e depois passando até por uma prisão injusta. Mas sabem qual foi o segredo de José? Ele nunca deixou a amargura entrar no seu coração! Em qualquer lugar, ele orava, ajudava as pessoas com alegria e confiava que Deus estava no controle. Certa noite, o Faraó, o poderoso rei do Egito, teve dois sonhos misteriosos com sete vacas gordas e sete vacas magras, e sete espigas cheias e sete espigas secas. Ninguém no palácio conseguia decifrar! Chamaram então José! Com a sabedoria dada por Deus, José explicou que viriam sete anos de muita colheita e fartura, seguidos por sete anos de grande seca e fome, e aconselhou o rei a guardar trigo em grandes celeiros. O Faraó ficou tão impressionado que colocou o anel real na mão de José e o nomeou governador de todo o Egito! Quando a seca chegou, os irmãos de José vieram de Canaã pedir alimento no Egito. Ao se revelarem diante do governador, José chorou de emoção, abraçou e perdoou todos os seus irmãos, trazendo seu idoso pai Jacó para viver pertinho dele! O perdão cura a família e mostra a grandeza de Deus!",
     "byAge": {
       "3-5": {
         "text": "Jacó dormiu sob as estrelas e sonhou com uma escada brilhante que chegava até o céu! Deus prometeu cuidar de Jacó em todo lugar.",
@@ -471,8 +607,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão dos Pequenininhos: Dormir em Paz",
         "actionDesc": "Antes de dormir hoje, faça uma oração agradecendo porque o Papai do Céu guarda o seu soninho!",
-        "vovoStoryScript": "Oi, minha criança querida! Senta aqui com o Vovô Nésio! Hoje vamos conhecer Jacó! Um dia, Jacó estava viajando e ficou de noite. Ele deitou a cabecinha para dormir olhando as estrelas e teve um sonho lindo! No sonho, Jacó viu uma escada brilhante que subia lá da terra até o Céu, com anjinhos de Deus subindo e descendo! E o Papai do Céu falou com carinho para Jacó: Não tenha medo! Eu estou com você e vou cuidar de você em todo lugar! Assim como Deus cuidou do soninho de Jacó, o Papai do Céu também guarda o seu soninho todas as noites!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_04_3a5.mp3"
+        "vovoStoryScript": "Meus netos queridos, imaginem um menino que ganhou do papai a roupa mais linda e colorida de toda a região, mas que por causa da inveja dos irmãos acabou indo parar num país muito distante! Será que ele ficou com raiva, ou será que o amor de Deus transformou tudo numa grande bênção? Escutem com atenção o que o vovô vai contar agora: é a emocionante história de José do Egito! José era um dos doze filhos de Jacó, na terra de Canaã. Seu pai o amava demais e costurou para ele uma túnica especial, toda bordada com cores vibrantes! Além disso, Deus dava sonhos proféticos a José, mostrando que um dia os feixes de trigo e até as estrelas se inclinariam diante dele. Isso despertou um ciúme muito feio no coração dos seus irmãos mais velhos. Certo dia, longe de casa, os irmãos tomaram a túnica colorida de José e o enviaram numa caravana de mercadores que descia para o Egito. Lá no Egito, José estava sozinho e longe do pai, trabalhando na casa de Potifar e depois passando até por uma prisão injusta. Mas sabem qual foi o segredo de José? Ele nunca deixou a amargura entrar no seu coração! Em qualquer lugar, ele orava, ajudava as pessoas com alegria e confiava que Deus estava no controle. Certa noite, o Faraó, o poderoso rei do Egito, teve dois sonhos misteriosos com sete vacas gordas e sete vacas magras, e sete espigas cheias e sete espigas secas. Ninguém no palácio conseguia decifrar! Chamaram então José! Com a sabedoria dada por Deus, José explicou que viriam sete anos de muita colheita e fartura, seguidos por sete anos de grande seca e fome, e aconselhou o rei a guardar trigo em grandes celeiros. O Faraó ficou tão impressionado que colocou o anel real na mão de José e o nomeou governador de todo o Egito! Quando a seca chegou, os irmãos de José vieram de Canaã pedir alimento no Egito. Ao se revelarem diante do governador, José chorou de emoção, abraçou e perdoou todos os seus irmãos, trazendo seu idoso pai Jacó para viver pertinho dele! O perdão cura a família e mostra a grandeza de Deus!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_04_3a5.mp3?v=53"
       },
       "6-8": {
         "text": "Mesmo longe de casa, Jacó descobriu em Betel que a presença de Deus estava com ele. Deus confirmou a Jacó a promessa feita ao seu avô Abraão!",
@@ -488,8 +624,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão Explorador: Memorial de Gratidão",
         "actionDesc": "Escreva em um cartão uma bênção que sua família recebeu e coloque na geladeira para lembrar do cuidado de Deus.",
-        "vovoStoryScript": "Que a paz de Deus esteja com você, minha criança querida! Hoje vamos continuar viajando pela Linha do Tempo da Bíblia para conhecer a história de Jacó, o neto de Abraão e filho de Isaque! Certa vez, Jacó precisou fazer uma longa viagem pelo deserto. Quando a noite caiu, ele escolheu uma pedra para apoiar a cabeça e adormeceu. Então Jacó viu em sonho uma escada resplandecente de luz dourada que começava na terra e subia até tocar o Céu, com anjos de Deus subindo e descendo! E Deus lhe disse: Não tenha medo, Eu estou com você e guardarei os seus passos por onde quer que você for! Jacó despertou cheio de alegria e chamou aquele lugar de Betel, a Casa de Deus!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_04_vovo.mp3"
+        "vovoStoryScript": "Meus netos queridos, imaginem um menino que ganhou do papai a roupa mais linda e colorida de toda a região, mas que por causa da inveja dos irmãos acabou indo parar num país muito distante! Será que ele ficou com raiva, ou será que o amor de Deus transformou tudo numa grande bênção? Escutem com atenção o que o vovô vai contar agora: é a emocionante história de José do Egito! José era um dos doze filhos de Jacó, na terra de Canaã. Seu pai o amava demais e costurou para ele uma túnica especial, toda bordada com cores vibrantes! Além disso, Deus dava sonhos proféticos a José, mostrando que um dia os feixes de trigo e até as estrelas se inclinariam diante dele. Isso despertou um ciúme muito feio no coração dos seus irmãos mais velhos. Certo dia, longe de casa, os irmãos tomaram a túnica colorida de José e o enviaram numa caravana de mercadores que descia para o Egito. Lá no Egito, José estava sozinho e longe do pai, trabalhando na casa de Potifar e depois passando até por uma prisão injusta. Mas sabem qual foi o segredo de José? Ele nunca deixou a amargura entrar no seu coração! Em qualquer lugar, ele orava, ajudava as pessoas com alegria e confiava que Deus estava no controle. Certa noite, o Faraó, o poderoso rei do Egito, teve dois sonhos misteriosos com sete vacas gordas e sete vacas magras, e sete espigas cheias e sete espigas secas. Ninguém no palácio conseguia decifrar! Chamaram então José! Com a sabedoria dada por Deus, José explicou que viriam sete anos de muita colheita e fartura, seguidos por sete anos de grande seca e fome, e aconselhou o rei a guardar trigo em grandes celeiros. O Faraó ficou tão impressionado que colocou o anel real na mão de José e o nomeou governador de todo o Egito! Quando a seca chegou, os irmãos de José vieram de Canaã pedir alimento no Egito. Ao se revelarem diante do governador, José chorou de emoção, abraçou e perdoou todos os seus irmãos, trazendo seu idoso pai Jacó para viver pertinho dele! O perdão cura a família e mostra a grandeza de Deus!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_04_vovo.mp3?v=53"
       }
     },
     "devotional5Days": [
@@ -560,29 +696,63 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Ida para o Egito (~1800 a.C. • Gênesis 37–50)",
     "title": "José, a Túnica Colorida e o Perdão",
     "bibleRef": "Gênesis 37; 45:1–15; 50:20",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_31.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_01.jpg",
     "storyIdUnlock": 13,
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_05_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_05_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_31.jpg",
-        "caption": "Cena 1 • José ganhou de seu pai Jacó uma linda túnica de muitas cores!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_01.jpg",
+        "caption": "Cena 1/10 • Nas águas calmas do rio Nilo, o bebê Moisés dormia protegido num cestinho enquanto sua irmã Miriã vigiava.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_30.jpg",
-        "caption": "Cena 2 • Levado para o Egito, José manteve o coração fiel, honesto e trabalhador diante de Deus!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_02.jpg",
+        "caption": "Cena 2/10 • A princesa do Egito acolheu o bebê com carinho, e a própria mamãe de Moisés foi chamada para cuidar dele!",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_33.jpg",
-        "caption": "Cena 3 • Com a sabedoria dada por Deus, José interpretou o sonho de Faraó e tornou-se governador do Egito!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_03.jpg",
+        "caption": "Cena 3/10 • Já adulto, Moisés cuidava das ovelhinhas no deserto de Midiã, aos pés do Monte Horebe.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_31.jpg",
-        "caption": "Cena 4 • José salvou sua família da fome e abraçou seus irmãos com perdão verdadeiro!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_04.jpg",
+        "caption": "Cena 4/10 • Diante da sarça ardente que brilhava sem se queimar, Deus chamou Moisés para libertar o povo de Israel!",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_05.jpg",
+        "caption": "Cena 5/10 • Com fé e coragem, Moisés e Arão apresentaram-se diante do Faraó anunciando a palavra do Senhor.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_06.jpg",
+        "caption": "Cena 6/10 • Milhares de famílias saíram livres do Egito, guiadas por Deus numa majestosa coluna de nuvem durante o dia.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_07.jpg",
+        "caption": "Cena 7/10 • À noite, na beira do Mar Vermelho, a coluna de fogo de Deus brilhava protegendo todo o acampamento de Israel.",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_08.jpg",
+        "caption": "Cena 8/10 • Ao comando do Senhor, Moisés estendeu o cajado e um vento forte abriu o Mar Vermelho em duas muralhas de água!",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_09.jpg",
+        "caption": "Cena 9/10 • Todo o povo de Israel atravessou o meio do mar caminhando em terra firme e sequinha entre as águas cristalinas!",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_10.jpg",
+        "caption": "Cena 10/10 • Na outra margem em segurança, Moisés, Miriã com seu tamborim e as crianças cantaram louvores a Deus!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "Por que o povo de Israel foi morar no Egito antes de Moisés? A resposta na cronologia bíblica é a história de José, filho de Jacó!",
-    "vovoStoryScript": "Olá, minha criança querida! Que alegria abrir a Bíblia com você hoje para contarmos a emocionante história de José do Egito e a sua túnica colorida! José ganhou de seu pai Jacó uma linda túnica colorida, mas seus irmãos tiveram inveja e o mandaram para o Egito. Mesmo longe de casa, o Senhor estava com José! Com a sabedoria que Deus lhe deu, José interpretou os sonhos do Faraó, guardou trigo nos celeiros durante os sete anos de fartura e salvou da fome toda a sua família, perdoando seus irmãos com um grande abraço de amor!",
+    "vovoStoryScript": "Vocês conseguem imaginar um mar inteiro, cheio de ondas gigantes e profundas, se abrindo bem no meio como duas muralhas de cristal azul, deixando um corredor de areia sequinha para um povo inteiro atravessar? Cheguem bem pertinho do vovô, meus netos amados, porque hoje vamos viver a grande aventura de Moisés e a travessia do Mar Vermelho! A história de Moisés começou com um livramento lindo quando ele ainda era um bebezinho no Egito. Para protegê-lo de um decreto cruel do rei, sua mamãe Joquebede colocou o pequeno Moisés num cestinho impermeável nas margens do rio Nilo, enquanto a irmãzinha dele, Miriã, vigiava escondida entre os juncos verdes! A filha do Faraó encontrou o cestinho, sentiu compaixão do bebê e, graças à coragem da pequena Miriã, a própria mamãe de Moisés foi chamada para cuidar dele! Quando Moisés cresceu e já cuidava de ovelhas no deserto, perto do Monte Horebe, ele viu algo impressionante: uma sarça ardente que brilhava com fogo dourado do céu, mas as folhinhas não se queimavam! De lá, Deus chamou Moisés para voltar ao Egito e libertar o povo de Israel da escravidão. Depois que Deus mostrou o Seu grande poder no Egito, o Faraó finalmente deixou o povo partir! Milhares de famílias saíram caminhando alegres, guiadas por Deus numa coluna de nuvem durante o dia e numa coluna de fogo iluminando a noite. Mas quando chegaram à beira do imenso Mar Vermelho, olharam para trás e viram as carruagens do Faraó vindo em alta velocidade! Cercados pelo mar na frente e pelo exército atrás, muitos ficaram com medo. Porém Moisés disse com voz firme: Não tenham medo! Fiquem tranquilos e vejam o livramento que o Senhor fará hoje! Ao comando de Deus, Moisés estendeu o seu cajado sobre as águas. Um vento forte soprou a noite toda, o mar se dividiu em duas enormes paredes de água, e todo o povo atravessou a pé enxuto! Na outra margem, Miriã tocou seu tamborim e todos celebraram ao Deus que abre caminhos no impossível!",
     "byAge": {
       "3-5": {
         "text": "José tinha uma linda túnica colorida e amava ao Papai do Céu. Mesmo longe de casa, ele guardou o coração limpo e perdoou seus irmãos!",
@@ -597,8 +767,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão dos Pequenininhos: Coração que Perdoa",
         "actionDesc": "Se alguém errar com você, escolha perdoar e continuar amigo!",
-        "vovoStoryScript": "Olá, meu pequenininho! Olá, minha pequenininha! Você gosta de roupa bem colorida? O jovem José ganhou do papai dele uma túnica linda, cheia de cores alegres! Mesmo quando José foi morar longe, lá no Egito, ele nunca ficou com raiva no coração: ele sempre obedecia ao Papai do Céu e ajudava todo mundo! Deus deu tanta sabedoria para José que ele ajudou a guardar comidinha para todas as famílias! E quando os irmãos dele vieram pedir ajuda, José deu um abraço bem apertado e perdoou todo mundo com muito amor!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_05_3a5.mp3"
+        "vovoStoryScript": "Vocês conseguem imaginar um mar inteiro, cheio de ondas gigantes e profundas, se abrindo bem no meio como duas muralhas de cristal azul, deixando um corredor de areia sequinha para um povo inteiro atravessar? Cheguem bem pertinho do vovô, meus netos amados, porque hoje vamos viver a grande aventura de Moisés e a travessia do Mar Vermelho! A história de Moisés começou com um livramento lindo quando ele ainda era um bebezinho no Egito. Para protegê-lo de um decreto cruel do rei, sua mamãe Joquebede colocou o pequeno Moisés num cestinho impermeável nas margens do rio Nilo, enquanto a irmãzinha dele, Miriã, vigiava escondida entre os juncos verdes! A filha do Faraó encontrou o cestinho, sentiu compaixão do bebê e, graças à coragem da pequena Miriã, a própria mamãe de Moisés foi chamada para cuidar dele! Quando Moisés cresceu e já cuidava de ovelhas no deserto, perto do Monte Horebe, ele viu algo impressionante: uma sarça ardente que brilhava com fogo dourado do céu, mas as folhinhas não se queimavam! De lá, Deus chamou Moisés para voltar ao Egito e libertar o povo de Israel da escravidão. Depois que Deus mostrou o Seu grande poder no Egito, o Faraó finalmente deixou o povo partir! Milhares de famílias saíram caminhando alegres, guiadas por Deus numa coluna de nuvem durante o dia e numa coluna de fogo iluminando a noite. Mas quando chegaram à beira do imenso Mar Vermelho, olharam para trás e viram as carruagens do Faraó vindo em alta velocidade! Cercados pelo mar na frente e pelo exército atrás, muitos ficaram com medo. Porém Moisés disse com voz firme: Não tenham medo! Fiquem tranquilos e vejam o livramento que o Senhor fará hoje! Ao comando de Deus, Moisés estendeu o seu cajado sobre as águas. Um vento forte soprou a noite toda, o mar se dividiu em duas enormes paredes de água, e todo o povo atravessou a pé enxuto! Na outra margem, Miriã tocou seu tamborim e todos celebraram ao Deus que abre caminhos no impossível!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_05_3a5.mp3?v=53"
       },
       "6-8": {
         "text": "José passou por momentos difíceis no Egito, mas nunca retribuiu o mal com o mal. Quando se tornou governador, ele alimentou e perdoou seus irmãos!",
@@ -614,8 +784,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão Explorador: Fazer o Bem Sempre",
         "actionDesc": "Retribua uma atitude chata com uma palavra bondosa e ajude a manter a união entre irmãos e colegas.",
-        "vovoStoryScript": "Olá, minha criança querida! Que alegria abrir a Bíblia com você hoje para contarmos a emocionante história de José do Egito e a sua túnica colorida! José ganhou de seu pai Jacó uma linda túnica colorida, mas seus irmãos tiveram inveja e o mandaram para o Egito. Mesmo longe de casa, o Senhor estava com José! Com a sabedoria que Deus lhe deu, José interpretou os sonhos do Faraó, guardou trigo nos celeiros durante os sete anos de fartura e salvou da fome toda a sua família, perdoando seus irmãos com um grande abraço de amor!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_05_vovo.mp3"
+        "vovoStoryScript": "Vocês conseguem imaginar um mar inteiro, cheio de ondas gigantes e profundas, se abrindo bem no meio como duas muralhas de cristal azul, deixando um corredor de areia sequinha para um povo inteiro atravessar? Cheguem bem pertinho do vovô, meus netos amados, porque hoje vamos viver a grande aventura de Moisés e a travessia do Mar Vermelho! A história de Moisés começou com um livramento lindo quando ele ainda era um bebezinho no Egito. Para protegê-lo de um decreto cruel do rei, sua mamãe Joquebede colocou o pequeno Moisés num cestinho impermeável nas margens do rio Nilo, enquanto a irmãzinha dele, Miriã, vigiava escondida entre os juncos verdes! A filha do Faraó encontrou o cestinho, sentiu compaixão do bebê e, graças à coragem da pequena Miriã, a própria mamãe de Moisés foi chamada para cuidar dele! Quando Moisés cresceu e já cuidava de ovelhas no deserto, perto do Monte Horebe, ele viu algo impressionante: uma sarça ardente que brilhava com fogo dourado do céu, mas as folhinhas não se queimavam! De lá, Deus chamou Moisés para voltar ao Egito e libertar o povo de Israel da escravidão. Depois que Deus mostrou o Seu grande poder no Egito, o Faraó finalmente deixou o povo partir! Milhares de famílias saíram caminhando alegres, guiadas por Deus numa coluna de nuvem durante o dia e numa coluna de fogo iluminando a noite. Mas quando chegaram à beira do imenso Mar Vermelho, olharam para trás e viram as carruagens do Faraó vindo em alta velocidade! Cercados pelo mar na frente e pelo exército atrás, muitos ficaram com medo. Porém Moisés disse com voz firme: Não tenham medo! Fiquem tranquilos e vejam o livramento que o Senhor fará hoje! Ao comando de Deus, Moisés estendeu o seu cajado sobre as águas. Um vento forte soprou a noite toda, o mar se dividiu em duas enormes paredes de água, e todo o povo atravessou a pé enxuto! Na outra margem, Miriã tocou seu tamborim e todos celebraram ao Deus que abre caminhos no impossível!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_05_vovo.mp3?v=53"
       }
     },
     "devotional5Days": [
@@ -686,29 +856,63 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Saída do Egito (~1446 a.C. • Êxodo 14)",
     "title": "Moisés e a Travessia do Mar Vermelho",
     "bibleRef": "Êxodo 14:13–31",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_01.jpg",
     "storyIdUnlock": 8,
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_06_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_06_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
-        "caption": "Cena 1 • Deus ouviu o clamor do Seu povo no Egito e enviou Moisés para conduzi-los à liberdade!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_01.jpg",
+        "caption": "Cena 1/10 • Deus escolheu Josué para liderar Israel e prometeu: 'Seja forte e corajoso, porque o Senhor é com você!'",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_30.jpg",
-        "caption": "Cena 2 • Deus guiava o povo com uma coluna de nuvem durante o dia e uma coluna de fogo à noite!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_02.jpg",
+        "caption": "Cena 2/10 • Quando os sacerdotes com a Arca da Aliança tocaram os pés no rio Jordão, as águas pararam e o povo atravessou!",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
-        "caption": "Cena 3 • Quando Moisés estendeu o cajado, Deus abriu uma estrada seca no meio do Mar Vermelho!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_03.jpg",
+        "caption": "Cena 3/10 • Josué e doze representantes ergueram doze pedras do rio em Gilgal como memorial de gratidão aos filhos e netos.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_10.jpg",
-        "caption": "Cena 4 • Todo o povo atravessou em segurança e cantou de gratidão ao Senhor!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_04.jpg",
+        "caption": "Cena 4/10 • Diante do povo estava a grande cidade de Jericó, cercada por muralhas de pedra altíssimas e portões trancados.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_05.jpg",
+        "caption": "Cena 5/10 • Um mensageiro celestial fortaleceu Josué e revelou o plano extraordinário de Deus para vencer sem espadas.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_06.jpg",
+        "caption": "Cena 6/10 • No 1º dia, sete sacerdotes tocaram as trombetas diante da Arca enquanto o povo marchava em silêncio ao redor de Jericó.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_07.jpg",
+        "caption": "Cena 7/10 • Durante seis dias seguidos, as famílias marcharam com paciência, união e obediência à palavra do Senhor.",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_08.jpg",
+        "caption": "Cena 8/10 • Na aurora do 7º dia, o povo marchou sete vezes ao redor das grandes muralhas com fé inabalável!",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_09.jpg",
+        "caption": "Cena 9/10 • Ao som forte das trombetas e do brado de fé do povo, as gigantescas muralhas de Jericó caíram por terra!",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_10.jpg",
+        "caption": "Cena 10/10 • Josué e as famílias de Israel agradeceram a Deus com alegria pela vitória da obediência na Terra Prometida!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "4ª etapa da Linha do Tempo (O Êxodo): séculos após José, Deus levantou Moisés para libertar Israel do Egito e abrir o Mar Vermelho rumo ao Monte Sinai e à Terra Prometida!",
-    "vovoStoryScript": "Paz e coragem no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar para você um dos maiores milagres de toda a história da Bíblia: como Deus usou Moisés para abrir o imenso Mar Vermelho! Quando saíram do Egito e chegaram diante do Mar Vermelho, Moisés disse com fé: Não tenham medo! Fiquem calmos e vejam o grande livramento que o Senhor fará hoje! Moisés estendeu o seu cajado sobre o mar, e Deus abriu uma estrada larga e sequinha no meio das águas para todo o povo atravessar em segurança!",
+    "vovoStoryScript": "Vocês já tentaram abrir uma porta trancada apenas cantando e marchando em volta dela? Parece impossível para nós, não é mesmo? Mas para o nosso Deus não existe muralha que fique de pé quando o Seu povo obedece com fé! Sentem-se aqui com o vovô, meus pequenos, para ouvirmos a história empolgante de Josué e as Muralhas de Jericó! Depois que Moisés completou a sua caminhada, Deus escolheu Josué para liderar o povo de Israel na entrada da Terra Prometida. E antes de começarem, o Senhor gravou no coração de Josué uma palavra que vale para todos nós hoje: Seja forte e muito corajoso! Não se apavore nem desanime, porque o Senhor, o seu Deus, estará com você por onde você andar! O primeiro grande milagre aconteceu logo no rio Jordão: quando os sacerdotes que carregavam a Arca da Aliança tocaram os pés na beira da água, o rio parou de correr e o povo inteiro atravessou a pé enxuto, levantando doze pedras como memorial de gratidão! Logo à frente estava a poderosa cidade de Jericó, cercada por muralhas de pedra tão altas e largas que pareciam intransponíveis, com seus portões de ferro trancados. Então Deus entregou a Josué uma estratégia única no mundo! O Senhor disse: Durante seis dias, vocês marcharão em volta da cidade uma vez por dia em total silêncio, enquanto sete sacerdotes tocam as trombetas de chifre de carneiro diante da Arca da Aliança. Josué e o povo obedeceram tim-tim por tim-tim! Primeiro dia, uma volta em silêncio. Segundo, terceiro, quarto, quinto e sexto dia, marcharam com paciência e fé, sem reclamar e sem duvidar! Quando raiou o sétimo dia, eles deram sete voltas completas ao redor da muralha. Na sétima volta, as trombetas soaram bem forte e Josué ordenou: Gritem, porque o Senhor entregou a cidade a vocês! Ao som do grande brado de fé do povo, o chão estremeceu e as gigantescas muralhas de Jericó ruíram inteirinhas no chão! A obediência a Deus derruba qualquer barreira!",
     "byAge": {
       "3-5": {
         "text": "Quando o povo chegou diante do grande mar, Deus abriu um caminho sequinho no meio das águas para Moisés e todo o povo passarem em segurança!",
@@ -724,8 +928,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão dos Pequenininhos: Cante de Alegria",
         "actionDesc": "Cante um louvor alegre com a sua família agradecendo porque Deus sempre cuida de nós!",
-        "vovoStoryScript": "Oi, minha criança amada! Hoje o Vovô Nésio vai contar um milagre grandão que o Papai do Céu fez com Moisés! O povo de Deus estava caminhando e, de repente, apareceu um mar gigante na frente deles: o Mar Vermelho! Como eles iam atravessar? Moisés orou ao Papai do Céu e levantou o seu cajado! Então Deus soprou um vento forte: vuum! E as águas do mar se abriram para os dois lados, formando um caminho sequinho no meio do mar! Todo mundo passou com os pezinhos secos e cantou de alegria para o Papai do Céu!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_06_3a5.mp3"
+        "vovoStoryScript": "Vocês já tentaram abrir uma porta trancada apenas cantando e marchando em volta dela? Parece impossível para nós, não é mesmo? Mas para o nosso Deus não existe muralha que fique de pé quando o Seu povo obedece com fé! Sentem-se aqui com o vovô, meus pequenos, para ouvirmos a história empolgante de Josué e as Muralhas de Jericó! Depois que Moisés completou a sua caminhada, Deus escolheu Josué para liderar o povo de Israel na entrada da Terra Prometida. E antes de começarem, o Senhor gravou no coração de Josué uma palavra que vale para todos nós hoje: Seja forte e muito corajoso! Não se apavore nem desanime, porque o Senhor, o seu Deus, estará com você por onde você andar! O primeiro grande milagre aconteceu logo no rio Jordão: quando os sacerdotes que carregavam a Arca da Aliança tocaram os pés na beira da água, o rio parou de correr e o povo inteiro atravessou a pé enxuto, levantando doze pedras como memorial de gratidão! Logo à frente estava a poderosa cidade de Jericó, cercada por muralhas de pedra tão altas e largas que pareciam intransponíveis, com seus portões de ferro trancados. Então Deus entregou a Josué uma estratégia única no mundo! O Senhor disse: Durante seis dias, vocês marcharão em volta da cidade uma vez por dia em total silêncio, enquanto sete sacerdotes tocam as trombetas de chifre de carneiro diante da Arca da Aliança. Josué e o povo obedeceram tim-tim por tim-tim! Primeiro dia, uma volta em silêncio. Segundo, terceiro, quarto, quinto e sexto dia, marcharam com paciência e fé, sem reclamar e sem duvidar! Quando raiou o sétimo dia, eles deram sete voltas completas ao redor da muralha. Na sétima volta, as trombetas soaram bem forte e Josué ordenou: Gritem, porque o Senhor entregou a cidade a vocês! Ao som do grande brado de fé do povo, o chão estremeceu e as gigantescas muralhas de Jericó ruíram inteirinhas no chão! A obediência a Deus derruba qualquer barreira!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_06_3a5.mp3?v=53"
       },
       "6-8": {
         "text": "Diante do Mar Vermelho, Moisés confiou em Deus. O mar se abriu como dois muros de água e todos passaram a pé enxuto!",
@@ -741,8 +945,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão Explorador: Coragem nos Desafios",
         "actionDesc": "Quando encontrar uma tarefa difícil nesta semana, ore pedindo calma e tente até conseguir!",
-        "vovoStoryScript": "Paz e coragem no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar para você um dos maiores milagres de toda a história da Bíblia: como Deus usou Moisés para abrir o imenso Mar Vermelho! Quando saíram do Egito e chegaram diante do Mar Vermelho, Moisés disse com fé: Não tenham medo! Fiquem calmos e vejam o grande livramento que o Senhor fará hoje! Moisés estendeu o seu cajado sobre o mar, e Deus abriu uma estrada larga e sequinha no meio das águas para todo o povo atravessar em segurança!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_06_vovo.mp3"
+        "vovoStoryScript": "Vocês já tentaram abrir uma porta trancada apenas cantando e marchando em volta dela? Parece impossível para nós, não é mesmo? Mas para o nosso Deus não existe muralha que fique de pé quando o Seu povo obedece com fé! Sentem-se aqui com o vovô, meus pequenos, para ouvirmos a história empolgante de Josué e as Muralhas de Jericó! Depois que Moisés completou a sua caminhada, Deus escolheu Josué para liderar o povo de Israel na entrada da Terra Prometida. E antes de começarem, o Senhor gravou no coração de Josué uma palavra que vale para todos nós hoje: Seja forte e muito corajoso! Não se apavore nem desanime, porque o Senhor, o seu Deus, estará com você por onde você andar! O primeiro grande milagre aconteceu logo no rio Jordão: quando os sacerdotes que carregavam a Arca da Aliança tocaram os pés na beira da água, o rio parou de correr e o povo inteiro atravessou a pé enxuto, levantando doze pedras como memorial de gratidão! Logo à frente estava a poderosa cidade de Jericó, cercada por muralhas de pedra tão altas e largas que pareciam intransponíveis, com seus portões de ferro trancados. Então Deus entregou a Josué uma estratégia única no mundo! O Senhor disse: Durante seis dias, vocês marcharão em volta da cidade uma vez por dia em total silêncio, enquanto sete sacerdotes tocam as trombetas de chifre de carneiro diante da Arca da Aliança. Josué e o povo obedeceram tim-tim por tim-tim! Primeiro dia, uma volta em silêncio. Segundo, terceiro, quarto, quinto e sexto dia, marcharam com paciência e fé, sem reclamar e sem duvidar! Quando raiou o sétimo dia, eles deram sete voltas completas ao redor da muralha. Na sétima volta, as trombetas soaram bem forte e Josué ordenou: Gritem, porque o Senhor entregou a cidade a vocês! Ao som do grande brado de fé do povo, o chão estremeceu e as gigantescas muralhas de Jericó ruíram inteirinhas no chão! A obediência a Deus derruba qualquer barreira!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_06_vovo.mp3?v=53"
       }
     },
     "devotional5Days": [
@@ -813,29 +1017,63 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Entrada em Canaã (~1406 a.C. • Josué 6)",
     "title": "Josué e as Muralhas de Jericó",
     "bibleRef": "Josué 1:9; 6:1–20",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_01.jpg",
     "storyIdUnlock": 14,
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_07_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_07_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg",
-        "caption": "Cena 1 • Deus fortaleceu Josué dizendo: 'Sê forte e corajoso, porque o Senhor teu Deus é contigo!'"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_01.jpg",
+        "caption": "Cena 1/10 • Nas colinas verdes de Belém, o jovem Davi cuidava das ovelhinhas do seu pai e tocava harpa louvando a Deus.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
-        "caption": "Cena 2 • O povo atravessou o rio Jordão e chegou diante das altas muralhas de Jericó!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_02.jpg",
+        "caption": "Cena 2/10 • Com a força do Senhor, o pastorzinho Davi defendia cada cordeirinho com coragem e dedicação.",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg",
-        "caption": "Cena 3 • Durante 6 dias marcharam em silêncio uma vez por dia, e no 7º dia deram 7 voltas tocando as trombetas!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_03.jpg",
+        "caption": "Cena 3/10 • O profeta Samuel ungiu Davi em Belém, lembrando que Deus não olha a aparência, mas olha para o coração!",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_17.jpg",
-        "caption": "Cena 4 • Pelo poder de Deus e pela fé obediente do povo, as muralhas de Jericó caíram!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_04.jpg",
+        "caption": "Cena 4/10 • Seu pai Jessé pediu que Davi levasse pães quentinhos e queijos para seus irmãos mais velhos no acampamento.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_05.jpg",
+        "caption": "Cena 5/10 • No Vale de Elá, o gigante Golias gritava desafiando Israel enquanto os soldados se escondiam com medo.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_06.jpg",
+        "caption": "Cena 6/10 • Cheio de fé no Deus vivo, o jovem Davi apresentou-se diante do rei Saul disposto a enfrentar o gigante!",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_07.jpg",
+        "caption": "Cena 7/10 • Davi tentou vestir a armadura pesada do rei, mas preferiu ir apenas com sua fé e suas ferramentas de pastor.",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_08.jpg",
+        "caption": "Cena 8/10 • Na beira do riacho cristalino, Davi escolheu cinco pedrinhas bem lisinhas e colocou no seu alforje.",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_09.jpg",
+        "caption": "Cena 9/10 • No meio do vale, Davi declarou: 'Eu vou contra você em nome do Senhor dos Exércitos!' e girou sua funda.",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_10.jpg",
+        "caption": "Cena 10/10 • Com uma única pedrinha certeira, Deus deu grande vitória a Davi e todo o povo celebrou ao Senhor!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "5ª etapa da Linha do Tempo: após os 40 anos no deserto, Josué liderou a entrada na Terra Prometida! Depois de Josué veio a época dos Juízes.",
-    "vovoStoryScript": "Olá, minha criança querida! Hoje o Vovô Nésio vai contar uma história de muita fé, paciência e coragem: Josué e a queda das muralhas de Jericó! Depois de Moisés, Deus escolheu Josué dizendo: Sê forte e corajoso! Diante das muralhas altas de Jericó, o povo obedeceu ao plano de Deus: marcharam seis dias em silêncio e, no sétimo dia, deram sete voltas e tocaram as trombetas! Pelo poder de Deus, as grandes muralhas caíram!",
+    "vovoStoryScript": "Meus netos queridos, alguma vez alguém disse que você ainda era muito pequenininho para realizar uma coisa importante? Pois hoje o vovô vai contar a história do menino pastor de ovelhas que provou ao mundo inteiro que um coração cheio de fé em Deus é muito mais forte do que qualquer gigante! Em Belém morava uma família com oito filhos, e o caçulinha de todos se chamava Davi! Enquanto seus irmãos mais velhos eram altos e fortes, o jovem Davi cuidava das ovelhinhas do seu pai Jessé nos campos verdes. Lá no pasto, Davi não ficava com preguiça: ele tocava sua harpa de madeira compondo lindos cânticos para Deus e defendia cada ovelhinha com coragem, chegando a salvar o rebanho das garras de um leão e de um urso com a ajuda do Senhor! Quando o profeta Samuel visitou Belém para ungir o futuro rei escolhido por Deus, ele achou que seria o irmão mais alto, mas o Senhor disse a Samuel uma verdade eterna: O homem vê a aparência de fora, porém o Senhor olha para o coração! E Samuel ungiu o jovem Davi! Tempos depois, o exército dos filisteus acampou no Vale de Elá para lutar contra Israel. Eles tinham um guerreiro gigantesco chamado Golias, de quase três metros de altura, vestido com uma armadura reluzente de bronze e uma lança enorme! Durante quarenta dias, Golias gritava desafiando o povo de Deus, e todos os soldados do rei Saul tremiam de medo. Quando Davi chegou ao acampamento trazendo pães e queijos para os irmãos e ouviu Golias zombando do Deus vivo, o coração dele se encheu de coragem! Davi disse ao rei Saul: O Senhor que me livrou do leão e do urso me livrará também das mãos desse filisteu! Davi recusou a armadura pesada do rei, desceu até o riacho, escolheu cinco pedrinhas bem lisinhas, guardou no seu alforje de pastor e correu para enfrentar o gigante com sua funda na mão! Diante de Golias, Davi declarou em alta voz: Você vem contra mim com espada, lança e escudo, mas eu vou contra você em nome do Senhor dos Exércitos! Davi girou a funda, lançou uma única pedrinha certeira, e o enorme gigante caiu no chão! Com Deus, os pequenos vencem gigantes!",
     "byAge": {
       "3-5": {
         "text": "Josué e o povo marcharam ao redor da grande muralha de Jericó obedecendo ao Papai do Céu. Quando tocaram as trombetas, a muralha caiu!",
@@ -851,8 +1089,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão dos Pequenininhos: Marcha da Coragem",
         "actionDesc": "Repita com o papai e a mamãe: 'Sou forte e corajoso porque Deus está comigo!'",
-        "vovoStoryScript": "Olá, minha criança corajosa! Hoje vamos marchar com Josué! O povo de Deus chegou perto de uma cidade chamada Jericó, que tinha um muro bem alto e fechado. Mas o Papai do Céu disse para Josué: Seja forte e corajoso, porque Eu estou com você! Josué e o povo obedeceram a Deus e marcharam em volta do murão: um, dois, três, sete voltas! E quando tocaram as trombetas bem bonito: tuuu! O Papai do Céu fez o muro grandão cair no chão! Quando a gente obedece ao Papai do Céu, Ele nos dá coragem!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_07_3a5.mp3"
+        "vovoStoryScript": "Meus netos queridos, alguma vez alguém disse que você ainda era muito pequenininho para realizar uma coisa importante? Pois hoje o vovô vai contar a história do menino pastor de ovelhas que provou ao mundo inteiro que um coração cheio de fé em Deus é muito mais forte do que qualquer gigante! Em Belém morava uma família com oito filhos, e o caçulinha de todos se chamava Davi! Enquanto seus irmãos mais velhos eram altos e fortes, o jovem Davi cuidava das ovelhinhas do seu pai Jessé nos campos verdes. Lá no pasto, Davi não ficava com preguiça: ele tocava sua harpa de madeira compondo lindos cânticos para Deus e defendia cada ovelhinha com coragem, chegando a salvar o rebanho das garras de um leão e de um urso com a ajuda do Senhor! Quando o profeta Samuel visitou Belém para ungir o futuro rei escolhido por Deus, ele achou que seria o irmão mais alto, mas o Senhor disse a Samuel uma verdade eterna: O homem vê a aparência de fora, porém o Senhor olha para o coração! E Samuel ungiu o jovem Davi! Tempos depois, o exército dos filisteus acampou no Vale de Elá para lutar contra Israel. Eles tinham um guerreiro gigantesco chamado Golias, de quase três metros de altura, vestido com uma armadura reluzente de bronze e uma lança enorme! Durante quarenta dias, Golias gritava desafiando o povo de Deus, e todos os soldados do rei Saul tremiam de medo. Quando Davi chegou ao acampamento trazendo pães e queijos para os irmãos e ouviu Golias zombando do Deus vivo, o coração dele se encheu de coragem! Davi disse ao rei Saul: O Senhor que me livrou do leão e do urso me livrará também das mãos desse filisteu! Davi recusou a armadura pesada do rei, desceu até o riacho, escolheu cinco pedrinhas bem lisinhas, guardou no seu alforje de pastor e correu para enfrentar o gigante com sua funda na mão! Diante de Golias, Davi declarou em alta voz: Você vem contra mim com espada, lança e escudo, mas eu vou contra você em nome do Senhor dos Exércitos! Davi girou a funda, lançou uma única pedrinha certeira, e o enorme gigante caiu no chão! Com Deus, os pequenos vencem gigantes!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_07_3a5.mp3?v=53"
       },
       "6-8": {
         "text": "As muralhas de Jericó eram altas demais, mas Josué seguiu as instruções de Deus passo a passo durante 7 dias, e Deus deu a vitória!",
@@ -868,8 +1106,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão Explorador: Perseverança até o Fim",
         "actionDesc": "Não desista de uma atividade na metade! Termine tudo o que começar nesta semana.",
-        "vovoStoryScript": "Olá, minha criança querida! Hoje o Vovô Nésio vai contar uma história de muita fé, paciência e coragem: Josué e a queda das muralhas de Jericó! Depois de Moisés, Deus escolheu Josué dizendo: Sê forte e corajoso! Diante das muralhas altas de Jericó, o povo obedeceu ao plano de Deus: marcharam seis dias em silêncio e, no sétimo dia, deram sete voltas e tocaram as trombetas! Pelo poder de Deus, as grandes muralhas caíram!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_07_vovo.mp3"
+        "vovoStoryScript": "Meus netos queridos, alguma vez alguém disse que você ainda era muito pequenininho para realizar uma coisa importante? Pois hoje o vovô vai contar a história do menino pastor de ovelhas que provou ao mundo inteiro que um coração cheio de fé em Deus é muito mais forte do que qualquer gigante! Em Belém morava uma família com oito filhos, e o caçulinha de todos se chamava Davi! Enquanto seus irmãos mais velhos eram altos e fortes, o jovem Davi cuidava das ovelhinhas do seu pai Jessé nos campos verdes. Lá no pasto, Davi não ficava com preguiça: ele tocava sua harpa de madeira compondo lindos cânticos para Deus e defendia cada ovelhinha com coragem, chegando a salvar o rebanho das garras de um leão e de um urso com a ajuda do Senhor! Quando o profeta Samuel visitou Belém para ungir o futuro rei escolhido por Deus, ele achou que seria o irmão mais alto, mas o Senhor disse a Samuel uma verdade eterna: O homem vê a aparência de fora, porém o Senhor olha para o coração! E Samuel ungiu o jovem Davi! Tempos depois, o exército dos filisteus acampou no Vale de Elá para lutar contra Israel. Eles tinham um guerreiro gigantesco chamado Golias, de quase três metros de altura, vestido com uma armadura reluzente de bronze e uma lança enorme! Durante quarenta dias, Golias gritava desafiando o povo de Deus, e todos os soldados do rei Saul tremiam de medo. Quando Davi chegou ao acampamento trazendo pães e queijos para os irmãos e ouviu Golias zombando do Deus vivo, o coração dele se encheu de coragem! Davi disse ao rei Saul: O Senhor que me livrou do leão e do urso me livrará também das mãos desse filisteu! Davi recusou a armadura pesada do rei, desceu até o riacho, escolheu cinco pedrinhas bem lisinhas, guardou no seu alforje de pastor e correu para enfrentar o gigante com sua funda na mão! Diante de Golias, Davi declarou em alta voz: Você vem contra mim com espada, lança e escudo, mas eu vou contra você em nome do Senhor dos Exércitos! Davi girou a funda, lançou uma única pedrinha certeira, e o enorme gigante caiu no chão! Com Deus, os pequenos vencem gigantes!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_07_vovo.mp3?v=53"
       }
     },
     "devotional5Days": [
@@ -940,29 +1178,63 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Reinado de Davi e Salomão (~1000 a.C. • 1 Samuel 17)",
     "title": "Davi, a Harpa e o Gigante Golias",
     "bibleRef": "1 Samuel 16:14–23; 17:32–50",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_11.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_01.jpg",
     "storyIdUnlock": 3,
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_08_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_08_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_10.jpg",
-        "caption": "Cena 1 • Nos campos de Belém, o jovem Davi cuidava das ovelhinhas do seu pai e tocava harpa louvando a Deus!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_01.jpg",
+        "caption": "Cena 1/10 • No palácio da Babilônia, o profeta Daniel servia com tanta sabedoria e honestidade que todos viam a luz de Deus nele.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_11.jpg",
-        "caption": "Cena 2 • Deus olhou para o coração sincero de Davi e o escolheu para ser o futuro rei de Israel!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_02.jpg",
+        "caption": "Cena 2/10 • O rei Dario honrava Daniel com confiança, despertando ciúme nos outros governadores do império.",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_11.jpg",
-        "caption": "Cena 3 • Diante do gigante Golias, Davi pegou 5 pedrinhas no riacho e avançou em nome do Senhor!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_03.jpg",
+        "caption": "Cena 3/10 • Os homens invejosos enganaram o rei para assinar uma lei proibindo qualquer oração a Deus por trinta dias.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_33.jpg",
-        "caption": "Cena 4 • Davi venceu o gigante pela fé, e mais tarde seu filho Salomão construiu o Templo com sabedoria!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_04.jpg",
+        "caption": "Cena 4/10 • Mesmo sabendo do perigo, Daniel subiu tranquilamente para o seu quarto com paz e fidelidade no coração.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_05.jpg",
+        "caption": "Cena 5/10 • Três vezes ao dia, diante da janela aberta para Jerusalém, Daniel ajoelhou-se, orou e deu graças a Deus!",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_06.jpg",
+        "caption": "Cena 6/10 • O rei Dario ficou muito triste ao ver a armadilha, mas despediu-se de Daniel confiando que o Deus vivo o livraria.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_07.jpg",
+        "caption": "Cena 7/10 • Lá dentro da cova escura, Deus enviou o Seu anjo luminoso que fechou a boca dos leões, deixando-os mansinhos!",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_08.jpg",
+        "caption": "Cena 8/10 • No palácio, o rei Dario passou a noite inteira acordado em jejum, esperando pelo livramento de Daniel.",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_09.jpg",
+        "caption": "Cena 9/10 • Ao raiar do sol, o rei correu até a entrada da cova e chamou por Daniel com o coração cheio de esperança.",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_10.jpg",
+        "caption": "Cena 10/10 • Daniel saiu da cova sorrindo e sem nenhum arranhão, e o rei proclamou a grandeza do Deus de Daniel!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "6ª etapa da Linha do Tempo (Era dos Reis): depois dos Juízes, o jovem pastor Davi venceu Golias e tornou-se o grande rei de Israel, sucedido por seu filho Salomão.",
-    "vovoStoryScript": "Que alegria estar com você, minha criança querida! Hoje vamos viajar até as colinas verdes de Belém para conhecer o jovem pastor de ovelhas que venceu o gigante Golias e se tornou o grande Rei Davi! Enquanto as pessoas olhavam apenas para a aparência de fora, Deus olhou para o coração fiel de Davi! Quando o gigante Golias desafiou o povo, Davi pegou cinco pedrinhas no riacho e disse: Eu vou a ti em nome do Senhor! Com fé e coragem, o pequeno Davi venceu o gigante!",
+    "vovoStoryScript": "Vocês têm o costume de dobrar os joelhos e conversar com o Papai do Céu todos os dias, agradecendo pela família, pelo alimento e pela proteção? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos conhecer a história de um homem que não deixou de orar a Deus nem mesmo quando tentaram assustá-lo com uma cova cheia de leões famintos: o fiel profeta Daniel! Daniel morava na grande cidade da Babilônia, muito longe de Jerusalém, mas desde jovem ele decidiu no coração ser totalmente fiel a Deus. Por causa da sabedoria e da honestidade que o Senhor lhe dava, o rei Dario admirava muito a Daniel e queria colocá-lo como o principal governador de todo o império! Os outros príncipes e governadores ficaram morrendo de inveja! Eles vigiaram a vida de Daniel inteira para tentar achar algum erro ou mentira, mas não encontraram nada, porque Daniel era correto e bondoso em tudo. Então aqueles homens invejosos bolaram uma armadilha: eles convenceram o rei Dario a assinar um decreto dizendo que, durante trinta dias, qualquer pessoa que fizesse uma oração a Deus ou a qualquer outro fora do rei seria lançada na cova dos leões! Quando Daniel soube que a lei havia sido assinada, será que ele se escondeu debaixo da cama? De jeito nenhum! Daniel subiu para o seu quarto, abriu as janelas voltadas para Jerusalém e, três vezes ao dia, ajoelhou-se, orou e deu graças ao seu Deus, exatamente como fazia todos os dias! O rei Dario ficou muito triste ao perceber a armadilha, mas Daniel foi levado até a cova. Na entrada, o rei disse: Que o seu Deus, a quem você serve continuamente, livre você! E lá dentro da cova escura, aconteceu um milagre glorioso! Deus enviou o Seu anjo resplandecente, que fechou a boca de todos os leões! Os leões grandes ficaram deitados mansinhos ao redor de Daniel a noite inteira! Ao amanhecer, o rei correu até a cova e viu Daniel sair inteirinho e sorrindo, sem nenhum arranhão! Quem conversa com Deus em oração nunca está desamparado!",
     "byAge": {
       "3-5": {
         "text": "Davi era um pequeno pastorzinho que amava cantar para Deus com sua harpa. Com a ajuda do Papai do Céu, ele não teve medo do grandão Golias!",
@@ -978,8 +1250,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão dos Pequenininhos: Louvor do Pastorzinho",
         "actionDesc": "Aprenda a falar 'O Senhor é o meu pastor, nada me faltará' junto com sua família!",
-        "vovoStoryScript": "Oi, meu pequenininho! Oi, minha pequenininha! Você conhece o pequeno pastorzinho Davi? Davi cuidava das ovelhinhas branquinhas: méé, méé! E ele tocava a sua harpa cantando músicas lindas para o Papai do Céu! Um dia apareceu um soldado grandalhão chamado Golias, que deixava todo mundo com medo. Mas o pequeno Davi sabia que o Papai do Céu era muito maior! Davi pegou cinco pedrinhas lisinhas no riacho e, com a ajuda de Deus, venceu o gigante! Mesmo sendo pequenininho, com Deus no coração você é muito corajoso!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_08_3a5.mp3"
+        "vovoStoryScript": "Vocês têm o costume de dobrar os joelhos e conversar com o Papai do Céu todos os dias, agradecendo pela família, pelo alimento e pela proteção? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos conhecer a história de um homem que não deixou de orar a Deus nem mesmo quando tentaram assustá-lo com uma cova cheia de leões famintos: o fiel profeta Daniel! Daniel morava na grande cidade da Babilônia, muito longe de Jerusalém, mas desde jovem ele decidiu no coração ser totalmente fiel a Deus. Por causa da sabedoria e da honestidade que o Senhor lhe dava, o rei Dario admirava muito a Daniel e queria colocá-lo como o principal governador de todo o império! Os outros príncipes e governadores ficaram morrendo de inveja! Eles vigiaram a vida de Daniel inteira para tentar achar algum erro ou mentira, mas não encontraram nada, porque Daniel era correto e bondoso em tudo. Então aqueles homens invejosos bolaram uma armadilha: eles convenceram o rei Dario a assinar um decreto dizendo que, durante trinta dias, qualquer pessoa que fizesse uma oração a Deus ou a qualquer outro fora do rei seria lançada na cova dos leões! Quando Daniel soube que a lei havia sido assinada, será que ele se escondeu debaixo da cama? De jeito nenhum! Daniel subiu para o seu quarto, abriu as janelas voltadas para Jerusalém e, três vezes ao dia, ajoelhou-se, orou e deu graças ao seu Deus, exatamente como fazia todos os dias! O rei Dario ficou muito triste ao perceber a armadilha, mas Daniel foi levado até a cova. Na entrada, o rei disse: Que o seu Deus, a quem você serve continuamente, livre você! E lá dentro da cova escura, aconteceu um milagre glorioso! Deus enviou o Seu anjo resplandecente, que fechou a boca de todos os leões! Os leões grandes ficaram deitados mansinhos ao redor de Daniel a noite inteira! Ao amanhecer, o rei correu até a cova e viu Daniel sair inteirinho e sorrindo, sem nenhum arranhão! Quem conversa com Deus em oração nunca está desamparado!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_08_3a5.mp3?v=53"
       },
       "6-8": {
         "text": "Golias tinha uma armadura pesada, mas Davi tinha a fé no Deus vivo! Com cinco pedrinhas do riacho e muita coragem, Davi venceu o gigante!",
@@ -995,8 +1267,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão Explorador: Cuidando do Coração",
         "actionDesc": "Pratique as 5 pedrinhas do bem nesta semana: bondade, verdade, respeito, gratidão e alegria!",
-        "vovoStoryScript": "Que alegria estar com você, minha criança querida! Hoje vamos viajar até as colinas verdes de Belém para conhecer o jovem pastor de ovelhas que venceu o gigante Golias e se tornou o grande Rei Davi! Enquanto as pessoas olhavam apenas para a aparência de fora, Deus olhou para o coração fiel de Davi! Quando o gigante Golias desafiou o povo, Davi pegou cinco pedrinhas no riacho e disse: Eu vou a ti em nome do Senhor! Com fé e coragem, o pequeno Davi venceu o gigante!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_08_vovo.mp3"
+        "vovoStoryScript": "Vocês têm o costume de dobrar os joelhos e conversar com o Papai do Céu todos os dias, agradecendo pela família, pelo alimento e pela proteção? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos conhecer a história de um homem que não deixou de orar a Deus nem mesmo quando tentaram assustá-lo com uma cova cheia de leões famintos: o fiel profeta Daniel! Daniel morava na grande cidade da Babilônia, muito longe de Jerusalém, mas desde jovem ele decidiu no coração ser totalmente fiel a Deus. Por causa da sabedoria e da honestidade que o Senhor lhe dava, o rei Dario admirava muito a Daniel e queria colocá-lo como o principal governador de todo o império! Os outros príncipes e governadores ficaram morrendo de inveja! Eles vigiaram a vida de Daniel inteira para tentar achar algum erro ou mentira, mas não encontraram nada, porque Daniel era correto e bondoso em tudo. Então aqueles homens invejosos bolaram uma armadilha: eles convenceram o rei Dario a assinar um decreto dizendo que, durante trinta dias, qualquer pessoa que fizesse uma oração a Deus ou a qualquer outro fora do rei seria lançada na cova dos leões! Quando Daniel soube que a lei havia sido assinada, será que ele se escondeu debaixo da cama? De jeito nenhum! Daniel subiu para o seu quarto, abriu as janelas voltadas para Jerusalém e, três vezes ao dia, ajoelhou-se, orou e deu graças ao seu Deus, exatamente como fazia todos os dias! O rei Dario ficou muito triste ao perceber a armadilha, mas Daniel foi levado até a cova. Na entrada, o rei disse: Que o seu Deus, a quem você serve continuamente, livre você! E lá dentro da cova escura, aconteceu um milagre glorioso! Deus enviou o Seu anjo resplandecente, que fechou a boca de todos os leões! Os leões grandes ficaram deitados mansinhos ao redor de Daniel a noite inteira! Ao amanhecer, o rei correu até a cova e viu Daniel sair inteirinho e sorrindo, sem nenhum arranhão! Quem conversa com Deus em oração nunca está desamparado!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_08_vovo.mp3?v=53"
       }
     },
     "devotional5Days": [
@@ -1067,29 +1339,63 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Ministério dos Profetas (~850–750 a.C. • 2 Reis 2; Jonas)",
     "title": "Elias, Jonas e a Voz dos Profetas",
     "bibleRef": "1 Reis 18; 2 Reis 2:11; Jonas 1–4",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_35.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_01.jpg",
     "storyIdUnlock": 17,
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_09_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_09_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_35.jpg",
-        "caption": "Cena 1 • Deus enviou os Profetas para chamar o povo de volta ao caminho da verdade e do amor!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_01.jpg",
+        "caption": "Cena 1/10 • Em Nazaré, o anjo Gabriel apareceu à jovem Maria anunciando que ela daria à luz o Filho de Deus, Jesus!",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_35.jpg",
-        "caption": "Cena 2 • O fiel profeta Elias subiu ao céu em uma carruagem de fogo luminosa, deixando seu manto para Eliseu!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_02.jpg",
+        "caption": "Cena 2/10 • Em sonho, o anjo do Senhor também confortou o bondoso carpinteiro José para cuidar de Maria e do bebê.",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_14.jpg",
-        "caption": "Cena 3 • Jonas orou a Deus dentro da barriga do grande peixe e recebeu uma segunda chance!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_03.jpg",
+        "caption": "Cena 3/10 • José e Maria viajaram pelas colinas até a cidade de Belém, a terra do rei Davi.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_14.jpg",
-        "caption": "Cena 4 • Jonas pregou em Nínive e toda a cidade se arrependeu, alcançando a misericórdia de Deus!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_04.jpg",
+        "caption": "Cena 4/10 • Como todas as pousadas de Belém estavam cheias, eles encontraram abrigo num estábulo tranquilo e acolhedor.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_05.jpg",
+        "caption": "Cena 5/10 • Naquela noite santa nasceu o menino Jesus, e Maria O deitou com todo amor numa manjedoura forrada de palhinha!",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_06.jpg",
+        "caption": "Cena 6/10 • Os animaizinhos do estábulo cercavam em silêncio e ternura o berço humilde do Salvador do mundo.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_07.jpg",
+        "caption": "Cena 7/10 • Nos campos de Belém, um anjo resplandecente anunciou aos pastores: 'Hoje nasceu para vocês o Salvador!'",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_08.jpg",
+        "caption": "Cena 8/10 • Um grande coral de anjos iluminou o céu estrelado cantando: 'Glória a Deus nas alturas e paz na terra!'",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_09.jpg",
+        "caption": "Cena 9/10 • Os pastores correram até o estábulo e ajoelharam-se cheios de alegria diante do menino Jesus na manjedoura.",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_10.jpg",
+        "caption": "Cena 10/10 • Guiados pela estrela brilhante, os sábios do Oriente trouxeram presentes reais para adorar o Rei Prometido!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "7ª etapa da Linha do Tempo (Era dos Profetas): o Senhor enviou profetas como Elias, Eliseu, Isaías e Jonas para ensinar a verdade e anunciar a vinda futura do Salvador!",
-    "vovoStoryScript": "Olá, minha criança querida! Hoje o Vovô Nésio vai contar para você sobre a época dos Profetas de Deus, lembrando as incríveis histórias de Elias e de Jonas! O profeta Elias permaneceu firme na fé e subiu ao céu em uma carruagem de fogo, deixando seu manto para Eliseu. E o profeta Jonas aprendeu dentro da barriga do grande peixe que não adianta fugir do chamado de Deus e que a misericórdia do Senhor alcança a todos que se arrependem!",
+    "vovoStoryScript": "Se o Rei mais poderoso de todo o universo viesse visitar a Terra, onde vocês acham que Ele nasceria? Num castelo cheio de tapetes vermelhos e coroas de diamantes? Sentem-se aqui bem pertinho do vovô, meus netos amados, porque a noite mais santa e iluminada da história aconteceu num lugar muito mais simples e cheio de ternura: o nascimento de Jesus em Belém! Durante séculos e séculos, os profetas anunciaram que Deus enviaria o Salvador prometido, o Príncipe da Paz! Quando chegou o tempo perfeito, Deus enviou o anjo Gabriel até a pequena cidade de Nazaré para falar com uma jovem doce e temente a Deus chamada Maria. O anjo disse: Alegra-te, Maria! O Senhor é contigo! Você dará à luz um Filho e colocará nEle o nome de Jesus, porque Ele salvará o Seu povo! Maria respondeu com humildade e fé: Eis aqui a serva do Senhor! E o bondoso carpinteiro José também recebeu em sonho o aviso do anjo para cuidar de Maria e do menino. Perto dos dias de o bebê nascer, José e Maria precisaram fazer uma longa viagem até Belém, a cidade do rei Davi. Quando chegaram lá, já era noite e todas as pousadas da cidade estavam lotadas! Eles encontraram abrigo num estábulo tranquilo, aquecido pelos animaizinhos. E ali, sob a luz suave das estrelas, nasceu o menino Jesus! Maria O envolveu em panos limpinhos e O deitou com todo amor numa manjedoura forrada com palhinha macia. Naquela mesma hora, nos campos verdes de Belém, pastores que guardavam seus rebanhos viram o céu noturno se acender com a glória de Deus! Um anjo anunciou: Não tenham medo! Hoje, na cidade de Davi, nasceu para vocês o Salvador, que é Cristo, o Senhor! Um coral de anjos cantou: Glória a Deus nas alturas e paz na terra! Os pastores correram para adorar o menino na manjedoura, e uma estrela radiante também guiou os sábios do Oriente até Belém. O Filho de Deus veio ao mundo para trazer o amor do Pai até o nosso coração!",
     "byAge": {
       "3-5": {
         "text": "Deus enviou os profetas para ensinar o povo a amar ao Papai do Céu! Jonas aprendeu dentro do grande peixe a obedecer com alegria!",
@@ -1106,8 +1412,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão dos Pequenininhos: Ouvidos Atentos",
         "actionDesc": "Atenda prontamente com carinho quando o papai ou a mamãe chamar você!",
-        "vovoStoryScript": "Olá, minha criança querida! Hoje o Vovô Nésio vai falar de dois amigos que ouviram a voz do Papai do Céu: Elias e Jonas! O profeta Elias amava tanto a Deus que um dia subiu para o céu em uma carruagem brilhante! Já o profeta Jonas entrou num barco e caiu no mar, mas o Papai do Céu mandou um grande peixe para salvar Jonas! Lá dentro da barriga do peixão, Jonas fez uma oração pedindo desculpas e prometeu obedecer! O peixão levou Jonas até a praia, e ele ensinou toda a cidade a amar ao Papai do Céu!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_09_3a5.mp3"
+        "vovoStoryScript": "Se o Rei mais poderoso de todo o universo viesse visitar a Terra, onde vocês acham que Ele nasceria? Num castelo cheio de tapetes vermelhos e coroas de diamantes? Sentem-se aqui bem pertinho do vovô, meus netos amados, porque a noite mais santa e iluminada da história aconteceu num lugar muito mais simples e cheio de ternura: o nascimento de Jesus em Belém! Durante séculos e séculos, os profetas anunciaram que Deus enviaria o Salvador prometido, o Príncipe da Paz! Quando chegou o tempo perfeito, Deus enviou o anjo Gabriel até a pequena cidade de Nazaré para falar com uma jovem doce e temente a Deus chamada Maria. O anjo disse: Alegra-te, Maria! O Senhor é contigo! Você dará à luz um Filho e colocará nEle o nome de Jesus, porque Ele salvará o Seu povo! Maria respondeu com humildade e fé: Eis aqui a serva do Senhor! E o bondoso carpinteiro José também recebeu em sonho o aviso do anjo para cuidar de Maria e do menino. Perto dos dias de o bebê nascer, José e Maria precisaram fazer uma longa viagem até Belém, a cidade do rei Davi. Quando chegaram lá, já era noite e todas as pousadas da cidade estavam lotadas! Eles encontraram abrigo num estábulo tranquilo, aquecido pelos animaizinhos. E ali, sob a luz suave das estrelas, nasceu o menino Jesus! Maria O envolveu em panos limpinhos e O deitou com todo amor numa manjedoura forrada com palhinha macia. Naquela mesma hora, nos campos verdes de Belém, pastores que guardavam seus rebanhos viram o céu noturno se acender com a glória de Deus! Um anjo anunciou: Não tenham medo! Hoje, na cidade de Davi, nasceu para vocês o Salvador, que é Cristo, o Senhor! Um coral de anjos cantou: Glória a Deus nas alturas e paz na terra! Os pastores correram para adorar o menino na manjedoura, e uma estrela radiante também guiou os sábios do Oriente até Belém. O Filho de Deus veio ao mundo para trazer o amor do Pai até o nosso coração!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_09_3a5.mp3?v=53"
       },
       "6-8": {
         "text": "Elias subiu na carruagem de fogo, enquanto Jonas aprendeu que Deus ama perdoar e dar uma segunda chance!",
@@ -1123,8 +1429,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão Explorador: Mensageiro do Bem",
         "actionDesc": "Leve uma palavra de consolo ou alegria para alguém que esteja triste!",
-        "vovoStoryScript": "Olá, minha criança querida! Hoje o Vovô Nésio vai contar para você sobre a época dos Profetas de Deus, lembrando as incríveis histórias de Elias e de Jonas! O profeta Elias permaneceu firme na fé e subiu ao céu em uma carruagem de fogo, deixando seu manto para Eliseu. E o profeta Jonas aprendeu dentro da barriga do grande peixe que não adianta fugir do chamado de Deus e que a misericórdia do Senhor alcança a todos que se arrependem!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_09_vovo.mp3"
+        "vovoStoryScript": "Se o Rei mais poderoso de todo o universo viesse visitar a Terra, onde vocês acham que Ele nasceria? Num castelo cheio de tapetes vermelhos e coroas de diamantes? Sentem-se aqui bem pertinho do vovô, meus netos amados, porque a noite mais santa e iluminada da história aconteceu num lugar muito mais simples e cheio de ternura: o nascimento de Jesus em Belém! Durante séculos e séculos, os profetas anunciaram que Deus enviaria o Salvador prometido, o Príncipe da Paz! Quando chegou o tempo perfeito, Deus enviou o anjo Gabriel até a pequena cidade de Nazaré para falar com uma jovem doce e temente a Deus chamada Maria. O anjo disse: Alegra-te, Maria! O Senhor é contigo! Você dará à luz um Filho e colocará nEle o nome de Jesus, porque Ele salvará o Seu povo! Maria respondeu com humildade e fé: Eis aqui a serva do Senhor! E o bondoso carpinteiro José também recebeu em sonho o aviso do anjo para cuidar de Maria e do menino. Perto dos dias de o bebê nascer, José e Maria precisaram fazer uma longa viagem até Belém, a cidade do rei Davi. Quando chegaram lá, já era noite e todas as pousadas da cidade estavam lotadas! Eles encontraram abrigo num estábulo tranquilo, aquecido pelos animaizinhos. E ali, sob a luz suave das estrelas, nasceu o menino Jesus! Maria O envolveu em panos limpinhos e O deitou com todo amor numa manjedoura forrada com palhinha macia. Naquela mesma hora, nos campos verdes de Belém, pastores que guardavam seus rebanhos viram o céu noturno se acender com a glória de Deus! Um anjo anunciou: Não tenham medo! Hoje, na cidade de Davi, nasceu para vocês o Salvador, que é Cristo, o Senhor! Um coral de anjos cantou: Glória a Deus nas alturas e paz na terra! Os pastores correram para adorar o menino na manjedoura, e uma estrela radiante também guiou os sábios do Oriente até Belém. O Filho de Deus veio ao mundo para trazer o amor do Pai até o nosso coração!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_09_vovo.mp3?v=53"
       }
     },
     "devotional5Days": [
@@ -1195,29 +1501,63 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Babilônia e Pérsia (~600–450 a.C. • Daniel 6; Ester)",
     "title": "Daniel na Cova dos Leões e a Rainha Ester",
     "bibleRef": "Daniel 6:1–28; Ester 4:14",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_15.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_01.jpg",
     "storyIdUnlock": 7,
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_10_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_10_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_15.jpg",
-        "caption": "Cena 1 • Mesmo longe de sua terra, Daniel orava a Deus três vezes por dia com as janelas abertas!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_01.jpg",
+        "caption": "Cena 1/10 • Nas margens do Mar da Galileia, Jesus chamou pescadores simples como Pedro e André para segui-Lo com amor.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_15.jpg",
-        "caption": "Cena 2 • Na cova dos leões, Deus enviou Seu anjo luminoso que fechou a boca dos leões e guardou Daniel em paz!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_02.jpg",
+        "caption": "Cena 2/10 • Jesus abria os braços com carinho para abençoar as criancinhas: 'Deixem vir a Mim os pequeninos!'",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg",
-        "caption": "Cena 3 • Na Pérsia, a jovem Rainha Ester ouviu: 'Quem sabe se não foi para um tempo como este que chegaste a ser rainha?'"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_03.jpg",
+        "caption": "Cena 3/10 • Pelos caminhos da Galileia, Jesus curava os enfermos e devolvia a visão aos cegos com compaixão divina.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg",
-        "caption": "Cena 4 • Com fé e coragem diante do rei, Ester salvou todo o seu povo!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_04.jpg",
+        "caption": "Cena 4/10 • Mais de cinco mil pessoas sentaram-se na colina verde para ouvir os ensinamentos preciosos de Jesus.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_05.jpg",
+        "caption": "Cena 5/10 • Um menininho generoso compartilhou sua cesta com cinco pãezinhos de cevada e dois peixinhos.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_06.jpg",
+        "caption": "Cena 6/10 • Jesus ergueu os pães e os peixes olhando para o céu, deu graças ao Pai e realizou um grande milagre!",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_07.jpg",
+        "caption": "Cena 7/10 • Os discípulos distribuíram pão e peixe quentinho à vontade para milhares de crianças e famílias!",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_08.jpg",
+        "caption": "Cena 8/10 • Depois que todos comeram e ficaram satisfeitos, ainda recolheram doze cestos cheinhos do que sobrou!",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_09.jpg",
+        "caption": "Cena 9/10 • No meio da tempestade no mar, Jesus levantou a mão, disse 'Aquieta-te!' e as ondas se acalmaram na hora!",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_10.jpg",
+        "caption": "Cena 10/10 • Ressuscitado e glorioso, Jesus nos garante que o Seu amor e o Seu poder cuidam de nós para sempre!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "8ª etapa da Linha do Tempo (Exílio e Retorno): na Babilônia e na Pérsia, Daniel e a Rainha Ester mantiveram sua fé inabalável e viram Deus operar grandes livramentos!",
-    "vovoStoryScript": "Paz e sabedoria no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar duas histórias de coragem extraordinária: Daniel na cova dos leões e a corajosa Rainha Ester! Mesmo vivendo na Babilônia, Daniel nunca deixou de orar a Deus três vezes por dia. Quando o jogaram na cova dos leões, Deus enviou o Seu anjo luminoso que fechou a boca de todos os leões! E na Pérsia, a jovem Rainha Ester também mostrou uma fé gigante para salvar todo o seu povo!",
+    "vovoStoryScript": "Vocês já imaginaram um lanche pequenininho, de apenas cinco pãezinhos e dois peixinhos dentro de uma cesta infantil, alimentar mais de cinco mil pessoas famintas e ainda sobrarem doze cestos cheios? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos caminhar com Jesus pelas colinas da Galileia e contemplar os Seus milagres maravilhosos de amor! Quando Jesus cresceu e começou o Seu ministério, Ele escolhia pescadores simples, como Pedro, André, Tiago e João, dizendo: Venham comigo! E por onde Jesus passava, as pessoas sentiam a bondade e o carinho de Deus. Certa vez, muitas famílias trouxeram criancinhas pequenas para Jesus abençoar. Alguns acharam que o Mestre estava ocupado demais, mas Jesus abriu os braços, sorriu com ternura e disse: Deixem vir a Mim os pequeninos, porque deles é o Reino de Deus! Em outro dia inesquecível, uma multidão de mais de cinco mil pessoas acompanhou Jesus até um monte verdejante para ouvir a Palavra de Deus e ver os doentes serem curados. Quando o fim da tarde chegou, todos estavam com fome. Foi então que um menininho de coração generoso se aproximou e entregou tudo o que tinha no seu cestinho: cinco pães de cevada e dois peixinhos! Jesus pediu que todos se sentassem na grama verde, tomou os pães e os peixes, olhou para o céu, deu graças ao Pai e começou a repartir! O milagre aconteceu diante dos olhos de todas as famílias: o alimento se multiplicou tanto que todos comeram à vontade e ainda recolheram doze cestos cheinhos! Naquela mesma noite, quando o barco dos discípulos enfrentava ondas fortes no mar, Jesus acalmou a tempestade apenas dizendo: Aquieta-te! E por amor a todos nós, Jesus entregou a Sua vida na cruz e ressuscitou vitorioso ao terceiro dia, garantindo que quem confia nEle tem a vida eterna e o cuidado de Deus todos os dias!",
     "byAge": {
       "3-5": {
         "text": "Daniel orava ao Papai do Céu todos os dias! Quando o colocaram na cova dos leões, Deus enviou um anjo que fechou a boca dos leões!",
@@ -1234,8 +1574,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão dos Pequenininhos: Três Orações do Dia",
         "actionDesc": "Como Daniel, fale com o Papai do Céu de manhã, na hora do almoço e antes de dormir!",
-        "vovoStoryScript": "Oi, minha criança linda! Você gosta de conversar com o Papai do Céu? Daniel amava orar ao Papai do Céu três vezes todo dia: de manhã, de tarde e de noite! Um dia, homens maldosos colocaram Daniel numa cova onde moravam leões grandões! Mas sabe o que aconteceu? O Papai do Céu mandou um anjo brilhante que fechou a boquinha dos leões! Os leões ficaram mansinhos igual gatinhos, e Daniel dormiu em paz! E a rainha Ester também orou a Deus e salvou todo o seu povo com muita coragem!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_10_3a5.mp3"
+        "vovoStoryScript": "Vocês já imaginaram um lanche pequenininho, de apenas cinco pãezinhos e dois peixinhos dentro de uma cesta infantil, alimentar mais de cinco mil pessoas famintas e ainda sobrarem doze cestos cheios? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos caminhar com Jesus pelas colinas da Galileia e contemplar os Seus milagres maravilhosos de amor! Quando Jesus cresceu e começou o Seu ministério, Ele escolhia pescadores simples, como Pedro, André, Tiago e João, dizendo: Venham comigo! E por onde Jesus passava, as pessoas sentiam a bondade e o carinho de Deus. Certa vez, muitas famílias trouxeram criancinhas pequenas para Jesus abençoar. Alguns acharam que o Mestre estava ocupado demais, mas Jesus abriu os braços, sorriu com ternura e disse: Deixem vir a Mim os pequeninos, porque deles é o Reino de Deus! Em outro dia inesquecível, uma multidão de mais de cinco mil pessoas acompanhou Jesus até um monte verdejante para ouvir a Palavra de Deus e ver os doentes serem curados. Quando o fim da tarde chegou, todos estavam com fome. Foi então que um menininho de coração generoso se aproximou e entregou tudo o que tinha no seu cestinho: cinco pães de cevada e dois peixinhos! Jesus pediu que todos se sentassem na grama verde, tomou os pães e os peixes, olhou para o céu, deu graças ao Pai e começou a repartir! O milagre aconteceu diante dos olhos de todas as famílias: o alimento se multiplicou tanto que todos comeram à vontade e ainda recolheram doze cestos cheinhos! Naquela mesma noite, quando o barco dos discípulos enfrentava ondas fortes no mar, Jesus acalmou a tempestade apenas dizendo: Aquieta-te! E por amor a todos nós, Jesus entregou a Sua vida na cruz e ressuscitou vitorioso ao terceiro dia, garantindo que quem confia nEle tem a vida eterna e o cuidado de Deus todos os dias!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_10_3a5.mp3?v=53"
       },
       "6-8": {
         "text": "Daniel continuou orando três vezes ao dia com fidelidade, e Deus o livrou na cova dos leões! E a rainha Ester usou sua coragem para proteger seu povo!",
@@ -1253,8 +1593,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão Explorador: Hábito Fiel de Oração",
         "actionDesc": "Ore todos os dias desta semana pela sua família e amigos.",
-        "vovoStoryScript": "Paz e sabedoria no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar duas histórias de coragem extraordinária: Daniel na cova dos leões e a corajosa Rainha Ester! Mesmo vivendo na Babilônia, Daniel nunca deixou de orar a Deus três vezes por dia. Quando o jogaram na cova dos leões, Deus enviou o Seu anjo luminoso que fechou a boca de todos os leões! E na Pérsia, a jovem Rainha Ester também mostrou uma fé gigante para salvar todo o seu povo!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_10_vovo.mp3"
+        "vovoStoryScript": "Vocês já imaginaram um lanche pequenininho, de apenas cinco pãezinhos e dois peixinhos dentro de uma cesta infantil, alimentar mais de cinco mil pessoas famintas e ainda sobrarem doze cestos cheios? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos caminhar com Jesus pelas colinas da Galileia e contemplar os Seus milagres maravilhosos de amor! Quando Jesus cresceu e começou o Seu ministério, Ele escolhia pescadores simples, como Pedro, André, Tiago e João, dizendo: Venham comigo! E por onde Jesus passava, as pessoas sentiam a bondade e o carinho de Deus. Certa vez, muitas famílias trouxeram criancinhas pequenas para Jesus abençoar. Alguns acharam que o Mestre estava ocupado demais, mas Jesus abriu os braços, sorriu com ternura e disse: Deixem vir a Mim os pequeninos, porque deles é o Reino de Deus! Em outro dia inesquecível, uma multidão de mais de cinco mil pessoas acompanhou Jesus até um monte verdejante para ouvir a Palavra de Deus e ver os doentes serem curados. Quando o fim da tarde chegou, todos estavam com fome. Foi então que um menininho de coração generoso se aproximou e entregou tudo o que tinha no seu cestinho: cinco pães de cevada e dois peixinhos! Jesus pediu que todos se sentassem na grama verde, tomou os pães e os peixes, olhou para o céu, deu graças ao Pai e começou a repartir! O milagre aconteceu diante dos olhos de todas as famílias: o alimento se multiplicou tanto que todos comeram à vontade e ainda recolheram doze cestos cheinhos! Naquela mesma noite, quando o barco dos discípulos enfrentava ondas fortes no mar, Jesus acalmou a tempestade apenas dizendo: Aquieta-te! E por amor a todos nós, Jesus entregou a Sua vida na cruz e ressuscitou vitorioso ao terceiro dia, garantindo que quem confia nEle tem a vida eterna e o cuidado de Deus todos os dias!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_10_vovo.mp3?v=53"
       }
     },
     "devotional5Days": [
@@ -1328,34 +1668,68 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "O Jardim do Éden (Gênesis 2)",
     "title": "O Jardim do Éden e o Cuidado com a Criação",
     "bibleRef": "Gênesis 2:8–20",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_01.jpg",
     "storyIdUnlock": 2,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_11_3a5.mp3",
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_11_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_11_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg",
-        "caption": "Cena 1 • Deus plantou um jardim exuberante no Éden, com rios cristalinos e árvores cheias de frutos!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_01.jpg",
+        "caption": "Cena 1/10 • Depois do dilúvio, as famílias cresciam unidas falando um único idioma e tinham a missão de povoar toda a Terra.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg",
-        "caption": "Cena 2 • Deus colocou Adão e Eva no Jardim do Éden para cultivarem e guardarem a natureza com amor!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_02.jpg",
+        "caption": "Cena 2/10 • Ao chegarem à planície de Sinar, decidiram parar ali em vez de seguir a ordem de Deus de habitar o mundo.",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_15.jpg",
-        "caption": "Cena 3 • Deus trouxe os animais do campo e as aves do céu para que Adão desse um nome especial a cada um!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_03.jpg",
+        "caption": "Cena 3/10 • Os construtores moldaram milhares de tijolos de barro e os assaram no fogo para levantar uma grande obra.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
-        "caption": "Cena 4 • No Jardim do Éden, a família humana aprendeu a viver em comunhão com Deus e respeito pela Criação!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_04.jpg",
+        "caption": "Cena 4/10 • Cheios de orgulho e vaidade, planejaram construir uma torre que chegasse ao céu para fazer seu próprio nome famoso.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_05.jpg",
+        "caption": "Cena 5/10 • Centenas de trabalhadores erguiam os andares da gigantesca Torre de Babel acima da cidade de Sinar.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_06.jpg",
+        "caption": "Cena 6/10 • Pelas longas rampas da torre, carregavam cestos de tijolos achando que não precisavam de Deus.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_07.jpg",
+        "caption": "Cena 7/10 • Do alto dos céus, o Senhor olhou com sabedoria para a cidade e decidiu ensinar humildade àquelas pessoas.",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_08.jpg",
+        "caption": "Cena 8/10 • De repente, Deus confundiu as línguas e cada grupo começou a falar um idioma diferente sem entender o outro!",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_09.jpg",
+        "caption": "Cena 9/10 • Sem conseguirem continuar a torre da vaidade, as famílias reuniram-se pacificamente conforme sua nova língua.",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_10.jpg",
+        "caption": "Cena 10/10 • Assim nasceram as diversas nações e idiomas, espalhando-se para cuidar de toda a Terra criada por Deus!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "Em Gênesis 2, a Bíblia detalha como Deus preparou o Jardim do Éden como o primeiro lar da humanidade, ensinando o valor do trabalho alegre, da família e do cuidado com a natureza.",
-    "vovoStoryScript": "Olá, minha criança querida! Hoje o Vovô Nésio vai abrir o livro de Gênesis, no capítulo dois, para passearmos juntos pelo Jardim do Éden! Depois de criar os céus e a terra, o Senhor Deus plantou um jardim maravilhoso no Éden, cheio de árvores formosas, flores perfumadas e frutas deliciosas! Do meio do jardim nascia um rio de águas cristalinas que regava toda a terra. Deus colocou Adão e Eva naquele jardim lindo com uma missão muito especial: cultivar e guardar a natureza com carinho e responsabilidade! Foi lá também que Deus trouxe todos os animais do campo e todas as aves do céu para que Adão escolhesse o nome de cada bichinho! Que alegria saber que Deus confiou a nós o cuidado com a criação!",
+    "vovoStoryScript": "Vocês já ouviram alguém falando em outra língua, usando palavras bem diferentes das nossas, e ficaram curiosos para saber como surgiram tantos idiomas e países pelo mundo inteiro? Aproximem-se da poltrona do vovô, meus netos queridos, porque o capítulo onze de Gênesis nos conta a surpreendente história da Torre de Babel e o nascimento das nações! Depois que Noé e sua família saíram da arca, Deus abençoou a humanidade com uma missão linda: que as famílias crescessem e se espalhassem por todos os continentes, enchendo a terra inteira de vida e cuidando da criação! Naquele tempo, todas as pessoas do mundo falavam uma única língua e usavam exatamente o mesmo vocabulário. Mas enquanto caminhavam pelo Oriente, encontraram uma grande planície na terra de Sinar e resolveram parar ali, recusando-se a seguir a ordem de Deus de povoar o restante do planeta. Pior ainda: o coração daquelas pessoas começou a ficar cheio de vaidade e orgulho! Elas disseram umas às outras: Vamos moldar tijolos queimados no fogo e construir uma cidade com uma torre tão alta que o seu topo chegue até o céu! Assim faremos o nosso próprio nome famoso! Elas achavam que não precisavam de Deus e queriam exaltar a si mesmas. O Senhor desceu para ver a cidade e a torre que os homens estavam levantando e viu que aquele orgulho egoísta só traria maldade para eles. Então Deus usou de sabedoria: sem ferir ninguém e sem derrubar uma única casa sobre eles, o Senhor confundiu a linguagem daquelas pessoas! De repente, quando um construtor pedia água ou tijolo lá no alto do andaime, o companheiro ao lado falava outra língua totalmente diferente e ninguém mais conseguia continuar a obra da vaidade! Assim, eles pararam de edificar a torre, que recebeu o nome de Babel, e cada grupo de famílias que entendia o mesmo idioma viajou para habitar uma região da Terra! Deus ama os povos de todas as línguas e nos ensina que a humildade é o verdadeiro caminho da sabedoria!",
     "byAge": {
       "3-5": {
-        "vovoStoryScript": "Oi, meu pequenininho! Oi, minha pequenininha! Depois que Deus criou o mundo, Ele plantou um jardim lindo chamado Jardim do Éden! Lá tinha riozinho de água fresquinha, árvores cheias de frutas docinhas e bichinhos mansinhos brincando! Deus colocou Adão e Eva para cuidar das florzinhas e dar nome para cada bichinho! O Papai do Céu fica muito feliz quando a gente cuida bem da natureza!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_11_3a5.mp3",
+        "vovoStoryScript": "Vocês já ouviram alguém falando em outra língua, usando palavras bem diferentes das nossas, e ficaram curiosos para saber como surgiram tantos idiomas e países pelo mundo inteiro? Aproximem-se da poltrona do vovô, meus netos queridos, porque o capítulo onze de Gênesis nos conta a surpreendente história da Torre de Babel e o nascimento das nações! Depois que Noé e sua família saíram da arca, Deus abençoou a humanidade com uma missão linda: que as famílias crescessem e se espalhassem por todos os continentes, enchendo a terra inteira de vida e cuidando da criação! Naquele tempo, todas as pessoas do mundo falavam uma única língua e usavam exatamente o mesmo vocabulário. Mas enquanto caminhavam pelo Oriente, encontraram uma grande planície na terra de Sinar e resolveram parar ali, recusando-se a seguir a ordem de Deus de povoar o restante do planeta. Pior ainda: o coração daquelas pessoas começou a ficar cheio de vaidade e orgulho! Elas disseram umas às outras: Vamos moldar tijolos queimados no fogo e construir uma cidade com uma torre tão alta que o seu topo chegue até o céu! Assim faremos o nosso próprio nome famoso! Elas achavam que não precisavam de Deus e queriam exaltar a si mesmas. O Senhor desceu para ver a cidade e a torre que os homens estavam levantando e viu que aquele orgulho egoísta só traria maldade para eles. Então Deus usou de sabedoria: sem ferir ninguém e sem derrubar uma única casa sobre eles, o Senhor confundiu a linguagem daquelas pessoas! De repente, quando um construtor pedia água ou tijolo lá no alto do andaime, o companheiro ao lado falava outra língua totalmente diferente e ninguém mais conseguia continuar a obra da vaidade! Assim, eles pararam de edificar a torre, que recebeu o nome de Babel, e cada grupo de famílias que entendia o mesmo idioma viajou para habitar uma região da Terra! Deus ama os povos de todas as línguas e nos ensina que a humildade é o verdadeiro caminho da sabedoria!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_11_3a5.mp3?v=53",
         "text": "O Papai do Céu preparou um jardim lindo chamado Éden, cheio de flores, frutinhas e bichinhos mansinhos, e pediu para cuidarmos da natureza com carinho!",
         "verse": "O Senhor Deus colocou o homem no jardim do Éden para cuidar dele. (Gênesis 2:15)",
         "verseWords": [
@@ -1372,8 +1746,8 @@ window.EBD_LESSONS_CURRICULUM = [
         "actionDesc": "Ajude o papai ou a mamãe a regar uma plantinha e nunca jogue lixo no chão!"
       },
       "6-8": {
-        "vovoStoryScript": "Olá, minha criança querida! Hoje o Vovô Nésio vai abrir o livro de Gênesis, no capítulo dois, para passearmos juntos pelo Jardim do Éden! Depois de criar os céus e a terra, o Senhor Deus plantou um jardim maravilhoso no Éden, cheio de árvores formosas, flores perfumadas e frutas deliciosas! Do meio do jardim nascia um rio de águas cristalinas que regava toda a terra. Deus colocou Adão e Eva naquele jardim lindo com uma missão muito especial: cultivar e guardar a natureza com carinho e responsabilidade! Foi lá também que Deus trouxe todos os animais do campo e todas as aves do céu para que Adão escolhesse o nome de cada bichinho! Que alegria saber que Deus confiou a nós o cuidado com a criação!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_11_vovo.mp3",
+        "vovoStoryScript": "Vocês já ouviram alguém falando em outra língua, usando palavras bem diferentes das nossas, e ficaram curiosos para saber como surgiram tantos idiomas e países pelo mundo inteiro? Aproximem-se da poltrona do vovô, meus netos queridos, porque o capítulo onze de Gênesis nos conta a surpreendente história da Torre de Babel e o nascimento das nações! Depois que Noé e sua família saíram da arca, Deus abençoou a humanidade com uma missão linda: que as famílias crescessem e se espalhassem por todos os continentes, enchendo a terra inteira de vida e cuidando da criação! Naquele tempo, todas as pessoas do mundo falavam uma única língua e usavam exatamente o mesmo vocabulário. Mas enquanto caminhavam pelo Oriente, encontraram uma grande planície na terra de Sinar e resolveram parar ali, recusando-se a seguir a ordem de Deus de povoar o restante do planeta. Pior ainda: o coração daquelas pessoas começou a ficar cheio de vaidade e orgulho! Elas disseram umas às outras: Vamos moldar tijolos queimados no fogo e construir uma cidade com uma torre tão alta que o seu topo chegue até o céu! Assim faremos o nosso próprio nome famoso! Elas achavam que não precisavam de Deus e queriam exaltar a si mesmas. O Senhor desceu para ver a cidade e a torre que os homens estavam levantando e viu que aquele orgulho egoísta só traria maldade para eles. Então Deus usou de sabedoria: sem ferir ninguém e sem derrubar uma única casa sobre eles, o Senhor confundiu a linguagem daquelas pessoas! De repente, quando um construtor pedia água ou tijolo lá no alto do andaime, o companheiro ao lado falava outra língua totalmente diferente e ninguém mais conseguia continuar a obra da vaidade! Assim, eles pararam de edificar a torre, que recebeu o nome de Babel, e cada grupo de famílias que entendia o mesmo idioma viajou para habitar uma região da Terra! Deus ama os povos de todas as línguas e nos ensina que a humildade é o verdadeiro caminho da sabedoria!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_11_vovo.mp3?v=53",
         "text": "Em Gênesis 2, Deus plantou o Jardim do Éden e deu a Adão e Eva a missão de cultivar e guardar a Terra, além de dar nome a todos os animais!",
         "verse": "Tomou, pois, o Senhor Deus ao homem e o pôs no jardim do Éden para o lavrar e o guardar. (Gênesis 2:15)",
         "verseWords": [
@@ -1458,34 +1832,68 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Infância e Chamado de Moisés (Êxodo 2–3)",
     "title": "O Bebê Moisés no Cestinho e a Sarça Ardente",
     "bibleRef": "Êxodo 2:1–10; 3:1–12",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_01.jpg",
     "storyIdUnlock": 5,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_12_3a5.mp3",
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_12_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_12_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
-        "caption": "Cena 1 • Com fé em Deus, Joquebede colocou o bebê Moisés em um cestinho impermeável nas águas do rio Nilo!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_01.jpg",
+        "caption": "Cena 1/10 • Viajando sozinho pelo caminho de Harã ao pôr do sol, o jovem Jacó sentia saudade de casa e buscava a proteção de Deus.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
-        "caption": "Cena 2 • A jovem Miriã vigiou o cestinho de perto até que a filha de Faraó encontrou e acolheu o bebê Moisés!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_02.jpg",
+        "caption": "Cena 2/10 • Quando a noite estrelada chegou, Jacó escolheu uma pedra lisa do caminho como travesseiro e deitou-se para descansar.",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
-        "caption": "Cena 3 • Anos depois, no monte Horebe, Moisés viu uma sarça que ardia em fogo sem se queimar!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_03.jpg",
+        "caption": "Cena 3/10 • Enquanto dormia profundamente sob o céu do deserto, Deus abriu para Jacó uma visão celestial inesquecível!",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
-        "caption": "Cena 4 • Deus falou com Moisés na sarça e prometeu: 'Certamente Eu serei contigo na tua missão!'"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_04.jpg",
+        "caption": "Cena 4/10 • Jacó viu uma escada luminosa de luz dourada que tocava a terra e subia até o Trono do Céu!",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_05.jpg",
+        "caption": "Cena 5/10 • Pela escada brilhante, anjos de Deus subiam e desciam levando cuidado, proteção e respostas de oração.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_06.jpg",
+        "caption": "Cena 6/10 • Do alto da escada, o Senhor prometeu a Jacó: 'Eu estou com você e o guardarei por onde quer que você andar!'",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_07.jpg",
+        "caption": "Cena 7/10 • Ao despertar com o sol da manhã, Jacó olhou para o céu maravilhado e disse: 'Realmente o Senhor está neste lugar!'",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_08.jpg",
+        "caption": "Cena 8/10 • Jacó levantou a pedra em que havia dormido como uma coluna de gratidão e derramou azeite sobre ela.",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_09.jpg",
+        "caption": "Cena 9/10 • Ele chamou aquele lugar de Betel, que significa Casa de Deus, e fez um voto de fidelidade ao Senhor.",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_10.jpg",
+        "caption": "Cena 10/10 • Jacó seguiu viagem com o coração alegre e corajoso, sabendo que o Céu está sempre ligado a quem confia em Deus!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "Antes da travessia do Mar Vermelho (Êxodo 14), os capítulos 2 e 3 de Êxodo mostram como Deus protegeu Moisés ainda bebê no rio Nilo e o chamou no monte Horebe.",
-    "vovoStoryScript": "Paz e alegria no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar como Deus protegeu a vida do pequeno Moisés desde que ele ainda era um bebezinho! Lá no Egito, a mamãe de Moisés, chamada Joquebede, confiou na proteção do Senhor e preparou um cestinho bem vedado, colocando o bebê Moisés nas águas calmas do rio Nilo, enquanto sua irmãzinha Miriã vigiava de pertinho! Deus guiou o cestinho até a filha de Faraó, que acolheu o bebê com compaixão e permitiu que a própria mãe de Moisés cuidasse dele! Quando Moisés cresceu, lá no monte Horebe, ele viu uma sarça que brilhava com fogo sem se queimar, e Deus o chamou para libertar o Seu povo, prometendo: Certamente Eu serei contigo!",
+    "vovoStoryScript": "Alguma vez vocês já olharam para o escuro da noite, longe de casa, e sentiram uma saudade grande ou um friozinho na barriga? Sentem-se aqui pertinho do vovô, meus netos queridos, porque hoje vamos descobrir o sonho maravilhoso que Jacó teve quando dormiu no deserto com uma pedra como travesseiro: a história da Escada de Betel! Jacó era filho de Isaque e Rebéca, e neto de Abraão. Quando jovem, Jacó cometeu erros graves enganando seu irmão Esaú e seu pai, e por isso precisou sair de casa e fazer uma longa caminhada sozinho até a terra de Harã, onde morava o seu tio Labão. Imaginem como estava o coração de Jacó naquela estrada! Ele caminhou o dia inteiro sob o sol quente, subindo colinas pedregosas, arrependido dos seus erros e sentindo-se completamente só. Quando o sol se pôs, ele chegou a um lugar aberto no campo. Como a noite já estava escura e não havia nenhuma tenda por perto, Jacó escolheu uma pedra lisinha daquele lugar, ajeitou-a debaixo da cabeça como travesseiro e adormeceu olhando para as estrelas. Enquanto dormia, Deus abriu os olhos do coração de Jacó com um sonho extraordinário! Ele viu uma escada reluzente apoiada na terra, cujo topo alcançava o próprio céu! Por aquela escada dourada, os anjos de Deus subiam e desciam, mostrando que o céu nunca está fechado para quem precisa da graça do Senhor! E no alto da escada estava o próprio Senhor, que disse a Jacó com voz cheia de misericórdia: Eu sou o Senhor, o Deus de Abraão e o Deus de Isaque! Não tenha medo: Eu estou com você, vou guardá-lo por onde quer que você vá e o trarei de volta a esta terra! Quando Jacó despertou ao nascer do sol, exclamou emocionado: Na verdade o Senhor está neste lugar! Ele levantou aquela pedra como coluna, derramou azeite sobre ela, chamou aquele lugar de Betel, que significa Casa de Deus, e caminhou renovado pela certeza de que Deus nunca nos abandona!",
     "byAge": {
       "3-5": {
-        "vovoStoryScript": "Olá, minha criança amada! Lá no rio Nilo, uma mamãe colocou o seu bebezinho Moisés dentro de um cestinho bem quentinho na água! A irmãzinha dele, Miriã, ficou olhando de pertinho, e os anjos do Papai do Céu protegeram o cestinho até a princesa encontrar o bebê Moisés! Quando Moisés cresceu, Deus falou com ele numa plantinha brilhante e o chamou para ajudar todo o povo!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_12_3a5.mp3",
+        "vovoStoryScript": "Alguma vez vocês já olharam para o escuro da noite, longe de casa, e sentiram uma saudade grande ou um friozinho na barriga? Sentem-se aqui pertinho do vovô, meus netos queridos, porque hoje vamos descobrir o sonho maravilhoso que Jacó teve quando dormiu no deserto com uma pedra como travesseiro: a história da Escada de Betel! Jacó era filho de Isaque e Rebéca, e neto de Abraão. Quando jovem, Jacó cometeu erros graves enganando seu irmão Esaú e seu pai, e por isso precisou sair de casa e fazer uma longa caminhada sozinho até a terra de Harã, onde morava o seu tio Labão. Imaginem como estava o coração de Jacó naquela estrada! Ele caminhou o dia inteiro sob o sol quente, subindo colinas pedregosas, arrependido dos seus erros e sentindo-se completamente só. Quando o sol se pôs, ele chegou a um lugar aberto no campo. Como a noite já estava escura e não havia nenhuma tenda por perto, Jacó escolheu uma pedra lisinha daquele lugar, ajeitou-a debaixo da cabeça como travesseiro e adormeceu olhando para as estrelas. Enquanto dormia, Deus abriu os olhos do coração de Jacó com um sonho extraordinário! Ele viu uma escada reluzente apoiada na terra, cujo topo alcançava o próprio céu! Por aquela escada dourada, os anjos de Deus subiam e desciam, mostrando que o céu nunca está fechado para quem precisa da graça do Senhor! E no alto da escada estava o próprio Senhor, que disse a Jacó com voz cheia de misericórdia: Eu sou o Senhor, o Deus de Abraão e o Deus de Isaque! Não tenha medo: Eu estou com você, vou guardá-lo por onde quer que você vá e o trarei de volta a esta terra! Quando Jacó despertou ao nascer do sol, exclamou emocionado: Na verdade o Senhor está neste lugar! Ele levantou aquela pedra como coluna, derramou azeite sobre ela, chamou aquele lugar de Betel, que significa Casa de Deus, e caminhou renovado pela certeza de que Deus nunca nos abandona!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_12_3a5.mp3?v=53",
         "text": "O Papai do Céu cuidou do bebê Moisés dentro do cestinho no rio Nilo e a irmãzinha Miriã ajudou a olhar o irmãozinho com muito amor!",
         "verse": "Certamente eu serei contigo! (Êxodo 3:12)",
         "verseWords": [
@@ -1499,8 +1907,8 @@ window.EBD_LESSONS_CURRICULUM = [
         "actionDesc": "Seja carinhoso e protetor com seus irmãozinhos, primos e amiguinhos, igual à irmã Miriã!"
       },
       "6-8": {
-        "vovoStoryScript": "Paz e alegria no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar como Deus protegeu a vida do pequeno Moisés desde que ele ainda era um bebezinho! Lá no Egito, a mamãe de Moisés, chamada Joquebede, confiou na proteção do Senhor e preparou um cestinho bem vedado, colocando o bebê Moisés nas águas calmas do rio Nilo, enquanto sua irmãzinha Miriã vigiava de pertinho! Deus guiou o cestinho até a filha de Faraó, que acolheu o bebê com compaixão e permitiu que a própria mãe de Moisés cuidasse dele! Quando Moisés cresceu, lá no monte Horebe, ele viu uma sarça que brilhava com fogo sem se queimar, e Deus o chamou para libertar o Seu povo, prometendo: Certamente Eu serei contigo!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_12_vovo.mp3",
+        "vovoStoryScript": "Alguma vez vocês já olharam para o escuro da noite, longe de casa, e sentiram uma saudade grande ou um friozinho na barriga? Sentem-se aqui pertinho do vovô, meus netos queridos, porque hoje vamos descobrir o sonho maravilhoso que Jacó teve quando dormiu no deserto com uma pedra como travesseiro: a história da Escada de Betel! Jacó era filho de Isaque e Rebéca, e neto de Abraão. Quando jovem, Jacó cometeu erros graves enganando seu irmão Esaú e seu pai, e por isso precisou sair de casa e fazer uma longa caminhada sozinho até a terra de Harã, onde morava o seu tio Labão. Imaginem como estava o coração de Jacó naquela estrada! Ele caminhou o dia inteiro sob o sol quente, subindo colinas pedregosas, arrependido dos seus erros e sentindo-se completamente só. Quando o sol se pôs, ele chegou a um lugar aberto no campo. Como a noite já estava escura e não havia nenhuma tenda por perto, Jacó escolheu uma pedra lisinha daquele lugar, ajeitou-a debaixo da cabeça como travesseiro e adormeceu olhando para as estrelas. Enquanto dormia, Deus abriu os olhos do coração de Jacó com um sonho extraordinário! Ele viu uma escada reluzente apoiada na terra, cujo topo alcançava o próprio céu! Por aquela escada dourada, os anjos de Deus subiam e desciam, mostrando que o céu nunca está fechado para quem precisa da graça do Senhor! E no alto da escada estava o próprio Senhor, que disse a Jacó com voz cheia de misericórdia: Eu sou o Senhor, o Deus de Abraão e o Deus de Isaque! Não tenha medo: Eu estou com você, vou guardá-lo por onde quer que você vá e o trarei de volta a esta terra! Quando Jacó despertou ao nascer do sol, exclamou emocionado: Na verdade o Senhor está neste lugar! Ele levantou aquela pedra como coluna, derramou azeite sobre ela, chamou aquele lugar de Betel, que significa Casa de Deus, e caminhou renovado pela certeza de que Deus nunca nos abandona!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_12_vovo.mp3?v=53",
         "text": "Deus guardou o bebê Moisés no cestinho no rio Nilo através da fé de sua mãe Joquebede e da coragem de sua irmã Miriã, e depois o chamou na sarça ardente!",
         "verse": "Disse Deus a Moisés: Certamente eu serei contigo! (Êxodo 3:12)",
         "verseWords": [
@@ -1582,34 +1990,68 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Maná e Monte Sinai (Êxodo 16–20)",
     "title": "O Maná do Céu e as Tábuas no Monte Sinai",
     "bibleRef": "Êxodo 16:11–18; 20:1–17",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_01.jpg",
     "storyIdUnlock": 6,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_13_3a5.mp3",
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_13_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_13_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
-        "caption": "Cena 1 • No deserto, Deus enviava todas as manhãs o maná branquinho e doce como mel para alimentar as famílias!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_01.jpg",
+        "caption": "Cena 1/10 • Após atravessar o Mar Vermelho, o povo de Israel acampou em paz aos pés do majestoso Monte Sinai.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
-        "caption": "Cena 2 • Da rocha de Horebe, Deus fez jorrar água fresca e cristalina para saciar a sede de todo o povo!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_02.jpg",
+        "caption": "Cena 2/10 • Moisés subiu pela trilha da montanha pela manhã para ouvir as instruções amorosas do Senhor para o povo.",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_30.jpg",
-        "caption": "Cena 3 • No Monte Sinai, Deus entregou a Moisés os Dez Mandamentos, ensinando o amor a Deus e ao próximo!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_03.jpg",
+        "caption": "Cena 3/10 • As famílias prepararam o coração e lavaram suas vestes em reverência para ouvir a Palavra de Deus.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_09.jpg",
-        "caption": "Cena 4 • Honrar pai e mãe é o primeiro mandamento com promessa de vida longa e feliz!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_04.jpg",
+        "caption": "Cena 4/10 • O topo do Monte Sinai resplandeceu com nuvem e luz dourada do Céu enquanto a trombeta anunciava a presença de Deus.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_05.jpg",
+        "caption": "Cena 5/10 • Lá no alto do monte, o próprio Deus entregou as duas tábuas de pedra com os Dez Mandamentos da vida feliz!",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_06.jpg",
+        "caption": "Cena 6/10 • Os primeiros mandamentos nos ensinam a amar a Deus acima de tudo e a reverenciar o Seu santo nome.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_07.jpg",
+        "caption": "Cena 7/10 • O quinto mandamento traz uma promessa linda para as crianças: honrar e obedecer ao papai e à mamãe com amor!",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_08.jpg",
+        "caption": "Cena 8/10 • Os outros mandamentos ensinam a falar sempre a verdade, respeitar o próximo e nunca pegar o que é dos outros.",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_09.jpg",
+        "caption": "Cena 9/10 • Moisés desceu do Monte Sinai com o rosto radiante de alegria, trazendo as duas tábuas da Lei para o povo.",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_10.jpg",
+        "caption": "Cena 10/10 • Todas as famílias prometeram obedecer à Palavra de Deus, pois os mandamentos do Senhor são caminhos de amor!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "Logo após atravessar o Mar Vermelho, o povo caminhou pelo deserto até o Monte Sinai (Êxodo 16–20), onde experimentou o sustento diário do Maná e recebeu os Dez Mandamentos.",
-    "vovoStoryScript": "Olá, minha criança querida! Depois que o povo atravessou o Mar Vermelho, eles caminharam pelo grande deserto rumo ao Monte Sinai. Não havia plantações no deserto, mas o nosso Deus cuida de cada detalhe! Todas as manhãs, junto com o orvalho, o Senhor fazia cair do céu o Maná, um pãozinho branquinho e doce como mel, para alimentar todas as famílias! E quando chegaram ao Monte Sinai, Deus entregou a Moisés os Dez Mandamentos, ensinando o caminho do amor a Deus, da verdade, do respeito ao próximo e da honra ao papai e à mamãe! Quando guardamos a Palavra de Deus no coração, a nossa casa se enche de paz!",
+    "vovoStoryScript": "Meus netos queridos, vocês sabem por que o papai e a mamãe ensinam combinados importantes em casa, como respeitar os mais velhos, falar sempre a verdade e cuidar dos irmãos? Porque quem ama de verdade ensina o caminho certo para a gente viver feliz e em segurança! Cheguem bem pertinho do vovô, porque hoje vamos subir com Moisés até o Monte Sinai para conhecer as dez grandes leis de amor que o próprio Deus escreveu: os Dez Mandamentos! Três meses depois de atravessarem o Mar Vermelho, as famílias de Israel acamparam no deserto bem em frente ao majestoso Monte Sinai. Deus havia libertado aquele povo da escravidão e agora queria ensiná-los a viver como uma grande família cheia de justiça, paz e bondade. No terceiro dia pela manhã, uma nuvem espessa e resplandecente cobriu o topo do Monte Sinai, ao som de uma trombeta forte, e o Senhor chamou Moisés para subir ao cume da montanha! Lá no alto, o Senhor entregou a Moisés duas tábuas de pedra contendo os Dez Mandamentos! Os quatro primeiros mandamentos ensinam como amar a Deus de todo o coração: adorar somente ao Senhor nosso Deus, não fazer ídolos, falar o nome de Deus sempre com profundo respeito e separar o dia de descanso para agradecer ao Criador em família! E os outros seis mandamentos ensinam como amar e respeitar o nosso próximo! O quinto mandamento é especial para cada criança e jovem: Honra a teu pai e a tua mãe, para que se prolonguem os teus dias na terra que o Senhor te dá! Depois vêm os mandamentos de proteger a vida, ser fiel na família, nunca pegar o que não é seu, nunca falar mentira sobre o próximo e não ter inveja das coisas dos outros, mas ter um coração grato! Quando Moisés desceu do monte trazendo as tábuas e ensinou a Palavra do Senhor ao povo, todos aprenderam que obedecer aos mandamentos de Deus ilumina o nosso caminho e guarda a nossa casa em paz!",
     "byAge": {
       "3-5": {
-        "vovoStoryScript": "Oi, minha criança querida! Quando o povo caminhava pelo deserto com Moisés, o Papai do Céu mandava todo dia de manhã um pãozinho gostoso lá do céu chamado Maná! E no Monte Sinai, Deus entregou as dez regrinhas do amor: amar a Deus de todo o coração, respeitar o papai e a mamãe e ser sempre amigo de todo mundo!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_13_3a5.mp3",
+        "vovoStoryScript": "Meus netos queridos, vocês sabem por que o papai e a mamãe ensinam combinados importantes em casa, como respeitar os mais velhos, falar sempre a verdade e cuidar dos irmãos? Porque quem ama de verdade ensina o caminho certo para a gente viver feliz e em segurança! Cheguem bem pertinho do vovô, porque hoje vamos subir com Moisés até o Monte Sinai para conhecer as dez grandes leis de amor que o próprio Deus escreveu: os Dez Mandamentos! Três meses depois de atravessarem o Mar Vermelho, as famílias de Israel acamparam no deserto bem em frente ao majestoso Monte Sinai. Deus havia libertado aquele povo da escravidão e agora queria ensiná-los a viver como uma grande família cheia de justiça, paz e bondade. No terceiro dia pela manhã, uma nuvem espessa e resplandecente cobriu o topo do Monte Sinai, ao som de uma trombeta forte, e o Senhor chamou Moisés para subir ao cume da montanha! Lá no alto, o Senhor entregou a Moisés duas tábuas de pedra contendo os Dez Mandamentos! Os quatro primeiros mandamentos ensinam como amar a Deus de todo o coração: adorar somente ao Senhor nosso Deus, não fazer ídolos, falar o nome de Deus sempre com profundo respeito e separar o dia de descanso para agradecer ao Criador em família! E os outros seis mandamentos ensinam como amar e respeitar o nosso próximo! O quinto mandamento é especial para cada criança e jovem: Honra a teu pai e a tua mãe, para que se prolonguem os teus dias na terra que o Senhor te dá! Depois vêm os mandamentos de proteger a vida, ser fiel na família, nunca pegar o que não é seu, nunca falar mentira sobre o próximo e não ter inveja das coisas dos outros, mas ter um coração grato! Quando Moisés desceu do monte trazendo as tábuas e ensinou a Palavra do Senhor ao povo, todos aprenderam que obedecer aos mandamentos de Deus ilumina o nosso caminho e guarda a nossa casa em paz!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_13_3a5.mp3?v=53",
         "text": "O Papai do Céu mandava o pãozinho Maná todo dia de manhã e ensinou a regra de ouro: amar a Deus e honrar o papai e a mamãe!",
         "verse": "Honra a teu pai e a tua mãe. (Êxodo 20:12)",
         "verseWords": [
@@ -1625,8 +2067,8 @@ window.EBD_LESSONS_CURRICULUM = [
         "actionDesc": "Agradeça ao Papai do Céu antes do café da manhã e do almoço, e dê um beijo carinhoso no papai e na mamãe!"
       },
       "6-8": {
-        "vovoStoryScript": "Olá, minha criança querida! Depois que o povo atravessou o Mar Vermelho, eles caminharam pelo grande deserto rumo ao Monte Sinai. Não havia plantações no deserto, mas o nosso Deus cuida de cada detalhe! Todas as manhãs, junto com o orvalho, o Senhor fazia cair do céu o Maná, um pãozinho branquinho e doce como mel, para alimentar todas as famílias! E quando chegaram ao Monte Sinai, Deus entregou a Moisés os Dez Mandamentos, ensinando o caminho do amor a Deus, da verdade, do respeito ao próximo e da honra ao papai e à mamãe! Quando guardamos a Palavra de Deus no coração, a nossa casa se enche de paz!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_13_vovo.mp3",
+        "vovoStoryScript": "Meus netos queridos, vocês sabem por que o papai e a mamãe ensinam combinados importantes em casa, como respeitar os mais velhos, falar sempre a verdade e cuidar dos irmãos? Porque quem ama de verdade ensina o caminho certo para a gente viver feliz e em segurança! Cheguem bem pertinho do vovô, porque hoje vamos subir com Moisés até o Monte Sinai para conhecer as dez grandes leis de amor que o próprio Deus escreveu: os Dez Mandamentos! Três meses depois de atravessarem o Mar Vermelho, as famílias de Israel acamparam no deserto bem em frente ao majestoso Monte Sinai. Deus havia libertado aquele povo da escravidão e agora queria ensiná-los a viver como uma grande família cheia de justiça, paz e bondade. No terceiro dia pela manhã, uma nuvem espessa e resplandecente cobriu o topo do Monte Sinai, ao som de uma trombeta forte, e o Senhor chamou Moisés para subir ao cume da montanha! Lá no alto, o Senhor entregou a Moisés duas tábuas de pedra contendo os Dez Mandamentos! Os quatro primeiros mandamentos ensinam como amar a Deus de todo o coração: adorar somente ao Senhor nosso Deus, não fazer ídolos, falar o nome de Deus sempre com profundo respeito e separar o dia de descanso para agradecer ao Criador em família! E os outros seis mandamentos ensinam como amar e respeitar o nosso próximo! O quinto mandamento é especial para cada criança e jovem: Honra a teu pai e a tua mãe, para que se prolonguem os teus dias na terra que o Senhor te dá! Depois vêm os mandamentos de proteger a vida, ser fiel na família, nunca pegar o que não é seu, nunca falar mentira sobre o próximo e não ter inveja das coisas dos outros, mas ter um coração grato! Quando Moisés desceu do monte trazendo as tábuas e ensinou a Palavra do Senhor ao povo, todos aprenderam que obedecer aos mandamentos de Deus ilumina o nosso caminho e guarda a nossa casa em paz!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_13_vovo.mp3?v=53",
         "text": "No deserto, Deus cuidou do povo enviando o Maná todas as manhãs e água da rocha, e no Monte Sinai entregou os Dez Mandamentos do amor e do respeito!",
         "verse": "Honra a teu pai e a tua mãe, para que se prolonguem os teus dias na terra. (Êxodo 20:12)",
         "verseWords": [
@@ -1710,34 +2152,68 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Tempo dos Juízes (~1200–1100 a.C. • Juízes 7; Rute)",
     "title": "A Coragem de Gideão e a Bondosa Rute",
     "bibleRef": "Juízes 7:15–22; Rute 1:16; 2:1–12",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_01.jpg",
     "storyIdUnlock": 9,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_14_3a5.mp3",
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_14_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_14_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg",
-        "caption": "Cena 1 • O anjo do Senhor chamou Gideão de 'homem valente' e prometeu que Deus daria a vitória!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_01.jpg",
+        "caption": "Cena 1/10 • Quando Israel sofria com as invasões dos midianitas, o jovem Gideão malhava o trigo escondido num lagar.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg",
-        "caption": "Cena 2 • Com apenas 300 homens segurando tochas acesas e buzinas, Gideão confiou no poder de Deus!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_02.jpg",
+        "caption": "Cena 2/10 • Debaixo do carvalho, o Anjo do Senhor apareceu a Gideão e disse: 'O Senhor é contigo, homem valente!'",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg",
-        "caption": "Cena 3 • Na mesma época, a jovem Rute cuidou com amor de sua sogra Noemi, colhendo espigas nos campos de Belém!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_03.jpg",
+        "caption": "Cena 3/10 • Gideão pediu um sinal ao Senhor e viu o orvalho da manhã molhar apenas a lã no chão seco, confirmando a promessa!",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg",
-        "caption": "Cena 4 • Boaz abençoou a bondade de Rute, e ela entrou para a árvore genealógica do Rei Davi!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_04.jpg",
+        "caption": "Cena 4/10 • Na noite seguinte, toda a terra ficou molhada de orvalho e apenas a lã permaneceu sequinha pelo poder de Deus!",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_05.jpg",
+        "caption": "Cena 5/10 • Milhares de soldados atenderam ao chamado, mas Deus disse que eram muitos, para que soubessem que a vitória vem dEle.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_06.jpg",
+        "caption": "Cena 6/10 • Na fonte de Harode, Deus selecionou apenas os 300 homens atentos que beberam água levando-a à boca com as mãos.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_07.jpg",
+        "caption": "Cena 7/10 • Em vez de espadas ou lanças, Gideão entregou a cada um dos 300 uma trombeta, um cântaro de barro e uma tocha acesa!",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_08.jpg",
+        "caption": "Cena 8/10 • À noite, os 300 cercaram em silêncio o vale onde o imenso exército adversário estava acampado.",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_09.jpg",
+        "caption": "Cena 9/10 • Ao sinal de Gideão, tocaram as 300 trombetas, quebraram os cântaros e ergueram as tochas brilhantes no escuro!",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_10.jpg",
+        "caption": "Cena 10/10 • O exército inimigo fugiu assustado sem precisar de batalha, e todo Israel louvou a Deus pela grande vitória!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "Durante o período dos Juízes (após Josué e antes dos Reis), Deus levantou Gideão para defender o povo e abençoou a lealdade de Rute em Belém — bisavó do Rei Davi!",
-    "vovoStoryScript": "Paz e bondade no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar duas histórias lindas que aconteceram na época dos Juízes: a vitória de Gideão e a bondade de Rute! Gideão achava que era pequeno e fraco demais, mas Deus disse a ele: Vai nesta tua força, porque Eu sou contigo! Com apenas trezentos homens levando tochas acesas e trombetas, Gideão confiou não na sua própria força, mas no poder de Deus! E naquela mesma época viveu a jovem Rute, que cuidou com tanto amor da sua sogra Noemi, colhendo espigas de trigo nos campos de Boaz em Belém! Deus recompensou a lealdade de Rute, e ela se tornou bisavó do Rei Davi!",
+    "vovoStoryScript": "Imaginem só se vocês precisassem defender uma terra inteira contra um exército de milhares de soldados, mas Deus mandasse deixar as espadas de lado e levar apenas um jarro de barro, uma tocha acesa e uma trombeta! Sentem-se aqui pertinho do vovô, meus netos queridos, porque hoje vamos vibrar com a história de Gideão e o Exército dos Trezentos! Na época dos Juízes, o povo de Israel estava passando por grande aperto, porque os midianitas invadiam a terra como gafanhotos e roubavam todo o trigo das famílias. Um jovem trabalhador chamado Gideão estava batendo trigo escondido num lagar, com medo dos invasores, quando o Anjo do Senhor apareceu sentado debaixo de um carvalho em Ofra e lhe disse: O Senhor é contigo, homem valente! Gideão olhou para os lados e respondeu: Ai, meu Senhor, mas a minha família é a mais humilde de todas, e eu sou o menor na casa de meu pai! Porém o Senhor disse a Gideão: Vá nesta sua força, porque Eu serei com você! Para fortalecer a fé de Gideão, Deus ainda lhe respondeu com o lindo sinal do novelo de lã no terreiro: na primeira noite, só a lã amanheceu molhada de orvalho e o chão seco; na segunda noite, o chão inteiro amanheceu molhado e a lã sequinha! Gideão tocou a trombeta e trinta e dois mil homens se apresentaram. Mas Deus disse: Gideão, há gente demais com você! Se vencerem assim, dirão que foi pela própria força. Primeiro voltaram para casa vinte e dois mil que estavam com medo. Depois, Deus levou os dez mil restantes até a fonte de água e mandou separar apenas aqueles que beberam água atentos, levando a água com a mão até a boca: ficaram somente trezentos homens! À noite, Gideão cercou o acampamento inimigo com os trezentos divididos em três grupos. Ao sinal combinado, todos quebraram os cântaros de barro ao mesmo tempo, ergueram as tochas de fogo brilhando na noite, tocaram as trezentas trombetas e bradaram: Espada pelo Senhor e por Gideão! Os invasores entraram em confusão e fugiram sem que Gideão precisasse lutar! Com Deus, os pequenos fazem grandes obras!",
     "byAge": {
       "3-5": {
-        "vovoStoryScript": "Olá, meu netinho e minha netinha! Vamos conhecer Gideão e a bondosa Rute! Gideão confiou no Papai do Céu e venceu com tochas brilhantes e trombetas! E a jovem Rute era tão carinhosa que ajudava a sua sogra Noemi a colher triguinho no campo! O Papai do Céu abençoou muito a família de Rute porque ela tinha um coração bondoso!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_14_3a5.mp3",
+        "vovoStoryScript": "Imaginem só se vocês precisassem defender uma terra inteira contra um exército de milhares de soldados, mas Deus mandasse deixar as espadas de lado e levar apenas um jarro de barro, uma tocha acesa e uma trombeta! Sentem-se aqui pertinho do vovô, meus netos queridos, porque hoje vamos vibrar com a história de Gideão e o Exército dos Trezentos! Na época dos Juízes, o povo de Israel estava passando por grande aperto, porque os midianitas invadiam a terra como gafanhotos e roubavam todo o trigo das famílias. Um jovem trabalhador chamado Gideão estava batendo trigo escondido num lagar, com medo dos invasores, quando o Anjo do Senhor apareceu sentado debaixo de um carvalho em Ofra e lhe disse: O Senhor é contigo, homem valente! Gideão olhou para os lados e respondeu: Ai, meu Senhor, mas a minha família é a mais humilde de todas, e eu sou o menor na casa de meu pai! Porém o Senhor disse a Gideão: Vá nesta sua força, porque Eu serei com você! Para fortalecer a fé de Gideão, Deus ainda lhe respondeu com o lindo sinal do novelo de lã no terreiro: na primeira noite, só a lã amanheceu molhada de orvalho e o chão seco; na segunda noite, o chão inteiro amanheceu molhado e a lã sequinha! Gideão tocou a trombeta e trinta e dois mil homens se apresentaram. Mas Deus disse: Gideão, há gente demais com você! Se vencerem assim, dirão que foi pela própria força. Primeiro voltaram para casa vinte e dois mil que estavam com medo. Depois, Deus levou os dez mil restantes até a fonte de água e mandou separar apenas aqueles que beberam água atentos, levando a água com a mão até a boca: ficaram somente trezentos homens! À noite, Gideão cercou o acampamento inimigo com os trezentos divididos em três grupos. Ao sinal combinado, todos quebraram os cântaros de barro ao mesmo tempo, ergueram as tochas de fogo brilhando na noite, tocaram as trezentas trombetas e bradaram: Espada pelo Senhor e por Gideão! Os invasores entraram em confusão e fugiram sem que Gideão precisasse lutar! Com Deus, os pequenos fazem grandes obras!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_14_3a5.mp3?v=53",
         "text": "Gideão brilhou sua tocha confiando em Deus, e a jovem Rute ajudou sua família colhendo triguinho com muito carinho e bondade!",
         "verse": "O teu povo é o meu povo, o teu Deus é o meu Deus. (Rute 1:16)",
         "verseWords": [
@@ -1753,8 +2229,8 @@ window.EBD_LESSONS_CURRICULUM = [
         "actionDesc": "Ajude a vovó, o vovô ou a mamãe com um sorriso bem doce, igual à bondosa Rute!"
       },
       "6-8": {
-        "vovoStoryScript": "Paz e bondade no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar duas histórias lindas que aconteceram na época dos Juízes: a vitória de Gideão e a bondade de Rute! Gideão achava que era pequeno e fraco demais, mas Deus disse a ele: Vai nesta tua força, porque Eu sou contigo! Com apenas trezentos homens levando tochas acesas e trombetas, Gideão confiou não na sua própria força, mas no poder de Deus! E naquela mesma época viveu a jovem Rute, que cuidou com tanto amor da sua sogra Noemi, colhendo espigas de trigo nos campos de Boaz em Belém! Deus recompensou a lealdade de Rute, e ela se tornou bisavó do Rei Davi!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_14_vovo.mp3",
+        "vovoStoryScript": "Imaginem só se vocês precisassem defender uma terra inteira contra um exército de milhares de soldados, mas Deus mandasse deixar as espadas de lado e levar apenas um jarro de barro, uma tocha acesa e uma trombeta! Sentem-se aqui pertinho do vovô, meus netos queridos, porque hoje vamos vibrar com a história de Gideão e o Exército dos Trezentos! Na época dos Juízes, o povo de Israel estava passando por grande aperto, porque os midianitas invadiam a terra como gafanhotos e roubavam todo o trigo das famílias. Um jovem trabalhador chamado Gideão estava batendo trigo escondido num lagar, com medo dos invasores, quando o Anjo do Senhor apareceu sentado debaixo de um carvalho em Ofra e lhe disse: O Senhor é contigo, homem valente! Gideão olhou para os lados e respondeu: Ai, meu Senhor, mas a minha família é a mais humilde de todas, e eu sou o menor na casa de meu pai! Porém o Senhor disse a Gideão: Vá nesta sua força, porque Eu serei com você! Para fortalecer a fé de Gideão, Deus ainda lhe respondeu com o lindo sinal do novelo de lã no terreiro: na primeira noite, só a lã amanheceu molhada de orvalho e o chão seco; na segunda noite, o chão inteiro amanheceu molhado e a lã sequinha! Gideão tocou a trombeta e trinta e dois mil homens se apresentaram. Mas Deus disse: Gideão, há gente demais com você! Se vencerem assim, dirão que foi pela própria força. Primeiro voltaram para casa vinte e dois mil que estavam com medo. Depois, Deus levou os dez mil restantes até a fonte de água e mandou separar apenas aqueles que beberam água atentos, levando a água com a mão até a boca: ficaram somente trezentos homens! À noite, Gideão cercou o acampamento inimigo com os trezentos divididos em três grupos. Ao sinal combinado, todos quebraram os cântaros de barro ao mesmo tempo, ergueram as tochas de fogo brilhando na noite, tocaram as trezentas trombetas e bradaram: Espada pelo Senhor e por Gideão! Os invasores entraram em confusão e fugiram sem que Gideão precisasse lutar! Com Deus, os pequenos fazem grandes obras!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_14_vovo.mp3?v=53",
         "text": "Com 300 homens e tochas acesas, Gideão aprendeu que a vitória vem de Deus! E Rute mostrou lealdade e amor cuidando de Noemi nos campos de Belém!",
         "verse": "O Senhor te retribua o teu feito, e seja cumprido o teu galardão. (Rute 2:12)",
         "verseWords": [
@@ -1837,34 +2313,68 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Transição para o Reino (~1080 a.C. • 1 Samuel 1–3)",
     "title": "A Oração de Ana e o Pequeno Samuel Ouvindo a Deus",
     "bibleRef": "1 Samuel 1:27; 3:1–10",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_01.jpg",
     "storyIdUnlock": 15,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_15_3a5.mp3",
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_15_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_15_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg",
-        "caption": "Cena 1 • Ana orou com fé sincera e Deus lhe concedeu o pequeno Samuel, cujo nome significa 'Pedido a Deus'!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_01.jpg",
+        "caption": "Cena 1/10 • Na estrada para Belém, a jovem Rute abraçou sua sogra Noemi e decidiu nunca deixá-la sozinha.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_29.jpg",
-        "caption": "Cena 2 • O menino Samuel crescia no Templo ajudando o sacerdote Eli com alegria e reverência!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_02.jpg",
+        "caption": "Cena 2/10 • Rute declarou com amor: 'Aonde você for, eu irei; o seu povo será o meu povo, e o seu Deus será o meu Deus!'",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_18.jpg",
-        "caption": "Cena 3 • À noite, o Senhor chamou: 'Samuel, Samuel!' E o menino respondeu: 'Fala, Senhor, porque o Teu servo ouve!'"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_03.jpg",
+        "caption": "Cena 3/10 • Elas chegaram a Belém justamente no tempo da colheita da cevada dourada nos campos ensolarados.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_10.jpg",
-        "caption": "Cena 4 • Samuel tornou-se um profeta fiel que guiou Israel e ungiu o jovem Davi!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_04.jpg",
+        "caption": "Cena 4/10 • Com disposição e carinho para cuidar de Noemi, Rute foi colher espigas deixadas pelos segadores no campo.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_05.jpg",
+        "caption": "Cena 5/10 • O dono daquele campo era Boaz, um homem bondoso e temente a Deus, que saudou os trabalhadores com bênção.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_06.jpg",
+        "caption": "Cena 6/10 • Boaz soube da bondade de Rute para com Noemi e pediu aos seus servos que deixassem espigas extras para ela.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_07.jpg",
+        "caption": "Cena 7/10 • Na hora do almoço, Boaz convidou Rute para sentar-se à sombra, beber água fresca e comer pão e grãos tostados.",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_08.jpg",
+        "caption": "Cena 8/10 • Ao entardecer, Rute voltou para casa feliz com um cesto cheio de cevada e repartiu tudo com sua sogra Noemi!",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_09.jpg",
+        "caption": "Cena 9/10 • Boaz e Rute se casaram com a bênção de todo o povo de Belém, trazendo alegria de volta ao lar de Noemi.",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_10.jpg",
+        "caption": "Cena 10/10 • Deus deu a eles o bebê Obede, que veio a ser o avô do rei Davi, na linhagem do Salvador Jesus!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "Samuel é o elo cronológico entre a época dos Juízes e a época dos Reis (1 Samuel 1–3). Ainda menino, ele aprendeu a ouvir a voz de Deus!",
-    "vovoStoryScript": "Olá, minha criança querida! Você sabia que Deus ama falar ao coração das crianças? Hoje o Vovô Nésio vai contar a história do pequeno Samuel! A mamãe dele, chamada Ana, orou com muita fé pedindo um filho ao Senhor, e Deus lhe deu o pequeno Samuel! Ainda menino, Samuel ajudava o sacerdote Eli na Casa do Senhor com muita dedicação. Certa noite, enquanto tudo estava silencioso, Deus chamou pelo nome dele: Samuel, Samuel! O menino achou que era Eli chamando, mas Eli explicou que era a voz do Senhor! Então Samuel respondeu com carinho e respeito: Fala, Senhor, porque o Teu servo ouve! E Samuel cresceu cheio da sabedoria de Deus!",
+    "vovoStoryScript": "Vocês sabem o quanto um gesto de carinho, lealdade e ajuda dentro de casa pode transformar a tristeza de alguém em uma festa de alegria? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos caminhar pelos campos dourados de trigo de Belém na encantadora história de Rute e Noemi! Noemi era uma senhora bondosa de Belém que havia se mudado com a família para a terra de Moábe num tempo de seca. Lá, após anos difíceis em que ficou viúva e perdeu seus filhos, Noemi decidiu voltar para a sua terra natal em Belém. Sua nora Rute amava tanto a Noemi que não quis deixá-la viajar sozinha de jeito nenhum! Rute abraçou sua sogra com ternura e declarou a promessa mais linda de amizade fiel da Bíblia: Não me peça para deixar a senhora! Para onde a senhora for, eu irei; onde a senhora pousar, ali pousarei; o seu povo será o meu povo, e o seu Deus será o meu Deus! Quando as duas chegaram a Belém, os campos estavam amarelinhos como ouro, prontos para a colheita da cevada! Como elas eram humildes e precisavam de comida, Rute arregaçou as mangas e pediu para ir trabalhar no campo, colhendo as espigas que caíam atrás dos segadores. E vejam como Deus cuida de quem honra a família: Rute entrou justamente no campo de Boaz, um homem honrado, generoso e parente da família de Noemi! Quando Boaz soube de todo o amor com que Rute cuidava da sua sogra e de como ela havia buscado abrigo debaixo das asas do Deus de Israel, ele tratou Rute com imensa bondade! Convidou-a para comer pão na mesa dos trabalhadores, ofereceu água fresca e ordenou que seus servos deixassem cair espigas cheias de propósito no caminho dela! No fim da tarde, Rute voltou para casa com um cesto transbordando de grãos, deixando Noemi radiante! Mais tarde, Boaz e Rute se casaram e tiveram um bebezinho chamado Obede, que foi o avô do rei Davi e entrou na genealogia do próprio Jesus!",
     "byAge": {
       "3-5": {
-        "vovoStoryScript": "Oi, meu pequenininho! Oi, minha pequenininha! O pequeno Samuel morava no Templo ajudando o vovô Eli. Uma noite, enquanto Samuel dormia, o Papai do Céu chamou o nome dele com carinho: Samuel, Samuel! Samuel respondeu: Fala, Senhor, que o Teu servo ouve! Que lindo quando a gente escuta a voz de Deus e obedece com alegria!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_15_3a5.mp3",
+        "vovoStoryScript": "Vocês sabem o quanto um gesto de carinho, lealdade e ajuda dentro de casa pode transformar a tristeza de alguém em uma festa de alegria? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos caminhar pelos campos dourados de trigo de Belém na encantadora história de Rute e Noemi! Noemi era uma senhora bondosa de Belém que havia se mudado com a família para a terra de Moábe num tempo de seca. Lá, após anos difíceis em que ficou viúva e perdeu seus filhos, Noemi decidiu voltar para a sua terra natal em Belém. Sua nora Rute amava tanto a Noemi que não quis deixá-la viajar sozinha de jeito nenhum! Rute abraçou sua sogra com ternura e declarou a promessa mais linda de amizade fiel da Bíblia: Não me peça para deixar a senhora! Para onde a senhora for, eu irei; onde a senhora pousar, ali pousarei; o seu povo será o meu povo, e o seu Deus será o meu Deus! Quando as duas chegaram a Belém, os campos estavam amarelinhos como ouro, prontos para a colheita da cevada! Como elas eram humildes e precisavam de comida, Rute arregaçou as mangas e pediu para ir trabalhar no campo, colhendo as espigas que caíam atrás dos segadores. E vejam como Deus cuida de quem honra a família: Rute entrou justamente no campo de Boaz, um homem honrado, generoso e parente da família de Noemi! Quando Boaz soube de todo o amor com que Rute cuidava da sua sogra e de como ela havia buscado abrigo debaixo das asas do Deus de Israel, ele tratou Rute com imensa bondade! Convidou-a para comer pão na mesa dos trabalhadores, ofereceu água fresca e ordenou que seus servos deixassem cair espigas cheias de propósito no caminho dela! No fim da tarde, Rute voltou para casa com um cesto transbordando de grãos, deixando Noemi radiante! Mais tarde, Boaz e Rute se casaram e tiveram um bebezinho chamado Obede, que foi o avô do rei Davi e entrou na genealogia do próprio Jesus!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_15_3a5.mp3?v=53",
         "text": "O menino Samuel ouviu o Papai do Céu chamar o nome dele de noite e respondeu com carinho: 'Fala, Senhor, que o Teu servo ouve!'",
         "verse": "Fala, Senhor, porque o teu servo ouve. (1 Samuel 3:9)",
         "verseWords": [
@@ -1879,8 +2389,8 @@ window.EBD_LESSONS_CURRICULUM = [
         "actionDesc": "Quando o papai ou a mamãe chamar seu nome, responda na hora com alegria, igual ao pequeno Samuel!"
       },
       "6-8": {
-        "vovoStoryScript": "Olá, minha criança querida! Você sabia que Deus ama falar ao coração das crianças? Hoje o Vovô Nésio vai contar a história do pequeno Samuel! A mamãe dele, chamada Ana, orou com muita fé pedindo um filho ao Senhor, e Deus lhe deu o pequeno Samuel! Ainda menino, Samuel ajudava o sacerdote Eli na Casa do Senhor com muita dedicação. Certa noite, enquanto tudo estava silencioso, Deus chamou pelo nome dele: Samuel, Samuel! O menino achou que era Eli chamando, mas Eli explicou que era a voz do Senhor! Então Samuel respondeu com carinho e respeito: Fala, Senhor, porque o Teu servo ouve! E Samuel cresceu cheio da sabedoria de Deus!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_15_vovo.mp3",
+        "vovoStoryScript": "Vocês sabem o quanto um gesto de carinho, lealdade e ajuda dentro de casa pode transformar a tristeza de alguém em uma festa de alegria? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos caminhar pelos campos dourados de trigo de Belém na encantadora história de Rute e Noemi! Noemi era uma senhora bondosa de Belém que havia se mudado com a família para a terra de Moábe num tempo de seca. Lá, após anos difíceis em que ficou viúva e perdeu seus filhos, Noemi decidiu voltar para a sua terra natal em Belém. Sua nora Rute amava tanto a Noemi que não quis deixá-la viajar sozinha de jeito nenhum! Rute abraçou sua sogra com ternura e declarou a promessa mais linda de amizade fiel da Bíblia: Não me peça para deixar a senhora! Para onde a senhora for, eu irei; onde a senhora pousar, ali pousarei; o seu povo será o meu povo, e o seu Deus será o meu Deus! Quando as duas chegaram a Belém, os campos estavam amarelinhos como ouro, prontos para a colheita da cevada! Como elas eram humildes e precisavam de comida, Rute arregaçou as mangas e pediu para ir trabalhar no campo, colhendo as espigas que caíam atrás dos segadores. E vejam como Deus cuida de quem honra a família: Rute entrou justamente no campo de Boaz, um homem honrado, generoso e parente da família de Noemi! Quando Boaz soube de todo o amor com que Rute cuidava da sua sogra e de como ela havia buscado abrigo debaixo das asas do Deus de Israel, ele tratou Rute com imensa bondade! Convidou-a para comer pão na mesa dos trabalhadores, ofereceu água fresca e ordenou que seus servos deixassem cair espigas cheias de propósito no caminho dela! No fim da tarde, Rute voltou para casa com um cesto transbordando de grãos, deixando Noemi radiante! Mais tarde, Boaz e Rute se casaram e tiveram um bebezinho chamado Obede, que foi o avô do rei Davi e entrou na genealogia do próprio Jesus!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_15_vovo.mp3?v=53",
         "text": "Fruto da oração de sua mãe Ana, o menino Samuel servia na Casa do Senhor e respondeu ao chamado de Deus: 'Fala, Senhor, porque o Teu servo ouve!'",
         "verse": "Fala, porque o teu servo ouve. (1 Samuel 3:10)",
         "verseWords": [
@@ -1963,34 +2473,68 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Reinado de Salomão (~970 a.C. • 1 Reis 3–8)",
     "title": "O Pedido de Sabedoria do Rei Salomão",
     "bibleRef": "1 Reis 3:5–14; Provérbios 2:6",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_33.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_01.jpg",
     "storyIdUnlock": 16,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_16_3a5.mp3",
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_16_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_16_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_33.jpg",
-        "caption": "Cena 1 • O jovem Salomão, filho de Davi, tornou-se rei e Deus lhe perguntou em sonho: 'Pede o que queres que Eu te dê!'"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_01.jpg",
+        "caption": "Cena 1/10 • No Tabernáculo em Siló, Ana orou com fé pedindo um filhinho a Deus, e o sacerdote Eli a abençoou.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_18.jpg",
-        "caption": "Cena 2 • Em vez de pedir ouro ou riquezas, Salomão pediu um coração sábio e entendido para fazer o bem!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_02.jpg",
+        "caption": "Cena 2/10 • Deus ouviu a oração de Ana e lhe deu o pequeno Samuel, enchendo a família de gratidão e louvor!",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_33.jpg",
-        "caption": "Cena 3 • Deus se alegrou do pedido de Salomão e deu a ele sabedoria maior do que a de todos os reis!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_03.jpg",
+        "caption": "Cena 3/10 • Ainda menino, Samuel ajudava com alegria o idoso sacerdote Eli nos serviços da Casa do Senhor.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_09.jpg",
-        "caption": "Cena 4 • Salomão escreveu os Provérbios de sabedoria e edificou o Templo em Jerusalém!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_04.jpg",
+        "caption": "Cena 4/10 • Todos os anos, sua mamãe Ana visitava Samuel levando uma túnica nova costurada com todo carinho.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_05.jpg",
+        "caption": "Cena 5/10 • Ao anoitecer, o pequeno Samuel cuidava com zelo para que a lâmpada dourada do templo permanecesse acesa.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_06.jpg",
+        "caption": "Cena 6/10 • Certa noite, enquanto dormia pertinho da Arca de Deus, Samuel ouviu uma voz suave chamando: 'Samuel! Samuel!'",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_07.jpg",
+        "caption": "Cena 7/10 • Achando que era o idoso sacerdote, Samuel correu prestativo até Eli dizendo: 'Eis-me aqui, pois o senhor me chamou!'",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_08.jpg",
+        "caption": "Cena 8/10 • Na terceira vez, Eli compreendeu que era o próprio Deus chamando o menino e ensinou Samuel como responder.",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_09.jpg",
+        "caption": "Cena 9/10 • Quando o Senhor chamou pela quarta vez, Samuel ajoelhou-se e disse: 'Fala, Senhor, porque o Teu servo ouve!'",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_10.jpg",
+        "caption": "Cena 10/10 • Samuel cresceu ouvindo a voz de Deus e tornou-se um grande profeta que guiou todo o povo na verdade!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "Filho e sucessor do Rei Davi na Era dos Reis (1 Reis 3–8), Salomão pediu sabedoria a Deus, escreveu Provérbios e construiu o primeiro Templo em Jerusalém.",
-    "vovoStoryScript": "Sabedoria e paz no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar a história do Rei Salomão, o filho do Rei Davi! Quando Salomão começou a reinar, Deus apareceu a ele em sonho e fez uma pergunta incrível: Pede o que queres que Eu te dê! Salomão poderia ter pedido ouro, castelos ou tesouros, mas sabe o que ele pediu? Ele pediu um coração sábio e bondoso para saber discernir entre o bem e o mal e cuidar bem do povo! Deus ficou tão feliz com a humildade de Salomão que lhe deu uma sabedoria extraordinária! Foi Salomão quem escreveu os belos Provérbios da Bíblia e construiu o grande Templo em Jerusalém!",
+    "vovoStoryScript": "Imaginem vocês deitadinhos no quarto à noite, tudo bem silencioso, e de repente ouvirem uma voz mansa e carinhosa chamando o seu nome... e descobrirem que é o próprio Deus falando com vocês! Sentem-se aqui pertinho do vovô, meus pequenos, porque hoje vamos conhecer a história do menino Samuel, que desde criança aprendeu a ouvir a voz do Senhor! Tudo começou com uma mamãe muito piedosa chamada Ana. Ela sonhava em ter um filhinho e foi até a Casa do Senhor, em Siló, onde orou de todo o coração pedindo um bebê a Deus e prometendo que ele serviria ao Senhor por toda a vida. O sacerdote Eli abençoou Ana, dizendo: Vá em paz, e o Deus de Israel lhe conceda o pedido que você fez! Deus ouviu a oração de Ana e lhe deu um menino lindo, a quem ela chamou de Samuel! Quando Samuel cresceu um pouquinho, ele passou a morar no Tabernáculo em Siló, ajudando o idoso sacerdote Eli. Todos os anos, sua mamãe Ana costurava com todo carinho uma túnica nova e levava para ele! Samuel ajudava a limpar o pátio, abrir as portas da Casa de Deus e cuidar da lâmpada dourada. Certa noite, antes que a lâmpada de Deus se apagasse, Samuel estava deitado quando ouviu uma voz chamar: Samuel! Samuel! Na mesma hora, o menino pulou da cama, correu até o sacerdote Eli e disse: Eis-me aqui, pois o senhor me chamou! Mas Eli respondeu: Não chamei você, meu filho; volte a deitar-se. Pela segunda e pela terceira vez, a voz chamou: Samuel! E o menino correu prontamente até Eli! Foi então que Eli entendeu que era o Senhor quem estava chamando o menino! Eli orientou: Vá deitar-se, e quando Ele chamar outra vez, responda: Fala, Senhor, porque o Teu servo ouve! Quando Deus chamou pela quarta vez: Samuel, Samuel!, o menino respondeu com fé: Fala, Senhor, porque o Teu servo ouve! Samuel tornou-se um grande profeta, mostrando que as crianças têm um lugar especial no coração de Deus!",
     "byAge": {
       "3-5": {
-        "vovoStoryScript": "Olá, minha criança querida! Depois do rei Davi, o filho dele, chamado Salomão, tornou-se rei! Deus perguntou o que Salomão queria ganhar, e Salomão pediu um coração sábio e obediente! O Papai do Céu ficou tão feliz que deu muita sabedoria para Salomão construir a linda Casa de Deus em Jerusalém!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_16_3a5.mp3",
+        "vovoStoryScript": "Imaginem vocês deitadinhos no quarto à noite, tudo bem silencioso, e de repente ouvirem uma voz mansa e carinhosa chamando o seu nome... e descobrirem que é o próprio Deus falando com vocês! Sentem-se aqui pertinho do vovô, meus pequenos, porque hoje vamos conhecer a história do menino Samuel, que desde criança aprendeu a ouvir a voz do Senhor! Tudo começou com uma mamãe muito piedosa chamada Ana. Ela sonhava em ter um filhinho e foi até a Casa do Senhor, em Siló, onde orou de todo o coração pedindo um bebê a Deus e prometendo que ele serviria ao Senhor por toda a vida. O sacerdote Eli abençoou Ana, dizendo: Vá em paz, e o Deus de Israel lhe conceda o pedido que você fez! Deus ouviu a oração de Ana e lhe deu um menino lindo, a quem ela chamou de Samuel! Quando Samuel cresceu um pouquinho, ele passou a morar no Tabernáculo em Siló, ajudando o idoso sacerdote Eli. Todos os anos, sua mamãe Ana costurava com todo carinho uma túnica nova e levava para ele! Samuel ajudava a limpar o pátio, abrir as portas da Casa de Deus e cuidar da lâmpada dourada. Certa noite, antes que a lâmpada de Deus se apagasse, Samuel estava deitado quando ouviu uma voz chamar: Samuel! Samuel! Na mesma hora, o menino pulou da cama, correu até o sacerdote Eli e disse: Eis-me aqui, pois o senhor me chamou! Mas Eli respondeu: Não chamei você, meu filho; volte a deitar-se. Pela segunda e pela terceira vez, a voz chamou: Samuel! E o menino correu prontamente até Eli! Foi então que Eli entendeu que era o Senhor quem estava chamando o menino! Eli orientou: Vá deitar-se, e quando Ele chamar outra vez, responda: Fala, Senhor, porque o Teu servo ouve! Quando Deus chamou pela quarta vez: Samuel, Samuel!, o menino respondeu com fé: Fala, Senhor, porque o Teu servo ouve! Samuel tornou-se um grande profeta, mostrando que as crianças têm um lugar especial no coração de Deus!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_16_3a5.mp3?v=53",
         "text": "Quando Deus perguntou o que o rei Salomão queria ganhar, ele pediu um coração sábio e obediente para fazer sempre o bem!",
         "verse": "O Senhor dá a sabedoria! (Provérbios 2:6)",
         "verseWords": [
@@ -2005,8 +2549,8 @@ window.EBD_LESSONS_CURRICULUM = [
         "actionDesc": "Peça ao Papai do Céu um coração sábio e estude suas lições com bastante alegria!"
       },
       "6-8": {
-        "vovoStoryScript": "Sabedoria e paz no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar a história do Rei Salomão, o filho do Rei Davi! Quando Salomão começou a reinar, Deus apareceu a ele em sonho e fez uma pergunta incrível: Pede o que queres que Eu te dê! Salomão poderia ter pedido ouro, castelos ou tesouros, mas sabe o que ele pediu? Ele pediu um coração sábio e bondoso para saber discernir entre o bem e o mal e cuidar bem do povo! Deus ficou tão feliz com a humildade de Salomão que lhe deu uma sabedoria extraordinária! Foi Salomão quem escreveu os belos Provérbios da Bíblia e construiu o grande Templo em Jerusalém!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_16_vovo.mp3",
+        "vovoStoryScript": "Imaginem vocês deitadinhos no quarto à noite, tudo bem silencioso, e de repente ouvirem uma voz mansa e carinhosa chamando o seu nome... e descobrirem que é o próprio Deus falando com vocês! Sentem-se aqui pertinho do vovô, meus pequenos, porque hoje vamos conhecer a história do menino Samuel, que desde criança aprendeu a ouvir a voz do Senhor! Tudo começou com uma mamãe muito piedosa chamada Ana. Ela sonhava em ter um filhinho e foi até a Casa do Senhor, em Siló, onde orou de todo o coração pedindo um bebê a Deus e prometendo que ele serviria ao Senhor por toda a vida. O sacerdote Eli abençoou Ana, dizendo: Vá em paz, e o Deus de Israel lhe conceda o pedido que você fez! Deus ouviu a oração de Ana e lhe deu um menino lindo, a quem ela chamou de Samuel! Quando Samuel cresceu um pouquinho, ele passou a morar no Tabernáculo em Siló, ajudando o idoso sacerdote Eli. Todos os anos, sua mamãe Ana costurava com todo carinho uma túnica nova e levava para ele! Samuel ajudava a limpar o pátio, abrir as portas da Casa de Deus e cuidar da lâmpada dourada. Certa noite, antes que a lâmpada de Deus se apagasse, Samuel estava deitado quando ouviu uma voz chamar: Samuel! Samuel! Na mesma hora, o menino pulou da cama, correu até o sacerdote Eli e disse: Eis-me aqui, pois o senhor me chamou! Mas Eli respondeu: Não chamei você, meu filho; volte a deitar-se. Pela segunda e pela terceira vez, a voz chamou: Samuel! E o menino correu prontamente até Eli! Foi então que Eli entendeu que era o Senhor quem estava chamando o menino! Eli orientou: Vá deitar-se, e quando Ele chamar outra vez, responda: Fala, Senhor, porque o Teu servo ouve! Quando Deus chamou pela quarta vez: Samuel, Samuel!, o menino respondeu com fé: Fala, Senhor, porque o Teu servo ouve! Samuel tornou-se um grande profeta, mostrando que as crianças têm um lugar especial no coração de Deus!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_16_vovo.mp3?v=53",
         "text": "Salomão escolheu pedir a Deus um coração sábio em vez de riquezas! A verdadeira sabedoria vale mais do que o ouro e nos ensina a fazer boas escolhas.",
         "verse": "Dá, pois, ao teu servo um coração entendido para discernir entre o bem e o mal. (1 Reis 3:9)",
         "verseWords": [
@@ -2089,34 +2633,68 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Eliseu e Isaías (~840–700 a.C. • 2 Reis 4; Isaías 9)",
     "title": "Os Milagres de Eliseu e a Promessa de Isaías",
     "bibleRef": "2 Reis 4:1–7; Isaías 9:6",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_35.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_01.jpg",
     "storyIdUnlock": 18,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_17_3a5.mp3",
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_17_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_17_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_35.jpg",
-        "caption": "Cena 1 • Após Elias subir ao céu, seu discípulo Eliseu continuou a missão ajudando o povo com compaixão!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_01.jpg",
+        "caption": "Cena 1/10 • Antes de partir, o rei Davi abençoou seu jovem filho Salomão, aconselhando-o a amar a Deus de todo o coração.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_16.jpg",
-        "caption": "Cena 2 • Pela fé, Deus multiplicou o azeite da viúva pobre, enchendo todas as vasilhas da casa!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_02.jpg",
+        "caption": "Cena 2/10 • Ao subir ao trono de Israel ainda jovem, Salomão olhava para as famílias do povo desejando governar com bondade.",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_18.jpg",
-        "caption": "Cena 3 • Mais tarde, o profeta Isaías anunciou a grande promessa: 'Um Menino nos nasceu, o Príncipe da Paz!'"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_03.jpg",
+        "caption": "Cena 3/10 • Certa noite em Gibeão, Deus apareceu a Salomão num sonho cheio de luz e disse: 'Peça-Me o que você quiser!'",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_36.jpg",
-        "caption": "Cena 4 • As profecias de Isaías acenderam a esperança da chegada futura de Jesus!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_04.jpg",
+        "caption": "Cena 4/10 • Com humildade, Salomão não pediu ouro nem fama, mas pediu um coração sábio para cuidar do povo com justiça!",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_05.jpg",
+        "caption": "Cena 5/10 • Deus alegrou-se com o pedido e deu a Salomão tanta sabedoria que ele escreveu três mil provérbios inspirados!",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_06.jpg",
+        "caption": "Cena 6/10 • Salomão observava com admiração a criação de Deus: os cedros, os lírios do campo, as aves e as formiguinhas.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_07.jpg",
+        "caption": "Cena 7/10 • Com os melhores artesãos, Salomão iniciou a construção do majestoso Templo do Senhor em Jerusalém.",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_08.jpg",
+        "caption": "Cena 8/10 • Quando o lindo Templo ficou pronto, Salomão e todo o povo oraram agradecendo a fidelidade de Deus!",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_09.jpg",
+        "caption": "Cena 9/10 • Até a Rainha de Sabá viajou de terras distantes para ouvir a sabedoria que Deus havia dado a Salomão.",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_10.jpg",
+        "caption": "Cena 10/10 • As famílias de Israel aprendiam nos Provérbios de Salomão que o temor do Senhor é o princípio da sabedoria!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "Sucessor de Elias na Era dos Profetas, Eliseu operou milagres de compaixão (2 Reis 4), enquanto o profeta Isaías anunciou com séculos de antecedência a chegada do Messias, o Príncipe da Paz (Isaías 9:6)!",
-    "vovoStoryScript": "Olá, minha criança querida! Depois que o profeta Elias subiu ao céu na carruagem de fogo, o seu ajudante fiel, chamado Eliseu, recebeu o manto profético e continuou espalhando a bondade de Deus! Certa vez, uma mamãe viúva muito pobre só tinha um pouquinho de azeite em uma botija. Eliseu mandou que ela pedisse vasilhas emprestadas aos vizinhos, e Deus operou um milagre lindo: o azeite se multiplicou até encher todas as vasilhas, garantindo o sustento de toda a família! E mais adiante na Linha do Tempo, o profeta Isaías escreveu a promessa mais luminosa de todas: que nasceria um Menino chamado Maravilhoso Conselheiro e Príncipe da Paz, apontando para a vinda de Jesus!",
+    "vovoStoryScript": "Se hoje à noite o próprio Deus aparecesse para você num sonho e perguntasse: O que você quer que Eu lhe dê?, qual seria a sua resposta? Cheguem bem pertinho do vovô, meus netos queridos, porque foi exatamente essa pergunta que o jovem rei Salomão ouviu, e a resposta dele ficou guardada para sempre nas páginas da Bíblia! Salomão era filho do rei Davi e subiu ao trono de Israel quando ainda era muito jovem. Antes de partir, Davi aconselhou seu filho a amar a Deus de todo o coração e a andar nos Seus caminhos. Logo no começo do seu reinado, Salomão foi até Gibeão para agradecer a Deus. Naquela noite, o Senhor apareceu a Salomão em um sonho cheio de luz e disse: Peça-Me o que você quiser que Eu lhe dê! Salomão poderia ter pedido montanhas de ouro, exércitos invencíveis ou fama pelo mundo inteiro. Mas ele pensou nas famílias, nos idosos e nas crianças do povo de Deus e respondeu com muita humildade: Senhor meu Deus, Tu colocaste o Teu servo como rei sobre este povo tão numeroso, mas eu sou ainda muito jovem! Dá, pois, ao Teu servo um coração sábio e compreensivo para governar o Teu povo com justiça e saber discernir entre o bem e o mal! Essa resposta agradou tanto ao coração de Deus que o Senhor lhe disse: Porque você pediu sabedoria para cuidar do próximo e não pediu riquezas para si mesmo, eis que lhe dou um coração tão sábio e entendido como nunca houve antes! E também lhe acrescento riquezas e paz! Com a sabedoria dada por Deus, Salomão escreveu três mil provérbios cheios de ensinamentos para a família, estudou as plantas, as aves e até o trabalho das formiguinhas, e construiu o majestoso Templo do Senhor em Jerusalém! Até governantes de terras distantes, como a Rainha de Sabá, viajavam para ouvir a sabedoria que Deus dera a Salomão! E lembrem-se: quando pedimos sabedoria a Deus em oração, Ele sempre nos atende com amor!",
     "byAge": {
       "3-5": {
-        "vovoStoryScript": "Oi, minha criança linda! Os profetas Eliseu e Isaías amavam ajudar as famílias! Eliseu orou ao Papai do Céu e ajudou uma mamãe pobre multiplicando o azeite na casa dela! E o profeta Isaías contou uma notícia maravilhosa: que um dia nasceria o Menino Jesus, o Príncipe da Paz, para trazer amor ao mundo inteiro!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_17_3a5.mp3",
+        "vovoStoryScript": "Se hoje à noite o próprio Deus aparecesse para você num sonho e perguntasse: O que você quer que Eu lhe dê?, qual seria a sua resposta? Cheguem bem pertinho do vovô, meus netos queridos, porque foi exatamente essa pergunta que o jovem rei Salomão ouviu, e a resposta dele ficou guardada para sempre nas páginas da Bíblia! Salomão era filho do rei Davi e subiu ao trono de Israel quando ainda era muito jovem. Antes de partir, Davi aconselhou seu filho a amar a Deus de todo o coração e a andar nos Seus caminhos. Logo no começo do seu reinado, Salomão foi até Gibeão para agradecer a Deus. Naquela noite, o Senhor apareceu a Salomão em um sonho cheio de luz e disse: Peça-Me o que você quiser que Eu lhe dê! Salomão poderia ter pedido montanhas de ouro, exércitos invencíveis ou fama pelo mundo inteiro. Mas ele pensou nas famílias, nos idosos e nas crianças do povo de Deus e respondeu com muita humildade: Senhor meu Deus, Tu colocaste o Teu servo como rei sobre este povo tão numeroso, mas eu sou ainda muito jovem! Dá, pois, ao Teu servo um coração sábio e compreensivo para governar o Teu povo com justiça e saber discernir entre o bem e o mal! Essa resposta agradou tanto ao coração de Deus que o Senhor lhe disse: Porque você pediu sabedoria para cuidar do próximo e não pediu riquezas para si mesmo, eis que lhe dou um coração tão sábio e entendido como nunca houve antes! E também lhe acrescento riquezas e paz! Com a sabedoria dada por Deus, Salomão escreveu três mil provérbios cheios de ensinamentos para a família, estudou as plantas, as aves e até o trabalho das formiguinhas, e construiu o majestoso Templo do Senhor em Jerusalém! Até governantes de terras distantes, como a Rainha de Sabá, viajavam para ouvir a sabedoria que Deus dera a Salomão! E lembrem-se: quando pedimos sabedoria a Deus em oração, Ele sempre nos atende com amor!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_17_3a5.mp3?v=53",
         "text": "O profeta Eliseu ajudou uma família multiplicando o azeite nas vasilhas, e o profeta Isaías anunciou que Jesus, o Príncipe da Paz, viria ao mundo!",
         "verse": "O seu nome será Príncipe da Paz! (Isaías 9:6)",
         "verseWords": [
@@ -2132,8 +2710,8 @@ window.EBD_LESSONS_CURRICULUM = [
         "actionDesc": "Divida um brinquedo ou lanchinho com um amiguinho, espalhando a bondade do Papai do Céu!"
       },
       "6-8": {
-        "vovoStoryScript": "Olá, minha criança querida! Depois que o profeta Elias subiu ao céu na carruagem de fogo, o seu ajudante fiel, chamado Eliseu, recebeu o manto profético e continuou espalhando a bondade de Deus! Certa vez, uma mamãe viúva muito pobre só tinha um pouquinho de azeite em uma botija. Eliseu mandou que ela pedisse vasilhas emprestadas aos vizinhos, e Deus operou um milagre lindo: o azeite se multiplicou até encher todas as vasilhas, garantindo o sustento de toda a família! E mais adiante na Linha do Tempo, o profeta Isaías escreveu a promessa mais luminosa de todas: que nasceria um Menino chamado Maravilhoso Conselheiro e Príncipe da Paz, apontando para a vinda de Jesus!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_17_vovo.mp3",
+        "vovoStoryScript": "Se hoje à noite o próprio Deus aparecesse para você num sonho e perguntasse: O que você quer que Eu lhe dê?, qual seria a sua resposta? Cheguem bem pertinho do vovô, meus netos queridos, porque foi exatamente essa pergunta que o jovem rei Salomão ouviu, e a resposta dele ficou guardada para sempre nas páginas da Bíblia! Salomão era filho do rei Davi e subiu ao trono de Israel quando ainda era muito jovem. Antes de partir, Davi aconselhou seu filho a amar a Deus de todo o coração e a andar nos Seus caminhos. Logo no começo do seu reinado, Salomão foi até Gibeão para agradecer a Deus. Naquela noite, o Senhor apareceu a Salomão em um sonho cheio de luz e disse: Peça-Me o que você quiser que Eu lhe dê! Salomão poderia ter pedido montanhas de ouro, exércitos invencíveis ou fama pelo mundo inteiro. Mas ele pensou nas famílias, nos idosos e nas crianças do povo de Deus e respondeu com muita humildade: Senhor meu Deus, Tu colocaste o Teu servo como rei sobre este povo tão numeroso, mas eu sou ainda muito jovem! Dá, pois, ao Teu servo um coração sábio e compreensivo para governar o Teu povo com justiça e saber discernir entre o bem e o mal! Essa resposta agradou tanto ao coração de Deus que o Senhor lhe disse: Porque você pediu sabedoria para cuidar do próximo e não pediu riquezas para si mesmo, eis que lhe dou um coração tão sábio e entendido como nunca houve antes! E também lhe acrescento riquezas e paz! Com a sabedoria dada por Deus, Salomão escreveu três mil provérbios cheios de ensinamentos para a família, estudou as plantas, as aves e até o trabalho das formiguinhas, e construiu o majestoso Templo do Senhor em Jerusalém! Até governantes de terras distantes, como a Rainha de Sabá, viajavam para ouvir a sabedoria que Deus dera a Salomão! E lembrem-se: quando pedimos sabedoria a Deus em oração, Ele sempre nos atende com amor!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_17_vovo.mp3?v=53",
         "text": "Eliseu mostrou o cuidado de Deus pelas famílias no milagre da multiplicação do azeite, e Isaías profetizou séculos antes o nascimento do Príncipe da Paz!",
         "verse": "Porque um menino nos nasceu... e o seu nome será Maravilhoso, Conselheiro, Príncipe da Paz. (Isaías 9:6)",
         "verseWords": [
@@ -2216,34 +2794,68 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Jovens Fieis na Babilônia (~600 a.C. • Daniel 1 e 3)",
     "title": "Os Três Amigos Fiéis de Daniel",
     "bibleRef": "Daniel 1:8–20; 3:16–28",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_15.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_01.jpg",
     "storyIdUnlock": 19,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_18_3a5.mp3",
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_18_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_18_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_33.jpg",
-        "caption": "Cena 1 • Daniel e seus três amigos Sadraque, Mesaque e Abede-Nego decidiram honrar a Deus em tudo!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_01.jpg",
+        "caption": "Cena 1/10 • Durante a grande seca em Israel, o fiel profeta Elias descansava junto às águas cristalinas do ribeiro de Querite.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_33.jpg",
-        "caption": "Cena 2 • Deus deu aos quatro jovens sabedoria e inteligência dez vezes maiores em todos os estudos!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_02.jpg",
+        "caption": "Cena 2/10 • Todos os dias, ao amanhecer e ao entardecer, corvos enviados por Deus traziam pão e alimento para Elias!",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_35.jpg",
-        "caption": "Cena 3 • Quando os três amigos permaneceram fiéis a Deus, o Senhor enviou Seu anjo para guardá-los na fornalha!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_03.jpg",
+        "caption": "Cena 3/10 • Depois, Deus enviou Elias a Sarepta, onde encontrou uma viúva bondosa e seu filhinho recolhendo gravetos.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_15.jpg",
-        "caption": "Cena 4 • Eles saíram completamente ilesos e o rei reconheceu o poder do Deus Altíssimo!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_04.jpg",
+        "caption": "Cena 4/10 • Pela palavra de Deus, a farinha da panela não se acabou e o azeite da botija nunca faltou na mesa daquela família!",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_05.jpg",
+        "caption": "Cena 5/10 • No terceiro ano, Elias reuniu todo o povo de Israel no alto do Monte Carmelo para voltarem ao Senhor.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_06.jpg",
+        "caption": "Cena 6/10 • Elias pegou doze pedras, representando as tribos de Israel, e reconstruiu o altar do Senhor.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_07.jpg",
+        "caption": "Cena 7/10 • Para mostrar que não havia truque algum, mandou derramar doze cântaros cheios de água sobre a lenha e o altar!",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_08.jpg",
+        "caption": "Cena 8/10 • Elias fez uma oração simples e cheia de fé, e no mesmo instante o fogo de Deus desceu do céu sobre o altar!",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_09.jpg",
+        "caption": "Cena 9/10 • Todo o povo ajoelhou-se maravilhado no Monte Carmelo exclamando: 'Só o Senhor é Deus! Só o Senhor é Deus!'",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_10.jpg",
+        "caption": "Cena 10/10 • Elias orou novamente no monte, uma nuvem subiu do mar e uma chuva abençoada regou toda a terra!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "Nos capítulos 1 e 3 do livro de Daniel (antes do episódio da cova dos leões em Daniel 6), os amigos Sadraque, Mesaque e Abede-Nego demonstraram amizade verdadeira e fidelidade inabalável a Deus.",
-    "vovoStoryScript": "Coragem e fé no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar a história dos três grandes amigos de Daniel: Sadraque, Mesaque e Abede-Nego! Desde jovens, os quatro amigos combinaram de ajudar uns aos outros a fazer sempre o que agradava a Deus, escolhendo alimentos saudáveis e estudando com muita dedicação! E sabe o que aconteceu? Deus deu a eles dez vezes mais sabedoria! Um dia, mesmo diante de uma grande fornalha acesa, Sadraque, Mesaque e Abede-Nego permaneceram firmes na fé no único Deus verdadeiro! Então o Senhor enviou o Seu anjo luminoso para caminhar com eles lá dentro, e nem um fio de cabelo deles se queimou! Que bênção é ter amigos que nos aproximam de Deus!",
+    "vovoStoryScript": "Vocês já viram uma farinha no pote e um azeite na botija serem usados todos os dias para fazer pão quentinho e nunca se acabarem? E já imaginaram uma oração fazer descer fogo do céu e depois trazer chuva para uma terra seca? Sentem-se aqui com o vovô, meus pequenos, porque hoje vamos acompanhar os grandes milagres de Deus na vida do profeta Elias! Naquele tempo, o povo de Israel havia se esquecido do Senhor, e uma grande seca atingiu toda a região durante mais de três anos. Mas Deus cuidou do Seu fiel profeta Elias de um jeito extraordinário! Primeiro, lá no ribeiro de Querite, os corvos traziam pão e alimento para ele todas as manhãs e todas as tardes, e ele bebia da água cristalina do riacho. Depois, Deus enviou Elias até a cidade de Sarepta, à casa de uma viúva bondosa que só tinha um punhadinho de farinha na panela e um restinho de azeite na botija para fazer um último pãozinho para ela e seu filho. Elias disse a ela: Não tenha medo! Pois assim diz o Senhor: a farinha da panela não se acabará, e o azeite da botija não faltará, até o dia em que o Senhor enviar chuva sobre a terra! E todos os dias havia pão fresquinho na mesa daquela família! No terceiro ano, Elias reuniu todo o povo de Israel no alto do Monte Carmelo. Ele pegou doze pedras, reconstruiu o altar do Senhor e mandou derramar doze cântaros cheios de água sobre a lenha e ao redor do altar! Na hora da oferta da tarde, Elias se aproximou e fez uma oração simples e cheia de fé, pedindo que o Senhor mostrasse ao povo que só Ele é o verdadeiro Deus! No mesmo instante, o fogo de Deus desceu do céu, consumiu a oferta e secou toda a água! O povo inteiro prostrou-se e exclamou: Só o Senhor é Deus! Só o Senhor é Deus! Em seguida, Elias orou novamente no monte, uma pequena nuvem do tamanho da mão de um homem subiu do mar e logo uma chuva abundante regou toda a terra!",
     "byAge": {
       "3-5": {
-        "vovoStoryScript": "Olá, meu pequenininho! Olá, minha pequenininha! Três amigos chamados Sadraque, Mesaque e Abede-Nego amavam muito ao Papai do Céu! Mesmo no meio de uma fornalha bem quente, o Papai do Céu mandou um anjo protetor para caminhar com eles, e nem a roupinha deles queimou! Deus sempre protege quem confia Nele!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_18_3a5.mp3",
+        "vovoStoryScript": "Vocês já viram uma farinha no pote e um azeite na botija serem usados todos os dias para fazer pão quentinho e nunca se acabarem? E já imaginaram uma oração fazer descer fogo do céu e depois trazer chuva para uma terra seca? Sentem-se aqui com o vovô, meus pequenos, porque hoje vamos acompanhar os grandes milagres de Deus na vida do profeta Elias! Naquele tempo, o povo de Israel havia se esquecido do Senhor, e uma grande seca atingiu toda a região durante mais de três anos. Mas Deus cuidou do Seu fiel profeta Elias de um jeito extraordinário! Primeiro, lá no ribeiro de Querite, os corvos traziam pão e alimento para ele todas as manhãs e todas as tardes, e ele bebia da água cristalina do riacho. Depois, Deus enviou Elias até a cidade de Sarepta, à casa de uma viúva bondosa que só tinha um punhadinho de farinha na panela e um restinho de azeite na botija para fazer um último pãozinho para ela e seu filho. Elias disse a ela: Não tenha medo! Pois assim diz o Senhor: a farinha da panela não se acabará, e o azeite da botija não faltará, até o dia em que o Senhor enviar chuva sobre a terra! E todos os dias havia pão fresquinho na mesa daquela família! No terceiro ano, Elias reuniu todo o povo de Israel no alto do Monte Carmelo. Ele pegou doze pedras, reconstruiu o altar do Senhor e mandou derramar doze cântaros cheios de água sobre a lenha e ao redor do altar! Na hora da oferta da tarde, Elias se aproximou e fez uma oração simples e cheia de fé, pedindo que o Senhor mostrasse ao povo que só Ele é o verdadeiro Deus! No mesmo instante, o fogo de Deus desceu do céu, consumiu a oferta e secou toda a água! O povo inteiro prostrou-se e exclamou: Só o Senhor é Deus! Só o Senhor é Deus! Em seguida, Elias orou novamente no monte, uma pequena nuvem do tamanho da mão de um homem subiu do mar e logo uma chuva abundante regou toda a terra!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_18_3a5.mp3?v=53",
         "text": "Os três amigos de Daniel amavam ao Papai do Céu e comiam frutinhas e legumes saudáveis! O anjo de Deus caminhou com eles e cuidou deles!",
         "verse": "O nosso Deus a quem nós servimos pode nos livrar! (Daniel 3:17)",
         "verseWords": [
@@ -2258,8 +2870,8 @@ window.EBD_LESSONS_CURRICULUM = [
         "actionDesc": "Coma legumes e frutinhas com alegria nesta semana para crescer forte e saudável como Daniel e seus amigos!"
       },
       "6-8": {
-        "vovoStoryScript": "Coragem e fé no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar a história dos três grandes amigos de Daniel: Sadraque, Mesaque e Abede-Nego! Desde jovens, os quatro amigos combinaram de ajudar uns aos outros a fazer sempre o que agradava a Deus, escolhendo alimentos saudáveis e estudando com muita dedicação! E sabe o que aconteceu? Deus deu a eles dez vezes mais sabedoria! Um dia, mesmo diante de uma grande fornalha acesa, Sadraque, Mesaque e Abede-Nego permaneceram firmes na fé no único Deus verdadeiro! Então o Senhor enviou o Seu anjo luminoso para caminhar com eles lá dentro, e nem um fio de cabelo deles se queimou! Que bênção é ter amigos que nos aproximam de Deus!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_18_vovo.mp3",
+        "vovoStoryScript": "Vocês já viram uma farinha no pote e um azeite na botija serem usados todos os dias para fazer pão quentinho e nunca se acabarem? E já imaginaram uma oração fazer descer fogo do céu e depois trazer chuva para uma terra seca? Sentem-se aqui com o vovô, meus pequenos, porque hoje vamos acompanhar os grandes milagres de Deus na vida do profeta Elias! Naquele tempo, o povo de Israel havia se esquecido do Senhor, e uma grande seca atingiu toda a região durante mais de três anos. Mas Deus cuidou do Seu fiel profeta Elias de um jeito extraordinário! Primeiro, lá no ribeiro de Querite, os corvos traziam pão e alimento para ele todas as manhãs e todas as tardes, e ele bebia da água cristalina do riacho. Depois, Deus enviou Elias até a cidade de Sarepta, à casa de uma viúva bondosa que só tinha um punhadinho de farinha na panela e um restinho de azeite na botija para fazer um último pãozinho para ela e seu filho. Elias disse a ela: Não tenha medo! Pois assim diz o Senhor: a farinha da panela não se acabará, e o azeite da botija não faltará, até o dia em que o Senhor enviar chuva sobre a terra! E todos os dias havia pão fresquinho na mesa daquela família! No terceiro ano, Elias reuniu todo o povo de Israel no alto do Monte Carmelo. Ele pegou doze pedras, reconstruiu o altar do Senhor e mandou derramar doze cântaros cheios de água sobre a lenha e ao redor do altar! Na hora da oferta da tarde, Elias se aproximou e fez uma oração simples e cheia de fé, pedindo que o Senhor mostrasse ao povo que só Ele é o verdadeiro Deus! No mesmo instante, o fogo de Deus desceu do céu, consumiu a oferta e secou toda a água! O povo inteiro prostrou-se e exclamou: Só o Senhor é Deus! Só o Senhor é Deus! Em seguida, Elias orou novamente no monte, uma pequena nuvem do tamanho da mão de um homem subiu do mar e logo uma chuva abundante regou toda a terra!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_18_vovo.mp3?v=53",
         "text": "Sadraque, Mesaque e Abede-Nego foram amigos fiéis que apoiavam uns aos outros na fé. Deus enviou Seu anjo para guardá-los e honrou sua coragem!",
         "verse": "Nosso Deus, a quem nós servimos, é que nos pode livrar. (Daniel 3:17)",
         "verseWords": [
@@ -2342,34 +2954,68 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Império Persa (~475 a.C. • Livro de Ester)",
     "title": "A Rainha Ester e o Propósito de Deus",
     "bibleRef": "Ester 2:17; 4:13–17; 8:16",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_01.jpg",
     "storyIdUnlock": 1,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_19_3a5.mp3",
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_19_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_19_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg",
-        "caption": "Cena 1 • Criada por seu primo Mardoqueu com amor a Deus, a jovem Ester foi escolhida rainha da Pérsia!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_01.jpg",
+        "caption": "Cena 1/10 • Na cidade de Susã, o bondoso Mardoqueu criou sua prima órfã Ester ensinando-a a amar a Deus com humildade.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_34.jpg",
-        "caption": "Cena 2 • Mardoqueu lembrou a Ester: 'Quem sabe se não foi para um tempo como este que chegaste a ser rainha?'"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_02.jpg",
+        "caption": "Cena 2/10 • Pela graça de Deus, a jovem Ester conquistou a admiração de todos e foi coroada rainha pelo rei Assuero!",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_33.jpg",
-        "caption": "Cena 3 • Após orar a Deus com todo o povo, Ester apresentou-se diante do rei, que estendeu a ela o cetro de ouro!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_03.jpg",
+        "caption": "Cena 3/10 • Na porta do palácio, Mardoqueu descobriu um plano contra o rei, salvou a vida dele e tudo foi escrito nas crônicas.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_09.jpg",
-        "caption": "Cena 4 • Deus ouviu a oração de Ester e transformou o perigo em um grande dia de luz e alegria para todas as famílias!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_04.jpg",
+        "caption": "Cena 4/10 • O orgulhoso ministro Hamã enfureceu-se porque Mardoqueu adorava somente a Deus, e tramou contra o povo de Israel.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_05.jpg",
+        "caption": "Cena 5/10 • Mardoqueu enviou um recado a Ester: 'Quem sabe se não foi para um momento como este que você chegou a ser rainha?'",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_06.jpg",
+        "caption": "Cena 6/10 • Ester pediu que todo o povo orasse a Deus por três dias, buscando coragem e proteção do Céu.",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_07.jpg",
+        "caption": "Cena 7/10 • No terceiro dia, Ester vestiu seus trajes reais e apresentou-se com fé diante da sala do trono.",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_08.jpg",
+        "caption": "Cena 8/10 • Deus tocou o coração do rei Assuero, que sorriu e estendeu o cetro de ouro para ouvir a rainha Ester!",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_09.jpg",
+        "caption": "Cena 9/10 • Com sabedoria no banquete real, Ester revelou a injustiça de Hamã e pediu proteção para o seu povo.",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_10.jpg",
+        "caption": "Cena 10/10 • Mardoqueu foi honrado pelo rei e uma nova lei trouxe paz, livramento e grande festa para todas as famílias!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "No período da Pérsia (século V a.C.), o livro de Ester mostra a providência de Deus preparando Ester para salvar o povo judeu da destruição.",
-    "vovoStoryScript": "Olá, minha criança querida! Hoje o Vovô Nésio vai contar a história completa da jovem Ester, uma menina órfã criada com muito carinho pelo seu primo Mardoqueu, que se tornou rainha da Pérsia! Ester era meiga, educada e temente a Deus. Quando surgiu um plano maldoso contra o povo de Deus, Mardoqueu enviou uma mensagem que tocou fundo no coração de Ester: Quem sabe se não foi para um tempo como este que você chegou a ser rainha? Ester pediu que todo o povo orasse a Deus junto com ela e, vestida com coragem e sabedoria, entrou na sala do trono! O rei estendeu para Ester o cetro de ouro e atendeu ao seu pedido, trazendo livramento, luz e alegria para todas as famílias!",
+    "vovoStoryScript": "Vocês sabiam que uma menina órfã, criada com muito amor pelo seu primo mais velho, chegou a ser coroada rainha de um grande império exatamente no momento certo para salvar a vida de milhares de famílias? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos entrar no palácio real de Susã para conhecer a emocionante história da Rainha Ester! Hadassa, que também se chamava Ester, havia perdido os pais quando pequena, mas o seu primo Mardoqueu cuidou dela como se fosse sua própria filha, ensinando-a a amar a Deus, a ser humilde e bondosa. Quando o rei Assuero procurou uma nova rainha para o império da Pérsia, a doçura e a sabedoria de Ester encantaram a todos, e o rei colocou a coroa real sobre a cabeça dela! Pouco tempo depois, Mardoqueu descobriu um plano secreto de dois guardas contra o rei e avisou Ester, salvando a vida do rei, e tudo aquilo ficou registrado no livro das crônicas do palácio. Porém, o primeiro-ministro do reino era um homem muito vaidoso e mau chamado Hamã. Como Mardoqueu era fiel somente a Deus e não se curvava para adorar Hamã, aquele homem furioso planejou uma lei injusta para destruir todas as famílias do povo de Israel! Mardoqueu enviou um recado urgente para a rainha Ester, pedindo que ela intercedesse diante do rei pelo seu povo, e lhe disse uma frase inesquecível: Quem sabe se não foi justamente para uma ocasião como esta que você chegou a ser rainha? Entrar na sala do trono sem ser chamado era perigoso, a menos que o rei estendesse o seu cetro de ouro. Então Ester pediu que todo o povo orasse a Deus durante três dias, e no terceiro dia ela se vestiu com suas vestes reais e entrou diante do trono. Deus tocou o coração do rei Assuero, que sorriu e estendeu o cetro de ouro para Ester! Com muita sabedoria, Ester revelou a injustiça de Hamã, Mardoqueu foi honrado e uma nova lei garantiu paz, alegria e livramento para todo o povo de Deus!",
     "byAge": {
       "3-5": {
-        "vovoStoryScript": "Oi, minha criança amada! A jovem Ester foi escolhida para ser rainha num grande palácio! Quando o povo dela precisou de socorro, Ester orou ao Papai do Céu e falou com o rei com muita coragem e doçura! Deus ouviu a oração da rainha Ester e guardou todas as famílias em segurança!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_19_3a5.mp3",
+        "vovoStoryScript": "Vocês sabiam que uma menina órfã, criada com muito amor pelo seu primo mais velho, chegou a ser coroada rainha de um grande império exatamente no momento certo para salvar a vida de milhares de famílias? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos entrar no palácio real de Susã para conhecer a emocionante história da Rainha Ester! Hadassa, que também se chamava Ester, havia perdido os pais quando pequena, mas o seu primo Mardoqueu cuidou dela como se fosse sua própria filha, ensinando-a a amar a Deus, a ser humilde e bondosa. Quando o rei Assuero procurou uma nova rainha para o império da Pérsia, a doçura e a sabedoria de Ester encantaram a todos, e o rei colocou a coroa real sobre a cabeça dela! Pouco tempo depois, Mardoqueu descobriu um plano secreto de dois guardas contra o rei e avisou Ester, salvando a vida do rei, e tudo aquilo ficou registrado no livro das crônicas do palácio. Porém, o primeiro-ministro do reino era um homem muito vaidoso e mau chamado Hamã. Como Mardoqueu era fiel somente a Deus e não se curvava para adorar Hamã, aquele homem furioso planejou uma lei injusta para destruir todas as famílias do povo de Israel! Mardoqueu enviou um recado urgente para a rainha Ester, pedindo que ela intercedesse diante do rei pelo seu povo, e lhe disse uma frase inesquecível: Quem sabe se não foi justamente para uma ocasião como esta que você chegou a ser rainha? Entrar na sala do trono sem ser chamado era perigoso, a menos que o rei estendesse o seu cetro de ouro. Então Ester pediu que todo o povo orasse a Deus durante três dias, e no terceiro dia ela se vestiu com suas vestes reais e entrou diante do trono. Deus tocou o coração do rei Assuero, que sorriu e estendeu o cetro de ouro para Ester! Com muita sabedoria, Ester revelou a injustiça de Hamã, Mardoqueu foi honrado e uma nova lei garantiu paz, alegria e livramento para todo o povo de Deus!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_19_3a5.mp3?v=53",
         "text": "A rainha Ester orou ao Papai do Céu e teve muita coragem para falar com o rei e proteger todas as famílias do seu povo!",
         "verse": "Para os judeus houve luz e alegria! (Ester 8:16)",
         "verseWords": [
@@ -2384,8 +3030,8 @@ window.EBD_LESSONS_CURRICULUM = [
         "actionDesc": "Use palavras doces como 'por favor' e 'muito obrigado' em casa, igual à educada rainha Ester!"
       },
       "6-8": {
-        "vovoStoryScript": "Olá, minha criança querida! Hoje o Vovô Nésio vai contar a história completa da jovem Ester, uma menina órfã criada com muito carinho pelo seu primo Mardoqueu, que se tornou rainha da Pérsia! Ester era meiga, educada e temente a Deus. Quando surgiu um plano maldoso contra o povo de Deus, Mardoqueu enviou uma mensagem que tocou fundo no coração de Ester: Quem sabe se não foi para um tempo como este que você chegou a ser rainha? Ester pediu que todo o povo orasse a Deus junto com ela e, vestida com coragem e sabedoria, entrou na sala do trono! O rei estendeu para Ester o cetro de ouro e atendeu ao seu pedido, trazendo livramento, luz e alegria para todas as famílias!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_19_vovo.mp3",
+        "vovoStoryScript": "Vocês sabiam que uma menina órfã, criada com muito amor pelo seu primo mais velho, chegou a ser coroada rainha de um grande império exatamente no momento certo para salvar a vida de milhares de famílias? Cheguem bem pertinho do vovô, meus netos queridos, porque hoje vamos entrar no palácio real de Susã para conhecer a emocionante história da Rainha Ester! Hadassa, que também se chamava Ester, havia perdido os pais quando pequena, mas o seu primo Mardoqueu cuidou dela como se fosse sua própria filha, ensinando-a a amar a Deus, a ser humilde e bondosa. Quando o rei Assuero procurou uma nova rainha para o império da Pérsia, a doçura e a sabedoria de Ester encantaram a todos, e o rei colocou a coroa real sobre a cabeça dela! Pouco tempo depois, Mardoqueu descobriu um plano secreto de dois guardas contra o rei e avisou Ester, salvando a vida do rei, e tudo aquilo ficou registrado no livro das crônicas do palácio. Porém, o primeiro-ministro do reino era um homem muito vaidoso e mau chamado Hamã. Como Mardoqueu era fiel somente a Deus e não se curvava para adorar Hamã, aquele homem furioso planejou uma lei injusta para destruir todas as famílias do povo de Israel! Mardoqueu enviou um recado urgente para a rainha Ester, pedindo que ela intercedesse diante do rei pelo seu povo, e lhe disse uma frase inesquecível: Quem sabe se não foi justamente para uma ocasião como esta que você chegou a ser rainha? Entrar na sala do trono sem ser chamado era perigoso, a menos que o rei estendesse o seu cetro de ouro. Então Ester pediu que todo o povo orasse a Deus durante três dias, e no terceiro dia ela se vestiu com suas vestes reais e entrou diante do trono. Deus tocou o coração do rei Assuero, que sorriu e estendeu o cetro de ouro para Ester! Com muita sabedoria, Ester revelou a injustiça de Hamã, Mardoqueu foi honrado e uma nova lei garantiu paz, alegria e livramento para todo o povo de Deus!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_19_vovo.mp3?v=53",
         "text": "Ester entendeu que Deus a havia colocado no palácio com um propósito especial: interceder em oração e salvar o seu povo com coragem!",
         "verse": "Quem sabe se para tal tempo como este chegaste a este reino? (Ester 4:14)",
         "verseWords": [
@@ -2469,34 +3115,68 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Esdras e Neemias (~445 a.C. • Neemias 1–8)",
     "title": "Neemias e a Reconstrução dos Muros em União",
     "bibleRef": "Neemias 2:17–18; 4:6; 8:10",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_01.jpg",
     "storyIdUnlock": 14,
     "vovoAudio3a5": "./6_ASSETS_AUDIO/licoes_vovo/licao_20_3a5.mp3",
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_20_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_20_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_33.jpg",
-        "caption": "Cena 1 • Ao saber que os muros de Jerusalém estavam derrubados, Neemias orou ao Deus dos Céus!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_01.jpg",
+        "caption": "Cena 1/10 • Deus chamou o profeta Jonas para ir à cidade de Nínive anunciar que as pessoas precisavam voltar para o Senhor.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg",
-        "caption": "Cena 2 • Neemias encorajou o povo dizendo: 'Vinde, reedifiquemos os muros de Jerusalém!'"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_02.jpg",
+        "caption": "Cena 2/10 • Achando que conseguiria fugir da missão, Jonas foi ao porto de Jope e embarcou num navio na direção oposta!",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_32.jpg",
-        "caption": "Cena 3 • Cada família trabalhou unida lado a lado, e em apenas 52 dias o muro inteiro ficou pronto!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_03.jpg",
+        "caption": "Cena 3/10 • Em alto-mar, Deus enviou um vento forte e ondas gigantescas que fizeram os marinheiros clamarem por socorro.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_09.jpg",
-        "caption": "Cena 4 • Esdras leu a Palavra de Deus e Neemias proclamou: 'A alegria do Senhor é a vossa força!'"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_04.jpg",
+        "caption": "Cena 4/10 • O capitão desceu ao porão do navio, acordou Jonas e pediu que ele orasse ao seu Deus.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_05.jpg",
+        "caption": "Cena 5/10 • Jonas confessou aos marinheiros que temia ao Criador do mar e da terra e que a tempestade viera por sua desobediência.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_06.jpg",
+        "caption": "Cena 6/10 • Quando Jonas foi lançado ao mar, as ondas se acalmaram e Deus enviou um grande peixe para salvá-lo!",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_07.jpg",
+        "caption": "Cena 7/10 • Dentro da barriga do grande peixe por três dias, Jonas arrependeu-se de coração e orou agradecendo a Deus.",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_08.jpg",
+        "caption": "Cena 8/10 • Ao comando do Senhor, o grande peixe levou Jonas em segurança e o deixou são e salvo na areia da praia!",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_09.jpg",
+        "caption": "Cena 9/10 • Pela segunda vez Deus enviou Jonas a Nínive, e desta vez ele foi depressa anunciar a palavra do Senhor!",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_10.jpg",
+        "caption": "Cena 10/10 • Toda a cidade de Nínive arrependeu-se dos maus caminhos e recebeu o perdão e a misericórdia de Deus!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "Encerrando a história histórica do Antigo Testamento (~445 a.C.), Esdras e Neemias lideraram a reconstrução de Jerusalém, preparando o cenário para a chegada do Novo Testamento!",
-    "vovoStoryScript": "Alegria e união no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar a história que fecha a linha histórica do Antigo Testamento: Neemias e a grande reconstrução dos muros de Jerusalém! Quando Neemias soube que os muros da cidade de seus pais estavam quebrados, ele orou ao Deus dos Céus e viajou até Jerusalém para liderar um grande mutirão de amor! Ele disse ao povo: Venham, vamos reconstruir juntos! Cada família cuidou de uma parte do muro, ajudando o seu vizinho com alegria e coragem! Mesmo quando alguns zombavam, Neemias não desistiu, e em apenas cinquenta e dois dias o muro inteiro ficou pronto! Depois, Esdras leu a Palavra de Deus para as famílias e Neemias declarou: A alegria do Senhor é a nossa força!",
+    "vovoStoryScript": "Vocês já tentaram brincar de esconde-esconde achando que ninguém ia encontrar vocês? Das pessoas a gente até consegue se esconder por alguns minutos, mas será que alguém consegue fugir da presença de Deus num navio no meio do mar? Ajeitem-se aqui pertinho do vovô, meus pequenos aventureiros, porque hoje vamos mergulhar na incrível história de Jonas e o Grande Peixe! Certa vez, a palavra do Senhor veio ao profeta Jonas dizendo: Levante-se e vá até a grande cidade de Nínive, e anuncie que aquelas pessoas precisam deixar os seus maus caminhos e voltar para Deus! Mas Jonas não queria ir para Nínive! Em vez de obedecer ao Senhor, ele desceu até o porto de Jope, comprou uma passagem num navio que ia para Társis, na direção totalmente oposta, e desceu para dormir no porão do barco, achando que conseguiria fugir da missão de Deus. Quando o navio estava em alto-mar, o Senhor enviou um vento muito forte! As ondas subiam altas e o barco de madeira balançava tanto que os marinheiros ficaram apavorados, jogando as cargas ao mar para aliviar o peso. O capitão acordou Jonas, e Jonas confessou a verdade: Eu temo ao Senhor, o Deus do céu, que fez o mar e a terra seca, e esta tempestade veio porque estou fugindo da presença dEle! Quando Jonas foi lançado ao mar, as águas se acalmaram na mesma hora! Mas Deus, que é cheio de compaixão, não deixou Jonas perecer: o Senhor preparou um grande peixe para engolir Jonas e guardá-lo vivo! Lá dentro da barriga do grande peixe, durante três dias e três noites, Jonas arrependeu-se de todo o coração e fez uma linda oração de gratidão ao Senhor. Então Deus deu ordem ao peixe, e ele deixou Jonas são e salvo na areia de uma praia ensolarada! Pela segunda vez, o Senhor mandou Jonas ir a Nínive, e desta vez ele obedeceu depressa! Ao ouvir a mensagem, toda a cidade de Nínive se arrependeu e recebeu o perdão e a misericórdia de Deus!",
     "byAge": {
       "3-5": {
-        "vovoStoryScript": "Olá, minha criança querida! Neemias viu que o muro da cidade de Jerusalém estava quebrado e decidiu ajudar! Ele orou ao Papai do Céu e chamou todas as famílias para trabalharem juntas: cada um colocava um tijolinho com alegria! Quando a família trabalha unida e ora a Deus, tudo fica lindo de novo!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_20_3a5.mp3",
+        "vovoStoryScript": "Vocês já tentaram brincar de esconde-esconde achando que ninguém ia encontrar vocês? Das pessoas a gente até consegue se esconder por alguns minutos, mas será que alguém consegue fugir da presença de Deus num navio no meio do mar? Ajeitem-se aqui pertinho do vovô, meus pequenos aventureiros, porque hoje vamos mergulhar na incrível história de Jonas e o Grande Peixe! Certa vez, a palavra do Senhor veio ao profeta Jonas dizendo: Levante-se e vá até a grande cidade de Nínive, e anuncie que aquelas pessoas precisam deixar os seus maus caminhos e voltar para Deus! Mas Jonas não queria ir para Nínive! Em vez de obedecer ao Senhor, ele desceu até o porto de Jope, comprou uma passagem num navio que ia para Társis, na direção totalmente oposta, e desceu para dormir no porão do barco, achando que conseguiria fugir da missão de Deus. Quando o navio estava em alto-mar, o Senhor enviou um vento muito forte! As ondas subiam altas e o barco de madeira balançava tanto que os marinheiros ficaram apavorados, jogando as cargas ao mar para aliviar o peso. O capitão acordou Jonas, e Jonas confessou a verdade: Eu temo ao Senhor, o Deus do céu, que fez o mar e a terra seca, e esta tempestade veio porque estou fugindo da presença dEle! Quando Jonas foi lançado ao mar, as águas se acalmaram na mesma hora! Mas Deus, que é cheio de compaixão, não deixou Jonas perecer: o Senhor preparou um grande peixe para engolir Jonas e guardá-lo vivo! Lá dentro da barriga do grande peixe, durante três dias e três noites, Jonas arrependeu-se de todo o coração e fez uma linda oração de gratidão ao Senhor. Então Deus deu ordem ao peixe, e ele deixou Jonas são e salvo na areia de uma praia ensolarada! Pela segunda vez, o Senhor mandou Jonas ir a Nínive, e desta vez ele obedeceu depressa! Ao ouvir a mensagem, toda a cidade de Nínive se arrependeu e recebeu o perdão e a misericórdia de Deus!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_20_3a5.mp3?v=53",
         "text": "Neemias chamou todas as famílias para trabalharem juntas colocando tijolinho por tijolinho, e com a alegria do Papai do Céu reconstruíram todo o muro!",
         "verse": "A alegria do Senhor é a vossa força! (Neemias 8:10)",
         "verseWords": [
@@ -2512,8 +3192,8 @@ window.EBD_LESSONS_CURRICULUM = [
         "actionDesc": "Ajude a juntar e organizar todos os brinquedos da sala junto com sua família, igual ao mutirão de Neemias!"
       },
       "6-8": {
-        "vovoStoryScript": "Alegria e união no seu coração, minha criança querida! Hoje o Vovô Nésio vai contar a história que fecha a linha histórica do Antigo Testamento: Neemias e a grande reconstrução dos muros de Jerusalém! Quando Neemias soube que os muros da cidade de seus pais estavam quebrados, ele orou ao Deus dos Céus e viajou até Jerusalém para liderar um grande mutirão de amor! Ele disse ao povo: Venham, vamos reconstruir juntos! Cada família cuidou de uma parte do muro, ajudando o seu vizinho com alegria e coragem! Mesmo quando alguns zombavam, Neemias não desistiu, e em apenas cinquenta e dois dias o muro inteiro ficou pronto! Depois, Esdras leu a Palavra de Deus para as famílias e Neemias declarou: A alegria do Senhor é a nossa força!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_20_vovo.mp3",
+        "vovoStoryScript": "Vocês já tentaram brincar de esconde-esconde achando que ninguém ia encontrar vocês? Das pessoas a gente até consegue se esconder por alguns minutos, mas será que alguém consegue fugir da presença de Deus num navio no meio do mar? Ajeitem-se aqui pertinho do vovô, meus pequenos aventureiros, porque hoje vamos mergulhar na incrível história de Jonas e o Grande Peixe! Certa vez, a palavra do Senhor veio ao profeta Jonas dizendo: Levante-se e vá até a grande cidade de Nínive, e anuncie que aquelas pessoas precisam deixar os seus maus caminhos e voltar para Deus! Mas Jonas não queria ir para Nínive! Em vez de obedecer ao Senhor, ele desceu até o porto de Jope, comprou uma passagem num navio que ia para Társis, na direção totalmente oposta, e desceu para dormir no porão do barco, achando que conseguiria fugir da missão de Deus. Quando o navio estava em alto-mar, o Senhor enviou um vento muito forte! As ondas subiam altas e o barco de madeira balançava tanto que os marinheiros ficaram apavorados, jogando as cargas ao mar para aliviar o peso. O capitão acordou Jonas, e Jonas confessou a verdade: Eu temo ao Senhor, o Deus do céu, que fez o mar e a terra seca, e esta tempestade veio porque estou fugindo da presença dEle! Quando Jonas foi lançado ao mar, as águas se acalmaram na mesma hora! Mas Deus, que é cheio de compaixão, não deixou Jonas perecer: o Senhor preparou um grande peixe para engolir Jonas e guardá-lo vivo! Lá dentro da barriga do grande peixe, durante três dias e três noites, Jonas arrependeu-se de todo o coração e fez uma linda oração de gratidão ao Senhor. Então Deus deu ordem ao peixe, e ele deixou Jonas são e salvo na areia de uma praia ensolarada! Pela segunda vez, o Senhor mandou Jonas ir a Nínive, e desta vez ele obedeceu depressa! Ao ouvir a mensagem, toda a cidade de Nínive se arrependeu e recebeu o perdão e a misericórdia de Deus!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_20_vovo.mp3?v=53",
         "text": "Com oração, planejamento e trabalho em equipe entre todas as famílias, Neemias reconstruiu os muros de Jerusalém em apenas 52 dias!",
         "verse": "A alegria do Senhor é a vossa força. (Neemias 8:10)",
         "verseWords": [
@@ -2594,29 +3274,63 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Os Evangelhos (Belém e Galileia • Lucas 2; Marcos 10)",
     "title": "Jesus: O Nascimento em Belém e o Amigo das Crianças",
     "bibleRef": "Lucas 2:1–20; Marcos 10:13–16",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_13.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_01.jpg",
     "storyIdUnlock": 5,
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_21_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_21_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_36.jpg",
-        "caption": "Cena 1 • Cumprindo todas as promessas do Antigo Testamento, Jesus nasceu em Belém sob a estrela brilhante!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_01.jpg",
+        "caption": "Cena 1/10 • Debaixo das oliveiras da Galileia, Jesus contou a parábola do Bom Samaritano para ensinar quem é o nosso próximo.",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_37.jpg",
-        "caption": "Cena 2 • Jesus cresceu em sabedoria e graça, ensinando o amor de Deus e acalmando até a tempestade no mar!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_02.jpg",
+        "caption": "Cena 2/10 • Um viajante descia pela estrada pedregosa de Jerusalém para Jericó quando foi assaltado no caminho.",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_13.jpg",
-        "caption": "Cena 3 • Jesus abriu os braços com carinho e disse: 'Deixai vir a mim os pequeninos, porque deles é o Reino de Deus!'"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_03.jpg",
+        "caption": "Cena 3/10 • Ferido e sem forças na beira da estrada, aquele homem precisava urgentemente de alguém que o ajudasse.",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_13.jpg",
-        "caption": "Cena 4 • Jesus abençoou as crianças e mostrou que cada pequenino é precioso para o Pai Celestial!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_04.jpg",
+        "caption": "Cena 4/10 • Passou por ali um sacerdote, mas ao ver o homem caído, passou de longe pelo outro lado da estrada.",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_05.jpg",
+        "caption": "Cena 5/10 • Depois passou um levita, que olhou de longe mas também seguiu viagem sem estender a mão.",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_06.jpg",
+        "caption": "Cena 6/10 • Então veio um samaritano viajando com seu jumentinho e, ao vê-lo, seu coração encheu-se de compaixão!",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_07.jpg",
+        "caption": "Cena 7/10 • O Bom Samaritano ajoelhou-se ao lado dele, cuidou das feridas com azeite, enfaixou-as e deu água fresca!",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_08.jpg",
+        "caption": "Cena 8/10 • Com todo carinho, colocou o homem ferido sobre o seu próprio jumentinho e o levou até uma hospedaria.",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_09.jpg",
+        "caption": "Cena 9/10 • Na pousada iluminada, o Bom Samaritano permaneceu ao lado do seu novo amigo cuidando dele durante a noite.",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_10.jpg",
+        "caption": "Cena 10/10 • Pela manhã, pagou a hospedagem e deixou a lição de Jesus: 'Vá e faça você o mesmo com amor ao próximo!'",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "9ª etapa da Linha do Tempo (O Novo Testamento): todas as promessas feitas desde o Gênesis se cumprem quando Jesus nasce em Belém!",
-    "vovoStoryScript": "Olá, minha criança querida! Que alegria chegarmos hoje ao coração de toda a Bíblia Sagrada, lá no Novo Testamento, para falarmos sobre o nascimento de Jesus e o Seu amor especial pelas criancinhas! Tudo o que Deus havia prometido desde o Gênesis se cumpriu na noite iluminada em que Jesus nasceu em Belém! Quando cresceu, Jesus caminhou pela Galileia fazendo o bem, acalmando a tempestade no barquinho e, abrindo os braços com ternura, disse: Deixai vir a mim os pequeninos, porque deles é o Reino de Deus!",
+    "vovoStoryScript": "Meus netos queridos, se vocês vissem um coleguinha caído no pátio da escola ou uma pessoa precisando muito de ajuda no caminho, o que vocês fariam? Passariam de longe fingindo que não viram, ou estenderiam a mão com carinho? Cheguem bem pertinho do vovô, porque quando perguntaram a Jesus: Mestre, quem é o meu próximo?, Ele respondeu contando a inesquecível parábola do Bom Samaritano! Jesus contou que certo homem descia pela estrada sinuosa que ia de Jerusalém para Jericó. No meio do caminho, salteadores roubaram tudo o que ele levava e o deixaram caído e ferido na beira da estrada, precisando de socorro. Por acaso, descia pelo mesmo caminho um sacerdote; mas, quando viu o homem ali caído, em vez de parar para socorrê-lo, passou de largo pelo outro lado da estrada. Logo depois, passou por aquele lugar um levita; ele chegou perto, olhou de longe, mas também seguiu viagem sem oferecer ajuda. Porém, um samaritano que ia de viagem com o seu jumentinho passou por ali e, quando viu aquele homem ferido, moveu-se de íntima compaixão! Ele não perguntou quem o homem era nem se podia receber algo em troca. Ele parou na mesma hora, ajoelhou-se ao lado dele, limpou e enfaixou as suas feridas colocando azeite e bálsamo, e deu água fresca para ele beber! Depois, com todo cuidado, o Bom Samaritano colocou o homem sobre o seu próprio jumentinho, caminhou ao lado dele até uma hospedaria e cuidou dele durante toda a noite! Na manhã seguinte, antes de seguir viagem, entregou duas moedas de prata ao hospedeiro e disse: Cuide muito bem dele; e tudo o que você gastar a mais, eu lhe pagarei quando voltar! Ao terminar a história, Jesus disse: Vá e faça você o mesmo! O verdadeiro amor a Deus se mostra quando ajudamos o nosso próximo com bondade e compaixão!",
     "byAge": {
       "3-5": {
         "text": "Jesus nasceu em Belém e cresceu fazendo o bem! Ele abraçou as criancinhas e disse que o amor de Deus está sempre aberto para você!",
@@ -2631,8 +3345,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão dos Pequenininhos: Abraço de Jesus",
         "actionDesc": "Seja carinhoso com todas as crianças na escolinha e em casa, espalhando o amor de Jesus!",
-        "vovoStoryScript": "Olá, meu pequenininho! Olá, minha pequenininha! Hoje é dia de festa no coração! Sabe quem nasceu lá em Belém, enquanto uma estrela bem brilhante iluminava o céu? Nasceu o menino Jesus, o Filho de Deus que veio trazer amor para o mundo inteiro! Quando Jesus cresceu, Ele adorava estar pertinho das crianças! Um dia, Jesus abriu os braços com um sorriso bem doce, abraçou os pequenininhos e disse: Deixem vir a mim as criancinhas, porque o Reino de Deus é delas! Jesus é o seu melhor amigo e cuida de você todos os dias!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_21_3a5.mp3"
+        "vovoStoryScript": "Meus netos queridos, se vocês vissem um coleguinha caído no pátio da escola ou uma pessoa precisando muito de ajuda no caminho, o que vocês fariam? Passariam de longe fingindo que não viram, ou estenderiam a mão com carinho? Cheguem bem pertinho do vovô, porque quando perguntaram a Jesus: Mestre, quem é o meu próximo?, Ele respondeu contando a inesquecível parábola do Bom Samaritano! Jesus contou que certo homem descia pela estrada sinuosa que ia de Jerusalém para Jericó. No meio do caminho, salteadores roubaram tudo o que ele levava e o deixaram caído e ferido na beira da estrada, precisando de socorro. Por acaso, descia pelo mesmo caminho um sacerdote; mas, quando viu o homem ali caído, em vez de parar para socorrê-lo, passou de largo pelo outro lado da estrada. Logo depois, passou por aquele lugar um levita; ele chegou perto, olhou de longe, mas também seguiu viagem sem oferecer ajuda. Porém, um samaritano que ia de viagem com o seu jumentinho passou por ali e, quando viu aquele homem ferido, moveu-se de íntima compaixão! Ele não perguntou quem o homem era nem se podia receber algo em troca. Ele parou na mesma hora, ajoelhou-se ao lado dele, limpou e enfaixou as suas feridas colocando azeite e bálsamo, e deu água fresca para ele beber! Depois, com todo cuidado, o Bom Samaritano colocou o homem sobre o seu próprio jumentinho, caminhou ao lado dele até uma hospedaria e cuidou dele durante toda a noite! Na manhã seguinte, antes de seguir viagem, entregou duas moedas de prata ao hospedeiro e disse: Cuide muito bem dele; e tudo o que você gastar a mais, eu lhe pagarei quando voltar! Ao terminar a história, Jesus disse: Vá e faça você o mesmo! O verdadeiro amor a Deus se mostra quando ajudamos o nosso próximo com bondade e compaixão!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_21_3a5.mp3?v=53"
       },
       "6-8": {
         "text": "Depois de séculos de espera, Jesus nasceu em Belém cumprindo todas as promessas! Ele acalmou a tempestade no barco e acolheu as crianças com amor!",
@@ -2648,8 +3362,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão Explorador: Incluir e Acolher",
         "actionDesc": "Convide uma criança tímida para brincar com você nesta semana!",
-        "vovoStoryScript": "Olá, minha criança querida! Que alegria chegarmos hoje ao coração de toda a Bíblia Sagrada, lá no Novo Testamento, para falarmos sobre o nascimento de Jesus e o Seu amor especial pelas criancinhas! Tudo o que Deus havia prometido desde o Gênesis se cumpriu na noite iluminada em que Jesus nasceu em Belém! Quando cresceu, Jesus caminhou pela Galileia fazendo o bem, acalmando a tempestade no barquinho e, abrindo os braços com ternura, disse: Deixai vir a mim os pequeninos, porque deles é o Reino de Deus!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_21_vovo.mp3"
+        "vovoStoryScript": "Meus netos queridos, se vocês vissem um coleguinha caído no pátio da escola ou uma pessoa precisando muito de ajuda no caminho, o que vocês fariam? Passariam de longe fingindo que não viram, ou estenderiam a mão com carinho? Cheguem bem pertinho do vovô, porque quando perguntaram a Jesus: Mestre, quem é o meu próximo?, Ele respondeu contando a inesquecível parábola do Bom Samaritano! Jesus contou que certo homem descia pela estrada sinuosa que ia de Jerusalém para Jericó. No meio do caminho, salteadores roubaram tudo o que ele levava e o deixaram caído e ferido na beira da estrada, precisando de socorro. Por acaso, descia pelo mesmo caminho um sacerdote; mas, quando viu o homem ali caído, em vez de parar para socorrê-lo, passou de largo pelo outro lado da estrada. Logo depois, passou por aquele lugar um levita; ele chegou perto, olhou de longe, mas também seguiu viagem sem oferecer ajuda. Porém, um samaritano que ia de viagem com o seu jumentinho passou por ali e, quando viu aquele homem ferido, moveu-se de íntima compaixão! Ele não perguntou quem o homem era nem se podia receber algo em troca. Ele parou na mesma hora, ajoelhou-se ao lado dele, limpou e enfaixou as suas feridas colocando azeite e bálsamo, e deu água fresca para ele beber! Depois, com todo cuidado, o Bom Samaritano colocou o homem sobre o seu próprio jumentinho, caminhou ao lado dele até uma hospedaria e cuidou dele durante toda a noite! Na manhã seguinte, antes de seguir viagem, entregou duas moedas de prata ao hospedeiro e disse: Cuide muito bem dele; e tudo o que você gastar a mais, eu lhe pagarei quando voltar! Ao terminar a história, Jesus disse: Vá e faça você o mesmo! O verdadeiro amor a Deus se mostra quando ajudamos o nosso próximo com bondade e compaixão!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_21_vovo.mp3?v=53"
       }
     },
     "devotional5Days": [
@@ -2720,29 +3434,63 @@ window.EBD_LESSONS_CURRICULUM = [
     "chronologyDate": "Atos dos Apóstolos e Cartas (~30–95 d.C. • Atos 1–28)",
     "title": "Os Discípulos no Barquinho e as Viagens de Paulo",
     "bibleRef": "Mateus 4:18–22; Atos 9; Atos 27; Apocalipse 21",
-    "thumbImg": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_38.jpg",
+    "thumbImg": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_01.jpg",
     "storyIdUnlock": 20,
-    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_22_vovo.mp3",
+    "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_22_vovo.mp3?v=53",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_37.jpg",
-        "caption": "Cena 1 • Jesus chamou pescadores como Pedro, Tiago e João para levarem as Boas Novas do amor de Deus!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_01.jpg",
+        "caption": "Cena 1/10 • Antes de partir, Jesus confortou os discípulos: 'Na casa de Meu Pai há muitas moradas; Eu vou preparar lugar para vocês!'",
+        "timePct": 0.0
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_38.jpg",
-        "caption": "Cena 2 • O Apóstolo Paulo teve a vida transformada pela luz de Cristo e viajou por mares e cidades!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_02.jpg",
+        "caption": "Cena 2/10 • No Monte das Oliveiras, Jesus subiu ao Céu entre nuvens douradas, e os anjos anunciaram que Ele voltará!",
+        "timePct": 0.1
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_38.jpg",
-        "caption": "Cena 3 • Paulo escreveu cartas preciosas ensinando os jovens a serem exemplo na palavra, no amor e na fé!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_03.jpg",
+        "caption": "Cena 3/10 • Na ilha de Patmos, o idoso apóstolo João recebeu a visão gloriosa do livro de Apocalipse!",
+        "timePct": 0.2
       },
       {
-        "img": "./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_09.jpg",
-        "caption": "Cena 4 • Do Gênesis ao Apocalipse, você também faz parte dessa linda história da Promessa de Deus!"
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_04.jpg",
+        "caption": "Cena 4/10 • João contemplou a Cidade Santa, a Nova Jerusalém, descendo do Céu resplandecente como pedra preciosa!",
+        "timePct": 0.3
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_05.jpg",
+        "caption": "Cena 5/10 • As ruas da Cidade Celestial são de ouro puro como cristal, iluminadas para sempre pela própria glória de Deus!",
+        "timePct": 0.4
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_06.jpg",
+        "caption": "Cena 6/10 • Do Trono da Promessa sai o Rio puro da Água da Vida, claro e brilhante como cristal!",
+        "timePct": 0.5
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_07.jpg",
+        "caption": "Cena 7/10 • Nas margens do rio cresce a Árvore da Vida, produzindo doze frutos deliciosos a cada mês!",
+        "timePct": 0.6
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_08.jpg",
+        "caption": "Cena 8/10 • Lá no Céu, o Rei Jesus enxugará dos olhos toda lágrima, e nunca mais haverá tristeza nem dor!",
+        "timePct": 0.7
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_09.jpg",
+        "caption": "Cena 9/10 • Crianças e famílias de todas as nações viverão em paz perfeita na Nova Terra criada por Deus!",
+        "timePct": 0.8
+      },
+      {
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_10.jpg",
+        "caption": "Cena 10/10 • Diante do Trono da Promessa, louvaremos ao nosso Salvador Jesus em alegria eterna para todo o sempre!",
+        "timePct": 0.9
       }
     ],
     "chronologyConnection": "10ª e última etapa da Linha do Tempo Bíblica! Os apóstolos levaram as Boas Novas pelo mundo (livro de Atos e Cartas) até a promessa final no Apocalipse!",
-    "vovoStoryScript": "Que a graça e a paz de Deus encham o seu coração, minha criança querida! Hoje chegamos à décima segunda lição da nossa Linha do Tempo da Bíblia, conhecendo a emocionante missão dos discípulos de Jesus e as viagens do Apóstolo Paulo! Pedro, Tiago, João e Paulo viajaram por mares e cidades levando o amor de Deus e escrevendo cartas preciosas! Do Gênesis até o Apocalipse, a Bíblia inteira é a história da promessa fiel de Deus, e hoje você faz parte dessa linda missão!",
+    "vovoStoryScript": "Meus netos tão amados, chegamos à vigésima segunda lição da nossa linda caminhada pelas Escrituras! Vocês perceberam como desde a criação do Jardim do Éden, lá em Gênesis, até o último capítulo do livro de Apocalipse, a Bíblia inteira aponta para o grande Trono da Promessa? Sentem-se aqui bem pertinho do vovô, porque hoje vamos contemplar a promessa mais gloriosa de todas: a volta do nosso Senhor Jesus e o Reino Eterno que Deus preparou para todos os que O amam! Antes de subir ao céu no Monte das Oliveiras, Jesus olhou com amor para os Seus discípulos e deixou uma promessa que aquece o nosso coração todos os dias: Não se turbe o vosso coração! Na casa de Meu Pai há muitas moradas; Eu vou preparar lugar para vocês, e voltarei para recebê-los para Mim mesmo, para que onde Eu estiver, vocês estejam também! Mais tarde, na ilha de Patmos, o idoso apóstolo João recebeu de Jesus uma visão maravilhosa do futuro glorioso dos filhos de Deus e escreveu tudo no livro de Apocalipse! João viu um Novo Céu e uma Nova Terra, e viu a Cidade Santa, a Nova Jerusalém, descendo do céu da parte de Deus, resplandecente como cristal e pedra preciosa, com doze portas de pérolas e ruas de ouro puro e transparente! E do Trono de Deus e do Cordeiro ele viu sair um Rio puro da Água da Vida, claro como cristal, e de um e de outro lado do rio estava a Árvore da Vida, produzindo doze frutos todos os meses! Lá naquele Reino Eterno, a Bíblia promete que o próprio Deus habitará com o Seu povo e enxugará dos olhos toda lágrima! Não haverá mais tristeza, nem choro, nem dor, nem escuridão, porque a glória de Deus iluminará tudo para sempre! Pessoas e famílias de todas as tribos, povos e línguas cantarão louvores diante do Trono! Enquanto aguardamos esse dia feliz, vivemos cada dia espalhando o amor, a verdade e a luz de Jesus. E até a nossa próxima jornada no Trono da Promessa!",
     "byAge": {
       "3-5": {
         "text": "Os amigos de Jesus, como Pedro, João e Paulo, viajaram de barquinho levando o amor do Papai do Céu para o mundo inteiro!",
@@ -2758,8 +3506,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão dos Pequenininhos: Pequeno Mensageiro",
         "actionDesc": "Conte para alguém que você ama a história bíblica que você mais gostou de aprender!",
-        "vovoStoryScript": "Oi, minha criança amada! Senta aqui pertinho do Vovô Nésio! Depois que Jesus ensinou o amor de Deus, os amigos Dele, como Pedro, João e Paulo, entraram em barquinhos e viajaram por muitos lugares contando para todo mundo como o Papai do Céu é bom! Eles escreviam cartinhas cheias de carinho e ensinavam as famílias a viverem em paz, dividindo o pão e ajudando os amigos! E sabe de uma coisa linda? Você também é um pequeno mensageiro do amor de Jesus quando sorri, abraça a família e faz o bem!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_22_3a5.mp3"
+        "vovoStoryScript": "Meus netos tão amados, chegamos à vigésima segunda lição da nossa linda caminhada pelas Escrituras! Vocês perceberam como desde a criação do Jardim do Éden, lá em Gênesis, até o último capítulo do livro de Apocalipse, a Bíblia inteira aponta para o grande Trono da Promessa? Sentem-se aqui bem pertinho do vovô, porque hoje vamos contemplar a promessa mais gloriosa de todas: a volta do nosso Senhor Jesus e o Reino Eterno que Deus preparou para todos os que O amam! Antes de subir ao céu no Monte das Oliveiras, Jesus olhou com amor para os Seus discípulos e deixou uma promessa que aquece o nosso coração todos os dias: Não se turbe o vosso coração! Na casa de Meu Pai há muitas moradas; Eu vou preparar lugar para vocês, e voltarei para recebê-los para Mim mesmo, para que onde Eu estiver, vocês estejam também! Mais tarde, na ilha de Patmos, o idoso apóstolo João recebeu de Jesus uma visão maravilhosa do futuro glorioso dos filhos de Deus e escreveu tudo no livro de Apocalipse! João viu um Novo Céu e uma Nova Terra, e viu a Cidade Santa, a Nova Jerusalém, descendo do céu da parte de Deus, resplandecente como cristal e pedra preciosa, com doze portas de pérolas e ruas de ouro puro e transparente! E do Trono de Deus e do Cordeiro ele viu sair um Rio puro da Água da Vida, claro como cristal, e de um e de outro lado do rio estava a Árvore da Vida, produzindo doze frutos todos os meses! Lá naquele Reino Eterno, a Bíblia promete que o próprio Deus habitará com o Seu povo e enxugará dos olhos toda lágrima! Não haverá mais tristeza, nem choro, nem dor, nem escuridão, porque a glória de Deus iluminará tudo para sempre! Pessoas e famílias de todas as tribos, povos e línguas cantarão louvores diante do Trono! Enquanto aguardamos esse dia feliz, vivemos cada dia espalhando o amor, a verdade e a luz de Jesus. E até a nossa próxima jornada no Trono da Promessa!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_22_3a5.mp3?v=53"
       },
       "6-8": {
         "text": "No livro de Atos dos Apóstolos, Pedro e Paulo viajaram por muitas cidades ensinando sobre Jesus e escrevendo cartas cheias de sabedoria!",
@@ -2775,8 +3523,8 @@ window.EBD_LESSONS_CURRICULUM = [
         ],
         "actionTitle": "Missão Explorador: Carta de Carinho",
         "actionDesc": "Escreva um bilhetinho de carinho e fé para alguém da sua família ou professor da EBD!",
-        "vovoStoryScript": "Que a graça e a paz de Deus encham o seu coração, minha criança querida! Hoje chegamos à décima segunda lição da nossa Linha do Tempo da Bíblia, conhecendo a emocionante missão dos discípulos de Jesus e as viagens do Apóstolo Paulo! Pedro, Tiago, João e Paulo viajaram por mares e cidades levando o amor de Deus e escrevendo cartas preciosas! Do Gênesis até o Apocalipse, a Bíblia inteira é a história da promessa fiel de Deus, e hoje você faz parte dessa linda missão!",
-        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_22_vovo.mp3"
+        "vovoStoryScript": "Meus netos tão amados, chegamos à vigésima segunda lição da nossa linda caminhada pelas Escrituras! Vocês perceberam como desde a criação do Jardim do Éden, lá em Gênesis, até o último capítulo do livro de Apocalipse, a Bíblia inteira aponta para o grande Trono da Promessa? Sentem-se aqui bem pertinho do vovô, porque hoje vamos contemplar a promessa mais gloriosa de todas: a volta do nosso Senhor Jesus e o Reino Eterno que Deus preparou para todos os que O amam! Antes de subir ao céu no Monte das Oliveiras, Jesus olhou com amor para os Seus discípulos e deixou uma promessa que aquece o nosso coração todos os dias: Não se turbe o vosso coração! Na casa de Meu Pai há muitas moradas; Eu vou preparar lugar para vocês, e voltarei para recebê-los para Mim mesmo, para que onde Eu estiver, vocês estejam também! Mais tarde, na ilha de Patmos, o idoso apóstolo João recebeu de Jesus uma visão maravilhosa do futuro glorioso dos filhos de Deus e escreveu tudo no livro de Apocalipse! João viu um Novo Céu e uma Nova Terra, e viu a Cidade Santa, a Nova Jerusalém, descendo do céu da parte de Deus, resplandecente como cristal e pedra preciosa, com doze portas de pérolas e ruas de ouro puro e transparente! E do Trono de Deus e do Cordeiro ele viu sair um Rio puro da Água da Vida, claro como cristal, e de um e de outro lado do rio estava a Árvore da Vida, produzindo doze frutos todos os meses! Lá naquele Reino Eterno, a Bíblia promete que o próprio Deus habitará com o Seu povo e enxugará dos olhos toda lágrima! Não haverá mais tristeza, nem choro, nem dor, nem escuridão, porque a glória de Deus iluminará tudo para sempre! Pessoas e famílias de todas as tribos, povos e línguas cantarão louvores diante do Trono! Enquanto aguardamos esse dia feliz, vivemos cada dia espalhando o amor, a verdade e a luz de Jesus. E até a nossa próxima jornada no Trono da Promessa!",
+        "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_22_vovo.mp3?v=53"
       }
     },
     "devotional5Days": [
@@ -4891,17 +5639,24 @@ window.openLessonModule = function(modType) {
     `;
   }
   // 2) HISTÓRIA DO VOVÔ:
-  // Card Único Sem Scroll! Imagem bem grande estilo player de vídeo com transição automática + botão "Ouvir a História"
+  // Card Único Sem Scroll! Imagem bem grande estilo player de vídeo com 10 cenas bíblicas + transição automática + navegação manual + botão "Ouvir a História"
   else if (modType === "vovo") {
     const scenes = lesson.storyScenes || [{ img: lesson.thumbImg, caption: lesson.title }];
     window.EBD_STATE.vovoActiveSceneIdx = 0;
+    const firstCap = scenes[0] && scenes[0].caption ? scenes[0].caption : `Cena 1/${scenes.length} • ${lesson.title}`;
     box.innerHTML = `
       <div class="ebd-glass-card" style="flex:1; display:flex; flex-direction:column; justify-content:space-between; margin-bottom:0; padding:10px; overflow:hidden;">
-        <h3 style="color:#fde047; font-size:15.5px; margin-bottom:6px; line-height:1.2; flex-shrink:0;">Lição ${lesson.week}: ${lesson.title}</h3>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:5px; flex-shrink:0;">
+          <h3 style="color:#fde047; font-size:14.5px; margin:0; line-height:1.18; text-align:left;">Lição ${lesson.week}: ${lesson.title}</h3>
+          <span id="vovo-scene-counter-badge" style="background:linear-gradient(180deg,#7e22ce,#4c1d95); border:1.5px solid #fde047; color:#fde047; font-size:11px; font-weight:900; padding:3px 8px; border-radius:999px; white-space:nowrap; box-shadow:0 2px 6px rgba(0,0,0,0.6);">Cena 1 de ${scenes.length}</span>
+        </div>
 
-        <div class="frame-3d-alive" style="flex:1; min-height:0; width:100%; max-width:255px; margin:0 auto 8px auto; overflow:hidden; background:#090d16; border-radius:18px; display:flex; align-items:center; justify-content:center; position:relative;">
-          <img id="vovo-story-scene-img" src="${scenes[0].img}" alt="Cena da História" style="width:100%; height:100%; object-fit:contain; border-radius:15px; display:block; transition: opacity 0.45s ease;">
-          <div style="position:absolute; left:10px; right:10px; bottom:8px; background:rgba(15,23,42,0.82); border:1px solid rgba(253,224,71,0.6); border-radius:999px; height:8px; overflow:hidden;">
+        <div class="frame-3d-alive" style="flex:1; min-height:0; width:100%; max-width:255px; margin:0 auto 6px auto; overflow:hidden; background:#090d16; border-radius:18px; display:flex; align-items:center; justify-content:center; position:relative;">
+          <img id="vovo-story-scene-img" src="${scenes[0].img}" alt="Cena da História" style="width:100%; height:100%; object-fit:contain; border-radius:15px; display:block; transition: opacity 0.35s ease;">
+          <button type="button" onclick="stepVovoStoryScene(-1)" aria-label="Cena Anterior" style="position:absolute; left:6px; top:50%; transform:translateY(-50%); width:32px; height:32px; border-radius:50%; border:2px solid #fde047; background:rgba(15,23,42,0.82); color:#fde047; font-size:15px; font-weight:900; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 8px rgba(0,0,0,0.75); z-index:4;">◀</button>
+          <button type="button" onclick="stepVovoStoryScene(1)" aria-label="Próxima Cena" style="position:absolute; right:6px; top:50%; transform:translateY(-50%); width:32px; height:32px; border-radius:50%; border:2px solid #fde047; background:rgba(15,23,42,0.82); color:#fde047; font-size:15px; font-weight:900; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 3px 8px rgba(0,0,0,0.75); z-index:4;">▶</button>
+          <div id="vovo-story-scene-caption" style="position:absolute; left:8px; right:8px; bottom:19px; background:rgba(15,23,42,0.86); border:1px solid rgba(253,224,71,0.45); border-radius:10px; padding:4px 7px; font-size:10.5px; font-weight:800; color:#f8fafc; line-height:1.22; text-align:center; text-shadow:0 1px 3px #000; z-index:3;">${firstCap}</div>
+          <div style="position:absolute; left:10px; right:10px; bottom:7px; background:rgba(15,23,42,0.82); border:1px solid rgba(253,224,71,0.6); border-radius:999px; height:8px; overflow:hidden; z-index:3;">
             <div id="vovo-video-progress-fill" style="width:0%; height:100%; background:linear-gradient(90deg, #00e676, #fde047); transition:width 0.25s linear;"></div>
           </div>
         </div>
@@ -5041,6 +5796,15 @@ window.selectVovoStoryScene = function(sceneIdx, silent) {
   const idx = Math.max(0, Math.min(sceneIdx, scenes.length - 1));
   window.EBD_STATE.vovoActiveSceneIdx = idx;
 
+  const badgeEl = document.getElementById("vovo-scene-counter-badge");
+  if (badgeEl) {
+    badgeEl.textContent = `Cena ${idx + 1} de ${scenes.length}`;
+  }
+  const capEl = document.getElementById("vovo-story-scene-caption");
+  if (capEl && scenes[idx]) {
+    capEl.textContent = scenes[idx].caption || `Cena ${idx + 1}/${scenes.length} • ${lesson.title}`;
+  }
+
   const imgEl = document.getElementById("vovo-story-scene-img");
   if (imgEl && scenes[idx]) {
     imgEl.style.opacity = "0.35";
@@ -5049,6 +5813,14 @@ window.selectVovoStoryScene = function(sceneIdx, silent) {
       imgEl.style.opacity = "1";
     }, 140);
   }
+};
+
+window.stepVovoStoryScene = function(delta) {
+  const lesson = window.getCurrentLessonObj();
+  const scenes = lesson.storyScenes || [{ img: lesson.thumbImg, caption: lesson.title }];
+  const cur = typeof window.EBD_STATE.vovoActiveSceneIdx === "number" ? window.EBD_STATE.vovoActiveSceneIdx : 0;
+  const next = (cur + delta + scenes.length) % scenes.length;
+  window.selectVovoStoryScene(next, false);
 };
 
 window.markLessonSeedMemorized = function(weekNum) {
