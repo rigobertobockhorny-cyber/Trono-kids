@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atualizando Trono da Promessa...</title>
+  <style>
+    body {
+      background: #070b14;
+      color: #fde047;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      padding: 20px;
+    }
+    .box {
+      background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);
+      border: 2.5px solid #fde047;
+      border-radius: 20px;
+      padding: 24px;
+      max-width: 340px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.85);
+    }
+    h2 { margin: 0 0 10px 0; font-size: 20px; }
+    p { color: #ffffff; font-size: 14px; line-height: 1.4; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>✨ Atualizando Logo e Cache...</h2>
+    <p id="status-msg">Limpando memória antiga do celular, aguarde 2 segundos...</p>
+  </div>
+  <script>
+    (async function() {
+      try {
+        if ('caches' in window) {
+          const keys = await caches.keys();
+          for (const k of keys) {
+            await caches.delete(k);
+          }
+        }
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          for (const r of regs) {
+            await r.unregister();
+          }
+        }
+        localStorage.setItem('trono_cache_purged_v50', '1');
+      } catch (e) {}
+      document.getElementById('status-msg').textContent = 'Pronto! Abrindo versão atualizada...';
+      setTimeout(() => {
+        window.location.replace('./index.html?t=' + Date.now());
+      }, 600);
+    })();
+  </script>
+</body>
+</html>
