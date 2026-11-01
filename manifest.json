@@ -2,21 +2,21 @@
   "name": "Trono da Promessa EBD — Revista Digital & Jogos Bíblicos",
   "short_name": "Trono EBD",
   "description": "Aplicativo oficial infantil e Revista Digital EBD do canal Trono da Promessa (Vórtice Mídia).",
-  "start_url": "./index.html?v=50",
+  "start_url": "./index.html?v=55",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#061126",
-  "theme_color": "#0a1e40",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "icons": [
     {
-      "src": "./2_ASSETS_UI_BOTOES/icon_192_v50.png?v=50",
+      "src": "./2_ASSETS_UI_BOTOES/icon_192_v55.png?v=55",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "./2_ASSETS_UI_BOTOES/icon_512_v50.png?v=50",
+      "src": "./2_ASSETS_UI_BOTOES/icon_512_v55.png?v=55",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
