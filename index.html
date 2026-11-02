@@ -2319,7 +2319,7 @@
 </div>
 
 <script src="pinturas_base64.js"></script>
-<script src="ebd_modulos_educativos.js?v=66"></script>
+<script src="ebd_modulos_educativos.js?v=67"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -2912,8 +2912,19 @@ function showScreen(screenId) {
       topTitleEl.textContent = 'ÁLBUM DA FÉ';
     } else if (screenId === 'screen-sleep') {
       topTitleEl.textContent = 'LOUVOR E DORMIR';
-    } else if (screenId === 'screen-lesson-hub' || screenId === 'screen-lesson-module') {
+    } else if (screenId === 'screen-lesson-hub') {
       topTitleEl.textContent = 'LIÇÃO DA SEMANA';
+    } else if (screenId === 'screen-lesson-module') {
+      const mType = (window.EBD_STATE && window.EBD_STATE.activeLessonModuleType) || '';
+      const modTitles = {
+        texto: 'CRONOLOGIA BÍBLICA',
+        vovo: 'HISTÓRIA DO VOVÔ',
+        sementinha: 'SEMENTINHA',
+        fe_acao: 'FÉ EM AÇÃO',
+        jogos_licao: 'JOGOS DA LIÇÃO',
+        devocional: 'DEVOCIONAL'
+      };
+      topTitleEl.textContent = modTitles[mType] || 'LIÇÃO DA SEMANA';
     } else if (screenId === 'screen-chronology') {
       topTitleEl.textContent = 'CRONOLOGIA BÍBLICA';
     } else if (screenId === 'screen-games-hub' || screenId === 'screen-edu-game') {
@@ -3546,13 +3557,14 @@ function updatePuzzleLayoutRects() {
 }
 
 function startPuzzleWithStory(st) {
+  if (st) currentStory = st;
   showScreen('screen-puzzle');
   puzzleImg = new Image();
   puzzleImg.onload = () => {
     initJigsawPuzzle();
     startPuzzle3DAnimationLoop();
   };
-  puzzleImg.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg`;
+  puzzleImg.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=67`;
 }
 
 function startPuzzle3DAnimationLoop() {
@@ -4101,6 +4113,7 @@ function highlightPaintAction(btnId) {
 }
 
 function startPaintWithStory(st) {
+  if (st) currentStory = st;
   buildPaletteUI();
   showScreen('screen-paint');
 
@@ -4113,7 +4126,7 @@ function startPaintWithStory(st) {
   if (window.PINTURAS_B64 && window.PINTURAS_B64[st.seqPaint]) {
     paintBaseImg.src = window.PINTURAS_B64[st.seqPaint];
   } else {
-    paintBaseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg`;
+    paintBaseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=67`;
   }
 }
 
@@ -4841,8 +4854,8 @@ function getAlbumSuperCardsCatalog() {
       title: `Lição ${l.week}: ${l.title}`,
       shortTitle: l.title,
       superCardImg: l.week === 1
-        ? './3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg'
-        : `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg`,
+        ? './3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg?v=67'
+        : `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg?v=67`,
       isSuperCard9x16: true
     }));
   }
@@ -4852,7 +4865,7 @@ function getAlbumSuperCardsCatalog() {
     free: s.id <= 10,
     title: s.title,
     shortTitle: s.title,
-    superCardImg: `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${s.seqColor}.jpg`,
+    superCardImg: `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${s.seqColor}.jpg?v=67`,
     isSuperCard9x16: true
   }));
 }
@@ -5166,7 +5179,8 @@ function renderStickerAlbum() {
 // DOWNLOAD / IMPRESSÃO PDF / WHATSAPP DA PINTURA (EXCLUSIVO ASSINANTES!)
 // ============================================================================
 function onPaintDownloadOrPrintClick() {
-  if (!isVipUnlocked) {
+  const isFromFreeLesson = !!(window.EBD_STATE && window.EBD_STATE.fromLessonGames && (window.EBD_STATE.currentWeek || 1) <= 10);
+  if (!isVipUnlocked && !isFromFreeLesson) {
     openSubscribeModal(
       'Baixar, Imprimir e WhatsApp',
       'Exclusivo para Assinantes! Acesso para Pais: libere todas as 20 histórias para baixar em PDF/Imagem, imprimir ou enviar pelo WhatsApp:'
@@ -5310,7 +5324,7 @@ function renderSleepCorner() {
 }
 
 // Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
-document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=66';
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=67';
 if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
 if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
 if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');
