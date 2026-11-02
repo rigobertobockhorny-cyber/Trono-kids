@@ -4800,7 +4800,9 @@ function getAlbumSuperCardsCatalog() {
       free: l.week <= 10,
       title: `Lição ${l.week}: ${l.title}`,
       shortTitle: l.title,
-      superCardImg: `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg`,
+      superCardImg: l.week === 1
+        ? './3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg'
+        : `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg`,
       isSuperCard9x16: true
     }));
   }
