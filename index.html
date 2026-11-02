@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Trono EBD">
-  <link rel="manifest" href="./manifest.json?v=64">
+  <link rel="manifest" href="./manifest.json?v=65">
   <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_oficial.png">
   <title>Trono da Promessa EBD • Revista Digital & Jogos Bíblicos</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
@@ -21,12 +21,12 @@
           if ('caches' in window) {
             caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
           }
-          if (urlParams.get('limpar') === '1' && window.history && window.history.replaceState) { window.history.replaceState({}, document.title, window.location.pathname + '?v=64'); }
+          if (urlParams.get('limpar') === '1' && window.history && window.history.replaceState) { window.history.replaceState({}, document.title, window.location.pathname + '?v=65'); }
       } catch (e) {}
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=64').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=65').then(reg => {
           reg.update();
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
@@ -1577,6 +1577,24 @@
       box-shadow: 0 0 10px rgba(0, 230, 118, 0.9);
     }
 
+    /* === UPGRADE V65: TODOS OS TÍTULOS E NOMES DE BOTÕES EM LETRAS MAIÚSCULAS + SEM FAIXA ETÁRIA NA LIÇÃO === */
+    #topbar-game-title,
+    .topbar-screen-title,
+    .mod-title,
+    .btn-gold,
+    .btn-tool-3d,
+    .lesson-scroll-pill,
+    .devocional-weekday-pill,
+    #lesson-hub-current-title,
+    .ebd-badge-era,
+    .puzzle-diff-bar span,
+    .ebd-glass-card h3,
+    .story-title-inside,
+    .sleep-track-title,
+    .btn-sleep-dark,
+    .plan-card-title {
+      text-transform: uppercase !important;
+    }
   </style>
   <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_oficial.png">
   <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192_oficial.png">
@@ -1607,7 +1625,7 @@
   <!-- TOPO COM AMPLO RESPIRO: LOGO EBD 3D EM CIMA + 2 BOLINHAS REDONDINHAS NOS CANTINHOS! -->
   <header class="topbar">
     <div class="brand-logo-wrap" onclick="goHome()">
-      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=64" alt="Trono da Promessa EBD" class="brand-logo">
+      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=65" alt="Trono da Promessa EBD" class="brand-logo">
     </div>
 
     <div class="topbar-controls-row">
@@ -1639,39 +1657,39 @@
     <div class="dashboard-grid">
       <div class="module-card" onclick="openLessonHubScreen()">
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_licao.png" alt="Lição da Semana" class="mod-icon-3d">
-        <div class="mod-title">Lição da Semana</div>
+        <div class="mod-title">LIÇÃO DA SEMANA</div>
       </div>
 
       <div class="module-card" onclick="openChronologyScreen()">
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png" alt="Cronologia Bíblica" class="mod-icon-3d">
-        <div class="mod-title">Cronologia Bíblica</div>
+        <div class="mod-title">CRONOLOGIA BÍBLICA</div>
       </div>
 
       <div class="module-card" onclick="openGamesHubScreen()">
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_netos.png" alt="Sala de Jogos" class="mod-icon-3d">
-        <div class="mod-title">Sala de Jogos</div>
+        <div class="mod-title">SALA DE JOGOS</div>
       </div>
 
       <div class="module-card" onclick="openGalleryFor('paint')">
         <img src="./2_ASSETS_UI_BOTOES/ui_icon_03.png" alt="Oficina de Pintura" class="mod-icon-3d">
-        <div class="mod-title">Pintura Mágica</div>
+        <div class="mod-title">PINTURA MÁGICA</div>
       </div>
 
       <div class="module-card" onclick="openModule('sleep')">
         <img src="./2_ASSETS_UI_BOTOES/ui_icon_07.png" alt="Louvor e Dormir" class="mod-icon-3d">
-        <div class="mod-title">Louvor & Dormir</div>
+        <div class="mod-title">LOUVOR E DORMIR</div>
       </div>
 
       <div class="module-card" onclick="openTeacherAndFamilyPortal()">
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_professor.png" alt="Família e Professor" class="mod-icon-3d">
-        <div class="mod-title">Família & Professor</div>
+        <div class="mod-title">FAMÍLIA E PROFESSOR</div>
       </div>
     </div>
 
     <!-- Botão Direto na Tela Principal para Pais, Professores e Igrejas -->
     <button class="btn-gold btn-parents-home" onclick="openTeacherAndFamilyPortal()">
       <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Pais e Professores" style="width:18px; height:18px; object-fit:contain;">
-      <span>Guia do Professor • Família & Semanas</span>
+      <span>GUIA DO PROFESSOR • FAMÍLIA E SEMANAS</span>
     </button>
   </section>
 
@@ -1692,46 +1710,46 @@
     <!-- BARRA DE TÍTULO DA LIÇÃO ATIVA + FAIXA ETÁRIA (SEM BANNER DO VOVÔ, SUBINDO OS ÍCONES!) -->
     <div class="lesson-vovo-banner-wrap" style="margin-bottom:4px;">
       <div id="lesson-hub-current-title" style="background:linear-gradient(180deg, rgba(88,28,135,0.92), rgba(30,27,75,0.96)); border:2px solid #fde047; border-radius:14px; padding:5px 10px; text-align:center; color:#fde047; font-size:13.5px; font-weight:900; box-shadow:0 4px 10px rgba(0,0,0,0.75); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-        Lição 1: A Criação Maravilhosa de Deus
+        LIÇÃO 1: A CRIAÇÃO MARAVILHOSA DE DEUS
       </div>
-      <div id="lesson-hub-age-pills" class="houses-trail" style="margin-top:4px; padding:4px 10px; gap:14px;"></div>
+      
     </div>
 
     <div class="dashboard-grid lesson-big-grid">
       <div class="module-card" id="lesson-hub-card-texto" onclick="openLessonModule('texto')">
         <div class="lesson-hub-green-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png" alt="Cronologia Bíblica" class="mod-icon-3d">
-        <div class="mod-title">Cronologia Bíblica</div>
+        <div class="mod-title">CRONOLOGIA BÍBLICA</div>
       </div>
 
       <div class="module-card" id="lesson-hub-card-vovo" onclick="openLessonModule('vovo')">
         <div class="lesson-hub-green-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_vovo.png" alt="História com o Vovô" class="mod-icon-3d">
-        <div class="mod-title">História do Vovô</div>
+        <div class="mod-title">HISTÓRIA DO VOVÔ</div>
       </div>
 
       <div class="module-card" id="lesson-hub-card-sementinha" onclick="openLessonModule('sementinha')">
         <div class="lesson-hub-green-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" alt="Sementinha" class="mod-icon-3d">
-        <div class="mod-title">Sementinha</div>
+        <div class="mod-title">SEMENTINHA</div>
       </div>
 
       <div class="module-card" id="lesson-hub-card-fe_acao" onclick="openLessonModule('fe_acao')">
         <div class="lesson-hub-green-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png" alt="Fé em Ação" class="mod-icon-3d">
-        <div class="mod-title">Fé em Ação</div>
+        <div class="mod-title">FÉ EM AÇÃO</div>
       </div>
 
       <div class="module-card" id="lesson-hub-card-jogos_licao" onclick="openLessonModule('jogos_licao')">
         <div class="lesson-hub-green-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png" alt="Jogos da Lição" class="mod-icon-3d">
-        <div class="mod-title">Jogos da Lição</div>
+        <div class="mod-title">JOGOS DA LIÇÃO</div>
       </div>
 
       <div class="module-card" id="lesson-hub-card-devocional" onclick="openLessonModule('devocional')">
         <div class="lesson-hub-green-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_devocional.png" alt="Devocional" class="mod-icon-3d">
-        <div class="mod-title">Devocional</div>
+        <div class="mod-title">DEVOCIONAL</div>
       </div>
     </div>
   </section>
@@ -1766,7 +1784,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="puzzle-diff-bar" style="padding:4px 10px; gap:6px;">
-        <span style="font-size:12.5px; font-weight:800; color:#fde047;">Toque na Lição para ver a Cronologia</span>
+        <span style="font-size:12.5px; font-weight:800; color:#fde047;">TOQUE NA LIÇÃO PARA VER A CRONOLOGIA</span>
       </div>
       <button class="btn-nav-circle" onclick="goHome()" title="Início">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 10L12 3L21 10V20H15V14H9V20H3V10Z" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/></svg>
@@ -1800,7 +1818,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="puzzle-diff-bar">
-        <span id="edu-game-header-title" style="font-size:13px; font-weight:800; color:#fde047;">Desafio Bíblico</span>
+        <span id="edu-game-header-title" style="font-size:13px; font-weight:800; color:#fde047;">DESAFIO BÍBLICO</span>
       </div>
       <button id="btn-edu-header-right" class="btn-nav-circle" onclick="if(typeof advanceActiveEduGamePhase === 'function'){advanceActiveEduGamePhase();}else{stopTeenTimer();openLessonHubScreen();}" title="Próxima Fase">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1818,7 +1836,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="puzzle-diff-bar">
-        <span style="font-size:13px; font-weight:800; color:#fde047;">Área do Professor EBD & Família</span>
+        <span style="font-size:13px; font-weight:800; color:#fde047;">FAMÍLIA E PROFESSOR • 5 A 8 ANOS</span>
       </div>
       <button class="btn-nav-circle" onclick="openLessonHubScreen()" title="Ver Lição">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1853,9 +1871,9 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="puzzle-diff-bar">
-        <button id="diff-6" class="btn-tool-3d active" onclick="setPuzzleDifficulty(2, 3)">6 Peças</button>
-        <button id="diff-9" class="btn-tool-3d" onclick="setPuzzleDifficulty(3, 3)">9 Peças</button>
-        <button id="diff-12" class="btn-tool-3d" onclick="setPuzzleDifficulty(3, 4)">12 Peças</button>
+        <button id="diff-6" class="btn-tool-3d active" onclick="setPuzzleDifficulty(2, 3)">6 PEÇAS</button>
+        <button id="diff-9" class="btn-tool-3d" onclick="setPuzzleDifficulty(3, 3)">9 PEÇAS</button>
+        <button id="diff-12" class="btn-tool-3d" onclick="setPuzzleDifficulty(3, 4)">12 PEÇAS</button>
       </div>
       <button id="btn-puzzle-next" class="btn-nav-circle" onclick="goToNextStory('puzzle')" title="Próximo">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1876,12 +1894,12 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="paint-toolbar-modes">
-        <button id="tool-bucket" class="btn-tool-3d active" onclick="setPaintTool('bucket')">Toque</button>
-        <button id="tool-brush" class="btn-tool-3d" onclick="setPaintTool('brush')">Lápis</button>
-        <button id="tool-undo" class="btn-tool-3d" onclick="highlightPaintAction('tool-undo'); undoLastPaintStep()" title="Desfazer última pintura (Ctrl+Z)">Voltar</button>
-        <button id="tool-auto" class="btn-tool-3d" onclick="highlightPaintAction('tool-auto'); autoPaintEntireDrawing()">Pintar</button>
-        <button id="tool-clear" class="btn-tool-3d" onclick="highlightPaintAction('tool-clear'); resetCurrentPainting()">Limpar</button>
-        <button id="tool-download" class="btn-tool-3d" onclick="highlightPaintAction('tool-download'); onPaintDownloadOrPrintClick()">Baixar</button>
+        <button id="tool-bucket" class="btn-tool-3d active" onclick="setPaintTool('bucket')">TOQUE</button>
+        <button id="tool-brush" class="btn-tool-3d" onclick="setPaintTool('brush')">LÁPIS</button>
+        <button id="tool-undo" class="btn-tool-3d" onclick="highlightPaintAction('tool-undo'); undoLastPaintStep()" title="Desfazer última pintura (Ctrl+Z)">VOLTAR</button>
+        <button id="tool-auto" class="btn-tool-3d" onclick="highlightPaintAction('tool-auto'); autoPaintEntireDrawing()">PINTAR</button>
+        <button id="tool-clear" class="btn-tool-3d" onclick="highlightPaintAction('tool-clear'); resetCurrentPainting()">LIMPAR</button>
+        <button id="tool-download" class="btn-tool-3d" onclick="highlightPaintAction('tool-download'); onPaintDownloadOrPrintClick()">BAIXAR</button>
       </div>
       <button id="btn-paint-next" class="btn-nav-circle" onclick="goToNextStory('paint')" title="Próximo">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1952,9 +1970,9 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="puzzle-diff-bar">
-        <button class="btn-tool-3d" onclick="openLudoTrailBoard()">Caminho</button>
-        <button class="btn-tool-3d active">Cartinhas</button>
-        <button class="btn-tool-3d" onclick="openGameRulesModal()">Regras</button>
+        <button class="btn-tool-3d" onclick="openLudoTrailBoard()">CAMINHO</button>
+        <button class="btn-tool-3d active">CARTINHAS</button>
+        <button class="btn-tool-3d" onclick="openGameRulesModal()">REGRAS</button>
       </div>
       <button class="btn-nav-circle" onclick="stepAlbum(2)" title="Próximas Imagens">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1973,9 +1991,9 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="puzzle-diff-bar">
-        <button class="btn-tool-3d active">Caminho</button>
-        <button class="btn-tool-3d" onclick="openModule('album')">Cartinhas</button>
-        <button class="btn-tool-3d" onclick="openGameRulesModal()">Regras</button>
+        <button class="btn-tool-3d active">CAMINHO</button>
+        <button class="btn-tool-3d" onclick="openModule('album')">CARTINHAS</button>
+        <button class="btn-tool-3d" onclick="openGameRulesModal()">REGRAS</button>
       </div>
       <button class="btn-nav-circle" onclick="openModule('album')" title="Ver Cartinhas">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2248,7 +2266,7 @@
   <div id="modal-game-rules" class="modal-backdrop" style="z-index:130;">
     <div class="modal-card" style="width:92%; max-width:348px; padding:12px 12px; border:2.5px solid #fde047; background:linear-gradient(180deg, #6a00f4 0%, #3b0764 100%); text-align:left;">
       <div style="font-size:16.5px; font-weight:700; color:#fde047; text-align:center; margin-bottom:6px; text-shadow:0 2px 5px rgba(0,0,0,0.85);">
-        Regras do Álbum da Fé & Super Cards
+        REGRAS DO ÁLBUM DA FÉ E SUPER CARDS • 5 A 8 ANOS
       </div>
 
       <div style="background:rgba(15, 23, 42, 0.65); border:1.5px solid #38bdf8; border-radius:12px; padding:8px 10px; font-size:11.5px; color:#ffffff; line-height:1.34; margin-bottom:8px;">
@@ -2283,7 +2301,7 @@
 </div>
 
 <script src="pinturas_base64.js"></script>
-<script src="ebd_modulos_educativos.js?v=64"></script>
+<script src="ebd_modulos_educativos.js?v=65"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -2859,27 +2877,27 @@ function showScreen(screenId) {
     if (screenId === 'screen-home') {
       topTitleEl.textContent = '';
     } else if (screenId === 'screen-gallery') {
-      topTitleEl.textContent = currentGalleryTarget === 'puzzle' ? 'Quebra-Cabeça' : 'Pintura Mágica';
+      topTitleEl.textContent = currentGalleryTarget === 'puzzle' ? 'QUEBRA-CABEÇA' : 'PINTURA MÁGICA';
     } else if (screenId === 'screen-puzzle') {
-      topTitleEl.textContent = 'Quebra-Cabeça';
+      topTitleEl.textContent = 'QUEBRA-CABEÇA';
     } else if (screenId === 'screen-paint') {
-      topTitleEl.textContent = 'Pintura Mágica';
+      topTitleEl.textContent = 'PINTURA MÁGICA';
     } else if (screenId === 'screen-quiz') {
-      topTitleEl.textContent = 'Quiz do Vovô';
+      topTitleEl.textContent = 'QUIZ DO VOVÔ';
     } else if (screenId === 'screen-memory') {
-      topTitleEl.textContent = 'Jogo da Memória';
+      topTitleEl.textContent = 'JOGO DA MEMÓRIA';
     } else if (screenId === 'screen-album' || screenId === 'screen-ludo-trail') {
-      topTitleEl.textContent = 'Álbum da Fé';
+      topTitleEl.textContent = 'ÁLBUM DA FÉ';
     } else if (screenId === 'screen-sleep') {
-      topTitleEl.textContent = 'Louvor & Dormir';
+      topTitleEl.textContent = 'LOUVOR E DORMIR';
     } else if (screenId === 'screen-lesson-hub' || screenId === 'screen-lesson-module') {
-      topTitleEl.textContent = 'Lição da Semana';
+      topTitleEl.textContent = 'LIÇÃO DA SEMANA';
     } else if (screenId === 'screen-chronology') {
-      topTitleEl.textContent = 'Cronologia Bíblica';
+      topTitleEl.textContent = 'CRONOLOGIA BÍBLICA';
     } else if (screenId === 'screen-games-hub' || screenId === 'screen-edu-game') {
-      topTitleEl.textContent = 'Sala de Jogos';
+      topTitleEl.textContent = 'SALA DE JOGOS';
     } else if (screenId === 'screen-teacher-portal') {
-      topTitleEl.textContent = 'Família & Professor';
+      topTitleEl.textContent = 'FAMÍLIA E PROFESSOR';
     }
   }
 
@@ -5270,7 +5288,7 @@ function renderSleepCorner() {
 }
 
 // Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
-document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=64';
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=65';
 if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
 if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
 if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');
