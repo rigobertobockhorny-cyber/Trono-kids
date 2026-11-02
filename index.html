@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Trono EBD">
-  <link rel="manifest" href="./manifest.json?v=63">
+  <link rel="manifest" href="./manifest.json?v=64">
   <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_oficial.png">
   <title>Trono da Promessa EBD • Revista Digital & Jogos Bíblicos</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
@@ -21,12 +21,12 @@
           if ('caches' in window) {
             caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
           }
-          if (urlParams.get('limpar') === '1' && window.history && window.history.replaceState) { window.history.replaceState({}, document.title, window.location.pathname + '?v=63'); }
+          if (urlParams.get('limpar') === '1' && window.history && window.history.replaceState) { window.history.replaceState({}, document.title, window.location.pathname + '?v=64'); }
       } catch (e) {}
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=63').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=64').then(reg => {
           reg.update();
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
@@ -1005,11 +1005,17 @@
       width: 100%;
       height: 100%;
       min-height: 0;
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
       border-radius: 22px;
       background: radial-gradient(circle at 50% 35%, rgba(88, 28, 135, 0.78) 0%, rgba(30, 27, 75, 0.92) 100%);
       border: 2px solid rgba(0, 229, 255, 0.55);
       box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.8), 0 8px 20px rgba(0, 0, 0, 0.85);
+    }
+    .ludo-board-grid::-webkit-scrollbar {
+      display: none;
     }
 
     .sinuous-road-svg {
@@ -1514,6 +1520,63 @@
       animation: vovoKenBurns 14s ease-in-out infinite;
     }
 
+    /* === UPGRADE V64: SELO TIQUEZINHO VERDE NOS 6 BOTÕES DA LIÇÃO + DEVOCIONAL DIAS DA SEMANA === */
+    #screen-lesson-hub .module-card {
+      position: relative;
+    }
+    .lesson-hub-green-tick {
+      position: absolute;
+      top: 0px;
+      right: 6px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #00e676 0%, #00c853 100%);
+      border: 2.5px solid #ffffff;
+      box-shadow: 0 0 14px rgba(0, 230, 118, 0.95), 0 3px 8px rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 6;
+      pointer-events: none;
+    }
+    .module-card.hub-mod-done .lesson-hub-green-tick {
+      display: flex;
+    }
+    .module-card.hub-mod-done .mod-icon-3d {
+      filter: drop-shadow(0 0 12px rgba(0, 230, 118, 0.85)) drop-shadow(0 6px 12px rgba(0,0,0,0.9)) !important;
+    }
+    .devocional-weekday-pill {
+      flex: 0 0 auto;
+      min-width: 68px;
+      height: 27px;
+      border-radius: 999px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 800;
+      font-size: 11.5px;
+      color: #ffffff;
+      background: linear-gradient(180deg, #00b0ff 0%, #0066ff 100%);
+      border: 1.5px solid #b3e5fc;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      padding: 0 9px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.45);
+      white-space: nowrap;
+    }
+    .devocional-weekday-pill.active-day {
+      border: 2px solid #fde047;
+      box-shadow: 0 0 10px rgba(253, 224, 71, 0.9);
+      transform: scale(1.05);
+    }
+    .devocional-weekday-pill.day-done {
+      background: linear-gradient(180deg, #00e676 0%, #00c853 100%) !important;
+      border-color: #ffffff !important;
+      box-shadow: 0 0 10px rgba(0, 230, 118, 0.9);
+    }
+
   </style>
   <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_oficial.png">
   <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192_oficial.png">
@@ -1544,7 +1607,7 @@
   <!-- TOPO COM AMPLO RESPIRO: LOGO EBD 3D EM CIMA + 2 BOLINHAS REDONDINHAS NOS CANTINHOS! -->
   <header class="topbar">
     <div class="brand-logo-wrap" onclick="goHome()">
-      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=63" alt="Trono da Promessa EBD" class="brand-logo">
+      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=64" alt="Trono da Promessa EBD" class="brand-logo">
     </div>
 
     <div class="topbar-controls-row">
@@ -1635,32 +1698,38 @@
     </div>
 
     <div class="dashboard-grid lesson-big-grid">
-      <div class="module-card" onclick="openLessonModule('texto')">
+      <div class="module-card" id="lesson-hub-card-texto" onclick="openLessonModule('texto')">
+        <div class="lesson-hub-green-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png" alt="Cronologia Bíblica" class="mod-icon-3d">
         <div class="mod-title">Cronologia Bíblica</div>
       </div>
 
-      <div class="module-card" onclick="openLessonModule('vovo')">
+      <div class="module-card" id="lesson-hub-card-vovo" onclick="openLessonModule('vovo')">
+        <div class="lesson-hub-green-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_vovo.png" alt="História com o Vovô" class="mod-icon-3d">
         <div class="mod-title">História do Vovô</div>
       </div>
 
-      <div class="module-card" onclick="openLessonModule('sementinha')">
-        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" alt="Sementinha no Coração" class="mod-icon-3d">
-        <div class="mod-title">Sementinha (Verso)</div>
+      <div class="module-card" id="lesson-hub-card-sementinha" onclick="openLessonModule('sementinha')">
+        <div class="lesson-hub-green-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" alt="Sementinha" class="mod-icon-3d">
+        <div class="mod-title">Sementinha</div>
       </div>
 
-      <div class="module-card" onclick="openLessonModule('fe_acao')">
+      <div class="module-card" id="lesson-hub-card-fe_acao" onclick="openLessonModule('fe_acao')">
+        <div class="lesson-hub-green-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png" alt="Fé em Ação" class="mod-icon-3d">
         <div class="mod-title">Fé em Ação</div>
       </div>
 
-      <div class="module-card" onclick="openLessonModule('jogos_licao')">
+      <div class="module-card" id="lesson-hub-card-jogos_licao" onclick="openLessonModule('jogos_licao')">
+        <div class="lesson-hub-green-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png" alt="Jogos da Lição" class="mod-icon-3d">
         <div class="mod-title">Jogos da Lição</div>
       </div>
 
-      <div class="module-card" onclick="openLessonModule('devocional')">
+      <div class="module-card" id="lesson-hub-card-devocional" onclick="openLessonModule('devocional')">
+        <div class="lesson-hub-green-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_devocional.png" alt="Devocional" class="mod-icon-3d">
         <div class="mod-title">Devocional</div>
       </div>
@@ -1803,7 +1872,7 @@
   <!-- ==================================================================== -->
   <section id="screen-paint" class="screen">
     <div class="module-header">
-      <button class="btn-nav-circle" onclick="if(window.EBD_STATE && window.EBD_STATE.fromLessonGames){openLessonModule('jogos_licao');}else{openGalleryFor('paint');}" title="Voltar">
+      <button class="btn-nav-circle" onclick="if(window.EBD_STATE && window.EBD_STATE.fromLessonGames){if(currentPaintingTouched && typeof window.markLessonGameCompleted==='function'){window.markLessonGameCompleted(window.EBD_STATE.currentWeek||1,'lesson_paint');}openLessonModule('jogos_licao');}else{openGalleryFor('paint');}" title="Voltar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="paint-toolbar-modes">
@@ -2173,37 +2242,37 @@
     </div>
   </div>
 
-  <!-- ==================================================================== -->
-  <!-- MODAL EXPLICATIVO DE REGRAS DOS 4 JOGUINHOS E DO ÁLBUM DA FÉ         -->
+      <!-- ==================================================================== -->
+  <!-- MODAL EXPLICATIVO DE REGRAS DAS LIÇÕES, JOGUINHOS E SUPER CARDS      -->
   <!-- ==================================================================== -->
   <div id="modal-game-rules" class="modal-backdrop" style="z-index:130;">
     <div class="modal-card" style="width:92%; max-width:348px; padding:12px 12px; border:2.5px solid #fde047; background:linear-gradient(180deg, #6a00f4 0%, #3b0764 100%); text-align:left;">
       <div style="font-size:16.5px; font-weight:700; color:#fde047; text-align:center; margin-bottom:6px; text-shadow:0 2px 5px rgba(0,0,0,0.85);">
-        Regras dos Joguinhos e Casinhas
+        Regras do Álbum da Fé & Super Cards
       </div>
 
-      <div style="background:rgba(15, 23, 42, 0.65); border:1.5px solid #38bdf8; border-radius:12px; padding:8px 10px; font-size:11.5px; color:#ffffff; line-height:1.32; margin-bottom:8px;">
+      <div style="background:rgba(15, 23, 42, 0.65); border:1.5px solid #38bdf8; border-radius:12px; padding:8px 10px; font-size:11.5px; color:#ffffff; line-height:1.34; margin-bottom:8px;">
         <div style="color:#fde047; font-weight:700; font-size:12.5px; margin-bottom:3px;">
-          1. Como Liberar as Casinhas no Álbum da Fé:
+          1. Como Conquistar cada Casinha e Super Card (9:16):
         </div>
-        <div style="margin-bottom:3px;">• São <strong>4 Joguinhos</strong> com <strong>6 Fases Grátis (1 a 6)</strong> cada.</div>
-        <div style="margin-bottom:3px;">• <strong>Regra (6 de 6 = +1 Casinha):</strong> Ao completar as <strong>6 fases (6 de 6)</strong> de um joguinho, você libera <strong>+1 Casinha</strong> no Álbum da Fé:</div>
-        <div style="margin-bottom:1px; color:#86efac;">• <strong>Casinha 1:</strong> Completar 6 de 6 no <strong>Quebra-Cabeça</strong></div>
-        <div style="margin-bottom:1px; color:#86efac;">• <strong>Casinha 2:</strong> Completar 6 de 6 na <strong>Pintura Mágica</strong></div>
-        <div style="margin-bottom:1px; color:#86efac;">• <strong>Casinha 3:</strong> Completar 6 de 6 no <strong>Quiz do Vovô</strong></div>
-        <div style="margin-bottom:3px; color:#86efac;">• <strong>Casinha 4:</strong> Completar 6 de 6 no <strong>Jogo da Memória</strong></div>
-        <div style="color:#fef08a;">• <strong>Casinhas 5 a 20 (+16 Bloqueadas):</strong> Modo Assinante!</div>
+        <div style="margin-bottom:3px;">• Cada uma das <strong>22 Lições</strong> tem sua própria <strong>Casinha no Caminho</strong> e seu <strong>Super Card Vertical (9:16)</strong> para usar no celular!</div>
+        <div style="margin-bottom:3px;">• Para conquistar o <strong>Tiquezinho Verde</strong> nos 6 botões da Lição:</div>
+        <div style="margin-bottom:1px; color:#86efac;">• <strong>1. Cronologia Bíblica:</strong> Abrir e ver a linha do tempo</div>
+        <div style="margin-bottom:1px; color:#86efac;">• <strong>2. História do Vovô:</strong> Ouvir ou ver até a cena 10</div>
+        <div style="margin-bottom:1px; color:#86efac;">• <strong>3. Sementinha:</strong> Ler e guardar o versículo</div>
+        <div style="margin-bottom:1px; color:#86efac;">• <strong>4. Fé em Ação:</strong> Ler a missão da semana</div>
+        <div style="margin-bottom:1px; color:#86efac;">• <strong>5. Jogos da Lição:</strong> Deixar os <strong>8 jogos verdinhos</strong></div>
+        <div style="margin-bottom:3px; color:#86efac;">• <strong>6. Devocional:</strong> Concluir de <strong>Segunda a Domingo</strong></div>
+        <div style="color:#fef08a;">• Completou os <strong>6 botões da Lição</strong> = <strong>Casinha Verde + Super Card 9:16 Colorido Liberado!</strong></div>
       </div>
 
-      <div style="background:rgba(15, 23, 42, 0.65); border:1.5px solid #a855f7; border-radius:12px; padding:8px 10px; font-size:11.5px; color:#ffffff; line-height:1.32; margin-bottom:9px;">
+      <div style="background:rgba(15, 23, 42, 0.65); border:1.5px solid #a855f7; border-radius:12px; padding:8px 10px; font-size:11.5px; color:#ffffff; line-height:1.34; margin-bottom:9px;">
         <div style="color:#fde047; font-weight:700; font-size:12.5px; margin-bottom:3px;">
-          2. Quantidade Total em Cada Joguinho:
+          2. Super Cards Grátis vs Assinantes VIP:
         </div>
-        <div style="margin-bottom:2px;">• <strong>Quebra-Cabeça (20):</strong> 6 Grátis + <span style="color:#fde047;">14 Bloqueados</span></div>
-        <div style="margin-bottom:2px;">• <strong>Pintura Mágica (20):</strong> 6 Grátis + <span style="color:#fde047;">14 Bloqueadas</span></div>
-        <div style="margin-bottom:2px;">• <strong>Quiz do Vovô (50):</strong> 6 Grátis + <span style="color:#fde047;">44 Bloqueadas</span></div>
-        <div style="margin-bottom:2px;">• <strong>Jogo da Memória (20):</strong> 6 Grátis + <span style="color:#fde047;">14 Bloqueadas</span></div>
-        <div>• <strong>Álbum da Fé (20 Casinhas):</strong> 4 Grátis + <span style="color:#fde047;">16 Bloqueadas</span></div>
+        <div style="margin-bottom:2px;">• <strong>Imagens 16:9 das Lições:</strong> Podem ser baixadas livremente dentro da lição!</div>
+        <div style="margin-bottom:2px;">• <strong>Super Cards 1 a 10 (Lições 1 a 10):</strong> Grátis! Ficam em preto e branco até você concluir a lição, ficando 100% coloridos para baixar!</div>
+        <div>• <strong>Super Cards 11 a 22 (Lições 11 a 22):</strong> Exclusivos com cadeado no <span style="color:#fde047;">Modo Assinante VIP</span>!</div>
       </div>
 
       <button class="btn-gold" style="width:100%; padding:8px 12px; font-size:14.5px;" onclick="closeModal('modal-game-rules')">
@@ -2214,7 +2283,7 @@
 </div>
 
 <script src="pinturas_base64.js"></script>
-<script src="ebd_modulos_educativos.js?v=63"></script>
+<script src="ebd_modulos_educativos.js?v=64"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -2697,10 +2766,10 @@ function toggleAmbientSound() {
 }
 
 function updateTopCounters() {
-  if (!isVipUnlocked) {
-    for (const id of Array.from(unlockedStickers)) {
-      if (id > 4) unlockedStickers.delete(id);
-    }
+  if (typeof window.syncAlbumHousesWithCompletedGames === 'function') {
+    const completedWeeks = JSON.parse(localStorage.getItem('trono_ebd_completed_weeks') || '[]');
+    document.getElementById('sticker-count').textContent = `${completedWeeks.length}`;
+    return;
   }
   document.getElementById('sticker-count').textContent = `${unlockedStickers.size}`;
 }
@@ -3030,9 +3099,15 @@ function registerGameStepCompleted(mode, storyObj) {
   if (mode === 'puzzle' && displayStory && displayStory.id) {
     completedPuzzles.add(displayStory.id);
     dotCurrent = isVipUnlocked ? (((completedPuzzles.size - 1) % 6) + 1) : Math.min(6, completedPuzzles.size);
+    if (window.EBD_STATE && window.EBD_STATE.fromLessonGames && typeof window.markLessonGameCompleted === 'function') {
+      window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, 'lesson_puzzle');
+    }
   } else if (mode === 'paint' && displayStory && displayStory.id) {
     completedPaints.add(displayStory.id);
     dotCurrent = isVipUnlocked ? (((completedPaints.size - 1) % 6) + 1) : Math.min(6, completedPaints.size);
+    if (window.EBD_STATE && window.EBD_STATE.fromLessonGames && typeof window.markLessonGameCompleted === 'function') {
+      window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, 'lesson_paint');
+    }
   } else if (mode === 'memory' && typeof memoryPhase === 'number') {
     completedMemories.add(memoryPhase);
     dotCurrent = isVipUnlocked ? (((completedMemories.size - 1) % 6) + 1) : Math.min(6, completedMemories.size);
@@ -4143,6 +4218,9 @@ function autoPaintEntireDrawing() {
   playSoundSnapGreen();
   saveUndoSnapshot();
   currentPaintingTouched = true;
+  if (window.EBD_STATE && window.EBD_STATE.fromLessonGames && typeof window.markLessonGameCompleted === 'function') {
+    window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, 'lesson_paint');
+  }
   const canvas = document.getElementById('paint-canvas');
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   const w = canvas.width, h = canvas.height;
@@ -4710,22 +4788,52 @@ function startMemoryPhase(phaseNum) {
 }
 
 // ============================================================================
-// CAMINHO SINUOSO DO ÁLBUM DA FÉ + CARD GRANDE COLECIONÁVEL!
+// CAMINHO SINUOSO DO ÁLBUM DA FÉ (22 CASINHAS DAS 22 LIÇÕES) + SUPER CARD 9:16!
 // ============================================================================
 let selectedCollectorStory = STORIES[0];
 
-// Coordenadas exatas (x%, y%) das 20 casinhas ao longo da Estradinha Sinuosa em "S"
+function getAlbumSuperCardsCatalog() {
+  if (window.EBD_LESSONS_CURRICULUM && window.EBD_LESSONS_CURRICULUM.length >= 22) {
+    return window.EBD_LESSONS_CURRICULUM.map(l => ({
+      id: l.week,
+      week: l.week,
+      free: l.week <= 10,
+      title: `Lição ${l.week}: ${l.title}`,
+      shortTitle: l.title,
+      superCardImg: `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg`,
+      isSuperCard9x16: true
+    }));
+  }
+  return STORIES.map(s => ({
+    id: s.id,
+    week: s.id,
+    free: s.id <= 10,
+    title: s.title,
+    shortTitle: s.title,
+    superCardImg: `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${s.seqColor}.jpg`,
+    isSuperCard9x16: true
+  }));
+}
+
+function isLessonSuperCardConquered(weekNum) {
+  const completedWeeks = JSON.parse(localStorage.getItem('trono_ebd_completed_weeks') || '[]');
+  return completedWeeks.includes(weekNum);
+}
+
+// Coordenadas exatas (x%, y%) das 22 casinhas ao longo da Estradinha Sinuosa em "S"
 const SINUOUS_ROAD_POINTS = [
-  // Curva 1 (Esquerda -> Direita)
-  { x: 16, y: 10 }, { x: 38, y: 10 }, { x: 60, y: 10 }, { x: 82, y: 13 },
-  // Curva 2 (Direita -> Esquerda)
-  { x: 82, y: 29 }, { x: 60, y: 31 }, { x: 38, y: 31 }, { x: 16, y: 34 },
-  // Curva 3 (Esquerda -> Direita)
-  { x: 16, y: 50 }, { x: 38, y: 52 }, { x: 60, y: 52 }, { x: 82, y: 55 },
-  // Curva 4 (Direita -> Esquerda)
-  { x: 82, y: 71 }, { x: 60, y: 73 }, { x: 38, y: 73 }, { x: 16, y: 76 },
-  // Curva 5 (Esquerda -> Direita)
-  { x: 16, y: 90 }, { x: 38, y: 91 }, { x: 60, y: 91 }, { x: 84, y: 90 }
+  // Curva 1 (Esquerda -> Direita: Casinhas 1 a 4)
+  { x: 16, y: 7 },  { x: 38, y: 7 },  { x: 60, y: 7 },  { x: 82, y: 9 },
+  // Curva 2 (Direita -> Esquerda: Casinhas 5 a 8)
+  { x: 82, y: 23 }, { x: 60, y: 25 }, { x: 38, y: 25 }, { x: 16, y: 27 },
+  // Curva 3 (Esquerda -> Direita: Casinhas 9 a 12)
+  { x: 16, y: 41 }, { x: 38, y: 43 }, { x: 60, y: 43 }, { x: 82, y: 45 },
+  // Curva 4 (Direita -> Esquerda: Casinhas 13 a 16)
+  { x: 82, y: 59 }, { x: 60, y: 61 }, { x: 38, y: 61 }, { x: 16, y: 63 },
+  // Curva 5 (Esquerda -> Direita: Casinhas 17 a 20)
+  { x: 16, y: 77 }, { x: 38, y: 79 }, { x: 60, y: 79 }, { x: 82, y: 81 },
+  // Curva 6 (Final: Casinhas 21 e 22)
+  { x: 64, y: 93 }, { x: 32, y: 93 }
 ];
 
 function openLudoTrailBoard() {
@@ -4734,48 +4842,54 @@ function openLudoTrailBoard() {
 }
 
 function renderLudoTrailBoard() {
-  syncAlbumHousesWithCompletedGames();
   updateTopCounters();
   const grid = document.getElementById('ludo-board-grid');
   if (!grid) return;
   grid.innerHTML = '';
 
-  // Regra Oficial: 4 Joguinhos (x 6 fases cada) = 4 Casinhas Grátis (Casinhas 1, 2, 3 e 4) + 16 Bloqueadas (5 a 20)!
-  const maxFreeHouses = 4;
-  const pool = isVipUnlocked ? STORIES : STORIES.slice(0, maxFreeHouses);
-  const nextTargetStory = pool.find(s => !unlockedStickers.has(s.id)) || pool[pool.length - 1] || STORIES[0];
+  const catalog = getAlbumSuperCardsCatalog();
+  const maxFreeHouses = 10;
+  const pool = isVipUnlocked ? catalog : catalog.slice(0, maxFreeHouses);
+  const nextTargetItem = pool.find(item => !isLessonSuperCardConquered(item.week)) || pool[pool.length - 1] || catalog[0];
 
-  // Desenha a Estradinha Sinuosa em "S" conectando todas as 20 casinhas
+  const stageWrap = document.createElement('div');
+  stageWrap.style.position = 'relative';
+  stageWrap.style.width = '100%';
+  stageWrap.style.height = '640px';
+
+  // Desenha a Estradinha Sinuosa em "S" conectando todas as 22 casinhas
   const roadPathD = `
-    M 16 10
-    L 60 10
-    C 92 10, 92 31, 60 31
-    L 38 31
-    C 6 31, 6 52, 38 52
-    L 60 52
-    C 92 52, 92 73, 60 73
-    L 38 73
-    C 6 73, 6 91, 38 91
-    L 84 90
+    M 16 7
+    L 60 7
+    C 92 7, 92 25, 60 25
+    L 38 25
+    C 6 25, 6 43, 38 43
+    L 60 43
+    C 92 43, 92 61, 60 61
+    L 38 61
+    C 6 61, 6 79, 38 79
+    L 60 79
+    C 92 79, 92 93, 64 93
+    L 32 93
   `;
 
   const svgHtml = `
     <svg class="sinuous-road-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
       <!-- Borda Dourada da Estrada Sinuosa -->
-      <path d="${roadPathD}" fill="none" stroke="#fde047" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+      <path d="${roadPathD}" fill="none" stroke="#fde047" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
       <!-- Leito Roxo Escuro da Estrada -->
-      <path d="${roadPathD}" fill="none" stroke="#3b0764" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="${roadPathD}" fill="none" stroke="#3b0764" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
       <!-- Trilha Pontilhada Brilhante no Meio da Estrada -->
-      <path d="${roadPathD}" fill="none" stroke="#00e5ff" stroke-width="1.3" stroke-dasharray="2.5 2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="${roadPathD}" fill="none" stroke="#00e5ff" stroke-width="1.2" stroke-dasharray="2.2 2.2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   `;
-  grid.insertAdjacentHTML('beforeend', svgHtml);
+  stageWrap.insertAdjacentHTML('beforeend', svgHtml);
 
-  STORIES.forEach((st, idx) => {
+  catalog.forEach((item, idx) => {
     const pt = SINUOUS_ROAD_POINTS[idx] || { x: 50, y: 50 };
-    const isFreeStory = (st.id <= maxFreeHouses) || isVipUnlocked;
-    const isConquered = isFreeStory && unlockedStickers.has(st.id);
-    const isCurrentWalker = (st.id === nextTargetStory.id);
+    const isFreeStory = (item.week <= maxFreeHouses) || isVipUnlocked;
+    const isConquered = isFreeStory && isLessonSuperCardConquered(item.week);
+    const isCurrentWalker = (item.week === nextTargetItem.week);
 
     const node = document.createElement('div');
     node.className = 'road-node-house'
@@ -4788,7 +4902,7 @@ function renderLudoTrailBoard() {
     if (!isFreeStory) {
       subIconHtml = `<img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" style="width:15px; height:15px; object-fit:contain;" alt="Bloqueado">`;
     } else if (isConquered) {
-      subIconHtml = `<svg width="14" height="14" viewBox="0 0 24 24" fill="#fde047"><path d="M12 2L15.1 8.2L22 9.2L17 14.1L18.2 21L12 17.8L5.8 21L7 14.1L2 9.2L8.9 8.2L12 2Z"/></svg>`;
+      subIconHtml = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     } else {
       subIconHtml = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" fill="#b3e5fc"/></svg>`;
     }
@@ -4799,29 +4913,61 @@ function renderLudoTrailBoard() {
 
     node.innerHTML = `
       ${walkerHtml}
-      <div class="road-node-num">${st.id}</div>
+      <div class="road-node-num">${item.week}</div>
       <div class="road-node-subicon">${subIconHtml}</div>
     `;
 
     node.onclick = () => {
       playSoundClick();
       if (!isFreeStory) {
-        openSubscribeModal(st.title);
+        openSubscribeModal(`Liberar Casinha ${item.week} (${item.shortTitle})`);
+      } else if (isConquered) {
+        openCollectorCardModal(item);
       } else {
-        // Abre o Card Grande da Casinha (sem mandar de volta para o Quebra-Cabeça repetido!)
-        openCollectorCardModal(st);
+        // Se a Lição ainda não foi 100% concluída, leva a criança para a Lição ou mostra o aviso
+        if (typeof window.selectLessonWeek === 'function' && typeof window.openLessonHubScreen === 'function') {
+          window.EBD_STATE.currentWeek = item.week;
+          localStorage.setItem('trono_ebd_week', String(item.week));
+          window.openLessonHubScreen();
+        } else {
+          openCollectorCardModal(item);
+        }
       }
     };
 
-    grid.appendChild(node);
+    stageWrap.appendChild(node);
   });
+
+  grid.appendChild(stageWrap);
 }
 
 function openCollectorCardModal(st) {
   selectedCollectorStory = st;
-  document.getElementById('collector-card-img').src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg`;
-  document.getElementById('collector-card-title').textContent = `Casinha ${st.id}: ${st.title}`;
-  document.getElementById('modal-collector-card').classList.add('active');
+  const imgEl = document.getElementById('collector-card-img');
+  const modalEl = document.getElementById('modal-collector-card');
+  const btnEl = modalEl ? modalEl.querySelector('.btn-gold') : null;
+  const imgUrl = st.superCardImg || st.customImgSrc || `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor || '09'}.jpg`;
+  if (imgEl) {
+    imgEl.src = imgUrl;
+    imgEl.style.width = '100%';
+    imgEl.style.aspectRatio = st.is16x9Download ? '16 / 9' : '9 / 16';
+    imgEl.style.objectFit = 'cover';
+    imgEl.style.maxHeight = st.is16x9Download ? '38vh' : '56vh';
+    const frameWrap = imgEl.parentElement;
+    if (frameWrap) {
+      frameWrap.style.aspectRatio = st.is16x9Download ? '16/9' : '9/14';
+      frameWrap.style.width = st.is16x9Download ? '96%' : '78%';
+    }
+  }
+  const conquered = st.week ? isLessonSuperCardConquered(st.week) : true;
+  if (imgEl) {
+    imgEl.style.filter = (!st.is16x9Download && st.week && !conquered) ? 'grayscale(100%) brightness(0.58)' : 'none';
+  }
+  if (btnEl) {
+    btnEl.textContent = st.is16x9Download ? 'Baixar Imagem (16:9)' : 'Baixar Super Card (9:16)';
+  }
+  document.getElementById('collector-card-title').textContent = st.title || `Super Card ${st.id}`;
+  if (modalEl) modalEl.classList.add('active');
 }
 
 function playCollectorCardStory() {
@@ -4829,49 +4975,79 @@ function playCollectorCardStory() {
   goHome();
 }
 
+async function triggerDirectImageDownloadOrShare(imgUrl, titleText, filePrefix) {
+  const cleanUrl = String(imgUrl || '').split('?')[0];
+  const safeName = (titleText || 'imagem').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+  try {
+    const resp = await fetch(cleanUrl);
+    const blob = await resp.blob();
+    const file = new File([blob], `${filePrefix}_${safeName}.jpg`, { type: 'image/jpeg' });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        title: `Trono da Promessa - ${titleText}`,
+        text: `Olha a imagem "${titleText}" do app Trono da Promessa!`,
+        files: [file]
+      });
+      return;
+    }
+  } catch (e) {}
+
+  const a = document.createElement('a');
+  a.href = cleanUrl;
+  a.download = `${filePrefix}_${safeName}.jpg`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
 function downloadOrShareCollectorCard() {
-  closeModal('modal-collector-card');
-  if (!isVipUnlocked) {
+  const st = selectedCollectorStory || {};
+  // Se for uma imagem 16:9 simples de dentro da lição (Lições 1 a 10 grátis ou VIP), baixa direto!
+  if (st.is16x9Download) {
+    const weekAllowed = !st.week || st.week <= 10 || isVipUnlocked;
+    if (!weekAllowed) {
+      closeModal('modal-collector-card');
+      openSubscribeModal('Baixar Imagens das Lições 11 a 22');
+      return;
+    }
+    closeModal('modal-collector-card');
+    if (typeof window.downloadLesson16x9Image === 'function') {
+      window.downloadLesson16x9Image(st.customImgSrc || st.superCardImg, st.title);
+    } else {
+      triggerDirectImageDownloadOrShare(st.customImgSrc || st.superCardImg, st.title, 'licao_16x9');
+    }
+    return;
+  }
+
+  // Se for Super Card 9:16 do Álbum da Fé:
+  // Verifica se a Lição já foi concluída (todos os 6 tiquezinhos verdes)!
+  if (st.week && !isLessonSuperCardConquered(st.week)) {
+    closeModal('modal-collector-card');
+    showProgressToast(`Complete os 6 botões da Lição ${st.week} (com todos os tiquezinhos verdes) para colorir e baixar este Super Card 9:16!`, 4800);
+    return;
+  }
+
+  if (st.week > 10 && !isVipUnlocked) {
+    closeModal('modal-collector-card');
     openSubscribeModal(
-      'Baixar Capa / Enviar no WhatsApp',
-      'Exclusivo para Assinantes! Libere o Clube Trono da Promessa para baixar os cards em alta resolução (para usar de capa no celular/WhatsApp ou compartilhar):'
+      'Super Cards 11 a 22 (Assinantes)',
+      'Exclusivo para Assinantes! Libere as Lições 11 a 22 e todos os Super Cards 9:16 em alta resolução:'
     );
     return;
   }
-  requestParentalGate(async () => {
-    const st = selectedCollectorStory;
-    const imgUrl = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg`;
-    const safeName = (st.title || 'card').toLowerCase().replace(/[^a-z0-9]+/g, '_');
 
-    try {
-      const resp = await fetch(imgUrl);
-      const blob = await resp.blob();
-      const file = new File([blob], `card_trono_${safeName}.jpg`, { type: 'image/jpeg' });
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({
-          title: `Card Trono da Promessa - ${st.title}`,
-          text: `Olha o Card "${st.title}" que desbloqueamos no Caminho do app Trono da Promessa!`,
-          files: [file]
-        });
-        return;
-      }
-    } catch (e) {}
-
-    const a = document.createElement('a');
-    a.href = imgUrl;
-    a.download = `card_trono_${safeName}.jpg`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  });
+  closeModal('modal-collector-card');
+  const imgUrl = st.superCardImg || `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor || '09'}.jpg`;
+  triggerDirectImageDownloadOrShare(imgUrl, st.title, 'super_card_9x16');
 }
 
 // ============================================================================
-// MÓDULO 5: ÁLBUM DA FÉ (SEMPRE 4 IMAGENS INTEIRAS POR VEZ - ZERO CORTE!)
+// MÓDULO 5: ÁLBUM DA FÉ (22 SUPER CARDS 9:16: 10 GRÁTIS EM P&B ATÉ CONCLUIR + 12 VIP COM CADEADO)
 // ============================================================================
 function stepAlbum(delta) {
   playSoundClick();
-  const maxStart = Math.max(0, STORIES.length - 4);
+  const catalog = getAlbumSuperCardsCatalog();
+  const maxStart = Math.max(0, catalog.length - 4);
   let next = albumOffset + delta;
   if (next > maxStart) next = 0;
   if (next < 0) next = maxStart;
@@ -4880,15 +5056,15 @@ function stepAlbum(delta) {
 }
 
 function renderStickerAlbum() {
-  syncAlbumHousesWithCompletedGames();
   updateTopCounters();
   const grid = document.getElementById('album-grid');
   grid.innerHTML = '';
 
-  const visibleStories = STORIES.slice(albumOffset, albumOffset + 4);
+  const catalog = getAlbumSuperCardsCatalog();
+  const visibleStories = catalog.slice(albumOffset, albumOffset + 4);
   visibleStories.forEach(st => {
-    const isFreeStory = (st.id <= 4) || isVipUnlocked;
-    const hasSticker = unlockedStickers.has(st.id);
+    const isFreeStory = (st.week <= 10) || isVipUnlocked;
+    const hasSticker = isLessonSuperCardConquered(st.week);
 
     const card = document.createElement('div');
     card.className = 'story-card';
@@ -4897,36 +5073,45 @@ function renderStickerAlbum() {
     let imgFilter = 'none';
 
     if (!isFreeStory) {
-      imgFilter = 'grayscale(55%) brightness(0.55)';
+      // Lições 11 a 22 no modo Grátis -> Mostra Cadeado!
+      imgFilter = 'grayscale(70%) brightness(0.5)';
       overlayHtml = `
         <div class="lock-overlay">
           <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Exclusivo Assinante">
         </div>
       `;
     } else if (hasSticker) {
+      // Lição 100% Concluída -> Super Card 9:16 Colorido + Tiquezinho Verde!
+      imgFilter = 'none';
       overlayHtml = `
-        <div class="sticker-star-corner">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#fde047"><path d="M12 2L15.1 8.2L22 9.2L17 14.1L18.2 21L12 17.8L5.8 21L7 14.1L2 9.2L8.9 8.2L12 2Z"/></svg>
+        <div class="sticker-star-corner" style="background:linear-gradient(180deg,#00e676,#00c853); border:2px solid #ffffff;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
       `;
     } else {
-      imgFilter = 'grayscale(85%) brightness(0.45)';
+      // Lições 1 a 10 Grátis ainda não concluídas -> Sem cadeado, mas em Preto e Branco (P&B)!
+      imgFilter = 'grayscale(100%) brightness(0.55) contrast(1.08)';
+      overlayHtml = `
+        <div style="position:absolute; top:6px; left:6px; right:6px; background:rgba(15,23,42,0.86); border:1.5px solid #fde047; border-radius:999px; padding:2px 6px; font-size:9.5px; font-weight:800; color:#fde047; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.8);">
+          Conclua a Lição ${st.week} p/ Colorir
+        </div>
+      `;
     }
 
     card.innerHTML = `
       <div class="story-thumb-wrap">
         <div class="story-thumb-inner">
-          <img src="./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg" class="story-card-thumb"
+          <img src="${st.superCardImg}" class="story-card-thumb"
                style="filter: ${imgFilter};" alt="${st.title}">
           ${overlayHtml}
-          <div class="story-title-inside">${st.title}</div>
+          <div class="story-title-inside">Super Card ${st.week} • ${st.shortTitle}</div>
         </div>
       </div>
     `;
 
     card.onclick = () => {
       if (!isFreeStory) {
-        openSubscribeModal(st.title);
+        openSubscribeModal(`Liberar Super Card ${st.week}: ${st.shortTitle}`);
       } else {
         openCollectorCardModal(st);
       }
@@ -4953,6 +5138,9 @@ function onPaintDownloadOrPrintClick() {
 
 function downloadColoredPaintingPNG() {
   playSoundSnapGreen();
+  if (window.EBD_STATE && window.EBD_STATE.fromLessonGames && typeof window.markLessonGameCompleted === 'function') {
+    window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, 'lesson_paint');
+  }
   const canvas = document.getElementById('paint-canvas');
   const dataUrl = canvas.toDataURL('image/png');
   const a = document.createElement('a');
@@ -5080,7 +5268,7 @@ function renderSleepCorner() {
 }
 
 // Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
-document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=63';
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=64';
 if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
 if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
 if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');

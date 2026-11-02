@@ -4064,10 +4064,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 1 • A Ordem dos Dias da Criação",
     subtitle: "Toque nos 4 acontecimentos na ordem em que Deus criou (Gênesis 1):",
     cards: [
-      { id: "c1", order: 1, era: "1º Evento", title: "Haja Luz e Céu Iluminado! (Dia 1 e 2)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=63" },
-      { id: "c2", order: 2, era: "2º Evento", title: "Terra Seca, Árvores e Flores (Dia 3)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_103.jpg?v=63" },
-      { id: "c3", order: 3, era: "3º Evento", title: "Grandes Baleias no Mar e Aves (Dia 5)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_101.jpg?v=63" },
-      { id: "c4", order: 4, era: "4º Evento", title: "Animais Terrestres, Adão e Eva (Dia 6)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=63" }
+      { id: "c1", order: 1, era: "1º Evento", title: "Haja Luz e Céu Iluminado! (Dia 1 e 2)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=64" },
+      { id: "c2", order: 2, era: "2º Evento", title: "Terra Seca, Árvores e Flores (Dia 3)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_103.jpg?v=64" },
+      { id: "c3", order: 3, era: "3º Evento", title: "Grandes Baleias no Mar e Aves (Dia 5)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_101.jpg?v=64" },
+      { id: "c4", order: 4, era: "4º Evento", title: "Animais Terrestres, Adão e Eva (Dia 6)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=64" }
     ]
   },
   {
@@ -4075,10 +4075,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 2 • Do Jardim do Éden à Arca de Noé",
     subtitle: "Coloque em ordem cronológica os primeiros capítulos de Gênesis:",
     cards: [
-      { id: "c5", order: 1, era: "Gênesis 1", title: "Deus Cria a Luz no Princípio", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_105.jpg?v=63" },
-      { id: "c6", order: 2, era: "Gênesis 2", title: "O Lindo Jardim do Éden Florido", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_106.jpg?v=63" },
-      { id: "c7", order: 3, era: "Gênesis 2:19", title: "Adão e Eva com os Animais no Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=63" },
-      { id: "c8", order: 4, era: "Gênesis 6–9", title: "A Arca de Noé e o Arco-Íris da Aliança", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=63" }
+      { id: "c5", order: 1, era: "Gênesis 1", title: "Deus Cria a Luz no Princípio", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_105.jpg?v=64" },
+      { id: "c6", order: 2, era: "Gênesis 2", title: "O Lindo Jardim do Éden Florido", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_106.jpg?v=64" },
+      { id: "c7", order: 3, era: "Gênesis 2:19", title: "Adão e Eva com os Animais no Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=64" },
+      { id: "c8", order: 4, era: "Gênesis 6–9", title: "A Arca de Noé e o Arco-Íris da Aliança", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=64" }
     ]
   },
   {
@@ -4086,10 +4086,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 3 • As 4 Primeiras Eras da Bíblia",
     subtitle: "Ordene do acontecimento mais antigo para o mais recente:",
     cards: [
-      { id: "c9", order: 1, era: "1ª Era", title: "A Criação do Mundo no Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=63" },
-      { id: "c10", order: 2, era: "2ª Era", title: "A Grande Arca de Noé", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=63" },
-      { id: "c11", order: 3, era: "3ª Era", title: "Abraão Olha as Estrelas da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=63" },
-      { id: "c12", order: 4, era: "4ª Era", title: "Moisés e a Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=63" }
+      { id: "c9", order: 1, era: "1ª Era", title: "A Criação do Mundo no Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=64" },
+      { id: "c10", order: 2, era: "2ª Era", title: "A Grande Arca de Noé", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=64" },
+      { id: "c11", order: 3, era: "3ª Era", title: "Abraão Olha as Estrelas da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=64" },
+      { id: "c12", order: 4, era: "4ª Era", title: "Moisés e a Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=64" }
     ]
   },
   {
@@ -4097,10 +4097,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 4 • Os Patriarcas em Gênesis",
     subtitle: "Qual é a ordem correta da família da promessa em Gênesis?",
     cards: [
-      { id: "c13", order: 1, era: "Gênesis 12–15", title: "O Chamado de Abraão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=63" },
-      { id: "c14", order: 2, era: "Gênesis 28", title: "O Sonho da Escada de Jacó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=63" },
-      { id: "c15", order: 3, era: "Gênesis 37", title: "José Ganha a Túnica Colorida", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=63" },
-      { id: "c16", order: 4, era: "Gênesis 41–45", title: "José Governador do Egito Abraça os Irmãos", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_104.jpg?v=63" }
+      { id: "c13", order: 1, era: "Gênesis 12–15", title: "O Chamado de Abraão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=64" },
+      { id: "c14", order: 2, era: "Gênesis 28", title: "O Sonho da Escada de Jacó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=64" },
+      { id: "c15", order: 3, era: "Gênesis 37", title: "José Ganha a Túnica Colorida", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=64" },
+      { id: "c16", order: 4, era: "Gênesis 41–45", title: "José Governador do Egito Abraça os Irmãos", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_104.jpg?v=64" }
     ]
   },
   {
@@ -4108,10 +4108,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 5 • A Jornada de Moisés no Êxodo",
     subtitle: "Ordene a vida de Moisés desde bebê até a vitória no Mar Vermelho:",
     cards: [
-      { id: "c17", order: 1, era: "Êxodo 2", title: "Bebê Moisés no Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=63" },
-      { id: "c18", order: 2, era: "Êxodo 3", title: "Deus Fala com Moisés na Sarça Ardente", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=63" },
-      { id: "c19", order: 3, era: "Êxodo 14", title: "A Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=63" },
-      { id: "c20", order: 4, era: "Êxodo 15", title: "O Cântico de Vitória Após o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_109.jpg?v=63" }
+      { id: "c17", order: 1, era: "Êxodo 2", title: "Bebê Moisés no Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=64" },
+      { id: "c18", order: 2, era: "Êxodo 3", title: "Deus Fala com Moisés na Sarça Ardente", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=64" },
+      { id: "c19", order: 3, era: "Êxodo 14", title: "A Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=64" },
+      { id: "c20", order: 4, era: "Êxodo 15", title: "O Cântico de Vitória Após o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_109.jpg?v=64" }
     ]
   },
   {
@@ -4119,10 +4119,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 6 • Da Terra Prometida aos Juízes",
     subtitle: "Coloque em ordem as vitórias do povo de Israel:",
     cards: [
-      { id: "c21", order: 1, era: "Josué 3", title: "A Travessia do Rio Jordão com a Arca", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_110.jpg?v=63" },
-      { id: "c22", order: 2, era: "Josué 6:4", title: "As Trombetas Diante de Jericó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=63" },
-      { id: "c23", order: 3, era: "Josué 6:20", title: "As Muralhas de Jericó Caem", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=63" },
-      { id: "c24", order: 4, era: "Rute 1–4", title: "A Fidelidade de Rute em Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=63" }
+      { id: "c21", order: 1, era: "Josué 3", title: "A Travessia do Rio Jordão com a Arca", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_110.jpg?v=64" },
+      { id: "c22", order: 2, era: "Josué 6:4", title: "As Trombetas Diante de Jericó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=64" },
+      { id: "c23", order: 3, era: "Josué 6:20", title: "As Muralhas de Jericó Caem", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=64" },
+      { id: "c24", order: 4, era: "Rute 1–4", title: "A Fidelidade de Rute em Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=64" }
     ]
   },
   {
@@ -4130,10 +4130,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 7 • A História do Rei Davi e Salomão",
     subtitle: "Ordene a época dos Reis de Israel:",
     cards: [
-      { id: "c25", order: 1, era: "1 Samuel 16:1", title: "Davi Pastorzinho Tocando Harpa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=63" },
-      { id: "c26", order: 2, era: "1 Samuel 16:13", title: "O Profeta Samuel Unge o Jovem Davi", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=63" },
-      { id: "c27", order: 3, era: "1 Samuel 17", title: "A Coragem de Davi Diante de Golias", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=63" },
-      { id: "c28", order: 4, era: "1 Reis 3", title: "O Sábio Rei Salomão em Jerusalém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=63" }
+      { id: "c25", order: 1, era: "1 Samuel 16:1", title: "Davi Pastorzinho Tocando Harpa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=64" },
+      { id: "c26", order: 2, era: "1 Samuel 16:13", title: "O Profeta Samuel Unge o Jovem Davi", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=64" },
+      { id: "c27", order: 3, era: "1 Samuel 17", title: "A Coragem de Davi Diante de Golias", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=64" },
+      { id: "c28", order: 4, era: "1 Reis 3", title: "O Sábio Rei Salomão em Jerusalém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=64" }
     ]
   },
   {
@@ -4141,10 +4141,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 8 • O Tempo dos Grandes Profetas",
     subtitle: "Ordene os acontecimentos dos heróis e profetas até Daniel:",
     cards: [
-      { id: "c29", order: 1, era: "Juízes 16", title: "A Força e a Fé na Época dos Juízes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_17.jpg?v=63" },
-      { id: "c30", order: 2, era: "2 Reis 2", title: "A Carruagem de Fogo do Profeta Elias", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=63" },
-      { id: "c31", order: 3, era: "Jonas 1–3", title: "Jonas e a Grande Baleia no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=63" },
-      { id: "c32", order: 4, era: "Daniel 6", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=63" }
+      { id: "c29", order: 1, era: "Juízes 16", title: "A Força e a Fé na Época dos Juízes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_17.jpg?v=64" },
+      { id: "c30", order: 2, era: "2 Reis 2", title: "A Carruagem de Fogo do Profeta Elias", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=64" },
+      { id: "c31", order: 3, era: "Jonas 1–3", title: "Jonas e a Grande Baleia no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=64" },
+      { id: "c32", order: 4, era: "Daniel 6", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=64" }
     ]
   },
   {
@@ -4152,10 +4152,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 9 • A Vida de Jesus nos Evangelhos",
     subtitle: "Coloque em ordem a história de Jesus no Novo Testamento:",
     cards: [
-      { id: "c33", order: 1, era: "Lucas 2", title: "O Nascimento de Jesus em Belém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=63" },
-      { id: "c34", order: 2, era: "Marcos 4", title: "Jesus Acalma a Tempestade no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg?v=63" },
-      { id: "c35", order: 3, era: "Marcos 10", title: "Jesus Abençoa as Criancinhas", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=63" },
-      { id: "c36", order: 4, era: "João 6", title: "Jesus Multiplica os Pães e Peixes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_125.jpg?v=63" }
+      { id: "c33", order: 1, era: "Lucas 2", title: "O Nascimento de Jesus em Belém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=64" },
+      { id: "c34", order: 2, era: "Marcos 4", title: "Jesus Acalma a Tempestade no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg?v=64" },
+      { id: "c35", order: 3, era: "Marcos 10", title: "Jesus Abençoa as Criancinhas", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=64" },
+      { id: "c36", order: 4, era: "João 6", title: "Jesus Multiplica os Pães e Peixes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_125.jpg?v=64" }
     ]
   },
   {
@@ -4163,10 +4163,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 10 • Grande Linha do Tempo (Gênesis a Atos)",
     subtitle: "Ordene a Bíblia inteira do Princípio até a Missão da Igreja:",
     cards: [
-      { id: "c37", order: 1, era: "Gênesis", title: "A Criação e o Jardim do Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=63" },
-      { id: "c38", order: 2, era: "Êxodo a Reis", title: "Moisés e a Libertação de Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=63" },
-      { id: "c39", order: 3, era: "Evangelhos", title: "Jesus, o Salvador Prometido", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=63" },
-      { id: "c40", order: 4, era: "Atos 13–28", title: "As Viagens Missionárias de Paulo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=63" }
+      { id: "c37", order: 1, era: "Gênesis", title: "A Criação e o Jardim do Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=64" },
+      { id: "c38", order: 2, era: "Êxodo a Reis", title: "Moisés e a Libertação de Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=64" },
+      { id: "c39", order: 3, era: "Evangelhos", title: "Jesus, o Salvador Prometido", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=64" },
+      { id: "c40", order: 4, era: "Atos 13–28", title: "As Viagens Missionárias de Paulo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=64" }
     ]
   },
   // FASES 11 A 20: Desbloqueadas com as Semanas 3 a 12 da Lição
@@ -4175,10 +4175,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 11 • Semana 3: A Fé de Abraão",
     subtitle: "Ordene a caminhada de Abraão em Gênesis:",
     cards: [
-      { id: "c41", order: 1, era: "1º Passo", title: "Deus Chama Abraão para Sair de Ur", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_113.jpg?v=63" },
-      { id: "c42", order: 2, era: "2º Passo", title: "Abraão Constrói um Altar de Gratidão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_114.jpg?v=63" },
-      { id: "c43", order: 3, era: "3º Passo", title: "Abraão Conta as Estrelas do Céu", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=63" },
-      { id: "c44", order: 4, era: "4º Passo", title: "Nasce Isaque, o Filho da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_115.jpg?v=63" }
+      { id: "c41", order: 1, era: "1º Passo", title: "Deus Chama Abraão para Sair de Ur", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_113.jpg?v=64" },
+      { id: "c42", order: 2, era: "2º Passo", title: "Abraão Constrói um Altar de Gratidão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_114.jpg?v=64" },
+      { id: "c43", order: 3, era: "3º Passo", title: "Abraão Conta as Estrelas do Céu", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=64" },
+      { id: "c44", order: 4, era: "4º Passo", title: "Nasce Isaque, o Filho da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_115.jpg?v=64" }
     ]
   },
   {
@@ -4186,10 +4186,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 12 • Semana 4: A Jornada de José",
     subtitle: "Ordene as etapas da vida de José do Egito:",
     cards: [
-      { id: "c45", order: 1, era: "1º Passo", title: "Jacó Dá a Túnica Colorida a José", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=63" },
-      { id: "c46", order: 2, era: "2º Passo", title: "José Trabalha com Fidelidade no Egito", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_116.jpg?v=63" },
-      { id: "c47", order: 3, era: "3º Passo", title: "José Interpreta o Sonho de Faraó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_117.jpg?v=63" },
-      { id: "c48", order: 4, era: "4º Passo", title: "José Perdoa e Abraça Sua Família", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_104.jpg?v=63" }
+      { id: "c45", order: 1, era: "1º Passo", title: "Jacó Dá a Túnica Colorida a José", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=64" },
+      { id: "c46", order: 2, era: "2º Passo", title: "José Trabalha com Fidelidade no Egito", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_116.jpg?v=64" },
+      { id: "c47", order: 3, era: "3º Passo", title: "José Interpreta o Sonho de Faraó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_117.jpg?v=64" },
+      { id: "c48", order: 4, era: "4º Passo", title: "José Perdoa e Abraça Sua Família", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_104.jpg?v=64" }
     ]
   },
   {
@@ -4197,10 +4197,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 13 • Semana 5: Moisés e o Libertador",
     subtitle: "Ordene a história da libertação do Egito:",
     cards: [
-      { id: "c49", order: 1, era: "1º Passo", title: "Miriam Vigia o Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=63" },
-      { id: "c50", order: 2, era: "2º Passo", title: "A Sarça Ardente no Monte Horebe", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=63" },
-      { id: "c51", order: 3, era: "3º Passo", title: "Deus Abre o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=63" },
-      { id: "c52", order: 4, era: "4º Passo", title: "O Cântico de Vitória na Outra Margem", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_109.jpg?v=63" }
+      { id: "c49", order: 1, era: "1º Passo", title: "Miriam Vigia o Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=64" },
+      { id: "c50", order: 2, era: "2º Passo", title: "A Sarça Ardente no Monte Horebe", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=64" },
+      { id: "c51", order: 3, era: "3º Passo", title: "Deus Abre o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=64" },
+      { id: "c52", order: 4, era: "4º Passo", title: "O Cântico de Vitória na Outra Margem", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_109.jpg?v=64" }
     ]
   },
   {
@@ -4208,10 +4208,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 14 • Semana 6: Josué em Jericó",
     subtitle: "Ordene a conquista de Jericó em Josué 6:",
     cards: [
-      { id: "c53", order: 1, era: "1º Passo", title: "Deus Diz a Josué: 'Sê Forte e Corajoso'", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_118.jpg?v=63" },
-      { id: "c54", order: 2, era: "2º Passo", title: "A Travessia do Rio Jordão com a Arca", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_110.jpg?v=63" },
-      { id: "c55", order: 3, era: "3º Passo", title: "Sete Voltas e o Toque das Trombetas", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=63" },
-      { id: "c56", order: 4, era: "4º Passo", title: "As Muralhas Caem pelo Poder de Deus", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=63" }
+      { id: "c53", order: 1, era: "1º Passo", title: "Deus Diz a Josué: 'Sê Forte e Corajoso'", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_118.jpg?v=64" },
+      { id: "c54", order: 2, era: "2º Passo", title: "A Travessia do Rio Jordão com a Arca", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_110.jpg?v=64" },
+      { id: "c55", order: 3, era: "3º Passo", title: "Sete Voltas e o Toque das Trombetas", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=64" },
+      { id: "c56", order: 4, era: "4º Passo", title: "As Muralhas Caem pelo Poder de Deus", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=64" }
     ]
   },
   {
@@ -4219,10 +4219,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 15 • Semana 7: De Josué ao Jovem Davi",
     subtitle: "Ordene os acontecimentos da Terra Prometida:",
     cards: [
-      { id: "c57", order: 1, era: "Josué 4", title: "As Doze Pedras do Memorial no Jordão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_119.jpg?v=63" },
-      { id: "c58", order: 2, era: "Josué 6", title: "As Trombetas da Vitória em Jericó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=63" },
-      { id: "c59", order: 3, era: "1 Samuel 16:11", title: "Davi Cuida das Ovelhas no Campo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=63" },
-      { id: "c60", order: 4, era: "1 Samuel 16:13", title: "Samuel Unge o Jovem Davi em Belém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=63" }
+      { id: "c57", order: 1, era: "Josué 4", title: "As Doze Pedras do Memorial no Jordão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_119.jpg?v=64" },
+      { id: "c58", order: 2, era: "Josué 6", title: "As Trombetas da Vitória em Jericó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=64" },
+      { id: "c59", order: 3, era: "1 Samuel 16:11", title: "Davi Cuida das Ovelhas no Campo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=64" },
+      { id: "c60", order: 4, era: "1 Samuel 16:13", title: "Samuel Unge o Jovem Davi em Belém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=64" }
     ]
   },
   {
@@ -4230,10 +4230,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 16 • Semana 8: Davi e Salomão",
     subtitle: "Ordene o Reino de Israel:",
     cards: [
-      { id: "c61", order: 1, era: "1º Passo", title: "Davi Cuida das Ovelhas e Toca Harpa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=63" },
-      { id: "c62", order: 2, era: "2º Passo", title: "Davi Escolhe Cinco Pedrinhas no Riacho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_120.jpg?v=63" },
-      { id: "c63", order: 3, era: "3º Passo", title: "Davi Vence Golias em Nome do Senhor", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=63" },
-      { id: "c64", order: 4, era: "4º Passo", title: "O Sábio Rei Salomão no Trono de Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=63" }
+      { id: "c61", order: 1, era: "1º Passo", title: "Davi Cuida das Ovelhas e Toca Harpa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=64" },
+      { id: "c62", order: 2, era: "2º Passo", title: "Davi Escolhe Cinco Pedrinhas no Riacho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_120.jpg?v=64" },
+      { id: "c63", order: 3, era: "3º Passo", title: "Davi Vence Golias em Nome do Senhor", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=64" },
+      { id: "c64", order: 4, era: "4º Passo", title: "O Sábio Rei Salomão no Trono de Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=64" }
     ]
   },
   {
@@ -4241,10 +4241,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 17 • Semana 9: Salomão, Elias e Jonas",
     subtitle: "Ordene a época dos reis e profetas:",
     cards: [
-      { id: "c65", order: 1, era: "1º Passo", title: "Salomão Governa com Sabedoria", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=63" },
-      { id: "c66", order: 2, era: "2º Passo", title: "Elias Sobe na Carruagem de Fogo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=63" },
-      { id: "c67", order: 3, era: "3º Passo", title: "Jonas e a Grande Baleia no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=63" },
-      { id: "c68", order: 4, era: "4º Passo", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=63" }
+      { id: "c65", order: 1, era: "1º Passo", title: "Salomão Governa com Sabedoria", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=64" },
+      { id: "c66", order: 2, era: "2º Passo", title: "Elias Sobe na Carruagem de Fogo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=64" },
+      { id: "c67", order: 3, era: "3º Passo", title: "Jonas e a Grande Baleia no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=64" },
+      { id: "c68", order: 4, era: "4º Passo", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=64" }
     ]
   },
   {
@@ -4252,10 +4252,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 18 • Semana 10: Daniel e a Rainha Ester",
     subtitle: "Ordene a fidelidade do povo de Deus:",
     cards: [
-      { id: "c69", order: 1, era: "Daniel 6:10", title: "Daniel Ora Fielmente na Janela Aberta", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_121.jpg?v=63" },
-      { id: "c70", order: 2, era: "Daniel 6:22", title: "O Anjo Fecha a Boca dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=63" },
-      { id: "c71", order: 3, era: "Daniel 6:23", title: "Daniel Sai Ileso da Cova ao Amanhecer", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_122.jpg?v=63" },
-      { id: "c72", order: 4, era: "Ester 4–8", title: "A Rainha Ester Salva o Povo de Deus", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=63" }
+      { id: "c69", order: 1, era: "Daniel 6:10", title: "Daniel Ora Fielmente na Janela Aberta", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_121.jpg?v=64" },
+      { id: "c70", order: 2, era: "Daniel 6:22", title: "O Anjo Fecha a Boca dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=64" },
+      { id: "c71", order: 3, era: "Daniel 6:23", title: "Daniel Sai Ileso da Cova ao Amanhecer", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_122.jpg?v=64" },
+      { id: "c72", order: 4, era: "Ester 4–8", title: "A Rainha Ester Salva o Povo de Deus", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=64" }
     ]
   },
   {
@@ -4263,10 +4263,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 19 • Semana 11: Jesus, o Salvador",
     subtitle: "Ordene o ministério de Jesus nos Evangelhos:",
     cards: [
-      { id: "c73", order: 1, era: "Lucas 1", title: "O Anjo Gabriel Anuncia a Maria", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_123.jpg?v=63" },
-      { id: "c74", order: 2, era: "Lucas 2", title: "Jesus Nasce em Belém sob a Estrela", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=63" },
-      { id: "c75", order: 3, era: "Marcos 4", title: "Jesus Acalma o Vento e o Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg?v=63" },
-      { id: "c76", order: 4, era: "Marcos 10", title: "Jesus Abraça e Abençoa as Crianças", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=63" }
+      { id: "c73", order: 1, era: "Lucas 1", title: "O Anjo Gabriel Anuncia a Maria", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_123.jpg?v=64" },
+      { id: "c74", order: 2, era: "Lucas 2", title: "Jesus Nasce em Belém sob a Estrela", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=64" },
+      { id: "c75", order: 3, era: "Marcos 4", title: "Jesus Acalma o Vento e o Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg?v=64" },
+      { id: "c76", order: 4, era: "Marcos 10", title: "Jesus Abraça e Abençoa as Crianças", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=64" }
     ]
   },
   {
@@ -4274,10 +4274,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 20 • Semana 12: Os Milagres e a Igreja",
     subtitle: "Ordene a missão no Novo Testamento:",
     cards: [
-      { id: "c77", order: 1, era: "João 6", title: "O Menino Entrega os Cinco Pães e Dois Peixes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_124.jpg?v=63" },
-      { id: "c78", order: 2, era: "Mateus 28", title: "Jesus Ressuscita Glorioso no Jardim", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_126.jpg?v=63" },
-      { id: "c79", order: 3, era: "Atos 13–28", title: "Paulo Viaja de Navio Levando o Evangelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=63" },
-      { id: "c80", order: 4, era: "Trono da Promessa", title: "A Família Aprendendo a Palavra com o Vovô", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_09.jpg?v=63" }
+      { id: "c77", order: 1, era: "João 6", title: "O Menino Entrega os Cinco Pães e Dois Peixes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_124.jpg?v=64" },
+      { id: "c78", order: 2, era: "Mateus 28", title: "Jesus Ressuscita Glorioso no Jardim", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_126.jpg?v=64" },
+      { id: "c79", order: 3, era: "Atos 13–28", title: "Paulo Viaja de Navio Levando o Evangelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=64" },
+      { id: "c80", order: 4, era: "Trono da Promessa", title: "A Família Aprendendo a Palavra com o Vovô", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_09.jpg?v=64" }
     ]
   }
 ];
@@ -4906,6 +4906,9 @@ window.toggleVovoStoryNarration = function() {
     if (playBtnEl) playBtnEl.innerHTML = "Ouvir a História";
     if (imgEl) imgEl.classList.remove("vovo-video-playing-img");
     if (barFillEl) barFillEl.style.width = "100%";
+    if (typeof window.markLessonModuleDone === "function" && lesson && lesson.week) {
+      window.markLessonModuleDone(lesson.week, "vovo");
+    }
   };
 
   audio.onerror = function() {
@@ -4940,16 +4943,17 @@ window.stopVovoStoryNarration = function() {
   if (timeLabelEl) timeLabelEl.textContent = "0:00";
 };
 
-// Abre qualquer ilustração de Texto & Cronologia ou História do Vovô em Tela Cheia com opção de Baixar / WhatsApp!
+// Abre qualquer ilustração 16:9 de Cronologia Bíblica ou Devocional em Tela Cheia (formato 16:9 horizontal) com opção de Baixar 16:9 / WhatsApp!
 window.openLessonImageFullModal = function(imgSrc, titleText) {
   if (typeof window.ebdClick === "function") window.ebdClick();
-  const m = String(imgSrc || "").match(/quebra_cabeca_(\d+)\.jpg/);
-  const seqColor = m ? m[1] : "09";
   const lesson = window.getCurrentLessonObj();
+  const wk = lesson ? lesson.week : 1;
   const fakeStory = {
-    id: lesson ? lesson.week : 1,
-    seqColor: seqColor,
-    title: titleText || (lesson ? lesson.title : "Ilustração da Lição")
+    id: wk,
+    week: wk,
+    is16x9Download: true,
+    customImgSrc: imgSrc,
+    title: titleText || (lesson ? lesson.title : "Ilustração 16:9 da Lição")
   };
   if (typeof selectedCollectorStory !== "undefined") {
     selectedCollectorStory = fakeStory;
@@ -4957,12 +4961,77 @@ window.openLessonImageFullModal = function(imgSrc, titleText) {
   const imgEl = document.getElementById("collector-card-img");
   const titleEl = document.getElementById("collector-card-title");
   const modalEl = document.getElementById("modal-collector-card");
+  const btnEl = modalEl ? modalEl.querySelector(".btn-gold") : null;
   if (imgEl) {
     imgEl.src = imgSrc;
-    imgEl.style.objectFit = "contain";
+    imgEl.style.width = "100%";
+    imgEl.style.aspectRatio = "16 / 9";
+    imgEl.style.objectFit = "cover";
+    imgEl.style.maxHeight = "38vh";
   }
   if (titleEl) titleEl.textContent = fakeStory.title;
+  if (btnEl) btnEl.textContent = "Baixar Imagem (16:9)";
   if (modalEl) modalEl.classList.add("active");
+};
+
+// Converte e baixa qualquer imagem da lição sempre em proporção horizontal 16:9 (1280x720)
+window.downloadLesson16x9Image = async function(imgSrc, titleText) {
+  if (typeof window.ebdClick === "function") window.ebdClick();
+  const lesson = window.getCurrentLessonObj();
+  const wk = lesson ? lesson.week : 1;
+  const fileName = `Trono_da_Promessa_Licao_${String(wk).padStart(2, "0")}_16x9.jpg`;
+  try {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    await new Promise((resolve, reject) => {
+      img.onload = resolve;
+      img.onerror = reject;
+      img.src = imgSrc;
+    });
+    const canvas = document.createElement("canvas");
+    canvas.width = 1280;
+    canvas.height = 720;
+    const ctx = canvas.getContext("2d");
+    const targetRatio = 1280 / 720;
+    const srcRatio = img.width / img.height;
+    let sx = 0, sy = 0, sw = img.width, sh = img.height;
+    if (srcRatio > targetRatio) {
+      sw = img.height * targetRatio;
+      sx = (img.width - sw) / 2;
+    } else if (srcRatio < targetRatio) {
+      sh = img.width / targetRatio;
+      sy = (img.height - sh) * 0.28;
+    }
+    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, 1280, 720);
+    const blob = await new Promise(res => canvas.toBlob(res, "image/jpeg", 0.92));
+    const file = new File([blob], fileName, { type: "image/jpeg" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        title: titleText || `Trono da Promessa - Lição ${wk} (16:9)`,
+        text: `${titleText || "Ilustração 16:9 da Lição"} • Trono da Promessa`,
+        files: [file]
+      });
+      if (typeof window.ebdConfetti === "function") window.ebdConfetti();
+      return;
+    }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
+    if (typeof window.ebdConfetti === "function") window.ebdConfetti();
+  } catch (err) {
+    const a = document.createElement("a");
+    a.href = imgSrc;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    if (typeof window.ebdConfetti === "function") window.ebdConfetti();
+  }
 };
 
 // BOTÃO 3 DA LIÇÃO: SEMENTINHA DA LIÇÃO (Abre somente a Sementinha daquela semana e volta para a Lição)
@@ -5100,7 +5169,7 @@ window.openDevotionalScreen = function() {
       const key = `w${lesson.week}_d${d.day}`;
       const isDone = !!checkedMap[key];
       return `<div class="devotional-day-card ${isDone ? "done" : ""}" onclick="toggleDevotionalDay('${key}')">
-        <div class="devotional-day-check">${isDone ? "" : "⬜"}</div>
+        <div class="devotional-day-check">${isDone ? "" : ""}</div>
         <div class="devotional-day-info">
           <h4>${d.title}</h4>
           <p>${d.text}</p>
@@ -5968,6 +6037,145 @@ window.enableHorizontalDragScroll = function(el) {
   });
 };
 
+// ============================================================================
+// 8.4 GERENCIADOR DOS 6 TIQUEZINHOS VERDES DA LIÇÃO, 8 JOGOS E 7 DIAS DO DEVOCIONAL
+// ============================================================================
+window.ALL_8_LESSON_GAME_KEYS = [
+  "chronology",
+  "verse_builder",
+  "word_search",
+  "who_am_i",
+  "true_or_myth",
+  "secret_word",
+  "lesson_puzzle",
+  "lesson_paint"
+];
+
+window.ALL_6_LESSON_MODULE_KEYS = [
+  "texto",
+  "vovo",
+  "sementinha",
+  "fe_acao",
+  "jogos_licao",
+  "devocional"
+];
+
+window.getLessonProgressMap = function() {
+  try {
+    return JSON.parse(localStorage.getItem("trono_ebd_lesson_prog_v1") || "{}");
+  } catch (e) {
+    return {};
+  }
+};
+
+window.saveLessonProgressMap = function(map) {
+  try {
+    localStorage.setItem("trono_ebd_lesson_prog_v1", JSON.stringify(map || {}));
+  } catch (e) {}
+};
+
+window.getLessonProgress = function(weekNum) {
+  const wk = Number(weekNum) || 1;
+  const map = window.getLessonProgressMap();
+  const key = "w" + wk;
+  if (!map[key]) {
+    map[key] = { modules: {}, games: {}, devDays: {} };
+  }
+  const entry = map[key];
+  if (!entry.modules) entry.modules = {};
+  if (!entry.games) entry.games = {};
+  if (!entry.devDays) entry.devDays = {};
+
+  // Sincroniza registros anteriores caso existam
+  try {
+    const seeds = JSON.parse(localStorage.getItem("trono_ebd_seeds_done") || "[]");
+    if (seeds.includes(wk)) entry.modules.sementinha = true;
+    const actions = JSON.parse(localStorage.getItem("trono_ebd_actions_done") || "[]");
+    if (actions.includes(wk)) entry.modules.fe_acao = true;
+    const devChecks = JSON.parse(localStorage.getItem("trono_ebd_devotional_checks") || "{}");
+    let all7 = true;
+    for (let d = 1; d <= 7; d++) {
+      if (devChecks[`w${wk}_d${d}`]) {
+        entry.devDays[d] = true;
+      } else {
+        all7 = false;
+      }
+    }
+    if (all7) entry.modules.devocional = true;
+    const all8Games = window.ALL_8_LESSON_GAME_KEYS.every(gk => !!entry.games[gk]);
+    if (all8Games) entry.modules.jogos_licao = true;
+  } catch (e) {}
+
+  return entry;
+};
+
+window.checkAndSyncFullLessonCompletion = function(weekNum) {
+  const wk = Number(weekNum) || 1;
+  const prog = window.getLessonProgress(wk);
+  const all6Done = window.ALL_6_LESSON_MODULE_KEYS.every(mk => !!prog.modules[mk]);
+  if (!all6Done) return false;
+
+  const completed = JSON.parse(localStorage.getItem("trono_ebd_completed_weeks") || "[]");
+  const isFirstTimeComplete = !completed.includes(wk);
+  if (isFirstTimeComplete) {
+    completed.push(wk);
+    localStorage.setItem("trono_ebd_completed_weeks", JSON.stringify(completed));
+  }
+
+  try {
+    if (typeof unlockedStickers !== "undefined" && Array.isArray(unlockedStickers)) {
+      if (!unlockedStickers.includes(wk)) {
+        unlockedStickers.push(wk);
+        localStorage.setItem("trono_stickers_v2", JSON.stringify(unlockedStickers));
+      }
+    }
+    if (typeof updateTopCounters === "function") updateTopCounters();
+  } catch (e) {}
+
+  if (isFirstTimeComplete) {
+    if (typeof window.ebdConfetti === "function") window.ebdConfetti();
+    if (typeof showProgressToast === "function") {
+      showProgressToast(`Parabéns! Você completou os 6 passos da Lição ${wk} e liberou a Casinha ${wk} e o Super Card 9:16 no Álbum da Fé!`, 5000);
+    }
+  }
+  return true;
+};
+
+window.markLessonModuleDone = function(weekNum, modKey) {
+  const wk = Number(weekNum) || (window.EBD_STATE && window.EBD_STATE.currentWeek) || 1;
+  const map = window.getLessonProgressMap();
+  const key = "w" + wk;
+  if (!map[key]) map[key] = { modules: {}, games: {}, devDays: {} };
+  if (!map[key].modules) map[key].modules = {};
+  map[key].modules[modKey] = true;
+  window.saveLessonProgressMap(map);
+  window.checkAndSyncFullLessonCompletion(wk);
+
+  const cardEl = document.getElementById(`lesson-hub-card-${modKey}`);
+  if (cardEl && (window.EBD_STATE.currentWeek || 1) === wk) {
+    cardEl.classList.add("hub-mod-done");
+  }
+};
+
+window.markLessonGameCompleted = function(weekNum, gameKey) {
+  const wk = Number(weekNum) || (window.EBD_STATE && window.EBD_STATE.currentWeek) || 1;
+  const map = window.getLessonProgressMap();
+  const key = "w" + wk;
+  if (!map[key]) map[key] = { modules: {}, games: {}, devDays: {} };
+  if (!map[key].games) map[key].games = {};
+  if (!map[key].modules) map[key].modules = {};
+  map[key].games[gameKey] = true;
+
+  const all8Done = window.ALL_8_LESSON_GAME_KEYS.every(gk => !!map[key].games[gk]);
+  if (all8Done) {
+    map[key].modules.jogos_licao = true;
+  }
+  window.saveLessonProgressMap(map);
+  if (all8Done) {
+    window.checkAndSyncFullLessonCompletion(wk);
+  }
+};
+
 window.renderLessonHubScreen = function() {
   const lesson = window.getCurrentLessonObj();
   if (!lesson) return;
@@ -5983,6 +6191,19 @@ window.renderLessonHubScreen = function() {
     curTitleEl.textContent = `Lição ${lesson.week}: ${lesson.title}`;
   }
 
+  // Atualiza os 6 Tiquezinhos Verdes nos 6 botões da Lição da Semana (#screen-lesson-hub)
+  const prog = window.getLessonProgress(lesson.week);
+  window.ALL_6_LESSON_MODULE_KEYS.forEach(mk => {
+    const cardEl = document.getElementById(`lesson-hub-card-${mk}`);
+    if (cardEl) {
+      if (prog.modules && prog.modules[mk]) {
+        cardEl.classList.add("hub-mod-done");
+      } else {
+        cardEl.classList.remove("hub-mod-done");
+      }
+    }
+  });
+
   // Carrossel Deslizante no Bloco Roxo (#lesson-weeks-trail):
   // Mostra todas as 22 lições do MESMO TAMANHO! Lições 1 a 10 liberadas; Lições 11 a 22 com cadeadinho e bloqueadas!
   const trailEl = document.getElementById("lesson-weeks-trail");
@@ -5992,7 +6213,9 @@ window.renderLessonHubScreen = function() {
 
     window.EBD_LESSONS_CURRICULUM.forEach(item => {
       const unlocked = window.isLessonWeekUnlocked(item.week);
-      const isDone = completed.includes(item.week);
+      const itemProg = window.getLessonProgress(item.week);
+      const all6 = window.ALL_6_LESSON_MODULE_KEYS.every(mk => !!(itemProg.modules && itemProg.modules[mk]));
+      const isDone = completed.includes(item.week) || all6;
       const isCur = item.week === lesson.week;
       if (unlocked) {
         html += `<button type="button" id="lesson-pill-${item.week}" class="lesson-scroll-pill ${isDone ? "done" : ""} ${isCur ? "current" : ""}" onclick="selectLessonWeek(${item.week})" title="Lição ${item.week}: ${item.title}">Lição ${item.week}</button>`;
@@ -6040,7 +6263,7 @@ window.changeLessonAgeBracket = function(bracket) {
 };
 
 // ============================================================================
-// 9. OS 6 MÓDULOS DA LIÇÃO DA SEMANA (SEM REPETIR BOTÕES 3-5 / 6-8!)
+// 9. OS 6 MÓDULOS DA LIÇÃO DA SEMANA (COM TIQUEZINHOS VERDES E DOWNLOAD 16:9)
 // ============================================================================
 window.openLessonModule = function(modType) {
   window.ebdClick();
@@ -6066,24 +6289,23 @@ window.openLessonModule = function(modType) {
   const titlesMap = {
     texto: `Cronologia Bíblica • Lição ${lesson.week}`,
     vovo: `História do Vovô • Lição ${lesson.week}`,
-    sementinha: `Sementinha no Coração • Lição ${lesson.week}`,
+    sementinha: `Sementinha • Lição ${lesson.week}`,
     fe_acao: `Fé em Ação • Lição ${lesson.week}`,
     jogos_licao: `Jogos da Lição ${lesson.week}`,
     devocional: `Devocional • Lição ${lesson.week}`
   };
-  if (headerBar) {
+  if (headerBar && modType !== "devocional") {
     headerBar.innerHTML = `<span style="font-size:12.5px; font-weight:800; color:#fde047; padding:2px 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${titlesMap[modType] || lesson.title}</span>`;
   }
 
-  // 1) CRONOLOGIA BÍBLICA (Antigo "Texto & Cronologia"):
-  // Sem texto de história, sem botões 3-5/6-8, com imagem ampliável e Cronologia Simples (Antes / Agora / Depois)
   const modBackBtn = document.querySelector("#screen-lesson-module .module-header .btn-nav-circle");
   if (modBackBtn) {
     modBackBtn.setAttribute("onclick", "backFromLessonModule()");
   }
 
-  // 1) LINHA DO TEMPO CONTÍNUA DA CRONOLOGIA BÍBLICA (VISUAL LIMPO, UNIFICADO E COM IMAGEM DO NASCIMENTO DE JESUS NO MARCO ZERO):
+  // 1) LINHA DO TEMPO CONTÍNUA DA CRONOLOGIA BÍBLICA (Marca tiquezinho verde assim que entra!)
   if (modType === "texto") {
+    window.markLessonModuleDone(lesson.week, "texto");
     const safeTitle = lesson.title.replace(/'/g, "");
     const mapData = window.getChronologyVisualMapForWeek(lesson.week);
     const allStops = mapData.allStops;
@@ -6096,15 +6318,15 @@ window.openLessonModule = function(modType) {
       const hasNext = (idx < allStops.length - 1);
       const unlocked = window.isLessonWeekUnlocked(st.week);
 
-      // Marco Zero com a Imagem do Nascimento de Jesus (substituindo o antigo bloco amarelo de texto!)
+      // Marco Zero com a Imagem do Nascimento de Jesus
       const zeroMilestoneCard = (st.eraType === "zero") ? `
-        <div onclick="openLessonImageFullModal('./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=63', 'Marco Zero (Ano 0): O Nascimento de Jesus')" style="cursor:pointer; margin:4px 0 6px; padding:8px; border-radius:16px; background:linear-gradient(180deg, rgba(88,28,135,0.95), rgba(15,23,42,0.98)); border:2.5px solid #fde047; box-shadow:0 6px 16px rgba(0,0,0,0.8);">
+        <div onclick="openLessonImageFullModal('./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=64', 'Marco Zero (Ano 0): O Nascimento de Jesus')" style="cursor:pointer; margin:4px 0 6px; padding:8px; border-radius:16px; background:linear-gradient(180deg, rgba(88,28,135,0.95), rgba(15,23,42,0.98)); border:2.5px solid #fde047; box-shadow:0 6px 16px rgba(0,0,0,0.8);">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:5px;">
             <span style="background:linear-gradient(180deg,#fde047,#f59e0b); color:#0f172a; font-size:10.5px; font-weight:900; padding:2px 9px; border-radius:999px;">MARCO ZERO • ANO 0</span>
             <span style="font-size:11px; font-weight:900; color:#fde047;">Nascimento de Jesus</span>
           </div>
           <div style="width:100%; aspect-ratio:16/9; border-radius:11px; overflow:hidden; border:2px solid #fde047; background:#050b1a;">
-            <img src="./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=63" alt="Nascimento de Jesus - Marco Zero" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <img src="./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=64" alt="Nascimento de Jesus - Marco Zero" style="width:100%; height:100%; object-fit:cover; display:block;">
           </div>
         </div>
         <div style="display:flex; flex-direction:column; align-items:center; margin:1px 0;">
@@ -6136,8 +6358,11 @@ window.openLessonModule = function(modType) {
               <img src="${st.img}" alt="${st.shortTitle}" style="width:100%; height:100%; object-fit:cover; display:block;">
             </div>
 
-            <div style="font-size:15px; font-weight:900; color:#fde047; text-align:center; line-height:1.18;">
-              ${st.shortTitle}
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+              <div style="font-size:14.5px; font-weight:900; color:#fde047; text-align:left; line-height:1.18;">
+                ${st.shortTitle}
+              </div>
+              <button type="button" class="btn-tool-3d" style="padding:4px 10px; font-size:10.5px; font-weight:900; white-space:nowrap;" onclick="downloadLesson16x9Image('${st.img}', 'Lição ${lesson.week}: ${safeTitle}')">Baixar 16:9</button>
             </div>
           </div>
           ${connectorHtml}
@@ -6196,9 +6421,13 @@ window.openLessonModule = function(modType) {
     }, 150);
   }
 
+  // 2) HISTÓRIA DO VOVÔ (Marca tiquezinho verde ao terminar o áudio ou ver até a última cena!)
   else if (modType === "vovo") {
     const scenes = lesson.storyScenes || [{ img: lesson.thumbImg, caption: lesson.title }];
     window.EBD_STATE.vovoActiveSceneIdx = 0;
+    if (scenes.length <= 1) {
+      window.markLessonModuleDone(lesson.week, "vovo");
+    }
     const firstCap = scenes[0] && scenes[0].caption ? scenes[0].caption : `Cena 1/${scenes.length} • ${lesson.title}`;
     box.innerHTML = `
       <div class="ebd-glass-card" style="flex:1; display:flex; flex-direction:column; justify-content:space-between; margin-bottom:0; padding:10px; overflow:hidden;">
@@ -6217,14 +6446,16 @@ window.openLessonModule = function(modType) {
           </div>
         </div>
 
-        <button id="vovo-play-btn" type="button" class="btn-gold" style="width:100%; padding:12px; font-size:16px; flex-shrink:0;" onclick="toggleVovoStoryNarration()">Ouvir a História
-        </button>
+        <div style="display:flex; gap:8px; flex-shrink:0;">
+          <button id="vovo-play-btn" type="button" class="btn-gold" style="flex:1.4; padding:11px; font-size:15px;" onclick="toggleVovoStoryNarration()">Ouvir a História</button>
+          <button type="button" class="btn-tool-3d" style="flex:0.85; padding:11px 8px; font-size:12px;" onclick="downloadCurrentVovoScene16x9()">Baixar 16:9</button>
+        </div>
       </div>
     `;
   }
-  // 3) SEMENTINHA NO CORAÇÃO (VERSÍCULO PARA DECORAR):
-  // Apenas título da lição no topo, sem botões de faixa etária, e ênfase grande no Versículo Bíblico!
+  // 3) SEMENTINHA (VERSÍCULO PARA DECORAR — Marca tiquezinho verde ao entrar!)
   else if (modType === "sementinha") {
+    window.markLessonModuleDone(lesson.week, "sementinha");
     const savedSeeds = JSON.parse(localStorage.getItem("trono_ebd_seeds_done") || "[]");
     const isMemorized = savedSeeds.includes(lesson.week);
     box.innerHTML = `
@@ -6240,20 +6471,21 @@ window.openLessonModule = function(modType) {
           <div style="font-size:18.5px; font-weight:900; color:#ffffff; line-height:1.38; margin-bottom:8px; text-shadow:0 2px 6px rgba(0,0,0,0.85);">
             "${ageData.verse}"
           </div>
-          <div style="font-size:13px; font-weight:900; color:#86efac;"> ${lesson.bibleRef}</div>
+          <div style="font-size:13px; font-weight:900; color:#86efac;">${lesson.bibleRef}</div>
         </div>
 
         <p style="font-size:13px; color:#e2e8f0; font-weight:700; line-height:1.35; margin-bottom:8px;">Repita este versículo 3 vezes em voz alta para guardar a Palavra de Deus no seu coração!
         </p>
 
         <button type="button" class="btn-gold" style="width:100%; padding:12px; font-size:15px; flex-shrink:0;" onclick="markLessonSeedMemorized(${lesson.week})">
-          ${isMemorized ? " Versículo Guardado no Coração!" : " Já Memorizei este Versículo!"}
+          ${isMemorized ? "Versículo Guardado no Coração!" : "Já Memorizei este Versículo!"}
         </button>
       </div>
     `;
   }
-  // 4) FÉ EM AÇÃO (Sem botões 3-5 / 6-8 repetidos)
+  // 4) FÉ EM AÇÃO (Marca tiquezinho verde ao entrar!)
   else if (modType === "fe_acao") {
+    window.markLessonModuleDone(lesson.week, "fe_acao");
     const savedActions = JSON.parse(localStorage.getItem("trono_ebd_actions_done") || "[]");
     const isActionDone = savedActions.includes(lesson.week);
     box.innerHTML = `
@@ -6275,14 +6507,16 @@ window.openLessonModule = function(modType) {
         </div>
 
         <button type="button" class="btn-gold" style="width:100%; padding:12px; font-size:15px; flex-shrink:0;" onclick="markLessonActionCompleted(${lesson.week})">
-          ${isActionDone ? " Missão da Lição Concluída!" : " Marcar Missão como Concluída!"}
+          ${isActionDone ? "Missão da Lição Concluída!" : "Marcar Missão como Concluída!"}
         </button>
       </div>
     `;
   }
-  // 5) JOGOS DA LIÇÃO
+  // 5) JOGOS DA LIÇÃO (8 Cards Roxos que ficam Verdes conforme concluídos; 8/8 marca o Tiquezinho Verde no botão Jogos da Lição!)
   else if (modType === "jogos_licao") {
     window.EBD_STATE.fromLessonGames = true;
+    const prog = window.getLessonProgress(lesson.week);
+    const gamesMap = prog.games || {};
     const lessonGames = [
       { key: "chronology", title: "Ordem Cronológica", sub: "Ordene as cenas desta história", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png" },
       { key: "verse_builder", title: "Construtor do Verso", sub: `Monte ${lesson.bibleRef}`, icon: "./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" },
@@ -6293,52 +6527,114 @@ window.openLessonModule = function(modType) {
       { key: "lesson_puzzle", title: "Quebra-Cabeça", sub: "Monte o quadro da lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_02.png" },
       { key: "lesson_paint", title: "Pintura da Lição", sub: "Pinte o desenho da lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_03.png" }
     ];
+    const doneCount = lessonGames.filter(g => !!gamesMap[g.key]).length;
     box.innerHTML = `
       <div class="ebd-glass-card" style="margin-bottom:0; padding:8px;">
-        <div style="font-size:13.5px; font-weight:800; color:#fde047; margin-bottom:6px;">Lição ${lesson.week}: ${lesson.title}</div>
-        <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:6px;">
-          ${lessonGames.map(g => `
-            <div onclick="openGameFromLesson('${g.key}')" style="background:linear-gradient(180deg, rgba(49,46,129,0.92), rgba(15,23,42,0.95)); border:2px solid #38bdf8; border-radius:14px; padding:6px 5px; display:flex; flex-direction:column; align-items:center; text-align:center; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,0.75);">
-              <img src="${g.icon}" alt="${g.title}" style="width:44px; height:44px; object-fit:contain; margin-bottom:3px;">
-              <div style="font-size:12px; font-weight:800; color:#fde047; line-height:1.12;">${g.title}</div>
-              <div style="font-size:10px; color:#cbd5e1; margin-top:1px;">${g.sub}</div>
-            </div>
-          `).join("")}
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:6px;">
+          <div style="font-size:13px; font-weight:900; color:#fde047; text-align:left; line-height:1.15;">Lição ${lesson.week}: ${lesson.title}</div>
+          <span style="background:${doneCount === 8 ? "linear-gradient(180deg,#00e676,#00c853)" : "linear-gradient(180deg,#7e22ce,#4c1d95)"}; color:#ffffff; font-size:10.5px; font-weight:900; padding:3px 9px; border-radius:999px; border:1.5px solid #fde047; white-space:nowrap;">${doneCount}/8 Concluídos</span>
         </div>
-      </div>
-    `;
-  }
-  // 6) DEVOCIONAL 5 DIAS (Com Versículo Bíblico para Ler + Meditação + Oração em cada um dos 5 dias!)
-  else if (modType === "devocional") {
-    const checkedMap = JSON.parse(localStorage.getItem("trono_ebd_devotional_checks") || "{}");
-    box.innerHTML = `
-      <div class="ebd-glass-card" style="margin-bottom:4px; padding:10px;">
-        <h3 style="color:#fde047; font-size:15.5px; margin-bottom:2px;">Lição ${lesson.week}: ${lesson.title}</h3>
-        <div style="color:#38bdf8; font-size:11.5px; font-weight:800; margin-bottom:8px;">Devocional da Família • 7 Dias</div>
-        <div style="display:flex; flex-direction:column; gap:10px; text-align:left; margin-bottom:10px;">
-          ${lesson.devotional5Days.map((d, idx) => {
-            const key = `w${lesson.week}_d${d.day}`;
-            const done = !!checkedMap[key];
-            const dayImg = d.img || (lesson.storyScenes && lesson.storyScenes[idx % lesson.storyScenes.length] ? lesson.storyScenes[idx % lesson.storyScenes.length].img : lesson.thumbImg);
+        <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:6px;">
+          ${lessonGames.map(g => {
+            const isGameDone = !!gamesMap[g.key];
+            const cardBg = isGameDone
+              ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)"
+              : "linear-gradient(180deg, #9333ea 0%, #581c87 100%)";
+            const cardBorder = isGameDone ? "2.5px solid #ffffff" : "2px solid #fde047";
+            const titleCol = isGameDone ? "#052e16" : "#fde047";
+            const subCol = isGameDone ? "#ffffff" : "#f3e8ff";
             return `
-              <div onclick="toggleLessonDevotionalDay('${key}')" style="background:${done ? "linear-gradient(180deg, rgba(6,95,70,0.92), rgba(4,47,46,0.96))" : "rgba(15,23,42,0.92)"}; border:2px solid ${done ? "#00e676" : "#38bdf8"}; border-radius:16px; padding:10px; display:flex; flex-direction:column; gap:7px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.75);">
-                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
-                  <div style="font-size:13.5px; font-weight:900; color:#fde047;">${d.title}</div>
-                  <span style="background:${done ? "#00c853" : "#1e293b"}; color:#ffffff; font-size:10px; font-weight:900; padding:3px 9px; border-radius:999px; border:1.5px solid ${done ? "#ffffff" : "#38bdf8"}; flex-shrink:0;">
-                    ${done ? "CONCLUÍDO" : "DIA " + d.day}
-                  </span>
-                </div>
-                <div style="width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:2px solid #fde047; background:#050b1a;">
-                  <img src="${dayImg}" alt="${d.title}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
-                </div>
-                ${d.verse ? `<div style="background:rgba(88,28,135,0.75); border-left:3px solid #fde047; border-radius:6px; padding:6px 9px; font-size:12px; font-weight:800; color:#fef08a; line-height:1.32;">${d.verse}</div>` : ""}
-                <div style="font-size:12.5px; color:#ffffff; line-height:1.38;">${d.text}</div>
-                ${d.prayer ? `<div style="font-size:11.5px; color:#86efac; font-weight:800; line-height:1.32;">${d.prayer}</div>` : ""}
+              <div onclick="openGameFromLesson('${g.key}')" style="position:relative; background:${cardBg}; border:${cardBorder}; border-radius:14px; padding:6px 5px; display:flex; flex-direction:column; align-items:center; text-align:center; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,0.75);">
+                ${isGameDone ? `<span style="position:absolute; top:5px; right:5px; width:22px; height:22px; border-radius:50%; background:#052e16; border:2px solid #ffffff; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.6);"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>` : ""}
+                <img src="${g.icon}" alt="${g.title}" style="width:44px; height:44px; object-fit:contain; margin-bottom:3px; filter:drop-shadow(0 2px 5px rgba(0,0,0,0.6));">
+                <div style="font-size:12px; font-weight:900; color:${titleCol}; line-height:1.12;">${g.title}</div>
+                <div style="font-size:10px; font-weight:800; color:${subCol}; margin-top:1px;">${isGameDone ? "Concluído!" : g.sub}</div>
               </div>
             `;
           }).join("")}
         </div>
-        <button type="button" class="btn-gold" style="width:100%; padding:10px; font-size:14.5px;" onclick="completeCurrentWeekLesson()">Concluir Lição ${lesson.week}
+      </div>
+    `;
+  }
+  // 6) DEVOCIONAL 7 DIAS (Barra roxa superior com Segunda a Domingo + 1 Card Único por Dia da Semana + Download 16:9!)
+  else if (modType === "devocional") {
+    const checkedMap = JSON.parse(localStorage.getItem("trono_ebd_devotional_checks") || "{}");
+    const weekdays = [
+      { idx: 0, dayNum: 1, short: "Segunda", full: "Segunda-feira" },
+      { idx: 1, dayNum: 2, short: "Terça", full: "Terça-feira" },
+      { idx: 2, dayNum: 3, short: "Quarta", full: "Quarta-feira" },
+      { idx: 3, dayNum: 4, short: "Quinta", full: "Quinta-feira" },
+      { idx: 4, dayNum: 5, short: "Sexta", full: "Sexta-feira" },
+      { idx: 5, dayNum: 6, short: "Sábado", full: "Sábado" },
+      { idx: 6, dayNum: 7, short: "Domingo", full: "Domingo" }
+    ];
+
+    if (typeof window.EBD_STATE.activeDevotionalDayIdx !== "number" || window.EBD_STATE.activeDevotionalDayIdx < 0 || window.EBD_STATE.activeDevotionalDayIdx > 6) {
+      // Posiciona automaticamente no primeiro dia ainda não concluído (ou Segunda-feira)
+      const firstPending = weekdays.findIndex(w => !checkedMap[`w${lesson.week}_d${w.dayNum}`]);
+      window.EBD_STATE.activeDevotionalDayIdx = firstPending >= 0 ? firstPending : 0;
+    }
+    const activeIdx = window.EBD_STATE.activeDevotionalDayIdx;
+    const activeW = weekdays[activeIdx] || weekdays[0];
+
+    // Barra superior roxa com os 7 dias da semana (Segunda | Terça | Quarta | Quinta | Sexta | Sábado | Domingo)
+    if (headerBar) {
+      headerBar.innerHTML = `
+        <div id="devocional-weekdays-strip" class="houses-trail ebd-phases-scroll-trail" style="width:100%; display:flex; align-items:center; gap:5px; overflow-x:auto; padding:2px 4px;">
+          ${weekdays.map(w => {
+            const isDayDone = !!checkedMap[`w${lesson.week}_d${w.dayNum}`];
+            const isCur = w.idx === activeIdx;
+            return `<button type="button" id="dev-weekday-pill-${w.idx}" class="devocional-weekday-pill ${isDayDone ? "day-done" : ""} ${isCur ? "active" : ""}" onclick="selectDevotionalWeekday(${w.idx})">${w.short}</button>`;
+          }).join("")}
+        </div>
+      `;
+      setTimeout(() => {
+        const strip = document.getElementById("devocional-weekdays-strip");
+        if (strip && typeof window.enableHorizontalDragScroll === "function") {
+          window.enableHorizontalDragScroll(strip);
+          const curBtn = document.getElementById(`dev-weekday-pill-${activeIdx}`);
+          if (curBtn && typeof curBtn.scrollIntoView === "function") {
+            curBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+          }
+        }
+      }, 30);
+    }
+
+    const daysArr = lesson.devotional5Days || [];
+    const d = daysArr[activeIdx] || daysArr[0] || { day: activeW.dayNum, title: activeW.full, text: "", prayer: "" };
+    const key = `w${lesson.week}_d${activeW.dayNum}`;
+    const done = !!checkedMap[key];
+    const dayImg = d.img || (lesson.storyScenes && lesson.storyScenes[activeIdx % lesson.storyScenes.length] ? lesson.storyScenes[activeIdx % lesson.storyScenes.length].img : lesson.thumbImg);
+    const cleanSubTitle = String(d.title || "").replace(/^Dia\s*\d+\s*[•\-:]\s*/i, "").trim();
+    const fullDayTitle = cleanSubTitle ? `${activeW.full} • ${cleanSubTitle}` : activeW.full;
+    const doneDaysCount = weekdays.filter(w => !!checkedMap[`w${lesson.week}_d${w.dayNum}`]).length;
+
+    box.innerHTML = `
+      <div class="ebd-glass-card" style="margin-bottom:4px; padding:10px; text-align:left;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:6px;">
+          <div>
+            <div style="font-size:11px; font-weight:800; color:#38bdf8;">Lição ${lesson.week}: ${lesson.title}</div>
+            <h3 style="color:#fde047; font-size:15px; margin:0; line-height:1.2;">${fullDayTitle}</h3>
+          </div>
+          <span style="background:${done ? "linear-gradient(180deg,#00e676,#00c853)" : "rgba(15,23,42,0.9)"}; color:#ffffff; font-size:10.5px; font-weight:900; padding:3px 9px; border-radius:999px; border:1.5px solid ${done ? "#ffffff" : "#fde047"}; flex-shrink:0;">
+            ${doneDaysCount}/7 Dias
+          </span>
+        </div>
+
+        <div style="width:100%; aspect-ratio:16/9; border-radius:13px; overflow:hidden; border:2px solid #fde047; background:#050b1a; margin-bottom:6px; position:relative; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.8);" onclick="openLessonImageFullModal('${dayImg}', '${fullDayTitle.replace(/'/g, "")}')">
+          <img src="${dayImg}" alt="${fullDayTitle}" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; margin-bottom:7px;">
+          <button type="button" class="btn-tool-3d" style="padding:4px 10px; font-size:11px; font-weight:900;" onclick="downloadLesson16x9Image('${dayImg}', '${fullDayTitle.replace(/'/g, "")}')">Baixar Imagem (16:9)</button>
+        </div>
+
+        ${d.verse ? `<div style="background:rgba(88,28,135,0.82); border-left:3.5px solid #fde047; border-radius:8px; padding:7px 10px; font-size:12.5px; font-weight:800; color:#fef08a; line-height:1.34; margin-bottom:7px;">${d.verse}</div>` : ""}
+        <div style="font-size:13px; color:#ffffff; font-weight:700; line-height:1.42; margin-bottom:7px;">${d.text}</div>
+        ${d.prayer ? `<div style="background:rgba(6,78,59,0.55); border:1.5px solid #00e676; border-radius:10px; padding:7px 9px; font-size:12px; color:#86efac; font-weight:800; line-height:1.34; margin-bottom:10px;">${d.prayer}</div>` : ""}
+
+        <button type="button" class="btn-gold" style="width:100%; padding:11px; font-size:14.5px; ${done ? "background:linear-gradient(180deg,#00e676,#00c853); color:#052e16;" : ""}" onclick="completeLessonDevotionalDay(${activeW.dayNum})">
+          ${done ? `${activeW.full} Concluído! (Próximo Dia)` : `Concluir Devocional de ${activeW.full}`}
         </button>
       </div>
     `;
@@ -6348,12 +6644,66 @@ window.openLessonModule = function(modType) {
   box.scrollTop = 0;
 };
 
+window.downloadCurrentVovoScene16x9 = function() {
+  const lesson = window.getCurrentLessonObj();
+  const scenes = lesson.storyScenes || [{ img: lesson.thumbImg, caption: lesson.title }];
+  const idx = typeof window.EBD_STATE.vovoActiveSceneIdx === "number" ? window.EBD_STATE.vovoActiveSceneIdx : 0;
+  const curScene = scenes[idx] || scenes[0];
+  if (curScene && curScene.img) {
+    window.downloadLesson16x9Image(curScene.img, `Lição ${lesson.week} - Cena ${idx + 1}`);
+  }
+};
+
+window.selectDevotionalWeekday = function(dayIdx) {
+  window.ebdClick();
+  window.EBD_STATE.activeDevotionalDayIdx = Math.max(0, Math.min(6, Number(dayIdx) || 0));
+  window.openLessonModule("devocional");
+};
+
+window.completeLessonDevotionalDay = function(dayNum) {
+  window.ebdWinSound();
+  const lesson = window.getCurrentLessonObj();
+  const wk = lesson ? lesson.week : 1;
+  const checkedMap = JSON.parse(localStorage.getItem("trono_ebd_devotional_checks") || "{}");
+  const key = `w${wk}_d${dayNum}`;
+  checkedMap[key] = true;
+  localStorage.setItem("trono_ebd_devotional_checks", JSON.stringify(checkedMap));
+
+  // Verifica se todos os 7 dias (Segunda a Domingo) foram concluídos!
+  let all7Done = true;
+  for (let d = 1; d <= 7; d++) {
+    if (!checkedMap[`w${wk}_d${d}`]) {
+      all7Done = false;
+      break;
+    }
+  }
+  if (all7Done) {
+    window.markLessonModuleDone(wk, "devocional");
+    window.ebdConfetti();
+  } else {
+    // Avança para o próximo dia da semana ainda não concluído
+    for (let nextD = 1; nextD <= 7; nextD++) {
+      const candidate = ((dayNum - 1 + nextD) % 7) + 1;
+      if (!checkedMap[`w${wk}_d${candidate}`]) {
+        window.EBD_STATE.activeDevotionalDayIdx = candidate - 1;
+        break;
+      }
+    }
+  }
+  window.openLessonModule("devocional");
+};
+
 window.selectVovoStoryScene = function(sceneIdx, silent) {
   if (!silent) window.ebdClick();
   const lesson = window.getCurrentLessonObj();
   const scenes = lesson.storyScenes || [{ img: lesson.thumbImg, caption: lesson.title }];
   const idx = Math.max(0, Math.min(sceneIdx, scenes.length - 1));
   window.EBD_STATE.vovoActiveSceneIdx = idx;
+
+  // Se a criança navegou até a última cena da História do Vovô, marca o tiquezinho verde!
+  if (idx >= scenes.length - 1) {
+    window.markLessonModuleDone(lesson.week, "vovo");
+  }
 
   const badgeEl = document.getElementById("vovo-scene-counter-badge");
   if (badgeEl) {
@@ -6389,6 +6739,7 @@ window.markLessonSeedMemorized = function(weekNum) {
     saved.push(weekNum);
     localStorage.setItem("trono_ebd_seeds_done", JSON.stringify(saved));
   }
+  window.markLessonModuleDone(weekNum, "sementinha");
   window.openLessonModule("sementinha");
 };
 
@@ -6399,15 +6750,15 @@ window.markLessonActionCompleted = function(weekNum) {
     saved.push(weekNum);
     localStorage.setItem("trono_ebd_actions_done", JSON.stringify(saved));
   }
+  window.markLessonModuleDone(weekNum, "fe_acao");
   window.openLessonModule("fe_acao");
 };
 
 window.toggleLessonDevotionalDay = function(key) {
-  window.ebdWinSound();
-  const checkedMap = JSON.parse(localStorage.getItem("trono_ebd_devotional_checks") || "{}");
-  checkedMap[key] = !checkedMap[key];
-  localStorage.setItem("trono_ebd_devotional_checks", JSON.stringify(checkedMap));
-  window.openLessonModule("devocional");
+  const m = String(key || "").match(/w(\d+)_d(\d+)/);
+  if (m) {
+    window.completeLessonDevotionalDay(Number(m[2]));
+  }
 };
 
 // ============================================================================
@@ -6419,133 +6770,133 @@ window.CHRONO_VISUAL_MAP_STOPS = [
     week: 1, chronoOrder: 1, mainStop: true,
     yearBadge: "~4000 a.C.", eraType: "ac",
     shortTitle: "A Criação do Mundo",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=64"
   },
   {
     week: 11, chronoOrder: 2, mainStop: false,
     yearBadge: "~3900 a.C.", eraType: "ac",
     shortTitle: "O Jardim do Éden",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=64"
   },
   {
     week: 2, chronoOrder: 3, mainStop: true,
     yearBadge: "~2400 a.C.", eraType: "ac",
     shortTitle: "A Grande Arca de Noé",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=64"
   },
   {
     week: 3, chronoOrder: 4, mainStop: true,
     yearBadge: "~2000 a.C.", eraType: "ac",
     shortTitle: "Abraão e a Promessa",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=64"
   },
   {
     week: 4, chronoOrder: 5, mainStop: true,
     yearBadge: "~1900 a.C.", eraType: "ac",
     shortTitle: "A Escada de Jacó",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=64"
   },
   {
     week: 5, chronoOrder: 6, mainStop: true,
     yearBadge: "~1850 a.C.", eraType: "ac",
     shortTitle: "José no Egito",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=64"
   },
   {
     week: 12, chronoOrder: 7, mainStop: false,
     yearBadge: "~1520 a.C.", eraType: "ac",
     shortTitle: "Bebê Moisés no Nilo",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=64"
   },
   {
     week: 6, chronoOrder: 8, mainStop: true,
     yearBadge: "~1446 a.C.", eraType: "ac",
     shortTitle: "Moisés e o Mar Vermelho",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=64"
   },
   {
     week: 13, chronoOrder: 9, mainStop: false,
     yearBadge: "~1445 a.C.", eraType: "ac",
     shortTitle: "Os Dez Mandamentos",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=64"
   },
   {
     week: 7, chronoOrder: 10, mainStop: true,
     yearBadge: "~1400 a.C.", eraType: "ac",
     shortTitle: "Josué em Jericó",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=64"
   },
   {
     week: 14, chronoOrder: 11, mainStop: false,
     yearBadge: "~1150 a.C.", eraType: "ac",
     shortTitle: "Gideão e Rute",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_17.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_17.jpg?v=64"
   },
   {
     week: 15, chronoOrder: 12, mainStop: false,
     yearBadge: "~1050 a.C.", eraType: "ac",
     shortTitle: "O Chamado de Samuel",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=64"
   },
   {
     week: 8, chronoOrder: 13, mainStop: true,
     yearBadge: "~1010 a.C.", eraType: "ac",
     shortTitle: "Davi e Golias",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=64"
   },
   {
     week: 16, chronoOrder: 14, mainStop: true,
     yearBadge: "~970 a.C.", eraType: "ac",
     shortTitle: "O Rei Salomão",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=64"
   },
   {
     week: 9, chronoOrder: 15, mainStop: true,
     yearBadge: "~800 a.C.", eraType: "ac",
     shortTitle: "Profetas Elias e Jonas",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=64"
   },
   {
     week: 17, chronoOrder: 16, mainStop: false,
     yearBadge: "~700 a.C.", eraType: "ac",
     shortTitle: "Eliseu e Isaías",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=64"
   },
   {
     week: 18, chronoOrder: 17, mainStop: false,
     yearBadge: "~600 a.C.", eraType: "ac",
     shortTitle: "Três Amigos Fiéis",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_121.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_121.jpg?v=64"
   },
   {
     week: 10, chronoOrder: 18, mainStop: true,
     yearBadge: "~580 a.C.", eraType: "ac",
     shortTitle: "Daniel na Cova dos Leões",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=64"
   },
   {
     week: 19, chronoOrder: 19, mainStop: true,
     yearBadge: "~480 a.C.", eraType: "ac",
     shortTitle: "A Rainha Ester",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=64"
   },
   {
     week: 20, chronoOrder: 20, mainStop: false,
     yearBadge: "~445 a.C.", eraType: "ac",
     shortTitle: "Neemias em Jerusalém",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_119.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_119.jpg?v=64"
   },
   {
     week: 21, chronoOrder: 21, mainStop: true,
     yearBadge: "~30 d.C.", eraType: "zero",
     shortTitle: "Jesus e Seus Milagres",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=64"
   },
   {
     week: 22, chronoOrder: 22, mainStop: true,
     yearBadge: "~50 d.C.", eraType: "dc",
     shortTitle: "Viagens de Paulo",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=63"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=64"
   }
 ];
 
@@ -6611,7 +6962,7 @@ window.openChronologyScreen = function() {
       if (isZero) {
         trailHtml += `
           <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
-            <div onclick="openLessonImageFullModal('./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=63', 'Marco Zero (Ano 0): O Nascimento de Jesus')" style="width:96%; background:linear-gradient(180deg, rgba(88,28,135,0.96), rgba(15,23,42,0.98)); border:3px solid #fde047; border-radius:16px; padding:8px; cursor:pointer; box-shadow:0 6px 16px rgba(0,0,0,0.85);">
+            <div onclick="openLessonImageFullModal('./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=64', 'Marco Zero (Ano 0): O Nascimento de Jesus')" style="width:96%; background:linear-gradient(180deg, rgba(88,28,135,0.96), rgba(15,23,42,0.98)); border:3px solid #fde047; border-radius:16px; padding:8px; cursor:pointer; box-shadow:0 6px 16px rgba(0,0,0,0.85);">
               <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
                 <span style="background:linear-gradient(180deg,#fde047,#f59e0b); color:#0f172a; font-size:11px; font-weight:900; padding:2px 10px; border-radius:999px;">MARCO ZERO • ANO 0
                 </span>
@@ -6619,7 +6970,7 @@ window.openChronologyScreen = function() {
                 </span>
               </div>
               <div style="width:100%; aspect-ratio:16/9; border-radius:11px; overflow:hidden; border:2px solid #fde047; background:#050b1a;">
-                <img src="./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=63" alt="Nascimento de Jesus" style="width:100%; height:100%; object-fit:cover; display:block;">
+                <img src="./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=64" alt="Nascimento de Jesus" style="width:100%; height:100%; object-fit:cover; display:block;">
               </div>
             </div>
             <div style="display:flex; flex-direction:column; align-items:center; margin:1px 0;">
@@ -6995,8 +7346,9 @@ window.tapStageChronoCard = function(cardId, cardOrder) {
     }
     window.EBD_STATE.chronologyStep += 1;
     if (window.EBD_STATE.chronologyStep > 4) {
-      if (feedbackEl) feedbackEl.textContent = " Parabéns! Ordem Cronológica perfeita!";
+      if (feedbackEl) feedbackEl.textContent = "Parabéns! Ordem Cronológica perfeita!";
       window.ebdConfetti();
+      window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "chronology");
     } else {
       if (feedbackEl) feedbackEl.textContent = ` Isso mesmo! Agora toque no ${window.EBD_STATE.chronologyStep}º acontecimento!`;
     }
@@ -7086,8 +7438,9 @@ window.tapStageVerseWord = function(wordIdx) {
       ).join(" ");
     }
     if (window.EBD_STATE.verseBuilt.length === words.length) {
-      if (feedbackEl) feedbackEl.textContent = " Maravilha! Você completou todo o Versículo!";
+      if (feedbackEl) feedbackEl.textContent = "Maravilha! Você completou todo o Versículo!";
       window.ebdConfetti();
+      window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "verse_builder");
     } else {
       if (feedbackEl) feedbackEl.textContent = " Muito bem! Continue!";
     }
@@ -7282,6 +7635,7 @@ window.tapStageWSCell = function(cellId) {
       window.updateStageWSPills();
       if (window.EBD_STATE.wordSearchFound.length === Object.keys(placements).length) {
         window.ebdConfetti();
+        window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "word_search");
       }
       return;
     }
@@ -7363,7 +7717,8 @@ window.answerStageWhoAmI = function(selected) {
   const fb = document.getElementById("whoami-feedback");
   if (selected === item.answer) {
     window.ebdConfetti();
-    if (fb) fb.textContent = ` Acertou! Era ${item.answer}! Toque em "Próximo Desafio " para continuar!`;
+    window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "who_am_i");
+    if (fb) fb.textContent = `Acertou! Era ${item.answer}!`;
   } else {
     window.ebdErrSound();
     if (fb) fb.textContent = " Quase! Revele mais uma pista e tente novamente!";
@@ -7430,7 +7785,8 @@ window.answerStageTrueMyth = function(choice) {
   const expEl = document.getElementById("truemyth-explanation");
   if (choice === item.isTrue) {
     window.ebdConfetti();
-    if (expEl) expEl.textContent = ` Acertou! ${item.explanation}`;
+    window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "true_or_myth");
+    if (expEl) expEl.textContent = `Acertou! ${item.explanation}`;
   } else {
     window.ebdErrSound();
     if (expEl) expEl.textContent = ` Aprenda com a Bíblia: ${item.explanation}`;
@@ -7513,7 +7869,10 @@ window.tapStageSWLetter = function(ch) {
   if (item.word.includes(ch)) {
     window.ebdWinSound();
     const allFound = item.word.split("").every(c => window.EBD_STATE.secretWordGuessed.includes(c));
-    if (allFound) window.ebdConfetti();
+    if (allFound) {
+      window.ebdConfetti();
+      window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "secret_word");
+    }
   } else {
     window.EBD_STATE.secretWordErrors += 1;
     window.ebdErrSound();
