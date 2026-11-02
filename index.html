@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Trono EBD">
-  <link rel="manifest" href="./manifest.json?v=65">
+  <link rel="manifest" href="./manifest.json?v=66">
   <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_oficial.png">
   <title>Trono da Promessa EBD • Revista Digital & Jogos Bíblicos</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
@@ -21,12 +21,12 @@
           if ('caches' in window) {
             caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
           }
-          if (urlParams.get('limpar') === '1' && window.history && window.history.replaceState) { window.history.replaceState({}, document.title, window.location.pathname + '?v=65'); }
+          if (urlParams.get('limpar') === '1' && window.history && window.history.replaceState) { window.history.replaceState({}, document.title, window.location.pathname + '?v=66'); }
       } catch (e) {}
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=65').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=66').then(reg => {
           reg.update();
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
@@ -1595,6 +1595,24 @@
     .plan-card-title {
       text-transform: uppercase !important;
     }
+    /* === UPGRADE V66: PLAYER DE VÍDEO EXPANDIDO 9:16 NA HISTÓRIA DO VOVÔ (SEM SETAS, SEM TEXTOS, FOCO CELULAR) === */
+    #app-shell.vovo-player-fullscreen-mode .topbar {
+      padding: 2px 8px 0px 8px !important;
+    }
+    #app-shell.vovo-player-fullscreen-mode .topbar-controls-row {
+      display: none !important;
+    }
+    #app-shell.vovo-player-fullscreen-mode #main-brand-logo {
+      height: 34px !important;
+      max-height: 4.5vh !important;
+      margin: 0 auto !important;
+    }
+    #app-shell.vovo-player-fullscreen-mode #screen-lesson-module {
+      padding-top: 2px !important;
+    }
+    #app-shell.vovo-player-fullscreen-mode #screen-lesson-module .module-header {
+      margin-bottom: 4px !important;
+    }
   </style>
   <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_oficial.png">
   <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192_oficial.png">
@@ -1625,7 +1643,7 @@
   <!-- TOPO COM AMPLO RESPIRO: LOGO EBD 3D EM CIMA + 2 BOLINHAS REDONDINHAS NOS CANTINHOS! -->
   <header class="topbar">
     <div class="brand-logo-wrap" onclick="goHome()">
-      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=65" alt="Trono da Promessa EBD" class="brand-logo">
+      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=66" alt="Trono da Promessa EBD" class="brand-logo">
     </div>
 
     <div class="topbar-controls-row">
@@ -2301,7 +2319,7 @@
 </div>
 
 <script src="pinturas_base64.js"></script>
-<script src="ebd_modulos_educativos.js?v=65"></script>
+<script src="ebd_modulos_educativos.js?v=66"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -2860,6 +2878,10 @@ function showScreen(screenId) {
   if (toastEl) toastEl.classList.remove('active');
   stopCelebrationConfetti();
 
+  if (screenId !== 'screen-lesson-module' || !(window.EBD_STATE && window.EBD_STATE.activeLessonModuleType === 'vovo')) {
+    const sh = document.getElementById('app-shell');
+    if (sh) sh.classList.remove('vovo-player-fullscreen-mode');
+  }
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(screenId).classList.add('active');
 
@@ -5288,7 +5310,7 @@ function renderSleepCorner() {
 }
 
 // Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
-document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=65';
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=66';
 if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
 if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
 if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');
