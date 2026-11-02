@@ -3602,10 +3602,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 1 • A Ordem dos Dias da Criação",
     subtitle: "Toque nos 4 acontecimentos na ordem em que Deus criou (Gênesis 1):",
     cards: [
-      { id: "c1", order: 1, era: "1º Evento", title: "Haja Luz e Céu Iluminado! (Dia 1 e 2)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=58" },
-      { id: "c2", order: 2, era: "2º Evento", title: "Terra Seca, Árvores e Flores (Dia 3)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_103.jpg?v=58" },
-      { id: "c3", order: 3, era: "3º Evento", title: "Grandes Baleias no Mar e Aves (Dia 5)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_101.jpg?v=58" },
-      { id: "c4", order: 4, era: "4º Evento", title: "Animais Terrestres, Adão e Eva (Dia 6)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=58" }
+      { id: "c1", order: 1, era: "1º Evento", title: "Haja Luz e Céu Iluminado! (Dia 1 e 2)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=59" },
+      { id: "c2", order: 2, era: "2º Evento", title: "Terra Seca, Árvores e Flores (Dia 3)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_103.jpg?v=59" },
+      { id: "c3", order: 3, era: "3º Evento", title: "Grandes Baleias no Mar e Aves (Dia 5)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_101.jpg?v=59" },
+      { id: "c4", order: 4, era: "4º Evento", title: "Animais Terrestres, Adão e Eva (Dia 6)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=59" }
     ]
   },
   {
@@ -3613,10 +3613,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 2 • Do Jardim do Éden à Arca de Noé",
     subtitle: "Coloque em ordem cronológica os primeiros capítulos de Gênesis:",
     cards: [
-      { id: "c5", order: 1, era: "Gênesis 1", title: "Deus Cria a Luz no Princípio", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_105.jpg?v=58" },
-      { id: "c6", order: 2, era: "Gênesis 2", title: "O Lindo Jardim do Éden Florido", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_106.jpg?v=58" },
-      { id: "c7", order: 3, era: "Gênesis 2:19", title: "Adão e Eva com os Animais no Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=58" },
-      { id: "c8", order: 4, era: "Gênesis 6–9", title: "A Arca de Noé e o Arco-Íris da Aliança", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=58" }
+      { id: "c5", order: 1, era: "Gênesis 1", title: "Deus Cria a Luz no Princípio", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_105.jpg?v=59" },
+      { id: "c6", order: 2, era: "Gênesis 2", title: "O Lindo Jardim do Éden Florido", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_106.jpg?v=59" },
+      { id: "c7", order: 3, era: "Gênesis 2:19", title: "Adão e Eva com os Animais no Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=59" },
+      { id: "c8", order: 4, era: "Gênesis 6–9", title: "A Arca de Noé e o Arco-Íris da Aliança", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=59" }
     ]
   },
   {
@@ -3624,10 +3624,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 3 • As 4 Primeiras Eras da Bíblia",
     subtitle: "Ordene do acontecimento mais antigo para o mais recente:",
     cards: [
-      { id: "c9", order: 1, era: "1ª Era", title: "A Criação do Mundo no Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=58" },
-      { id: "c10", order: 2, era: "2ª Era", title: "A Grande Arca de Noé", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=58" },
-      { id: "c11", order: 3, era: "3ª Era", title: "Abraão Olha as Estrelas da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=58" },
-      { id: "c12", order: 4, era: "4ª Era", title: "Moisés e a Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=58" }
+      { id: "c9", order: 1, era: "1ª Era", title: "A Criação do Mundo no Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=59" },
+      { id: "c10", order: 2, era: "2ª Era", title: "A Grande Arca de Noé", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=59" },
+      { id: "c11", order: 3, era: "3ª Era", title: "Abraão Olha as Estrelas da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=59" },
+      { id: "c12", order: 4, era: "4ª Era", title: "Moisés e a Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=59" }
     ]
   },
   {
@@ -3635,10 +3635,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 4 • Os Patriarcas em Gênesis",
     subtitle: "Qual é a ordem correta da família da promessa em Gênesis?",
     cards: [
-      { id: "c13", order: 1, era: "Gênesis 12–15", title: "O Chamado de Abraão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=58" },
-      { id: "c14", order: 2, era: "Gênesis 28", title: "O Sonho da Escada de Jacó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=58" },
-      { id: "c15", order: 3, era: "Gênesis 37", title: "José Ganha a Túnica Colorida", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=58" },
-      { id: "c16", order: 4, era: "Gênesis 41–45", title: "José Governador do Egito Abraça os Irmãos", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_104.jpg?v=58" }
+      { id: "c13", order: 1, era: "Gênesis 12–15", title: "O Chamado de Abraão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=59" },
+      { id: "c14", order: 2, era: "Gênesis 28", title: "O Sonho da Escada de Jacó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=59" },
+      { id: "c15", order: 3, era: "Gênesis 37", title: "José Ganha a Túnica Colorida", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=59" },
+      { id: "c16", order: 4, era: "Gênesis 41–45", title: "José Governador do Egito Abraça os Irmãos", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_104.jpg?v=59" }
     ]
   },
   {
@@ -3646,10 +3646,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 5 • A Jornada de Moisés no Êxodo",
     subtitle: "Ordene a vida de Moisés desde bebê até a vitória no Mar Vermelho:",
     cards: [
-      { id: "c17", order: 1, era: "Êxodo 2", title: "Bebê Moisés no Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=58" },
-      { id: "c18", order: 2, era: "Êxodo 3", title: "Deus Fala com Moisés na Sarça Ardente", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=58" },
-      { id: "c19", order: 3, era: "Êxodo 14", title: "A Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=58" },
-      { id: "c20", order: 4, era: "Êxodo 15", title: "O Cântico de Vitória Após o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_109.jpg?v=58" }
+      { id: "c17", order: 1, era: "Êxodo 2", title: "Bebê Moisés no Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=59" },
+      { id: "c18", order: 2, era: "Êxodo 3", title: "Deus Fala com Moisés na Sarça Ardente", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=59" },
+      { id: "c19", order: 3, era: "Êxodo 14", title: "A Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=59" },
+      { id: "c20", order: 4, era: "Êxodo 15", title: "O Cântico de Vitória Após o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_109.jpg?v=59" }
     ]
   },
   {
@@ -3657,10 +3657,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 6 • Da Terra Prometida aos Juízes",
     subtitle: "Coloque em ordem as vitórias do povo de Israel:",
     cards: [
-      { id: "c21", order: 1, era: "Josué 3", title: "A Travessia do Rio Jordão com a Arca", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_110.jpg?v=58" },
-      { id: "c22", order: 2, era: "Josué 6:4", title: "As Trombetas Diante de Jericó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=58" },
-      { id: "c23", order: 3, era: "Josué 6:20", title: "As Muralhas de Jericó Caem", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=58" },
-      { id: "c24", order: 4, era: "Rute 1–4", title: "A Fidelidade de Rute em Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=58" }
+      { id: "c21", order: 1, era: "Josué 3", title: "A Travessia do Rio Jordão com a Arca", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_110.jpg?v=59" },
+      { id: "c22", order: 2, era: "Josué 6:4", title: "As Trombetas Diante de Jericó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=59" },
+      { id: "c23", order: 3, era: "Josué 6:20", title: "As Muralhas de Jericó Caem", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=59" },
+      { id: "c24", order: 4, era: "Rute 1–4", title: "A Fidelidade de Rute em Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=59" }
     ]
   },
   {
@@ -3668,10 +3668,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 7 • A História do Rei Davi e Salomão",
     subtitle: "Ordene a época dos Reis de Israel:",
     cards: [
-      { id: "c25", order: 1, era: "1 Samuel 16:1", title: "Davi Pastorzinho Tocando Harpa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=58" },
-      { id: "c26", order: 2, era: "1 Samuel 16:13", title: "O Profeta Samuel Unge o Jovem Davi", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=58" },
-      { id: "c27", order: 3, era: "1 Samuel 17", title: "A Coragem de Davi Diante de Golias", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=58" },
-      { id: "c28", order: 4, era: "1 Reis 3", title: "O Sábio Rei Salomão em Jerusalém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=58" }
+      { id: "c25", order: 1, era: "1 Samuel 16:1", title: "Davi Pastorzinho Tocando Harpa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=59" },
+      { id: "c26", order: 2, era: "1 Samuel 16:13", title: "O Profeta Samuel Unge o Jovem Davi", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=59" },
+      { id: "c27", order: 3, era: "1 Samuel 17", title: "A Coragem de Davi Diante de Golias", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=59" },
+      { id: "c28", order: 4, era: "1 Reis 3", title: "O Sábio Rei Salomão em Jerusalém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=59" }
     ]
   },
   {
@@ -3679,10 +3679,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 8 • O Tempo dos Grandes Profetas",
     subtitle: "Ordene os acontecimentos dos heróis e profetas até Daniel:",
     cards: [
-      { id: "c29", order: 1, era: "Juízes 16", title: "A Força e a Fé na Época dos Juízes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_17.jpg?v=58" },
-      { id: "c30", order: 2, era: "2 Reis 2", title: "A Carruagem de Fogo do Profeta Elias", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=58" },
-      { id: "c31", order: 3, era: "Jonas 1–3", title: "Jonas e a Grande Baleia no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=58" },
-      { id: "c32", order: 4, era: "Daniel 6", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=58" }
+      { id: "c29", order: 1, era: "Juízes 16", title: "A Força e a Fé na Época dos Juízes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_17.jpg?v=59" },
+      { id: "c30", order: 2, era: "2 Reis 2", title: "A Carruagem de Fogo do Profeta Elias", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=59" },
+      { id: "c31", order: 3, era: "Jonas 1–3", title: "Jonas e a Grande Baleia no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=59" },
+      { id: "c32", order: 4, era: "Daniel 6", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=59" }
     ]
   },
   {
@@ -3690,10 +3690,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 9 • A Vida de Jesus nos Evangelhos",
     subtitle: "Coloque em ordem a história de Jesus no Novo Testamento:",
     cards: [
-      { id: "c33", order: 1, era: "Lucas 2", title: "O Nascimento de Jesus em Belém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=58" },
-      { id: "c34", order: 2, era: "Marcos 4", title: "Jesus Acalma a Tempestade no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg?v=58" },
-      { id: "c35", order: 3, era: "Marcos 10", title: "Jesus Abençoa as Criancinhas", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=58" },
-      { id: "c36", order: 4, era: "João 6", title: "Jesus Multiplica os Pães e Peixes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_125.jpg?v=58" }
+      { id: "c33", order: 1, era: "Lucas 2", title: "O Nascimento de Jesus em Belém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=59" },
+      { id: "c34", order: 2, era: "Marcos 4", title: "Jesus Acalma a Tempestade no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg?v=59" },
+      { id: "c35", order: 3, era: "Marcos 10", title: "Jesus Abençoa as Criancinhas", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=59" },
+      { id: "c36", order: 4, era: "João 6", title: "Jesus Multiplica os Pães e Peixes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_125.jpg?v=59" }
     ]
   },
   {
@@ -3701,10 +3701,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 10 • Grande Linha do Tempo (Gênesis a Atos)",
     subtitle: "Ordene a Bíblia inteira do Princípio até a Missão da Igreja:",
     cards: [
-      { id: "c37", order: 1, era: "Gênesis", title: "A Criação e o Jardim do Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=58" },
-      { id: "c38", order: 2, era: "Êxodo a Reis", title: "Moisés e a Libertação de Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=58" },
-      { id: "c39", order: 3, era: "Evangelhos", title: "Jesus, o Salvador Prometido", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=58" },
-      { id: "c40", order: 4, era: "Atos 13–28", title: "As Viagens Missionárias de Paulo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=58" }
+      { id: "c37", order: 1, era: "Gênesis", title: "A Criação e o Jardim do Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=59" },
+      { id: "c38", order: 2, era: "Êxodo a Reis", title: "Moisés e a Libertação de Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=59" },
+      { id: "c39", order: 3, era: "Evangelhos", title: "Jesus, o Salvador Prometido", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=59" },
+      { id: "c40", order: 4, era: "Atos 13–28", title: "As Viagens Missionárias de Paulo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=59" }
     ]
   },
   // FASES 11 A 20: Desbloqueadas com as Semanas 3 a 12 da Lição
@@ -3713,10 +3713,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 11 • Semana 3: A Fé de Abraão",
     subtitle: "Ordene a caminhada de Abraão em Gênesis:",
     cards: [
-      { id: "c41", order: 1, era: "1º Passo", title: "Deus Chama Abraão para Sair de Ur", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_113.jpg?v=58" },
-      { id: "c42", order: 2, era: "2º Passo", title: "Abraão Constrói um Altar de Gratidão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_114.jpg?v=58" },
-      { id: "c43", order: 3, era: "3º Passo", title: "Abraão Conta as Estrelas do Céu", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=58" },
-      { id: "c44", order: 4, era: "4º Passo", title: "Nasce Isaque, o Filho da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_115.jpg?v=58" }
+      { id: "c41", order: 1, era: "1º Passo", title: "Deus Chama Abraão para Sair de Ur", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_113.jpg?v=59" },
+      { id: "c42", order: 2, era: "2º Passo", title: "Abraão Constrói um Altar de Gratidão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_114.jpg?v=59" },
+      { id: "c43", order: 3, era: "3º Passo", title: "Abraão Conta as Estrelas do Céu", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=59" },
+      { id: "c44", order: 4, era: "4º Passo", title: "Nasce Isaque, o Filho da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_115.jpg?v=59" }
     ]
   },
   {
@@ -3724,10 +3724,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 12 • Semana 4: A Jornada de José",
     subtitle: "Ordene as etapas da vida de José do Egito:",
     cards: [
-      { id: "c45", order: 1, era: "1º Passo", title: "Jacó Dá a Túnica Colorida a José", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=58" },
-      { id: "c46", order: 2, era: "2º Passo", title: "José Trabalha com Fidelidade no Egito", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_116.jpg?v=58" },
-      { id: "c47", order: 3, era: "3º Passo", title: "José Interpreta o Sonho de Faraó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_117.jpg?v=58" },
-      { id: "c48", order: 4, era: "4º Passo", title: "José Perdoa e Abraça Sua Família", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_104.jpg?v=58" }
+      { id: "c45", order: 1, era: "1º Passo", title: "Jacó Dá a Túnica Colorida a José", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=59" },
+      { id: "c46", order: 2, era: "2º Passo", title: "José Trabalha com Fidelidade no Egito", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_116.jpg?v=59" },
+      { id: "c47", order: 3, era: "3º Passo", title: "José Interpreta o Sonho de Faraó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_117.jpg?v=59" },
+      { id: "c48", order: 4, era: "4º Passo", title: "José Perdoa e Abraça Sua Família", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_104.jpg?v=59" }
     ]
   },
   {
@@ -3735,10 +3735,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 13 • Semana 5: Moisés e o Libertador",
     subtitle: "Ordene a história da libertação do Egito:",
     cards: [
-      { id: "c49", order: 1, era: "1º Passo", title: "Miriam Vigia o Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=58" },
-      { id: "c50", order: 2, era: "2º Passo", title: "A Sarça Ardente no Monte Horebe", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=58" },
-      { id: "c51", order: 3, era: "3º Passo", title: "Deus Abre o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=58" },
-      { id: "c52", order: 4, era: "4º Passo", title: "O Cântico de Vitória na Outra Margem", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_109.jpg?v=58" }
+      { id: "c49", order: 1, era: "1º Passo", title: "Miriam Vigia o Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=59" },
+      { id: "c50", order: 2, era: "2º Passo", title: "A Sarça Ardente no Monte Horebe", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=59" },
+      { id: "c51", order: 3, era: "3º Passo", title: "Deus Abre o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=59" },
+      { id: "c52", order: 4, era: "4º Passo", title: "O Cântico de Vitória na Outra Margem", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_109.jpg?v=59" }
     ]
   },
   {
@@ -3746,10 +3746,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 14 • Semana 6: Josué em Jericó",
     subtitle: "Ordene a conquista de Jericó em Josué 6:",
     cards: [
-      { id: "c53", order: 1, era: "1º Passo", title: "Deus Diz a Josué: 'Sê Forte e Corajoso'", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_118.jpg?v=58" },
-      { id: "c54", order: 2, era: "2º Passo", title: "A Travessia do Rio Jordão com a Arca", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_110.jpg?v=58" },
-      { id: "c55", order: 3, era: "3º Passo", title: "Sete Voltas e o Toque das Trombetas", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=58" },
-      { id: "c56", order: 4, era: "4º Passo", title: "As Muralhas Caem pelo Poder de Deus", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=58" }
+      { id: "c53", order: 1, era: "1º Passo", title: "Deus Diz a Josué: 'Sê Forte e Corajoso'", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_118.jpg?v=59" },
+      { id: "c54", order: 2, era: "2º Passo", title: "A Travessia do Rio Jordão com a Arca", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_110.jpg?v=59" },
+      { id: "c55", order: 3, era: "3º Passo", title: "Sete Voltas e o Toque das Trombetas", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=59" },
+      { id: "c56", order: 4, era: "4º Passo", title: "As Muralhas Caem pelo Poder de Deus", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=59" }
     ]
   },
   {
@@ -3757,10 +3757,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 15 • Semana 7: De Josué ao Jovem Davi",
     subtitle: "Ordene os acontecimentos da Terra Prometida:",
     cards: [
-      { id: "c57", order: 1, era: "Josué 4", title: "As Doze Pedras do Memorial no Jordão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_119.jpg?v=58" },
-      { id: "c58", order: 2, era: "Josué 6", title: "As Trombetas da Vitória em Jericó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=58" },
-      { id: "c59", order: 3, era: "1 Samuel 16:11", title: "Davi Cuida das Ovelhas no Campo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=58" },
-      { id: "c60", order: 4, era: "1 Samuel 16:13", title: "Samuel Unge o Jovem Davi em Belém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=58" }
+      { id: "c57", order: 1, era: "Josué 4", title: "As Doze Pedras do Memorial no Jordão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_119.jpg?v=59" },
+      { id: "c58", order: 2, era: "Josué 6", title: "As Trombetas da Vitória em Jericó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=59" },
+      { id: "c59", order: 3, era: "1 Samuel 16:11", title: "Davi Cuida das Ovelhas no Campo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=59" },
+      { id: "c60", order: 4, era: "1 Samuel 16:13", title: "Samuel Unge o Jovem Davi em Belém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=59" }
     ]
   },
   {
@@ -3768,10 +3768,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 16 • Semana 8: Davi e Salomão",
     subtitle: "Ordene o Reino de Israel:",
     cards: [
-      { id: "c61", order: 1, era: "1º Passo", title: "Davi Cuida das Ovelhas e Toca Harpa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=58" },
-      { id: "c62", order: 2, era: "2º Passo", title: "Davi Escolhe Cinco Pedrinhas no Riacho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_120.jpg?v=58" },
-      { id: "c63", order: 3, era: "3º Passo", title: "Davi Vence Golias em Nome do Senhor", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=58" },
-      { id: "c64", order: 4, era: "4º Passo", title: "O Sábio Rei Salomão no Trono de Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=58" }
+      { id: "c61", order: 1, era: "1º Passo", title: "Davi Cuida das Ovelhas e Toca Harpa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=59" },
+      { id: "c62", order: 2, era: "2º Passo", title: "Davi Escolhe Cinco Pedrinhas no Riacho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_120.jpg?v=59" },
+      { id: "c63", order: 3, era: "3º Passo", title: "Davi Vence Golias em Nome do Senhor", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=59" },
+      { id: "c64", order: 4, era: "4º Passo", title: "O Sábio Rei Salomão no Trono de Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=59" }
     ]
   },
   {
@@ -3779,10 +3779,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 17 • Semana 9: Salomão, Elias e Jonas",
     subtitle: "Ordene a época dos reis e profetas:",
     cards: [
-      { id: "c65", order: 1, era: "1º Passo", title: "Salomão Governa com Sabedoria", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=58" },
-      { id: "c66", order: 2, era: "2º Passo", title: "Elias Sobe na Carruagem de Fogo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=58" },
-      { id: "c67", order: 3, era: "3º Passo", title: "Jonas e a Grande Baleia no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=58" },
-      { id: "c68", order: 4, era: "4º Passo", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=58" }
+      { id: "c65", order: 1, era: "1º Passo", title: "Salomão Governa com Sabedoria", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=59" },
+      { id: "c66", order: 2, era: "2º Passo", title: "Elias Sobe na Carruagem de Fogo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=59" },
+      { id: "c67", order: 3, era: "3º Passo", title: "Jonas e a Grande Baleia no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=59" },
+      { id: "c68", order: 4, era: "4º Passo", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=59" }
     ]
   },
   {
@@ -3790,10 +3790,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 18 • Semana 10: Daniel e a Rainha Ester",
     subtitle: "Ordene a fidelidade do povo de Deus:",
     cards: [
-      { id: "c69", order: 1, era: "Daniel 6:10", title: "Daniel Ora Fielmente na Janela Aberta", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_121.jpg?v=58" },
-      { id: "c70", order: 2, era: "Daniel 6:22", title: "O Anjo Fecha a Boca dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=58" },
-      { id: "c71", order: 3, era: "Daniel 6:23", title: "Daniel Sai Ileso da Cova ao Amanhecer", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_122.jpg?v=58" },
-      { id: "c72", order: 4, era: "Ester 4–8", title: "A Rainha Ester Salva o Povo de Deus", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=58" }
+      { id: "c69", order: 1, era: "Daniel 6:10", title: "Daniel Ora Fielmente na Janela Aberta", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_121.jpg?v=59" },
+      { id: "c70", order: 2, era: "Daniel 6:22", title: "O Anjo Fecha a Boca dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=59" },
+      { id: "c71", order: 3, era: "Daniel 6:23", title: "Daniel Sai Ileso da Cova ao Amanhecer", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_122.jpg?v=59" },
+      { id: "c72", order: 4, era: "Ester 4–8", title: "A Rainha Ester Salva o Povo de Deus", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=59" }
     ]
   },
   {
@@ -3801,10 +3801,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 19 • Semana 11: Jesus, o Salvador",
     subtitle: "Ordene o ministério de Jesus nos Evangelhos:",
     cards: [
-      { id: "c73", order: 1, era: "Lucas 1", title: "O Anjo Gabriel Anuncia a Maria", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_123.jpg?v=58" },
-      { id: "c74", order: 2, era: "Lucas 2", title: "Jesus Nasce em Belém sob a Estrela", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=58" },
-      { id: "c75", order: 3, era: "Marcos 4", title: "Jesus Acalma o Vento e o Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg?v=58" },
-      { id: "c76", order: 4, era: "Marcos 10", title: "Jesus Abraça e Abençoa as Crianças", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=58" }
+      { id: "c73", order: 1, era: "Lucas 1", title: "O Anjo Gabriel Anuncia a Maria", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_123.jpg?v=59" },
+      { id: "c74", order: 2, era: "Lucas 2", title: "Jesus Nasce em Belém sob a Estrela", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=59" },
+      { id: "c75", order: 3, era: "Marcos 4", title: "Jesus Acalma o Vento e o Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg?v=59" },
+      { id: "c76", order: 4, era: "Marcos 10", title: "Jesus Abraça e Abençoa as Crianças", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=59" }
     ]
   },
   {
@@ -3812,10 +3812,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 20 • Semana 12: Os Milagres e a Igreja",
     subtitle: "Ordene a missão no Novo Testamento:",
     cards: [
-      { id: "c77", order: 1, era: "João 6", title: "O Menino Entrega os Cinco Pães e Dois Peixes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_124.jpg?v=58" },
-      { id: "c78", order: 2, era: "Mateus 28", title: "Jesus Ressuscita Glorioso no Jardim", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_126.jpg?v=58" },
-      { id: "c79", order: 3, era: "Atos 13–28", title: "Paulo Viaja de Navio Levando o Evangelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=58" },
-      { id: "c80", order: 4, era: "Trono da Promessa", title: "A Família Aprendendo a Palavra com o Vovô", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_09.jpg?v=58" }
+      { id: "c77", order: 1, era: "João 6", title: "O Menino Entrega os Cinco Pães e Dois Peixes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_124.jpg?v=59" },
+      { id: "c78", order: 2, era: "Mateus 28", title: "Jesus Ressuscita Glorioso no Jardim", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_126.jpg?v=59" },
+      { id: "c79", order: 3, era: "Atos 13–28", title: "Paulo Viaja de Navio Levando o Evangelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=59" },
+      { id: "c80", order: 4, era: "Trono da Promessa", title: "A Família Aprendendo a Palavra com o Vovô", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_09.jpg?v=59" }
     ]
   }
 ];
@@ -5620,52 +5620,99 @@ window.openLessonModule = function(modType) {
     modBackBtn.setAttribute("onclick", "backFromLessonModule()");
   }
 
-  // 1) CRONOLOGIA BÍBLICA DA LIÇÃO:
-  // Sem erro de undefined, com imagem grande ampliável e Linha do Tempo (Antes / Agora / Depois)
+  // 1) MAPA VISUAL DA CRONOLOGIA BÍBLICA (Substitui os blocos de texto Antes/Agora/Depois por Imagens 16:9!):
+  // Imagens pequenininhas (16:9) para o que aconteceu ANTES, Imagem GRANDE (16:9) destacada para ONDE ESTAMOS AGORA,
+  // Imagens pequenininhas (16:9) para o que vem DEPOIS, e apenas 1 frase curta de observação no final!
   if (modType === "texto") {
     const safeTitle = lesson.title.replace(/'/g, "");
-    const cs = lesson.chronoSimple || {
-      testament: lesson.bibleRef,
-      before: "Histórias anteriores da promessa de Deus.",
-      now: `${lesson.title} (${lesson.bibleRef}).`,
-      after: "O plano de Deus continua na próxima lição!"
+    const mapStops = window.getChronologyVisualMapForWeek(lesson.week);
+    const curStop = mapStops.current;
+    const beforeStops = mapStops.before;
+    const afterStops = mapStops.after;
+
+    const renderMiniStopHtml = (st, badgeColor) => {
+      const unlocked = window.isLessonWeekUnlocked(st.week);
+      return `
+        <div onclick="onTapChronologyItem(${st.week})" style="background:#0f172a; border:1.5px solid ${badgeColor}; border-radius:10px; overflow:hidden; cursor:pointer; display:flex; flex-direction:column; box-shadow:0 3px 7px rgba(0,0,0,0.7); position:relative;">
+          <div style="position:relative; width:100%; aspect-ratio:16/9; background:#050b1a; overflow:hidden;">
+            <img src="${st.img}" alt="${st.shortTitle}" style="width:100%; height:100%; object-fit:cover; display:block; ${unlocked ? "" : "filter:grayscale(55%) brightness(0.8);"}">
+            <span style="position:absolute; top:2px; left:3px; background:rgba(15,23,42,0.88); color:#fde047; font-size:8.5px; font-weight:900; padding:1px 4px; border-radius:6px; border:1px solid rgba(253,224,71,0.5);">
+              ${unlocked ? st.stepNum + "º" : "🔒"}
+            </span>
+          </div>
+          <div style="padding:3px 3px; font-size:9.5px; font-weight:800; color:#f8fafc; line-height:1.1; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+            ${st.shortTitle}
+          </div>
+        </div>
+      `;
     };
-    const bibleSubtitle = cs.testament || cs.whereInBible || lesson.bibleRef;
+
     box.innerHTML = `
-      <div class="ebd-glass-card" style="margin-bottom:4px; padding:10px;">
-        <h3 style="color:#fde047; font-size:16px; margin-bottom:2px; line-height:1.2;">Lição ${lesson.week}: ${lesson.title}</h3>
-        <div style="color:#38bdf8; font-size:12px; font-weight:800; margin-bottom:6px;">📖 ${bibleSubtitle}</div>
-
-        <div class="frame-3d-alive" style="width:146px; aspect-ratio:9/16; height:auto; margin:0 auto 4px auto; cursor:pointer; background:#0f172a;" onclick="openLessonImageFullModal('${lesson.thumbImg}', 'Lição ${lesson.week}: ${safeTitle}')" title="Toque para abrir a imagem inteira">
-          <img src="${lesson.thumbImg}" alt="${lesson.title}" style="width:100%; height:100%; object-fit:cover; border-radius:15px; display:block;">
-        </div>
-        <div style="font-size:11px; color:#fde047; font-weight:800; margin-bottom:8px; cursor:pointer;" onclick="openLessonImageFullModal('${lesson.thumbImg}', 'Lição ${lesson.week}: ${safeTitle}')">
-          🔍 Toque na imagem para ampliar ou baixar
+      <div class="ebd-glass-card" style="margin-bottom:4px; padding:8px 9px;">
+        <div style="font-size:12px; font-weight:900; color:#38bdf8; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:5px;">
+          🗺️ Mapa da Cronologia Bíblica
         </div>
 
-        <div style="display:flex; flex-direction:column; gap:6px; text-align:left; margin-bottom:8px;">
-          <div style="background:rgba(15,23,42,0.88); border:1.5px solid #38bdf8; border-radius:12px; padding:7px 10px;">
-            <div style="color:#38bdf8; font-size:11.5px; font-weight:900; margin-bottom:1px;">⏪ O QUE ACONTECEU ANTES:</div>
-            <div style="color:#f1f5f9; font-size:12.5px; line-height:1.32; font-weight:700;">${cs.before}</div>
+        ${beforeStops.length > 0 ? `
+          <div style="background:rgba(15,23,42,0.78); border:1.5px dashed #38bdf8; border-radius:12px; padding:6px; margin-bottom:7px;">
+            <div style="font-size:10.5px; font-weight:900; color:#38bdf8; text-align:left; margin-bottom:4px;">
+              ⏪ ANTES DESTA HISTÓRIA (${beforeStops.length} ${beforeStops.length === 1 ? "etapa" : "etapas"}):
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:5px;">
+              ${beforeStops.map(s => renderMiniStopHtml(s, "#38bdf8")).join("")}
+            </div>
+          </div>
+          <div style="font-size:14px; line-height:1; color:#fde047; font-weight:900; margin-bottom:5px;">⬇️</div>
+        ` : ""}
+
+        <!-- CARD GRANDE EM DESTAQUE: ONDE ESTAMOS AGORA (IMAGEM 16:9 HORIZONTAL!) -->
+        <div style="background:linear-gradient(180deg, rgba(88,28,135,0.96), rgba(30,27,75,0.98)); border:3px solid #fde047; border-radius:16px; padding:8px; margin-bottom:7px; box-shadow:0 6px 18px rgba(0,0,0,0.85);">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:5px;">
+            <span style="background:linear-gradient(180deg,#00e676,#00c853); color:#ffffff; font-size:10.5px; font-weight:900; padding:2px 9px; border-radius:999px; border:1.5px solid #ffffff;">
+              📍 VOCÊ ESTÁ AQUI • ${curStop.stepNum}º MARCO
+            </span>
+            <span style="font-size:10.5px; font-weight:800; color:#fde047; cursor:pointer;" onclick="openLessonImageFullModal('${curStop.img}', 'Lição ${lesson.week}: ${safeTitle}')">
+              🔍 Ampliar
+            </span>
           </div>
 
-          <div style="background:linear-gradient(180deg, rgba(88,28,135,0.92), rgba(49,46,129,0.95)); border:2px solid #fde047; border-radius:12px; padding:8px 10px; box-shadow:0 4px 10px rgba(0,0,0,0.6);">
-            <div style="color:#fde047; font-size:12px; font-weight:900; margin-bottom:1px;">⭐ ONDE ESTAMOS AGORA (LIÇÃO ${lesson.week}):</div>
-            <div style="color:#ffffff; font-size:13px; line-height:1.34; font-weight:800;">${cs.now}</div>
+          <div style="width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:2px solid #fde047; background:#050b1a; margin-bottom:6px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.75);" onclick="openLessonImageFullModal('${curStop.img}', 'Lição ${lesson.week}: ${safeTitle}')">
+            <img src="${curStop.img}" alt="${lesson.title}" style="width:100%; height:100%; object-fit:cover; display:block;">
           </div>
 
-          <div style="background:rgba(15,23,42,0.88); border:1.5px solid #00e676; border-radius:12px; padding:7px 10px;">
-            <div style="color:#86efac; font-size:11.5px; font-weight:900; margin-bottom:1px;">⏩ O QUE ACONTECE DEPOIS:</div>
-            <div style="color:#f1f5f9; font-size:12.5px; line-height:1.32; font-weight:700;">${cs.after}</div>
+          <div style="font-size:15px; font-weight:900; color:#fde047; line-height:1.18; margin-bottom:2px;">
+            Lição ${lesson.week}: ${lesson.title}
+          </div>
+          <div style="font-size:11.5px; font-weight:800; color:#e2e8f0;">
+            📖 ${lesson.bibleRef}
           </div>
         </div>
 
-        ${window.EBD_STATE.fromChronologyHub ? `
-          <div style="display:flex; gap:8px;">
-            <button type="button" class="btn-tool-3d" style="flex:1; padding:9px; font-size:12.5px;" onclick="openChronologyScreen()">⬅ Todas as Lições</button>
-            <button type="button" class="btn-gold" style="flex:1.3; padding:9px; font-size:13px;" onclick="stepChronologyLessonWeek(1)">Próxima Lição ➔</button>
+        ${afterStops.length > 0 ? `
+          <div style="font-size:14px; line-height:1; color:#00e676; font-weight:900; margin-bottom:5px;">⬇️</div>
+          <div style="background:rgba(15,23,42,0.78); border:1.5px dashed #00e676; border-radius:12px; padding:6px; margin-bottom:7px;">
+            <div style="font-size:10.5px; font-weight:900; color:#86efac; text-align:left; margin-bottom:4px;">
+              ⏩ O QUE VEM DEPOIS NA BÍBLIA (${afterStops.length} ${afterStops.length === 1 ? "etapa" : "etapas"}):
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:5px;">
+              ${afterStops.map(s => renderMiniStopHtml(s, "#00e676")).join("")}
+            </div>
           </div>
         ` : ""}
+
+        <!-- OBSERVAÇÃO CURTA E SIMPLES EMBAIXO DO MAPA -->
+        <div style="background:rgba(15,23,42,0.92); border:1.5px solid #fde047; border-radius:11px; padding:6px 9px; font-size:11.5px; font-weight:800; color:#fef08a; line-height:1.3; margin-bottom:7px;">
+          💡 ${curStop.note}
+        </div>
+
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="btn-tool-3d" style="flex:1; padding:8px; font-size:12px;" onclick="backFromLessonModule()">
+            ${window.EBD_STATE.fromChronologyHub ? "⬅ Todas as Lições" : "⬅ Voltar à Lição"}
+          </button>
+          <button type="button" class="btn-gold" style="flex:1.3; padding:8px; font-size:12.5px;" onclick="stepChronologyLessonWeek(1)">
+            Próxima na Linha ➔
+          </button>
+        </div>
       </div>
     `;
   }
@@ -5883,6 +5930,46 @@ window.toggleLessonDevotionalDay = function(key) {
 // ============================================================================
 // 10. CRONOLOGIA BÍBLICA (TELA #screen-chronology — SÉRIE 1 E SÉRIE 2!)
 // ============================================================================
+// Mapa Visual da Cronologia Bíblica (Imagens 16:9 Horizontais da Criação até Jesus e Paulo)
+window.CHRONO_VISUAL_MAP_STOPS = [
+  { week: 1,  chronoOrder: 1,  mainStop: true,  shortTitle: "Criação",      img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=59", note: "O Começo de Tudo (Gênesis 1): Deus criou a luz, o céu, os mares, as árvores, os animais e a família!" },
+  { week: 11, chronoOrder: 2,  mainStop: false, shortTitle: "Éden",         img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=59",  note: "Depois da Criação e antes da Arca de Noé, Deus colocou Adão e Eva para cuidarem do Jardim do Éden!" },
+  { week: 2,  chronoOrder: 3,  mainStop: true,  shortTitle: "Arca de Noé",  img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=59",  note: "Depois da Criação do mundo e antes de Abraão, Noé construiu a Arca e viu o arco-íris da aliança de Deus!" },
+  { week: 3,  chronoOrder: 4,  mainStop: true,  shortTitle: "Abraão",       img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=59",  note: "Depois de Noé e antes de Jacó e José, Deus chamou Abraão e prometeu uma grande família como as estrelas!" },
+  { week: 4,  chronoOrder: 5,  mainStop: true,  shortTitle: "Jacó",         img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=59",  note: "Neto de Abraão e filho de Isaque: Jacó sonhou com a escada brilhante do céu antes de José ir para o Egito!" },
+  { week: 5,  chronoOrder: 6,  mainStop: true,  shortTitle: "José",         img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=59",  note: "Filho de Jacó: José ganhou a túnica colorida, virou governador do Egito e perdoou seus irmãos antes da época de Moisés!" },
+  { week: 12, chronoOrder: 7,  mainStop: false, shortTitle: "Bebê Moisés",  img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=59", note: "Depois de José no Egito, o bebê Moisés foi protegido no cestinho no Rio Nilo e ouviu Deus na Sarça Ardente!" },
+  { week: 6,  chronoOrder: 8,  mainStop: true,  shortTitle: "Moisés",       img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=59",  note: "Depois dos Patriarcas e antes de Josué, Moisés guiou o povo de Israel atravessando o Mar Vermelho!" },
+  { week: 13, chronoOrder: 9,  mainStop: false, shortTitle: "Sinai",        img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=59", note: "Logo após atravessar o Mar Vermelho, Deus cuidou do povo no deserto com o Maná e entregou os Dez Mandamentos!" },
+  { week: 7,  chronoOrder: 10, mainStop: true,  shortTitle: "Josué",        img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=59", note: "Depois de Moisés e antes do Rei Davi, Josué liderou o povo e as muralhas de Jericó caíram pelo poder de Deus!" },
+  { week: 14, chronoOrder: 11, mainStop: false, shortTitle: "Rute",         img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_17.jpg?v=59",  note: "Na época dos Juízes (depois de Josué e antes do Rei Davi), Gideão e a bondosa Rute confiaram no Senhor!" },
+  { week: 15, chronoOrder: 12, mainStop: false, shortTitle: "Samuel",       img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=59", note: "Depois dos Juízes, Deus ouviu a oração de Ana e chamou o pequeno profeta Samuel, que mais tarde ungiu Davi!" },
+  { week: 8,  chronoOrder: 13, mainStop: true,  shortTitle: "Davi",         img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=59",  note: "Na época dos Reis: depois de Moisés e Josué, e antes de Salomão e Jesus, o jovem Davi venceu o gigante Golias!" },
+  { week: 16, chronoOrder: 14, mainStop: true,  shortTitle: "Salomão",      img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=59",  note: "Filho do Rei Davi: Salomão pediu um coração sábio a Deus e construiu o grande Templo em Jerusalém!" },
+  { week: 9,  chronoOrder: 15, mainStop: true,  shortTitle: "Profetas",     img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=59",  note: "Depois de Davi e Salomão, e antes de Daniel e Jesus, Deus enviou os profetas Elias e Jonas para ensinar o povo!" },
+  { week: 17, chronoOrder: 16, mainStop: false, shortTitle: "Eliseu",       img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=59",  note: "Na época dos Profetas, Eliseu realizou milagres de bondade e Isaías anunciou a promessa da vinda de Jesus!" },
+  { week: 18, chronoOrder: 17, mainStop: false, shortTitle: "3 Amigos",     img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_121.jpg?v=59", note: "Na Babilônia (junto com Daniel), os três jovens amigos permaneceram fiéis a Deus sem temer a fornalha!" },
+  { week: 10, chronoOrder: 18, mainStop: true,  shortTitle: "Daniel",       img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=59",  note: "Depois dos Reis e Profetas e antes do nascimento de Jesus, Daniel orou fielmente e Deus o guardou na cova dos leões!" },
+  { week: 19, chronoOrder: 19, mainStop: false, shortTitle: "Ester",        img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=59",  note: "Logo após a época de Daniel, a corajosa Rainha Ester intercedeu diante do rei e salvou o povo de Deus!" },
+  { week: 20, chronoOrder: 20, mainStop: false, shortTitle: "Neemias",      img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_119.jpg?v=59", note: "No final do Antigo Testamento (antes da chegada de Jesus), Neemias uniu o povo e reconstruiu os muros de Jerusalém!" },
+  { week: 21, chronoOrder: 21, mainStop: true,  shortTitle: "Jesus",        img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=59",  note: "O Centro de toda a Bíblia! Todas as promessas desde a Criação, Abraão e Davi se cumpriram na chegada de Jesus!" },
+  { week: 22, chronoOrder: 22, mainStop: true,  shortTitle: "Paulo",        img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=59",  note: "Depois da ressurreição de Jesus, os discípulos e o apóstolo Paulo levaram a boa notícia de Cristo para o mundo inteiro!" }
+];
+
+window.getChronologyVisualMapForWeek = function(weekNum) {
+  const all = window.CHRONO_VISUAL_MAP_STOPS;
+  const curRaw = all.find(s => s.week === weekNum) || all[0];
+  // Seleciona os 12 marcos principais + a lição atual (caso seja da Série 2) para o mapa ficar limpo e visual
+  const filtered = all.filter(s => s.mainStop || s.week === curRaw.week);
+  const numbered = filtered.map((s, idx) => Object.assign({}, s, { stepNum: idx + 1 }));
+  const curIdx = numbered.findIndex(s => s.week === curRaw.week);
+  return {
+    before: numbered.slice(0, curIdx),
+    current: numbered[curIdx] || numbered[0],
+    after: numbered.slice(curIdx + 1)
+  };
+};
+
 window.backFromLessonModule = function() {
   window.stopVovoStoryNarration();
   if (window.EBD_STATE.fromChronologyHub) {
@@ -5904,7 +5991,6 @@ window.stepChronologyLessonWeek = function(delta) {
   }
   window.EBD_STATE.currentWeek = next;
   localStorage.setItem("trono_ebd_week", String(next));
-  window.EBD_STATE.fromChronologyHub = true;
   window.openLessonModule("texto");
 };
 
@@ -5916,24 +6002,26 @@ window.openChronologyScreen = function() {
     let cardsHtml = "";
     window.EBD_LESSONS_CURRICULUM.forEach((item) => {
       const unlocked = window.isLessonWeekUnlocked(item.week);
+      const mapStop = window.CHRONO_VISUAL_MAP_STOPS.find(s => s.week === item.week);
+      const horizImg = mapStop ? mapStop.img : item.thumbImg;
       cardsHtml += `
-        <div onclick="onTapChronologyItem(${item.week})" style="background:linear-gradient(180deg, rgba(30,27,75,0.95), rgba(15,23,42,0.98)); border:2.5px solid ${unlocked ? "#fde047" : "#64748b"}; border-radius:18px; overflow:hidden; display:flex; flex-direction:column; cursor:pointer; box-shadow:0 6px 14px rgba(0,0,0,0.82); position:relative;">
-          <div style="position:relative; width:100%; height:158px; background:#050b1a; overflow:hidden;">
-            <img src="${item.thumbImg}" alt="${item.title}" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block; ${unlocked ? "" : "filter:grayscale(65%) brightness(0.75);"}">
-            <div style="position:absolute; top:7px; left:7px; background:${unlocked ? "linear-gradient(180deg,#00e676,#00c853)" : "rgba(15,23,42,0.92)"}; color:#ffffff; font-size:11.5px; font-weight:900; padding:3px 9px; border-radius:999px; border:1.5px solid #ffffff; box-shadow:0 2px 6px rgba(0,0,0,0.75);">
+        <div onclick="onTapChronologyItem(${item.week})" style="background:linear-gradient(180deg, rgba(30,27,75,0.95), rgba(15,23,42,0.98)); border:2.5px solid ${unlocked ? "#fde047" : "#64748b"}; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; cursor:pointer; box-shadow:0 5px 12px rgba(0,0,0,0.82); position:relative;">
+          <div style="position:relative; width:100%; aspect-ratio:16/9; background:#050b1a; overflow:hidden;">
+            <img src="${horizImg}" alt="${item.title}" style="width:100%; height:100%; object-fit:cover; display:block; ${unlocked ? "" : "filter:grayscale(65%) brightness(0.75);"}">
+            <div style="position:absolute; top:5px; left:5px; background:${unlocked ? "linear-gradient(180deg,#00e676,#00c853)" : "rgba(15,23,42,0.92)"}; color:#ffffff; font-size:10.5px; font-weight:900; padding:2px 8px; border-radius:999px; border:1.5px solid #ffffff; box-shadow:0 2px 6px rgba(0,0,0,0.75);">
               ${unlocked ? `Lição ${item.week}` : `🔒 Lição ${item.week}`}
             </div>
-            <div style="position:absolute; bottom:7px; right:7px; width:30px; height:30px; border-radius:50%; background:rgba(15,23,42,0.88); border:1.5px solid #fde047; display:flex; align-items:center; justify-content:center; font-size:14px; box-shadow:0 2px 6px rgba(0,0,0,0.8);">
+            <div style="position:absolute; bottom:5px; right:5px; width:26px; height:26px; border-radius:50%; background:rgba(15,23,42,0.88); border:1.5px solid #fde047; display:flex; align-items:center; justify-content:center; font-size:12px; box-shadow:0 2px 6px rgba(0,0,0,0.8);">
               ${unlocked ? "▶️" : "🔒"}
             </div>
           </div>
-          <div style="padding:8px 7px; font-size:13px; font-weight:900; color:#fde047; line-height:1.18; text-align:center; min-height:42px; display:flex; align-items:center; justify-content:center;">
+          <div style="padding:6px 6px; font-size:12px; font-weight:900; color:#fde047; line-height:1.15; text-align:center; min-height:38px; display:flex; align-items:center; justify-content:center;">
             ${item.title}
           </div>
         </div>
       `;
     });
-    listEl.innerHTML = `<div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; padding:2px;">${cardsHtml}</div>`;
+    listEl.innerHTML = `<div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; padding:2px;">${cardsHtml}</div>`;
   }
   if (typeof showScreen === "function") showScreen("screen-chronology");
 };
@@ -5949,7 +6037,6 @@ window.onTapChronologyItem = function(weekNum) {
   window.EBD_STATE.fromChronologyHub = true;
   window.openLessonModule("texto");
 };
-
 
 window.openGamesHubScreen = function(filterCat) {
   window.ebdClick();
