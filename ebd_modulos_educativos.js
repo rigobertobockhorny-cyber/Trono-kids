@@ -149,35 +149,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • A Palavra de Deus Traz Luz",
         "verse": "\"E disse Deus: Haja luz; e houve luz. E viu Deus que era boa a luz.\" (Gênesis 1:3-4)",
         "text": "No primeiro dia da Criação, tudo estava escuro, mas bastou Deus falar 'Haja luz!' para a claridade brilhar. Quando oramos e ouvimos a Palavra de Deus, Ele também afasta todo medo do escuro e enche o nosso coração de alegria e paz.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado porque a Tua luz ilumina a nossa casa e guarda o nosso coração todos os dias!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado porque a Tua luz ilumina a nossa casa e guarda o nosso coração todos os dias!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • O Céu, o Mar e as Árvores Frutíferas",
         "verse": "\"E a terra produziu erva, plantas que dão semente e árvores frutíferas. E viu Deus que era bom.\" (Gênesis 1:12)",
         "text": "Nos dias 2 e 3, Deus preparou o céu azul, juntou as águas dos mares e cobriu a terra de flores coloridas e árvores cheias de frutas gostosas. Tudo o que comemos na nossa mesa vem do cuidado amoroso do Criador!",
-        "prayer": "🙏 Oração em Família: Papai do Céu, obrigado pela água fresquinha, pelas frutas e pelo alimento que o Senhor coloca em nossa mesa!"
+        "prayer": "Oração em Família: Papai do Céu, obrigado pela água fresquinha, pelas frutas e pelo alimento que o Senhor coloca em nossa mesa!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • O Sol, a Lua e as Estrelinhas",
         "verse": "\"Fez Deus os dois grandes luminares: o maior para governar o dia, e o menor para governar a noite; e fez também as estrelas.\" (Gênesis 1:16)",
         "text": "No quarto dia, Deus acendeu o Sol para aquecer o nosso dia e colocou a Lua e milhões de estrelas no céu da noite. A Bíblia diz que Deus conta todas as estrelas e chama cada uma pelo nome — e Ele conhece você pelo nome também!",
-        "prayer": "🙏 Oração em Família: Obrigado, Senhor, pelo Sol durante o dia e pela noite tranquila que o Senhor preparou para descansarmos."
+        "prayer": "Oração em Família: Obrigado, Senhor, pelo Sol durante o dia e pela noite tranquila que o Senhor preparou para descansarmos.",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • Os Animais e a Criação Especial de Deus",
         "verse": "\"E criou Deus o homem à sua imagem; à imagem de Deus o criou.\" (Gênesis 1:27)",
         "text": "Nos dias 5 e 6, Deus encheu os mares de peixes, o céu de aves e os campos de animais. Mas o ser humano foi feito de um jeito único: à imagem e semelhança de Deus, capaz de amar, conversar com Ele e fazer o bem!",
-        "prayer": "🙏 Oração em Família: Querido Deus, obrigado porque o Senhor nos criou com tanto amor. Ajuda-nos a cuidar bem de toda a natureza!"
+        "prayer": "Oração em Família: Querido Deus, obrigado porque o Senhor nos criou com tanto amor. Ajuda-nos a cuidar bem de toda a natureza!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • Tudo Era Muito Bom e o Descanso Sagrado",
         "verse": "\"E viu Deus tudo quanto tinha feito, e eis que era muito bom. E abençoou Deus o dia sétimo.\" (Gênesis 1:31; 2:3)",
         "text": "Ao terminar toda a Criação, Deus olhou para o mundo e viu que tudo era muito bom! No sétimo dia, o Senhor descansou e nos ensinou a importância de parar, agradecer em família e dedicar tempo a Deus.",
-        "prayer": "🙏 Oração em Família: Senhor, louvamos o Teu nome por todas as maravilhas da Criação e pela nossa família reunida!"
+        "prayer": "Oração em Família: Senhor, louvamos o Teu nome por todas as maravilhas da Criação e pela nossa família reunida!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"No princípio, Deus criou os céus e a terra. E viu Deus que tudo era muito bom! (Gênesis 1:1,31)\"",
+        "text": "Ao estudarmos A Criação Maravilhosa de Deus (Gênesis 1:1–31), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 1 (A Criação Maravilhosa de Deus) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"No princípio, Deus criou os céus e a terra. E viu Deus que tudo era muito bom! (Gênesis 1:1,31)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 1 (A Criação Maravilhosa de Deus). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Gênesis 1:1–31. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -311,35 +332,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • Noé Andava com Deus",
         "verse": "\"Noé era homem justo e íntegro entre os seus contemporâneos; Noé andava com Deus.\" (Gênesis 6:9)",
         "text": "Mesmo quando as pessoas ao seu redor faziam coisas erradas, Noé escolheu ser amigo de Deus e obedecer à Sua voz. Andar com Deus significa conversar com Ele todos os dias e fazer o que é certo com alegria.",
-        "prayer": "🙏 Oração em Família: Senhor, ensina-nos a andar contigo todos os dias, assim como Noé andava!"
+        "prayer": "Oração em Família: Senhor, ensina-nos a andar contigo todos os dias, assim como Noé andava!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • Obediência que Constrói",
         "verse": "\"Assim fez Noé; conforme tudo o que Deus lhe mandou, assim o fez.\" (Gênesis 6:22)",
         "text": "Construir uma Arca tão grande deu muito trabalho e levou tempo, mas Noé e sua família não desistiram. Quando obedecemos a Deus e aos nossos pais com paciência, o Senhor abençoa o nosso trabalho.",
-        "prayer": "🙏 Oração em Família: Papai do Céu, dá-nos um coração obediente, paciente e disposto a ajudar em casa!"
+        "prayer": "Oração em Família: Papai do Céu, dá-nos um coração obediente, paciente e disposto a ajudar em casa!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Deus Fecha a Porta para Proteger",
         "verse": "\"Entraram para junto de Noé na arca, de dois em dois, de toda carne em que havia fôlego de vida... E o Senhor fechou a porta.\" (Gênesis 7:15-16)",
         "text": "Depois que Noé, sua família e todos os bichinhos entraram na Arca, o próprio Deus fechou a porta por fora! Lá fora chovia forte, mas lá dentro todos estavam seguros sob o cuidado do Senhor.",
-        "prayer": "🙏 Oração em Família: Obrigado, Deus, porque o Senhor guarda a nossa casa e protege a nossa família em todos os momentos!"
+        "prayer": "Oração em Família: Obrigado, Deus, porque o Senhor guarda a nossa casa e protege a nossa família em todos os momentos!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • A Pombinha e o Ramo de Oliveira",
         "verse": "\"E a pomba voltou a ele à tarde; e eis, arrancada, uma folha nova de oliveira no seu bico.\" (Gênesis 8:11)",
         "text": "Noé esperou com confiança até as águas baixarem. Quando a pombinha trouxe uma folhinha verde de oliveira no bico, Noé soube que as árvores já estavam brotando de novo e que o tempo difícil havia passado!",
-        "prayer": "🙏 Oração em Família: Senhor, ajuda-nos a esperar sempre com esperança e paz nas Tuas promessas!"
+        "prayer": "Oração em Família: Senhor, ajuda-nos a esperar sempre com esperança e paz nas Tuas promessas!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • O Arco-Íris da Aliança de Deus",
         "verse": "\"O meu arco tenho posto nas nuvens; este será por sinal da aliança entre mim e a terra.\" (Gênesis 9:13)",
         "text": "Assim que saiu da Arca, Noé agradeceu a Deus em família. Então o Senhor colocou um lindo arco-íris colorido no céu para lembrar que Ele nunca se esquece das Suas promessas de amor!",
-        "prayer": "🙏 Oração em Família: Deus fiel, toda vez que virmos o arco-íris no céu, lembraremos que Tuas promessas nunca falham!"
+        "prayer": "Oração em Família: Deus fiel, toda vez que virmos o arco-íris no céu, lembraremos que Tuas promessas nunca falham!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"O meu arco tenho posto nas nuvens, como sinal da aliança. (Gênesis 9:13)\"",
+        "text": "Ao estudarmos Noé e o Arco da Promessa (Gênesis 6:9–9:17), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 2 (Noé e o Arco da Promessa) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"O meu arco tenho posto nas nuvens, como sinal da aliança. (Gênesis 9:13)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 2 (Noé e o Arco da Promessa). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Gênesis 6:9–9:17. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -473,35 +515,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • Ouvindo o Chamado de Deus",
         "verse": "\"Ora, o Senhor disse a Abrão: Sai-te da tua terra... para a terra que eu te mostrarei. E eu farei de ti uma grande nação.\" (Gênesis 12:1-2)",
         "text": "Abraão confiava tanto em Deus que partiu em viagem mesmo sem saber exatamente como era o lugar para onde ia. Ele sabia que, se Deus estava guiando o caminho, tudo daria certo!",
-        "prayer": "🙏 Oração em Família: Senhor, guia sempre os passos da nossa família pelo Teu caminho de bênção!"
+        "prayer": "Oração em Família: Senhor, guia sempre os passos da nossa família pelo Teu caminho de bênção!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • Abençoados para Abençoar",
         "verse": "\"E abençoar-te-ei, e engrandecerei o teu nome; e tu serás uma bênção.\" (Gênesis 12:2)",
         "text": "Deus não abençoou Abraão apenas para ele guardar tudo para si; Deus disse: 'Tu serás uma bênção!' Nós também fomos chamados para levar alegria, bondade e paz para todas as pessoas ao nosso redor.",
-        "prayer": "🙏 Oração em Família: Papai do Céu, faz da nossa família uma bênção para os nossos vizinhos, amigos e igreja!"
+        "prayer": "Oração em Família: Papai do Céu, faz da nossa família uma bênção para os nossos vizinhos, amigos e igreja!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Abraão Escolhe a Paz",
         "verse": "\"Disse Abrão a Ló: Ora, não haja contenda entre mim e ti... porque irmãos somos.\" (Gênesis 13:8)",
         "text": "Quando os pastores de gado começaram a discutir por espaço, Abraão não quis briga: ele deixou seu sobrinho Ló escolher primeiro e promoveu a paz. Quem confia em Deus não precisa brigar, pois sabe que Deus cuida de tudo!",
-        "prayer": "🙏 Oração em Família: Senhor, ensina-nos a repartir com generosidade e a viver sempre em união e paz!"
+        "prayer": "Oração em Família: Senhor, ensina-nos a repartir com generosidade e a viver sempre em união e paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • Olhando para as Estrelas da Promessa",
         "verse": "\"Então o levou fora, e disse: Olha agora para os céus, e conta as estrelas, se as podes contar... Assim será a tua descendência.\" (Gênesis 15:5)",
         "text": "Numa noite estrelada, Deus pediu que Abraão olhasse para o céu. Era impossível contar tantas estrelas brilhantes! Assim Deus mostrou que Suas promessas são muito maiores do que imaginamos.",
-        "prayer": "🙏 Oração em Família: Querido Deus, obrigado porque o Senhor cumpre todas as promessas que faz!"
+        "prayer": "Oração em Família: Querido Deus, obrigado porque o Senhor cumpre todas as promessas que faz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • O Amigo de Deus que Creu",
         "verse": "\"E creu ele no Senhor, e foi-lhe imputado isto por justiça.\" (Gênesis 15:6)",
         "text": "Abraão ficou conhecido na Bíblia como o 'Amigo de Deus' porque acreditou de todo o coração na Palavra do Senhor. Mesmo esperando muitos anos, ele viu o nascimento do seu filho Isaque!",
-        "prayer": "🙏 Oração em Família: Senhor, fortalece a nossa fé para confiarmos sempre na Tua Palavra!"
+        "prayer": "Oração em Família: Senhor, fortalece a nossa fé para confiarmos sempre na Tua Palavra!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Olha para os céus e conta as estrelas... assim será a tua descendência. (Gênesis 15:5)\"",
+        "text": "Ao estudarmos Abraão e o Céu Cheio de Estrelas (Gênesis 12:1–5; 15:5–6), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 3 (Abraão e o Céu Cheio de Estrelas) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Olha para os céus e conta as estrelas... assim será a tua descendência. (Gênesis 15:5)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 3 (Abraão e o Céu Cheio de Estrelas). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Gênesis 12:1–5; 15:5–6. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -634,35 +697,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • Nunca Estamos Sozinhos",
         "verse": "\"Partiu, pois, Jacó de Berseba... e chegou a um lugar onde passou a noite, porque já o sol era posto.\" (Gênesis 28:10-11)",
         "text": "Jacó estava longe da casa de seus pais e precisou dormir ao ar livre, usando uma pedra como travesseiro. Às vezes a gente pode sentir medo à noite, mas Deus estava olhando por Jacó o tempo todo!",
-        "prayer": "🙏 Oração em Família: Papai do Céu, obrigado porque o Senhor nunca nos deixa sozinhos, nem de dia e nem de noite!"
+        "prayer": "Oração em Família: Papai do Céu, obrigado porque o Senhor nunca nos deixa sozinhos, nem de dia e nem de noite!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • A Escada que Liga a Terra ao Céu",
         "verse": "\"E sonhou: e eis uma escada posta na terra, cujo topo tocava nos céus; e eis que os anjos de Deus subiam e desciam por ela.\" (Gênesis 28:12)",
         "text": "No sonho de Jacó, uma escada iluminada mostrava que o céu não está distante de nós: Deus envia Seus anjos para cuidar dos Seus filhos e ouve cada oração que fazemos!",
-        "prayer": "🙏 Oração em Família: Senhor, obrigado pelo Teu cuidado constante sobre a nossa casa enquanto dormimos!"
+        "prayer": "Oração em Família: Senhor, obrigado pelo Teu cuidado constante sobre a nossa casa enquanto dormimos!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • A Promessa de Deus no Topo da Escada",
         "verse": "\"E eis que estou contigo, e te guardarei por onde quer que fores.\" (Gênesis 28:15)",
         "text": "Lá do alto da escada, o próprio Deus falou com Jacó e prometeu: 'Eu estou com você e vou guardar você por onde quer que você for!' Essa promessa linda também vale para nós hoje.",
-        "prayer": "🙏 Oração em Família: Deus amado, guarda a nossa saída e a nossa entrada na escola, no trabalho e em casa!"
+        "prayer": "Oração em Família: Deus amado, guarda a nossa saída e a nossa entrada na escola, no trabalho e em casa!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • O Senhor Está Neste Lugar!",
         "verse": "\"Acordando, pois, Jacó do seu sono, disse: Na verdade o Senhor está neste lugar!\" (Gênesis 28:16)",
         "text": "Quando Jacó acordou de manhã, seu coração não tinha mais medo — estava cheio de alegria e reverência! Onde uma família ora e ama a Deus, Aquele lugar se torna especial porque o Senhor está presente.",
-        "prayer": "🙏 Oração em Família: Senhor, que a nossa casa seja sempre um lugar cheio da Tua presença e da Tua paz!"
+        "prayer": "Oração em Família: Senhor, que a nossa casa seja sempre um lugar cheio da Tua presença e da Tua paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • Um Coração Agradecido em Betel",
         "verse": "\"E chamou o nome daquele lugar Betel... E esta pedra que tenho posto por coluna será Casa de Deus.\" (Gênesis 28:19,22)",
         "text": "Jacó deu àquele lugar o nome de Betel, que significa 'Casa de Deus', e prometeu honrar ao Senhor com tudo o que recebesse. Ser grato a Deus transforma qualquer dia em festa!",
-        "prayer": "🙏 Oração em Família: Obrigado, Senhor, por todas as bênçãos que tens derramado sobre a nossa família!"
+        "prayer": "Oração em Família: Obrigado, Senhor, por todas as bênçãos que tens derramado sobre a nossa família!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Na verdade o Senhor está neste lugar! (Gênesis 28:16)\"",
+        "text": "Ao estudarmos Jacó e a Escada para o Céu (Gênesis 28:10–22), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 4 (Jacó e a Escada para o Céu) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Na verdade o Senhor está neste lugar! (Gênesis 28:16)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 4 (Jacó e a Escada para o Céu). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Gênesis 28:10–22. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -794,35 +878,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • A Túnica Colorida e o Amor na Família",
         "verse": "\"Ora, Israel amava a José mais do que a todos os seus filhos... e fez-lhe uma túnica de várias cores.\" (Gênesis 37:3)",
         "text": "José ganhou uma linda túnica colorida de seu pai Jacó, mas seus irmãos sentiram inveja dele. A história de José nos ensina que entre irmãos não deve haver ciúmes, mas carinho, respeito e amizade!",
-        "prayer": "🙏 Oração em Família: Senhor, guarda o nosso coração da inveja e ajuda-nos a amar e valorizar nossos irmãos e amigos!"
+        "prayer": "Oração em Família: Senhor, guarda o nosso coração da inveja e ajuda-nos a amar e valorizar nossos irmãos e amigos!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • O Senhor Estava com José",
         "verse": "\"O Senhor, porém, era com José, e estendeu sobre ele a sua benignidade.\" (Gênesis 39:21)",
         "text": "Mesmo quando José foi levado para longe, no Egito, a Bíblia repete várias vezes uma frase preciosa: 'O Senhor estava com José!' Onde quer que José estivesse, ele trabalhava com honestidade e alegria.",
-        "prayer": "🙏 Oração em Família: Papai do Céu, ajuda-nos a fazer tudo com capricho e honestidade em qualquer lugar!"
+        "prayer": "Oração em Família: Papai do Céu, ajuda-nos a fazer tudo com capricho e honestidade em qualquer lugar!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Deus Dá Sabedoria para Ajudar",
         "verse": "\"Disse Faraó a José: Visto que Deus te fez saber tudo isto, ninguém há tão entendido e sábio como tu.\" (Gênesis 41:39)",
         "text": "Deus deu sabedoria a José para explicar o sonho do Faraó e guardar alimentos durante 7 anos de fartura. Assim, quando chegou a fome, José pôde alimentar todo o Egito e muitas nações!",
-        "prayer": "🙏 Oração em Família: Senhor, dá-nos sabedoria para usarmos nossos dons para ajudar quem precisa!"
+        "prayer": "Oração em Família: Senhor, dá-nos sabedoria para usarmos nossos dons para ajudar quem precisa!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • O Abraço do Perdão",
         "verse": "\"Eu sou José, vosso irmão... E beijou a todos os seus irmãos, e chorou sobre eles.\" (Gênesis 45:4,15)",
         "text": "Quando seus irmãos vieram ao Egito buscar comida, José tinha poder para castigá-los, mas escolheu perdoar e abraçar cada um deles! O perdão cura o coração e traz a alegria de volta à família.",
-        "prayer": "🙏 Oração em Família: Querido Deus, ensina-nos a perdoar sempre de todo o coração, assim como José perdoou!"
+        "prayer": "Oração em Família: Querido Deus, ensina-nos a perdoar sempre de todo o coração, assim como José perdoou!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • Deus Transforma tudo em Bem!",
         "verse": "\"Vós bem intentastes mal contra mim; porém Deus o tornou em bem, para conservar muita gente com vida.\" (Gênesis 50:20)",
         "text": "José entendeu que até os momentos difíceis serviram para um plano maior de Deus: salvar a vida de toda a sua família. Quando confiamos no Senhor, Ele transforma qualquer tristeza em bênção!",
-        "prayer": "🙏 Oração em Família: Obrigado, Senhor, porque os Teus planos são perfeitos e o Senhor transforma tudo em bem!"
+        "prayer": "Oração em Família: Obrigado, Senhor, porque os Teus planos são perfeitos e o Senhor transforma tudo em bem!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Deus me enviou adiante de vós para conservar a vida. (Gênesis 45:5)\"",
+        "text": "Ao estudarmos José, a Túnica Colorida e o Perdão (Gênesis 37; 45:1–15; 50:20), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 5 (José, a Túnica Colorida e o Perdão) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Deus me enviou adiante de vós para conservar a vida. (Gênesis 45:5)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 5 (José, a Túnica Colorida e o Perdão). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Gênesis 37; 45:1–15; 50:20. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -955,35 +1060,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • Não Tenham Medo, Fiquem Firmes!",
         "verse": "\"Moisés, porém, disse ao povo: Não temais; estai quietos, e vede o livramento do Senhor.\" (Êxodo 14:13)",
         "text": "Diante do grande Mar Vermelho, o povo ficou assustado, mas Moisés lembrou a todos que Deus estava no controle. Quando enfrentamos um problema grande, nossa primeira atitude deve ser confiar e orar!",
-        "prayer": "🙏 Oração em Família: Senhor, quando sentirmos medo, lembra-nos que o Teu poder é maior do que qualquer obstáculo!"
+        "prayer": "Oração em Família: Senhor, quando sentirmos medo, lembra-nos que o Teu poder é maior do que qualquer obstáculo!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • O Senhor Pelejará por Vocês",
         "verse": "\"O Senhor pelejará por vós, e vós vos calareis. Disse o Senhor a Moisés: Dize aos filhos de Israel que marchem!\" (Êxodo 14:14-15)",
         "text": "Deus disse a Moisés que o próprio Senhor cuidaria do Seu povo e mandou que eles dessem o próximo passo de fé. Com Deus à nossa frente, podemos caminhar confiantes!",
-        "prayer": "🙏 Oração em Família: Papai do Céu, vai à frente da nossa família em cada passo desta semana!"
+        "prayer": "Oração em Família: Papai do Céu, vai à frente da nossa família em cada passo desta semana!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • A Coluna de Nuvem e de Fogo",
         "verse": "\"E o Anjo de Deus, que ia diante do exército de Israel, se retirou e ia atrás deles; também a coluna de nuvem... alumiava a noite.\" (Êxodo 14:19-20)",
         "text": "Durante o dia, Deus guiava o povo com uma nuvem fresca; à noite, iluminava o acampamento com uma coluna de fogo brilhante. O cuidado de Deus nunca descansa!",
-        "prayer": "🙏 Oração em Família: Obrigado, Senhor, porque a Tua presença nos protege de dia e ilumina a nossa noite!"
+        "prayer": "Oração em Família: Obrigado, Senhor, porque a Tua presença nos protege de dia e ilumina a nossa noite!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • Um Caminho no Meio do Mar!",
         "verse": "\"Então Moisés estendeu a sua mão sobre o mar, e o Senhor fez retirar o mar... e os filhos de Israel entraram pelo meio do mar em seco.\" (Êxodo 14:21-22)",
         "text": "Onde parecia não existir saída, Deus abriu uma avenida de terra seca no meio das águas! Para o nosso Deus Todo-Poderoso, nada é impossível.",
-        "prayer": "🙏 Oração em Família: Deus de maravilhas, nós cremos que para Ti nada é impossível!"
+        "prayer": "Oração em Família: Deus de maravilhas, nós cremos que para Ti nada é impossível!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • O Cântico da Vitória e Gratidão",
         "verse": "\"Assim o Senhor salvou Israel naquele dia... e o povo temeu ao Senhor, e creu no Senhor.\" (Êxodo 14:30-31)",
         "text": "Ao chegarem seguros do outro lado do mar, Moisés, Miriã e todo o povo cantaram hinos de alegria e gratidão a Deus. Nunca devemos esquecer de agradecer pelas vitórias que Deus nos dá!",
-        "prayer": "🙏 Oração em Família: Senhor, nós Te louvamos com alegria por todos os livramentos e bênçãos em nossa vida!"
+        "prayer": "Oração em Família: Senhor, nós Te louvamos com alegria por todos os livramentos e bênçãos em nossa vida!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"O Senhor é a minha força e o meu cântico. (Êxodo 15:2)\"",
+        "text": "Ao estudarmos Moisés e a Travessia do Mar Vermelho (Êxodo 14:13–31), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 6 (Moisés e a Travessia do Mar Vermelho) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"O Senhor é a minha força e o meu cântico. (Êxodo 15:2)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 6 (Moisés e a Travessia do Mar Vermelho). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Êxodo 14:13–31. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -1116,35 +1242,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • Seja Forte e Corajoso!",
         "verse": "\"Não to mandei eu? Esforça-te, e tem bom ânimo; não pasmes, nem te espantes; porque o Senhor teu Deus é contigo, por onde quer que andares.\" (Josué 1:9)",
         "text": "Quando Josué recebeu a missão de guiar o povo, Deus repetiu três vezes: 'Esforça-te e tem bom ânimo!' A nossa coragem não vem da nossa própria força, mas da certeza de que Deus está conosco.",
-        "prayer": "🙏 Oração em Família: Senhor, enche o nosso coração de coragem e ânimo para vencermos qualquer desafio!"
+        "prayer": "Oração em Família: Senhor, enche o nosso coração de coragem e ânimo para vencermos qualquer desafio!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • Meditando na Palavra Dia e Noite",
         "verse": "\"Não se aparte da tua boca o livro desta lei; antes medita nele dia e noite, para que tenhas cuidado de fazer conforme a tudo quanto nele está escrito.\" (Josué 1:8)",
         "text": "O segredo da vitória de Josué era ler, amar e praticar a Palavra de Deus todos os dias. Quando lemos a Bíblia em família, aprendemos o caminho certo para sermos felizes!",
-        "prayer": "🙏 Oração em Família: Papai do Céu, que a Tua Palavra esteja sempre em nossos lábios e em nosso coração!"
+        "prayer": "Oração em Família: Papai do Céu, que a Tua Palavra esteja sempre em nossos lábios e em nosso coração!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • ATravessando o Rio Jordão",
         "verse": "\"Pararam-se as águas que vinham de cima... e todo o Israel passou em seco, até que todo o povo acabou de passar o Jordão.\" (Josué 3:16-17)",
         "text": "Assim que os sacerdotes pisaram na beira do rio Jordão carregando a Arca da Aliança, as águas pararam e o povo atravessou a pé enxuto! O primeiro passo de fé sempre abre o caminho do milagre.",
-        "prayer": "🙏 Oração em Família: Senhor, ajuda-nos a dar passos de fé e obediência confiando em Ti!"
+        "prayer": "Oração em Família: Senhor, ajuda-nos a dar passos de fé e obediência confiando em Ti!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • Marchando em União e Paciência",
         "verse": "\"Rodearás, pois, a cidade todos os homens de guerra, contornando a cidade uma vez; assim farás por seis dias.\" (Josué 6:3)",
         "text": "Durante seis dias, o povo caminhou em silêncio e união ao redor de Jericó, obedecendo exatamente à instrução de Deus sem reclamar. A união e a obediência preparam grandes vitórias!",
-        "prayer": "🙏 Oração em Família: Querido Deus, ensina-nos a caminhar unidos em família, com paciência e fé!"
+        "prayer": "Oração em Família: Querido Deus, ensina-nos a caminhar unidos em família, com paciência e fé!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • As Muralhas Caem pelo Poder de Deus!",
         "verse": "\"Tocando os sacerdotes as buzinas, gritou o povo com grande brado; e o muro caiu abaixo.\" (Josué 6:20)",
         "text": "No sétimo dia, ao som das trombetas e do clamor de fé do povo, as muralhas gigantes de Jericó vieram ao chão! Com fé e louvor a Deus, nenhuma barreira pode nos impedir.",
-        "prayer": "🙏 Oração em Família: Obrigado, Senhor, porque com fé em Ti derrubamos qualquer muralha de dificuldade!"
+        "prayer": "Oração em Família: Obrigado, Senhor, porque com fé em Ti derrubamos qualquer muralha de dificuldade!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Esforça-te, e tem bom ânimo; não pasmes, nem te espantes. (Josué 1:9)\"",
+        "text": "Ao estudarmos Josué e as Muralhas de Jericó (Josué 1:9; 6:1–20), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 7 (Josué e as Muralhas de Jericó) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Esforça-te, e tem bom ânimo; não pasmes, nem te espantes. (Josué 1:9)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 7 (Josué e as Muralhas de Jericó). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Josué 1:9; 6:1–20. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -1277,35 +1424,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • Deus Olha para o Coração",
         "verse": "\"Porque o Senhor não vê como vê o homem, pois o homem vê o que está diante dos olhos, porém o Senhor olha para o coração.\" (1 Samuel 16:7)",
         "text": "Davi era o irmão mais novo e cuidava das ovelhinhas no campo, mas Deus viu que o coração dele era cheio de fé e amor. Para Deus, o que mais importa não é a altura ou a idade, e sim um coração sincero!",
-        "prayer": "🙏 Oração em Família: Senhor, cria em nós um coração puro, bondoso e cheio de amor por Ti!"
+        "prayer": "Oração em Família: Senhor, cria em nós um coração puro, bondoso e cheio de amor por Ti!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • A Harpa do Louvor que Traz Paz",
         "verse": "\"Davi tomava a harpa e a tocava com a sua mão; então Saul sentia alívio e se achava melhor.\" (1 Samuel 16:23)",
         "text": "Quando Davi tocava sua harpa louvando a Deus, a tristeza ia embora e a paz enchia o palácio. Cantar louvores a Deus em nossa casa traz paz e alegria para toda a família!",
-        "prayer": "🙏 Oração em Família: Papai do Céu, que a nossa casa seja sempre cheia de música, louvor e alegria na Tua presença!"
+        "prayer": "Oração em Família: Papai do Céu, que a nossa casa seja sempre cheia de música, louvor e alegria na Tua presença!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Fiel nas Pequenas Tarefas",
         "verse": "\"Teu servo apascentava as ovelhas de seu pai... O Senhor, que me livrou da mão do leão e da do urso, ele me livrará da mão deste filisteu.\" (1 Samuel 17:34,37)",
         "text": "Antes de enfrentar Golias, Davi aprendeu a confiar em Deus cuidando com zelo das ovelhinhas de seu pai. Quem é fiel nas pequenas tarefas de cada dia está preparado para grandes vitórias!",
-        "prayer": "🙏 Oração em Família: Senhor, ajuda-nos a cuidar bem das nossas tarefas diárias com zelo e responsabilidade!"
+        "prayer": "Oração em Família: Senhor, ajuda-nos a cuidar bem das nossas tarefas diárias com zelo e responsabilidade!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • Em Nome do Senhor dos Exércitos!",
         "verse": "\"Davi, porém, disse ao filisteu: Tu vens a mim com espada, e com lança, e com escudo; porém eu venho a ti em nome do Senhor dos Exércitos!\" (1 Samuel 17:45)",
         "text": "Golias confiava em sua armadura pesada e em seu tamanho, mas Davi confiava no nome poderoso de Deus! Com apenas uma funda e cinco pedrinhas do ribeiro, a fé de Davi venceu o gigante.",
-        "prayer": "🙏 Oração em Família: Deus Todo-Poderoso, em Teu nome nós enfrentamos qualquer gigante sem ter medo!"
+        "prayer": "Oração em Família: Deus Todo-Poderoso, em Teu nome nós enfrentamos qualquer gigante sem ter medo!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • Toda a Vitória Pertence a Deus",
         "verse": "\"E saberá toda esta congregação que o Senhor salva, não com espada, nem com lança; porque do Senhor é a guerra.\" (1 Samuel 17:47)",
         "text": "Davi quis que todas as pessoas soubessem que a vitória veio do Senhor! Quando conseguimos algo bom na escola ou na vida, devemos sempre agradecer e dar toda a honra a Deus.",
-        "prayer": "🙏 Oração em Família: Obrigado, Senhor, porque Tu és o nosso Pastor e a nossa força todos os dias!"
+        "prayer": "Oração em Família: Obrigado, Senhor, porque Tu és o nosso Pastor e a nossa força todos os dias!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"O Senhor não vê como vê o homem; o Senhor olha para o coração. (1 Samuel 16:7)\"",
+        "text": "Ao estudarmos Davi, a Harpa e o Gigante Golias (1 Samuel 16:14–23; 17:32–50), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 8 (Davi, a Harpa e o Gigante Golias) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"O Senhor não vê como vê o homem; o Senhor olha para o coração. (1 Samuel 16:7)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 8 (Davi, a Harpa e o Gigante Golias). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em 1 Samuel 16:14–23; 17:32–50. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -1439,35 +1607,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • Deus Cuida de Elias no Ribeiro",
         "verse": "\"E os corvos lhe traziam pão e carne pela manhã, como também pão e carne à noite; e bebia do ribeiro.\" (1 Reis 17:6)",
         "text": "Em um tempo de grande seca, Deus cuidou do profeta Elias enviando aves para levar alimento para ele todos os dias, e depois multiplicou a farinha e o azeite na casa de uma viúva bondosa!",
-        "prayer": "🙏 Oração em Família: Senhor, obrigado porque o Senhor cuida de nós e nunca deixa faltar o necessário em nosso lar!"
+        "prayer": "Oração em Família: Senhor, obrigado porque o Senhor cuida de nós e nunca deixa faltar o necessário em nosso lar!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • A Oração que Faz Descer Fogo do Céu",
         "verse": "\"Ouve-me, Senhor, ouve-me, para que este povo conheça que tu és o Senhor Deus! Então caiu fogo do Senhor.\" (1 Reis 18:37-38)",
         "text": "No Monte Carmelo, Elias fez uma oração simples e cheia de fé, e Deus respondeu mostrando que só Ele é o Deus verdadeiro! A oração feita com fé tem grande poder diante do Senhor.",
-        "prayer": "🙏 Oração em Família: Deus vivo e verdadeiro, nós cremos que Tu ouves e respondes às nossas orações!"
+        "prayer": "Oração em Família: Deus vivo e verdadeiro, nós cremos que Tu ouves e respondes às nossas orações!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Elias e a Carruagem de Fogo",
         "verse": "\"E sucedeu que, indo eles andando e falando, eis que um carro de fogo, com cavalos de fogo, os separou... e Elias subiu ao céu.\" (2 Reis 2:11)",
         "text": "Elias caminhou fielmente com Deus até o fim da sua missão na Terra e deixou seu discípulo Eliseu preparado para continuar fazendo o bem. Que bonito é passar a fé de geração em geração!",
-        "prayer": "🙏 Oração em Família: Senhor, que a nossa família permaneça sempre firme nos Teus caminhos!"
+        "prayer": "Oração em Família: Senhor, que a nossa família permaneça sempre firme nos Teus caminhos!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • A Oração de Jonas Dentro do Grande Peixe",
         "verse": "\"Preparou, pois, o Senhor um grande peixe, para que tragasse a Jonas... E orou Jonas ao Senhor, seu Deus.\" (Jonas 1:17; 2:1)",
         "text": "Jonas tentou fugir da missão que Deus lhe deu, mas dentro da barriga do grande peixe ele se arrependeu e orou ao Senhor. Deus ouviu Jonas e lhe deu uma segunda chance para obedecer!",
-        "prayer": "🙏 Oração em Família: Papai do Céu, obrigado porque quando nos arrependemos, o Senhor nos perdoa e nos dá uma nova chance!"
+        "prayer": "Oração em Família: Papai do Céu, obrigado porque quando nos arrependemos, o Senhor nos perdoa e nos dá uma nova chance!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • A Misericórdia de Deus sobre Nínive",
         "verse": "\"E viu Deus o que fizeram, como se converteram do seu mau caminho; e Deus se compadeceu deles.\" (Jonas 3:10)",
         "text": "Quando Jonas finalmente pregou em Nínive, toda a cidade pediu perdão a Deus e o Senhor teve compaixão de todos. O amor de Deus é grande e quer alcançar todas as pessoas!",
-        "prayer": "🙏 Oração em Família: Senhor, obrigado pela Tua imensa bondade e misericórdia sobre todos nós!"
+        "prayer": "Oração em Família: Senhor, obrigado pela Tua imensa bondade e misericórdia sobre todos nós!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Clama a mim, e responder-te-ei, e anunciar-te-ei coisas grandes. (Jeremias 33:3)\"",
+        "text": "Ao estudarmos Elias, Jonas e a Voz dos Profetas (1 Reis 18; 2 Reis 2:11; Jonas 1–4), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 9 (Elias, Jonas e a Voz dos Profetas) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Clama a mim, e responder-te-ei, e anunciar-te-ei coisas grandes. (Jeremias 33:3)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 9 (Elias, Jonas e a Voz dos Profetas). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em 1 Reis 18; 2 Reis 2:11; Jonas 1–4. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -1603,35 +1792,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • Um Coração Decidido a Agradar a Deus",
         "verse": "\"E Daniel assentou no seu coração não se contaminar com a porção do manjar do rei.\" (Daniel 1:8)",
         "text": "Desde muito jovem, quando chegou à Babilônia, Daniel decidiu em seu coração que nunca deixaria de obedecer a Deus. Deus honrou a fidelidade de Daniel e lhe deu muita sabedoria e saúde!",
-        "prayer": "🙏 Oração em Família: Senhor, dá-nos um coração firme como o de Daniel para escolhermos sempre o que é certo!"
+        "prayer": "Oração em Família: Senhor, dá-nos um coração firme como o de Daniel para escolhermos sempre o que é certo!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • Janelas Abertas em Oração Três Vezes ao Dia",
         "verse": "\"Três vezes no dia se punha de joelhos, e orava, e dava graças diante do seu Deus, como também antes costumava fazer.\" (Daniel 6:10)",
         "text": "Homens invejosos fizeram uma lei proibindo orar a Deus, mas Daniel não deixou de conversar com o Senhor de manhã, à tarde e à noite. A oração e a gratidão eram a maior alegria de Daniel!",
-        "prayer": "🙏 Oração em Família: Papai do Céu, queremos conversar contigo todos os dias com gratidão e amor!"
+        "prayer": "Oração em Família: Papai do Céu, queremos conversar contigo todos os dias com gratidão e amor!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Deus Envia Seu Anjo na Cova dos Leões",
         "verse": "\"O meu Deus enviou o seu anjo, e fechou a boca dos leões, para que não me fizessem dano.\" (Daniel 6:22)",
         "text": "Quando Daniel foi jogado na cova dos leões, ele não ficou sozinho: Deus enviou um anjo brilhante que fechou a boca dos leões a noite inteira! De manhã, Daniel saiu sem nenhum arranhão.",
-        "prayer": "🙏 Oração em Família: Obrigado, Senhor, porque Tu envias os Teus anjos para guardar e livrar os que confiam em Ti!"
+        "prayer": "Oração em Família: Obrigado, Senhor, porque Tu envias os Teus anjos para guardar e livrar os que confiam em Ti!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • O Deus Vivo que Faz Maravilhas",
         "verse": "\"Porque ele é o Deus vivo e que permanece para sempre... Ele livra e salva, e opera sinais e maravilhas no céu e na terra: ele livrou Daniel do poder dos leões!\" (Daniel 6:26-27)",
         "text": "Ao ver o milagre na vida de Daniel, o próprio Rei Dario escreveu uma carta para todo o reino anunciando que o Deus de Daniel é o Deus vivo que livra e faz maravilhas!",
-        "prayer": "🙏 Oração em Família: Senhor, que a nossa vida mostre a todos como o nosso Deus é bondoso e poderoso!"
+        "prayer": "Oração em Família: Senhor, que a nossa vida mostre a todos como o nosso Deus é bondoso e poderoso!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • A Coragem da Rainha Ester",
         "verse": "\"Quem sabe se para tal tempo como este chegaste a este reino?\" (Ester 4:14)",
         "text": "Assim como Daniel, a jovem Rainha Ester também orou com todo o povo e teve coragem diante do rei para proteger e salvar as famílias de Israel. Deus tem um propósito especial para a sua vida!",
-        "prayer": "🙏 Oração em Família: Querido Deus, usa a nossa vida com coragem e amor para cumprirmos o Teu propósito!"
+        "prayer": "Oração em Família: Querido Deus, usa a nossa vida com coragem e amor para cumprirmos o Teu propósito!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Ele livra e salva, e opera sinais e maravilhas no céu e na terra. (Daniel 6:27)\"",
+        "text": "Ao estudarmos Daniel na Cova dos Leões e a Rainha Ester (Daniel 6:1–28; Ester 4:14), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 10 (Daniel na Cova dos Leões e a Rainha Ester) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Ele livra e salva, e opera sinais e maravilhas no céu e na terra. (Daniel 6:27)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 10 (Daniel na Cova dos Leões e a Rainha Ester). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Daniel 6:1–28; Ester 4:14. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -1771,35 +1981,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • O Jardim que Deus Plantou",
         "verse": "\"E tomou o Senhor Deus o homem, e o pôs no jardim do Éden para o lavrar e o guardar.\" (Gênesis 2:15)",
         "text": "Deus preparou um lar lindo e cheio de vida para a família humana (Gênesis 2:8). Nesta lição (Gênesis 2:8–20), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 11 (O Jardim do Éden e o Cuidado com a Criação). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 11 (O Jardim do Éden e o Cuidado com a Criação). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • O Rio de Água Viva",
         "verse": "\"E tomou o Senhor Deus o homem, e o pôs no jardim do Éden para o lavrar e o guardar.\" (Gênesis 2:15)",
         "text": "Assim como o rio regava o Éden, a Palavra de Deus refresca o nosso coração. Nesta lição (Gênesis 2:8–20), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 11 (O Jardim do Éden e o Cuidado com a Criação). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 11 (O Jardim do Éden e o Cuidado com a Criação). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Cultivar e Guardar",
         "verse": "\"E tomou o Senhor Deus o homem, e o pôs no jardim do Éden para o lavrar e o guardar.\" (Gênesis 2:15)",
         "text": "Cuidar da natureza e do nosso lar é obedecer ao Criador (Gênesis 2:15). Nesta lição (Gênesis 2:8–20), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 11 (O Jardim do Éden e o Cuidado com a Criação). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 11 (O Jardim do Éden e o Cuidado com a Criação). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • Dando Nome aos Animais",
         "verse": "\"E tomou o Senhor Deus o homem, e o pôs no jardim do Éden para o lavrar e o guardar.\" (Gênesis 2:15)",
         "text": "Deus deu inteligência e criatividade ao ser humano para cuidar dos bichinhos. Nesta lição (Gênesis 2:8–20), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 11 (O Jardim do Éden e o Cuidado com a Criação). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 11 (O Jardim do Éden e o Cuidado com a Criação). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • A Família no Plano de Deus",
         "verse": "\"E tomou o Senhor Deus o homem, e o pôs no jardim do Éden para o lavrar e o guardar.\" (Gênesis 2:15)",
         "text": "Deus criou a família para viver em união, auxílio mútuo e amor. Nesta lição (Gênesis 2:8–20), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 11 (O Jardim do Éden e o Cuidado com a Criação). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 11 (O Jardim do Éden e o Cuidado com a Criação). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Tomou, pois, o Senhor Deus ao homem e o pôs no jardim do Éden para o lavrar e o guardar. (Gênesis 2:15)\"",
+        "text": "Ao estudarmos O Jardim do Éden e o Cuidado com a Criação (Gênesis 2:8–20), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 11 (O Jardim do Éden e o Cuidado com a Criação) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Tomou, pois, o Senhor Deus ao homem e o pôs no jardim do Éden para o lavrar e o guardar. (Gênesis 2:15)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 11 (O Jardim do Éden e o Cuidado com a Criação). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Gênesis 2:8–20. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -1929,35 +2160,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • A Fé da Mamãe Joquebede",
         "verse": "\"E disse Deus a Moisés: Certamente eu serei contigo!\" (Êxodo 3:12)",
         "text": "A oração e a fé de uma mãe colocam a família sob o cuidado de Deus. Nesta lição (Êxodo 2:1–10; 3:1–12), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 12 (O Bebê Moisés no Cestinho e a Sarça Ardente). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 12 (O Bebê Moisés no Cestinho e a Sarça Ardente). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • A Irmãzinha Miriã",
         "verse": "\"E disse Deus a Moisés: Certamente eu serei contigo!\" (Êxodo 3:12)",
         "text": "Miriã vigiou o cestinho com atenção e coragem. Nesta lição (Êxodo 2:1–10; 3:1–12), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 12 (O Bebê Moisés no Cestinho e a Sarça Ardente). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 12 (O Bebê Moisés no Cestinho e a Sarça Ardente). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Deus Cuida desde Pequenininho",
         "verse": "\"E disse Deus a Moisés: Certamente eu serei contigo!\" (Êxodo 3:12)",
         "text": "Desde bebê, Deus já tinha um plano lindo para a vida de Moisés. Nesta lição (Êxodo 2:1–10; 3:1–12), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 12 (O Bebê Moisés no Cestinho e a Sarça Ardente). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 12 (O Bebê Moisés no Cestinho e a Sarça Ardente). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • A Sarça que Não se Consumia",
         "verse": "\"E disse Deus a Moisés: Certamente eu serei contigo!\" (Êxodo 3:12)",
         "text": "No monte Horebe, Moisés aprendeu a ouvir a voz de Deus com reverência. Nesta lição (Êxodo 2:1–10; 3:1–12), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 12 (O Bebê Moisés no Cestinho e a Sarça Ardente). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 12 (O Bebê Moisés no Cestinho e a Sarça Ardente). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • Eu Serei Contigo",
         "verse": "\"E disse Deus a Moisés: Certamente eu serei contigo!\" (Êxodo 3:12)",
         "text": "Quando Deus nos dá uma missão, Ele caminha ao nosso lado (Êxodo 3:12). Nesta lição (Êxodo 2:1–10; 3:1–12), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 12 (O Bebê Moisés no Cestinho e a Sarça Ardente). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 12 (O Bebê Moisés no Cestinho e a Sarça Ardente). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Disse Deus a Moisés: Certamente eu serei contigo! (Êxodo 3:12)\"",
+        "text": "Ao estudarmos O Bebê Moisés no Cestinho e a Sarça Ardente (Êxodo 2:1–10; 3:1–12), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 12 (O Bebê Moisés no Cestinho e a Sarça Ardente) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Disse Deus a Moisés: Certamente eu serei contigo! (Êxodo 3:12)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 12 (O Bebê Moisés no Cestinho e a Sarça Ardente). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Êxodo 2:1–10; 3:1–12. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -2091,35 +2343,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • O Pão de Cada Manhã",
         "verse": "\"Honra a teu pai e a tua mãe, para que se prolonguem os teus dias na terra.\" (Êxodo 20:12)",
         "text": "O Maná ensinava o povo a confiar no cuidado diário de Deus (Êxodo 16). Nesta lição (Êxodo 16:11–18; 20:1–17), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 13 (O Maná do Céu e as Tábuas no Monte Sinai). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 13 (O Maná do Céu e as Tábuas no Monte Sinai). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • Água Viva na Rocha",
         "verse": "\"Honra a teu pai e a tua mãe, para que se prolonguem os teus dias na terra.\" (Êxodo 20:12)",
         "text": "Mesmo no deserto seco, Deus fez brotar água fresca para as famílias. Nesta lição (Êxodo 16:11–18; 20:1–17), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 13 (O Maná do Céu e as Tábuas no Monte Sinai). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 13 (O Maná do Céu e as Tábuas no Monte Sinai). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Amar a Deus Acima de Tudo",
         "verse": "\"Honra a teu pai e a tua mãe, para que se prolonguem os teus dias na terra.\" (Êxodo 20:12)",
         "text": "Os primeiros mandamentos nos ensinam a amar e reverenciar a Deus. Nesta lição (Êxodo 16:11–18; 20:1–17), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 13 (O Maná do Céu e as Tábuas no Monte Sinai). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 13 (O Maná do Céu e as Tábuas no Monte Sinai). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • Honrar Pai e Mãe",
         "verse": "\"Honra a teu pai e a tua mãe, para que se prolonguem os teus dias na terra.\" (Êxodo 20:12)",
         "text": "Obedecer e respeitar os pais traz bênção e alegria para todo o lar (Êxodo 20:12). Nesta lição (Êxodo 16:11–18; 20:1–17), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 13 (O Maná do Céu e as Tábuas no Monte Sinai). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 13 (O Maná do Céu e as Tábuas no Monte Sinai). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • Falar Sempre a Verdade",
         "verse": "\"Honra a teu pai e a tua mãe, para que se prolonguem os teus dias na terra.\" (Êxodo 20:12)",
         "text": "Os mandamentos nos ensinam a ser sinceros, bondosos e amigos fiéis. Nesta lição (Êxodo 16:11–18; 20:1–17), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 13 (O Maná do Céu e as Tábuas no Monte Sinai). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 13 (O Maná do Céu e as Tábuas no Monte Sinai). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Honra a teu pai e a tua mãe, para que se prolonguem os teus dias na terra. (Êxodo 20:12)\"",
+        "text": "Ao estudarmos O Maná do Céu e as Tábuas no Monte Sinai (Êxodo 16:11–18; 20:1–17), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 13 (O Maná do Céu e as Tábuas no Monte Sinai) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Honra a teu pai e a tua mãe, para que se prolonguem os teus dias na terra. (Êxodo 20:12)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 13 (O Maná do Céu e as Tábuas no Monte Sinai). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Êxodo 16:11–18; 20:1–17. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -2252,35 +2525,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • Deus Vê um Valente em Você",
         "verse": "\"Disse, porém, Rute: O teu povo é o meu povo, e o teu Deus é o meu Deus.\" (Rute 1:16)",
         "text": "Mesmo quando Gideão tinha medo, Deus o chamou de valente (Juízes 6:12). Nesta lição (Juízes 7:15–22; Rute 1:16; 2:1–12), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 14 (A Coragem de Gideão e a Bondosa Rute). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 14 (A Coragem de Gideão e a Bondosa Rute). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • Brilhando a Luz da Fé",
         "verse": "\"Disse, porém, Rute: O teu povo é o meu povo, e o teu Deus é o meu Deus.\" (Rute 1:16)",
         "text": "As tochas de Gideão iluminaram a noite; seja luz por onde passar! Nesta lição (Juízes 7:15–22; Rute 1:16; 2:1–12), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 14 (A Coragem de Gideão e a Bondosa Rute). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 14 (A Coragem de Gideão e a Bondosa Rute). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • A Amizade Fiel de Rute",
         "verse": "\"Disse, porém, Rute: O teu povo é o meu povo, e o teu Deus é o meu Deus.\" (Rute 1:16)",
         "text": "Rute não deixou Noemi sozinha, mostrando o valor do amor familiar. Nesta lição (Juízes 7:15–22; Rute 1:16; 2:1–12), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 14 (A Coragem de Gideão e a Bondosa Rute). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 14 (A Coragem de Gideão e a Bondosa Rute). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • Trabalho Honesto e Dedicado",
         "verse": "\"Disse, porém, Rute: O teu povo é o meu povo, e o teu Deus é o meu Deus.\" (Rute 1:16)",
         "text": "Rute trabalhou com alegria colhendo espigas e alcançou o favor de Deus. Nesta lição (Juízes 7:15–22; Rute 1:16; 2:1–12), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 14 (A Coragem de Gideão e a Bondosa Rute). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 14 (A Coragem de Gideão e a Bondosa Rute). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • Deus Recompensa o Bem",
         "verse": "\"Disse, porém, Rute: O teu povo é o meu povo, e o teu Deus é o meu Deus.\" (Rute 1:16)",
         "text": "Boaz abençoou Rute, e da família deles nasceu mais tarde o Rei Davi! Nesta lição (Juízes 7:15–22; Rute 1:16; 2:1–12), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 14 (A Coragem de Gideão e a Bondosa Rute). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 14 (A Coragem de Gideão e a Bondosa Rute). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"O Senhor te retribua o teu feito, e seja cumprido o teu galardão. (Rute 2:12)\"",
+        "text": "Ao estudarmos A Coragem de Gideão e a Bondosa Rute (Juízes 7:15–22; Rute 1:16; 2:1–12), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 14 (A Coragem de Gideão e a Bondosa Rute) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"O Senhor te retribua o teu feito, e seja cumprido o teu galardão. (Rute 2:12)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 14 (A Coragem de Gideão e a Bondosa Rute). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Juízes 7:15–22; Rute 1:16; 2:1–12. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -2412,35 +2706,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • A Oração Respondida de Ana",
         "verse": "\"Então disse Samuel: Fala, Senhor, porque o teu servo ouve.\" (1 Samuel 3:9)",
         "text": "Deus ouve as orações sinceras da nossa família (1 Samuel 1:27). Nesta lição (1 Samuel 1:27; 3:1–10), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 15 (A Oração de Ana e o Pequeno Samuel Ouvindo a Deus). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 15 (A Oração de Ana e o Pequeno Samuel Ouvindo a Deus). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • Servindo com Alegria desde Cedo",
         "verse": "\"Então disse Samuel: Fala, Senhor, porque o teu servo ouve.\" (1 Samuel 3:9)",
         "text": "Mesmo pequeno, Samuel ajudava Eli com zelo e dedicação. Nesta lição (1 Samuel 1:27; 3:1–10), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 15 (A Oração de Ana e o Pequeno Samuel Ouvindo a Deus). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 15 (A Oração de Ana e o Pequeno Samuel Ouvindo a Deus). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Deus Chama Você pelo Nome",
         "verse": "\"Então disse Samuel: Fala, Senhor, porque o teu servo ouve.\" (1 Samuel 3:9)",
         "text": "O Senhor conhece cada criança pelo nome e fala ao nosso coração. Nesta lição (1 Samuel 1:27; 3:1–10), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 15 (A Oração de Ana e o Pequeno Samuel Ouvindo a Deus). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 15 (A Oração de Ana e o Pequeno Samuel Ouvindo a Deus). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • Fala, Senhor, que Teu Servo Ouve",
         "verse": "\"Então disse Samuel: Fala, Senhor, porque o teu servo ouve.\" (1 Samuel 3:9)",
         "text": "Ouvir a Palavra de Deus é o começo da verdadeira sabedoria. Nesta lição (1 Samuel 1:27; 3:1–10), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 15 (A Oração de Ana e o Pequeno Samuel Ouvindo a Deus). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 15 (A Oração de Ana e o Pequeno Samuel Ouvindo a Deus). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • Crescendo na Graça de Deus",
         "verse": "\"Então disse Samuel: Fala, Senhor, porque o teu servo ouve.\" (1 Samuel 3:9)",
         "text": "Samuel crescia em estatura e no favor de Deus e das pessoas (1 Samuel 2:26). Nesta lição (1 Samuel 1:27; 3:1–10), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 15 (A Oração de Ana e o Pequeno Samuel Ouvindo a Deus). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 15 (A Oração de Ana e o Pequeno Samuel Ouvindo a Deus). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Fala, porque o teu servo ouve. (1 Samuel 3:10)\"",
+        "text": "Ao estudarmos A Oração de Ana e o Pequeno Samuel Ouvindo a Deus (1 Samuel 1:27; 3:1–10), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 15 (A Oração de Ana e o Pequeno Samuel Ouvindo a Deus) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Fala, porque o teu servo ouve. (1 Samuel 3:10)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 15 (A Oração de Ana e o Pequeno Samuel Ouvindo a Deus). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em 1 Samuel 1:27; 3:1–10. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -2572,35 +2887,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • O Melhor Pedido",
         "verse": "\"Porque o Senhor dá a sabedoria; da sua boca é que vem o conhecimento e o entendimento.\" (Provérbios 2:6)",
         "text": "Salomão pediu sabedoria para servir ao próximo com justiça (1 Reis 3:9). Nesta lição (1 Reis 3:5–14; Provérbios 2:6), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 16 (O Pedido de Sabedoria do Rei Salomão). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 16 (O Pedido de Sabedoria do Rei Salomão). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • Sabedoria Vale Mais que Ouro",
         "verse": "\"Porque o Senhor dá a sabedoria; da sua boca é que vem o conhecimento e o entendimento.\" (Provérbios 2:6)",
         "text": "O livro de Provérbios ensina que a sabedoria é o maior tesouro (Provérbios 3:14). Nesta lição (1 Reis 3:5–14; Provérbios 2:6), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 16 (O Pedido de Sabedoria do Rei Salomão). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 16 (O Pedido de Sabedoria do Rei Salomão). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • A Resposta Branda Acalma a Ira",
         "verse": "\"Porque o Senhor dá a sabedoria; da sua boca é que vem o conhecimento e o entendimento.\" (Provérbios 2:6)",
         "text": "Provérbios 15:1 nos ensina a falar com doçura e educação em casa. Nesta lição (1 Reis 3:5–14; Provérbios 2:6), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 16 (O Pedido de Sabedoria do Rei Salomão). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 16 (O Pedido de Sabedoria do Rei Salomão). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • Construindo a Casa de Deus",
         "verse": "\"Porque o Senhor dá a sabedoria; da sua boca é que vem o conhecimento e o entendimento.\" (Provérbios 2:6)",
         "text": "Salomão dedicou o Templo em Jerusalém com oração e louvor. Nesta lição (1 Reis 3:5–14; Provérbios 2:6), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 16 (O Pedido de Sabedoria do Rei Salomão). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 16 (O Pedido de Sabedoria do Rei Salomão). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • Peça Sabedoria a Deus",
         "verse": "\"Porque o Senhor dá a sabedoria; da sua boca é que vem o conhecimento e o entendimento.\" (Provérbios 2:6)",
         "text": "Se algum de vós tem falta de sabedoria, peça-a a Deus (Tiago 1:5)! Nesta lição (1 Reis 3:5–14; Provérbios 2:6), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 16 (O Pedido de Sabedoria do Rei Salomão). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 16 (O Pedido de Sabedoria do Rei Salomão). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Dá, pois, ao teu servo um coração entendido para discernir entre o bem e o mal. (1 Reis 3:9)\"",
+        "text": "Ao estudarmos O Pedido de Sabedoria do Rei Salomão (1 Reis 3:5–14; Provérbios 2:6), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 16 (O Pedido de Sabedoria do Rei Salomão) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Dá, pois, ao teu servo um coração entendido para discernir entre o bem e o mal. (1 Reis 3:9)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 16 (O Pedido de Sabedoria do Rei Salomão). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em 1 Reis 3:5–14; Provérbios 2:6. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -2733,35 +3069,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • O Manto de Eliseu",
         "verse": "\"Porque um menino nos nasceu, um filho se nos deu... o Príncipe da Paz!\" (Isaías 9:6)",
         "text": "Eliseu aprendeu com Elias e continuou servindo a Deus com fidelidade. Nesta lição (2 Reis 4:1–7; Isaías 9:6), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 17 (Os Milagres de Eliseu e a Promessa de Isaías). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 17 (Os Milagres de Eliseu e a Promessa de Isaías). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • Deus Multiplica o Pouco",
         "verse": "\"Porque um menino nos nasceu, um filho se nos deu... o Príncipe da Paz!\" (Isaías 9:6)",
         "text": "Quando colocamos o que temos nas mãos de Deus, Ele multiplica as bênçãos (2 Reis 4). Nesta lição (2 Reis 4:1–7; Isaías 9:6), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 17 (Os Milagres de Eliseu e a Promessa de Isaías). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 17 (Os Milagres de Eliseu e a Promessa de Isaías). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • O Quarto do Profeta",
         "verse": "\"Porque um menino nos nasceu, um filho se nos deu... o Príncipe da Paz!\" (Isaías 9:6)",
         "text": "A família de Suném acolheu Eliseu com hospitalidade e carinho. Nesta lição (2 Reis 4:1–7; Isaías 9:6), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 17 (Os Milagres de Eliseu e a Promessa de Isaías). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 17 (Os Milagres de Eliseu e a Promessa de Isaías). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • A Voz de Isaías",
         "verse": "\"Porque um menino nos nasceu, um filho se nos deu... o Príncipe da Paz!\" (Isaías 9:6)",
         "text": "Isaías respondeu ao chamado de Deus dizendo: 'Eis-me aqui, envia-me a mim!' (Isaías 6:8). Nesta lição (2 Reis 4:1–7; Isaías 9:6), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 17 (Os Milagres de Eliseu e a Promessa de Isaías). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 17 (Os Milagres de Eliseu e a Promessa de Isaías). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • O Príncipe da Paz Prometido",
         "verse": "\"Porque um menino nos nasceu, um filho se nos deu... o Príncipe da Paz!\" (Isaías 9:6)",
         "text": "As profecias de Isaías prepararam o mundo para o nascimento de Jesus. Nesta lição (2 Reis 4:1–7; Isaías 9:6), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 17 (Os Milagres de Eliseu e a Promessa de Isaías). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 17 (Os Milagres de Eliseu e a Promessa de Isaías). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Porque um menino nos nasceu... e o seu nome será Maravilhoso, Conselheiro, Príncipe da Paz. (Isaías 9:6)\"",
+        "text": "Ao estudarmos Os Milagres de Eliseu e a Promessa de Isaías (2 Reis 4:1–7; Isaías 9:6), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 17 (Os Milagres de Eliseu e a Promessa de Isaías) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Porque um menino nos nasceu... e o seu nome será Maravilhoso, Conselheiro, Príncipe da Paz. (Isaías 9:6)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 17 (Os Milagres de Eliseu e a Promessa de Isaías). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em 2 Reis 4:1–7; Isaías 9:6. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -2893,35 +3250,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • Cuidando da Saúde e do Coração",
         "verse": "\"Eis que o nosso Deus, a quem nós servimos, é que nos pode livrar!\" (Daniel 3:17)",
         "text": "Daniel e seus amigos escolheram hábitos saudáveis e puros (Daniel 1:8). Nesta lição (Daniel 1:8–20; 3:16–28), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 18 (Os Três Amigos Fiéis de Daniel). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 18 (Os Três Amigos Fiéis de Daniel). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • Bons Amigos Ajudam na Fé",
         "verse": "\"Eis que o nosso Deus, a quem nós servimos, é que nos pode livrar!\" (Daniel 3:17)",
         "text": "Ter amigos que amam o bem fortalece nossas escolhas. Nesta lição (Daniel 1:8–20; 3:16–28), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 18 (Os Três Amigos Fiéis de Daniel). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 18 (Os Três Amigos Fiéis de Daniel). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Dez Vezes Mais Sabedoria",
         "verse": "\"Eis que o nosso Deus, a quem nós servimos, é que nos pode livrar!\" (Daniel 3:17)",
         "text": "Deus abençoou o esforço e a dedicação dos quatro jovens nos estudos. Nesta lição (Daniel 1:8–20; 3:16–28), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 18 (Os Três Amigos Fiéis de Daniel). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 18 (Os Três Amigos Fiéis de Daniel). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • Firmes na Hora do Desafio",
         "verse": "\"Eis que o nosso Deus, a quem nós servimos, é que nos pode livrar!\" (Daniel 3:17)",
         "text": "Sadraque, Mesaque e Abede-Nego não abriram mão da fé em Deus. Nesta lição (Daniel 1:8–20; 3:16–28), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 18 (Os Três Amigos Fiéis de Daniel). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 18 (Os Três Amigos Fiéis de Daniel). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • Deus Caminha Conosco",
         "verse": "\"Eis que o nosso Deus, a quem nós servimos, é que nos pode livrar!\" (Daniel 3:17)",
         "text": "O anjo do Senhor esteve ao lado dos três jovens e os guardou em segurança! Nesta lição (Daniel 1:8–20; 3:16–28), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 18 (Os Três Amigos Fiéis de Daniel). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 18 (Os Três Amigos Fiéis de Daniel). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Nosso Deus, a quem nós servimos, é que nos pode livrar. (Daniel 3:17)\"",
+        "text": "Ao estudarmos Os Três Amigos Fiéis de Daniel (Daniel 1:8–20; 3:16–28), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 18 (Os Três Amigos Fiéis de Daniel) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Nosso Deus, a quem nós servimos, é que nos pode livrar. (Daniel 3:17)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 18 (Os Três Amigos Fiéis de Daniel). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Daniel 1:8–20; 3:16–28. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -3054,35 +3432,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • O Cuidado de Mardoqueu",
         "verse": "\"Para os judeus houve luz, e alegria, e gozo, e honra.\" (Ester 8:16)",
         "text": "Mardoqueu criou Ester nos caminhos de Deus com amor familiar. Nesta lição (Ester 2:17; 4:13–17; 8:16), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 19 (A Rainha Ester e o Propósito de Deus). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 19 (A Rainha Ester e o Propósito de Deus). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • Graça e Humildade",
         "verse": "\"Para os judeus houve luz, e alegria, e gozo, e honra.\" (Ester 8:16)",
         "text": "Mesmo no palácio, Ester manteve um coração humilde e respeitoso. Nesta lição (Ester 2:17; 4:13–17; 8:16), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 19 (A Rainha Ester e o Propósito de Deus). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 19 (A Rainha Ester e o Propósito de Deus). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Oração em União",
         "verse": "\"Para os judeus houve luz, e alegria, e gozo, e honra.\" (Ester 8:16)",
         "text": "Antes de agir, Ester pediu que todo o povo se unisse em oração. Nesta lição (Ester 2:17; 4:13–17; 8:16), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 19 (A Rainha Ester e o Propósito de Deus). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 19 (A Rainha Ester e o Propósito de Deus). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • O Cetro Estendido",
         "verse": "\"Para os judeus houve luz, e alegria, e gozo, e honra.\" (Ester 8:16)",
         "text": "Deus abriu o coração do rei e deu graça à rainha Ester. Nesta lição (Ester 2:17; 4:13–17; 8:16), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 19 (A Rainha Ester e o Propósito de Deus). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 19 (A Rainha Ester e o Propósito de Deus). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • Para um Tempo Como Este",
         "verse": "\"Para os judeus houve luz, e alegria, e gozo, e honra.\" (Ester 8:16)",
         "text": "Deus colocou você na sua família e escola com um lindo propósito! Nesta lição (Ester 2:17; 4:13–17; 8:16), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 19 (A Rainha Ester e o Propósito de Deus). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 19 (A Rainha Ester e o Propósito de Deus). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Quem sabe se para tal tempo como este chegaste a este reino? (Ester 4:14)\"",
+        "text": "Ao estudarmos A Rainha Ester e o Propósito de Deus (Ester 2:17; 4:13–17; 8:16), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 19 (A Rainha Ester e o Propósito de Deus) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Quem sabe se para tal tempo como este chegaste a este reino? (Ester 4:14)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 19 (A Rainha Ester e o Propósito de Deus). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Ester 2:17; 4:13–17; 8:16. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -3216,35 +3615,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • Orar Antes de Agir",
         "verse": "\"Não vos entristeçais, porque a alegria do Senhor é a vossa força!\" (Neemias 8:10)",
         "text": "Neemias orou a Deus antes de falar com o rei e iniciar a obra (Neemias 2:4). Nesta lição (Neemias 2:17–18; 4:6; 8:10), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 20 (Neemias e a Reconstrução dos Muros em União). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 20 (Neemias e a Reconstrução dos Muros em União). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • A Força do Trabalho em Família",
         "verse": "\"Não vos entristeçais, porque a alegria do Senhor é a vossa força!\" (Neemias 8:10)",
         "text": "Cada família construiu o trecho em frente à sua casa em união (Neemias 3). Nesta lição (Neemias 2:17–18; 4:6; 8:10), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 20 (Neemias e a Reconstrução dos Muros em União). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 20 (Neemias e a Reconstrução dos Muros em União). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Não Desanimar com as Críticas",
         "verse": "\"Não vos entristeçais, porque a alegria do Senhor é a vossa força!\" (Neemias 8:10)",
         "text": "Neemias continuou trabalhando focado na missão que Deus lhe deu. Nesta lição (Neemias 2:17–18; 4:6; 8:10), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 20 (Neemias e a Reconstrução dos Muros em União). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 20 (Neemias e a Reconstrução dos Muros em União). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • Ouvindo a Palavra com Esdras",
         "verse": "\"Não vos entristeçais, porque a alegria do Senhor é a vossa força!\" (Neemias 8:10)",
         "text": "Todo o povo se reuniu para ouvir a leitura da Bíblia com reverência. Nesta lição (Neemias 2:17–18; 4:6; 8:10), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 20 (Neemias e a Reconstrução dos Muros em União). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 20 (Neemias e a Reconstrução dos Muros em União). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • A Alegria do Senhor é a Nossa Força",
         "verse": "\"Não vos entristeçais, porque a alegria do Senhor é a vossa força!\" (Neemias 8:10)",
         "text": "Com alegria e gratidão a Deus, vencemos qualquer desafio (Neemias 8:10)! Nesta lição (Neemias 2:17–18; 4:6; 8:10), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 20 (Neemias e a Reconstrução dos Muros em União). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 20 (Neemias e a Reconstrução dos Muros em União). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"A alegria do Senhor é a vossa força. (Neemias 8:10)\"",
+        "text": "Ao estudarmos Neemias e a Reconstrução dos Muros em União (Neemias 2:17–18; 4:6; 8:10), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 20 (Neemias e a Reconstrução dos Muros em União) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"A alegria do Senhor é a vossa força. (Neemias 8:10)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 20 (Neemias e a Reconstrução dos Muros em União). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Neemias 2:17–18; 4:6; 8:10. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -3372,35 +3792,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • A Estrela de Belém",
         "verse": "\"Deixai vir os pequeninos a mim, e não os impeçais, porque dos tais é o Reino de Deus.\" (Marcos 10:14)",
         "text": "O nascimento de Jesus cumpriu séculos de promessas bíblicas. Nesta lição (Lucas 2:1–20; Marcos 10:13–16), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 21 (Jesus: O Nascimento em Belém e o Amigo das Crianças). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 21 (Jesus: O Nascimento em Belém e o Amigo das Crianças). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • Crescendo em Sabedoria",
         "verse": "\"Deixai vir os pequeninos a mim, e não os impeçais, porque dos tais é o Reino de Deus.\" (Marcos 10:14)",
         "text": "Desde menino, Jesus amava aprender a Palavra e honrar seus pais. Nesta lição (Lucas 2:1–20; Marcos 10:13–16), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 21 (Jesus: O Nascimento em Belém e o Amigo das Crianças). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 21 (Jesus: O Nascimento em Belém e o Amigo das Crianças). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Paz no Barquinho",
         "verse": "\"Deixai vir os pequeninos a mim, e não os impeçais, porque dos tais é o Reino de Deus.\" (Marcos 10:14)",
         "text": "Com Jesus no barco, até a maior tempestade se acalma. Nesta lição (Lucas 2:1–20; Marcos 10:13–16), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 21 (Jesus: O Nascimento em Belém e o Amigo das Crianças). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 21 (Jesus: O Nascimento em Belém e o Amigo das Crianças). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • O Amigo das Crianças",
         "verse": "\"Deixai vir os pequeninos a mim, e não os impeçais, porque dos tais é o Reino de Deus.\" (Marcos 10:14)",
         "text": "Nenhuma criança é pequena demais para fazer parte do Reino de Deus. Nesta lição (Lucas 2:1–20; Marcos 10:13–16), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 21 (Jesus: O Nascimento em Belém e o Amigo das Crianças). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 21 (Jesus: O Nascimento em Belém e o Amigo das Crianças). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • O Maior Mandamento",
         "verse": "\"Deixai vir os pequeninos a mim, e não os impeçais, porque dos tais é o Reino de Deus.\" (Marcos 10:14)",
         "text": "Amar a Deus de todo o coração e ao próximo como a si mesmo! Nesta lição (Lucas 2:1–20; Marcos 10:13–16), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 21 (Jesus: O Nascimento em Belém e o Amigo das Crianças). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 21 (Jesus: O Nascimento em Belém e o Amigo das Crianças). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Deixai vir a mim os pequeninos e não os impeçais. (Marcos 10:14)\"",
+        "text": "Ao estudarmos Jesus: O Nascimento em Belém e o Amigo das Crianças (Lucas 2:1–20; Marcos 10:13–16), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 21 (Jesus: O Nascimento em Belém e o Amigo das Crianças) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Deixai vir a mim os pequeninos e não os impeçais. (Marcos 10:14)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 21 (Jesus: O Nascimento em Belém e o Amigo das Crianças). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Lucas 2:1–20; Marcos 10:13–16. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -3533,35 +3974,56 @@ window.EBD_LESSONS_CURRICULUM = [
         "title": "Dia 1 • Pescadores de Corações",
         "verse": "\"Ide por todo o mundo, pregai o evangelho a toda criatura.\" (Marcos 16:15)",
         "text": "Pedro, Tiago e João viveram uma grande missão de amor. Nesta lição (Mateus 4:18–22; Atos 9; Atos 27; Apocalipse 21), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 22 (Os Discípulos no Barquinho e as Viagens de Paulo). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 22 (Os Discípulos no Barquinho e as Viagens de Paulo). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_01.jpg"
       },
       {
         "day": 2,
         "title": "Dia 2 • A Transformação de Paulo",
         "verse": "\"Ide por todo o mundo, pregai o evangelho a toda criatura.\" (Marcos 16:15)",
         "text": "A vida de Paulo foi transformada pela luz de Cristo. Nesta lição (Mateus 4:18–22; Atos 9; Atos 27; Apocalipse 21), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 22 (Os Discípulos no Barquinho e as Viagens de Paulo). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 22 (Os Discípulos no Barquinho e as Viagens de Paulo). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_02.jpg"
       },
       {
         "day": 3,
         "title": "Dia 3 • Cantando na Meia-Noite",
         "verse": "\"Ide por todo o mundo, pregai o evangelho a toda criatura.\" (Marcos 16:15)",
         "text": "Paulo e Silas louvaram a Deus mesmo na dificuldade (Atos 16:25). Nesta lição (Mateus 4:18–22; Atos 9; Atos 27; Apocalipse 21), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 22 (Os Discípulos no Barquinho e as Viagens de Paulo). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 22 (Os Discípulos no Barquinho e as Viagens de Paulo). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_03.jpg"
       },
       {
         "day": 4,
         "title": "Dia 4 • As Cartas da Fé",
         "verse": "\"Ide por todo o mundo, pregai o evangelho a toda criatura.\" (Marcos 16:15)",
         "text": "As cartas do Novo Testamento nos ensinam a viver em união e bondade. Nesta lição (Mateus 4:18–22; Atos 9; Atos 27; Apocalipse 21), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 22 (Os Discípulos no Barquinho e as Viagens de Paulo). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 22 (Os Discípulos no Barquinho e as Viagens de Paulo). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_04.jpg"
       },
       {
         "day": 5,
         "title": "Dia 5 • Do Gênesis ao Apocalipse",
         "verse": "\"Ide por todo o mundo, pregai o evangelho a toda criatura.\" (Marcos 16:15)",
         "text": "A Bíblia inteira é uma única grande história da promessa fiel de Deus! Nesta lição (Mateus 4:18–22; Atos 9; Atos 27; Apocalipse 21), aprendemos que Deus cuida de cada detalhe da nossa família quando confiamos na Sua Palavra.",
-        "prayer": "🙏 Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 22 (Os Discípulos no Barquinho e as Viagens de Paulo). Ajuda-nos a viver a Tua Palavra com alegria!"
+        "prayer": "Oração em Família: Senhor Deus, obrigado pelo ensinamento da Lição 22 (Os Discípulos no Barquinho e as Viagens de Paulo). Ajuda-nos a viver a Tua Palavra com alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_05.jpg"
+      },
+      {
+        "day": 6,
+        "title": "Dia 6 • Praticando a Palavra em Casa",
+        "verse": "\"Combati o bom combate, acabei a carreira, guardei a fé. (2 Timóteo 4:7)\"",
+        "text": "Ao estudarmos Os Discípulos no Barquinho e as Viagens de Paulo (Mateus 4:18–22; Atos 9; Atos 27; Apocalipse 21), aprendemos que a Palavra de Deus ilumina nossas atitudes todos os dias dentro do nosso lar.",
+        "prayer": "Oração em Família: Senhor Deus, ajuda nossa família a praticar os ensinamentos da Lição 22 (Os Discípulos no Barquinho e as Viagens de Paulo) com amor, união e alegria!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_06.jpg"
+      },
+      {
+        "day": 7,
+        "title": "Dia 7 • Celebrando a Fidelidade de Deus",
+        "verse": "\"Combati o bom combate, acabei a carreira, guardei a fé. (2 Timóteo 4:7)\"",
+        "text": "Chegamos ao sétimo dia da nossa caminhada na Lição 22 (Os Discípulos no Barquinho e as Viagens de Paulo). Agradecemos a Deus por cuidar da nossa família e guiar nossos passos na Sua promessa!",
+        "prayer": "Oração em Família: Pai querido, obrigado por esta semana abençoada estudando a Tua Palavra em Mateus 4:18–22; Atos 9; Atos 27; Apocalipse 21. Guarda o nosso coração em paz!",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_07.jpg"
       }
     ],
     "teacherGuide": {
@@ -3602,10 +4064,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 1 • A Ordem dos Dias da Criação",
     subtitle: "Toque nos 4 acontecimentos na ordem em que Deus criou (Gênesis 1):",
     cards: [
-      { id: "c1", order: 1, era: "1º Evento", title: "Haja Luz e Céu Iluminado! (Dia 1 e 2)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=62" },
-      { id: "c2", order: 2, era: "2º Evento", title: "Terra Seca, Árvores e Flores (Dia 3)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_103.jpg?v=62" },
-      { id: "c3", order: 3, era: "3º Evento", title: "Grandes Baleias no Mar e Aves (Dia 5)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_101.jpg?v=62" },
-      { id: "c4", order: 4, era: "4º Evento", title: "Animais Terrestres, Adão e Eva (Dia 6)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=62" }
+      { id: "c1", order: 1, era: "1º Evento", title: "Haja Luz e Céu Iluminado! (Dia 1 e 2)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=63" },
+      { id: "c2", order: 2, era: "2º Evento", title: "Terra Seca, Árvores e Flores (Dia 3)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_103.jpg?v=63" },
+      { id: "c3", order: 3, era: "3º Evento", title: "Grandes Baleias no Mar e Aves (Dia 5)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_101.jpg?v=63" },
+      { id: "c4", order: 4, era: "4º Evento", title: "Animais Terrestres, Adão e Eva (Dia 6)", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=63" }
     ]
   },
   {
@@ -3613,10 +4075,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 2 • Do Jardim do Éden à Arca de Noé",
     subtitle: "Coloque em ordem cronológica os primeiros capítulos de Gênesis:",
     cards: [
-      { id: "c5", order: 1, era: "Gênesis 1", title: "Deus Cria a Luz no Princípio", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_105.jpg?v=62" },
-      { id: "c6", order: 2, era: "Gênesis 2", title: "O Lindo Jardim do Éden Florido", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_106.jpg?v=62" },
-      { id: "c7", order: 3, era: "Gênesis 2:19", title: "Adão e Eva com os Animais no Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=62" },
-      { id: "c8", order: 4, era: "Gênesis 6–9", title: "A Arca de Noé e o Arco-Íris da Aliança", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=62" }
+      { id: "c5", order: 1, era: "Gênesis 1", title: "Deus Cria a Luz no Princípio", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_105.jpg?v=63" },
+      { id: "c6", order: 2, era: "Gênesis 2", title: "O Lindo Jardim do Éden Florido", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_106.jpg?v=63" },
+      { id: "c7", order: 3, era: "Gênesis 2:19", title: "Adão e Eva com os Animais no Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=63" },
+      { id: "c8", order: 4, era: "Gênesis 6–9", title: "A Arca de Noé e o Arco-Íris da Aliança", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=63" }
     ]
   },
   {
@@ -3624,10 +4086,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 3 • As 4 Primeiras Eras da Bíblia",
     subtitle: "Ordene do acontecimento mais antigo para o mais recente:",
     cards: [
-      { id: "c9", order: 1, era: "1ª Era", title: "A Criação do Mundo no Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=62" },
-      { id: "c10", order: 2, era: "2ª Era", title: "A Grande Arca de Noé", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=62" },
-      { id: "c11", order: 3, era: "3ª Era", title: "Abraão Olha as Estrelas da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=62" },
-      { id: "c12", order: 4, era: "4ª Era", title: "Moisés e a Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=62" }
+      { id: "c9", order: 1, era: "1ª Era", title: "A Criação do Mundo no Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=63" },
+      { id: "c10", order: 2, era: "2ª Era", title: "A Grande Arca de Noé", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=63" },
+      { id: "c11", order: 3, era: "3ª Era", title: "Abraão Olha as Estrelas da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=63" },
+      { id: "c12", order: 4, era: "4ª Era", title: "Moisés e a Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=63" }
     ]
   },
   {
@@ -3635,10 +4097,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 4 • Os Patriarcas em Gênesis",
     subtitle: "Qual é a ordem correta da família da promessa em Gênesis?",
     cards: [
-      { id: "c13", order: 1, era: "Gênesis 12–15", title: "O Chamado de Abraão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=62" },
-      { id: "c14", order: 2, era: "Gênesis 28", title: "O Sonho da Escada de Jacó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=62" },
-      { id: "c15", order: 3, era: "Gênesis 37", title: "José Ganha a Túnica Colorida", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=62" },
-      { id: "c16", order: 4, era: "Gênesis 41–45", title: "José Governador do Egito Abraça os Irmãos", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_104.jpg?v=62" }
+      { id: "c13", order: 1, era: "Gênesis 12–15", title: "O Chamado de Abraão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=63" },
+      { id: "c14", order: 2, era: "Gênesis 28", title: "O Sonho da Escada de Jacó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=63" },
+      { id: "c15", order: 3, era: "Gênesis 37", title: "José Ganha a Túnica Colorida", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=63" },
+      { id: "c16", order: 4, era: "Gênesis 41–45", title: "José Governador do Egito Abraça os Irmãos", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_104.jpg?v=63" }
     ]
   },
   {
@@ -3646,10 +4108,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 5 • A Jornada de Moisés no Êxodo",
     subtitle: "Ordene a vida de Moisés desde bebê até a vitória no Mar Vermelho:",
     cards: [
-      { id: "c17", order: 1, era: "Êxodo 2", title: "Bebê Moisés no Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=62" },
-      { id: "c18", order: 2, era: "Êxodo 3", title: "Deus Fala com Moisés na Sarça Ardente", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=62" },
-      { id: "c19", order: 3, era: "Êxodo 14", title: "A Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=62" },
-      { id: "c20", order: 4, era: "Êxodo 15", title: "O Cântico de Vitória Após o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_109.jpg?v=62" }
+      { id: "c17", order: 1, era: "Êxodo 2", title: "Bebê Moisés no Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=63" },
+      { id: "c18", order: 2, era: "Êxodo 3", title: "Deus Fala com Moisés na Sarça Ardente", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=63" },
+      { id: "c19", order: 3, era: "Êxodo 14", title: "A Travessia do Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=63" },
+      { id: "c20", order: 4, era: "Êxodo 15", title: "O Cântico de Vitória Após o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_109.jpg?v=63" }
     ]
   },
   {
@@ -3657,10 +4119,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 6 • Da Terra Prometida aos Juízes",
     subtitle: "Coloque em ordem as vitórias do povo de Israel:",
     cards: [
-      { id: "c21", order: 1, era: "Josué 3", title: "A Travessia do Rio Jordão com a Arca", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_110.jpg?v=62" },
-      { id: "c22", order: 2, era: "Josué 6:4", title: "As Trombetas Diante de Jericó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=62" },
-      { id: "c23", order: 3, era: "Josué 6:20", title: "As Muralhas de Jericó Caem", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=62" },
-      { id: "c24", order: 4, era: "Rute 1–4", title: "A Fidelidade de Rute em Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=62" }
+      { id: "c21", order: 1, era: "Josué 3", title: "A Travessia do Rio Jordão com a Arca", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_110.jpg?v=63" },
+      { id: "c22", order: 2, era: "Josué 6:4", title: "As Trombetas Diante de Jericó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=63" },
+      { id: "c23", order: 3, era: "Josué 6:20", title: "As Muralhas de Jericó Caem", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=63" },
+      { id: "c24", order: 4, era: "Rute 1–4", title: "A Fidelidade de Rute em Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=63" }
     ]
   },
   {
@@ -3668,10 +4130,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 7 • A História do Rei Davi e Salomão",
     subtitle: "Ordene a época dos Reis de Israel:",
     cards: [
-      { id: "c25", order: 1, era: "1 Samuel 16:1", title: "Davi Pastorzinho Tocando Harpa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=62" },
-      { id: "c26", order: 2, era: "1 Samuel 16:13", title: "O Profeta Samuel Unge o Jovem Davi", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=62" },
-      { id: "c27", order: 3, era: "1 Samuel 17", title: "A Coragem de Davi Diante de Golias", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=62" },
-      { id: "c28", order: 4, era: "1 Reis 3", title: "O Sábio Rei Salomão em Jerusalém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=62" }
+      { id: "c25", order: 1, era: "1 Samuel 16:1", title: "Davi Pastorzinho Tocando Harpa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=63" },
+      { id: "c26", order: 2, era: "1 Samuel 16:13", title: "O Profeta Samuel Unge o Jovem Davi", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=63" },
+      { id: "c27", order: 3, era: "1 Samuel 17", title: "A Coragem de Davi Diante de Golias", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=63" },
+      { id: "c28", order: 4, era: "1 Reis 3", title: "O Sábio Rei Salomão em Jerusalém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=63" }
     ]
   },
   {
@@ -3679,10 +4141,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 8 • O Tempo dos Grandes Profetas",
     subtitle: "Ordene os acontecimentos dos heróis e profetas até Daniel:",
     cards: [
-      { id: "c29", order: 1, era: "Juízes 16", title: "A Força e a Fé na Época dos Juízes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_17.jpg?v=62" },
-      { id: "c30", order: 2, era: "2 Reis 2", title: "A Carruagem de Fogo do Profeta Elias", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=62" },
-      { id: "c31", order: 3, era: "Jonas 1–3", title: "Jonas e a Grande Baleia no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=62" },
-      { id: "c32", order: 4, era: "Daniel 6", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=62" }
+      { id: "c29", order: 1, era: "Juízes 16", title: "A Força e a Fé na Época dos Juízes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_17.jpg?v=63" },
+      { id: "c30", order: 2, era: "2 Reis 2", title: "A Carruagem de Fogo do Profeta Elias", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=63" },
+      { id: "c31", order: 3, era: "Jonas 1–3", title: "Jonas e a Grande Baleia no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=63" },
+      { id: "c32", order: 4, era: "Daniel 6", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=63" }
     ]
   },
   {
@@ -3690,10 +4152,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 9 • A Vida de Jesus nos Evangelhos",
     subtitle: "Coloque em ordem a história de Jesus no Novo Testamento:",
     cards: [
-      { id: "c33", order: 1, era: "Lucas 2", title: "O Nascimento de Jesus em Belém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=62" },
-      { id: "c34", order: 2, era: "Marcos 4", title: "Jesus Acalma a Tempestade no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg?v=62" },
-      { id: "c35", order: 3, era: "Marcos 10", title: "Jesus Abençoa as Criancinhas", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=62" },
-      { id: "c36", order: 4, era: "João 6", title: "Jesus Multiplica os Pães e Peixes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_125.jpg?v=62" }
+      { id: "c33", order: 1, era: "Lucas 2", title: "O Nascimento de Jesus em Belém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=63" },
+      { id: "c34", order: 2, era: "Marcos 4", title: "Jesus Acalma a Tempestade no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg?v=63" },
+      { id: "c35", order: 3, era: "Marcos 10", title: "Jesus Abençoa as Criancinhas", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=63" },
+      { id: "c36", order: 4, era: "João 6", title: "Jesus Multiplica os Pães e Peixes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_125.jpg?v=63" }
     ]
   },
   {
@@ -3701,10 +4163,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 10 • Grande Linha do Tempo (Gênesis a Atos)",
     subtitle: "Ordene a Bíblia inteira do Princípio até a Missão da Igreja:",
     cards: [
-      { id: "c37", order: 1, era: "Gênesis", title: "A Criação e o Jardim do Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=62" },
-      { id: "c38", order: 2, era: "Êxodo a Reis", title: "Moisés e a Libertação de Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=62" },
-      { id: "c39", order: 3, era: "Evangelhos", title: "Jesus, o Salvador Prometido", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=62" },
-      { id: "c40", order: 4, era: "Atos 13–28", title: "As Viagens Missionárias de Paulo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=62" }
+      { id: "c37", order: 1, era: "Gênesis", title: "A Criação e o Jardim do Éden", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=63" },
+      { id: "c38", order: 2, era: "Êxodo a Reis", title: "Moisés e a Libertação de Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=63" },
+      { id: "c39", order: 3, era: "Evangelhos", title: "Jesus, o Salvador Prometido", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=63" },
+      { id: "c40", order: 4, era: "Atos 13–28", title: "As Viagens Missionárias de Paulo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=63" }
     ]
   },
   // FASES 11 A 20: Desbloqueadas com as Semanas 3 a 12 da Lição
@@ -3713,10 +4175,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 11 • Semana 3: A Fé de Abraão",
     subtitle: "Ordene a caminhada de Abraão em Gênesis:",
     cards: [
-      { id: "c41", order: 1, era: "1º Passo", title: "Deus Chama Abraão para Sair de Ur", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_113.jpg?v=62" },
-      { id: "c42", order: 2, era: "2º Passo", title: "Abraão Constrói um Altar de Gratidão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_114.jpg?v=62" },
-      { id: "c43", order: 3, era: "3º Passo", title: "Abraão Conta as Estrelas do Céu", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=62" },
-      { id: "c44", order: 4, era: "4º Passo", title: "Nasce Isaque, o Filho da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_115.jpg?v=62" }
+      { id: "c41", order: 1, era: "1º Passo", title: "Deus Chama Abraão para Sair de Ur", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_113.jpg?v=63" },
+      { id: "c42", order: 2, era: "2º Passo", title: "Abraão Constrói um Altar de Gratidão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_114.jpg?v=63" },
+      { id: "c43", order: 3, era: "3º Passo", title: "Abraão Conta as Estrelas do Céu", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=63" },
+      { id: "c44", order: 4, era: "4º Passo", title: "Nasce Isaque, o Filho da Promessa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_115.jpg?v=63" }
     ]
   },
   {
@@ -3724,10 +4186,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 12 • Semana 4: A Jornada de José",
     subtitle: "Ordene as etapas da vida de José do Egito:",
     cards: [
-      { id: "c45", order: 1, era: "1º Passo", title: "Jacó Dá a Túnica Colorida a José", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=62" },
-      { id: "c46", order: 2, era: "2º Passo", title: "José Trabalha com Fidelidade no Egito", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_116.jpg?v=62" },
-      { id: "c47", order: 3, era: "3º Passo", title: "José Interpreta o Sonho de Faraó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_117.jpg?v=62" },
-      { id: "c48", order: 4, era: "4º Passo", title: "José Perdoa e Abraça Sua Família", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_104.jpg?v=62" }
+      { id: "c45", order: 1, era: "1º Passo", title: "Jacó Dá a Túnica Colorida a José", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=63" },
+      { id: "c46", order: 2, era: "2º Passo", title: "José Trabalha com Fidelidade no Egito", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_116.jpg?v=63" },
+      { id: "c47", order: 3, era: "3º Passo", title: "José Interpreta o Sonho de Faraó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_117.jpg?v=63" },
+      { id: "c48", order: 4, era: "4º Passo", title: "José Perdoa e Abraça Sua Família", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_104.jpg?v=63" }
     ]
   },
   {
@@ -3735,10 +4197,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 13 • Semana 5: Moisés e o Libertador",
     subtitle: "Ordene a história da libertação do Egito:",
     cards: [
-      { id: "c49", order: 1, era: "1º Passo", title: "Miriam Vigia o Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=62" },
-      { id: "c50", order: 2, era: "2º Passo", title: "A Sarça Ardente no Monte Horebe", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=62" },
-      { id: "c51", order: 3, era: "3º Passo", title: "Deus Abre o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=62" },
-      { id: "c52", order: 4, era: "4º Passo", title: "O Cântico de Vitória na Outra Margem", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_109.jpg?v=62" }
+      { id: "c49", order: 1, era: "1º Passo", title: "Miriam Vigia o Cestinho no Rio Nilo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=63" },
+      { id: "c50", order: 2, era: "2º Passo", title: "A Sarça Ardente no Monte Horebe", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=63" },
+      { id: "c51", order: 3, era: "3º Passo", title: "Deus Abre o Mar Vermelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=63" },
+      { id: "c52", order: 4, era: "4º Passo", title: "O Cântico de Vitória na Outra Margem", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_109.jpg?v=63" }
     ]
   },
   {
@@ -3746,10 +4208,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 14 • Semana 6: Josué em Jericó",
     subtitle: "Ordene a conquista de Jericó em Josué 6:",
     cards: [
-      { id: "c53", order: 1, era: "1º Passo", title: "Deus Diz a Josué: 'Sê Forte e Corajoso'", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_118.jpg?v=62" },
-      { id: "c54", order: 2, era: "2º Passo", title: "A Travessia do Rio Jordão com a Arca", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_110.jpg?v=62" },
-      { id: "c55", order: 3, era: "3º Passo", title: "Sete Voltas e o Toque das Trombetas", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=62" },
-      { id: "c56", order: 4, era: "4º Passo", title: "As Muralhas Caem pelo Poder de Deus", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=62" }
+      { id: "c53", order: 1, era: "1º Passo", title: "Deus Diz a Josué: 'Sê Forte e Corajoso'", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_118.jpg?v=63" },
+      { id: "c54", order: 2, era: "2º Passo", title: "A Travessia do Rio Jordão com a Arca", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_110.jpg?v=63" },
+      { id: "c55", order: 3, era: "3º Passo", title: "Sete Voltas e o Toque das Trombetas", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=63" },
+      { id: "c56", order: 4, era: "4º Passo", title: "As Muralhas Caem pelo Poder de Deus", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=63" }
     ]
   },
   {
@@ -3757,10 +4219,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 15 • Semana 7: De Josué ao Jovem Davi",
     subtitle: "Ordene os acontecimentos da Terra Prometida:",
     cards: [
-      { id: "c57", order: 1, era: "Josué 4", title: "As Doze Pedras do Memorial no Jordão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_119.jpg?v=62" },
-      { id: "c58", order: 2, era: "Josué 6", title: "As Trombetas da Vitória em Jericó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=62" },
-      { id: "c59", order: 3, era: "1 Samuel 16:11", title: "Davi Cuida das Ovelhas no Campo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=62" },
-      { id: "c60", order: 4, era: "1 Samuel 16:13", title: "Samuel Unge o Jovem Davi em Belém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=62" }
+      { id: "c57", order: 1, era: "Josué 4", title: "As Doze Pedras do Memorial no Jordão", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_119.jpg?v=63" },
+      { id: "c58", order: 2, era: "Josué 6", title: "As Trombetas da Vitória em Jericó", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=63" },
+      { id: "c59", order: 3, era: "1 Samuel 16:11", title: "Davi Cuida das Ovelhas no Campo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=63" },
+      { id: "c60", order: 4, era: "1 Samuel 16:13", title: "Samuel Unge o Jovem Davi em Belém", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=63" }
     ]
   },
   {
@@ -3768,10 +4230,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 16 • Semana 8: Davi e Salomão",
     subtitle: "Ordene o Reino de Israel:",
     cards: [
-      { id: "c61", order: 1, era: "1º Passo", title: "Davi Cuida das Ovelhas e Toca Harpa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=62" },
-      { id: "c62", order: 2, era: "2º Passo", title: "Davi Escolhe Cinco Pedrinhas no Riacho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_120.jpg?v=62" },
-      { id: "c63", order: 3, era: "3º Passo", title: "Davi Vence Golias em Nome do Senhor", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=62" },
-      { id: "c64", order: 4, era: "4º Passo", title: "O Sábio Rei Salomão no Trono de Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=62" }
+      { id: "c61", order: 1, era: "1º Passo", title: "Davi Cuida das Ovelhas e Toca Harpa", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=63" },
+      { id: "c62", order: 2, era: "2º Passo", title: "Davi Escolhe Cinco Pedrinhas no Riacho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_120.jpg?v=63" },
+      { id: "c63", order: 3, era: "3º Passo", title: "Davi Vence Golias em Nome do Senhor", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=63" },
+      { id: "c64", order: 4, era: "4º Passo", title: "O Sábio Rei Salomão no Trono de Israel", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=63" }
     ]
   },
   {
@@ -3779,10 +4241,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 17 • Semana 9: Salomão, Elias e Jonas",
     subtitle: "Ordene a época dos reis e profetas:",
     cards: [
-      { id: "c65", order: 1, era: "1º Passo", title: "Salomão Governa com Sabedoria", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=62" },
-      { id: "c66", order: 2, era: "2º Passo", title: "Elias Sobe na Carruagem de Fogo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=62" },
-      { id: "c67", order: 3, era: "3º Passo", title: "Jonas e a Grande Baleia no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=62" },
-      { id: "c68", order: 4, era: "4º Passo", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=62" }
+      { id: "c65", order: 1, era: "1º Passo", title: "Salomão Governa com Sabedoria", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=63" },
+      { id: "c66", order: 2, era: "2º Passo", title: "Elias Sobe na Carruagem de Fogo", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=63" },
+      { id: "c67", order: 3, era: "3º Passo", title: "Jonas e a Grande Baleia no Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=63" },
+      { id: "c68", order: 4, era: "4º Passo", title: "Daniel Protegido na Cova dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=63" }
     ]
   },
   {
@@ -3790,10 +4252,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 18 • Semana 10: Daniel e a Rainha Ester",
     subtitle: "Ordene a fidelidade do povo de Deus:",
     cards: [
-      { id: "c69", order: 1, era: "Daniel 6:10", title: "Daniel Ora Fielmente na Janela Aberta", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_121.jpg?v=62" },
-      { id: "c70", order: 2, era: "Daniel 6:22", title: "O Anjo Fecha a Boca dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=62" },
-      { id: "c71", order: 3, era: "Daniel 6:23", title: "Daniel Sai Ileso da Cova ao Amanhecer", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_122.jpg?v=62" },
-      { id: "c72", order: 4, era: "Ester 4–8", title: "A Rainha Ester Salva o Povo de Deus", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=62" }
+      { id: "c69", order: 1, era: "Daniel 6:10", title: "Daniel Ora Fielmente na Janela Aberta", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_121.jpg?v=63" },
+      { id: "c70", order: 2, era: "Daniel 6:22", title: "O Anjo Fecha a Boca dos Leões", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=63" },
+      { id: "c71", order: 3, era: "Daniel 6:23", title: "Daniel Sai Ileso da Cova ao Amanhecer", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_122.jpg?v=63" },
+      { id: "c72", order: 4, era: "Ester 4–8", title: "A Rainha Ester Salva o Povo de Deus", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=63" }
     ]
   },
   {
@@ -3801,10 +4263,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 19 • Semana 11: Jesus, o Salvador",
     subtitle: "Ordene o ministério de Jesus nos Evangelhos:",
     cards: [
-      { id: "c73", order: 1, era: "Lucas 1", title: "O Anjo Gabriel Anuncia a Maria", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_123.jpg?v=62" },
-      { id: "c74", order: 2, era: "Lucas 2", title: "Jesus Nasce em Belém sob a Estrela", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=62" },
-      { id: "c75", order: 3, era: "Marcos 4", title: "Jesus Acalma o Vento e o Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg?v=62" },
-      { id: "c76", order: 4, era: "Marcos 10", title: "Jesus Abraça e Abençoa as Crianças", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=62" }
+      { id: "c73", order: 1, era: "Lucas 1", title: "O Anjo Gabriel Anuncia a Maria", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_123.jpg?v=63" },
+      { id: "c74", order: 2, era: "Lucas 2", title: "Jesus Nasce em Belém sob a Estrela", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=63" },
+      { id: "c75", order: 3, era: "Marcos 4", title: "Jesus Acalma o Vento e o Mar", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg?v=63" },
+      { id: "c76", order: 4, era: "Marcos 10", title: "Jesus Abraça e Abençoa as Crianças", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=63" }
     ]
   },
   {
@@ -3812,10 +4274,10 @@ window.CHRONOLOGY_LEVELS = [
     title: "Fase 20 • Semana 12: Os Milagres e a Igreja",
     subtitle: "Ordene a missão no Novo Testamento:",
     cards: [
-      { id: "c77", order: 1, era: "João 6", title: "O Menino Entrega os Cinco Pães e Dois Peixes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_124.jpg?v=62" },
-      { id: "c78", order: 2, era: "Mateus 28", title: "Jesus Ressuscita Glorioso no Jardim", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_126.jpg?v=62" },
-      { id: "c79", order: 3, era: "Atos 13–28", title: "Paulo Viaja de Navio Levando o Evangelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=62" },
-      { id: "c80", order: 4, era: "Trono da Promessa", title: "A Família Aprendendo a Palavra com o Vovô", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_09.jpg?v=62" }
+      { id: "c77", order: 1, era: "João 6", title: "O Menino Entrega os Cinco Pães e Dois Peixes", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_124.jpg?v=63" },
+      { id: "c78", order: 2, era: "Mateus 28", title: "Jesus Ressuscita Glorioso no Jardim", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_126.jpg?v=63" },
+      { id: "c79", order: 3, era: "Atos 13–28", title: "Paulo Viaja de Navio Levando o Evangelho", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=63" },
+      { id: "c80", order: 4, era: "Trono da Promessa", title: "A Família Aprendendo a Palavra com o Vovô", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_09.jpg?v=63" }
     ]
   }
 ];
@@ -4173,11 +4635,11 @@ window.getCurrentLessonObj = function() {
     window.EBD_STATE.currentWeek = 1;
     localStorage.setItem("trono_ebd_week", "1");
   }
-  return window.EBD_LESSONS_CURRICULUM.find(l => l.week === wk) || window.EBD_LESSONS_CURRICULUM[0];
+  return window.EBD_LESSONS_CURRICULUM.find(l =>l.week === wk) || window.EBD_LESSONS_CURRICULUM[0];
 };
 
 // ============================================================================
-// 4. NAVEGAÇÃO INTELIGENTE DA LIÇÃO DA SEMANA (< VOLTA SEMANA OU INÍCIO | > AVANÇA)
+// 4. NAVEGAÇÃO INTELIGENTE DA LIÇÃO DA SEMANA (< VOLTA SEMANA OU INÍCIO | >AVANÇA)
 // ============================================================================
 window.openLessonHubScreen = function() {
   if (typeof playClick === "function") playClick();
@@ -4189,7 +4651,7 @@ window.openLessonHubScreen = function() {
 };
 
 // Botão Esquerdo (<) no topo da Lição da Semana:
-// Se estiver na Lição 2..12 -> volta para a lição anterior! Se estiver na Lição 1 -> volta para a Home!
+// Se estiver na Lição 2..12 ->volta para a lição anterior! Se estiver na Lição 1 -> volta para a Home!
 window.lessonHubBackNav = function() {
   if (typeof playClick === "function") playClick();
   if (window.EBD_STATE.currentWeek > 1) {
@@ -4211,7 +4673,7 @@ window.stepLessonWeek = function(delta) {
     if (typeof goHome === "function") goHome();
     return;
   }
-  if (next > total) next = 1;
+  if (next >total) next = 1;
   window.selectLessonWeek(next);
 };
 
@@ -4241,7 +4703,7 @@ window.setEbdAgeBracket = function(bracket) {
   }
 };
 
-// Renderiza a Central da Lição da Semana com trilha limpa (1, 2 e cadeado 🔒 3 a 12)
+// Renderiza a Central da Lição da Semana com trilha limpa (1, 2 e cadeado 3 a 12)
 window.renderLessonHubScreen = function() {
   const lesson = window.getCurrentLessonObj();
   if (!lesson) return;
@@ -4253,12 +4715,12 @@ window.renderLessonHubScreen = function() {
 
   if (badgeEl) badgeEl.textContent = `SEMANA ${lesson.week} DE 12 • ${lesson.eraName.toUpperCase()}`;
   if (titleEl) titleEl.textContent = `Lição ${lesson.week}: ${lesson.title}`;
-  if (refEl) refEl.textContent = `📖 ${lesson.bibleRef} • ${lesson.chronologyDate}`;
+  if (refEl) refEl.textContent = ` ${lesson.bibleRef} • ${lesson.chronologyDate}`;
   if (backBtnEl) {
     backBtnEl.title = lesson.week > 1 ? `Voltar para a Semana ${lesson.week - 1}` : "Voltar ao Início";
   }
 
-  // Trilha compacta das semanas: mostra as semanas desbloqueadas + 1 selo de cadeado (🔒 Semanas 3 a 12) sem barra de rolagem
+  // Trilha compacta das semanas: mostra as semanas desbloqueadas + 1 selo de cadeado (Semanas 3 a 12) sem barra de rolagem
   const trailEl = document.getElementById("lesson-weeks-trail");
   if (trailEl) {
     const vip = typeof isVipUnlocked === "function" && isVipUnlocked();
@@ -4271,14 +4733,14 @@ window.renderLessonHubScreen = function() {
       const active = item.week === lesson.week;
       if (unlocked) {
         html += `<button type="button" class="week-node-btn ${active ? "active" : ""} ${isDone ? "done" : ""}" onclick="selectLessonWeek(${item.week})" title="Semana ${item.week}: ${item.title}">
-          <span>Lição ${item.week}${isDone ? " ⭐" : ""}</span>
+          <span>Lição ${item.week}${isDone ? " " : ""}</span>
         </button>`;
       }
     });
 
     if (!vip) {
       html += `<button type="button" class="week-node-btn locked-pack" onclick="openParentGate()" title="Desbloquear Semanas 3 a 12">
-        <span>🔒 Lições 3 a 12</span>
+        <span>Lições 3 a 12</span>
       </button>`;
     }
 
@@ -4412,7 +4874,7 @@ window.toggleVovoStoryNarration = function() {
   window.EBD_STATE.vovoAudioEl = audio;
   window.EBD_STATE.vovoAudioPlaying = true;
 
-  if (playBtnEl) playBtnEl.innerHTML = "⏸️ Pausar História";
+  if (playBtnEl) playBtnEl.innerHTML = "Pausar História";
   if (imgEl) imgEl.classList.add("vovo-video-playing-img");
 
   // Troca automática das cenas ilustradas conforme o progresso do áudio (estilo vídeo!)
@@ -4441,20 +4903,20 @@ window.toggleVovoStoryNarration = function() {
 
   audio.onended = function() {
     window.EBD_STATE.vovoAudioPlaying = false;
-    if (playBtnEl) playBtnEl.innerHTML = "▶️ Ouvir a História";
+    if (playBtnEl) playBtnEl.innerHTML = "Ouvir a História";
     if (imgEl) imgEl.classList.remove("vovo-video-playing-img");
     if (barFillEl) barFillEl.style.width = "100%";
   };
 
   audio.onerror = function() {
     window.EBD_STATE.vovoAudioPlaying = false;
-    if (playBtnEl) playBtnEl.innerHTML = "▶️ Ouvir a História";
+    if (playBtnEl) playBtnEl.innerHTML = "Ouvir a História";
     if (imgEl) imgEl.classList.remove("vovo-video-playing-img");
   };
 
   audio.play().catch(() => {
     window.EBD_STATE.vovoAudioPlaying = false;
-    if (playBtnEl) playBtnEl.innerHTML = "▶️ Ouvir a História";
+    if (playBtnEl) playBtnEl.innerHTML = "Ouvir a História";
     if (imgEl) imgEl.classList.remove("vovo-video-playing-img");
   });
 };
@@ -4472,7 +4934,7 @@ window.stopVovoStoryNarration = function() {
   const imgEl = document.getElementById("vovo-story-scene-img");
   const barFillEl = document.getElementById("vovo-video-progress-fill");
   const timeLabelEl = document.getElementById("vovo-video-time-label");
-  if (playBtnEl) playBtnEl.innerHTML = "▶️ Ouvir a História";
+  if (playBtnEl) playBtnEl.innerHTML = "Ouvir a História";
   if (imgEl) imgEl.classList.remove("vovo-video-playing-img");
   if (barFillEl) barFillEl.style.width = "0%";
   if (timeLabelEl) timeLabelEl.textContent = "0:00";
@@ -4638,7 +5100,7 @@ window.openDevotionalScreen = function() {
       const key = `w${lesson.week}_d${d.day}`;
       const isDone = !!checkedMap[key];
       return `<div class="devotional-day-card ${isDone ? "done" : ""}" onclick="toggleDevotionalDay('${key}')">
-        <div class="devotional-day-check">${isDone ? "✅" : "⬜"}</div>
+        <div class="devotional-day-check">${isDone ? "" : "⬜"}</div>
         <div class="devotional-day-info">
           <h4>${d.title}</h4>
           <p>${d.text}</p>
@@ -4717,7 +5179,7 @@ window.saveWhiteLabelConfig = function() {
   }
   const feedbackEl = document.getElementById("wl-save-feedback");
   if (feedbackEl) {
-    feedbackEl.textContent = "✅ Identidade da Igreja/Escola Bíblica salva com sucesso!";
+    feedbackEl.textContent = " Identidade da Igreja/Escola Bíblica salva com sucesso!";
     setTimeout(() => { feedbackEl.textContent = ""; }, 3500);
   }
 };
@@ -4733,14 +5195,14 @@ window.renderGamePhaseSelectorBar = function(containerId, bankArray, activeIdx, 
   // Se estiver jogando a atividade exclusiva de dentro da Lição da Semana, mostra selo da Lição
   if (window.EBD_STATE.lessonGameReturnContext) {
     const lesson = window.getCurrentLessonObj();
-    barEl.innerHTML = `<div class="phase-lesson-mode-pill">📖 Atividade da Lição ${lesson.week}: ${lesson.title}</div>`;
+    barEl.innerHTML = `<div class="phase-lesson-mode-pill">Atividade da Lição ${lesson.week}: ${lesson.title}</div>`;
     return;
   }
   barEl.innerHTML = bankArray.map((item, idx) => {
     const unlocked = window.isGameLevelUnlocked(item);
     const active = idx === activeIdx;
     return `<button type="button" class="game-phase-pill ${active ? "active" : ""} ${unlocked ? "" : "locked"}" onclick="${selectFnName}(${idx})">
-      ${unlocked ? `Fase ${idx + 1}` : `🔒 ${idx + 1}`}
+      ${unlocked ? `Fase ${idx + 1}` : `${idx + 1}`}
     </button>`;
   }).join("");
 };
@@ -4816,10 +5278,10 @@ window.pickChronologyCard = function(cardId, cardOrder) {
     }
     window.EBD_STATE.chronologyStep += 1;
     if (window.EBD_STATE.chronologyStep > 4) {
-      if (feedbackEl) feedbackEl.textContent = "🎉 Perfeito! Você colocou toda a Linha do Tempo na ordem certa!";
+      if (feedbackEl) feedbackEl.textContent = " Perfeito! Você colocou toda a Linha do Tempo na ordem certa!";
       if (typeof triggerConfetti === "function") triggerConfetti();
     } else {
-      if (feedbackEl) feedbackEl.textContent = `✅ Muito bem! Agora toque no ${window.EBD_STATE.chronologyStep}º acontecimento!`;
+      if (feedbackEl) feedbackEl.textContent = ` Muito bem! Agora toque no ${window.EBD_STATE.chronologyStep}º acontecimento!`;
     }
   } else {
     if (typeof playErrorSound === "function") playErrorSound();
@@ -4827,7 +5289,7 @@ window.pickChronologyCard = function(cardId, cardOrder) {
       cardEl.classList.add("shake-err");
       setTimeout(() => cardEl.classList.remove("shake-err"), 450);
     }
-    if (feedbackEl) feedbackEl.textContent = `💡 Pense na ordem da Bíblia: qual acontecimento veio no ${expected}º lugar?`;
+    if (feedbackEl) feedbackEl.textContent = ` Pense na ordem da Bíblia: qual acontecimento veio no ${expected}º lugar?`;
   }
 };
 
@@ -4878,7 +5340,7 @@ window.renderVerseBuilderGame = function(useCustomLesson) {
   const poolEl = document.getElementById("verse-builder-pool");
   const feedbackEl = document.getElementById("verse-builder-feedback");
 
-  if (refEl) refEl.textContent = `📖 Versículo de Ouro • ${item.ref}`;
+  if (refEl) refEl.textContent = ` Versículo de Ouro • ${item.ref}`;
   if (targetEl) targetEl.innerHTML = `<span class="verse-placeholder">Toque na 1ª palavra abaixo para montar o versículo...</span>`;
   if (feedbackEl) feedbackEl.textContent = `Dica: A primeira palavra é "${item.words[0]}"`;
 
@@ -4910,14 +5372,14 @@ window.pickVerseWord = function(wordIdx) {
       targetEl.innerHTML = window.EBD_STATE.verseBuilt.map(w => `<span class="verse-built-chip">${w}</span>`).join(" ");
     }
     if (window.EBD_STATE.verseBuilt.length === words.length) {
-      if (feedbackEl) feedbackEl.textContent = "🌟 Parabéns! Você guardou a Palavra de Deus no coração!";
+      if (feedbackEl) feedbackEl.textContent = " Parabéns! Você guardou a Palavra de Deus no coração!";
       if (typeof triggerConfetti === "function") triggerConfetti();
     } else {
-      if (feedbackEl) feedbackEl.textContent = "✅ Muito bem! Continue montando o versículo!";
+      if (feedbackEl) feedbackEl.textContent = " Muito bem! Continue montando o versículo!";
     }
   } else {
     if (typeof playErrorSound === "function") playErrorSound();
-    if (feedbackEl) feedbackEl.textContent = `💡 Tente a palavra "${expectedWord}" agora!`;
+    if (feedbackEl) feedbackEl.textContent = ` Tente a palavra "${expectedWord}" agora!`;
   }
 };
 
@@ -4968,9 +5430,9 @@ window.renderMimicaCard = function() {
 
   if (catEl) catEl.textContent = card.category;
   if (targetEl) targetEl.textContent = card.target;
-  if (forbEl) forbEl.textContent = `🚫 Palavras Proibidas (se falar): ${card.forbidden.join(" • ")}`;
-  if (tipEl) tipEl.textContent = `🎭 Dica de Mímica: ${card.tip}`;
-  if (timerEl) timerEl.textContent = "⏱️ 45s";
+  if (forbEl) forbEl.textContent = ` Palavras Proibidas (se falar): ${card.forbidden.join(" • ")}`;
+  if (tipEl) tipEl.textContent = ` Dica de Mímica: ${card.tip}`;
+  if (timerEl) timerEl.textContent = " 45s";
   if (scoreAEl) scoreAEl.textContent = window.EBD_STATE.mimicaTeamA;
   if (scoreBEl) scoreBEl.textContent = window.EBD_STATE.mimicaTeamB;
 };
@@ -4980,14 +5442,14 @@ window.startMimicaTimer = function() {
   window.clearMimicaTimer();
   window.EBD_STATE.mimicaSeconds = 45;
   const timerEl = document.getElementById("mimica-timer-display");
-  if (timerEl) timerEl.textContent = `⏱️ ${window.EBD_STATE.mimicaSeconds}s`;
+  if (timerEl) timerEl.textContent = ` ${window.EBD_STATE.mimicaSeconds}s`;
 
   window.EBD_STATE.mimicaTimer = setInterval(() => {
     window.EBD_STATE.mimicaSeconds -= 1;
-    if (timerEl) timerEl.textContent = `⏱️ ${window.EBD_STATE.mimicaSeconds}s`;
+    if (timerEl) timerEl.textContent = ` ${window.EBD_STATE.mimicaSeconds}s`;
     if (window.EBD_STATE.mimicaSeconds <= 0) {
       window.clearMimicaTimer();
-      if (timerEl) timerEl.textContent = "⏰ Tempo Esgotado!";
+      if (timerEl) timerEl.textContent = " Tempo Esgotado!";
       if (typeof playErrorSound === "function") playErrorSound();
     }
   }, 1000);
@@ -5052,7 +5514,7 @@ window.renderWordSearchGame = function(useCustomLesson) {
   if (titleEl) titleEl.textContent = pack.title;
 
   const size = 8;
-  const grid = Array.from({ length: size }, () => Array(size).fill(""));
+  const grid = Array.from({ length: size }, () =>Array(size).fill(""));
   const placements = {};
 
   words.forEach((word, idx) => {
@@ -5094,7 +5556,7 @@ window.updateWordSearchPills = function() {
   if (pillsEl) {
     pillsEl.innerHTML = words.map(w => {
       const found = window.EBD_STATE.wordSearchFound.includes(w);
-      return `<span class="ws-word-pill ${found ? "found" : ""}">${found ? "✅ " : ""}${w}</span>`;
+      return `<span class="ws-word-pill ${found ? "found" : ""}">${w}</span>`;
     }).join("");
   }
 };
@@ -5162,7 +5624,7 @@ window.renderWhoAmIGame = function() {
 
   if (cluesEl) {
     cluesEl.innerHTML = item.clues.slice(0, window.EBD_STATE.whoAmIClueCount).map(c =>
-      `<div class="whoami-clue-item">🔎 ${c}</div>`
+      `<div class="whoami-clue-item"> ${c}</div>`
     ).join("");
   }
   const shuffled = [...item.options].sort(() => Math.random() - 0.5);
@@ -5188,7 +5650,7 @@ window.checkWhoAmIAnswer = function(selected) {
   if (selected === item.answer) {
     if (typeof playSuccessSound === "function") playSuccessSound();
     if (typeof triggerConfetti === "function") triggerConfetti();
-    if (feedbackEl) feedbackEl.textContent = `🎉 Acertou! Era ${item.answer}!`;
+    if (feedbackEl) feedbackEl.textContent = ` Acertou! Era ${item.answer}!`;
     setTimeout(() => {
       if (window.EBD_STATE.lessonGameReturnContext) return;
       const nextIdx = (window.EBD_STATE.whoAmIIdx + 1) % window.WHO_AM_I_BANK.length;
@@ -5200,7 +5662,7 @@ window.checkWhoAmIAnswer = function(selected) {
     }, 1800);
   } else {
     if (typeof playErrorSound === "function") playErrorSound();
-    if (feedbackEl) feedbackEl.textContent = "💡 Quase! Revele mais uma pista e tente de novo!";
+    if (feedbackEl) feedbackEl.textContent = " Quase! Revele mais uma pista e tente de novo!";
   }
 };
 
@@ -5242,10 +5704,10 @@ window.answerTrueOrMyth = function(userChoice) {
   if (userChoice === item.isTrue) {
     if (typeof playSuccessSound === "function") playSuccessSound();
     if (typeof triggerConfetti === "function") triggerConfetti();
-    if (expEl) expEl.textContent = `🎉 Acertou! ${item.explanation}`;
+    if (expEl) expEl.textContent = ` Acertou! ${item.explanation}`;
   } else {
     if (typeof playErrorSound === "function") playErrorSound();
-    if (expEl) expEl.textContent = `💡 Aprenda com a Bíblia: ${item.explanation}`;
+    if (expEl) expEl.textContent = ` Aprenda com a Bíblia: ${item.explanation}`;
   }
 };
 
@@ -5295,9 +5757,9 @@ window.renderSecretWordGame = function() {
   const starsEl = document.getElementById("sw-stars-left");
   const kbEl = document.getElementById("sw-keyboard");
 
-  if (hintEl) hintEl.textContent = `💡 Pista: ${item.hint}`;
+  if (hintEl) hintEl.textContent = ` Pista: ${item.hint}`;
   const starsLeft = Math.max(0, 6 - window.EBD_STATE.secretWordErrors);
-  if (starsEl) starsEl.textContent = "⭐".repeat(starsLeft) + "☆".repeat(6 - starsLeft);
+  if (starsEl) starsEl.textContent = "Chances restantes: " + starsLeft + " de 6";
 
   const letters = item.word.split("");
   const allFound = letters.every(ch => window.EBD_STATE.secretWordGuessed.includes(ch));
@@ -5318,7 +5780,7 @@ window.renderSecretWordGame = function() {
 
   if (allFound) {
     if (typeof triggerConfetti === "function") triggerConfetti();
-    if (hintEl) hintEl.textContent = `🎉 Parabéns! A Palavra Secreta era ${item.word}!`;
+    if (hintEl) hintEl.textContent = ` Parabéns! A Palavra Secreta era ${item.word}!`;
   }
 };
 
@@ -5425,7 +5887,7 @@ window.stepLessonWeek = function(delta) {
     if (typeof goHome === "function") goHome();
     return;
   }
-  if (next > total) next = 1;
+  if (next >total) next = 1;
   if (!window.isLessonWeekUnlocked(next)) {
     window.ebdAskSubscribe("Liberar Série 2 Completa (Lições 11 a 22 da EBD)");
     return;
@@ -5522,7 +5984,7 @@ window.renderLessonHubScreen = function() {
   }
 
   // Carrossel Deslizante no Bloco Roxo (#lesson-weeks-trail):
-  // Mostra todas as 22 lições do MESMO TAMANHO! Lições 1 a 10 liberadas; Lições 11 a 22 com cadeadinho 🔒 e bloqueadas!
+  // Mostra todas as 22 lições do MESMO TAMANHO! Lições 1 a 10 liberadas; Lições 11 a 22 com cadeadinho e bloqueadas!
   const trailEl = document.getElementById("lesson-weeks-trail");
   if (trailEl) {
     const completed = JSON.parse(localStorage.getItem("trono_ebd_completed_weeks") || "[]");
@@ -5535,7 +5997,7 @@ window.renderLessonHubScreen = function() {
       if (unlocked) {
         html += `<button type="button" id="lesson-pill-${item.week}" class="lesson-scroll-pill ${isDone ? "done" : ""} ${isCur ? "current" : ""}" onclick="selectLessonWeek(${item.week})" title="Lição ${item.week}: ${item.title}">Lição ${item.week}</button>`;
       } else {
-        html += `<button type="button" id="lesson-pill-${item.week}" class="lesson-scroll-pill locked-week" onclick="selectLessonWeek(${item.week})" title="🔒 Bloqueada • Lição ${item.week}: ${item.title}">🔒 Lição ${item.week}</button>`;
+        html += `<button type="button" id="lesson-pill-${item.week}" class="lesson-scroll-pill locked-week" onclick="selectLessonWeek(${item.week})" title="Bloqueada • Lição ${item.week}: ${item.title}">Lição ${item.week}</button>`;
       }
     });
 
@@ -5607,7 +6069,7 @@ window.openLessonModule = function(modType) {
     sementinha: `Sementinha no Coração • Lição ${lesson.week}`,
     fe_acao: `Fé em Ação • Lição ${lesson.week}`,
     jogos_licao: `Jogos da Lição ${lesson.week}`,
-    devocional: `Devocional 5 Dias • Lição ${lesson.week}`
+    devocional: `Devocional • Lição ${lesson.week}`
   };
   if (headerBar) {
     headerBar.innerHTML = `<span style="font-size:12.5px; font-weight:800; color:#fde047; padding:2px 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${titlesMap[modType] || lesson.title}</span>`;
@@ -5636,13 +6098,13 @@ window.openLessonModule = function(modType) {
 
       // Marco Zero com a Imagem do Nascimento de Jesus (substituindo o antigo bloco amarelo de texto!)
       const zeroMilestoneCard = (st.eraType === "zero") ? `
-        <div onclick="openLessonImageFullModal('./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=62', 'Marco Zero (Ano 0): O Nascimento de Jesus')" style="cursor:pointer; margin:4px 0 6px; padding:8px; border-radius:16px; background:linear-gradient(180deg, rgba(88,28,135,0.95), rgba(15,23,42,0.98)); border:2.5px solid #fde047; box-shadow:0 6px 16px rgba(0,0,0,0.8);">
+        <div onclick="openLessonImageFullModal('./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=63', 'Marco Zero (Ano 0): O Nascimento de Jesus')" style="cursor:pointer; margin:4px 0 6px; padding:8px; border-radius:16px; background:linear-gradient(180deg, rgba(88,28,135,0.95), rgba(15,23,42,0.98)); border:2.5px solid #fde047; box-shadow:0 6px 16px rgba(0,0,0,0.8);">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:5px;">
-            <span style="background:linear-gradient(180deg,#fde047,#f59e0b); color:#0f172a; font-size:10.5px; font-weight:900; padding:2px 9px; border-radius:999px;">⭐ MARCO ZERO • ANO 0</span>
+            <span style="background:linear-gradient(180deg,#fde047,#f59e0b); color:#0f172a; font-size:10.5px; font-weight:900; padding:2px 9px; border-radius:999px;">MARCO ZERO • ANO 0</span>
             <span style="font-size:11px; font-weight:900; color:#fde047;">Nascimento de Jesus</span>
           </div>
           <div style="width:100%; aspect-ratio:16/9; border-radius:11px; overflow:hidden; border:2px solid #fde047; background:#050b1a;">
-            <img src="./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=62" alt="Nascimento de Jesus - Marco Zero" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <img src="./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=63" alt="Nascimento de Jesus - Marco Zero" style="width:100%; height:100%; object-fit:cover; display:block;">
           </div>
         </div>
         <div style="display:flex; flex-direction:column; align-items:center; margin:1px 0;">
@@ -5663,11 +6125,10 @@ window.openLessonModule = function(modType) {
           ${zeroMilestoneCard}
           <div id="chrono-active-stop-card" style="background:linear-gradient(180deg, rgba(88,28,135,0.98), rgba(30,27,75,0.99)); border:3px solid #fde047; border-radius:18px; padding:9px; margin:3px 0; box-shadow:0 0 22px rgba(253,224,71,0.55);">
             <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:6px;">
-              <span style="background:linear-gradient(180deg,#00e676,#00c853); color:#ffffff; font-size:11px; font-weight:900; padding:3px 10px; border-radius:999px; border:1.5px solid #ffffff;">
-                Lição ${st.week}
+              <span style="background:linear-gradient(180deg,#00e676,#00c853); color:#ffffff; font-size:11px; font-weight:900; padding:3px 10px; border-radius:999px; border:1.5px solid #ffffff;">Lição ${st.week}
               </span>
               <span style="background:rgba(15,23,42,0.92); color:#fde047; font-size:11px; font-weight:900; padding:3px 10px; border-radius:999px; border:1.5px solid #fde047;">
-                ⏳ ${st.yearBadge}
+                 ${st.yearBadge}
               </span>
             </div>
 
@@ -5693,14 +6154,14 @@ window.openLessonModule = function(modType) {
         ${zeroMilestoneCard}
         <div onclick="onTapChronologyItem(${st.week})" style="cursor:pointer; display:flex; align-items:center; gap:9px; padding:6px 8px; border-radius:15px; background:${bgCol}; border:2px solid ${borderCol}; margin-left:${isLeft ? "0px" : "12px"}; margin-right:${isLeft ? "12px" : "0px"}; box-shadow:0 4px 10px rgba(0,0,0,0.65);">
           <div style="width:30px; height:30px; border-radius:50%; background:${unlocked ? badgeBg : "#334155"}; color:#ffffff; font-weight:900; font-size:12.5px; display:flex; align-items:center; justify-content:center; flex-shrink:0; border:2px solid #ffffff;">
-            ${unlocked ? st.week : "🔒"}
+            ${st.week}
           </div>
           <div style="width:96px; aspect-ratio:16/9; border-radius:9px; overflow:hidden; flex-shrink:0; border:1.5px solid #fde047; background:#050b1a;">
             <img src="${st.img}" alt="${st.shortTitle}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; ${unlocked ? "" : "filter:grayscale(60%) brightness(0.78);"}">
           </div>
           <div style="flex:1; min-width:0; text-align:left;">
             <div style="display:inline-block; background:rgba(253,224,71,0.18); color:#fde047; font-size:10.5px; font-weight:900; padding:1.5px 7px; border-radius:6px; border:1px solid rgba(253,224,71,0.5); margin-bottom:3px;">
-              ⏳ ${st.yearBadge}
+               ${st.yearBadge}
             </div>
             <div style="font-size:13px; font-weight:900; color:#ffffff; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
               ${st.shortTitle}
@@ -5719,10 +6180,9 @@ window.openLessonModule = function(modType) {
 
         <div style="display:flex; gap:8px; margin-top:4px;">
           <button type="button" class="btn-tool-3d" style="flex:1; padding:8px; font-size:12px;" onclick="backFromLessonModule()">
-            ${window.EBD_STATE.fromChronologyHub ? "⬅ Trilha" : "⬅ Voltar"}
+            ${window.EBD_STATE.fromChronologyHub ? "Voltar à Trilha" : "Voltar"}
           </button>
-          <button type="button" class="btn-gold" style="flex:1.3; padding:8px; font-size:12.5px;" onclick="stepChronologyLessonWeek(1)">
-            Próxima ➔
+          <button type="button" class="btn-gold" style="flex:1.3; padding:8px; font-size:12.5px;" onclick="stepChronologyLessonWeek(1)">Próxima
           </button>
         </div>
       </div>
@@ -5757,8 +6217,7 @@ window.openLessonModule = function(modType) {
           </div>
         </div>
 
-        <button id="vovo-play-btn" type="button" class="btn-gold" style="width:100%; padding:12px; font-size:16px; flex-shrink:0;" onclick="toggleVovoStoryNarration()">
-          ▶️ Ouvir a História
+        <button id="vovo-play-btn" type="button" class="btn-gold" style="width:100%; padding:12px; font-size:16px; flex-shrink:0;" onclick="toggleVovoStoryNarration()">Ouvir a História
         </button>
       </div>
     `;
@@ -5777,19 +6236,18 @@ window.openLessonModule = function(modType) {
         </div>
 
         <div style="background:linear-gradient(180deg, #aa00ff 0%, #4c1d95 100%); border:3px solid #fde047; border-radius:20px; padding:18px 14px; margin-bottom:8px; box-shadow:0 8px 20px rgba(0,0,0,0.85);">
-          <div style="font-size:11.5px; font-weight:900; color:#fde047; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:6px;">🌱 Versículo Bíblico para Decorar</div>
+          <div style="font-size:11.5px; font-weight:900; color:#fde047; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:6px;">Versículo Bíblico para Decorar</div>
           <div style="font-size:18.5px; font-weight:900; color:#ffffff; line-height:1.38; margin-bottom:8px; text-shadow:0 2px 6px rgba(0,0,0,0.85);">
             "${ageData.verse}"
           </div>
-          <div style="font-size:13px; font-weight:900; color:#86efac;">📖 ${lesson.bibleRef}</div>
+          <div style="font-size:13px; font-weight:900; color:#86efac;"> ${lesson.bibleRef}</div>
         </div>
 
-        <p style="font-size:13px; color:#e2e8f0; font-weight:700; line-height:1.35; margin-bottom:8px;">
-          Repita este versículo 3 vezes em voz alta para guardar a Palavra de Deus no seu coração!
+        <p style="font-size:13px; color:#e2e8f0; font-weight:700; line-height:1.35; margin-bottom:8px;">Repita este versículo 3 vezes em voz alta para guardar a Palavra de Deus no seu coração!
         </p>
 
         <button type="button" class="btn-gold" style="width:100%; padding:12px; font-size:15px; flex-shrink:0;" onclick="markLessonSeedMemorized(${lesson.week})">
-          ${isMemorized ? "✅ Versículo Guardado no Coração!" : "⭐ Já Memorizei este Versículo!"}
+          ${isMemorized ? " Versículo Guardado no Coração!" : " Já Memorizei este Versículo!"}
         </button>
       </div>
     `;
@@ -5810,14 +6268,14 @@ window.openLessonModule = function(modType) {
         </div>
 
         <div style="background:rgba(15,23,42,0.9); border:2.5px solid #00e676; border-radius:18px; padding:14px 12px; margin-bottom:8px; text-align:left;">
-          <div style="font-size:12.5px; font-weight:900; color:#86efac; margin-bottom:5px;">✨ Missão Prática da Semana:</div>
+          <div style="font-size:12.5px; font-weight:900; color:#86efac; margin-bottom:5px;">Missão Prática da Semana:</div>
           <div style="font-size:15px; font-weight:800; color:#ffffff; line-height:1.42;">
             ${ageData.actionDesc}
           </div>
         </div>
 
         <button type="button" class="btn-gold" style="width:100%; padding:12px; font-size:15px; flex-shrink:0;" onclick="markLessonActionCompleted(${lesson.week})">
-          ${isActionDone ? "✅ Missão da Lição Concluída!" : "⭐ Marcar Missão como Concluída!"}
+          ${isActionDone ? " Missão da Lição Concluída!" : " Marcar Missão como Concluída!"}
         </button>
       </div>
     `;
@@ -5856,26 +6314,31 @@ window.openLessonModule = function(modType) {
     box.innerHTML = `
       <div class="ebd-glass-card" style="margin-bottom:4px; padding:10px;">
         <h3 style="color:#fde047; font-size:15.5px; margin-bottom:2px;">Lição ${lesson.week}: ${lesson.title}</h3>
-        <div style="color:#38bdf8; font-size:11.5px; font-weight:800; margin-bottom:8px;">📖 Devocional Bíblico da Família • 5 Dias com Deus</div>
-        <div style="display:flex; flex-direction:column; gap:8px; text-align:left; margin-bottom:10px;">
-          ${lesson.devotional5Days.map(d => {
+        <div style="color:#38bdf8; font-size:11.5px; font-weight:800; margin-bottom:8px;">Devocional da Família • 7 Dias</div>
+        <div style="display:flex; flex-direction:column; gap:10px; text-align:left; margin-bottom:10px;">
+          ${lesson.devotional5Days.map((d, idx) => {
             const key = `w${lesson.week}_d${d.day}`;
             const done = !!checkedMap[key];
+            const dayImg = d.img || (lesson.storyScenes && lesson.storyScenes[idx % lesson.storyScenes.length] ? lesson.storyScenes[idx % lesson.storyScenes.length].img : lesson.thumbImg);
             return `
-              <div onclick="toggleLessonDevotionalDay('${key}')" style="background:${done ? "linear-gradient(180deg, rgba(6,95,70,0.92), rgba(4,47,46,0.96))" : "rgba(15,23,42,0.9)"}; border:2px solid ${done ? "#00e676" : "#38bdf8"}; border-radius:14px; padding:9px 10px; display:flex; align-items:flex-start; gap:8px; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,0.65);">
-                <div style="font-size:18px; line-height:1.1; margin-top:2px;">${done ? "✅" : "⬜"}</div>
-                <div style="flex:1;">
-                  <div style="font-size:13px; font-weight:900; color:#fde047; margin-bottom:4px;">${d.title}</div>
-                  ${d.verse ? `<div style="background:rgba(88,28,135,0.75); border-left:3px solid #fde047; border-radius:6px; padding:5px 8px; font-size:12px; font-weight:800; color:#fef08a; margin-bottom:5px; line-height:1.32;">📖 ${d.verse}</div>` : ""}
-                  <div style="font-size:12.5px; color:#ffffff; line-height:1.38; margin-bottom:4px;">💡 ${d.text}</div>
-                  ${d.prayer ? `<div style="font-size:11.5px; color:#86efac; font-weight:800; line-height:1.3;">🙏 ${d.prayer}</div>` : ""}
+              <div onclick="toggleLessonDevotionalDay('${key}')" style="background:${done ? "linear-gradient(180deg, rgba(6,95,70,0.92), rgba(4,47,46,0.96))" : "rgba(15,23,42,0.92)"}; border:2px solid ${done ? "#00e676" : "#38bdf8"}; border-radius:16px; padding:10px; display:flex; flex-direction:column; gap:7px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.75);">
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                  <div style="font-size:13.5px; font-weight:900; color:#fde047;">${d.title}</div>
+                  <span style="background:${done ? "#00c853" : "#1e293b"}; color:#ffffff; font-size:10px; font-weight:900; padding:3px 9px; border-radius:999px; border:1.5px solid ${done ? "#ffffff" : "#38bdf8"}; flex-shrink:0;">
+                    ${done ? "CONCLUÍDO" : "DIA " + d.day}
+                  </span>
                 </div>
+                <div style="width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:2px solid #fde047; background:#050b1a;">
+                  <img src="${dayImg}" alt="${d.title}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+                </div>
+                ${d.verse ? `<div style="background:rgba(88,28,135,0.75); border-left:3px solid #fde047; border-radius:6px; padding:6px 9px; font-size:12px; font-weight:800; color:#fef08a; line-height:1.32;">${d.verse}</div>` : ""}
+                <div style="font-size:12.5px; color:#ffffff; line-height:1.38;">${d.text}</div>
+                ${d.prayer ? `<div style="font-size:11.5px; color:#86efac; font-weight:800; line-height:1.32;">${d.prayer}</div>` : ""}
               </div>
             `;
           }).join("")}
         </div>
-        <button type="button" class="btn-gold" style="width:100%; padding:10px; font-size:14.5px;" onclick="completeCurrentWeekLesson()">
-          ⭐ Concluir Lição ${lesson.week} e Ganhar Estrela!
+        <button type="button" class="btn-gold" style="width:100%; padding:10px; font-size:14.5px;" onclick="completeCurrentWeekLesson()">Concluir Lição ${lesson.week}
         </button>
       </div>
     `;
@@ -5956,133 +6419,133 @@ window.CHRONO_VISUAL_MAP_STOPS = [
     week: 1, chronoOrder: 1, mainStop: true,
     yearBadge: "~4000 a.C.", eraType: "ac",
     shortTitle: "A Criação do Mundo",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=63"
   },
   {
     week: 11, chronoOrder: 2, mainStop: false,
     yearBadge: "~3900 a.C.", eraType: "ac",
     shortTitle: "O Jardim do Éden",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=63"
   },
   {
     week: 2, chronoOrder: 3, mainStop: true,
     yearBadge: "~2400 a.C.", eraType: "ac",
     shortTitle: "A Grande Arca de Noé",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=63"
   },
   {
     week: 3, chronoOrder: 4, mainStop: true,
     yearBadge: "~2000 a.C.", eraType: "ac",
     shortTitle: "Abraão e a Promessa",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=63"
   },
   {
     week: 4, chronoOrder: 5, mainStop: true,
     yearBadge: "~1900 a.C.", eraType: "ac",
     shortTitle: "A Escada de Jacó",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=63"
   },
   {
     week: 5, chronoOrder: 6, mainStop: true,
     yearBadge: "~1850 a.C.", eraType: "ac",
     shortTitle: "José no Egito",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=63"
   },
   {
     week: 12, chronoOrder: 7, mainStop: false,
     yearBadge: "~1520 a.C.", eraType: "ac",
     shortTitle: "Bebê Moisés no Nilo",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg?v=63"
   },
   {
     week: 6, chronoOrder: 8, mainStop: true,
     yearBadge: "~1446 a.C.", eraType: "ac",
     shortTitle: "Moisés e o Mar Vermelho",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=63"
   },
   {
     week: 13, chronoOrder: 9, mainStop: false,
     yearBadge: "~1445 a.C.", eraType: "ac",
     shortTitle: "Os Dez Mandamentos",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg?v=63"
   },
   {
     week: 7, chronoOrder: 10, mainStop: true,
     yearBadge: "~1400 a.C.", eraType: "ac",
     shortTitle: "Josué em Jericó",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg?v=63"
   },
   {
     week: 14, chronoOrder: 11, mainStop: false,
     yearBadge: "~1150 a.C.", eraType: "ac",
     shortTitle: "Gideão e Rute",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_17.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_17.jpg?v=63"
   },
   {
     week: 15, chronoOrder: 12, mainStop: false,
     yearBadge: "~1050 a.C.", eraType: "ac",
     shortTitle: "O Chamado de Samuel",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_112.jpg?v=63"
   },
   {
     week: 8, chronoOrder: 13, mainStop: true,
     yearBadge: "~1010 a.C.", eraType: "ac",
     shortTitle: "Davi e Golias",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=63"
   },
   {
     week: 16, chronoOrder: 14, mainStop: true,
     yearBadge: "~970 a.C.", eraType: "ac",
     shortTitle: "O Rei Salomão",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg?v=63"
   },
   {
     week: 9, chronoOrder: 15, mainStop: true,
     yearBadge: "~800 a.C.", eraType: "ac",
     shortTitle: "Profetas Elias e Jonas",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg?v=63"
   },
   {
     week: 17, chronoOrder: 16, mainStop: false,
     yearBadge: "~700 a.C.", eraType: "ac",
     shortTitle: "Eliseu e Isaías",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=63"
   },
   {
     week: 18, chronoOrder: 17, mainStop: false,
     yearBadge: "~600 a.C.", eraType: "ac",
     shortTitle: "Três Amigos Fiéis",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_121.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_121.jpg?v=63"
   },
   {
     week: 10, chronoOrder: 18, mainStop: true,
     yearBadge: "~580 a.C.", eraType: "ac",
     shortTitle: "Daniel na Cova dos Leões",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=63"
   },
   {
     week: 19, chronoOrder: 19, mainStop: true,
     yearBadge: "~480 a.C.", eraType: "ac",
     shortTitle: "A Rainha Ester",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg?v=63"
   },
   {
     week: 20, chronoOrder: 20, mainStop: false,
     yearBadge: "~445 a.C.", eraType: "ac",
     shortTitle: "Neemias em Jerusalém",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_119.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_119.jpg?v=63"
   },
   {
     week: 21, chronoOrder: 21, mainStop: true,
     yearBadge: "~30 d.C.", eraType: "zero",
     shortTitle: "Jesus e Seus Milagres",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg?v=63"
   },
   {
     week: 22, chronoOrder: 22, mainStop: true,
     yearBadge: "~50 d.C.", eraType: "dc",
     shortTitle: "Viagens de Paulo",
-    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=62"
+    img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg?v=63"
   }
 ];
 
@@ -6148,17 +6611,15 @@ window.openChronologyScreen = function() {
       if (isZero) {
         trailHtml += `
           <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
-            <div onclick="openLessonImageFullModal('./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=62', 'Marco Zero (Ano 0): O Nascimento de Jesus')" style="width:96%; background:linear-gradient(180deg, rgba(88,28,135,0.96), rgba(15,23,42,0.98)); border:3px solid #fde047; border-radius:16px; padding:8px; cursor:pointer; box-shadow:0 6px 16px rgba(0,0,0,0.85);">
+            <div onclick="openLessonImageFullModal('./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=63', 'Marco Zero (Ano 0): O Nascimento de Jesus')" style="width:96%; background:linear-gradient(180deg, rgba(88,28,135,0.96), rgba(15,23,42,0.98)); border:3px solid #fde047; border-radius:16px; padding:8px; cursor:pointer; box-shadow:0 6px 16px rgba(0,0,0,0.85);">
               <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
-                <span style="background:linear-gradient(180deg,#fde047,#f59e0b); color:#0f172a; font-size:11px; font-weight:900; padding:2px 10px; border-radius:999px;">
-                  ⭐ MARCO ZERO • ANO 0
+                <span style="background:linear-gradient(180deg,#fde047,#f59e0b); color:#0f172a; font-size:11px; font-weight:900; padding:2px 10px; border-radius:999px;">MARCO ZERO • ANO 0
                 </span>
-                <span style="font-size:12px; font-weight:900; color:#fde047;">
-                  Nascimento de Jesus
+                <span style="font-size:12px; font-weight:900; color:#fde047;">Nascimento de Jesus
                 </span>
               </div>
               <div style="width:100%; aspect-ratio:16/9; border-radius:11px; overflow:hidden; border:2px solid #fde047; background:#050b1a;">
-                <img src="./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=62" alt="Nascimento de Jesus" style="width:100%; height:100%; object-fit:cover; display:block;">
+                <img src="./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg?v=63" alt="Nascimento de Jesus" style="width:100%; height:100%; object-fit:cover; display:block;">
               </div>
             </div>
             <div style="display:flex; flex-direction:column; align-items:center; margin:1px 0;">
@@ -6174,7 +6635,7 @@ window.openChronologyScreen = function() {
           <div onclick="onTapChronologyItem(${st.week})" style="width:94%; margin-left:${isLeft ? "0" : "6%"}; margin-right:${isLeft ? "6%" : "0"}; background:linear-gradient(180deg, rgba(30,27,75,0.96), rgba(15,23,42,0.98)); border:2.5px solid ${unlocked ? "#38bdf8" : "#64748b"}; border-radius:16px; padding:7px 9px; display:flex; align-items:center; gap:9px; cursor:pointer; box-shadow:0 5px 14px rgba(0,0,0,0.82); position:relative;">
             <!-- Bolinha Unificada com o Número da Lição -->
             <div style="width:32px; height:32px; border-radius:50%; background:${unlocked ? "linear-gradient(180deg,#fde047,#f59e0b)" : "#334155"}; color:${unlocked ? "#0f172a" : "#cbd5e1"}; font-size:13px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0; border:2px solid #ffffff; box-shadow:0 2px 6px rgba(0,0,0,0.75);">
-              ${unlocked ? st.week : "🔒"}
+              ${st.week}
             </div>
 
             <!-- Imagem Horizontal 16:9 -->
@@ -6185,7 +6646,7 @@ window.openChronologyScreen = function() {
             <!-- Apenas Data + Título Curto (Sem textos duplicados) -->
             <div style="flex:1; min-width:0; text-align:left;">
               <div style="display:inline-block; background:${badgeBg}; color:#ffffff; font-size:10px; font-weight:900; padding:1.5px 8px; border-radius:999px; border:1px solid #ffffff; margin-bottom:4px;">
-                ⏳ ${st.yearBadge}
+                 ${st.yearBadge}
               </div>
               <div style="font-size:13px; font-weight:900; color:#fde047; line-height:1.15;">
                 ${st.shortTitle}
@@ -6338,7 +6799,7 @@ window.buildTenPhasesBarHtml = function(bankArray, activeIdx, selectFnName) {
     btns += `<button type="button" id="stage-phase-pill-${i}" class="lesson-scroll-pill ${isCur ? "current" : ""}" onclick="${selectFnName}(${i})">Fase ${i + 1}</button>`;
   }
   if (!vip && bankArray.length > maxFree) {
-    btns += `<button type="button" class="lesson-scroll-pill locked" onclick="ebdAskSubscribe('Liberar Todas as 20 Fases deste Jogo!')">🔒 Mais Fases</button>`;
+    btns += `<button type="button" class="lesson-scroll-pill locked" onclick="ebdAskSubscribe('Liberar Todas as 20 Fases deste Jogo!')">Mais Fases</button>`;
   }
   setTimeout(() => {
     const strip = document.getElementById("active-edu-phases-strip");
@@ -6365,7 +6826,7 @@ window.openEduGame = function(gameKey, fromLesson) {
     backBtn.setAttribute("onclick", "backFromEduGameStage()");
   }
 
-  // Esconde a seta da direita (➔) no topo de #screen-edu-game quando estiver dentro de Jogos da Lição!
+  // Esconde a seta da direita () no topo de #screen-edu-game quando estiver dentro de Jogos da Lição!
   const rightBtn = document.getElementById("btn-edu-header-right");
   if (rightBtn) {
     if (fromLesson) {
@@ -6382,7 +6843,7 @@ window.openEduGame = function(gameKey, fromLesson) {
 
   if (gameKey === "chronology") {
     if (fromLesson) {
-      const idx = window.CHRONOLOGY_LEVELS.findIndex(l => l.lessonWeek === wk);
+      const idx = window.CHRONOLOGY_LEVELS.findIndex(l =>l.lessonWeek === wk);
       window.EBD_STATE.chronologyIdx = idx >= 0 ? idx : 0;
     } else if (window.EBD_STATE.chronologyIdx >= 10 && !(typeof isVipUnlocked !== "undefined" && isVipUnlocked)) {
       window.EBD_STATE.chronologyIdx = 0;
@@ -6478,7 +6939,7 @@ window.renderStageChronology = function() {
   window.ebdStopConfetti();
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
-  if (headerEl) headerEl.textContent = "🧭 Ordem Cronológica da Bíblia";
+  if (headerEl) headerEl.textContent = " Ordem Cronológica da Bíblia";
   if (!stageEl) return;
 
   const levelObj = window.CHRONOLOGY_LEVELS[window.EBD_STATE.chronologyIdx] || window.CHRONOLOGY_LEVELS[0];
@@ -6497,8 +6958,7 @@ window.renderStageChronology = function() {
           </div>
         `).join("")}
       </div>
-      <div id="chrono-game-feedback" style="font-size:12.5px; font-weight:800; color:#86efac; margin-bottom:8px;">
-        👆 Toque no 1º acontecimento mais antigo!
+      <div id="chrono-game-feedback" style="font-size:12.5px; font-weight:800; color:#86efac; margin-bottom:8px;">Toque no 1º acontecimento mais antigo!
       </div>
       <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:8px;">
         ${shuffled.map(c => `
@@ -6508,7 +6968,7 @@ window.renderStageChronology = function() {
           </div>
         `).join("")}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageChronoPhase()">Próxima Fase ➔</button>`}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageChronoPhase()">Próxima Fase </button>`}
     </div>
   `;
 };
@@ -6535,14 +6995,14 @@ window.tapStageChronoCard = function(cardId, cardOrder) {
     }
     window.EBD_STATE.chronologyStep += 1;
     if (window.EBD_STATE.chronologyStep > 4) {
-      if (feedbackEl) feedbackEl.textContent = "🎉 Parabéns! Ordem Cronológica perfeita!";
+      if (feedbackEl) feedbackEl.textContent = " Parabéns! Ordem Cronológica perfeita!";
       window.ebdConfetti();
     } else {
-      if (feedbackEl) feedbackEl.textContent = `✅ Isso mesmo! Agora toque no ${window.EBD_STATE.chronologyStep}º acontecimento!`;
+      if (feedbackEl) feedbackEl.textContent = ` Isso mesmo! Agora toque no ${window.EBD_STATE.chronologyStep}º acontecimento!`;
     }
   } else {
     window.ebdErrSound();
-    if (feedbackEl) feedbackEl.textContent = `💡 Pense na cronologia bíblica: qual veio no ${expected}º lugar?`;
+    if (feedbackEl) feedbackEl.textContent = ` Pense na cronologia bíblica: qual veio no ${expected}º lugar?`;
   }
 };
 
@@ -6577,7 +7037,7 @@ window.renderStageVerseBuilder = function() {
   window.ebdStopConfetti();
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
-  if (headerEl) headerEl.textContent = "🧱 Construtor de Versículos";
+  if (headerEl) headerEl.textContent = " Construtor de Versículos";
   if (!stageEl) return;
 
   let item = window.VERSE_BUILDER_BANK[window.EBD_STATE.verseIdx] || window.VERSE_BUILDER_BANK[0];
@@ -6591,19 +7051,17 @@ window.renderStageVerseBuilder = function() {
   stageEl.innerHTML = `
     ${window.buildTenPhasesBarHtml(window.VERSE_BUILDER_BANK, window.EBD_STATE.verseIdx, "selectStageVersePhase")}
     <div class="ebd-glass-card">
-      <div class="ebd-badge-era" style="margin-bottom:6px;">📖 Versículo de Ouro • ${item.ref}</div>
-      <div id="verse-builder-target" style="min-height:85px; background:rgba(15,23,42,0.88); border:2px dashed #fde047; border-radius:16px; padding:12px; margin-bottom:10px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; justify-content:center; color:#94a3b8; font-size:13.5px;">
-        Toque nas palavras abaixo na ordem certa...
+      <div class="ebd-badge-era" style="margin-bottom:6px;">Versículo de Ouro • ${item.ref}</div>
+      <div id="verse-builder-target" style="min-height:85px; background:rgba(15,23,42,0.88); border:2px dashed #fde047; border-radius:16px; padding:12px; margin-bottom:10px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; justify-content:center; color:#94a3b8; font-size:13.5px;">Toque nas palavras abaixo na ordem certa...
       </div>
-      <div id="verse-builder-feedback" style="font-size:13px; font-weight:800; color:#86efac; margin-bottom:10px;">
-        💡 Dica: Comece pela palavra "${item.words[0]}"
+      <div id="verse-builder-feedback" style="font-size:13px; font-weight:800; color:#86efac; margin-bottom:10px;">Dica: Comece pela palavra "${item.words[0]}"
       </div>
       <div style="display:flex; flex-wrap:wrap; gap:7px; justify-content:center; margin-bottom:14px;">
         ${shuffled.map(obj => `
           <button type="button" id="vword-${obj.idx}" class="btn-tool-3d" style="font-size:14.5px; padding:8px 13px;" onclick="tapStageVerseWord(${obj.idx})">${obj.word}</button>
         `).join("")}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="advanceStageVersePhase()">Próximo Versículo ➔</button>`}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="advanceStageVersePhase()">Próximo Versículo </button>`}
     </div>
   `;
 };
@@ -6628,14 +7086,14 @@ window.tapStageVerseWord = function(wordIdx) {
       ).join(" ");
     }
     if (window.EBD_STATE.verseBuilt.length === words.length) {
-      if (feedbackEl) feedbackEl.textContent = "🎉 Maravilha! Você completou todo o Versículo!";
+      if (feedbackEl) feedbackEl.textContent = " Maravilha! Você completou todo o Versículo!";
       window.ebdConfetti();
     } else {
-      if (feedbackEl) feedbackEl.textContent = "✅ Muito bem! Continue!";
+      if (feedbackEl) feedbackEl.textContent = " Muito bem! Continue!";
     }
   } else {
     window.ebdErrSound();
-    if (feedbackEl) feedbackEl.textContent = `💡 A próxima palavra é "${expectedWord}"!`;
+    if (feedbackEl) feedbackEl.textContent = ` A próxima palavra é "${expectedWord}"!`;
   }
 };
 
@@ -6671,7 +7129,7 @@ window.renderStageMimica = function() {
   window.ebdStopConfetti();
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
-  if (headerEl) headerEl.textContent = "🎭 Mímica & Desafio Teen";
+  if (headerEl) headerEl.textContent = " Mímica & Desafio Teen";
   if (!stageEl) return;
 
   const card = window.MIMICA_CARDS[window.EBD_STATE.mimicaIdx] || window.MIMICA_CARDS[0];
@@ -6681,23 +7139,22 @@ window.renderStageMimica = function() {
       <div class="ebd-badge-era" style="margin-bottom:6px;">${card.category}</div>
       <div style="background:linear-gradient(180deg, #aa00ff, #4c1d95); border:2.5px solid #fde047; border-radius:18px; padding:14px 10px; margin-bottom:10px;">
         <div style="font-size:19px; font-weight:900; color:#fde047; line-height:1.2; margin-bottom:6px;">${card.target}</div>
-        <div style="font-size:12px; color:#fca5a5; font-weight:800;">🚫 Palavras Proibidas: ${card.forbidden.join(" • ")}</div>
+        <div style="font-size:12px; color:#fca5a5; font-weight:800;">Palavras Proibidas: ${card.forbidden.join(" • ")}</div>
       </div>
       <div style="font-size:13px; color:#e2e8f0; background:rgba(15,23,42,0.8); border-radius:12px; padding:9px; margin-bottom:8px;">
-        🎭 <strong>Como fazer:</strong> ${card.tip}
+         <strong>Como fazer:</strong> ${card.tip}
       </div>
-      <div id="mimica-feedback-msg" style="font-size:12.5px; font-weight:800; color:#86efac; margin-bottom:8px;">
-        Faça a mímica antes do tempo acabar e marque ponto para a equipe!
+      <div id="mimica-feedback-msg" style="font-size:12.5px; font-weight:800; color:#86efac; margin-bottom:8px;">Faça a mímica antes do tempo acabar e marque ponto para a equipe!
       </div>
       <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px;">
-        <div id="mimica-timer-display" style="font-size:22px; font-weight:900; color:#fde047; background:#0f172a; border:2px solid #38bdf8; border-radius:14px; padding:6px 16px;">⏱️ 45s</div>
-        <button type="button" class="btn-gold" onclick="startMimicaTimer()">▶️ Iniciar Relógio</button>
+        <div id="mimica-timer-display" style="font-size:22px; font-weight:900; color:#fde047; background:#0f172a; border:2px solid #38bdf8; border-radius:14px; padding:6px 16px;">45s</div>
+        <button type="button" class="btn-gold" onclick="startMimicaTimer()">▶ Iniciar Relógio</button>
       </div>
       <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:8px;">
-        <button type="button" id="btn-mimica-team-a" class="btn-gold" style="padding:10px;" onclick="scoreMimicaTeamStage('A')">✅ Ponto Equipe A (${window.EBD_STATE.mimicaTeamA})</button>
-        <button type="button" id="btn-mimica-team-b" class="btn-gold" style="padding:10px; background:linear-gradient(180deg,#00b0ff,#0066ff);" onclick="scoreMimicaTeamStage('B')">✅ Ponto Equipe B (${window.EBD_STATE.mimicaTeamB})</button>
+        <button type="button" id="btn-mimica-team-a" class="btn-gold" style="padding:10px;" onclick="scoreMimicaTeamStage('A')">Ponto Equipe A (${window.EBD_STATE.mimicaTeamA})</button>
+        <button type="button" id="btn-mimica-team-b" class="btn-gold" style="padding:10px; background:linear-gradient(180deg,#00b0ff,#0066ff);" onclick="scoreMimicaTeamStage('B')">Ponto Equipe B (${window.EBD_STATE.mimicaTeamB})</button>
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageMimicaPhase()">Próximo Desafio ➔</button>`}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageMimicaPhase()">Próximo Desafio </button>`}
     </div>
   `;
 };
@@ -6709,9 +7166,9 @@ window.scoreMimicaTeamStage = function(team) {
   const btnA = document.getElementById("btn-mimica-team-a");
   const btnB = document.getElementById("btn-mimica-team-b");
   const fb = document.getElementById("mimica-feedback-msg");
-  if (btnA) btnA.textContent = `✅ Ponto Equipe A (${window.EBD_STATE.mimicaTeamA})`;
-  if (btnB) btnB.textContent = `✅ Ponto Equipe B (${window.EBD_STATE.mimicaTeamB})`;
-  if (fb) fb.textContent = `🎉 Ponto para a Equipe ${team}! Toque em "Próximo Desafio ➔" para continuar!`;
+  if (btnA) btnA.textContent = ` Ponto Equipe A (${window.EBD_STATE.mimicaTeamA})`;
+  if (btnB) btnB.textContent = ` Ponto Equipe B (${window.EBD_STATE.mimicaTeamB})`;
+  if (fb) fb.textContent = ` Ponto para a Equipe ${team}! Toque em "Próximo Desafio " para continuar!`;
   window.ebdConfetti();
 };
 
@@ -6743,7 +7200,7 @@ window.renderStageWordSearch = function() {
   window.ebdStopConfetti();
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
-  if (headerEl) headerEl.textContent = "🔤 Caça-Palavras Bíblico";
+  if (headerEl) headerEl.textContent = " Caça-Palavras Bíblico";
   if (!stageEl) return;
 
   let pack = window.WORD_SEARCH_LEVELS[window.EBD_STATE.wordSearchIdx] || window.WORD_SEARCH_LEVELS[0];
@@ -6793,7 +7250,7 @@ window.renderStageWordSearch = function() {
       <div style="display:grid; grid-template-columns:repeat(8,1fr); gap:4px; margin-bottom:10px;">
         ${cellsHtml}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageWSPhase()">Próximo Caça-Palavras ➔</button>`}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageWSPhase()">Próximo Caça-Palavras </button>`}
     </div>
   `;
   window.updateStageWSPills();
@@ -6805,7 +7262,7 @@ window.updateStageWSPills = function() {
   if (!pillsEl) return;
   pillsEl.innerHTML = words.map(w => {
     const found = window.EBD_STATE.wordSearchFound.includes(w);
-    return `<span style="padding:3px 9px; border-radius:999px; font-size:11.5px; font-weight:800; background:${found ? "#00c853" : "#1e1b4b"}; color:#fff; border:1.5px solid ${found ? "#fff" : "#38bdf8"};">${found ? "✅ " : ""}${w}</span>`;
+    return `<span style="padding:3px 9px; border-radius:999px; font-size:11.5px; font-weight:800; background:${found ? "#00c853" : "#1e1b4b"}; color:#fff; border:1.5px solid ${found ? "#fff" : "#38bdf8"};">${w}</span>`;
   }).join("");
 };
 
@@ -6864,7 +7321,7 @@ window.renderStageWhoAmI = function() {
   window.ebdStopConfetti();
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
-  if (headerEl) headerEl.textContent = "🕵️ Quem Sou Eu na Bíblia?";
+  if (headerEl) headerEl.textContent = " Quem Sou Eu na Bíblia?";
   if (!stageEl) return;
 
   const item = window.WHO_AM_I_BANK[window.EBD_STATE.whoAmIIdx] || window.WHO_AM_I_BANK[0];
@@ -6876,11 +7333,11 @@ window.renderStageWhoAmI = function() {
       <div class="ebd-badge-era" style="margin-bottom:8px;">Desafio de Pistas • Valendo ${4 - window.EBD_STATE.whoAmIClueCount} Estrelas</div>
       <div style="display:flex; flex-direction:column; gap:6px; text-align:left; margin-bottom:10px;">
         ${item.clues.slice(0, window.EBD_STATE.whoAmIClueCount).map(c => `
-          <div style="background:rgba(15,23,42,0.88); border:1.5px solid #fde047; border-radius:12px; padding:9px 11px; color:#ffffff; font-size:13.5px; line-height:1.35;">🔎 ${c}</div>
+          <div style="background:rgba(15,23,42,0.88); border:1.5px solid #fde047; border-radius:12px; padding:9px 11px; color:#ffffff; font-size:13.5px; line-height:1.35;"> ${c}</div>
         `).join("")}
       </div>
       ${window.EBD_STATE.whoAmIClueCount < 3 ? `
-        <button type="button" class="btn-tool-3d" style="margin-bottom:10px; padding:6px 14px; font-size:12.5px;" onclick="revealStageWhoAmIClue()">💡 Revelar Próxima Pista (${window.EBD_STATE.whoAmIClueCount}/3)</button>
+        <button type="button" class="btn-tool-3d" style="margin-bottom:10px; padding:6px 14px; font-size:12.5px;" onclick="revealStageWhoAmIClue()">Revelar Próxima Pista (${window.EBD_STATE.whoAmIClueCount}/3)</button>
       ` : ""}
       <div id="whoami-feedback" style="font-size:13px; font-weight:800; color:#86efac; margin-bottom:10px;">Quem é este personagem bíblico?</div>
       <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:10px;">
@@ -6888,7 +7345,7 @@ window.renderStageWhoAmI = function() {
           <button type="button" class="quiz-opt-btn" style="justify-content:center; text-align:center;" onclick="answerStageWhoAmI('${opt}')">${opt}</button>
         `).join("")}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageWhoAmIPhase()">Próximo Desafio ➔</button>`}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageWhoAmIPhase()">Próximo Desafio </button>`}
     </div>
   `;
 };
@@ -6906,10 +7363,10 @@ window.answerStageWhoAmI = function(selected) {
   const fb = document.getElementById("whoami-feedback");
   if (selected === item.answer) {
     window.ebdConfetti();
-    if (fb) fb.textContent = `🎉 Acertou! Era ${item.answer}! Toque em "Próximo Desafio ➔" para continuar!`;
+    if (fb) fb.textContent = ` Acertou! Era ${item.answer}! Toque em "Próximo Desafio " para continuar!`;
   } else {
     window.ebdErrSound();
-    if (fb) fb.textContent = "💡 Quase! Revele mais uma pista e tente novamente!";
+    if (fb) fb.textContent = " Quase! Revele mais uma pista e tente novamente!";
   }
 };
 
@@ -6946,7 +7403,7 @@ window.renderStageTrueOrMyth = function() {
   window.ebdStopConfetti();
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
-  if (headerEl) headerEl.textContent = "⚡ Verdadeiro ou Mito?";
+  if (headerEl) headerEl.textContent = " Verdadeiro ou Mito?";
   if (!stageEl) return;
 
   const item = window.TRUE_OR_MYTH_BANK[window.EBD_STATE.trueMythIdx] || window.TRUE_OR_MYTH_BANK[0];
@@ -6958,13 +7415,12 @@ window.renderStageTrueOrMyth = function() {
         "${item.statement}"
       </div>
       <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:12px;">
-        <button type="button" class="btn-gold" style="padding:12px; font-size:15px;" onclick="answerStageTrueMyth(true)">✅ VERDADEIRO</button>
-        <button type="button" class="btn-gold" style="padding:12px; font-size:15px; background:linear-gradient(180deg,#ff1744,#b71c1c); border-color:#ffcdd2;" onclick="answerStageTrueMyth(false)">❌ MITO</button>
+        <button type="button" class="btn-gold" style="padding:12px; font-size:15px;" onclick="answerStageTrueMyth(true)">VERDADEIRO</button>
+        <button type="button" class="btn-gold" style="padding:12px; font-size:15px; background:linear-gradient(180deg,#ff1744,#b71c1c); border-color:#ffcdd2;" onclick="answerStageTrueMyth(false)">MITO</button>
       </div>
-      <div id="truemyth-explanation" style="font-size:13.5px; color:#fde047; font-weight:700; line-height:1.4; min-height:44px; margin-bottom:10px;">
-        Toque em VERDADEIRO ou MITO para descobrir!
+      <div id="truemyth-explanation" style="font-size:13.5px; color:#fde047; font-weight:700; line-height:1.4; min-height:44px; margin-bottom:10px;">Toque em VERDADEIRO ou MITO para descobrir!
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-tool-3d" style="padding:8px 18px; font-size:13px;" onclick="advanceStageTrueMythPhase()">Próxima Pergunta ➔</button>`}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-tool-3d" style="padding:8px 18px; font-size:13px;" onclick="advanceStageTrueMythPhase()">Próxima Pergunta </button>`}
     </div>
   `;
 };
@@ -6974,10 +7430,10 @@ window.answerStageTrueMyth = function(choice) {
   const expEl = document.getElementById("truemyth-explanation");
   if (choice === item.isTrue) {
     window.ebdConfetti();
-    if (expEl) expEl.textContent = `🎉 Acertou! ${item.explanation}`;
+    if (expEl) expEl.textContent = ` Acertou! ${item.explanation}`;
   } else {
     window.ebdErrSound();
-    if (expEl) expEl.textContent = `💡 Aprenda com a Bíblia: ${item.explanation}`;
+    if (expEl) expEl.textContent = ` Aprenda com a Bíblia: ${item.explanation}`;
   }
 };
 
@@ -7016,7 +7472,7 @@ window.renderStageSecretWord = function() {
   }
   const headerEl = document.getElementById("edu-game-header-title");
   const stageEl = document.getElementById("edu-game-stage");
-  if (headerEl) headerEl.textContent = "🔐 Palavra Secreta Bíblica";
+  if (headerEl) headerEl.textContent = " Palavra Secreta Bíblica";
   if (!stageEl) return;
 
   const item = window.SECRET_WORD_BANK[window.EBD_STATE.secretWordIdx] || window.SECRET_WORD_BANK[0];
@@ -7028,9 +7484,9 @@ window.renderStageSecretWord = function() {
   stageEl.innerHTML = `
     ${window.buildTenPhasesBarHtml(window.SECRET_WORD_BANK, window.EBD_STATE.secretWordIdx, "selectStageSWPhase")}
     <div class="ebd-glass-card">
-      <div style="font-size:15px; margin-bottom:6px;">${"⭐".repeat(starsLeft)}${"☆".repeat(6 - starsLeft)}</div>
+      <div style="font-size:15px; margin-bottom:6px;">Chances restantes: ${starsLeft} de 6</div>
       <div style="font-size:13.5px; color:#fde047; font-weight:800; margin-bottom:10px; line-height:1.35;">
-        ${allFound ? `🎉 Parabéns! A Palavra Secreta era ${item.word}!` : `💡 Pista: ${item.hint}`}
+        ${allFound ? ` Parabéns! A Palavra Secreta era ${item.word}!` : ` Pista: ${item.hint}`}
       </div>
       <div style="display:flex; justify-content:center; gap:6px; flex-wrap:wrap; margin-bottom:12px;">
         ${letters.map(ch => `
@@ -7045,7 +7501,7 @@ window.renderStageSecretWord = function() {
           return `<button type="button" ${used || allFound ? "disabled" : ""} onclick="tapStageSWLetter('${ch}')" style="height:34px; border-radius:8px; border:1.5px solid #b3e5fc; background:${used ? "#1e293b" : "linear-gradient(180deg,#00b0ff,#0066ff)"}; color:#fff; font-weight:800; font-size:13px; opacity:${used ? "0.35" : "1"}; cursor:pointer;">${ch}</button>`;
         }).join("")}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">⬅ Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageSWPhase()">Próxima Palavra Secreta ➔</button>`}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageSWPhase()">Próxima Palavra Secreta </button>`}
     </div>
   `;
 };
@@ -7106,38 +7562,38 @@ window.renderTeacherPortalContent = function() {
 
   box.innerHTML = `
     <div class="ebd-glass-card" style="text-align:left;">
-      <div class="ebd-badge-era" style="margin-bottom:6px;">🎓 Guia do Professor EBD & Família</div>
+      <div class="ebd-badge-era" style="margin-bottom:6px;">Guia do Professor EBD & Família</div>
       <div style="font-size:15.5px; font-weight:900; color:#fde047; margin-bottom:4px;">Lição ${lesson.week}: ${lesson.title}</div>
-      <div style="font-size:12px; color:#38bdf8; font-weight:700; margin-bottom:8px;">📖 Base Bíblica: ${lesson.bibleRef} • ${lesson.eraName}</div>
+      <div style="font-size:12px; color:#38bdf8; font-weight:700; margin-bottom:8px;">Base Bíblica: ${lesson.bibleRef} • ${lesson.eraName}</div>
 
       <div style="display:flex; gap:5px; flex-wrap:wrap; margin-bottom:10px;">
         ${window.EBD_LESSONS_CURRICULUM.map(l => {
           const unlocked = window.isLessonWeekUnlocked(l.week);
           const active = l.week === lesson.week;
-          return `<button type="button" class="btn-tool-3d ${active ? "active" : ""}" style="font-size:11px; padding:4px 8px;" onclick="selectTeacherPortalWeek(${l.week})">${unlocked ? `Lição ${l.week}` : `🔒 ${l.week}`}</button>`;
+          return `<button type="button" class="btn-tool-3d ${active ? "active" : ""}" style="font-size:11px; padding:4px 8px;" onclick="selectTeacherPortalWeek(${l.week})">${unlocked ? `Lição ${l.week}` : `${l.week}`}</button>`;
         }).join("")}
       </div>
 
       <div style="background:rgba(15,23,42,0.85); border:1.5px solid #38bdf8; border-radius:12px; padding:9px 10px; margin-bottom:7px;">
-        <div style="color:#fde047; font-size:12px; font-weight:800;">🎯 Objetivo Pedagógico da Aula:</div>
+        <div style="color:#fde047; font-size:12px; font-weight:800;">Objetivo Pedagógico da Aula:</div>
         <div style="color:#ffffff; font-size:12.5px; line-height:1.38;">${lesson.teacherGuide.objective}</div>
       </div>
 
       <div style="background:rgba(15,23,42,0.85); border:1.5px solid #a855f7; border-radius:12px; padding:9px 10px; margin-bottom:7px;">
-        <div style="color:#fde047; font-size:12px; font-weight:800;">🧰 Materiais Visuais Sugeridos:</div>
+        <div style="color:#fde047; font-size:12px; font-weight:800;">Materiais Visuais Sugeridos:</div>
         <div style="color:#ffffff; font-size:12.5px; line-height:1.38;">${lesson.teacherGuide.materials}</div>
       </div>
 
       <div style="background:rgba(15,23,42,0.85); border:1.5px solid #00e676; border-radius:12px; padding:9px 10px; margin-bottom:10px;">
-        <div style="color:#86efac; font-size:12px; font-weight:800;">🤝 Dinâmica Prática em Sala / Casa:</div>
+        <div style="color:#86efac; font-size:12px; font-weight:800;">Dinâmica Prática em Sala / Casa:</div>
         <div style="color:#ffffff; font-size:12.5px; line-height:1.38;">${lesson.teacherGuide.classroomDynamic}</div>
       </div>
 
       <div style="background:rgba(15,23,42,0.85); border:1.5px solid #fde047; border-radius:12px; padding:9px 10px;">
-        <div style="color:#fde047; font-size:12px; font-weight:800; margin-bottom:5px;">⛪ Personalização da Igreja / Escola Bíblica:</div>
+        <div style="color:#fde047; font-size:12px; font-weight:800; margin-bottom:5px;">Personalização da Igreja / Escola Bíblica:</div>
         <input id="wl-church-input" type="text" value="${churchName}" placeholder="Nome da Igreja ou Ministério Infantil" style="width:100%; padding:7px 9px; border-radius:8px; border:1px solid #38bdf8; background:#0f172a; color:#fff; font-size:12.5px; margin-bottom:6px;">
         <input id="wl-quarter-input" type="text" value="${quarterTitle}" placeholder="Tema do Trimestre" style="width:100%; padding:7px 9px; border-radius:8px; border:1px solid #38bdf8; background:#0f172a; color:#fff; font-size:12.5px; margin-bottom:7px;">
-        <button type="button" class="btn-gold" style="width:100%; padding:8px; font-size:13px;" onclick="saveWhiteLabelConfig()">💾 Salvar Identidade da EBD</button>
+        <button type="button" class="btn-gold" style="width:100%; padding:8px; font-size:13px;" onclick="saveWhiteLabelConfig()">Salvar Identidade da EBD</button>
         <div id="wl-save-feedback" style="font-size:11.5px; color:#86efac; font-weight:800; text-align:center; margin-top:4px;"></div>
       </div>
     </div>

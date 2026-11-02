@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Trono EBD">
-  <link rel="manifest" href="./manifest.json?v=62">
+  <link rel="manifest" href="./manifest.json?v=63">
   <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_oficial.png">
   <title>Trono da Promessa EBD • Revista Digital & Jogos Bíblicos</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
@@ -15,18 +15,18 @@
     (function forcePurgeOldMobileCacheV55() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
-        const alreadyPurged = localStorage.getItem('trono_cache_purged_v62') === '1';
+        const alreadyPurged = localStorage.getItem('trono_cache_purged_v63') === '1';
         if (!alreadyPurged || urlParams.get('limpar') === '1') {
-          localStorage.setItem('trono_cache_purged_v62', '1');
+          localStorage.setItem('trono_cache_purged_v63', '1');
           if ('caches' in window) {
             caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
           }
-          if (urlParams.get('limpar') === '1' && window.history && window.history.replaceState) { window.history.replaceState({}, document.title, window.location.pathname + '?v=62'); }
+          if (urlParams.get('limpar') === '1' && window.history && window.history.replaceState) { window.history.replaceState({}, document.title, window.location.pathname + '?v=63'); }
       } catch (e) {}
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=62').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=63').then(reg => {
           reg.update();
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
@@ -1544,7 +1544,7 @@
   <!-- TOPO COM AMPLO RESPIRO: LOGO EBD 3D EM CIMA + 2 BOLINHAS REDONDINHAS NOS CANTINHOS! -->
   <header class="topbar">
     <div class="brand-logo-wrap" onclick="goHome()">
-      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=62" alt="Trono da Promessa EBD" class="brand-logo">
+      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=63" alt="Trono da Promessa EBD" class="brand-logo">
     </div>
 
     <div class="topbar-controls-row">
@@ -1661,8 +1661,8 @@
       </div>
 
       <div class="module-card" onclick="openLessonModule('devocional')">
-        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_devocional.png" alt="Devocional 5 Dias" class="mod-icon-3d">
-        <div class="mod-title">Devocional 5 Dias</div>
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_devocional.png" alt="Devocional" class="mod-icon-3d">
+        <div class="mod-title">Devocional</div>
       </div>
     </div>
   </section>
@@ -1679,7 +1679,7 @@
         <button class="btn-tool-3d" onclick="openLessonModule('texto')">Texto</button>
         <button class="btn-tool-3d" onclick="openLessonModule('vovo')">Vovô</button>
         <button class="btn-tool-3d" onclick="openLessonModule('sementinha')">Verso</button>
-        <button class="btn-tool-3d" onclick="openLessonModule('devocional')">5 Dias</button>
+        <button class="btn-tool-3d" onclick="openLessonModule('devocional')">Devocional</button>
       </div>
       <button class="btn-nav-circle" onclick="stopVovoStoryNarration(); goHome()" title="Início">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 10L12 3L21 10V20H15V14H9V20H3V10Z" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/></svg>
@@ -2075,7 +2075,7 @@
 
         <p style="margin-bottom:8px;"><strong>Cláusula 14ª — Conteúdo Gratuito e Assinatura Opcional ("Clube Trono da Promessa"):</strong> O aplicativo oferece gratuitamente as 6 primeiras fases de cada jogo (Quebra-Cabeça, Pintura Mágica, Quiz do Vovô e Jogo da Memória), as 4 primeiras Casinhas do Álbum da Fé e as músicas do Cantinho de Dormir. A assinatura opcional libera todas as 20 histórias bíblicas nos 4 jogos (80 atividades), as 20 Casinhas e Cards do Álbum da Fé e a exportação em alta resolução / PDF para impressão e envio no WhatsApp.</p>
 
-        <p style="margin-bottom:8px;"><strong>Cláusula 15ª — Preços, Renovação Automática, Cancelamento e Direito de Arrependimento (Art. 49 do CDC):</strong> Planos disponíveis via Google Play: <strong>Plano Mensal (R$ 14,90/mês)</strong> e <strong>Plano Anual com 50% de desconto (R$ 89,90/ano)</strong>. A renovação é automática ao fim de cada ciclo, podendo ser cancelada a qualquer momento sem multa diretamente no app <strong>Google Play Store ➔ Perfil ➔ Pagamentos e assinaturas ➔ Assinaturas ➔ Trono da Promessa Kids ➔ Cancelar assinatura</strong>. É garantido o <strong>Direito de Arrependimento em até 7 (sete) dias corridos</strong> após a contratação inicial com reembolso integral nos termos do Art. 49 do Código de Defesa do Consumidor. O botão <em>"Restaurar Assinatura"</em> permite reativar o acesso gratuitamente ao trocar de aparelho.</p>
+        <p style="margin-bottom:8px;"><strong>Cláusula 15ª — Preços, Renovação Automática, Cancelamento e Direito de Arrependimento (Art. 49 do CDC):</strong> Planos disponíveis via Google Play: <strong>Plano Mensal (R$ 14,90/mês)</strong> e <strong>Plano Anual com 50% de desconto (R$ 89,90/ano)</strong>. A renovação é automática ao fim de cada ciclo, podendo ser cancelada a qualquer momento sem multa diretamente no app <strong>Google Play Store  Perfil  Pagamentos e assinaturas  Assinaturas  Trono da Promessa Kids  Cancelar assinatura</strong>. É garantido o <strong>Direito de Arrependimento em até 7 (sete) dias corridos</strong> após a contratação inicial com reembolso integral nos termos do Art. 49 do Código de Defesa do Consumidor. O botão <em>"Restaurar Assinatura"</em> permite reativar o acesso gratuitamente ao trocar de aparelho.</p>
 
         <p style="margin-bottom:8px;"><strong>Cláusula 16ª — Disponibilidade Offline e Requisitos:</strong> Todos os jogos e músicas funcionam 100% offline após a instalação, exigindo internet apenas para processar ou restaurar a assinatura junto ao Google Play.</p>
 
@@ -2214,7 +2214,7 @@
 </div>
 
 <script src="pinturas_base64.js"></script>
-<script src="ebd_modulos_educativos.js?v=62"></script>
+<script src="ebd_modulos_educativos.js?v=63"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -3338,7 +3338,7 @@ function redeemVipCoupon() {
     isVipUnlocked = true;
     localStorage.setItem('trono_vip_active_v4', '1');
     msgEl.style.color = '#34d399';
-    msgEl.textContent = '✨ Cupom aplicado com sucesso! Acesso completo ativado!';
+    msgEl.textContent = ' Cupom aplicado com sucesso! Acesso completo ativado!';
     playSoundWinCelebration();
     launchCelebrationConfetti();
 
@@ -5080,7 +5080,7 @@ function renderSleepCorner() {
 }
 
 // Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
-document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=62';
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=63';
 if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
 if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
 if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');
