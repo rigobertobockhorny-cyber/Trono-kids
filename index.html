@@ -2319,7 +2319,7 @@
 </div>
 
 <script src="pinturas_base64.js"></script>
-<script src="ebd_modulos_educativos.js?v=67"></script>
+<script src="ebd_modulos_educativos.js?v=68"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -3564,7 +3564,7 @@ function startPuzzleWithStory(st) {
     initJigsawPuzzle();
     startPuzzle3DAnimationLoop();
   };
-  puzzleImg.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=67`;
+  puzzleImg.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=68`;
 }
 
 function startPuzzle3DAnimationLoop() {
@@ -4126,7 +4126,7 @@ function startPaintWithStory(st) {
   if (window.PINTURAS_B64 && window.PINTURAS_B64[st.seqPaint]) {
     paintBaseImg.src = window.PINTURAS_B64[st.seqPaint];
   } else {
-    paintBaseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=67`;
+    paintBaseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=68`;
   }
 }
 
@@ -4854,8 +4854,8 @@ function getAlbumSuperCardsCatalog() {
       title: `Lição ${l.week}: ${l.title}`,
       shortTitle: l.title,
       superCardImg: l.week === 1
-        ? './3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg?v=67'
-        : `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg?v=67`,
+        ? './3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg?v=68'
+        : `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg?v=68`,
       isSuperCard9x16: true
     }));
   }
@@ -4865,7 +4865,7 @@ function getAlbumSuperCardsCatalog() {
     free: s.id <= 10,
     title: s.title,
     shortTitle: s.title,
-    superCardImg: `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${s.seqColor}.jpg?v=67`,
+    superCardImg: `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${s.seqColor}.jpg?v=68`,
     isSuperCard9x16: true
   }));
 }
@@ -5324,7 +5324,7 @@ function renderSleepCorner() {
 }
 
 // Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
-document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=67';
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=68';
 if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
 if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
 if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');
