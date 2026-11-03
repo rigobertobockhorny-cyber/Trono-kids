@@ -2319,7 +2319,7 @@
 </div>
 
 <script src="pinturas_base64.js"></script>
-<script src="ebd_modulos_educativos.js?v=68"></script>
+<script src="ebd_modulos_educativos.js?v=69"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -2344,7 +2344,12 @@ const STORIES = [
   { id: 17, seqColor: '35', seqPaint: '45', free: false, title: 'Elias e a Carruagem de Fogo' },
   { id: 18, seqColor: '36', seqPaint: '46', free: false, title: 'O Nascimento de Jesus em Belém' },
   { id: 19, seqColor: '37', seqPaint: '47', free: false, title: 'Pedro, Tiago e João no Barquinho' },
-  { id: 20, seqColor: '38', seqPaint: '48', free: false, title: 'As Viagens do Apóstolo Paulo' }
+  { id: 20, seqColor: '38', seqPaint: '48', free: false, title: 'As Viagens do Apóstolo Paulo' },
+  { id: 21, seqColor: '49', seqPaint: '49', free: false, title: 'Adão Dando Nome aos Animais no Éden' },
+  { id: 22, seqColor: '50', seqPaint: '50', free: false, title: 'O Bebê Moisés no Cestinho no Nilo' },
+  { id: 23, seqColor: '51', seqPaint: '51', free: false, title: 'Moisés e os Dez Mandamentos no Sinai' },
+  { id: 24, seqColor: '52', seqPaint: '52', free: false, title: 'Os Três Amigos Fiéis de Daniel' },
+  { id: 25, seqColor: '53', seqPaint: '53', free: false, title: 'Neemias Reconstruindo os Muros de Jerusalém' }
 ];
 
 // Limpa flag antiga de teste para garantir que inicie no Modo Grátis Oficial (6 Liberados + 14/44 Bloqueados com Cadeado!)
@@ -3564,7 +3569,7 @@ function startPuzzleWithStory(st) {
     initJigsawPuzzle();
     startPuzzle3DAnimationLoop();
   };
-  puzzleImg.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=68`;
+  puzzleImg.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=69`;
 }
 
 function startPuzzle3DAnimationLoop() {
@@ -4126,7 +4131,7 @@ function startPaintWithStory(st) {
   if (window.PINTURAS_B64 && window.PINTURAS_B64[st.seqPaint]) {
     paintBaseImg.src = window.PINTURAS_B64[st.seqPaint];
   } else {
-    paintBaseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=68`;
+    paintBaseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=69`;
   }
 }
 
@@ -4854,8 +4859,8 @@ function getAlbumSuperCardsCatalog() {
       title: `Lição ${l.week}: ${l.title}`,
       shortTitle: l.title,
       superCardImg: l.week === 1
-        ? './3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg?v=68'
-        : `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg?v=68`,
+        ? './3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg?v=69'
+        : `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg?v=69`,
       isSuperCard9x16: true
     }));
   }
@@ -4865,7 +4870,7 @@ function getAlbumSuperCardsCatalog() {
     free: s.id <= 10,
     title: s.title,
     shortTitle: s.title,
-    superCardImg: `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${s.seqColor}.jpg?v=68`,
+    superCardImg: `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${s.seqColor}.jpg?v=69`,
     isSuperCard9x16: true
   }));
 }
@@ -5324,7 +5329,7 @@ function renderSleepCorner() {
 }
 
 // Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
-document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=68';
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=69';
 if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
 if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
 if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');
