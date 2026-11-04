@@ -1614,7 +1614,7 @@
       margin-bottom: 4px !important;
     }
   
-    /* === UPGRADE V74: PADRONIZAÇÃO UNIVERSAL DE CARDS (ROXO TRANSPARENTE + MARGEM COLORIDA MUDANDO DE COR) === */
+    /* === UPGRADE V75: BLOCÃO GRANDE COM MARGEM MUDANDO DE COR + BLOQUINHOS INTERNOS ROXO TRANSPARENTE COM MARGEM SÓLIDA (VERDE / AMARELA / AZUL) === */
     @keyframes rainbowBorderCycle {
       0%   { border-color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.65), 0 5px 14px rgba(0, 0, 0, 0.82); }
       25%  { border-color: #a855f7; box-shadow: 0 0 12px rgba(168, 85, 247, 0.65), 0 5px 14px rgba(0, 0, 0, 0.82); }
@@ -1623,10 +1623,8 @@
       100% { border-color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.65), 0 5px 14px rgba(0, 0, 0, 0.82); }
     }
 
-    .rainbow-border-card,
-    .ebd-glass-card,
-    .quiz-question-plaque,
-    .quiz-opt-btn:not(.correct):not(.wrong) {
+    /* APENAS O BLOCÃO GRANDE EXTERNO FICA MUDANDO DE COR! */
+    .ebd-glass-card {
       position: relative !important;
       background: linear-gradient(180deg, rgba(147, 51, 234, 0.54) 0%, rgba(88, 28, 135, 0.66) 100%) !important;
       border: 2.5px solid #38bdf8 !important;
@@ -1635,10 +1633,7 @@
       -webkit-backdrop-filter: blur(6px);
     }
 
-    .rainbow-border-card::before,
-    .ebd-glass-card::before,
-    .quiz-question-plaque::before,
-    .quiz-opt-btn:not(.correct):not(.wrong)::before {
+    .ebd-glass-card::before {
       content: "";
       position: absolute;
       inset: -2.5px;
@@ -1652,6 +1647,33 @@
       mask-composite: exclude;
       pointer-events: none;
       z-index: 2;
+    }
+
+    /* CLASSES PADRÃO DE BLOQUINHOS INTERNOS: FUNDO ROXO TRANSPARENTE + MARGEM SÓLIDA (VERDE, AMARELA OU AZUL) */
+    .inner-purple-green {
+      background: linear-gradient(180deg, rgba(147, 51, 234, 0.54) 0%, rgba(88, 28, 135, 0.66) 100%) !important;
+      border: 2px solid #00e676 !important;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.72) !important;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .inner-purple-yellow,
+    .quiz-question-plaque {
+      background: linear-gradient(180deg, rgba(147, 51, 234, 0.54) 0%, rgba(88, 28, 135, 0.66) 100%) !important;
+      border: 2px solid #fde047 !important;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.72) !important;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .inner-purple-blue,
+    .quiz-opt-btn:not(.correct):not(.wrong) {
+      background: linear-gradient(180deg, rgba(147, 51, 234, 0.54) 0%, rgba(88, 28, 135, 0.66) 100%) !important;
+      border: 2px solid #38bdf8 !important;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.72) !important;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
 
     /* Jogo da Memória com Margem Colorida Mudando de Cor igual Quebra-Cabeça e Pintura! */
@@ -1680,7 +1702,6 @@
       pointer-events: none;
       z-index: 3;
     }
-
   </style>
   <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_oficial.png">
   <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192_oficial.png">
@@ -2386,8 +2407,8 @@
   </div>
 </div>
 
-<script src="pinturas_base64.js?v=74" defer></script>
-<script src="ebd_modulos_educativos.js?v=74"></script>
+<script src="pinturas_base64.js?v=75" defer></script>
+<script src="ebd_modulos_educativos.js?v=75"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -3674,7 +3695,7 @@ function startPuzzleWithStory(st) {
     initJigsawPuzzle();
     startPuzzle3DAnimationLoop();
   };
-  puzzleImg.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=74`;
+  puzzleImg.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=75`;
 }
 
 function startPuzzle3DAnimationLoop() {
@@ -4236,7 +4257,7 @@ function startPaintWithStory(st) {
   if (window.PINTURAS_B64 && window.PINTURAS_B64[st.seqPaint]) {
     paintBaseImg.src = window.PINTURAS_B64[st.seqPaint];
   } else {
-    paintBaseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=74`;
+    paintBaseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=75`;
   }
 }
 
@@ -4964,8 +4985,8 @@ function getAlbumSuperCardsCatalog() {
       title: `Lição ${l.week}: ${l.title}`,
       shortTitle: l.title,
       superCardImg: l.week === 1
-        ? './3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg?v=74'
-        : `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg?v=74`,
+        ? './3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg?v=75'
+        : `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg?v=75`,
       isSuperCard9x16: true
     }));
   }
@@ -4975,7 +4996,7 @@ function getAlbumSuperCardsCatalog() {
     free: s.id <= 10,
     title: s.title,
     shortTitle: s.title,
-    superCardImg: `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${s.seqColor}.jpg?v=74`,
+    superCardImg: `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${s.seqColor}.jpg?v=75`,
     isSuperCard9x16: true
   }));
 }
@@ -5438,7 +5459,7 @@ function renderSleepCorner() {
 }
 
 // Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
-document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=74';
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=75';
 if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
 if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
 if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');
