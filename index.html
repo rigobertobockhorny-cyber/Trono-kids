@@ -1614,21 +1614,13 @@
       margin-bottom: 4px !important;
     }
   
-    /* === UPGRADE V75: BLOCÃO GRANDE COM MARGEM MUDANDO DE COR + BLOQUINHOS INTERNOS ROXO TRANSPARENTE COM MARGEM SÓLIDA (VERDE / AMARELA / AZUL) === */
-    @keyframes rainbowBorderCycle {
-      0%   { border-color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.65), 0 5px 14px rgba(0, 0, 0, 0.82); }
-      25%  { border-color: #a855f7; box-shadow: 0 0 12px rgba(168, 85, 247, 0.65), 0 5px 14px rgba(0, 0, 0, 0.82); }
-      50%  { border-color: #facc15; box-shadow: 0 0 12px rgba(250, 204, 21, 0.65), 0 5px 14px rgba(0, 0, 0, 0.82); }
-      75%  { border-color: #34d399; box-shadow: 0 0 12px rgba(52, 211, 153, 0.65), 0 5px 14px rgba(0, 0, 0, 0.82); }
-      100% { border-color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.65), 0 5px 14px rgba(0, 0, 0, 0.82); }
-    }
-
-    /* APENAS O BLOCÃO GRANDE EXTERNO FICA MUDANDO DE COR! */
+    /* === UPGRADE V76: ONDE TEM IMAGEM (ORDEM CRONOLÓGICA, JOGO DA MEMÓRIA, QUEBRA-CABEÇA, PINTURA) -> MARGEM COLORIDA ÚNICA MUDANDO DE COR (SEM LINHA AZUL DUPLICADA!) === */
+    /* BLOCÃO GRANDE EXTERNO COM MARGEM ÚNICA MUDANDO DE COR (SEM BORDA DUPLA) */
     .ebd-glass-card {
       position: relative !important;
       background: linear-gradient(180deg, rgba(147, 51, 234, 0.54) 0%, rgba(88, 28, 135, 0.66) 100%) !important;
-      border: 2.5px solid #38bdf8 !important;
-      animation: rainbowBorderCycle 3.6s linear infinite !important;
+      border: none !important;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.85) !important;
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
     }
@@ -1636,12 +1628,12 @@
     .ebd-glass-card::before {
       content: "";
       position: absolute;
-      inset: -2.5px;
+      inset: 0;
       border-radius: inherit;
-      padding: 2.5px;
+      padding: 3px;
       background: linear-gradient(125deg, #38bdf8, #a855f7, #facc15, #34d399, #ec4899, #38bdf8);
-      background-size: 300% 300%;
-      animation: magicFlow 3.6s ease infinite;
+      background-size: 250% 250%;
+      animation: magicFlow 4s ease infinite;
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
@@ -1649,7 +1641,34 @@
       z-index: 2;
     }
 
-    /* CLASSES PADRÃO DE BLOQUINHOS INTERNOS: FUNDO ROXO TRANSPARENTE + MARGEM SÓLIDA (VERDE, AMARELA OU AZUL) */
+    /* CARDS COM IMAGEM NA ORDEM CRONOLÓGICA: BLOCO ROXO + MARGEM COLORIDA ÚNICA MUDANDO DE COR (SEM BORDA AZUL) */
+    .chrono-img-card-alive {
+      position: relative !important;
+      background: linear-gradient(180deg, rgba(147, 51, 234, 0.56) 0%, rgba(88, 28, 135, 0.72) 100%) !important;
+      border: none !important;
+      padding: 3px !important;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.82) !important;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .chrono-img-card-alive::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 3px;
+      background: linear-gradient(125deg, #38bdf8, #a855f7, #facc15, #34d399, #ec4899, #38bdf8);
+      background-size: 250% 250%;
+      animation: magicFlow 4s ease infinite;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* CLASSES PADRÃO DE BLOQUINHOS INTERNOS SEM IMAGEM: FUNDO ROXO TRANSPARENTE + MARGEM SÓLIDA (VERDE, AMARELA OU AZUL) */
     .inner-purple-green {
       background: linear-gradient(180deg, rgba(147, 51, 234, 0.54) 0%, rgba(88, 28, 135, 0.66) 100%) !important;
       border: 2px solid #00e676 !important;
@@ -1676,15 +1695,24 @@
       -webkit-backdrop-filter: blur(6px);
     }
 
-    /* Jogo da Memória com Margem Colorida Mudando de Cor igual Quebra-Cabeça e Pintura! */
+    /* JOGO DA MEMÓRIA: SOMENTE O BLOQUINHO ROXO COM A MARGEM COLORIDA MUDANDO DE COR (SEM LINHA AZUL E SEM DUPLICIDADE!) */
     .mem-face {
-      border: 3px solid #38bdf8 !important;
-      animation: rainbowBorderCycle 3.2s linear infinite !important;
+      border: none !important;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.84) !important;
     }
     .mem-back {
-      background: linear-gradient(180deg, rgba(147, 51, 234, 0.62) 0%, rgba(88, 28, 135, 0.76) 100%) !important;
+      background: linear-gradient(180deg, rgba(147, 51, 234, 0.62) 0%, rgba(88, 28, 135, 0.78) 100%) !important;
+      border: none !important;
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
+    }
+    .mem-front {
+      border: none !important;
+      padding: 3px !important;
+      box-sizing: border-box !important;
+    }
+    .mem-front img {
+      border-radius: 13px !important;
     }
     .mem-back::before,
     .mem-front::before {
@@ -1694,8 +1722,8 @@
       border-radius: inherit;
       padding: 3px;
       background: linear-gradient(125deg, #38bdf8, #a855f7, #facc15, #34d399, #ec4899, #38bdf8);
-      background-size: 300% 300%;
-      animation: magicFlow 3.6s ease infinite;
+      background-size: 250% 250%;
+      animation: magicFlow 4s ease infinite;
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
@@ -2407,8 +2435,8 @@
   </div>
 </div>
 
-<script src="pinturas_base64.js?v=75" defer></script>
-<script src="ebd_modulos_educativos.js?v=75"></script>
+<script src="pinturas_base64.js?v=76.0" defer></script>
+<script src="ebd_modulos_educativos.js?v=76.0"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -3695,7 +3723,7 @@ function startPuzzleWithStory(st) {
     initJigsawPuzzle();
     startPuzzle3DAnimationLoop();
   };
-  puzzleImg.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=75`;
+  puzzleImg.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=76.0`;
 }
 
 function startPuzzle3DAnimationLoop() {
@@ -4257,7 +4285,7 @@ function startPaintWithStory(st) {
   if (window.PINTURAS_B64 && window.PINTURAS_B64[st.seqPaint]) {
     paintBaseImg.src = window.PINTURAS_B64[st.seqPaint];
   } else {
-    paintBaseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=75`;
+    paintBaseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=76.0`;
   }
 }
 
@@ -4985,8 +5013,8 @@ function getAlbumSuperCardsCatalog() {
       title: `Lição ${l.week}: ${l.title}`,
       shortTitle: l.title,
       superCardImg: l.week === 1
-        ? './3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg?v=75'
-        : `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg?v=75`,
+        ? './3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg?v=76.0'
+        : `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg?v=76.0`,
       isSuperCard9x16: true
     }));
   }
@@ -4996,7 +5024,7 @@ function getAlbumSuperCardsCatalog() {
     free: s.id <= 10,
     title: s.title,
     shortTitle: s.title,
-    superCardImg: `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${s.seqColor}.jpg?v=75`,
+    superCardImg: `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${s.seqColor}.jpg?v=76.0`,
     isSuperCard9x16: true
   }));
 }
@@ -5459,7 +5487,7 @@ function renderSleepCorner() {
 }
 
 // Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
-document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=75';
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=76.0';
 if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
 if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
 if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');
