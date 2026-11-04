@@ -1613,6 +1613,74 @@
     #app-shell.vovo-player-fullscreen-mode #screen-lesson-module .module-header {
       margin-bottom: 4px !important;
     }
+  
+    /* === UPGRADE V74: PADRONIZAÇÃO UNIVERSAL DE CARDS (ROXO TRANSPARENTE + MARGEM COLORIDA MUDANDO DE COR) === */
+    @keyframes rainbowBorderCycle {
+      0%   { border-color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.65), 0 5px 14px rgba(0, 0, 0, 0.82); }
+      25%  { border-color: #a855f7; box-shadow: 0 0 12px rgba(168, 85, 247, 0.65), 0 5px 14px rgba(0, 0, 0, 0.82); }
+      50%  { border-color: #facc15; box-shadow: 0 0 12px rgba(250, 204, 21, 0.65), 0 5px 14px rgba(0, 0, 0, 0.82); }
+      75%  { border-color: #34d399; box-shadow: 0 0 12px rgba(52, 211, 153, 0.65), 0 5px 14px rgba(0, 0, 0, 0.82); }
+      100% { border-color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.65), 0 5px 14px rgba(0, 0, 0, 0.82); }
+    }
+
+    .rainbow-border-card,
+    .ebd-glass-card,
+    .quiz-question-plaque,
+    .quiz-opt-btn:not(.correct):not(.wrong) {
+      position: relative !important;
+      background: linear-gradient(180deg, rgba(147, 51, 234, 0.54) 0%, rgba(88, 28, 135, 0.66) 100%) !important;
+      border: 2.5px solid #38bdf8 !important;
+      animation: rainbowBorderCycle 3.6s linear infinite !important;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .rainbow-border-card::before,
+    .ebd-glass-card::before,
+    .quiz-question-plaque::before,
+    .quiz-opt-btn:not(.correct):not(.wrong)::before {
+      content: "";
+      position: absolute;
+      inset: -2.5px;
+      border-radius: inherit;
+      padding: 2.5px;
+      background: linear-gradient(125deg, #38bdf8, #a855f7, #facc15, #34d399, #ec4899, #38bdf8);
+      background-size: 300% 300%;
+      animation: magicFlow 3.6s ease infinite;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Jogo da Memória com Margem Colorida Mudando de Cor igual Quebra-Cabeça e Pintura! */
+    .mem-face {
+      border: 3px solid #38bdf8 !important;
+      animation: rainbowBorderCycle 3.2s linear infinite !important;
+    }
+    .mem-back {
+      background: linear-gradient(180deg, rgba(147, 51, 234, 0.62) 0%, rgba(88, 28, 135, 0.76) 100%) !important;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .mem-back::before,
+    .mem-front::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 3px;
+      background: linear-gradient(125deg, #38bdf8, #a855f7, #facc15, #34d399, #ec4899, #38bdf8);
+      background-size: 300% 300%;
+      animation: magicFlow 3.6s ease infinite;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 3;
+    }
+
   </style>
   <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_oficial.png">
   <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192_oficial.png">
@@ -1824,7 +1892,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
-    <div id="games-hub-grid" style="flex:1; overflow-y:auto; display:grid; grid-template-columns:repeat(2,1fr); gap:8px; padding:4px 2px; align-content:start;"></div>
+    <div id="games-hub-grid" style="flex:1; overflow-y:auto; padding:2px 2px 6px 2px; display:flex; flex-direction:column;"></div>
   </section>
 
   <!-- ==================================================================== -->
@@ -1832,7 +1900,7 @@
   <!-- ==================================================================== -->
   <section id="screen-edu-game" class="screen">
     <div class="module-header">
-      <button class="btn-nav-circle" onclick="stopTeenTimer(); openGamesHubScreen()" title="Voltar para a Sala de Jogos">
+      <button class="btn-nav-circle" onclick="backFromEduGameStage()" title="Voltar para a Sala de Jogos">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="puzzle-diff-bar">
@@ -1868,7 +1936,7 @@
   <!-- ==================================================================== -->
   <section id="screen-gallery" class="screen">
     <div class="module-header">
-      <button class="btn-nav-circle" onclick="goHome()" title="Voltar ao Início">
+      <button class="btn-nav-circle" onclick="backFromGalleryScreen()" title="Voltar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div id="gallery-header-title" style="display:none;">Quebra-Cabeça</div>
@@ -1938,7 +2006,7 @@
   <!-- ==================================================================== -->
   <section id="screen-quiz" class="screen">
     <div class="module-header">
-      <button class="btn-nav-circle" onclick="goHome()" title="Início">
+      <button class="btn-nav-circle" onclick="backFromClassicGameScreen()" title="Voltar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
 
@@ -1965,7 +2033,7 @@
   <!-- ==================================================================== -->
   <section id="screen-memory" class="screen">
     <div class="module-header">
-      <button class="btn-nav-circle" onclick="goHome()" title="Início">
+      <button class="btn-nav-circle" onclick="backFromClassicGameScreen()" title="Voltar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
 
@@ -1984,7 +2052,7 @@
   <!-- ==================================================================== -->
   <section id="screen-album" class="screen">
     <div class="module-header">
-      <button class="btn-nav-circle" onclick="goHome()" title="Início">
+      <button class="btn-nav-circle" onclick="openLudoTrailBoard()" title="Voltar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="puzzle-diff-bar">
@@ -2005,7 +2073,7 @@
   <!-- ==================================================================== -->
   <section id="screen-ludo-trail" class="screen">
     <div class="module-header">
-      <button class="btn-nav-circle" onclick="goHome()" title="Início">
+      <button class="btn-nav-circle" onclick="backFromLudoTrailScreen()" title="Voltar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="puzzle-diff-bar">
@@ -2318,8 +2386,8 @@
   </div>
 </div>
 
-<script src="pinturas_base64.js?v=73" defer></script>
-<script src="ebd_modulos_educativos.js?v=73"></script>
+<script src="pinturas_base64.js?v=74" defer></script>
+<script src="ebd_modulos_educativos.js?v=74"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -3291,7 +3359,40 @@ function getNextUncompletedStep(doneSet, maxFree = 6) {
   return maxFree;
 }
 
+window.backFromGalleryScreen = function() {
+  if (window._galleryOriginScreen === 'screen-games-hub') {
+    openGamesHubScreen();
+  } else if (window._galleryOriginScreen === 'screen-lesson-module') {
+    openLessonModule('jogos_licao');
+  } else {
+    goHome();
+  }
+};
+
+window.backFromClassicGameScreen = function() {
+  if (window.EBD_STATE && window.EBD_STATE.fromLessonGames) {
+    openLessonModule('jogos_licao');
+  } else if (window._classicGameOriginScreen === 'screen-home') {
+    goHome();
+  } else {
+    openGamesHubScreen();
+  }
+};
+
+window.backFromLudoTrailScreen = function() {
+  const prev = window._ludoOriginScreen;
+  if (prev && prev !== 'screen-ludo-trail' && prev !== 'screen-album' && document.getElementById(prev)) {
+    showScreen(prev);
+  } else {
+    goHome();
+  }
+};
+
 function openGalleryFor(mode) {
+  const activeScr = document.querySelector('.screen.active');
+  if (activeScr && activeScr.id !== 'screen-puzzle' && activeScr.id !== 'screen-paint' && activeScr.id !== 'screen-gallery') {
+    window._galleryOriginScreen = activeScr.id;
+  }
   if (window.EBD_STATE) window.EBD_STATE.fromLessonGames = false;
   currentGalleryTarget = mode;
   const doneSet = mode === 'puzzle' ? completedPuzzles : completedPaints;
@@ -3525,6 +3626,10 @@ function openPrivacyPolicyModal() {
 }
 
 function openModule(mod) {
+  const activeScr = document.querySelector('.screen.active');
+  if (activeScr && activeScr.id !== 'screen-quiz' && activeScr.id !== 'screen-memory') {
+    window._classicGameOriginScreen = activeScr.id;
+  }
   if (mod === 'quiz') {
     initQuiz();
     showScreen('screen-quiz');
@@ -3569,7 +3674,7 @@ function startPuzzleWithStory(st) {
     initJigsawPuzzle();
     startPuzzle3DAnimationLoop();
   };
-  puzzleImg.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=73`;
+  puzzleImg.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=74`;
 }
 
 function startPuzzle3DAnimationLoop() {
@@ -4131,7 +4236,7 @@ function startPaintWithStory(st) {
   if (window.PINTURAS_B64 && window.PINTURAS_B64[st.seqPaint]) {
     paintBaseImg.src = window.PINTURAS_B64[st.seqPaint];
   } else {
-    paintBaseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=73`;
+    paintBaseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=74`;
   }
 }
 
@@ -4859,8 +4964,8 @@ function getAlbumSuperCardsCatalog() {
       title: `Lição ${l.week}: ${l.title}`,
       shortTitle: l.title,
       superCardImg: l.week === 1
-        ? './3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg?v=73'
-        : `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg?v=73`,
+        ? './3_ASSETS_HISTORIA_VOVO/licao_01_cena_10.jpg?v=74'
+        : `./3_ASSETS_HISTORIA_VOVO/licao_${String(l.week).padStart(2, '0')}_cena_01.jpg?v=74`,
       isSuperCard9x16: true
     }));
   }
@@ -4870,7 +4975,7 @@ function getAlbumSuperCardsCatalog() {
     free: s.id <= 10,
     title: s.title,
     shortTitle: s.title,
-    superCardImg: `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${s.seqColor}.jpg?v=73`,
+    superCardImg: `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${s.seqColor}.jpg?v=74`,
     isSuperCard9x16: true
   }));
 }
@@ -4897,6 +5002,10 @@ const SINUOUS_ROAD_POINTS = [
 ];
 
 function openLudoTrailBoard() {
+  const activeScr = document.querySelector('.screen.active');
+  if (activeScr && activeScr.id !== 'screen-ludo-trail' && activeScr.id !== 'screen-album') {
+    window._ludoOriginScreen = activeScr.id;
+  }
   renderLudoTrailBoard();
   showScreen('screen-ludo-trail');
 }
@@ -5329,7 +5438,7 @@ function renderSleepCorner() {
 }
 
 // Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
-document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=73';
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=74';
 if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
 if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
 if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');
