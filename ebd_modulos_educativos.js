@@ -6922,14 +6922,14 @@ window.openLessonModule = function(modType) {
     const prog = window.getLessonProgress(lesson.week);
     const gamesMap = prog.games || {};
     const lessonGames = [
-      { key: "chronology", title: "ORDEM CRONOLÓGICA", sub: "Ordene as cenas desta história", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png" },
-      { key: "verse_builder", title: "CONSTRUTOR DO VERSO", sub: `Monte ${lesson.bibleRef}`, icon: "./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" },
-      { key: "word_search", title: "CAÇA-PALAVRAS", sub: "Encontre as 5 palavras-chave", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png" },
-      { key: "who_am_i", title: "QUEM SOU EU?", sub: "Descubra pelas 3 pistas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_vovo.png" },
-      { key: "true_or_myth", title: "VERDADEIRO OU MITO?", sub: "Desafio sobre a lição", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png" },
-      { key: "secret_word", title: "PALAVRA SECRETA", sub: "Descubra letra por letra", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png" },
-      { key: "lesson_puzzle", title: "QUEBRA-CABEÇA", sub: "Monte o quadro da lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_02.png" },
-      { key: "lesson_paint", title: "PINTURA DA LIÇÃO", sub: "Pinte o desenho da lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_03.png" }
+      { key: "chronology", title: "ORDEM CRONOLÓGICA", sub: "Ordene as Cenas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png" },
+      { key: "verse_builder", title: "VERSÍCULO SECRETO", sub: "Monte a Palavra", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" },
+      { key: "lesson_puzzle", title: "QUEBRA-CABEÇA 3D", sub: "Monte a Cena", icon: "./2_ASSETS_UI_BOTOES/ui_icon_02.png" },
+      { key: "lesson_paint", title: "PINTURA MÁGICA", sub: "Colorir a Lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_03.png" },
+      { key: "word_search", title: "CAÇA-PALAVRAS", sub: "Ache os Termos", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png" },
+      { key: "secret_word", title: "PALAVRA SECRETA", sub: "Descubra as Letras", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png" },
+      { key: "who_am_i", title: "QUEM SOU EU?", sub: "3 Pistas Bíblicas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_vovo.png" },
+      { key: "true_or_myth", title: "VERDADEIRO OU MITO", sub: "Desafio Rápido", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png" }
     ];
     const doneCount = lessonGames.filter(g => !!gamesMap[g.key]).length;
     box.innerHTML = `
@@ -6941,16 +6941,12 @@ window.openLessonModule = function(modType) {
         <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:6px;">
           ${lessonGames.map(g => {
             const isGameDone = !!gamesMap[g.key];
-            const cardBg = "linear-gradient(180deg, rgba(147,51,234,0.54) 0%, rgba(88,28,135,0.66) 100%)";
-            const cardBorder = isGameDone ? "2.5px solid #00e676" : "2px solid #00e676";
-            const titleCol = "#fde047";
-            const subCol = isGameDone ? "#86efac" : "#f3e8ff";
             return `
-              <div class="inner-purple-green" onclick="openGameFromLesson('${g.key}')" style="position:relative; background:${cardBg}; border:${cardBorder}; border-radius:14px;
-                ${isGameDone ? `<span style="position:absolute; top:5px; right:5px; width:22px; height:22px; border-radius:50%; background:#052e16; border:2px solid #ffffff; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.6);"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>` : ""}
-                <img src="${g.icon}" alt="${g.title}" style="width:44px; height:44px; object-fit:contain; margin-bottom:3px; filter:drop-shadow(0 2px 5px rgba(0,0,0,0.6));">
-                <div style="font-size:12px; font-weight:900; color:${titleCol}; line-height:1.12;">${g.title}</div>
-                <div style="font-size:10px; font-weight:800; color:${subCol}; margin-top:1px;">${isGameDone ? "Concluído!" : g.sub}</div>
+              <div class="inner-purple-green" onclick="openGameFromLesson('${g.key}')" style="border-radius:14px; padding:5px 4px; display:flex; flex-direction:column; align-items:center; text-align:center; cursor:pointer; position:relative;">
+                ${isGameDone ? `<span style="position:absolute; top:4px; right:4px; width:18px; height:18px; border-radius:50%; background:#052e16; border:1.5px solid #00e676; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 5px rgba(0,0,0,0.6);"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>` : ""}
+                <img src="${g.icon}" alt="${g.title}" style="width:40px; height:40px; object-fit:contain; margin-bottom:2px; filter:drop-shadow(0 2px 5px rgba(0,0,0,0.65));">
+                <div style="font-size:11.5px; font-weight:900; color:#fde047; line-height:1.12;">${g.title}</div>
+                <div style="font-size:9.5px; font-weight:800; color:${isGameDone ? "#86efac" : "#f3e8ff"}; margin-top:1px;">${isGameDone ? "Concluído!" : g.sub}</div>
               </div>
             `;
           }).join("")}
@@ -7465,16 +7461,16 @@ window.openGamesHubScreen = function(filterCat) {
 
   // Todos os 8 Jogos da Lição + Jogo da Memória + Quiz do Vovô Nésio (10 Jogos Completos na 1ª página!)
   const allGames = [
-    { id: "chronology", title: "1. ORDEM CRONOLÓGICA", sub: "Ordene as Cenas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png", action: "openEduGame('chronology', false)" },
-    { id: "verse_builder", title: "2. VERSÍCULO SECRETO", sub: "Monte a Palavra", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png", action: "openEduGame('verse_builder', false)" },
-    { id: "puzzle", title: "3. QUEBRA-CABEÇA 3D", sub: "Monte a Cena", icon: "./2_ASSETS_UI_BOTOES/ui_icon_02.png", action: "openGalleryFor('puzzle')" },
-    { id: "paint", title: "4. PINTURA MÁGICA", sub: "Colorir a Lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_03.png", action: "openGalleryFor('paint')" },
-    { id: "word_search", title: "5. CAÇA-PALAVRAS", sub: "Ache os Termos", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png", action: "openEduGame('word_search', false)" },
-    { id: "secret_word", title: "6. PALAVRA SECRETA", sub: "Descubra as Letras", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png", action: "openEduGame('secret_word', false)" },
-    { id: "who_am_i", title: "7. QUEM SOU EU?", sub: "3 Pistas Bíblicas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_vovo.png", action: "openEduGame('who_am_i', false)" },
-    { id: "true_or_myth", title: "8. VERDADEIRO OU MITO", sub: "Desafio Rápido", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png", action: "openEduGame('true_or_myth', false)" },
-    { id: "memory", title: "9. JOGO DA MEMÓRIA", sub: "Encontre os Pares", icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png", action: "openModule('memory')" },
-    { id: "quiz", title: "10. QUIZ DO VOVÔ", sub: "Perguntas da Bíblia", icon: "./2_ASSETS_UI_BOTOES/ui_icon_04.png", action: "openModule('quiz')" }
+    { id: "chronology", title: "ORDEM CRONOLÓGICA", sub: "Ordene as Cenas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png", action: "openEduGame('chronology', false)" },
+    { id: "verse_builder", title: "VERSÍCULO SECRETO", sub: "Monte a Palavra", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png", action: "openEduGame('verse_builder', false)" },
+    { id: "puzzle", title: "QUEBRA-CABEÇA 3D", sub: "Monte a Cena", icon: "./2_ASSETS_UI_BOTOES/ui_icon_02.png", action: "openGalleryFor('puzzle')" },
+    { id: "paint", title: "PINTURA MÁGICA", sub: "Colorir a Lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_03.png", action: "openGalleryFor('paint')" },
+    { id: "word_search", title: "CAÇA-PALAVRAS", sub: "Ache os Termos", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png", action: "openEduGame('word_search', false)" },
+    { id: "secret_word", title: "PALAVRA SECRETA", sub: "Descubra as Letras", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png", action: "openEduGame('secret_word', false)" },
+    { id: "who_am_i", title: "QUEM SOU EU?", sub: "3 Pistas Bíblicas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_vovo.png", action: "openEduGame('who_am_i', false)" },
+    { id: "true_or_myth", title: "VERDADEIRO OU MITO", sub: "Desafio Rápido", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png", action: "openEduGame('true_or_myth', false)" },
+    { id: "memory", title: "JOGO DA MEMÓRIA", sub: "Encontre os Pares", icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png", action: "openModule('memory')" },
+    { id: "quiz", title: "QUIZ DO VOVÔ", sub: "Perguntas da Bíblia", icon: "./2_ASSETS_UI_BOTOES/ui_icon_04.png", action: "openModule('quiz')" }
   ];
 
   const gridEl = document.getElementById("games-hub-grid");
