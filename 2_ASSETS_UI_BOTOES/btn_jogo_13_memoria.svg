@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg13" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#92400e"/>
+    </linearGradient>
+    <filter id="sh13">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#bg13)" stroke="#fbbf24" stroke-width="4" filter="url(#sh13)"/>
+  <!-- Carta 1 (esquerda, girada) -->
+  <g transform="translate(46, 64) rotate(-10)" filter="url(#sh13)">
+    <rect x="-20" y="-28" width="40" height="56" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="0" cy="-4" r="13" fill="#fef08a"/>
+    <!-- Leãozinho simplificado -->
+    <circle cx="0" cy="-4" r="9" fill="#f59e0b"/>
+    <circle cx="-3" cy="-5" r="1.5" fill="#0f172a"/>
+    <circle cx="3" cy="-5" r="1.5" fill="#0f172a"/>
+  </g>
+  <!-- Carta 2 (direita, sobreposta) -->
+  <g transform="translate(80, 66) rotate(12)" filter="url(#sh13)">
+    <rect x="-20" y="-28" width="40" height="56" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="0" cy="-4" r="13" fill="#bae6fd"/>
+    <!-- Elefantinho simplificado -->
+    <circle cx="0" cy="-4" r="10" fill="#64748b"/>
+    <path d="M0 -1 L0 7 Q-3 9 -5 7" fill="none" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="-4" cy="-5" r="1.5" fill="#0f172a"/>
+    <circle cx="4" cy="-5" r="1.5" fill="#0f172a"/>
+  </g>
+  <!-- Brilho no topo -->
+  <path d="M16 16 Q64 8 112 16 Q64 32 16 16 Z" fill="#ffffff" opacity="0.25"/>
+</svg>

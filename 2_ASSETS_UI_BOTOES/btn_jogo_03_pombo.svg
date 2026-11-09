@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <filter id="sh3">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#bg3)" stroke="#7dd3fc" stroke-width="4" filter="url(#sh3)"/>
+  <!-- Nuvem de fundo -->
+  <path d="M24 95 Q24 82 36 82 Q42 70 56 70 Q68 65 80 72 Q92 72 96 82 Q108 85 106 95 Z" fill="#ffffff" opacity="0.45"/>
+  <!-- Pombinha branca -->
+  <g transform="translate(60, 62)" filter="url(#sh3)">
+    <!-- Asa de trás -->
+    <path d="M-6 -8 C-10 -32 18 -36 28 -20 C22 -14 10 -10 -6 -8 Z" fill="#e2e8f0"/>
+    <!-- Corpo -->
+    <path d="M-28 6 C-34 -10 -12 -16 6 -8 C18 -2 24 10 16 20 C6 28 -20 22 -28 6 Z" fill="#ffffff"/>
+    <!-- Cabeça -->
+    <circle cx="16" cy="-4" r="10" fill="#ffffff"/>
+    <!-- Bico -->
+    <path d="M25 -6 L34 -2 L24 0 Z" fill="#f97316"/>
+    <!-- Olho -->
+    <circle cx="19" cy="-6" r="2.5" fill="#0f172a"/>
+    <circle cx="20" cy="-7" r="0.8" fill="#ffffff"/>
+    <!-- Ramo de oliveira -->
+    <path d="M30 -2 Q44 -12 48 -2" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round"/>
+    <ellipse cx="38" cy="-8" rx="4" ry="2" transform="rotate(-30 38 -8)" fill="#22c55e"/>
+    <ellipse cx="46" cy="-4" rx="4" ry="2" transform="rotate(20 46 -4)" fill="#22c55e"/>
+    <!-- Asa da frente -->
+    <path d="M-8 0 C-18 -26 8 -30 20 -14 C14 -8 4 -4 -8 0 Z" fill="#f8fafc"/>
+  </g>
+  <!-- Brilho no topo -->
+  <path d="M16 16 Q64 8 112 16 Q64 32 16 16 Z" fill="#ffffff" opacity="0.25"/>
+</svg>

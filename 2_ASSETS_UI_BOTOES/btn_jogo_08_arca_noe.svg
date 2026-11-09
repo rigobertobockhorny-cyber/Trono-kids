@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg8" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#075985"/>
+    </linearGradient>
+    <filter id="sh8">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#bg8)" stroke="#38bdf8" stroke-width="4" filter="url(#sh8)"/>
+  <!-- Arco-íris suave ao fundo -->
+  <path d="M26 60 A40 40 0 0 1 102 60" fill="none" stroke="#f87171" stroke-width="3" opacity="0.7"/>
+  <path d="M29 60 A37 37 0 0 1 99 60" fill="none" stroke="#fde047" stroke-width="3" opacity="0.7"/>
+  <path d="M32 60 A34 34 0 0 1 96 60" fill="none" stroke="#4ade80" stroke-width="3" opacity="0.7"/>
+  <!-- Arca de madeira -->
+  <g transform="translate(64, 72)" filter="url(#sh8)">
+    <!-- Casco do barco -->
+    <path d="M-40 2 L-30 20 L30 20 L40 2 Z" fill="#78350f" stroke="#451a03" stroke-width="2"/>
+    <line x1="-36" y1="10" x2="36" y2="10" stroke="#92400e" stroke-width="2"/>
+    <!-- Cabine -->
+    <rect x="-24" y="-18" width="48" height="20" fill="#92400e" stroke="#451a03" stroke-width="2"/>
+    <!-- Telhado -->
+    <polygon points="-28,-18 0,-30 28,-18" fill="#b45309" stroke="#451a03" stroke-width="2"/>
+    <!-- Janelas com bichinhos -->
+    <rect x="-16" y="-12" width="10" height="10" rx="2" fill="#fef08a"/>
+    <circle cx="-11" cy="-7" r="3" fill="#ea580c"/> <!-- Girafa -->
+    <rect x="6" y="-12" width="10" height="10" rx="2" fill="#fef08a"/>
+    <circle cx="11" cy="-7" r="3" fill="#64748b"/> <!-- Elefante -->
+  </g>
+  <!-- Ondas da água -->
+  <path d="M12 94 Q34 86 56 94 T100 94 T116 94 L116 112 L12 112 Z" fill="#0284c7"/>
+  <!-- Brilho no topo -->
+  <path d="M16 16 Q64 8 112 16 Q64 32 16 16 Z" fill="#ffffff" opacity="0.25"/>
+</svg>

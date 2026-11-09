@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg16" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#5b21b6"/>
+    </linearGradient>
+    <filter id="sh16">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#bg16)" stroke="#a78bfa" stroke-width="4" filter="url(#sh16)"/>
+  <!-- Peça 1 (Amarela) -->
+  <g transform="translate(48, 52)" filter="url(#sh16)">
+    <path d="M-22,-22 L4,-22 C4,-16 12,-16 12,-22 L22,-22 L22,4 C16,4 16,12 22,12 L22,22 L-22,22 Z" fill="#facc15" stroke="#ca8a04" stroke-width="2"/>
+    <circle cx="0" cy="0" r="3" fill="#fef08a"/>
+  </g>
+  <!-- Peça 2 (Azul/Ciano) -->
+  <g transform="translate(76, 76)" filter="url(#sh16)">
+    <path d="M-22,-22 L-22,-4 C-16,-4 -16,-12 -22,-12 L-22,-22 L4,-22 L22,-22 L22,22 L-22,22 Z" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+    <circle cx="0" cy="0" r="3" fill="#bae6fd"/>
+  </g>
+  <!-- Brilho no topo -->
+  <path d="M16 16 Q64 8 112 16 Q64 32 16 16 Z" fill="#ffffff" opacity="0.25"/>
+</svg>

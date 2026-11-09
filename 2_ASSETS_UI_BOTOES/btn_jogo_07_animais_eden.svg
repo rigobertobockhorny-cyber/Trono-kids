@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg7" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#065f46"/>
+    </linearGradient>
+    <filter id="sh7">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#bg7)" stroke="#34d399" stroke-width="4" filter="url(#sh7)"/>
+  <!-- Leãozinho 3D -->
+  <g transform="translate(64, 64)" filter="url(#sh7)">
+    <!-- Juba -->
+    <circle cx="0" cy="0" r="32" fill="#d97706"/>
+    <circle cx="-18" cy="-18" r="10" fill="#b45309"/>
+    <circle cx="18" cy="-18" r="10" fill="#b45309"/>
+    <circle cx="-24" cy="4" r="10" fill="#b45309"/>
+    <circle cx="24" cy="4" r="10" fill="#b45309"/>
+    <circle cx="0" cy="24" r="10" fill="#b45309"/>
+    <!-- Rosto -->
+    <circle cx="0" cy="0" r="22" fill="#fbbf24"/>
+    <!-- Orelhas -->
+    <circle cx="-15" cy="-15" r="7" fill="#fbbf24"/>
+    <circle cx="-15" cy="-15" r="4" fill="#fde68a"/>
+    <circle cx="15" cy="-15" r="7" fill="#fbbf24"/>
+    <circle cx="15" cy="-15" r="4" fill="#fde68a"/>
+    <!-- Olhos grandes -->
+    <circle cx="-7" cy="-2" r="3.5" fill="#0f172a"/>
+    <circle cx="-6" cy="-3" r="1.2" fill="#ffffff"/>
+    <circle cx="7" cy="-2" r="3.5" fill="#0f172a"/>
+    <circle cx="8" cy="-3" r="1.2" fill="#ffffff"/>
+    <!-- Narizinho e focinho -->
+    <path d="M-3 4 L3 4 L0 7 Z" fill="#78350f"/>
+    <path d="M0 7 Q-4 12 -8 10 M0 7 Q4 12 8 10" fill="none" stroke="#78350f" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+  <!-- Brilho no topo -->
+  <path d="M16 16 Q64 8 112 16 Q64 32 16 16 Z" fill="#ffffff" opacity="0.25"/>
+</svg>

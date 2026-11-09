@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg10" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <filter id="sh10">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#bg10)" stroke="#38bdf8" stroke-width="4" filter="url(#sh10)"/>
+  <!-- Linha conectando os pontos -->
+  <path d="M34 42 L94 42 L64 92 Z" fill="none" stroke="#fde047" stroke-width="4" stroke-dasharray="6,4" stroke-linecap="round"/>
+  <!-- Ponto 1 -->
+  <circle cx="34" cy="42" r="13" fill="#ec4899" stroke="#ffffff" stroke-width="2.5" filter="url(#sh10)"/>
+  <text x="34" y="47" font-family="'Fredoka', sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle">1</text>
+  <!-- Ponto 2 -->
+  <circle cx="94" cy="42" r="13" fill="#3b82f6" stroke="#ffffff" stroke-width="2.5" filter="url(#sh10)"/>
+  <text x="94" y="47" font-family="'Fredoka', sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle">2</text>
+  <!-- Ponto 3 -->
+  <circle cx="64" cy="92" r="13" fill="#22c55e" stroke="#ffffff" stroke-width="2.5" filter="url(#sh10)"/>
+  <text x="64" y="97" font-family="'Fredoka', sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle">3</text>
+  <!-- Lápis desenhando -->
+  <g transform="translate(68, 86) rotate(-35)">
+    <polygon points="0,0 8,-20 16,-20 8,0" fill="#f59e0b"/>
+    <polygon points="0,0 8,0 4,8" fill="#fed7aa"/>
+    <polygon points="3,6 5,6 4,8" fill="#0f172a"/>
+  </g>
+  <!-- Brilho no topo -->
+  <path d="M16 16 Q64 8 112 16 Q64 32 16 16 Z" fill="#ffffff" opacity="0.25"/>
+</svg>

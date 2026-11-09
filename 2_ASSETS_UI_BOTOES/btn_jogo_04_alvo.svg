@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#15803d"/>
+      <stop offset="100%" stop-color="#166534"/>
+    </linearGradient>
+    <filter id="sh4">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#bg4)" stroke="#4ade80" stroke-width="4" filter="url(#sh4)"/>
+  <!-- Alvo -->
+  <g transform="translate(64, 64)" filter="url(#sh4)">
+    <circle cx="0" cy="0" r="42" fill="#ef4444" stroke="#991b1b" stroke-width="2"/>
+    <circle cx="0" cy="0" r="33" fill="#ffffff"/>
+    <circle cx="0" cy="0" r="24" fill="#3b82f6"/>
+    <circle cx="0" cy="0" r="15" fill="#ef4444"/>
+    <circle cx="0" cy="0" r="7" fill="#fbbf24"/>
+    <!-- Flecha cravada no centro -->
+    <line x1="-32" y1="32" x2="0" y2="0" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
+    <!-- Penas da flecha -->
+    <path d="M-32 32 L-42 34 L-38 42 Z" fill="#f87171"/>
+    <path d="M-32 32 L-34 42 L-42 38 Z" fill="#60a5fa"/>
+    <!-- Brilho no impacto -->
+    <circle cx="0" cy="0" r="3" fill="#ffffff"/>
+  </g>
+  <!-- Brilho no topo -->
+  <path d="M16 16 Q64 8 112 16 Q64 32 16 16 Z" fill="#ffffff" opacity="0.25"/>
+</svg>
