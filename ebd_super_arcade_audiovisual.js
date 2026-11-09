@@ -148,7 +148,7 @@
       }
       if (!audioFile) return;
       try {
-        const src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=88`;
+        const src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=89`;
         this.vovoPlayer = new Audio(src);
         this.vovoPlayer.play().catch(err => {
           console.warn("Audio play prevented:", err);
@@ -174,7 +174,7 @@
       id: "pesca_maravilhosa",
       title: "PESCA MARAVILHOSA",
       sub: "Toque na Zona Verde!",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=89",
       audioFile: "vovo_jogo_01.mp3",
       vovoFala: "Vamos pescar com Pedro! Toque na tela quando a agulha estiver no verde!",
       run: (container, phase) => runPescaMaravilhosa(container, phase)
@@ -183,7 +183,7 @@
       id: "dracma_perdida",
       title: "A DRACMA PERDIDA",
       sub: "Ache a Moeda no Escuro",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_02_dracma.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_02_dracma.svg?v=89",
       audioFile: "vovo_jogo_02.mp3",
       vovoFala: "A mulher perdeu a dracma! Mova a luz da lamparina e encontre as moedinhas!",
       run: (container, phase) => runDracmaPerdida(container, phase)
@@ -192,7 +192,7 @@
       id: "pombo_arca",
       title: "O POMBO DA ARCA",
       sub: "Labirinto de Nuvens",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_03_pombo.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_03_pombo.svg?v=89",
       audioFile: "vovo_jogo_03.mp3",
       vovoFala: "Guie o pombinho pelas nuvens até pousar na janela da Arca de Noé!",
       run: (container, phase) => runPomboArca(container, phase)
@@ -201,7 +201,7 @@
       id: "jonatas_alvo",
       title: "JÔNATAS E O ALVO",
       sub: "Tiro com Arco no Campo",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_04_alvo.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_04_alvo.svg?v=89",
       audioFile: "vovo_jogo_04.mp3",
       vovoFala: "Puxe a corda do arco com o dedinho e acerte o centro do alvo de madeira!",
       run: (container, phase) => runJonatasAlvo(container, phase)
@@ -210,7 +210,7 @@
       id: "ovelha_perdida",
       title: "A OVELHA PERDIDA",
       sub: "Deslize e Ache a Ovelha",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_05_ovelha_perdida.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_05_ovelha_perdida.svg?v=89",
       audioFile: "vovo_jogo_05.mp3",
       vovoFala: "Deslize o campo para os lados e encontre as ovelhinhas escondidas!",
       run: (container, phase) => runOvelhaPerdida(container, phase)
@@ -219,7 +219,7 @@
       id: "ovelha_fujona",
       title: "A OVELHA FUJONA",
       sub: "Alcance a Ovelhinha Sapeca",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_06_ovelha_fujona.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_06_ovelha_fujona.svg?v=89",
       audioFile: "vovo_jogo_06.mp3",
       vovoFala: "Arraste o pastorzinho pelo pasto até alcançar a ovelhinha fujona!",
       run: (container, phase) => runOvelhaFujona(container, phase)
@@ -228,7 +228,7 @@
       id: "animais_eden",
       title: "ANIMAIS DO ÉDEN",
       sub: "Encaixe na Silhueta Certa",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_07_animais_eden.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_07_animais_eden.svg?v=89",
       audioFile: "vovo_jogo_07.mp3",
       vovoFala: "Arraste cada animal para a sua sombra no Jardim do Éden!",
       run: (container, phase) => runAnimaisEden(container, phase)
@@ -237,7 +237,7 @@
       id: "quem_entrou_arca",
       title: "QUEM ENTROU NA ARCA?",
       sub: "Ouça e Toque no Animal",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_08_arca_noe.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_08_arca_noe.svg?v=89",
       audioFile: "vovo_jogo_08.mp3",
       vovoFala: "Ouça com atenção o que o Vovô falar e toque no bichinho certo!",
       run: (container, phase) => runQuemEntrouArca(container, phase)
@@ -246,7 +246,7 @@
       id: "quiz_visual",
       title: "O GRANDE DESAFIO",
       sub: "Perguntas com 3 Imagens",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_09_quiz.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_09_quiz.svg?v=89",
       audioFile: "vovo_jogo_09.mp3",
       vovoFala: "Escute a pergunta da Bíblia e toque na imagem da resposta certa!",
       run: (container, phase) => runQuizVisual(container, phase)
@@ -255,7 +255,7 @@
       id: "ligue_pontos",
       title: "LIGUE OS PONTOS",
       sub: "Conecte os Números 1, 2, 3...",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_10_pontos.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_10_pontos.svg?v=89",
       audioFile: "vovo_jogo_10.mp3",
       vovoFala: "Ligue os pontinhos brilhantes na ordem dos números para revelar o desenho!",
       run: (container, phase) => runLiguePontos(container, phase)
@@ -264,7 +264,7 @@
       id: "seis_erros",
       title: "OS 6 ERROS DO ÉDEN",
       sub: "Ache o que está Diferente",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_11_erros.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_11_erros.svg?v=89",
       audioFile: "vovo_jogo_11.mp3",
       vovoFala: "Compare as duas imagens e toque nos detalhes que estão diferentes!",
       run: (container, phase) => runSeisErros(container, phase)
@@ -273,7 +273,7 @@
       id: "criacao_ordem",
       title: "A CRIAÇÃO DO MUNDO",
       sub: "Coloque os Dias na Ordem",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_12_criacao.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_12_criacao.svg?v=89",
       audioFile: "vovo_jogo_12.mp3",
       vovoFala: "Coloque os quadros da Criação na ordem dos dias da semana!",
       run: (container, phase) => runCriacaoOrdem(container, phase)
@@ -282,7 +282,7 @@
       id: "memoria_sonoro",
       title: "MEMÓRIA DOS BICHOS",
       sub: "Encontre os Pares com Som",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_13_memoria.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_13_memoria.svg?v=89",
       audioFile: "vovo_jogo_13.mp3",
       vovoFala: "Vire as cartas e descubra os pares dos animais criados por Deus!",
       run: (container, phase) => runMemoriaSonoro(container, phase)
@@ -291,7 +291,7 @@
       id: "mana_deserto",
       title: "O MANÁ NO DESERTO",
       sub: "Ache as Cestas de Pão",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_14_mana.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_14_mana.svg?v=89",
       audioFile: "vovo_jogo_14.mp3",
       vovoFala: "Procure as cestinhas de maná fresquinho caídas no acampamento!",
       run: (container, phase) => runManaDeserto(container, phase)
@@ -300,7 +300,7 @@
       id: "tabernaculo_cesto",
       title: "O CESTO DE MOISÉS",
       sub: "Monte as Peças Sagradas",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_15_cesto.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_15_cesto.svg?v=89",
       audioFile: "vovo_jogo_15.mp3",
       vovoFala: "Encaixe cada pecinha para montar o cestinho de juncos de Moisés!",
       run: (container, phase) => runTabernaculoCesto(container, phase)
@@ -309,7 +309,7 @@
       id: "puzzle_3d",
       title: "QUEBRA-CABEÇA 3D",
       sub: "Monte a Cena de Cinema",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_16_puzzle.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_16_puzzle.svg?v=89",
       audioFile: "vovo_jogo_16.mp3",
       vovoFala: "Vamos montar o quebra-cabeça! Arraste as peças para formar a cena linda!",
       run: (container, phase) => runQuebraCabecaArcade(container, phase)
@@ -318,7 +318,7 @@
       id: "pintura_magica",
       title: "PINTURA MÁGICA",
       sub: "Vamos Colorir a História?",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_17_pintura.svg?v=88",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_17_pintura.svg?v=89",
       audioFile: "vovo_jogo_17.mp3",
       vovoFala: "Vamos colorir? Escolha as cores mágicas e toque para pintar o desenho!",
       run: (container, phase) => runPinturaMagicaArcade(container, phase)
@@ -559,7 +559,8 @@
   // ==========================================================================
   let currentActiveGame = null;
   let currentPhase = 1;
-  const TOTAL_PHASES = 5;
+  const TOTAL_PHASES = 15;
+  const FREE_PHASES = 5;
 
   function ensureArcadeStageInDOM() {
     injectArcadeStyles();
@@ -574,7 +575,7 @@
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="arcade-phase-badge" id="arcade-phase-display">
-            ⭐ FASE <span id="arcade-phase-num">1</span> / 5
+            ⭐ FASE <span id="arcade-phase-num">1</span> / <span id="arcade-phase-total">5</span>
           </div>
           <button class="arcade-btn-circle" onclick="window.repeatVovoInstruction()" title="Repetir Instrução do Vovô" style="background:linear-gradient(180deg, #eab308 0%, #ca8a04 100%);">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.54 8.46C16.47 9.4 17 10.66 17 12C17 13.34 16.47 14.6 15.54 15.54M19.07 4.93C20.94 6.8 22 9.33 22 12C22 14.67 20.94 17.2 19.07 19.07" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -617,8 +618,11 @@
   };
 
   function loadPhase(phase) {
+    const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
     const phaseNumEl = document.getElementById("arcade-phase-num");
     if (phaseNumEl) phaseNumEl.textContent = phase;
+    const phaseTotalEl = document.getElementById("arcade-phase-total");
+    if (phaseTotalEl) phaseTotalEl.textContent = isVip ? "15" : "5";
 
     const modal = document.getElementById("trono-victory-modal");
     if (modal) modal.style.display = "none";
@@ -656,7 +660,23 @@
 
   window.advanceArcadePhase = function() {
     TronoAudio.play("click");
-    if (currentPhase < TOTAL_PHASES) {
+    const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
+
+    if (currentPhase < FREE_PHASES) {
+      currentPhase++;
+      loadPhase(currentPhase);
+    } else if (currentPhase === FREE_PHASES) {
+      if (isVip) {
+        currentPhase++;
+        loadPhase(currentPhase);
+      } else {
+        if (typeof openModal === 'function') {
+          openModal('modal-subscribe');
+        } else {
+          alert("Assine o Clube Trono Kids para liberar mais 10 fases exclusivas!");
+        }
+      }
+    } else if (currentPhase < TOTAL_PHASES) {
       currentPhase++;
       loadPhase(currentPhase);
     } else {
@@ -702,41 +722,82 @@
     const game = currentActiveGame || {
       title: "Pesca Maravilhosa",
       sub: "Lance a Rede com Pedro",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=88"
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=89"
     };
 
-    const totalPhases = 5;
+    const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
     const current = currentPhase || 1;
-    const isLastPhase = current >= totalPhases;
 
-    // Bolinhas Vivas de Progresso (1 a 5)
     let dotsHtml = "";
-    for (let i = 1; i <= totalPhases; i++) {
-      const isJustWon = i === current;
-      const isDone = i < current;
-      const bg = (isJustWon || isDone)
-        ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)"
-        : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
-      const border = isJustWon ? "3px solid #fde047" : "2px solid #ffffff";
-      const shadow = isJustWon
-        ? "box-shadow: 0 0 16px rgba(253,224,71,0.95), 0 4px 10px rgba(0,0,0,0.5);"
-        : "box-shadow: 0 4px 8px rgba(0,0,0,0.4);";
-      const starIcon = isJustWon
-        ? `<img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" style="position:absolute; top:-14px; right:-8px; width:22px; height:22px; object-fit:contain; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));" alt="Estrela">`
-        : "";
+    if (!isVip) {
+      // 5 Bolinhas Gratuitas (1 a 5) + 6ª Bolinha com Cadeadinho VIP
+      for (let i = 1; i <= 5; i++) {
+        const isJustWon = i === current;
+        const isDone = i < current || (current >= 5 && i <= 5);
+        const bg = (isJustWon || isDone)
+          ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)"
+          : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
+        const border = isJustWon ? "3px solid #fde047" : "2px solid #ffffff";
+        const shadow = isJustWon
+          ? "box-shadow: 0 0 16px rgba(253,224,71,0.95), 0 4px 10px rgba(0,0,0,0.5);"
+          : "box-shadow: 0 4px 8px rgba(0,0,0,0.4);";
+        const starIcon = (isJustWon || (current >= 5 && i === 5))
+          ? `<img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" style="position:absolute; top:-14px; right:-8px; width:22px; height:22px; object-fit:contain; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));" alt="Estrela">`
+          : "";
 
+        dotsHtml += `
+          <div style="position:relative; width:44px; height:44px; border-radius:50%; background:${bg}; border:${border}; ${shadow} display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:18px;">
+            <span>${i}</span>
+            ${starIcon}
+          </div>
+        `;
+      }
+
+      // 6ª Bolinha com Cadeadinho Dourado (+10 Fases VIP)
       dotsHtml += `
-        <div style="position:relative; width:46px; height:46px; border-radius:50%; background:${bg}; border:${border}; ${shadow} display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:19px;">
-          <span>${i}</span>
-          ${starIcon}
+        <div onclick="if(typeof openModal === 'function') openModal('modal-subscribe');" style="position:relative; width:44px; height:44px; border-radius:50%; background:linear-gradient(180deg, #f59e0b 0%, #b45309 100%); border:2.5px solid #fde047; box-shadow:0 0 14px rgba(253,224,71,0.7), 0 4px 8px rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; color:#ffffff; font-size:20px; cursor:pointer;" title="Liberar +10 Fases VIP">
+          <span>🔒</span>
         </div>
+      `;
+    } else {
+      // Jogador VIP: mostra o bloco das 15 fases
+      const batchStart = Math.floor((current - 1) / 5) * 5 + 1;
+      for (let i = batchStart; i < batchStart + 5 && i <= 15; i++) {
+        const isJustWon = i === current;
+        const isDone = i < current;
+        const bg = (isJustWon || isDone)
+          ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)"
+          : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
+        const border = isJustWon ? "3px solid #fde047" : "2px solid #ffffff";
+        dotsHtml += `
+          <div style="position:relative; width:44px; height:44px; border-radius:50%; background:${bg}; border:${border}; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:18px;">
+            <span>${i}</span>
+          </div>
+        `;
+      }
+    }
+
+    let actionsHtml = "";
+    if (!isVip && current >= 5) {
+      actionsHtml = `
+        <button id="btn-canonical-continue" style="position:relative; z-index:2; width:100%; padding:15px; font-size:18px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2.5px solid #fde047; border-radius:999px; box-shadow:0 0 22px rgba(245,158,11,0.85), 0 6px 16px rgba(0,0,0,0.75); cursor:pointer; text-shadow:0 2px 4px rgba(0,0,0,0.5); animation:aliveBtnFloat 1.9s ease-in-out infinite;" onclick="if(typeof openModal === 'function') openModal('modal-subscribe');">
+          🔓 LIBERAR +10 FASES VIP!
+        </button>
+        <div onclick="window.closeTronoArcadeStage()" style="margin-top:14px; color:#fef08a; font-weight:800; font-size:15px; cursor:pointer; text-decoration:underline;">
+          Voltar à Sala de Jogos
+        </div>
+      `;
+    } else {
+      const btnText = (isVip && current >= 15) ? "🎉 FINALIZAR JOGUINHO!" : "CONTINUAR BRINCANDO";
+      actionsHtml = `
+        <button id="btn-canonical-continue" style="position:relative; z-index:2; width:100%; padding:15px; font-size:19px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2.5px solid #ffffff; border-radius:999px; box-shadow:0 0 22px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75); cursor:pointer; text-shadow:0 2px 4px rgba(0,0,0,0.5); animation:aliveBtnFloat 1.9s ease-in-out infinite; transition:transform 0.15s ease;" onclick="window.advanceArcadePhase()">
+          ${btnText}
+        </button>
       `;
     }
 
-    const btnText = isLastPhase ? "🎉 FINALIZAR JOGUINHO!" : "CONTINUAR BRINCANDO";
-
     modal.innerHTML = `
-      <div class="canonical-victory-card" style="width:90%; max-width:330px; padding:24px 18px; border:3.5px solid #fde047; border-radius:28px; background:linear-gradient(180deg, #aa00ff 0%, #581c87 100%); box-shadow:0 0 32px rgba(170,0,255,0.85), 0 18px 44px rgba(0,0,0,0.95); text-align:center; position:relative; overflow:hidden; animation:vicCardPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+      <div class="canonical-victory-card" style="width:90%; max-width:340px; padding:24px 18px; border:3.5px solid #fde047; border-radius:28px; background:linear-gradient(180deg, #aa00ff 0%, #581c87 100%); box-shadow:0 0 32px rgba(170,0,255,0.85), 0 18px 44px rgba(0,0,0,0.95); text-align:center; position:relative; overflow:hidden; animation:vicCardPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
         <!-- 1. Único Ícone 3D Oficial do Jogo no Topo -->
         <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
           <img src="${game.icon}" style="width:84px; height:84px; object-fit:contain; border-radius:22px; border:3px solid #fde047; background:rgba(255,255,255,0.15); box-shadow:0 0 20px rgba(253,224,71,0.8), 0 8px 16px rgba(0,0,0,0.7); animation:aliveBtnFloat 2.0s ease-in-out infinite;" alt="${game.title}">
@@ -747,15 +808,13 @@
           PARABÉNS! MUITO BEM!
         </div>
 
-        <!-- 3. Bolinhas de Progresso 1 a 5 -->
-        <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:22px; min-height:50px;">
+        <!-- 3. Bolinhas de Progresso (1 a 5 + 🔒) -->
+        <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:22px; min-height:50px;">
           ${dotsHtml}
         </div>
 
-        <!-- 4. Botão Oficial CONTINUAR BRINCANDO -->
-        <button id="btn-canonical-continue" style="position:relative; z-index:2; width:100%; padding:15px; font-size:19px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2.5px solid #ffffff; border-radius:999px; box-shadow:0 0 22px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75); cursor:pointer; text-shadow:0 2px 4px rgba(0,0,0,0.5); animation:aliveBtnFloat 1.9s ease-in-out infinite; transition:transform 0.15s ease;" onclick="window.advanceArcadePhase()">
-          ${btnText}
-        </button>
+        <!-- 4. Ações de Vitória -->
+        ${actionsHtml}
       </div>
     `;
 
@@ -811,8 +870,9 @@
 
   // --- JOGO 1: PESCA MARAVILHOSA (BARRA DE TIMING) ---
   function runPescaMaravilhosa(container, phase) {
-    const targetWidth = Math.max(46 - phase * 6, 20);
-    const speed = 1.1 + phase * 0.35;
+    // Curva Suave Rigoberto: Fase 1 a 5 fáceis e amigáveis; Fase 15 nível mestre!
+    const targetWidth = Math.max(46 - phase * 1.85, 18);
+    const speed = 0.95 + phase * 0.115;
 
     // REGRA DE OURO RIGOBERTO: Fase 1 = 1 peixinho, Fase 2 = 2 peixinhos, Fase 3 = 3 peixinhos...
     const totalPeixes = Math.min(phase, 5);
@@ -827,7 +887,7 @@
     ];
 
     const peixesHtml = peixesPos.slice(0, totalPeixes).map((p, idx) => {
-      const src = p.isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=88" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=88";
+      const src = p.isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=89" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=89";
       return `
         <div class="peixe-rio-item" id="peixe-rio-${idx}" style="position:absolute; top:${p.top}; left:${p.left}; width:${p.size}; height:auto; animation:peixeNadoSuave ${p.dur} infinite ease-in-out ${p.delay}; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.5)); transition:all 0.4s ease;">
           <img src="${src}" style="width:100%; height:auto;" alt="Peixinho da Pesca">
@@ -838,7 +898,7 @@
     // Peixes capturados dentro da rede (EXATAMENTE a mesma quantidade da fase)
     const peixesNaRedeHtml = Array.from({ length: totalPeixes }).map((_, i) => {
       const isBlue = i % 2 === 1;
-      const src = isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=88" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=88";
+      const src = isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=89" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=89";
       const rot = (i % 2 === 0 ? -12 : 16) + (i * 6);
       const size = Math.max(54 - i * 3, 40);
       return `<img src="${src}" style="width:${size}px; height:auto; transform:rotate(${rot}deg); margin:0 -6px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.6));">`;
@@ -863,7 +923,7 @@
         <!-- 2. SUPERFÍCIE DAS ONDAS E O BARQUINHO DE PEDRO (100% CENTRALIZADO COM MARGIN: 0 AUTO) -->
         <div id="barco-pos-wrapper" style="position:absolute; top:9.5%; left:0; right:0; margin:0 auto; width:250px; height:150px; z-index:15; pointer-events:none; display:flex; align-items:center; justify-content:center;">
           <div id="barco-container" style="width:100%; height:100%; animation:balancoBarcoReal 3.5s ease-in-out infinite; transition:transform 0.3s ease; display:flex; align-items:center; justify-content:center;">
-            <img id="barco-img-svg" src="./2_ASSETS_UI_BOTOES/barco_pedro_pesca.svg?v=88" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 8px 12px rgba(0,0,0,0.5));" alt="Barco de Pedro">
+            <img id="barco-img-svg" src="./2_ASSETS_UI_BOTOES/barco_pedro_pesca.svg?v=89" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 8px 12px rgba(0,0,0,0.5));" alt="Barco de Pedro">
           </div>
         </div>
 
@@ -906,7 +966,7 @@
 
           <!-- A REDINHA (100% Centralizada no eixo do barco com margin: 0 auto) -->
           <div id="pesca-rede-lanca" style="position:absolute; top:4%; left:0; right:0; margin:0 auto; transform:scale(0.18); width:190px; height:190px; z-index:20; opacity:0; pointer-events:none; transition:all 0.65s cubic-bezier(0.2, 0.9, 0.3, 1);">
-            <img src="./2_ASSETS_UI_BOTOES/rede_pesca_maravilhosa.svg?v=88" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 0 16px rgba(253, 224, 71, 0.8));" alt="Rede de Pesca">
+            <img src="./2_ASSETS_UI_BOTOES/rede_pesca_maravilhosa.svg?v=89" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 0 16px rgba(253, 224, 71, 0.8));" alt="Rede de Pesca">
             <!-- Peixinhos recolhidos na rede (EXATAMENTE a mesma quantidade da fase) -->
             <div id="peixes-na-rede" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s ease;">
               ${peixesNaRedeHtml}
