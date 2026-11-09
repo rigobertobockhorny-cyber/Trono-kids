@@ -15,9 +15,9 @@
     (function forcePurgeOldMobileCacheV55() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
-        const alreadyPurged = localStorage.getItem('trono_cache_purged_v89') === '1';
+        const alreadyPurged = localStorage.getItem('trono_cache_purged_v90') === '1';
         if (!alreadyPurged || urlParams.get('limpar') === '1') {
-          localStorage.setItem('trono_cache_purged_v89', '1');
+          localStorage.setItem('trono_cache_purged_v90', '1');
           if ('caches' in window) {
             caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
           }
@@ -26,7 +26,7 @@
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=89').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=90').then(reg => {
           reg.update();
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
@@ -1759,7 +1759,7 @@
   </script>
   <!-- TOPO COM AMPLO RESPIRO: LOGO EBD 3D EM CIMA + 2 BOLINHAS REDONDINHAS NOS CANTINHOS! -->
   <header class="topbar">
-    <div class="brand-logo-wrap" onclick="goHome()">
+    <div class="brand-logo-wrap" onclick="goHome(); window.handleDevLogoTap();">
       <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=66" alt="Trono da Promessa EBD" class="brand-logo">
     </div>
 
@@ -2183,8 +2183,8 @@
   <!-- ==================================================================== -->
   <div id="modal-parental-gate" class="modal-backdrop">
     <div class="modal-card" style="padding: 30px 22px; max-width: 355px;">
-      <div style="font-size: 24px; font-weight: 700; color: #00e5ff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9); line-height: 1.2; margin-bottom: 14px;">
-        Área para Papai e Mamãe
+      <div onclick="window.openDeveloperDialog()" style="font-size: 24px; font-weight: 700; color: #00e5ff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9); line-height: 1.2; margin-bottom: 14px; cursor:pointer;" title="Toque para Modo Desenvolvedor (12345)">
+        Área para Papai e Mamãe 🛠️
       </div>
       <div class="modal-subtitle" style="font-size: 13.5px; color: #f1f5f9; line-height: 1.42; margin-bottom: 24px;">
         Para proteção infantil (Google Play / LGPD / COPPA), peça a um adulto para responder:
@@ -2436,8 +2436,8 @@
 </div>
 
 <script src="pinturas_base64.js?v=78.0" defer></script>
-<script src="ebd_modulos_educativos.js?v=89.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=89.0"></script>
+<script src="ebd_modulos_educativos.js?v=90.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=90.0"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
@@ -3578,6 +3578,59 @@ function startGooglePlayCheckout(plano) {
   closeModal('modal-subscribe');
 }
 
+
+// ============================================================================
+// MODO DESENVOLVEDOR OFICIAL (SENHA: 12345) - RIGOBERTO
+// ============================================================================
+window.DEVELOPER_PASSWORD = '12345';
+let devLogoTapCount = 0;
+let devLogoTapTimer = null;
+
+window.handleDevLogoTap = function() {
+  devLogoTapCount++;
+  if (devLogoTapTimer) clearTimeout(devLogoTapTimer);
+  devLogoTapTimer = setTimeout(() => { devLogoTapCount = 0; }, 2500);
+  if (devLogoTapCount >= 5) {
+    devLogoTapCount = 0;
+    window.openDeveloperDialog();
+  }
+};
+
+window.openDeveloperDialog = function() {
+  const pass = prompt('🔐 Modo Desenvolvedor • Trono Kids EBD\n\nDigite a senha do desenvolvedor:');
+  if (!pass) return;
+  if (pass.trim() === window.DEVELOPER_PASSWORD) {
+    try { playSoundWinCelebration(); } catch(e) {}
+    const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
+    const choice = confirm(
+      '🛠️ SENHA DO DESENVOLVEDOR CORRETA (12345)!\n\n' +
+      'Status Atual: ' + (isVip ? '👑 MODO VIP ATIVO (15 Fases / Tudo Liberado)' : '⭐ MODO FREE (5 Fases / Modo Grátis)') + '\n\n' +
+      'Escolha uma ação:\n' +
+      '• [OK] = ATIVAR MODO VIP (15 Fases + 22 Lições Liberadas)\n' +
+      '• [Cancelar] = DESATIVAR MODO VIP (Voltar ao Modo Free 5 Fases para teste de usuário comum)'
+    );
+    if (choice) {
+      isVipUnlocked = true;
+      localStorage.setItem('trono_vip_active_v4', '1');
+      alert('👑 MODO VIP ATIVADO!\nTodas as 15 fases e histórias foram liberadas com sucesso!');
+    } else {
+      isVipUnlocked = false;
+      localStorage.removeItem('trono_vip_active_v4');
+      alert('🔒 MODO FREE ATIVADO!\nO app agora está no modo gratuito (5 fases) para teste de usuário comum.');
+    }
+    updateTopCounters();
+    if (document.getElementById('screen-gallery') && document.getElementById('screen-gallery').classList.contains('active')) renderGalleryPage();
+    if (document.getElementById('screen-album') && document.getElementById('screen-album').classList.contains('active')) renderStickerAlbum();
+    if (document.getElementById('screen-ludo-trail') && document.getElementById('screen-ludo-trail').classList.contains('active')) renderLudoTrailBoard();
+    if (document.getElementById('screen-sleep') && document.getElementById('screen-sleep').classList.contains('active')) renderSleepCorner();
+    const phaseTotalEl = document.getElementById('arcade-phase-total');
+    if (phaseTotalEl) phaseTotalEl.textContent = isVipUnlocked ? '15' : '5';
+  } else {
+    try { playSoundWrongRed(); } catch(e) {}
+    alert('❌ Senha do desenvolvedor incorreta!');
+  }
+};
+
 function redeemVipCoupon() {
   playSoundClick();
   const inputEl = document.getElementById('input-vip-code');
@@ -3592,7 +3645,11 @@ function redeemVipCoupon() {
   }
 
   // Lista de Códigos Promocionais Válidos:
+  const isDevPass = (rawCode === '12345');
+
+  // Lista de Códigos Promocionais Válidos:
   const validPromoCodes = new Set([
+    '12345',
     'BOCK-FAMILIA-2026',
     'TRONO-01-A7',
     'TRONO-02-B3',
@@ -3620,7 +3677,9 @@ function redeemVipCoupon() {
     isVipUnlocked = true;
     localStorage.setItem('trono_vip_active_v4', '1');
     msgEl.style.color = '#34d399';
-    msgEl.textContent = ' Cupom aplicado com sucesso! Acesso completo ativado!';
+    msgEl.textContent = isDevPass
+      ? '🛠️ SENHA DO DESENVOLVEDOR (12345) ACEITA! Modo VIP e 15 Fases Liberadas!'
+      : ' Cupom aplicado com sucesso! Acesso completo ativado!';
     playSoundWinCelebration();
     launchCelebrationConfetti();
 
