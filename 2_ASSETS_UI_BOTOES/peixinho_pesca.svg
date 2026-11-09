@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" width="100" height="60">
+  <defs>
+    <!-- Gradiente do Peixe Dourado / Coral -->
+    <linearGradient id="fishBody" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="40%" stop-color="#fbbf24"/>
+      <stop offset="85%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="finGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Barbatana Traseira / Cauda -->
+  <path d="M 28 30 Q 12 10 2 14 Q 10 30 2 46 Q 12 50 28 30 Z" fill="url(#finGrad)" stroke="#c2410c" stroke-width="1"/>
+
+  <!-- Barbatana Dorsal -->
+  <path d="M 48 18 Q 62 6 72 15 Q 60 18 48 18 Z" fill="url(#finGrad)"/>
+
+  <!-- Barbatana Ventral -->
+  <path d="M 52 42 Q 62 52 68 45 Q 60 42 52 42 Z" fill="url(#finGrad)"/>
+
+  <!-- Corpo Principal do Peixe (Ondulado / Aerodinâmico) -->
+  <path d="M 24 30 Q 35 15 65 16 Q 96 20 98 30 Q 96 40 65 44 Q 35 45 24 30 Z" fill="url(#fishBody)" stroke="#b45309" stroke-width="1.2"/>
+
+  <!-- Guelra / Brânquia -->
+  <path d="M 72 22 Q 68 30 72 38" stroke="#c2410c" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Barbatana Peitoral Lateral -->
+  <path d="M 58 32 Q 46 36 44 42 Q 54 40 58 32 Z" fill="url(#finGrad)" stroke="#c2410c" stroke-width="0.8"/>
+
+  <!-- Olho Fofo Infantil 3D -->
+  <circle cx="84" cy="27" r="5" fill="#ffffff" stroke="#78350f" stroke-width="0.8"/>
+  <circle cx="85.5" cy="27" r="3" fill="#0f172a"/>
+  <!-- Brilho do olho -->
+  <circle cx="86.8" cy="25.5" r="1.2" fill="#ffffff"/>
+
+  <!-- Boquinha Sorridente -->
+  <path d="M 97 32 Q 94 33 92 31" stroke="#78350f" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+
+  <!-- Escamas Decorativas Suaves -->
+  <path d="M 45 24 Q 48 27 45 30" stroke="#fef08a" stroke-width="1.2" fill="none"/>
+  <path d="M 52 27 Q 55 30 52 33" stroke="#fef08a" stroke-width="1.2" fill="none"/>
+  <path d="M 40 28 Q 43 31 40 34" stroke="#fef08a" stroke-width="1.2" fill="none"/>
+</svg>
