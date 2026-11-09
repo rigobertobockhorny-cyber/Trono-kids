@@ -1417,4 +1417,93 @@
   }
 
   console.log("✅ [Trono Kids] Super Arcade Audiovisual (17 Jogos Oficiais) carregado com sucesso!");
+
+  // ==========================================================================
+  // 8. TRAVA PARENTAL OBRIGATÓRIA (FAMÍLIA E PROFESSOR)
+  // ==========================================================================
+  function showParentalGate(onSuccess) {
+    let modal = document.getElementById("trono-parental-gate-modal");
+    if (!modal) {
+      modal = document.createElement("div");
+      modal.id = "trono-parental-gate-modal";
+      modal.style.cssText = "position:fixed; inset:0; background:rgba(7,10,25,0.92); backdrop-filter:blur(10px); z-index:9999999; display:flex; align-items:center; justify-content:center; padding:16px;";
+      document.body.appendChild(modal);
+    }
+
+    const n1 = Math.floor(Math.random() * 8) + 6; // 6..13
+    const n2 = Math.floor(Math.random() * 7) + 5; // 5..11
+    const correta = n1 + n2;
+
+    const opcoes = [correta];
+    while (opcoes.length < 4) {
+      const falsa = correta + (Math.floor(Math.random() * 7) - 3);
+      if (falsa !== correta && falsa > 0 && !opcoes.includes(falsa)) {
+        opcoes.push(falsa);
+      }
+    }
+    opcoes.sort(() => Math.random() - 0.5);
+
+    modal.innerHTML = `
+      <div style="background:linear-gradient(180deg,#1e1b4b,#0f172a); border:3px solid #fde047; border-radius:24px; padding:24px 20px; max-width:340px; width:100%; text-align:center; box-shadow:0 12px 35px rgba(0,0,0,0.8);">
+        <div style="font-size:36px; margin-bottom:6px;">👨‍👩‍👧‍👦</div>
+        <div style="font-size:16px; font-weight:900; color:#fde047; margin-bottom:4px;">PORTAL DA FAMÍLIA E PROFESSOR</div>
+        <div style="font-size:12px; font-weight:700; color:#cbd5e1; margin-bottom:14px;">Área exclusiva para adultos. Resolva para entrar:</div>
+        
+        <div style="background:rgba(255,255,255,0.08); border:2px solid #38bdf8; border-radius:16px; padding:12px; font-size:24px; font-weight:900; color:#ffffff; margin-bottom:16px;">
+          Quanto é ${n1} + ${n2}?
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; margin-bottom:16px;">
+          ${opcoes.map(op => `
+            <button class="btn-parent-opt" onclick="window._checkParentAns(${op}, ${correta})" style="padding:12px; background:linear-gradient(180deg,#38bdf8,#0284c7); border:2px solid #ffffff; border-radius:14px; font-size:18px; font-weight:900; color:#ffffff; cursor:pointer;">
+              ${op}
+            </button>
+          `).join("")}
+        </div>
+
+        <button onclick="document.getElementById('trono-parental-gate-modal').style.display='none'" style="background:transparent; border:none; color:#94a3b8; font-weight:800; font-size:12px; cursor:pointer;">
+          ✕ Cancelar e Voltar
+        </button>
+      </div>
+    `;
+    modal.style.display = "flex";
+
+    window._checkParentAns = function(escolhida, certa) {
+      if (escolhida === certa) {
+        TronoAudio.play("success");
+        modal.style.display = "none";
+        if (typeof onSuccess === "function") onSuccess();
+      } else {
+        TronoAudio.play("error");
+        modal.innerHTML = `
+          <div style="background:linear-gradient(180deg,#7f1d1d,#450a0a); border:3px solid #ef4444; border-radius:24px; padding:24px 20px; max-width:320px; width:100%; text-align:center;">
+            <div style="font-size:36px; margin-bottom:6px;">🔒</div>
+            <div style="font-size:16px; font-weight:900; color:#ffffff; margin-bottom:6px;">Resposta Incorreta</div>
+            <div style="font-size:12px; color:#fca5a5; margin-bottom:14px;">Peça a ajuda de um adulto para acessar este portal.</div>
+            <button onclick="document.getElementById('trono-parental-gate-modal').style.display='none'" style="padding:10px 20px; background:#ffffff; color:#991b1b; font-weight:900; border:none; border-radius:999px; cursor:pointer;">
+              Entendido
+            </button>
+          </div>
+        `;
+      }
+    };
+  }
+
+  // Substitui a abertura do portal para exigir a trava parental
+  window.openTeacherAndFamilyPortal = function() {
+    TronoAudio.play("click");
+    showParentalGate(() => {
+      if (typeof showScreen === "function") showScreen("screen-teacher-portal");
+      if (typeof renderTeacherPortalScreen === "function") renderTeacherPortalScreen();
+    });
+  };
+
+  // Garante que o filterBar da Sala de Jogos sempre mostre '17 JOGOS EM TELA CHEIA'
+  setInterval(() => {
+    const filterBar = document.getElementById("games-hub-filter-bar");
+    if (filterBar && filterBar.textContent.includes("10 JOGOS")) {
+      filterBar.innerHTML = `<span style="font-size:12.5px; font-weight:900; color:#fde047; padding:2px 8px;">SALA DE JOGOS — 17 JOGOS EM TELA CHEIA</span>`;
+    }
+  }, 500);
+
 })();
