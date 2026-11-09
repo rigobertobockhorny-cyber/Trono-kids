@@ -148,7 +148,7 @@
       }
       if (!audioFile) return;
       try {
-        const src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=85`;
+        const src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=86`;
         this.vovoPlayer = new Audio(src);
         this.vovoPlayer.play().catch(err => {
           console.warn("Audio play prevented:", err);
@@ -174,7 +174,7 @@
       id: "pesca_maravilhosa",
       title: "PESCA MARAVILHOSA",
       sub: "Toque na Zona Verde!",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=86",
       audioFile: "vovo_jogo_01.mp3",
       vovoFala: "Vamos pescar com Pedro! Toque na tela quando a agulha estiver no verde!",
       run: (container, phase) => runPescaMaravilhosa(container, phase)
@@ -183,7 +183,7 @@
       id: "dracma_perdida",
       title: "A DRACMA PERDIDA",
       sub: "Ache a Moeda no Escuro",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_02_dracma.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_02_dracma.svg?v=86",
       audioFile: "vovo_jogo_02.mp3",
       vovoFala: "A mulher perdeu a dracma! Mova a luz da lamparina e encontre as moedinhas!",
       run: (container, phase) => runDracmaPerdida(container, phase)
@@ -192,7 +192,7 @@
       id: "pombo_arca",
       title: "O POMBO DA ARCA",
       sub: "Labirinto de Nuvens",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_03_pombo.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_03_pombo.svg?v=86",
       audioFile: "vovo_jogo_03.mp3",
       vovoFala: "Guie o pombinho pelas nuvens até pousar na janela da Arca de Noé!",
       run: (container, phase) => runPomboArca(container, phase)
@@ -201,7 +201,7 @@
       id: "jonatas_alvo",
       title: "JÔNATAS E O ALVO",
       sub: "Tiro com Arco no Campo",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_04_alvo.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_04_alvo.svg?v=86",
       audioFile: "vovo_jogo_04.mp3",
       vovoFala: "Puxe a corda do arco com o dedinho e acerte o centro do alvo de madeira!",
       run: (container, phase) => runJonatasAlvo(container, phase)
@@ -210,7 +210,7 @@
       id: "ovelha_perdida",
       title: "A OVELHA PERDIDA",
       sub: "Deslize e Ache a Ovelha",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_05_ovelha_perdida.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_05_ovelha_perdida.svg?v=86",
       audioFile: "vovo_jogo_05.mp3",
       vovoFala: "Deslize o campo para os lados e encontre as ovelhinhas escondidas!",
       run: (container, phase) => runOvelhaPerdida(container, phase)
@@ -219,7 +219,7 @@
       id: "ovelha_fujona",
       title: "A OVELHA FUJONA",
       sub: "Alcance a Ovelhinha Sapeca",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_06_ovelha_fujona.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_06_ovelha_fujona.svg?v=86",
       audioFile: "vovo_jogo_06.mp3",
       vovoFala: "Arraste o pastorzinho pelo pasto até alcançar a ovelhinha fujona!",
       run: (container, phase) => runOvelhaFujona(container, phase)
@@ -228,7 +228,7 @@
       id: "animais_eden",
       title: "ANIMAIS DO ÉDEN",
       sub: "Encaixe na Silhueta Certa",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_07_animais_eden.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_07_animais_eden.svg?v=86",
       audioFile: "vovo_jogo_07.mp3",
       vovoFala: "Arraste cada animal para a sua sombra no Jardim do Éden!",
       run: (container, phase) => runAnimaisEden(container, phase)
@@ -237,7 +237,7 @@
       id: "quem_entrou_arca",
       title: "QUEM ENTROU NA ARCA?",
       sub: "Ouça e Toque no Animal",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_08_arca_noe.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_08_arca_noe.svg?v=86",
       audioFile: "vovo_jogo_08.mp3",
       vovoFala: "Ouça com atenção o que o Vovô falar e toque no bichinho certo!",
       run: (container, phase) => runQuemEntrouArca(container, phase)
@@ -246,7 +246,7 @@
       id: "quiz_visual",
       title: "O GRANDE DESAFIO",
       sub: "Perguntas com 3 Imagens",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_09_quiz.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_09_quiz.svg?v=86",
       audioFile: "vovo_jogo_09.mp3",
       vovoFala: "Escute a pergunta da Bíblia e toque na imagem da resposta certa!",
       run: (container, phase) => runQuizVisual(container, phase)
@@ -255,7 +255,7 @@
       id: "ligue_pontos",
       title: "LIGUE OS PONTOS",
       sub: "Conecte os Números 1, 2, 3...",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_10_pontos.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_10_pontos.svg?v=86",
       audioFile: "vovo_jogo_10.mp3",
       vovoFala: "Ligue os pontinhos brilhantes na ordem dos números para revelar o desenho!",
       run: (container, phase) => runLiguePontos(container, phase)
@@ -264,7 +264,7 @@
       id: "seis_erros",
       title: "OS 6 ERROS DO ÉDEN",
       sub: "Ache o que está Diferente",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_11_erros.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_11_erros.svg?v=86",
       audioFile: "vovo_jogo_11.mp3",
       vovoFala: "Compare as duas imagens e toque nos detalhes que estão diferentes!",
       run: (container, phase) => runSeisErros(container, phase)
@@ -273,7 +273,7 @@
       id: "criacao_ordem",
       title: "A CRIAÇÃO DO MUNDO",
       sub: "Coloque os Dias na Ordem",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_12_criacao.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_12_criacao.svg?v=86",
       audioFile: "vovo_jogo_12.mp3",
       vovoFala: "Coloque os quadros da Criação na ordem dos dias da semana!",
       run: (container, phase) => runCriacaoOrdem(container, phase)
@@ -282,7 +282,7 @@
       id: "memoria_sonoro",
       title: "MEMÓRIA DOS BICHOS",
       sub: "Encontre os Pares com Som",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_13_memoria.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_13_memoria.svg?v=86",
       audioFile: "vovo_jogo_13.mp3",
       vovoFala: "Vire as cartas e descubra os pares dos animais criados por Deus!",
       run: (container, phase) => runMemoriaSonoro(container, phase)
@@ -291,7 +291,7 @@
       id: "mana_deserto",
       title: "O MANÁ NO DESERTO",
       sub: "Ache as Cestas de Pão",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_14_mana.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_14_mana.svg?v=86",
       audioFile: "vovo_jogo_14.mp3",
       vovoFala: "Procure as cestinhas de maná fresquinho caídas no acampamento!",
       run: (container, phase) => runManaDeserto(container, phase)
@@ -300,7 +300,7 @@
       id: "tabernaculo_cesto",
       title: "O CESTO DE MOISÉS",
       sub: "Monte as Peças Sagradas",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_15_cesto.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_15_cesto.svg?v=86",
       audioFile: "vovo_jogo_15.mp3",
       vovoFala: "Encaixe cada pecinha para montar o cestinho de juncos de Moisés!",
       run: (container, phase) => runTabernaculoCesto(container, phase)
@@ -309,7 +309,7 @@
       id: "puzzle_3d",
       title: "QUEBRA-CABEÇA 3D",
       sub: "Monte a Cena de Cinema",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_16_puzzle.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_16_puzzle.svg?v=86",
       audioFile: "vovo_jogo_16.mp3",
       vovoFala: "Vamos montar o quebra-cabeça! Arraste as peças para formar a cena linda!",
       run: (container, phase) => runQuebraCabecaArcade(container, phase)
@@ -318,7 +318,7 @@
       id: "pintura_magica",
       title: "PINTURA MÁGICA",
       sub: "Vamos Colorir a História?",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_17_pintura.svg?v=85",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_17_pintura.svg?v=86",
       audioFile: "vovo_jogo_17.mp3",
       vovoFala: "Vamos colorir? Escolha as cores mágicas e toque para pintar o desenho!",
       run: (container, phase) => runPinturaMagicaArcade(container, phase)
@@ -529,6 +529,20 @@
         100% { transform: translateY(-60px) scale(1.1); opacity: 0; }
       }
 
+      
+      @keyframes starTrophyPulse {
+        0%, 100% { transform: scale(1) rotate(0deg); }
+        50% { transform: scale(1.12) rotate(4deg); }
+      }
+      @keyframes aliveBtnFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-3px); }
+      }
+      @keyframes titlePopBounce {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.04); }
+      }
+
       /* PARTICULAS DE CONFETE */
       .confetti-canvas {
         position: absolute;
@@ -567,39 +581,13 @@
           </button>
         </div>
 
-        <div class="arcade-vovo-bubble" id="arcade-vovo-bubble" style="display:none;">
-          <img src="./2_ASSETS_UI_BOTOES/ebd_icon_vovo.png" style="width:36px; height:36px; object-fit:contain; border-radius:50%; border:1.5px solid #fde047;">
-          <span id="arcade-vovo-text" style="color:#ffffff; font-weight:800; font-size:13.5px; line-height:1.2;"></span>
-        </div>
-
+        <!-- Área de Jogo Limpa (Sem balões de texto bloqueando a tela) -->
         <div class="arcade-game-canvas-area" id="arcade-game-stage-container"></div>
 
         <canvas id="arcade-confetti-canvas" class="confetti-canvas"></canvas>
 
-        <div id="trono-victory-modal">
-          <div class="victory-card">
-            <div class="victory-stars">
-              <span class="vic-star">⭐</span>
-              <span class="vic-star">🌟</span>
-              <span class="vic-star">⭐</span>
-            </div>
-            <div style="font-size:24px; font-weight:900; color:#fde047; margin-bottom:4px; letter-spacing:0.5px;">PARABÉNS!</div>
-            <div style="font-size:15px; font-weight:800; color:#ffffff; margin-bottom:6px;">Você completou a fase!</div>
-            <div style="font-size:12.5px; color:#cbd5e1; font-weight:700;">Muito bem, meu netinho!</div>
-
-            <div class="victory-actions-3">
-              <button class="btn-vic-3 btn-vic-home" onclick="window.closeTronoArcadeStage()" title="Voltar à Sala de Jogos">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 12L12 3L21 12M5 10V20H19V10" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <button class="btn-vic-3 btn-vic-retry" onclick="window.retryCurrentArcadePhase()" title="Jogar Novamente esta Fase">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M1 4V10H7M23 20V14H17M20.49 9A9 9 0 0 0 5.64 5.64L1 10M23 14L18.36 18.36A9 9 0 0 1 3.51 15" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <button class="btn-vic-3 btn-vic-next" onclick="window.advanceArcadePhase()" title="Próxima Fase">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
+        <!-- MODAL CANÔNICO DE VITÓRIA (IDENTIDADE VISUAL PADRÃO TRONO KIDS) -->
+        <div id="trono-victory-modal"></div>
       `;
       document.body.appendChild(stage);
     }
@@ -635,14 +623,8 @@
     const modal = document.getElementById("trono-victory-modal");
     if (modal) modal.style.display = "none";
 
-    const bubble = document.getElementById("arcade-vovo-bubble");
-    const vovoText = document.getElementById("arcade-vovo-text");
-    if (bubble && vovoText && currentActiveGame) {
-      vovoText.textContent = currentActiveGame.vovoFala;
-      bubble.style.display = "flex";
-      setTimeout(() => {
-        bubble.style.display = "none";
-      }, 5500);
+    // O Vovô Nésio fala a instrução apenas em áudio (tela 100% limpa, sem texto)
+    if (currentActiveGame && currentActiveGame.audioFile) {
       TronoAudio.falarVovo(currentActiveGame.audioFile);
     }
 
@@ -656,6 +638,7 @@
   window.closeTronoArcadeStage = function() {
     TronoAudio.play("click");
     if (TronoAudio.vovoPlayer) { try { TronoAudio.vovoPlayer.pause(); } catch(e){} }
+    if (celebrationClapAudio) { try { celebrationClapAudio.pause(); } catch(e){} }
     const stage = document.getElementById("screen-trono-arcade-stage");
     if (stage) {
       stage.classList.remove("active");
@@ -677,30 +660,127 @@
       currentPhase++;
       loadPhase(currentPhase);
     } else {
-      currentPhase = 1;
-      loadPhase(currentPhase);
+      window.closeTronoArcadeStage();
     }
   };
 
   window.repeatVovoInstruction = function() {
-    if (currentActiveGame) {
-      const bubble = document.getElementById("arcade-vovo-bubble");
-      const vovoText = document.getElementById("arcade-vovo-text");
-      if (bubble && vovoText) {
-        vovoText.textContent = currentActiveGame.vovoFala;
-        bubble.style.display = "flex";
-        setTimeout(() => { bubble.style.display = "none"; }, 4000);
-      }
+    if (currentActiveGame && currentActiveGame.audioFile) {
       TronoAudio.falarVovo(currentActiveGame.audioFile);
     }
   };
 
+  let celebrationClapAudio = null;
+
   function triggerArcadeVictory() {
-    TronoAudio.play("fanfare");
-    TronoAudio.falarVovo("vovo_vitoria.mp3");
+    // 1. Crianças aplaudindo e comemorando ("êêê!")
+    try {
+      if (!celebrationClapAudio) {
+        celebrationClapAudio = new Audio('./6_ASSETS_AUDIO/11_festa_comemoracao_aplausos.wav');
+      }
+      celebrationClapAudio.currentTime = 0;
+      celebrationClapAudio.volume = 1.0;
+      celebrationClapAudio.play().catch(() => {});
+    } catch(e) {}
+
+    // 2. Voz afetuosa e neutra do Vovô Nésio
+    setTimeout(() => {
+      TronoAudio.falarVovo("vovo_vitoria.mp3");
+    }, 450);
+
+    // 3. Chuva de confetes coloridos
     launchConfetti();
+
+    // 4. Monta e exibe o CARD CANÔNICO OFICIAL DO TRONO KIDS
+    renderCanonicalVictoryModal();
+  }
+
+  function renderCanonicalVictoryModal() {
     const modal = document.getElementById("trono-victory-modal");
-    if (modal) modal.style.display = "flex";
+    if (!modal) return;
+
+    const game = currentActiveGame || {
+      title: "Pesca Maravilhosa",
+      sub: "Lance a Rede com Pedro",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=86"
+    };
+
+    const totalPhases = 5;
+    const current = currentPhase || 1;
+    const isLastPhase = current >= totalPhases;
+
+    // Bolinhas Vivas de Progresso (1 a 5)
+    let dotsHtml = "";
+    for (let i = 1; i <= totalPhases; i++) {
+      const isJustWon = i === current;
+      const isDone = i < current;
+      const bg = (isJustWon || isDone)
+        ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)"
+        : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
+      const border = isJustWon ? "3px solid #fde047" : "2px solid #ffffff";
+      const shadow = isJustWon
+        ? "box-shadow: 0 0 16px rgba(253,224,71,0.9), 0 4px 10px rgba(0,0,0,0.5);"
+        : "box-shadow: 0 4px 8px rgba(0,0,0,0.4);";
+      const starIcon = isJustWon
+        ? `<img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" style="position:absolute; top:-14px; right:-8px; width:22px; height:22px; object-fit:contain; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));" alt="Estrela">`
+        : "";
+
+      dotsHtml += `
+        <div style="position:relative; width:44px; height:44px; border-radius:50%; background:${bg}; border:${border}; ${shadow} display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:18px;">
+          <span>${i}</span>
+          ${starIcon}
+        </div>
+      `;
+    }
+
+    const remaining = totalPhases - current;
+    const subText = remaining > 0
+      ? `Faltam ${remaining} fase${remaining === 1 ? '' : 's'} neste joguinho (até 5 de 5) para liberar +1 Casinha no Álbum da Fé!`
+      : `5 de 5 Concluído! Você liberou +1 Casinha no Álbum da Fé!`;
+
+    const btnText = isLastPhase ? "🎉 FINALIZAR JOGUINHO!" : "CONTINUAR BRINCANDO";
+
+    modal.innerHTML = `
+      <div class="canonical-victory-card" style="width:94%; max-width:356px; padding:22px 18px; border:3.5px solid #fde047; border-radius:28px; background:linear-gradient(180deg, #aa00ff 0%, #581c87 100%); box-shadow:0 0 32px rgba(170,0,255,0.85), 0 18px 44px rgba(0,0,0,0.95); text-align:center; position:relative; overflow:hidden; animation:vicCardPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+        <!-- Troféu / Estrela 3D Viva + Miniatura 3D do Jogo -->
+        <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:8px;">
+          <img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" style="width:68px; height:68px; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,0.75)); animation:starTrophyPulse 1.5s ease-in-out infinite;" alt="Estrela Troféu">
+          <img src="${game.icon}" style="width:72px; height:72px; object-fit:contain; border-radius:18px; border:2.5px solid #fde047; background:rgba(255,255,255,0.15); box-shadow:0 0 16px rgba(253,224,71,0.8), 0 6px 14px rgba(0,0,0,0.8); animation:aliveBtnFloat 2.0s ease-in-out infinite;" alt="${game.title}">
+        </div>
+
+        <!-- Título em Amarelo Dourado Brilhante -->
+        <div style="position:relative; z-index:2; font-size:26px; font-weight:900; color:#fde047; text-shadow:0 3px 8px rgba(0,0,0,0.9); line-height:1.15; margin-bottom:4px; letter-spacing:0.5px; animation:titlePopBounce 1.4s ease-in-out infinite;">
+          PARABÉNS! MUITO BEM!
+        </div>
+
+        <!-- Subtítulo com o nome do Jogo -->
+        <div style="position:relative; z-index:2; font-size:16px; font-weight:800; color:#ffffff; text-shadow:0 2px 5px rgba(0,0,0,0.85); margin-bottom:12px;">
+          ${game.title} • ${game.sub || 'Fase Concluída'}
+        </div>
+
+        <!-- Badge Verde Concluído -->
+        <div style="position:relative; z-index:2; display:inline-block; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2.5px solid #ffffff; color:#ffffff; font-size:18px; font-weight:900; padding:6px 20px; border-radius:999px; text-shadow:0 2px 4px rgba(0,0,0,0.65); box-shadow:0 0 18px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.55); margin-bottom:14px; animation:aliveBtnFloat 1.8s ease-in-out infinite;">
+          Concluído: ${current} de ${totalPhases}
+        </div>
+
+        <!-- Bolinhas de Progresso 1 a 5 -->
+        <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:14px; min-height:48px;">
+          ${dotsHtml}
+        </div>
+
+        <!-- Texto de Incentivo para liberar Casinha -->
+        <div style="position:relative; z-index:2; font-size:14.5px; font-weight:700; color:#fef08a; line-height:1.3; text-shadow:0 2px 5px rgba(0,0,0,0.9); margin-bottom:16px; padding:0 8px;">
+          ${subText}
+        </div>
+
+        <!-- Botão Oficial CONTINUAR BRINCANDO -->
+        <button id="btn-canonical-continue" style="position:relative; z-index:2; width:100%; padding:14px; font-size:18px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2.5px solid #ffffff; border-radius:999px; box-shadow:0 0 20px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75); cursor:pointer; text-shadow:0 2px 4px rgba(0,0,0,0.5); animation:aliveBtnFloat 1.9s ease-in-out infinite; transition:transform 0.15s ease;" onclick="window.advanceArcadePhase()">
+          ${btnText}
+        </button>
+      </div>
+    `;
+
+    modal.style.display = "flex";
   }
 
   function launchConfetti() {
@@ -731,7 +811,7 @@
       pieces.forEach(p => {
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.35; // gravidade
+        p.vy += 0.35;
         p.rotation += p.vr;
         ctx.save();
         ctx.translate(p.x, p.y);
@@ -749,10 +829,6 @@
     }
     renderConfetti();
   }
-
-  // ==========================================================================
-  // 6. OS MOTORES DOS 17 JOGOS (AUDIOMOTORES 100% INTERATIVOS)
-  // ==========================================================================
 
   // --- JOGO 1: PESCA MARAVILHOSA (BARRA DE TIMING) ---
   function runPescaMaravilhosa(container, phase) {
@@ -772,7 +848,7 @@
     ];
 
     const peixesHtml = peixesPos.slice(0, totalPeixes).map((p, idx) => {
-      const src = p.isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=85" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=85";
+      const src = p.isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=86" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=86";
       return `
         <div class="peixe-rio-item" id="peixe-rio-${idx}" style="position:absolute; top:${p.top}; left:${p.left}; transform:translateX(-50%); width:${p.size}; height:auto; animation:peixeNadoSuave ${p.dur} infinite ease-in-out ${p.delay}; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.5)); transition:all 0.4s ease;">
           <img src="${src}" style="width:100%; height:auto;" alt="Peixinho da Pesca">
@@ -783,7 +859,7 @@
     // Peixes capturados dentro da rede (EXATAMENTE a mesma quantidade da fase!)
     const peixesNaRedeHtml = Array.from({ length: totalPeixes }).map((_, i) => {
       const isBlue = i % 2 === 1;
-      const src = isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=85" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=85";
+      const src = isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=86" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=86";
       const rot = (i % 2 === 0 ? -12 : 16) + (i * 6);
       const size = Math.max(54 - i * 3, 40);
       return `<img src="${src}" style="width:${size}px; height:auto; transform:rotate(${rot}deg); margin:0 -6px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.6));">`;
@@ -807,7 +883,7 @@
 
         <!-- 2. SUPERFÍCIE DAS ONDAS E O BARQUINHO DE PEDRO (100% CENTRALIZADO) -->
         <div id="barco-container" style="position:absolute; top:10.5%; left:50%; transform:translateX(-50%); width:240px; height:150px; z-index:15; pointer-events:none; animation:balancoBarcoReal 3.5s ease-in-out infinite; transition:transform 0.3s ease;">
-          <img id="barco-img-svg" src="./2_ASSETS_UI_BOTOES/barco_pedro_pesca.svg?v=85" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 8px 12px rgba(0,0,0,0.5));" alt="Barco de Pedro">
+          <img id="barco-img-svg" src="./2_ASSETS_UI_BOTOES/barco_pedro_pesca.svg?v=86" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 8px 12px rgba(0,0,0,0.5));" alt="Barco de Pedro">
         </div>
 
         <!-- Camada de Ondas da Superfície -->
@@ -849,7 +925,7 @@
 
           <!-- A REDINHA (100% Centralizada no eixo do barco e de Pedro) -->
           <div id="pesca-rede-lanca" style="position:absolute; top:4%; left:50%; transform:translateX(-50%) scale(0.18); width:190px; height:190px; z-index:20; opacity:0; pointer-events:none; transition:all 0.65s cubic-bezier(0.2, 0.9, 0.3, 1);">
-            <img src="./2_ASSETS_UI_BOTOES/rede_pesca_maravilhosa.svg?v=85" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 0 16px rgba(253, 224, 71, 0.8));" alt="Rede de Pesca">
+            <img src="./2_ASSETS_UI_BOTOES/rede_pesca_maravilhosa.svg?v=86" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 0 16px rgba(253, 224, 71, 0.8));" alt="Rede de Pesca">
             <!-- Peixinhos recolhidos na rede (EXATAMENTE a mesma quantidade da fase) -->
             <div id="peixes-na-rede" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s ease;">
               ${peixesNaRedeHtml}
