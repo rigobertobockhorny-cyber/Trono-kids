@@ -1,107 +1,154 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
   <defs>
-    <!-- Gradientes da Madeira -->
+    <!-- Gradientes da Madeira Nobre -->
     <linearGradient id="hullGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#a16207"/>
-      <stop offset="30%" stop-color="#854d0e"/>
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="25%" stop-color="#92400e"/>
       <stop offset="70%" stop-color="#593208"/>
       <stop offset="100%" stop-color="#361904"/>
     </linearGradient>
     <linearGradient id="rimGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#ca8a04"/>
-      <stop offset="50%" stop-color="#fde047"/>
-      <stop offset="100%" stop-color="#a16207"/>
+      <stop offset="50%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
     </linearGradient>
     <linearGradient id="plankLine" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#451a03" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#1c0a02" stop-opacity="0.8"/>
+      <stop offset="0%" stop-color="#451a03" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#1c0a02" stop-opacity="0.85"/>
     </linearGradient>
+
     <!-- Gradiente da Túnica de Pedro -->
     <linearGradient id="tunicGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2563eb"/>
-      <stop offset="100%" stop-color="#1e40af"/>
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
     </linearGradient>
     <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#fed7aa"/>
+      <stop offset="0%" stop-color="#ffedd5"/>
+      <stop offset="40%" stop-color="#fed7aa"/>
       <stop offset="100%" stop-color="#fba772"/>
     </linearGradient>
     <linearGradient id="beardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#52361b"/>
-      <stop offset="100%" stop-color="#36220f"/>
+      <stop offset="0%" stop-color="#603813"/>
+      <stop offset="100%" stop-color="#3a200a"/>
     </linearGradient>
     <filter id="boatShadow" x="-10%" y="-10%" width="130%" height="130%">
       <feDropShadow dx="0" dy="6" stdDeviation="5" flood-opacity="0.45"/>
     </filter>
+
+    <style>
+      .pedro-animated {
+        transform-origin: 160px 130px;
+        animation: pedroIdleMotion 2.6s ease-in-out infinite alternate;
+      }
+      @keyframes pedroIdleMotion {
+        0% { transform: translateY(0px) rotate(-1deg); }
+        50% { transform: translateY(-4px) rotate(1.2deg); }
+        100% { transform: translateY(0px) rotate(-1deg); }
+      }
+      .pedro-arm-l {
+        transform-origin: 142px 88px;
+        animation: armSwayL 2.6s ease-in-out infinite alternate;
+      }
+      .pedro-arm-r {
+        transform-origin: 178px 88px;
+        animation: armSwayR 2.6s ease-in-out infinite alternate;
+      }
+      @keyframes armSwayL {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(-3.5deg); }
+      }
+      @keyframes armSwayR {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(3.5deg); }
+      }
+    </style>
   </defs>
 
   <g filter="url(#boatShadow)">
-    <!-- Mastro e Vela Enrolada -->
-    <rect x="110" y="30" width="8" height="95" rx="3" fill="#78350f"/>
-    <!-- Travessão da vela -->
-    <path d="M 70 45 L 155 40" stroke="#593208" stroke-width="5" stroke-linecap="round"/>
+    <!-- 1. MASTRO CENTRAL E VELA ENROLADA (Centralizado em X=160) -->
+    <!-- Mastro vertical -->
+    <rect x="156" y="24" width="8" height="100" rx="3" fill="#78350f" stroke="#451a03" stroke-width="1"/>
+    <!-- Travessão horizontal da vela (Simétrico de 70 a 250) -->
+    <path d="M 68 40 L 252 40" stroke="#593208" stroke-width="5" stroke-linecap="round"/>
     <!-- Vela recolhida de linho rústico -->
-    <path d="M 72 45 Q 112 50 153 40 Q 150 48 112 53 Q 74 49 72 45 Z" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+    <path d="M 70 40 Q 160 48 250 40 Q 248 48 160 54 Q 72 48 70 40 Z" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
     <!-- Cordas do mastro -->
-    <line x1="114" y1="32" x2="45" y2="125" stroke="#fef08a" stroke-width="1.5" stroke-opacity="0.65" stroke-dasharray="4,2"/>
-    <line x1="114" y1="32" x2="240" y2="125" stroke="#fef08a" stroke-width="1.5" stroke-opacity="0.65" stroke-dasharray="4,2"/>
+    <line x1="160" y1="26" x2="35" y2="125" stroke="#fef08a" stroke-width="1.5" stroke-opacity="0.6" stroke-dasharray="4,2"/>
+    <line x1="160" y1="26" x2="285" y2="125" stroke="#fef08a" stroke-width="1.5" stroke-opacity="0.6" stroke-dasharray="4,2"/>
 
-    <!-- Personagem Pedro (em pé no barco) -->
-    <g id="pedro-character" transform="translate(150, 48)">
-      <!-- Corpo / Túnica -->
-      <path d="M 18 38 L 4 78 Q 28 82 48 78 L 36 38 Z" fill="url(#tunicGrad)" stroke="#1d4ed8" stroke-width="1.5"/>
-      <!-- Faixa na cintura -->
-      <path d="M 8 58 Q 26 62 44 58" stroke="#fde047" stroke-width="4" stroke-linecap="round" fill="none"/>
-      <!-- Braço Esquerdo segurando corda -->
-      <path d="M 16 42 Q 6 52 14 62" stroke="url(#skinGrad)" stroke-width="6" stroke-linecap="round" fill="none"/>
-      <!-- Braço Direito estendido lançando -->
-      <path id="pedro-arm-throw" d="M 36 42 Q 54 50 62 40" stroke="url(#skinGrad)" stroke-width="6.5" stroke-linecap="round" fill="none"/>
-      <!-- Cabeça -->
-      <circle cx="26" cy="22" r="14" fill="url(#skinGrad)"/>
+    <!-- 2. PERSONAGEM PEDRO (100% CENTRALIZADO NO CENTRO DO BARCO EM X=160) -->
+    <g id="pedro-character" class="pedro-animated">
+      <!-- Corpo / Túnica Bíblica Azul -->
+      <path d="M 148 84 L 136 128 Q 160 133 184 128 L 172 84 Z" fill="url(#tunicGrad)" stroke="#1d4ed8" stroke-width="1.5"/>
+      <!-- Faixa Dourada na Cintura -->
+      <path d="M 140 106 Q 160 110 180 106" stroke="#fde047" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+
+      <!-- Braço Esquerdo segurando a corda da rede -->
+      <g class="pedro-arm-l">
+        <path d="M 146 88 Q 132 102 144 116" stroke="url(#skinGrad)" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <circle cx="144" cy="116" r="4.5" fill="url(#skinGrad)"/>
+      </g>
+
+      <!-- Braço Direito segurando a corda da rede -->
+      <g class="pedro-arm-r">
+        <path d="M 174 88 Q 188 102 176 116" stroke="url(#skinGrad)" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <circle cx="176" cy="116" r="4.5" fill="url(#skinGrad)"/>
+      </g>
+
+      <!-- Cabeça de Pedro -->
+      <circle cx="160" cy="66" r="15" fill="url(#skinGrad)"/>
+
       <!-- Cabelo volumoso bíblico -->
-      <path d="M 12 18 Q 26 6 40 18 Q 42 26 40 30 Q 38 14 26 12 Q 14 14 12 30 Z" fill="url(#beardGrad)"/>
+      <path d="M 145 62 Q 160 48 175 62 Q 178 72 175 76 Q 173 58 160 56 Q 147 58 145 76 Z" fill="url(#beardGrad)"/>
+
       <!-- Barba fofa de Pedro -->
-      <path d="M 14 25 Q 12 38 26 40 Q 40 38 38 25 Q 34 32 26 33 Q 18 32 14 25 Z" fill="url(#beardGrad)"/>
-      <!-- Olhos sorridentes -->
-      <circle cx="22" cy="20" r="2" fill="#1e1b4b"/>
-      <circle cx="32" cy="20" r="2" fill="#1e1b4b"/>
-      <!-- Brilho nos olhos -->
-      <circle cx="22.7" cy="19.3" r="0.7" fill="#ffffff"/>
-      <circle cx="32.7" cy="19.3" r="0.7" fill="#ffffff"/>
+      <path d="M 147 69 Q 145 84 160 86 Q 175 84 173 69 Q 168 78 160 79 Q 152 78 147 69 Z" fill="url(#beardGrad)"/>
+
+      <!-- Olhos simpáticos -->
+      <circle cx="155" cy="64" r="2.2" fill="#1e1b4b"/>
+      <circle cx="165" cy="64" r="2.2" fill="#1e1b4b"/>
+      <!-- Brilho no olhar -->
+      <circle cx="155.8" cy="63.2" r="0.8" fill="#ffffff"/>
+      <circle cx="165.8" cy="63.2" r="0.8" fill="#ffffff"/>
+
       <!-- Nariz amigável -->
-      <ellipse cx="27" cy="23" rx="1.8" ry="1.2" fill="#ea580c" fill-opacity="0.4"/>
+      <ellipse cx="160" cy="68" rx="2" ry="1.4" fill="#ea580c" fill-opacity="0.35"/>
+
       <!-- Sorriso -->
-      <path d="M 23 26 Q 27 29 31 26" stroke="#451a03" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-      <!-- Mão segurando a corda da rede -->
-      <circle cx="63" cy="39" r="4" fill="url(#skinGrad)"/>
-      <!-- Corda conectando a mão à borda -->
-      <path d="M 63 41 Q 68 56 64 74" stroke="#fef08a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M 156 71 Q 160 74 164 71" stroke="#451a03" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+
+      <!-- Cordas unidas saindo das mãos para a rede central -->
+      <path d="M 144 116 Q 152 122 156 128" stroke="#fef08a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M 176 116 Q 168 122 164 128" stroke="#fef08a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
     </g>
 
-    <!-- Casco de Madeira do Barco -->
+    <!-- 3. CASCO DE MADEIRA DO BARCO (Simétrico e Centralizado em X=160) -->
     <!-- Corpo Principal Curvado -->
-    <path d="M 30 120 Q 20 128 35 145 Q 75 185 160 185 Q 245 185 285 145 Q 300 128 290 120 Q 260 132 160 132 Q 60 132 30 120 Z" fill="url(#hullGrad)" stroke="#291002" stroke-width="2"/>
+    <path d="M 30 120 Q 20 128 35 145 Q 75 185 160 185 Q 245 185 285 145 Q 300 128 290 120 Q 260 133 160 133 Q 60 133 30 120 Z" fill="url(#hullGrad)" stroke="#291002" stroke-width="2.2"/>
 
-    <!-- Pranchas de Madeira do Barco (Linhas horizontais curvadas) -->
+    <!-- Pranchas de Madeira do Barco -->
     <path d="M 33 132 Q 160 144 287 132" stroke="url(#plankLine)" stroke-width="2.5" fill="none"/>
     <path d="M 42 146 Q 160 158 278 146" stroke="url(#plankLine)" stroke-width="2.5" fill="none"/>
     <path d="M 58 160 Q 160 172 262 160" stroke="url(#plankLine)" stroke-width="2" fill="none"/>
     <path d="M 82 173 Q 160 181 238 173" stroke="url(#plankLine)" stroke-width="1.8" fill="none"/>
 
     <!-- Borda Superior Dourada / Madeira Tratada -->
-    <path d="M 25 119 Q 60 133 160 133 Q 260 133 295 119 Q 292 124 286 127 Q 256 139 160 139 Q 64 139 34 127 Q 27 123 25 119 Z" fill="url(#rimGrad)" stroke="#78350f" stroke-width="1.5"/>
+    <path d="M 25 119 Q 60 133 160 133 Q 260 133 295 119 Q 292 124 286 127 Q 256 140 160 140 Q 64 140 34 127 Q 27 123 25 119 Z" fill="url(#rimGrad)" stroke="#78350f" stroke-width="1.5"/>
 
-    <!-- Proa e Popa Elevadas -->
-    <circle cx="27" cy="119" r="4" fill="#fde047" stroke="#854d0e" stroke-width="1"/>
-    <circle cx="293" cy="119" r="4" fill="#fde047" stroke="#854d0e" stroke-width="1"/>
+    <!-- Proa e Popa Elevadas com Detalhe Dourado -->
+    <circle cx="27" cy="119" r="4.5" fill="#fde047" stroke="#854d0e" stroke-width="1.2"/>
+    <circle cx="293" cy="119" r="4.5" fill="#fde047" stroke="#854d0e" stroke-width="1.2"/>
 
-    <!-- Rede Enrolada na lateral do barco antes de ser lançada -->
-    <g id="rede-no-barco" transform="translate(210, 126)">
-      <ellipse cx="15" cy="6" rx="16" ry="7" fill="rgba(254,240,138,0.7)" stroke="#ca8a04" stroke-width="1.5" stroke-dasharray="3,2"/>
-      <!-- Chumbadas douradas de peso -->
-      <circle cx="4" cy="11" r="2.5" fill="#92400e"/>
-      <circle cx="12" cy="13" r="2.5" fill="#92400e"/>
-      <circle cx="20" cy="13" r="2.5" fill="#92400e"/>
-      <circle cx="27" cy="10" r="2.5" fill="#92400e"/>
+    <!-- 4. REDE ENROLADA CENTRALIZADA (Exatamente em X=160 na borda do barco) -->
+    <g id="rede-no-barco" transform="translate(142, 126)">
+      <ellipse cx="18" cy="7" rx="20" ry="8" fill="rgba(254,240,138,0.75)" stroke="#ca8a04" stroke-width="1.8" stroke-dasharray="3,2"/>
+      <!-- Chumbadas douradas de peso ao centro -->
+      <circle cx="4" cy="11" r="2.8" fill="#92400e"/>
+      <circle cx="11" cy="14" r="2.8" fill="#92400e"/>
+      <circle cx="18" cy="15" r="2.8" fill="#92400e"/>
+      <circle cx="25" cy="14" r="2.8" fill="#92400e"/>
+      <circle cx="32" cy="11" r="2.8" fill="#92400e"/>
     </g>
   </g>
 </svg>
