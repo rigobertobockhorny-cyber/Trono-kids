@@ -1,7 +1,8 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v79.0';
+const CACHE_VERSION = 'vortice-trono-ebd-v80.0';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './ebd_super_arcade_audiovisual.js',
   './manifest.json',
   './2_ASSETS_UI_BOTOES/icon_512_oficial.png',
   './2_ASSETS_UI_BOTOES/icon_192_oficial.png',
