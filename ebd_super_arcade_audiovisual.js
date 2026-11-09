@@ -148,7 +148,7 @@
       }
       if (!audioFile) return;
       try {
-        const src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=90`;
+        const src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=91`;
         this.vovoPlayer = new Audio(src);
         this.vovoPlayer.play().catch(err => {
           console.warn("Audio play prevented:", err);
@@ -174,7 +174,7 @@
       id: "pesca_maravilhosa",
       title: "PESCA MARAVILHOSA",
       sub: "Toque na Zona Verde!",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=91",
       audioFile: "vovo_jogo_01.mp3",
       vovoFala: "Vamos pescar com Pedro! Toque na tela quando a agulha estiver no verde!",
       run: (container, phase) => runPescaMaravilhosa(container, phase)
@@ -183,7 +183,7 @@
       id: "dracma_perdida",
       title: "A DRACMA PERDIDA",
       sub: "Ache a Moeda no Escuro",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_02_dracma.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_02_dracma.svg?v=91",
       audioFile: "vovo_jogo_02.mp3",
       vovoFala: "A mulher perdeu a dracma! Mova a luz da lamparina e encontre as moedinhas!",
       run: (container, phase) => runDracmaPerdida(container, phase)
@@ -192,7 +192,7 @@
       id: "pombo_arca",
       title: "O POMBO DA ARCA",
       sub: "Labirinto de Nuvens",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_03_pombo.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_03_pombo.svg?v=91",
       audioFile: "vovo_jogo_03.mp3",
       vovoFala: "Guie o pombinho pelas nuvens até pousar na janela da Arca de Noé!",
       run: (container, phase) => runPomboArca(container, phase)
@@ -201,7 +201,7 @@
       id: "jonatas_alvo",
       title: "JÔNATAS E O ALVO",
       sub: "Tiro com Arco no Campo",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_04_alvo.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_04_alvo.svg?v=91",
       audioFile: "vovo_jogo_04.mp3",
       vovoFala: "Puxe a corda do arco com o dedinho e acerte o centro do alvo de madeira!",
       run: (container, phase) => runJonatasAlvo(container, phase)
@@ -210,7 +210,7 @@
       id: "ovelha_perdida",
       title: "A OVELHA PERDIDA",
       sub: "Deslize e Ache a Ovelha",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_05_ovelha_perdida.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_05_ovelha_perdida.svg?v=91",
       audioFile: "vovo_jogo_05.mp3",
       vovoFala: "Deslize o campo para os lados e encontre as ovelhinhas escondidas!",
       run: (container, phase) => runOvelhaPerdida(container, phase)
@@ -219,7 +219,7 @@
       id: "ovelha_fujona",
       title: "A OVELHA FUJONA",
       sub: "Alcance a Ovelhinha Sapeca",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_06_ovelha_fujona.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_06_ovelha_fujona.svg?v=91",
       audioFile: "vovo_jogo_06.mp3",
       vovoFala: "Arraste o pastorzinho pelo pasto até alcançar a ovelhinha fujona!",
       run: (container, phase) => runOvelhaFujona(container, phase)
@@ -228,7 +228,7 @@
       id: "animais_eden",
       title: "ANIMAIS DO ÉDEN",
       sub: "Encaixe na Silhueta Certa",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_07_animais_eden.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_07_animais_eden.svg?v=91",
       audioFile: "vovo_jogo_07.mp3",
       vovoFala: "Arraste cada animal para a sua sombra no Jardim do Éden!",
       run: (container, phase) => runAnimaisEden(container, phase)
@@ -237,7 +237,7 @@
       id: "quem_entrou_arca",
       title: "QUEM ENTROU NA ARCA?",
       sub: "Ouça e Toque no Animal",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_08_arca_noe.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_08_arca_noe.svg?v=91",
       audioFile: "vovo_jogo_08.mp3",
       vovoFala: "Ouça com atenção o que o Vovô falar e toque no bichinho certo!",
       run: (container, phase) => runQuemEntrouArca(container, phase)
@@ -246,7 +246,7 @@
       id: "quiz_visual",
       title: "O GRANDE DESAFIO",
       sub: "Perguntas com 3 Imagens",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_09_quiz.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_09_quiz.svg?v=91",
       audioFile: "vovo_jogo_09.mp3",
       vovoFala: "Escute a pergunta da Bíblia e toque na imagem da resposta certa!",
       run: (container, phase) => runQuizVisual(container, phase)
@@ -255,7 +255,7 @@
       id: "ligue_pontos",
       title: "LIGUE OS PONTOS",
       sub: "Conecte os Números 1, 2, 3...",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_10_pontos.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_10_pontos.svg?v=91",
       audioFile: "vovo_jogo_10.mp3",
       vovoFala: "Ligue os pontinhos brilhantes na ordem dos números para revelar o desenho!",
       run: (container, phase) => runLiguePontos(container, phase)
@@ -264,7 +264,7 @@
       id: "seis_erros",
       title: "OS 6 ERROS DO ÉDEN",
       sub: "Ache o que está Diferente",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_11_erros.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_11_erros.svg?v=91",
       audioFile: "vovo_jogo_11.mp3",
       vovoFala: "Compare as duas imagens e toque nos detalhes que estão diferentes!",
       run: (container, phase) => runSeisErros(container, phase)
@@ -273,7 +273,7 @@
       id: "criacao_ordem",
       title: "A CRIAÇÃO DO MUNDO",
       sub: "Coloque os Dias na Ordem",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_12_criacao.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_12_criacao.svg?v=91",
       audioFile: "vovo_jogo_12.mp3",
       vovoFala: "Coloque os quadros da Criação na ordem dos dias da semana!",
       run: (container, phase) => runCriacaoOrdem(container, phase)
@@ -282,7 +282,7 @@
       id: "memoria_sonoro",
       title: "MEMÓRIA DOS BICHOS",
       sub: "Encontre os Pares com Som",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_13_memoria.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_13_memoria.svg?v=91",
       audioFile: "vovo_jogo_13.mp3",
       vovoFala: "Vire as cartas e descubra os pares dos animais criados por Deus!",
       run: (container, phase) => runMemoriaSonoro(container, phase)
@@ -291,7 +291,7 @@
       id: "mana_deserto",
       title: "O MANÁ NO DESERTO",
       sub: "Ache as Cestas de Pão",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_14_mana.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_14_mana.svg?v=91",
       audioFile: "vovo_jogo_14.mp3",
       vovoFala: "Procure as cestinhas de maná fresquinho caídas no acampamento!",
       run: (container, phase) => runManaDeserto(container, phase)
@@ -300,7 +300,7 @@
       id: "tabernaculo_cesto",
       title: "O CESTO DE MOISÉS",
       sub: "Monte as Peças Sagradas",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_15_cesto.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_15_cesto.svg?v=91",
       audioFile: "vovo_jogo_15.mp3",
       vovoFala: "Encaixe cada pecinha para montar o cestinho de juncos de Moisés!",
       run: (container, phase) => runTabernaculoCesto(container, phase)
@@ -309,7 +309,7 @@
       id: "puzzle_3d",
       title: "QUEBRA-CABEÇA 3D",
       sub: "Monte a Cena de Cinema",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_16_puzzle.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_16_puzzle.svg?v=91",
       audioFile: "vovo_jogo_16.mp3",
       vovoFala: "Vamos montar o quebra-cabeça! Arraste as peças para formar a cena linda!",
       run: (container, phase) => runQuebraCabecaArcade(container, phase)
@@ -318,7 +318,7 @@
       id: "pintura_magica",
       title: "PINTURA MÁGICA",
       sub: "Vamos Colorir a História?",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_17_pintura.svg?v=90",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_17_pintura.svg?v=91",
       audioFile: "vovo_jogo_17.mp3",
       vovoFala: "Vamos colorir? Escolha as cores mágicas e toque para pintar o desenho!",
       run: (container, phase) => runPinturaMagicaArcade(container, phase)
@@ -751,7 +751,7 @@
     const game = currentActiveGame || {
       title: "Pesca Maravilhosa",
       sub: "Lance a Rede com Pedro",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=90"
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=91"
     };
 
     const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
@@ -906,17 +906,17 @@
     // REGRA DE OURO RIGOBERTO: Fase 1 = 1 peixinho, Fase 2 = 2 peixinhos, Fase 3 = 3 peixinhos...
     const totalPeixes = Math.min(phase, 5);
 
-    // Peixes centralizados no rio diretamente sob o barco e a rede
+    // Peixes nadando na água turquesa cristalina da pintura 3D Pixar
     const peixesPos = [
-      { top: "42%", left: "calc(50% - 31px)", delay: "0s", dur: "3.0s", size: "62px", isBlue: false },
-      { top: "33%", left: "calc(50% - 78px)", delay: "0.4s", dur: "3.3s", size: "56px", isBlue: true },
-      { top: "52%", left: "calc(50% + 22px)", delay: "0.8s", dur: "2.8s", size: "58px", isBlue: false },
-      { top: "37%", left: "calc(50% + 56px)", delay: "0.2s", dur: "3.5s", size: "54px", isBlue: true },
-      { top: "59%", left: "calc(50% - 65px)", delay: "1.0s", dur: "3.1s", size: "60px", isBlue: false }
+      { top: "58%", left: "calc(50% - 35px)", delay: "0s", dur: "3.0s", size: "60px", isBlue: false },
+      { top: "52%", left: "calc(50% - 90px)", delay: "0.4s", dur: "3.3s", size: "54px", isBlue: true },
+      { top: "66%", left: "calc(50% + 30px)", delay: "0.8s", dur: "2.8s", size: "58px", isBlue: false },
+      { top: "55%", left: "calc(50% + 70px)", delay: "0.2s", dur: "3.5s", size: "52px", isBlue: true },
+      { top: "72%", left: "calc(50% - 75px)", delay: "1.0s", dur: "3.1s", size: "58px", isBlue: false }
     ];
 
     const peixesHtml = peixesPos.slice(0, totalPeixes).map((p, idx) => {
-      const src = p.isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=90" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=90";
+      const src = p.isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=91" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=91";
       return `
         <div class="peixe-rio-item" id="peixe-rio-${idx}" style="position:absolute; top:${p.top}; left:${p.left}; width:${p.size}; height:auto; animation:peixeNadoSuave ${p.dur} infinite ease-in-out ${p.delay}; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.5)); transition:all 0.4s ease;">
           <img src="${src}" style="width:100%; height:auto;" alt="Peixinho da Pesca">
@@ -927,75 +927,45 @@
     // Peixes capturados dentro da rede (EXATAMENTE a mesma quantidade da fase)
     const peixesNaRedeHtml = Array.from({ length: totalPeixes }).map((_, i) => {
       const isBlue = i % 2 === 1;
-      const src = isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=90" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=90";
+      const src = isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=91" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=91";
       const rot = (i % 2 === 0 ? -12 : 16) + (i * 6);
       const size = Math.max(54 - i * 3, 40);
       return `<img src="${src}" style="width:${size}px; height:auto; transform:rotate(${rot}deg); margin:0 -6px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.6));">`;
     }).join("");
 
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; overflow:hidden; user-select:none; touch-action:none; background:#0c4a6e;">
-        <!-- 1. CÉU E HORIZONTE DA GALILEIA -->
-        <div style="position:relative; width:100%; height:26%; min-height:130px; background:linear-gradient(180deg, #38bdf8 0%, #7dd3fc 45%, #fed7aa 85%, #f97316 100%); overflow:hidden;">
-          <!-- Sol nascente dourado -->
-          <div style="position:absolute; right:12%; top:15%; width:52px; height:52px; border-radius:50%; background:radial-gradient(circle, #fef08a 30%, #fde047 65%, rgba(253,224,71,0) 100%); box-shadow:0 0 25px #fde047; opacity:0.88;"></div>
-          <!-- Colinas da Galileia ao fundo -->
-          <svg style="position:absolute; bottom:0; left:0; width:100%; height:45px;" viewBox="0 0 500 45" preserveAspectRatio="none">
-            <path d="M 0 45 Q 80 15 180 32 Q 280 8 380 28 Q 450 18 500 45 Z" fill="#b45309" opacity="0.35"/>
-            <path d="M 0 45 Q 120 22 240 38 Q 360 18 500 45 Z" fill="#78350f" opacity="0.45"/>
-          </svg>
-          <!-- Nuvens suaves -->
-          <div style="position:absolute; left:6%; top:22%; width:72px; height:20px; background:rgba(255,255,255,0.7); border-radius:999px; filter:blur(1px);"></div>
-          <div style="position:absolute; right:28%; top:38%; width:88px; height:24px; background:rgba(255,255,255,0.6); border-radius:999px; filter:blur(1px);"></div>
-        </div>
+      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; overflow:hidden; user-select:none; touch-action:none; background: url('./2_ASSETS_UI_BOTOES/fundo_pesca_maravilhosa_3d.jpg?v=91') no-repeat center center; background-size: cover;">
+        <!-- 1. CAMADA DE PROFUNDIDADE CINEMATOGRÁFICA 3D PIXAR -->
+        <!-- Brilho dourado celestial sutil no céu -->
+        <div style="position:absolute; top:0; left:0; width:100%; height:35%; pointer-events:none; background:radial-gradient(circle at 18% 38%, rgba(254, 240, 138, 0.28) 0%, rgba(253, 224, 71, 0.08) 50%, transparent 80%);"></div>
 
-        <!-- 2. SUPERFÍCIE DAS ONDAS E O BARQUINHO DE PEDRO (100% CENTRALIZADO COM MARGIN: 0 AUTO) -->
-        <div id="barco-pos-wrapper" style="position:absolute; top:9.5%; left:0; right:0; margin:0 auto; width:250px; height:150px; z-index:15; pointer-events:none; display:flex; align-items:center; justify-content:center;">
-          <div id="barco-container" style="width:100%; height:100%; animation:balancoBarcoReal 3.5s ease-in-out infinite; transition:transform 0.3s ease; display:flex; align-items:center; justify-content:center;">
-            <img id="barco-img-svg" src="./2_ASSETS_UI_BOTOES/barco_pedro_pesca.svg?v=90" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 8px 12px rgba(0,0,0,0.5));" alt="Barco de Pedro">
-          </div>
-        </div>
+        <!-- Efeito sutil de luz solar nas águas cristalinas -->
+        <div style="position:absolute; bottom:0; left:0; width:100%; height:55%; pointer-events:none; background:linear-gradient(180deg, rgba(2, 132, 199, 0.0) 0%, rgba(3, 105, 161, 0.25) 50%, rgba(12, 74, 110, 0.55) 100%);"></div>
 
-        <!-- Camada de Ondas da Superfície -->
-        <div style="position:absolute; top:24.5%; left:0; width:100%; height:32px; z-index:14; overflow:hidden; pointer-events:none;">
-          <svg style="width:125%; height:100%; animation:ondasSuperficie 4s ease-in-out infinite alternate;" viewBox="0 0 600 32" preserveAspectRatio="none">
-            <path d="M 0 16 Q 30 2 60 16 T 120 16 T 180 16 T 240 16 T 300 16 T 360 16 T 420 16 T 480 16 T 540 16 T 600 16 L 600 32 L 0 32 Z" fill="rgba(56, 189, 248, 0.65)"/>
-            <path d="M 0 20 Q 30 8 60 20 T 120 20 T 180 20 T 240 20 T 300 20 T 360 20 T 420 20 T 480 20 T 540 20 T 600 20 L 600 32 L 0 32 Z" fill="#0284c7" opacity="0.85"/>
-          </svg>
-        </div>
+        <!-- Respingo de Água (Splash) 3D Centralizado nas Águas -->
+        <div id="pesca-splash" style="position:absolute; top:54%; left:0; right:0; margin:0 auto; transform:scale(0.2); width:160px; height:50px; border-radius:50%; border:3px solid #ffffff; background:radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(56,189,248,0.6) 60%, rgba(2,132,199,0) 100%); z-index:22; opacity:0; pointer-events:none; transition:all 0.4s ease-out; box-shadow:0 0 20px rgba(56, 189, 248, 0.9);"></div>
 
-        <!-- Respingo de Água (Splash) Centralizado -->
-        <div id="pesca-splash" style="position:absolute; top:24%; left:0; right:0; margin:0 auto; transform:scale(0.2); width:140px; height:42px; border-radius:50%; border:3px solid #ffffff; background:radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(56,189,248,0.5) 60%, rgba(2,132,199,0) 100%); z-index:22; opacity:0; pointer-events:none; transition:all 0.4s ease-out;"></div>
+        <!-- Corda de Tração dourada descendo do barco de Pedro para a Rede -->
+        <div id="pesca-corda-conexao" style="position:absolute; top:42%; left:0; right:0; margin:0 auto; width:3.5px; height:0px; background:linear-gradient(180deg, #fde047 0%, #ca8a04 100%); box-shadow:0 0 8px #fde047; z-index:18; opacity:0; transition:all 0.5s ease-out; pointer-events:none;"></div>
 
-        <!-- Corda de Tração ligando Pedro à Rede -->
-        <div id="pesca-corda-conexao" style="position:absolute; top:20%; left:0; right:0; margin:0 auto; width:3px; height:0px; background:linear-gradient(180deg, #fde047 0%, #ca8a04 100%); box-shadow:0 0 6px #fde047; z-index:18; opacity:0; transition:all 0.5s ease-out; pointer-events:none;"></div>
+        <!-- 3. ÁREA DAS ÁGUAS CRISTALINAS DA GALILEIA COM PEIXES -->
+        <div id="pesca-riozao" style="position:relative; flex:1; width:100%; overflow:hidden;">
+          <!-- Raios de sol subaquáticos cristalinos -->
+          <div style="position:absolute; inset:0; opacity:0.14; pointer-events:none; background:repeating-linear-gradient(75deg, rgba(255,255,255,0.45) 0px, rgba(255,255,255,0.45) 22px, transparent 22px, transparent 70px);"></div>
 
-        <!-- 3. O RIOZÃO / FUNDO DAS ÁGUAS DA GALILEIA -->
-        <div id="pesca-riozao" style="position:relative; flex:1; width:100%; background:linear-gradient(180deg, #0284c7 0%, #0369a1 35%, #075985 70%, #082f49 100%); overflow:hidden;">
-          <!-- Raios de sol subaquáticos -->
-          <div style="position:absolute; inset:0; opacity:0.18; pointer-events:none; background:repeating-linear-gradient(75deg, rgba(255,255,255,0.4) 0px, rgba(255,255,255,0.4) 20px, transparent 20px, transparent 65px);"></div>
-
-          <!-- Bolhinhas de ar subindo do fundo -->
-          <div style="position:absolute; left:16%; bottom:20px; width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.5); border:1px solid #ffffff; animation:bolhasSubindo 3.5s infinite ease-in;"></div>
-          <div style="position:absolute; right:20%; bottom:35px; width:14px; height:14px; border-radius:50%; background:rgba(255,255,255,0.4); border:1px solid #ffffff; animation:bolhasSubindo 4.2s infinite ease-in 1.2s;"></div>
-          <div style="position:absolute; left:62%; bottom:10px; width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.6); border:1px solid #ffffff; animation:bolhasSubindo 2.8s infinite ease-in 0.6s;"></div>
-
-          <!-- Vegetação aquática suave -->
-          <svg style="position:absolute; bottom:0; left:0; width:100%; height:55px; pointer-events:none; opacity:0.35;" viewBox="0 0 400 55" preserveAspectRatio="none">
-            <path d="M 10 55 Q 20 18 15 0 Q 30 22 35 55 Z" fill="#15803d"/>
-            <path d="M 35 55 Q 45 12 40 0 Q 55 18 60 55 Z" fill="#166534"/>
-            <path d="M 330 55 Q 340 16 335 0 Q 350 20 355 55 Z" fill="#15803d"/>
-            <path d="M 360 55 Q 375 10 370 0 Q 385 18 390 55 Z" fill="#166534"/>
-          </svg>
+          <!-- Bolhinhas mágicas subindo nas águas límpidas -->
+          <div style="position:absolute; left:14%; bottom:25%; width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.6); border:1px solid #ffffff; animation:bolhasSubindo 3.5s infinite ease-in;"></div>
+          <div style="position:absolute; right:18%; bottom:35%; width:13px; height:13px; border-radius:50%; background:rgba(255,255,255,0.5); border:1px solid #ffffff; animation:bolhasSubindo 4.2s infinite ease-in 1.2s;"></div>
+          <div style="position:absolute; left:52%; bottom:18%; width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.7); border:1px solid #ffffff; animation:bolhasSubindo 2.8s infinite ease-in 0.6s;"></div>
 
           <!-- Cardume de Peixes Nadando de Verdade (Centralizados sob a rede) -->
           <div id="cardume-peixes" style="position:absolute; inset:0; pointer-events:none;">
             ${peixesHtml}
           </div>
 
-          <!-- A REDINHA (100% Centralizada no eixo do barco com margin: 0 auto) -->
-          <div id="pesca-rede-lanca" style="position:absolute; top:4%; left:0; right:0; margin:0 auto; transform:scale(0.18); width:190px; height:190px; z-index:20; opacity:0; pointer-events:none; transition:all 0.65s cubic-bezier(0.2, 0.9, 0.3, 1);">
-            <img src="./2_ASSETS_UI_BOTOES/rede_pesca_maravilhosa.svg?v=90" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 0 16px rgba(253, 224, 71, 0.8));" alt="Rede de Pesca">
+          <!-- A REDINHA (Lançada do barco de Pedro diretamente nas águas da Galileia) -->
+          <div id="pesca-rede-lanca" style="position:absolute; top:42%; left:0; right:0; margin:0 auto; transform:scale(0.2); width:190px; height:190px; z-index:20; opacity:0; pointer-events:none; transition:all 0.65s cubic-bezier(0.2, 0.9, 0.3, 1);">
+            <img src="./2_ASSETS_UI_BOTOES/rede_pesca_maravilhosa.svg?v=91" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 0 16px rgba(253, 224, 71, 0.8));" alt="Rede de Pesca">
             <!-- Peixinhos recolhidos na rede (EXATAMENTE a mesma quantidade da fase) -->
             <div id="peixes-na-rede" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s ease;">
               ${peixesNaRedeHtml}
@@ -1004,7 +974,7 @@
         </div>
 
         <!-- 4. PAINEL DE CONTROLE / TIMING E BOTÃO DE LANÇAMENTO -->
-        <div style="position:relative; width:100%; padding:10px 16px 16px 16px; background:rgba(15, 23, 42, 0.94); border-top:3px solid #fde047; box-shadow:0 -8px 25px rgba(0,0,0,0.6); display:flex; flex-direction:column; align-items:center; gap:10px; z-index:30;">
+        <div style="position:relative; width:100%; padding:10px 16px 16px 16px; background:rgba(15, 23, 42, 0.82); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-top:2.5px solid #fde047; box-shadow:0 -8px 25px rgba(0,0,0,0.7); display:flex; flex-direction:column; align-items:center; gap:10px; z-index:30;">
           <!-- Barra de Precisão da Agulha -->
           <div style="width:100%; max-width:440px; background:#1e293b; border:2.5px solid #ca8a04; border-radius:999px; padding:4px; box-shadow:inset 0 3px 6px rgba(0,0,0,0.6);">
             <div style="position:relative; width:100%; height:32px; background:linear-gradient(90deg, #ef4444 0%, #dc2626 100%); border-radius:999px; overflow:hidden;">
@@ -1074,12 +1044,12 @@
           // 1. A rede se projeta exatamente do centro do barco e mergulha
           if (rede) {
             rede.style.opacity = "1";
-            rede.style.transform = "scale(0.65)";
-            rede.style.top = "18%";
+            rede.style.transform = "scale(0.75)";
+            rede.style.top = "46%";
           }
           if (corda) {
             corda.style.opacity = "1";
-            corda.style.height = "70px";
+            corda.style.height = "75px";
           }
 
           // 2. A rede mergulha na água com splash e respingos bem no centro
@@ -1092,10 +1062,10 @@
             }
             if (rede) {
               rede.style.transform = "scale(1.15)";
-              rede.style.top = "42%";
+              rede.style.top = "60%";
             }
             if (corda) {
-              corda.style.height = "160px";
+              corda.style.height = "165px";
             }
           }, 250);
 
@@ -1120,11 +1090,11 @@
             TronoAudio.play("success");
             TronoAudio.play("fanfare");
             if (rede) {
-              rede.style.top = "20%";
-              rede.style.transform = "scale(1.2)";
+              rede.style.top = "45%";
+              rede.style.transform = "scale(1.15)";
             }
             if (corda) {
-              corda.style.height = "60px";
+              corda.style.height = "70px";
             }
           }, 1100);
 
@@ -1141,8 +1111,8 @@
 
           if (rede) {
             rede.style.opacity = "0.7";
-            rede.style.top = "28%";
-            rede.style.transform = "scale(0.6)";
+            rede.style.top = "52%";
+            rede.style.transform = "scale(0.65)";
           }
 
           const peixes = document.querySelectorAll(".peixe-rio-item");

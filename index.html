@@ -15,9 +15,9 @@
     (function forcePurgeOldMobileCacheV55() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
-        const alreadyPurged = localStorage.getItem('trono_cache_purged_v90') === '1';
+        const alreadyPurged = localStorage.getItem('trono_cache_purged_v91') === '1';
         if (!alreadyPurged || urlParams.get('limpar') === '1') {
-          localStorage.setItem('trono_cache_purged_v90', '1');
+          localStorage.setItem('trono_cache_purged_v91', '1');
           if ('caches' in window) {
             caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
           }
@@ -26,7 +26,7 @@
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=90').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=91').then(reg => {
           reg.update();
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
@@ -2436,8 +2436,8 @@
 </div>
 
 <script src="pinturas_base64.js?v=78.0" defer></script>
-<script src="ebd_modulos_educativos.js?v=90.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=90.0"></script>
+<script src="ebd_modulos_educativos.js?v=91.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=91.0"></script>
 <script>
 // ============================================================================
 // CATÁLOGO OFICIAL DAS 20 HISTÓRIAS BÍBLICAS (6 GRÁTIS + 14 ASSINANTES)
