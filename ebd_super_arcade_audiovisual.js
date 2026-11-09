@@ -139,21 +139,30 @@
       }
     },
 
-    falarVovo(texto) {
-      if (!window.speechSynthesis) return;
-      try {
-        window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance(texto);
-        utter.lang = "pt-BR";
-        utter.rate = 0.92;
-        utter.pitch = 0.85; // Tom acolhedor e maduro de avô
-        const voices = window.speechSynthesis.getVoices();
-        const ptVoice = voices.find(v => v.lang.includes("pt-BR") || v.lang.includes("pt"));
-        if (ptVoice) utter.voice = ptVoice;
-        window.speechSynthesis.speak(utter);
-      } catch (e) {
-        console.warn("SpeechSynthesis error:", e);
+    falarVovo(audioFile) {
+      if (this.vovoPlayer) {
+        try {
+          this.vovoPlayer.pause();
+          this.vovoPlayer.currentTime = 0;
+        } catch (e) {}
       }
+      if (!audioFile) return;
+      try {
+        const src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=83`;
+        this.vovoPlayer = new Audio(src);
+        this.vovoPlayer.play().catch(err => {
+          console.warn("Audio play prevented:", err);
+        });
+      } catch (e) {
+        console.warn("TronoAudio error:", e);
+      }
+    },
+
+    tocarVitoria() {
+      this.play("success");
+      setTimeout(() => {
+        this.falarVovo("vovo_vitoria.mp3");
+      }, 400);
     }
   };
 
@@ -165,7 +174,8 @@
       id: "pesca_maravilhosa",
       title: "PESCA MARAVILHOSA",
       sub: "Toque na Zona Verde!",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=83",
+      audioFile: "vovo_jogo_01.mp3",
       vovoFala: "Vamos pescar com Pedro! Toque na tela quando a agulha estiver no verde!",
       run: (container, phase) => runPescaMaravilhosa(container, phase)
     },
@@ -173,7 +183,8 @@
       id: "dracma_perdida",
       title: "A DRACMA PERDIDA",
       sub: "Ache a Moeda no Escuro",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_02_dracma.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_02_dracma.svg?v=83",
+      audioFile: "vovo_jogo_02.mp3",
       vovoFala: "A mulher perdeu a dracma! Mova a luz da lamparina e encontre as moedinhas!",
       run: (container, phase) => runDracmaPerdida(container, phase)
     },
@@ -181,7 +192,8 @@
       id: "pombo_arca",
       title: "O POMBO DA ARCA",
       sub: "Labirinto de Nuvens",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_03_pombo.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_03_pombo.svg?v=83",
+      audioFile: "vovo_jogo_03.mp3",
       vovoFala: "Guie o pombinho pelas nuvens até pousar na janela da Arca de Noé!",
       run: (container, phase) => runPomboArca(container, phase)
     },
@@ -189,7 +201,8 @@
       id: "jonatas_alvo",
       title: "JÔNATAS E O ALVO",
       sub: "Tiro com Arco no Campo",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_04_alvo.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_04_alvo.svg?v=83",
+      audioFile: "vovo_jogo_04.mp3",
       vovoFala: "Puxe a corda do arco com o dedinho e acerte o centro do alvo de madeira!",
       run: (container, phase) => runJonatasAlvo(container, phase)
     },
@@ -197,7 +210,8 @@
       id: "ovelha_perdida",
       title: "A OVELHA PERDIDA",
       sub: "Deslize e Ache a Ovelha",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_05_ovelha_perdida.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_05_ovelha_perdida.svg?v=83",
+      audioFile: "vovo_jogo_05.mp3",
       vovoFala: "Deslize o campo para os lados e encontre as ovelhinhas escondidas!",
       run: (container, phase) => runOvelhaPerdida(container, phase)
     },
@@ -205,7 +219,8 @@
       id: "ovelha_fujona",
       title: "A OVELHA FUJONA",
       sub: "Alcance a Ovelhinha Sapeca",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_06_ovelha_fujona.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_06_ovelha_fujona.svg?v=83",
+      audioFile: "vovo_jogo_06.mp3",
       vovoFala: "Arraste o pastorzinho pelo pasto até alcançar a ovelhinha fujona!",
       run: (container, phase) => runOvelhaFujona(container, phase)
     },
@@ -213,7 +228,8 @@
       id: "animais_eden",
       title: "ANIMAIS DO ÉDEN",
       sub: "Encaixe na Silhueta Certa",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_07_animais_eden.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_07_animais_eden.svg?v=83",
+      audioFile: "vovo_jogo_07.mp3",
       vovoFala: "Arraste cada animal para a sua sombra no Jardim do Éden!",
       run: (container, phase) => runAnimaisEden(container, phase)
     },
@@ -221,7 +237,8 @@
       id: "quem_entrou_arca",
       title: "QUEM ENTROU NA ARCA?",
       sub: "Ouça e Toque no Animal",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_08_arca_noe.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_08_arca_noe.svg?v=83",
+      audioFile: "vovo_jogo_08.mp3",
       vovoFala: "Ouça com atenção o que o Vovô falar e toque no bichinho certo!",
       run: (container, phase) => runQuemEntrouArca(container, phase)
     },
@@ -229,7 +246,8 @@
       id: "quiz_visual",
       title: "O GRANDE DESAFIO",
       sub: "Perguntas com 3 Imagens",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_09_quiz.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_09_quiz.svg?v=83",
+      audioFile: "vovo_jogo_09.mp3",
       vovoFala: "Escute a pergunta da Bíblia e toque na imagem da resposta certa!",
       run: (container, phase) => runQuizVisual(container, phase)
     },
@@ -237,7 +255,8 @@
       id: "ligue_pontos",
       title: "LIGUE OS PONTOS",
       sub: "Conecte os Números 1, 2, 3...",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_10_pontos.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_10_pontos.svg?v=83",
+      audioFile: "vovo_jogo_10.mp3",
       vovoFala: "Ligue os pontinhos brilhantes na ordem dos números para revelar o desenho!",
       run: (container, phase) => runLiguePontos(container, phase)
     },
@@ -245,7 +264,8 @@
       id: "seis_erros",
       title: "OS 6 ERROS DO ÉDEN",
       sub: "Ache o que está Diferente",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_11_erros.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_11_erros.svg?v=83",
+      audioFile: "vovo_jogo_11.mp3",
       vovoFala: "Compare as duas imagens e toque nos detalhes que estão diferentes!",
       run: (container, phase) => runSeisErros(container, phase)
     },
@@ -253,7 +273,8 @@
       id: "criacao_ordem",
       title: "A CRIAÇÃO DO MUNDO",
       sub: "Coloque os Dias na Ordem",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_12_criacao.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_12_criacao.svg?v=83",
+      audioFile: "vovo_jogo_12.mp3",
       vovoFala: "Coloque os quadros da Criação na ordem dos dias da semana!",
       run: (container, phase) => runCriacaoOrdem(container, phase)
     },
@@ -261,7 +282,8 @@
       id: "memoria_sonoro",
       title: "MEMÓRIA DOS BICHOS",
       sub: "Encontre os Pares com Som",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_13_memoria.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_13_memoria.svg?v=83",
+      audioFile: "vovo_jogo_13.mp3",
       vovoFala: "Vire as cartas e descubra os pares dos animais criados por Deus!",
       run: (container, phase) => runMemoriaSonoro(container, phase)
     },
@@ -269,7 +291,8 @@
       id: "mana_deserto",
       title: "O MANÁ NO DESERTO",
       sub: "Ache as Cestas de Pão",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_14_mana.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_14_mana.svg?v=83",
+      audioFile: "vovo_jogo_14.mp3",
       vovoFala: "Procure as cestinhas de maná fresquinho caídas no acampamento!",
       run: (container, phase) => runManaDeserto(container, phase)
     },
@@ -277,7 +300,8 @@
       id: "tabernaculo_cesto",
       title: "O CESTO DE MOISÉS",
       sub: "Monte as Peças Sagradas",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_15_cesto.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_15_cesto.svg?v=83",
+      audioFile: "vovo_jogo_15.mp3",
       vovoFala: "Encaixe cada pecinha para montar o cestinho de juncos de Moisés!",
       run: (container, phase) => runTabernaculoCesto(container, phase)
     },
@@ -285,7 +309,8 @@
       id: "puzzle_3d",
       title: "QUEBRA-CABEÇA 3D",
       sub: "Monte a Cena de Cinema",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_16_puzzle.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_16_puzzle.svg?v=83",
+      audioFile: "vovo_jogo_16.mp3",
       vovoFala: "Vamos montar o quebra-cabeça! Arraste as peças para formar a cena linda!",
       run: (container, phase) => runQuebraCabecaArcade(container, phase)
     },
@@ -293,7 +318,8 @@
       id: "pintura_magica",
       title: "PINTURA MÁGICA",
       sub: "Vamos Colorir a História?",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_17_pintura.svg?v=82",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_17_pintura.svg?v=83",
+      audioFile: "vovo_jogo_17.mp3",
       vovoFala: "Vamos colorir? Escolha as cores mágicas e toque para pintar o desenho!",
       run: (container, phase) => runPinturaMagicaArcade(container, phase)
     }
@@ -312,8 +338,8 @@
         inset: 0 !important;
         width: 100vw !important;
         height: 100vh !important;
-        z-index: 999999 !important;
-        display: none;
+        z-index: 9999999 !important;
+        display: none !important;
         flex-direction: column !important;
         background: radial-gradient(circle at 50% 30%, #1e1b4b 0%, #090a16 100%) !important;
         overflow: hidden !important;
@@ -321,6 +347,9 @@
         -webkit-user-select: none !important;
         touch-action: manipulation !important;
         font-family: 'Fredoka', 'Quicksand', -apple-system, sans-serif !important;
+      }
+      #screen-trono-arcade-stage.active {
+        display: flex !important;
       }
       .arcade-top-bar {
         height: 60px;
@@ -503,7 +532,7 @@
     if (!stage) {
       stage = document.createElement("section");
       stage.id = "screen-trono-arcade-stage";
-      stage.className = "screen";
+      stage.className = "trono-fullscreen-stage";
       stage.innerHTML = `
         <div class="arcade-top-bar">
           <button class="arcade-btn-circle" onclick="window.closeTronoArcadeStage()" title="Voltar à Sala de Jogos">
@@ -570,7 +599,10 @@
     currentPhase = 1;
 
     const stage = document.getElementById("screen-trono-arcade-stage");
-    stage.style.display = "flex";
+    if (stage) {
+      stage.classList.add("active");
+      stage.style.display = "flex";
+    }
 
     loadPhase(currentPhase);
   };
@@ -590,7 +622,7 @@
       setTimeout(() => {
         bubble.style.display = "none";
       }, 5500);
-      TronoAudio.falarVovo(currentActiveGame.vovoFala);
+      TronoAudio.falarVovo(currentActiveGame.audioFile);
     }
 
     const container = document.getElementById("arcade-game-stage-container");
@@ -602,9 +634,12 @@
 
   window.closeTronoArcadeStage = function() {
     TronoAudio.play("click");
-    if (window.speechSynthesis) window.speechSynthesis.cancel();
+    if (TronoAudio.vovoPlayer) { try { TronoAudio.vovoPlayer.pause(); } catch(e){} }
     const stage = document.getElementById("screen-trono-arcade-stage");
-    if (stage) stage.style.display = "none";
+    if (stage) {
+      stage.classList.remove("active");
+      stage.style.display = "none";
+    }
     if (typeof openGamesHubScreen === "function") {
       openGamesHubScreen();
     }
@@ -635,13 +670,13 @@
         bubble.style.display = "flex";
         setTimeout(() => { bubble.style.display = "none"; }, 4000);
       }
-      TronoAudio.falarVovo(currentActiveGame.vovoFala);
+      TronoAudio.falarVovo(currentActiveGame.audioFile);
     }
   };
 
   function triggerArcadeVictory() {
     TronoAudio.play("fanfare");
-    TronoAudio.falarVovo("Muito bem, meu netinho! Você venceu a fase!");
+    TronoAudio.falarVovo("vovo_vitoria.mp3");
     launchConfetti();
     const modal = document.getElementById("trono-victory-modal");
     if (modal) modal.style.display = "flex";
@@ -1083,7 +1118,7 @@
       sil.style.background = "#ffffff";
       TronoAudio.play("success");
       const bicho = bichos.find(b => b.id === id);
-      if (bicho) TronoAudio.falarVovo(bicho.nome);
+      if (bicho) TronoAudio.play("star");
       encaixados++;
       if (encaixados >= 3) {
         setTimeout(triggerArcadeVictory, 800);
@@ -1115,9 +1150,7 @@
       </div>
     `;
 
-    setTimeout(() => {
-      TronoAudio.falarVovo("Quem entrou na arca? Encontre o Leão!");
-    }, 400);
+    // O áudio oficial vovo_jogo_08.mp3 já toca na entrada da fase
 
     window._escolherArcaBicho = function(nome) {
       if (nome === "Leão") {
@@ -1125,7 +1158,7 @@
         setTimeout(triggerArcadeVictory, 700);
       } else {
         TronoAudio.play("error");
-        TronoAudio.falarVovo("Tente de novo! Encontre o Leão!");
+        TronoAudio.play("error");
       }
     };
   }
@@ -1151,9 +1184,7 @@
       </div>
     `;
 
-    setTimeout(() => {
-      TronoAudio.falarVovo("Quantos reis magos visitaram o menino Jesus? Toque na imagem certa!");
-    }, 400);
+    // O áudio oficial vovo_jogo_09.mp3 já toca na entrada da fase
 
     window._quizCheck = function(val) {
       if (val === 3) {
