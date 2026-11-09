@@ -916,7 +916,7 @@
     ];
 
     const peixesHtml = peixesPos.slice(0, totalPeixes).map((p, idx) => {
-      const src = p.isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=92" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=92";
+      const src = p.isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=93" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=93";
       return `
         <div class="peixe-rio-item" id="peixe-rio-${idx}" style="position:absolute; top:${p.top}; left:${p.left}; width:${p.size}; height:auto; animation:peixeNadoSuave ${p.dur} infinite ease-in-out ${p.delay}; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.5)); transition:all 0.4s ease;">
           <img src="${src}" style="width:100%; height:auto;" alt="Peixinho da Pesca">
@@ -927,14 +927,16 @@
     // Peixes capturados dentro da rede (EXATAMENTE a mesma quantidade da fase)
     const peixesNaRedeHtml = Array.from({ length: totalPeixes }).map((_, i) => {
       const isBlue = i % 2 === 1;
-      const src = isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=92" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=92";
+      const src = isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=93" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=93";
       const rot = (i % 2 === 0 ? -12 : 16) + (i * 6);
       const size = Math.max(54 - i * 3, 40);
       return `<img src="${src}" style="width:${size}px; height:auto; transform:rotate(${rot}deg); margin:0 -6px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.6));">`;
     }).join("");
 
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; overflow:hidden; user-select:none; touch-action:none; background: url('./2_ASSETS_UI_BOTOES/fundo_pesca_maravilhosa_3d.jpg?v=92') no-repeat center center; background-size: cover;">
+      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; overflow:hidden; user-select:none; touch-action:none; background: linear-gradient(180deg, #38bdf8 0%, #0284c7 35%, #0369a1 70%, #0c4a6e 100%);">
+        <!-- 0. IMAGEM OFICIAL 3D PIXAR COM CARREGAMENTO IMEDIATO E ALTA PRIORIDADE -->
+        <img src="./2_ASSETS_UI_BOTOES/fundo_pesca_maravilhosa_3d.jpg?v=93" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none; z-index:0;" alt="Cenário 3D Pesca Maravilhosa" loading="eager" decoding="async">
         <!-- 1. CAMADA DE PROFUNDIDADE CINEMATOGRÁFICA 3D PIXAR -->
         <!-- Brilho dourado celestial sutil no céu -->
         <div style="position:absolute; top:0; left:0; width:100%; height:35%; pointer-events:none; background:radial-gradient(circle at 18% 38%, rgba(254, 240, 138, 0.28) 0%, rgba(253, 224, 71, 0.08) 50%, transparent 80%);"></div>
@@ -965,7 +967,7 @@
 
           <!-- A REDINHA (Lançada do barco de Pedro diretamente nas águas da Galileia) -->
           <div id="pesca-rede-lanca" style="position:absolute; top:42%; left:0; right:0; margin:0 auto; transform:scale(0.2); width:190px; height:190px; z-index:20; opacity:0; pointer-events:none; transition:all 0.65s cubic-bezier(0.2, 0.9, 0.3, 1);">
-            <img src="./2_ASSETS_UI_BOTOES/rede_pesca_maravilhosa.svg?v=92" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 0 16px rgba(253, 224, 71, 0.8));" alt="Rede de Pesca">
+            <img src="./2_ASSETS_UI_BOTOES/rede_pesca_maravilhosa.svg?v=93" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 0 16px rgba(253, 224, 71, 0.8));" alt="Rede de Pesca">
             <!-- Peixinhos recolhidos na rede (EXATAMENTE a mesma quantidade da fase) -->
             <div id="peixes-na-rede" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s ease;">
               ${peixesNaRedeHtml}
