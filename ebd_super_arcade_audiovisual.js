@@ -654,6 +654,10 @@
   // ==========================================================================
   // 5. NAVEGAÇÃO E CONTROLE DO PALCO EM TELA CHEIA
   // ==========================================================================
+  // Flag de sessão: o Vovô explica a instrução apenas na primeira fase da jogada.
+  // Nas fases seguintes da mesma sessão contínua, o jogo entra direto sem repetições cansativas!
+  let _vovoAlreadySpokeInSession = false;
+
   window.openTronoArcadeGame = function(gameId) {
     TronoAudio.init();
     TronoAudio.play("click");
@@ -664,6 +668,7 @@
 
     currentActiveGame = game;
     currentPhase = 1;
+    _vovoAlreadySpokeInSession = false; // Reset da sessão: ao entrar no jogo, o Vovô falará na primeira fase!
 
     const stage = document.getElementById("screen-trono-arcade-stage");
     if (stage) {
@@ -694,22 +699,31 @@
       currentActiveGame.run(container, phase);
     }
 
-    // TRAVA DE SEGURANÇA E TIMING PEDAGÓGICO (RIGOBERTO UX):
-    // O Vovô Nésio fala a instrução completa. Somente quando ele terminar, o botão/ação é liberado!
-    if (currentActiveGame && currentActiveGame.audioFile) {
+    // REGRA DE SESSÃO INTELIGENTE (RIGOBERTO UX):
+    // 1) Na primeira fase da sessão (quando entra no jogo), o Vovô explica tudo e a trava aguarda.
+    // 2) Nas fases seguintes da mesma jogada contínua, o jogo entra direto e ágil sem cansar a criança!
+    // 3) Se o jogador quiser ouvir de novo, o botão do Vovô no topo repete a qualquer momento.
+    const shouldSpeak = !_vovoAlreadySpokeInSession && currentActiveGame && currentActiveGame.audioFile;
+
+    if (shouldSpeak) {
+      _vovoAlreadySpokeInSession = true;
       TronoAudio.falarVovo(currentActiveGame.audioFile, () => {
         if (typeof window._arcadeUnlockGameAction === 'function') {
           window._arcadeUnlockGameAction();
         }
       });
     } else {
-      if (typeof window._arcadeUnlockGameAction === 'function') {
-        window._arcadeUnlockGameAction();
-      }
+      // Avanço dinâmico nas fases seguintes da mesma sessão: delay suave de 300ms e já libera a ação!
+      setTimeout(() => {
+        if (typeof window._arcadeUnlockGameAction === 'function') {
+          window._arcadeUnlockGameAction();
+        }
+      }, 300);
     }
   }
 
   window.closeTronoArcadeStage = function() {
+    _vovoAlreadySpokeInSession = false;
     TronoAudio.play("click");
     stopArcadeCelebrationConfetti();
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
