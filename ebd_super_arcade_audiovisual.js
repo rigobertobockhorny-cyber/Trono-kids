@@ -2842,10 +2842,6 @@
     scheduleNextSpear(1600);
   }
 
-    // Inicia a primeira lança após introdução suave
-    scheduleNextSpear(1600);
-  }
-
   function runOvelhaPerdida(container, phase) {
     let achadas = 0;
     const total = 3;

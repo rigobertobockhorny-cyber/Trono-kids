@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v121.0';
+const CACHE_VERSION = 'vortice-trono-ebd-v121.1';
 const ASSETS_TO_CACHE = [
   './2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=121',
   './2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=121',
@@ -10,7 +10,7 @@ const ASSETS_TO_CACHE = [
   './2_ASSETS_UI_BOTOES/arca_de_noe_labirinto.svg?v=110',
   './',
   './index.html',
-  './ebd_super_arcade_audiovisual.js?v=121.0',
+  './ebd_super_arcade_audiovisual.js?v=121.1',
   './ebd_modulos_educativos.js?v=118.0',
   './manifest.json',
   './2_ASSETS_UI_BOTOES/icon_512_oficial.png',
