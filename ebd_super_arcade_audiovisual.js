@@ -156,7 +156,7 @@
         return;
       }
       try {
-        const src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=96`;
+        const src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=102`;
         this.vovoPlayer = new Audio(src);
         let finished = false;
         const doFinish = () => {
