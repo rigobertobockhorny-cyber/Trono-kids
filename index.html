@@ -15,9 +15,9 @@
     (function forcePurgeOldMobileCacheV55() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
-        const alreadyPurged = localStorage.getItem('trono_cache_purged_v99') === '1';
+        const alreadyPurged = localStorage.getItem('trono_cache_purged_v100') === '1';
         if (!alreadyPurged || urlParams.get('limpar') === '1') {
-          localStorage.setItem('trono_cache_purged_v99', '1');
+          localStorage.setItem('trono_cache_purged_v100', '1');
           if ('caches' in window) {
             caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
           }
@@ -29,7 +29,7 @@
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=99').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=100').then(reg => {
           reg.update();
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
@@ -1745,37 +1745,37 @@
 <body>
 
 <div id="app-shell">
-  <!-- TELA DE ABERTURA CINEMATOGRÁFICA OFICIAL - VINHETA DO CANAL (17s) -->
-  <div id="app-opening-splash" style="position:fixed; inset:0; z-index:999999; background:radial-gradient(circle at 50% 35%, #241242 0%, #0d041a 60%, #020108 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px; box-sizing:border-box; user-select:none; touch-action:manipulation; transition:opacity 0.5s ease;">
-    <!-- Botão Pular discreto (surge após 4 segundos) -->
-    <button id="btn-skip-intro" onclick="window.dismissIntroVideo(true)" style="position:absolute; top:24px; right:20px; padding:8px 20px; border-radius:999px; background:rgba(15,8,30,0.8); border:2px solid #fde047; color:#fde047; font-family:'Fredoka',sans-serif; font-weight:800; font-size:14px; cursor:pointer; opacity:0; pointer-events:none; transition:opacity 0.4s ease, transform 0.2s ease; backdrop-filter:blur(8px); z-index:20; box-shadow:0 4px 16px rgba(0,0,0,0.6);">Pular ⏩</button>
+  <!-- TELA DE ABERTURA CINEMATOGRÁFICA OFICIAL - VINHETA DO CANAL (17s) - 100% ROXA SEM MARGEM AMARELA -->
+  <div id="app-opening-splash" style="position:fixed; inset:0; z-index:999999; background:radial-gradient(circle at 50% 32%, #7e22ce 0%, #581c87 50%, #2e1065 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px; box-sizing:border-box; user-select:none; touch-action:manipulation; transition:opacity 0.5s ease;">
+    <!-- Botão Pular discreto (surge após 4 segundos) em vidro fosco sem amarelo -->
+    <button id="btn-skip-intro" onclick="window.dismissIntroVideo(true)" style="position:absolute; top:24px; right:20px; padding:8px 18px; border-radius:999px; background:rgba(0,0,0,0.45); border:1.5px solid rgba(255,255,255,0.4); color:#ffffff; font-family:'Fredoka',sans-serif; font-weight:700; font-size:14px; cursor:pointer; opacity:0; pointer-events:none; transition:opacity 0.4s ease, transform 0.2s ease; backdrop-filter:blur(10px); z-index:20; box-shadow:0 4px 16px rgba(0,0,0,0.4);">Pular ⏩</button>
 
     <!-- Logo 3D Oficial no Topo com brilho suave -->
     <div style="margin-bottom:14px; display:flex; justify-content:center; align-items:center;">
-      <img src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=99" style="width:190px; max-width:70vw; height:auto; object-fit:contain; filter:drop-shadow(0 4px 18px rgba(253,224,71,0.6)); animation:introLogoFloat 2.6s ease-in-out infinite;" alt="Trono da Promessa EBD">
+      <img src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=100" style="width:190px; max-width:70vw; height:auto; object-fit:contain; filter:drop-shadow(0 4px 18px rgba(0,0,0,0.55)); animation:introLogoFloat 2.6s ease-in-out infinite;" alt="Trono da Promessa EBD">
     </div>
 
-    <!-- Moldura Dourada da Vinheta (16:9) -->
-    <div id="intro-video-container" onclick="window.handleIntroContainerTap()" style="position:relative; width:100%; max-width:540px; aspect-ratio:16/9; max-height:48vh; border-radius:20px; border:3.5px solid #fde047; box-shadow:0 0 36px rgba(253,224,71,0.5), 0 16px 40px rgba(0,0,0,0.85); overflow:hidden; background:#000000; cursor:pointer;">
-      <video id="intro-video-player" playsinline webkit-playsinline x5-playsinline preload="auto" src="./2_ASSETS_UI_BOTOES/vinheta_abertura_trono.mp4?v=99" style="width:100%; height:100%; object-fit:cover; display:block;"></video>
+    <!-- Bloco da Vinheta (16:9) - Sem margem amarela! Cantos arredondados com sombra profunda -->
+    <div id="intro-video-container" onclick="window.handleIntroContainerTap()" style="position:relative; width:100%; max-width:540px; aspect-ratio:16/9; max-height:48vh; border-radius:20px; border:none; box-shadow:0 16px 44px rgba(0,0,0,0.65), 0 0 28px rgba(46,16,101,0.5); overflow:hidden; background:#000000; cursor:pointer;">
+      <video id="intro-video-player" playsinline webkit-playsinline x5-playsinline preload="auto" src="./2_ASSETS_UI_BOTOES/vinheta_abertura_trono.mp4?v=100" style="width:100%; height:100%; object-fit:cover; display:block;"></video>
       
-      <!-- Botão de Play Dourado Flutuante (caso o navegador bloqueie autoplay com som) -->
+      <!-- Botão de Play Flutuante (caso o navegador bloqueie autoplay com som) -->
       <div id="intro-play-tap-prompt" style="position:absolute; inset:0; background:rgba(0,0,0,0.45); display:none; flex-direction:column; align-items:center; justify-content:center; gap:10px; z-index:10; backdrop-filter:blur(2px);">
-        <div style="width:72px; height:72px; border-radius:50%; background:linear-gradient(135deg, #fde047 0%, #f59e0b 100%); border:3px solid #ffffff; display:flex; align-items:center; justify-content:center; box-shadow:0 0 28px rgba(253,224,71,0.9); animation:introPulse 1.6s ease-in-out infinite;">
+        <div style="width:72px; height:72px; border-radius:50%; background:#ffffff; border:none; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 28px rgba(0,0,0,0.6); animation:introPulse 1.6s ease-in-out infinite;">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="#581c87" style="margin-left:4px;"><path d="M8 5V19L19 12L8 5Z"/></svg>
         </div>
-        <div style="font-family:'Fredoka',sans-serif; font-size:15px; font-weight:800; color:#fde047; text-shadow:0 2px 8px rgba(0,0,0,0.9); background:rgba(0,0,0,0.6); padding:4px 14px; border-radius:999px; border:1px solid rgba(253,224,71,0.4);">Toque para Começar! ✨</div>
+        <div style="font-family:'Fredoka',sans-serif; font-size:15px; font-weight:800; color:#ffffff; text-shadow:0 2px 8px rgba(0,0,0,0.9); background:rgba(0,0,0,0.6); padding:5px 16px; border-radius:999px; border:1px solid rgba(255,255,255,0.3);">Toque para Começar! ✨</div>
       </div>
     </div>
 
-    <!-- Slogan Oficial do Canal -->
-    <div style="font-family:'Fredoka',sans-serif; font-size:14px; font-weight:700; color:#fde047; text-shadow:0 2px 8px rgba(0,0,0,0.9); margin-top:14px; text-align:center; padding:0 12px; line-height:1.3;">
+    <!-- Slogan Oficial do Canal em Branco Cristalino -->
+    <div style="font-family:'Fredoka',sans-serif; font-size:15px; font-weight:700; color:#ffffff; text-shadow:0 2px 10px rgba(0,0,0,0.8); margin-top:14px; text-align:center; padding:0 12px; line-height:1.3;">
       ✨ Venha descobrir as histórias da Bíblia com o Vovô Nésio! ✨
     </div>
 
-    <!-- Barra de Progresso Dourada -->
-    <div style="width:80%; max-width:320px; height:8px; background:rgba(255,255,255,0.15); border-radius:999px; margin-top:10px; overflow:hidden; border:1px solid rgba(253,224,71,0.35);">
-      <div id="intro-progress-bar" style="width:0%; height:100%; background:linear-gradient(90deg, #f59e0b 0%, #fde047 100%); border-radius:999px; transition:width 0.2s linear;"></div>
+    <!-- Barra de Progresso Suave sem margem amarela -->
+    <div style="width:80%; max-width:320px; height:7px; background:rgba(255,255,255,0.25); border-radius:999px; margin-top:12px; overflow:hidden;">
+      <div id="intro-progress-bar" style="width:0%; height:100%; background:linear-gradient(90deg, #c084fc 0%, #ffffff 100%); border-radius:999px; transition:width 0.2s linear; box-shadow:0 0 10px rgba(255,255,255,0.8);"></div>
     </div>
   </div>
 
@@ -1785,8 +1785,8 @@
     50% { transform: translateY(-6px); }
   }
   @keyframes introPulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 24px rgba(253,224,71,0.7); }
-    50% { transform: scale(1.08); box-shadow: 0 0 36px rgba(253,224,71,1); }
+    0%, 100% { transform: scale(1); box-shadow: 0 0 24px rgba(255,255,255,0.7); }
+    50% { transform: scale(1.08); box-shadow: 0 0 36px rgba(255,255,255,1); }
   }
   </style>
 
@@ -2555,8 +2555,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=99.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=99.0"></script>
+<script src="ebd_modulos_educativos.js?v=100.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=100.0"></script>
 <script>
   // LAZY-LOAD INTELIGENTE DE PINTURAS (6.3 MB)
   // Reduz em 90% o peso inicial do app, abrindo em menos de 1 segundo!
@@ -2649,12 +2649,12 @@ const SLEEP_TRACKS = [
 
 let bgAudioPlayer = new Audio();
 bgAudioPlayer.loop = false;
-let activeTrackId = 1;
+let activeTrackId = 2; // Inicia na Música 2 (Melodia Suave Familiar: "A Harpa Dourada de Davi"), pois a abertura já tocou a vinheta oficial!
 let ambientPlaying = true;
 let audioCtx = null;
 
-// Inicializa já na Música 1 (Vinheta Oficial: "O Livro Brilhante do Vovô Nésio / Venha descobrir histórias da Bíblia")
-bgAudioPlayer.src = SLEEP_TRACKS[0].file;
+// Inicializa na Música 2 ("A Harpa Dourada de Davi" - melodia instrumental de boinha)
+bgAudioPlayer.src = SLEEP_TRACKS[1].file;
 bgAudioPlayer.volume = 0.65;
 
 // Quando uma música termina, avança automaticamente em ordem (1 -> 2 -> 3 ... -> 10 -> 1)
@@ -3049,13 +3049,13 @@ function toggleAmbientSound() {
     ambientPlaying = false;
   } else if (ambientPlaying && bgAudioPlayer.paused) {
     // Se estava marcado como ativo mas o navegador bloqueou autoplay antes do clique, toca agora!
-    const tr = SLEEP_TRACKS.find(t => t.id === activeTrackId) || SLEEP_TRACKS[0];
+    const tr = SLEEP_TRACKS.find(t => t.id === activeTrackId) || SLEEP_TRACKS[1];
     if (!bgAudioPlayer.src) bgAudioPlayer.src = tr.file;
     bgAudioPlayer.volume = 0.65;
     bgAudioPlayer.play().catch(() => {});
     ambientPlaying = true;
   } else {
-    const tr = SLEEP_TRACKS.find(t => t.id === activeTrackId) || SLEEP_TRACKS[0];
+    const tr = SLEEP_TRACKS.find(t => t.id === activeTrackId) || SLEEP_TRACKS[1];
     bgAudioPlayer.src = tr.file;
     bgAudioPlayer.volume = 0.65;
     bgAudioPlayer.play().catch(() => {});
