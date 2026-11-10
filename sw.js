@@ -1,9 +1,15 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v107.0';
+const CACHE_VERSION = 'vortice-trono-ebd-v108.0';
 const ASSETS_TO_CACHE = [
+  './2_ASSETS_UI_BOTOES/nuvem_raio.svg?v=108',
+  './2_ASSETS_UI_BOTOES/nuvem_chuva.svg?v=108',
+  './2_ASSETS_UI_BOTOES/nuvem_cinza.svg?v=108',
+  './2_ASSETS_UI_BOTOES/nuvem_branca.svg?v=108',
+  './2_ASSETS_UI_BOTOES/pombinha_branca_voando.svg?v=108',
+  './2_ASSETS_UI_BOTOES/arca_de_noe_labirinto.svg?v=108',
   './',
   './index.html',
-  './ebd_super_arcade_audiovisual.js?v=107.0',
-  './ebd_modulos_educativos.js?v=107.0',
+  './ebd_super_arcade_audiovisual.js?v=108.0',
+  './ebd_modulos_educativos.js?v=108.0',
   './manifest.json',
   './2_ASSETS_UI_BOTOES/icon_512_oficial.png',
   './2_ASSETS_UI_BOTOES/icon_192_oficial.png',
