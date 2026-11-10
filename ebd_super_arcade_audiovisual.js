@@ -139,22 +139,47 @@
       }
     },
 
-    falarVovo(audioFile) {
+    falarVovo(audioFile, onFinish) {
       if (this.vovoPlayer) {
         try {
           this.vovoPlayer.pause();
           this.vovoPlayer.currentTime = 0;
+          this.vovoPlayer.onended = null;
         } catch (e) {}
       }
-      if (!audioFile) return;
+      if (this._vovoTimer) {
+        clearTimeout(this._vovoTimer);
+        this._vovoTimer = null;
+      }
+      if (!audioFile) {
+        if (typeof onFinish === 'function') onFinish();
+        return;
+      }
       try {
-        const src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=91`;
+        const src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=96`;
         this.vovoPlayer = new Audio(src);
+        let finished = false;
+        const doFinish = () => {
+          if (!finished) {
+            finished = true;
+            if (this._vovoTimer) clearTimeout(this._vovoTimer);
+            this._vovoTimer = null;
+            if (typeof onFinish === 'function') onFinish();
+          }
+        };
+
+        this.vovoPlayer.onended = doFinish;
+        // Fallback de segurança: se o áudio passar de 6.2s:
+        this._vovoTimer = setTimeout(doFinish, 6200);
+
         this.vovoPlayer.play().catch(err => {
           console.warn("Audio play prevented:", err);
+          // Se bloqueado pelo browser/mudo, libera após 1.2s para a criança brincar
+          setTimeout(doFinish, 1200);
         });
       } catch (e) {
         console.warn("TronoAudio error:", e);
+        if (typeof onFinish === 'function') onFinish();
       }
     },
 
@@ -660,15 +685,27 @@
     if (modal) modal.style.display = "none";
     stopArcadeCelebrationConfetti();
 
-    // O Vovô Nésio fala a instrução apenas em áudio (tela 100% limpa, sem texto)
-    if (currentActiveGame && currentActiveGame.audioFile) {
-      TronoAudio.falarVovo(currentActiveGame.audioFile);
-    }
+    // Reseta trava de liberação
+    window._arcadeUnlockGameAction = null;
 
     const container = document.getElementById("arcade-game-stage-container");
     if (container && currentActiveGame) {
       container.innerHTML = "";
       currentActiveGame.run(container, phase);
+    }
+
+    // TRAVA DE SEGURANÇA E TIMING PEDAGÓGICO (RIGOBERTO UX):
+    // O Vovô Nésio fala a instrução completa. Somente quando ele terminar, o botão/ação é liberado!
+    if (currentActiveGame && currentActiveGame.audioFile) {
+      TronoAudio.falarVovo(currentActiveGame.audioFile, () => {
+        if (typeof window._arcadeUnlockGameAction === 'function') {
+          window._arcadeUnlockGameAction();
+        }
+      });
+    } else {
+      if (typeof window._arcadeUnlockGameAction === 'function') {
+        window._arcadeUnlockGameAction();
+      }
     }
   }
 
@@ -732,6 +769,19 @@
   let celebrationClapAudio = null;
 
   function triggerArcadeVictory() {
+    // 0. Interrompe qualquer áudio anterior do Vovô para nunca haver atropelos!
+    if (TronoAudio.vovoPlayer) {
+      try {
+        TronoAudio.vovoPlayer.pause();
+        TronoAudio.vovoPlayer.currentTime = 0;
+        TronoAudio.vovoPlayer.onended = null;
+      } catch(e) {}
+    }
+    if (TronoAudio._vovoTimer) {
+      clearTimeout(TronoAudio._vovoTimer);
+      TronoAudio._vovoTimer = null;
+    }
+
     // 1. Áudio oficial canônico: Palmas + Crianças Comemorando ("Êêê/Aê!") + Fanfarra
     try {
       if (typeof window.playSoundCelebrationClaps === 'function') {
@@ -748,16 +798,18 @@
       console.warn("Celebration audio err:", e);
     }
 
-    // 2. Voz afetuosa e neutra do Vovô Nésio
-    setTimeout(() => {
-      TronoAudio.falarVovo("vovo_vitoria.mp3");
-    }, 550);
-
-    // 3. Monta e exibe o CARD CANÔNICO OFICIAL DO TRONO KIDS
+    // 2. Monta e exibe o CARD CANÔNICO OFICIAL DO TRONO KIDS
     renderCanonicalVictoryModal();
 
-    // 4. Chuva de confetes 3D e fogos de artifício estourando pela tela toda
+    // 3. Chuva de confetes 3D e fogos de artifício estourando pela tela toda
     startArcadeCelebrationConfetti();
+
+    // 4. Voz afetuosa do Vovô Nésio ("Parabéns! Muito bem!")
+    // TIMING PERFEITO: Entra 1.4s após o estouro inicial de fanfarra e gritos das crianças,
+    // brilhando límpida e cristalina enquanto as palmas continuam ao fundo!
+    setTimeout(() => {
+      TronoAudio.falarVovo("vovo_vitoria.mp3");
+    }, 1400);
   }
 
   function renderCanonicalVictoryModal() {
@@ -1017,6 +1069,11 @@
     // REGRA DE OURO RIGOBERTO: Fase 1 = 1 peixinho, Fase 2 = 2 peixinhos, Fase 3 = 3 peixinhos...
     const totalPeixes = Math.min(phase, 5);
 
+    // Trava de Tempo / Segurança Pedagógica (Rigoberto UX):
+    // O jogo inicia travado enquanto o Vovô Nésio fala a instrução!
+    let isGameLocked = true;
+    let isActionInProgress = false;
+
     // Peixes nadando no fundo das águas turquesas cristalinas da Galileia
     // Quase todos na mesma linha horizontal, bem lá no fundo (sem tocar o chão)
     const peixesPos = [
@@ -1099,35 +1156,58 @@
             </div>
           </div>
 
-          <!-- Botão Gigante de Lançar a Rede -->
-          <button id="btn-pescar-action" style="width:90%; max-width:360px; background:linear-gradient(180deg, #22c55e 0%, #15803d 100%); color:#ffffff; font-weight:900; font-size:19px; padding:15px; border-radius:999px; border:3px solid #ffffff; box-shadow:0 8px 20px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.4); cursor:pointer; text-shadow:0 2px 4px rgba(0,0,0,0.5); transition:transform 0.15s ease, filter 0.15s ease;">
-            🎣 LANÇAR A REDE!
+          <!-- Botão com Trava de Segurança Pedagógica (Ouve o Vovô antes de liberar) -->
+          <button id="btn-pescar-action" style="width:90%; max-width:360px; background:#1e293b; color:#94a3b8; font-weight:900; font-size:18px; padding:15px; border-radius:999px; border:2.5px solid #475569; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:all 0.35s ease; pointer-events:none;">
+            👂 OUÇA O VOVÔ NÉSIO...
           </button>
         </div>
       </div>
     `;
 
     const agulha = document.getElementById("agulha-timing");
-    let pos = 0;
+    let pos = 50; // Começa centralizada na zona verde em espera
     let dir = 1;
-    let animId;
-    let isActionInProgress = false;
+    let animId = null;
+
+    if (agulha) agulha.style.left = "50%";
 
     function loopTiming() {
+      if (isGameLocked || isActionInProgress) return;
       pos += dir * speed;
       if (pos >= 96) { pos = 96; dir = -1; }
       else if (pos <= 0) { pos = 0; dir = 1; }
       if (agulha) agulha.style.left = pos + "%";
       animId = requestAnimationFrame(loopTiming);
     }
-    animId = requestAnimationFrame(loopTiming);
+
+    // REGISTRA A FUNÇÃO OFICIAL DE DESTRAVAMENTO (Acionada quando o Vovô termina a instrução)
+    window._arcadeUnlockGameAction = function() {
+      if (!isGameLocked) return;
+      isGameLocked = false;
+      const b = document.getElementById("btn-pescar-action");
+      if (b) {
+        b.textContent = "🎣 LANÇAR A REDE!";
+        b.style.background = "linear-gradient(180deg, #22c55e 0%, #15803d 100%)";
+        b.style.color = "#ffffff";
+        b.style.border = "3px solid #ffffff";
+        b.style.boxShadow = "0 8px 22px rgba(34,197,94,0.6), inset 0 2px 4px rgba(255,255,255,0.4)";
+        b.style.cursor = "pointer";
+        b.style.opacity = "1";
+        b.style.pointerEvents = "auto";
+        b.style.animation = "aliveBtnFloat 1.8s ease-in-out infinite";
+      }
+      TronoAudio.play("pop");
+      if (!animId && !isActionInProgress) {
+        animId = requestAnimationFrame(loopTiming);
+      }
+    };
 
     const btn = document.getElementById("btn-pescar-action");
     if (btn) {
       btn.onclick = () => {
-        if (isActionInProgress) return;
+        if (isGameLocked || isActionInProgress) return;
         isActionInProgress = true;
-        cancelAnimationFrame(animId);
+        if (animId) cancelAnimationFrame(animId);
 
         const minGreen = 50 - targetWidth / 2;
         const maxGreen = 50 + targetWidth / 2;
