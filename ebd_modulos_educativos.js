@@ -7466,10 +7466,16 @@ window.openGamesHubScreen = function(filterCat) {
 
   const filterBar = document.getElementById("games-hub-filter-bar");
   if (filterBar) {
-    filterBar.innerHTML = `<span style="font-size:12.5px; font-weight:900; color:#fde047; padding:2px 8px;">SALA DE JOGOS • 10 JOGOS BÍBLICOS</span>`;
+    filterBar.innerHTML = `<span style="font-size:12.5px; font-weight:900; color:#fde047; padding:2px 8px;">SALA DE JOGOS — 17 JOGOS EM TELA CHEIA</span>`;
   }
 
-  // Todos os 8 Jogos da Lição + Jogo da Memória + Quiz do Vovô Nésio (10 Jogos Completos na 1ª página!)
+  if (typeof window.renderAll17ArcadeGamesInHub === "function") {
+    window.renderAll17ArcadeGamesInHub();
+    if (typeof showScreen === "function") showScreen("screen-games-hub");
+    return;
+  }
+
+  // Fallback legado caso o módulo principal ainda não tenha carregado
   const allGames = [
     { id: "chronology", title: "ORDEM CRONOLÓGICA", sub: "Ordene as Cenas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png", action: "openEduGame('chronology', false)" },
     { id: "verse_builder", title: "VERSÍCULO SECRETO", sub: "Monte a Palavra", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png", action: "openEduGame('verse_builder', false)" },

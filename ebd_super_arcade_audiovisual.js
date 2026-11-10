@@ -716,52 +716,53 @@
         pointer-events: none;
         z-index: 2;
       }
-      /* REI SAUL DE CORPO INTEIRO AO FUNDO (EM PÉ DIANTE DO TRONO REAL) */
+      /* REI SAUL DE CORPO INTEIRO DE FRENTE NO CHÃO DIANTE DO TRONO REAL */
       .davi-saul-throne {
         position: absolute;
-        top: 13%;
+        top: 56%;
         left: 50%;
-        transform: translateX(-50%);
-        width: 135px;
-        height: 165px;
+        transform: translate(-50%, -100%);
+        width: 164px;
+        height: 154px;
         z-index: 4;
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: center;
-        transform-origin: 50% 88%;
+        transform-origin: 50% 100%;
         transition: transform 0.22s ease;
       }
       .saul-throne-img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-        filter: drop-shadow(0 6px 16px rgba(0,0,0,0.75));
+        object-position: center bottom;
+        filter: drop-shadow(0 6px 14px rgba(0,0,0,0.78));
       }
       .saul-throne-spear {
         display: none !important;
       }
       .davi-saul-throne.windup {
-        transform: translateX(-50%) scale(1.08) translateY(-6px) !important;
+        transform: translate(-50%, -100%) scale(1.07) !important;
       }
       .davi-saul-throne.throw {
-        transform: translateX(-50%) scale(0.96) translateY(4px) !important;
+        transform: translate(-50%, -98%) scale(0.96) !important;
       }
-      /* A LANÇA REAL FRONTAL COM BRILHO DOURADO (VOANDO EM DIREÇÃO À TELA) */
+      /* A LANÇA REAL FRONTAL VOANDO DO CENTRO EM DIREÇÃO A DAVI */
       .davi-spear-projectile {
         position: absolute;
         display: none;
         z-index: 12;
         pointer-events: none;
-        width: 135px;
-        height: 70px;
+        width: 62px;
+        height: 126px;
       }
       .davi-spear-projectile img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-        filter: drop-shadow(0 0 16px rgba(253, 224, 71, 0.95)) drop-shadow(0 8px 24px rgba(245, 158, 11, 0.85));
+        filter: drop-shadow(0 0 12px rgba(253, 224, 71, 0.9)) drop-shadow(0 6px 16px rgba(0, 0, 0, 0.75));
       }
-      /* CAMADA DE LANÇAS CRAVADAS NO PISO / PAREDE */
+      /* CAMADA DE LANÇAS CRAVADAS NO PISO / TAPETE */
       .davi-stuck-impact-layer {
         position: absolute;
         inset: 0;
@@ -770,37 +771,38 @@
       }
       .davi-stuck-impact-spear {
         position: absolute;
-        width: 110px;
-        height: 58px;
-        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=121") no-repeat center / contain;
-        filter: drop-shadow(0 4px 10px rgba(0,0,0,0.85)) drop-shadow(0 0 8px rgba(253, 224, 71, 0.6));
+        width: 50px;
+        height: 100px;
+        background: url("./2_ASSETS_UI_BOTOES/lanca_frontal_v123.png?v=123") no-repeat center / contain;
+        filter: drop-shadow(0 4px 10px rgba(0,0,0,0.85)) drop-shadow(0 0 6px rgba(253, 224, 71, 0.55));
         opacity: 0.92;
       }
-      /* DAVI NO PRIMEIRO PLANO (DE COSTAS, ACIMA DO CONTROLE FLUTUANTE) */
+      /* DAVI NO PRIMEIRO PLANO (DE COSTAS NO TAPETE, 100% ACIMA DO CONTROLE FLUTUANTE) */
       .davi-hero-box {
         position: absolute;
-        bottom: 120px;
+        bottom: 142px;
         left: 50%;
         transform: translateX(-50%);
-        width: 110px;
-        height: 145px;
+        width: 64px;
+        height: 128px;
         z-index: 15;
+        transform-origin: 50% 100%;
         transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), left 0.24s cubic-bezier(0.25, 1, 0.5, 1);
       }
       .davi-hero-box.center-pos {
         left: 50% !important;
       }
       .davi-hero-box.dodge-left {
-        left: 20% !important;
+        left: 24% !important;
       }
       .davi-hero-box.dodge-right {
-        left: 80% !important;
+        left: 76% !important;
       }
       .davi-hero-box.jumping {
-        transform: translateX(-50%) translateY(-65px) scale(0.96) !important;
+        transform: translateX(-50%) translateY(-58px) scale(0.96) !important;
       }
       .davi-hero-box.crouching {
-        transform: translateX(-50%) translateY(32px) scale(0.72) !important;
+        transform: translateX(-50%) scaleY(0.64) scaleX(1.06) !important;
       }
       .davi-hero-box.hit-stumble {
         animation: daviStumble 0.6s ease;
@@ -814,23 +816,24 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
-        filter: drop-shadow(0 8px 16px rgba(0,0,0,0.7));
+        object-position: center bottom;
+        filter: drop-shadow(0 8px 14px rgba(0,0,0,0.72));
       }
       .davi-hero-shadow {
         position: absolute;
-        bottom: 2px;
+        bottom: 1px;
         left: 50%;
         transform: translateX(-50%);
-        width: 70px;
-        height: 16px;
+        width: 56px;
+        height: 13px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(0,0,0,0.65) 0%, transparent 75%);
+        background: radial-gradient(circle, rgba(0,0,0,0.68) 0%, transparent 75%);
         z-index: -1;
       }
-      /* BARRA DE CONTROLES FLUTUANTE SOBREPOSTA NO RODAPÉ (INSERIDA NA IMAGEM) */
+      /* BARRA DE CONTROLES COMPACTA FLUTUANTE NO RODAPÉ (SEM COBRIR DAVI) */
       .davi-controls-bar {
         position: absolute;
-        bottom: 12px;
+        bottom: 8px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 25;
@@ -848,27 +851,27 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 3px;
-        background: rgba(15, 23, 42, 0.65);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 2.5px solid rgba(253, 224, 71, 0.55);
-        border-radius: 36px;
-        padding: 8px 14px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.15);
+        gap: 2px;
+        background: rgba(15, 23, 42, 0.56);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 2px solid rgba(253, 224, 71, 0.5);
+        border-radius: 24px;
+        padding: 5px 8px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45), inset 0 1px 3px rgba(255, 255, 255, 0.15);
       }
       .davi-mid-row {
         display: flex;
         align-items: center;
-        gap: 3px;
+        gap: 2px;
       }
       .davi-dpad-btn {
-        width: 52px;
-        height: 52px;
+        width: 40px;
+        height: 36px;
         background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
-        border: 2px solid #475569;
-        border-radius: 16px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.2);
+        border: 1.5px solid #475569;
+        border-radius: 10px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.2);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -887,15 +890,15 @@
       }
       .davi-dpad-btn .dpad-arrow-sym {
         color: #f8fafc;
-        font-size: 24px;
+        font-size: 19px;
         font-weight: 900;
         line-height: 1;
         text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         pointer-events: none;
       }
       .davi-center-core {
-        width: 36px;
-        height: 36px;
+        width: 26px;
+        height: 26px;
         background: radial-gradient(circle, #334155 30%, #0f172a 100%);
         border-radius: 50%;
         display: flex;
@@ -904,8 +907,8 @@
         box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
       }
       .davi-center-core .dpad-hub-dot {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
         background: radial-gradient(circle at 30% 30%, #fde047 0%, #ca8a04 100%);
         box-shadow: 0 0 6px #fde047;
@@ -2542,7 +2545,7 @@
 
     window._arcadeUnlockGameAction = function() {
       isUnlocked = true;
-      scheduleNextSpear(1500);
+      scheduleNextSpear(900);
     };
 
     container.innerHTML = `
@@ -2550,26 +2553,26 @@
         <!-- PALCO 3D EM TELA CHEIA (SALÃO DO TRONO) -->
         <div class="davi-palace-stage" id="davi-palace-stage">
           <!-- Fundo Real 3D Pixar do Palácio de Saul -->
-          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=121" class="davi-palace-bg" alt="Palácio Real de Saul 3D"/>
+          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=123" class="davi-palace-bg" alt="Palácio Real de Saul 3D"/>
           <div class="davi-palace-vignette"></div>
 
-          <!-- REI SAUL DE CORPO INTEIRO AO FUNDO (EM PÉ DIANTE DO TRONO) -->
+          <!-- REI SAUL DE CORPO INTEIRO DE FRENTE NO CHÃO DIANTE DO TRONO -->
           <div class="davi-saul-throne" id="davi-saul-throne">
-            <img src="./2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=121" alt="Rei Saul 3D" class="saul-throne-img" id="saul-throne-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/rei_saul_frontal_v123.png?v=123" alt="Rei Saul 3D" class="saul-throne-img" id="saul-throne-img"/>
           </div>
 
-          <!-- A LANÇA REAL VOANDO EM DIREÇÃO À TELA (PERSPECTIVA 3D) -->
+          <!-- A LANÇA REAL FRONTAL VOANDO EM DIREÇÃO A DAVI (PERSPECTIVA 3D) -->
           <div class="davi-spear-projectile" id="davi-spear-projectile">
-            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=121" alt="Lança em Voo 3D"/>
+            <img src="./2_ASSETS_UI_BOTOES/lanca_frontal_v123.png?v=123" alt="Lança em Voo 3D"/>
           </div>
 
           <!-- CAMADA DE LANÇAS CRAVADAS NO PISO / TAPETE -->
           <div class="davi-stuck-impact-layer" id="davi-stuck-layer"></div>
 
-          <!-- DAVI JOVEM PASTOR NO PRIMEIRO PLANO (PERSPECTIVA 3D ACIMA DOS BOTÕES) -->
+          <!-- DAVI JOVEM PASTOR NO PRIMEIRO PLANO (ACIMA DOS BOTÕES) -->
           <div class="davi-hero-box center-pos" id="davi-hero-box">
             <div class="davi-hero-shadow"></div>
-            <img src="./2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=121" alt="Davi Pastor 3D" class="davi-hero-img" id="davi-hero-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/davi_costas_v123.png?v=123" alt="Davi Pastor 3D" class="davi-hero-img" id="davi-hero-img"/>
           </div>
         </div>
 
@@ -2723,43 +2726,52 @@
       window._daviWindupTimer = setTimeout(() => {
         if (isGameWon) return;
 
-        // 2. ARREMESSO FÍSICO DO TRONO
+        // 2. ARREMESSO FÍSICO DE SAUL DE FRENTE PARA DAVI NO CENTRO
         saulThrone.classList.remove("windup");
         saulThrone.classList.add("throw");
 
-        // Configuração inicial da lança saindo da mão de Saul no trono
+        // Configuração inicial da lança saindo da mão/lança de Saul na frente do trono (top: 44%, left: 48%)
         spearProjectile.style.display = "block";
         spearProjectile.style.transition = "none";
-        spearProjectile.style.top = "20%";
-        spearProjectile.style.left = "50%";
-        spearProjectile.style.width = "70px";
-        spearProjectile.style.height = "36px";
-        spearProjectile.style.transform = "translate(-50%, -50%) scale(0.35)";
+        spearProjectile.style.top = "44%";
+        spearProjectile.style.left = "48%";
+        spearProjectile.style.width = "62px";
+        spearProjectile.style.height = "126px";
+        spearProjectile.style.transform = "translate(-50%, -50%) scale(0.32)";
 
         // Força reflow para animação CSS fluida
         void spearProjectile.offsetWidth;
 
-        // Destino da Lança frontal em perspectiva 3D (ajustado à posição de Davi):
+        // Cálculo dinâmico exato da altura de Davi no palco atual (qualquer tamanho de tela)
+        const stageEl = document.getElementById("davi-palace-stage");
+        const stageH = (stageEl && stageEl.clientHeight) ? stageEl.clientHeight : (window.innerHeight - 60);
+        // heroBox tem bottom: 142px e height: 128px
+        const heroBottomPx = stageH - 142;
+        const heroTopPx = heroBottomPx - 128;
+        const lowPct = Math.round(((heroBottomPx - 18) / stageH) * 100);
+        const highPct = Math.round(((heroTopPx + 26) / stageH) * 100);
+        const midPct = Math.round(((heroTopPx + 64) / stageH) * 100);
+
         let targetLeft = "50%";
-        let targetTop = "78%";
-        let targetScale = "1.45";
-        const flyDurationMs = 1550; // Voo cinematográfico e suave (~1.55s)
+        let targetTop = lowPct + "%";
+        let targetScale = "1.22";
+        const flyDurationMs = 1500; // Voo cinematográfico e suave (~1.5s)
 
         if (attackType === "baixa") {
-          targetTop = "80%";
+          targetTop = lowPct + "%";
           targetLeft = "50%";
         } else if (attackType === "alta") {
-          targetTop = "66%";
+          targetTop = highPct + "%";
           targetLeft = "50%";
         } else if (attackType === "esquerda") {
-          targetTop = "73%";
+          targetTop = midPct + "%";
           targetLeft = "24%";
         } else if (attackType === "direita") {
-          targetTop = "73%";
+          targetTop = midPct + "%";
           targetLeft = "76%";
         }
 
-        // DISPARA O VOO EM PERSPECTIVA 3D CRESCENDO COM BRILHO EM DIREÇÃO À TELA!
+        // DISPARA O VOO EM PERSPECTIVA 3D CRESCENDO DO CENTRO DE SAUL ATÉ DAVI!
         spearProjectile.style.transition = `top ${flyDurationMs}ms cubic-bezier(0.2, 0.6, 0.4, 1), left ${flyDurationMs}ms ease-out, transform ${flyDurationMs}ms cubic-bezier(0.2, 0.6, 0.4, 1)`;
         spearProjectile.style.top = targetTop;
         spearProjectile.style.left = targetLeft;
@@ -2767,7 +2779,7 @@
 
         TronoAudio.play("arrow");
 
-        // 3. MOMENTO DO IMPACTO / CHECAGEM DE ESQUIVA (aos 1250ms)
+        // 3. MOMENTO DO IMPACTO / CHECAGEM DE ESQUIVA (aos 1220ms)
         setTimeout(() => {
           if (isGameWon) return;
 
@@ -2797,7 +2809,7 @@
             stuck.className = "davi-stuck-impact-spear";
             stuck.style.left = targetLeft;
             stuck.style.top = targetTop;
-            stuck.style.transform = `translate(-50%, -50%) scale(1.15)`;
+            stuck.style.transform = `translate(-50%, -50%) scale(1.05)`;
             stuckLayer.appendChild(stuck);
 
             TronoAudio.play("star");
@@ -2809,13 +2821,13 @@
               isGameWon = true;
               window.removeEventListener("keydown", handleKeyDown);
               setTimeout(() => {
-                showTronoArcadeVictory(currentPhaseNum);
-              }, 600);
+                triggerArcadeVictory();
+              }, 550);
             } else {
               // Próxima lança com intervalo calmo e relaxado
               setTimeout(() => {
                 doHeroCenter();
-                scheduleNextSpear(1600);
+                scheduleNextSpear(1500);
               }, 700);
             }
           } else {
@@ -2833,13 +2845,10 @@
               scheduleNextSpear(1400);
             }, 900);
           }
-        }, 1250);
+        }, 1220);
 
       }, 900);
     }
-
-    // Inicia a primeira lança após introdução suave
-    scheduleNextSpear(1600);
   }
 
   function runOvelhaPerdida(container, phase) {

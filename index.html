@@ -17,33 +17,55 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v121.1';
+        const CURRENT_VER = 'v123.0';
         const urlParams = new URLSearchParams(window.location.search);
-        const forceClear = urlParams.get('limpar') === '1' || urlParams.get('reset') === '1' || urlParams.get('v') !== null;
+        const explicitClear = urlParams.get('limpar') === '1' || urlParams.get('reset') === '1';
+
+        // Remove query de limpeza da barra de endereço na hora para NUNCA causar loop infinito de reload!
+        if (explicitClear || urlParams.has('v') || urlParams.has('_v')) {
+          try {
+            window.history.replaceState(null, '', window.location.pathname);
+          } catch (e) {}
+        }
+
         const savedVer = localStorage.getItem('trono_app_version');
-        if (savedVer !== CURRENT_VER || forceClear) {
+        if (savedVer !== CURRENT_VER || explicitClear) {
           localStorage.setItem('trono_app_version', CURRENT_VER);
           if ('caches' in window) {
-            caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
-          }
-          if (forceClear && 'serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(regs => {
-              for (let reg of regs) reg.unregister();
-            });
+            caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).catch(() => {});
           }
         }
+
+        // Checagem ativa da versão real no servidor (auto-atualiza sozinho sem precisar de ?limpar=1)
+        fetch('./version.json?t=' + Date.now(), { cache: 'no-store' })
+          .then(r => r.ok ? r.json() : null)
+          .then(data => {
+            if (data && data.version && data.version !== CURRENT_VER) {
+              if (sessionStorage.getItem('trono_ver_sync') !== data.version) {
+                sessionStorage.setItem('trono_ver_sync', data.version);
+                sessionStorage.setItem('trono_skip_intro_once', '1');
+                const p1 = ('caches' in window) ? caches.keys().then(ks => Promise.all(ks.map(k => caches.delete(k)))) : Promise.resolve();
+                const p2 = ('serviceWorker' in navigator) ? navigator.serviceWorker.getRegistrations().then(rs => Promise.all(rs.map(r => r.unregister()))) : Promise.resolve();
+                Promise.all([p1, p2]).finally(() => {
+                  window.location.replace(window.location.pathname + '?_v=' + encodeURIComponent(data.version));
+                });
+              }
+            }
+          })
+          .catch(() => {});
       } catch (e) {}
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=121.1').then(reg => {
-          reg.update();
+        navigator.serviceWorker.register('./sw.js?v=123.0', { updateViaCache: 'none' }).then(reg => {
+          reg.update().catch(() => {});
         }).catch(() => {});
-        let refreshing = false;
         navigator.serviceWorker.addEventListener('controllerchange', () => {
-          if (!refreshing) {
-            refreshing = true;
-            window.location.reload();
+          // Trava absoluta anti-loop: no máximo 1 único reload por versão!
+          if (sessionStorage.getItem('trono_sw_reloaded') !== 'v123.0') {
+            sessionStorage.setItem('trono_sw_reloaded', 'v123.0');
+            sessionStorage.setItem('trono_skip_intro_once', '1');
+            window.location.replace(window.location.pathname);
           }
         });
       });
@@ -1802,6 +1824,16 @@
       var splash = document.getElementById('app-opening-splash');
       var skipShown = false;
 
+      // Se acabou de auto-atualizar versão em segundo plano, entra direto no app sem tela preta de vinheta!
+      try {
+        if (sessionStorage.getItem('trono_skip_intro_once') === '1') {
+          sessionStorage.removeItem('trono_skip_intro_once');
+          if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+          window._introDismissed = true;
+          return;
+        }
+      } catch (e) {}
+
       window.handleIntroContainerTap = function() {
         if (!video) return;
         if (video.paused) {
@@ -2551,8 +2583,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=118.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=121.1"></script>
+<script src="ebd_modulos_educativos.js?v=123.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=123.0"></script>
 <script>
   // LAZY-LOAD INTELIGENTE DE PINTURAS (6.3 MB)
   // Reduz em 90% o peso inicial do app, abrindo em menos de 1 segundo!
