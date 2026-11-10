@@ -452,22 +452,22 @@
         overflow: hidden;
       }
 
-      /* MODAL UNIVERSAL DE VITÓRIA (3 BOTÕES) */
+      /* TELA CHEIA OFICIAL DE VITÓRIA (100% ROXA DO TRONO KIDS - SEM BLOCO/CARD) */
       #trono-victory-modal {
         position: absolute;
         inset: 0;
-        background: rgba(7, 10, 28, 0.92);
-        backdrop-filter: blur(8px);
+        background: radial-gradient(circle at 50% 32%, #7e22ce 0%, #581c87 50%, #2e1065 100%);
         display: none;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        z-index: 99;
-        animation: vicModalFade 0.3s ease;
+        padding: 30px 20px;
+        z-index: 100;
+        animation: vicModalFade 0.35s ease;
       }
       @keyframes vicModalFade {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from { opacity: 0; transform: scale(0.96); }
+        to { opacity: 1; transform: scale(1); }
       }
       .victory-card {
         background: linear-gradient(180deg, #2e1065 0%, #1e1b4b 100%);
@@ -921,24 +921,26 @@
     }
 
     modal.innerHTML = `
-      <div class="canonical-victory-card" style="width:90%; max-width:340px; padding:24px 18px; border:3.5px solid #fde047; border-radius:28px; background:linear-gradient(180deg, #aa00ff 0%, #581c87 100%); box-shadow:0 0 32px rgba(170,0,255,0.85), 0 18px 44px rgba(0,0,0,0.95); text-align:center; position:relative; overflow:hidden; animation:vicCardPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
-        <!-- 1. Único Ícone 3D Oficial do Jogo no Topo -->
-        <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
-          <img src="${game.icon}" style="width:84px; height:84px; object-fit:contain; border-radius:22px; border:3px solid #fde047; background:rgba(255,255,255,0.15); box-shadow:0 0 20px rgba(253,224,71,0.8), 0 8px 16px rgba(0,0,0,0.7); animation:aliveBtnFloat 2.0s ease-in-out infinite;" alt="${game.title}">
+      <div class="trono-victory-screen-content" style="width:100%; max-width:400px; display:flex; flex-direction:column; align-items:center; text-align:center; z-index:2; animation:vicCardPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+        <!-- 1. Único Ícone 3D Oficial do Jogo no Topo Flutuando Solto -->
+        <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <img src="${game.icon}" style="width:96px; height:96px; object-fit:contain; border-radius:24px; border:3.5px solid #fde047; background:rgba(255,255,255,0.15); box-shadow:0 0 28px rgba(253,224,71,0.85), 0 8px 20px rgba(0,0,0,0.6); animation:aliveBtnFloat 2.0s ease-in-out infinite;" alt="${game.title}">
         </div>
 
-        <!-- 2. Título Amarelo Dourado Brilhante (Somente isso!) -->
-        <div style="position:relative; z-index:2; font-size:27px; font-weight:900; color:#fde047; text-shadow:0 3px 8px rgba(0,0,0,0.9); line-height:1.15; margin-bottom:18px; letter-spacing:0.5px; animation:titlePopBounce 1.4s ease-in-out infinite;">
-          PARABÉNS! MUITO BEM!
+        <!-- 2. Título Amarelo Dourado Brilhante Solto na Tela Roxa -->
+        <div style="position:relative; z-index:2; font-size:30px; font-weight:900; color:#fde047; text-shadow:0 4px 12px rgba(0,0,0,0.9), 0 0 22px rgba(253,224,71,0.6); line-height:1.15; margin-bottom:22px; letter-spacing:0.6px; animation:titlePopBounce 1.4s ease-in-out infinite;">
+          PARABÉNS!<br>MUITO BEM!
         </div>
 
-        <!-- 3. Bolinhas de Progresso (1 a 5 + 🔒) -->
-        <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:22px; min-height:50px;">
+        <!-- 3. Bolinhas de Progresso Soltas (1 a 5 + 🔒) -->
+        <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:9px; margin-bottom:28px; min-height:54px;">
           ${dotsHtml}
         </div>
 
-        <!-- 4. Ações de Vitória -->
-        ${actionsHtml}
+        <!-- 4. Ações de Vitória Soltas na Tela Roxa -->
+        <div style="position:relative; z-index:2; width:100%; max-width:330px;">
+          ${actionsHtml}
+        </div>
       </div>
     `;
 
