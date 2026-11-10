@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v115.0';
+const CACHE_VERSION = 'vortice-trono-ebd-v116.0';
 const ASSETS_TO_CACHE = [
   './2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=114',
   './2_ASSETS_UI_BOTOES/btn_jogo_04_lanca_saul.svg?v=114',
@@ -58,7 +58,7 @@ self.addEventListener('fetch', (event) => {
   const isHtml = event.request.mode === 'navigate' || url.endsWith('/') || url.includes('index.html');
   if (isHtml) {
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, { cache: 'no-store' })
         .then((netResp) => {
           if (netResp && netResp.status === 200) {
             const clone = netResp.clone();
@@ -76,7 +76,7 @@ self.addEventListener('fetch', (event) => {
   const isCoreScript = url.includes('ebd_super_arcade') || url.includes('ebd_modulos');
   if (isCoreScript) {
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, { cache: 'no-store' })
         .then((netResp) => {
           if (netResp && netResp.status === 200) {
             const clone = netResp.clone();
@@ -96,7 +96,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       caches.match(event.request).then((cachedResp) => {
         if (cachedResp) return cachedResp;
-        return fetch(event.request).then((netResp) => {
+        return fetch(event.request, { cache: 'no-store' }).then((netResp) => {
           if (netResp && netResp.status === 200) {
             const clone = netResp.clone();
             caches.open(CACHE_VERSION).then((cache) => cache.put(event.request, clone));
@@ -111,7 +111,7 @@ self.addEventListener('fetch', (event) => {
   // Demais requisições
   event.respondWith(
     caches.match(event.request).then((cachedResp) => {
-      const fetchPromise = fetch(event.request).then((networkResponse) => {
+      const fetchPromise = fetch(event.request, { cache: 'no-store' }).then((networkResponse) => {
         if (networkResponse && networkResponse.status === 200) {
           const cloned = networkResponse.clone();
           caches.open(CACHE_VERSION).then((cache) => cache.put(event.request, cloned));
