@@ -1,16 +1,16 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v106.0';
+const CACHE_VERSION = 'vortice-trono-ebd-v107.0';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './ebd_super_arcade_audiovisual.js?v=106.0',
-  './ebd_modulos_educativos.js?v=106.0',
+  './ebd_super_arcade_audiovisual.js?v=107.0',
+  './ebd_modulos_educativos.js?v=107.0',
   './manifest.json',
   './2_ASSETS_UI_BOTOES/icon_512_oficial.png',
   './2_ASSETS_UI_BOTOES/icon_192_oficial.png',
   './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png',
   './2_ASSETS_UI_BOTOES/logo_oficial_kids_v50.png',
   './2_ASSETS_UI_BOTOES/fundo_pesca_maravilhosa_3d.jpg?v=95',
-  './2_ASSETS_UI_BOTOES/fundo_dracma_perdida_3d.jpg?v=106',
+  './2_ASSETS_UI_BOTOES/fundo_dracma_perdida_3d.jpg?v=107',
   './6_ASSETS_AUDIO/jogos_vovo/som_splash_agua.mp3?v=104'
 ];
 
