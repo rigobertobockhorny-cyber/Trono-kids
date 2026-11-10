@@ -722,7 +722,7 @@
         top: 56%;
         left: 50%;
         transform: translate(-50%, -100%);
-        width: 164px;
+        width: 90px;
         height: 154px;
         z-index: 4;
         display: flex;
@@ -2558,7 +2558,7 @@
 
           <!-- REI SAUL DE CORPO INTEIRO DE FRENTE NO CHÃO DIANTE DO TRONO -->
           <div class="davi-saul-throne" id="davi-saul-throne">
-            <img src="./2_ASSETS_UI_BOTOES/rei_saul_frontal_v123.png?v=123" alt="Rei Saul 3D" class="saul-throne-img" id="saul-throne-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/rei_saul_centro_v124.png?v=124" alt="Rei Saul 3D" class="saul-throne-img" id="saul-throne-img"/>
           </div>
 
           <!-- A LANÇA REAL FRONTAL VOANDO EM DIREÇÃO A DAVI (PERSPECTIVA 3D) -->
@@ -2730,14 +2730,14 @@
         saulThrone.classList.remove("windup");
         saulThrone.classList.add("throw");
 
-        // Configuração inicial da lança saindo da mão/lança de Saul na frente do trono (top: 44%, left: 48%)
+        // Configuração inicial da lança saindo exatamente da ponta central da lança de Saul (top: 46%, left: 50%)
         spearProjectile.style.display = "block";
         spearProjectile.style.transition = "none";
-        spearProjectile.style.top = "44%";
-        spearProjectile.style.left = "48%";
+        spearProjectile.style.top = "46%";
+        spearProjectile.style.left = "50%";
         spearProjectile.style.width = "62px";
         spearProjectile.style.height = "126px";
-        spearProjectile.style.transform = "translate(-50%, -50%) scale(0.32)";
+        spearProjectile.style.transform = "translate(-50%, -50%) scale(0.28)";
 
         // Força reflow para animação CSS fluida
         void spearProjectile.offsetWidth;

@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v123.0';
+        const CURRENT_VER = 'v124.0';
         const urlParams = new URLSearchParams(window.location.search);
         const explicitClear = urlParams.get('limpar') === '1' || urlParams.get('reset') === '1';
 
@@ -57,13 +57,13 @@
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=123.0', { updateViaCache: 'none' }).then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=124.0', { updateViaCache: 'none' }).then(reg => {
           reg.update().catch(() => {});
         }).catch(() => {});
         navigator.serviceWorker.addEventListener('controllerchange', () => {
           // Trava absoluta anti-loop: no máximo 1 único reload por versão!
-          if (sessionStorage.getItem('trono_sw_reloaded') !== 'v123.0') {
-            sessionStorage.setItem('trono_sw_reloaded', 'v123.0');
+          if (sessionStorage.getItem('trono_sw_reloaded') !== 'v124.0') {
+            sessionStorage.setItem('trono_sw_reloaded', 'v124.0');
             sessionStorage.setItem('trono_skip_intro_once', '1');
             window.location.replace(window.location.pathname);
           }
@@ -2583,8 +2583,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=123.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=123.0"></script>
+<script src="ebd_modulos_educativos.js?v=124.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=124.0"></script>
 <script>
   // LAZY-LOAD INTELIGENTE DE PINTURAS (6.3 MB)
   // Reduz em 90% o peso inicial do app, abrindo em menos de 1 segundo!
