@@ -15,9 +15,9 @@
     (function forcePurgeOldMobileCacheV55() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
-        const alreadyPurged = localStorage.getItem('trono_cache_purged_v111') === '1';
+        const alreadyPurged = localStorage.getItem('trono_cache_purged_v112') === '1';
         if (!alreadyPurged || urlParams.get('limpar') === '1') {
-          localStorage.setItem('trono_cache_purged_v111', '1');
+          localStorage.setItem('trono_cache_purged_v112', '1');
           if ('caches' in window) {
             caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
           }

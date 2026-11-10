@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v111.0';
+const CACHE_VERSION = 'vortice-trono-ebd-v112.0';
 const ASSETS_TO_CACHE = [
   './2_ASSETS_UI_BOTOES/btn_jogo_04_lanca_saul.svg?v=111',
   './2_ASSETS_UI_BOTOES/lanca_bronze.svg?v=111',
