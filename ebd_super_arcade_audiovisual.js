@@ -908,15 +908,15 @@
 
     // Peixes nadando na água turquesa cristalina da pintura 3D Pixar
     const peixesPos = [
-      { top: "58%", left: "calc(50% - 35px)", delay: "0s", dur: "3.0s", size: "60px", isBlue: false },
-      { top: "52%", left: "calc(50% - 90px)", delay: "0.4s", dur: "3.3s", size: "54px", isBlue: true },
-      { top: "66%", left: "calc(50% + 30px)", delay: "0.8s", dur: "2.8s", size: "58px", isBlue: false },
-      { top: "55%", left: "calc(50% + 70px)", delay: "0.2s", dur: "3.5s", size: "52px", isBlue: true },
-      { top: "70%", left: "calc(50% - 75px)", delay: "1.0s", dur: "3.1s", size: "58px", isBlue: false }
+      { top: "69%", left: "calc(50% - 35px)", delay: "0s", dur: "3.0s", size: "60px", isBlue: false },
+      { top: "64%", left: "calc(50% - 95px)", delay: "0.4s", dur: "3.3s", size: "54px", isBlue: true },
+      { top: "74%", left: "calc(50% + 35px)", delay: "0.8s", dur: "2.8s", size: "58px", isBlue: false },
+      { top: "66%", left: "calc(50% + 75px)", delay: "0.2s", dur: "3.5s", size: "52px", isBlue: true },
+      { top: "77%", left: "calc(50% - 80px)", delay: "1.0s", dur: "3.1s", size: "56px", isBlue: false }
     ];
 
     const peixesHtml = peixesPos.slice(0, totalPeixes).map((p, idx) => {
-      const src = p.isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=93" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=93";
+      const src = p.isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=94" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=94";
       return `
         <div class="peixe-rio-item" id="peixe-rio-${idx}" style="position:absolute; top:${p.top}; left:${p.left}; width:${p.size}; height:auto; animation:peixeNadoSuave ${p.dur} infinite ease-in-out ${p.delay}; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.5)); transition:all 0.4s ease;">
           <img src="${src}" style="width:100%; height:auto;" alt="Peixinho da Pesca">
@@ -927,7 +927,7 @@
     // Peixes capturados dentro da rede (EXATAMENTE a mesma quantidade da fase)
     const peixesNaRedeHtml = Array.from({ length: totalPeixes }).map((_, i) => {
       const isBlue = i % 2 === 1;
-      const src = isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=93" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=93";
+      const src = isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=94" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=94";
       const rot = (i % 2 === 0 ? -12 : 16) + (i * 6);
       const size = Math.max(54 - i * 3, 40);
       return `<img src="${src}" style="width:${size}px; height:auto; transform:rotate(${rot}deg); margin:0 -6px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.6));">`;
@@ -936,7 +936,7 @@
     container.innerHTML = `
       <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; overflow:hidden; user-select:none; touch-action:none; background: linear-gradient(180deg, #38bdf8 0%, #0284c7 35%, #0369a1 70%, #0c4a6e 100%);">
         <!-- 0. IMAGEM OFICIAL 3D PIXAR COM CARREGAMENTO IMEDIATO E ALTA PRIORIDADE -->
-        <img src="./2_ASSETS_UI_BOTOES/fundo_pesca_maravilhosa_3d.jpg?v=93" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none; z-index:0;" alt="Cenário 3D Pesca Maravilhosa" loading="eager" decoding="async">
+        <img src="./2_ASSETS_UI_BOTOES/fundo_pesca_maravilhosa_3d.jpg?v=94" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none; z-index:0;" alt="Cenário 3D Pesca Maravilhosa" loading="eager" decoding="async">
         <!-- 1. CAMADA DE PROFUNDIDADE CINEMATOGRÁFICA 3D PIXAR -->
         <!-- Brilho dourado celestial sutil no céu -->
         <div style="position:absolute; top:0; left:0; width:100%; height:35%; pointer-events:none; background:radial-gradient(circle at 18% 38%, rgba(254, 240, 138, 0.28) 0%, rgba(253, 224, 71, 0.08) 50%, transparent 80%);"></div>
@@ -945,10 +945,10 @@
         <div style="position:absolute; bottom:0; left:0; width:100%; height:55%; pointer-events:none; background:linear-gradient(180deg, rgba(2, 132, 199, 0.0) 0%, rgba(3, 105, 161, 0.25) 50%, rgba(12, 74, 110, 0.55) 100%);"></div>
 
         <!-- Respingo de Água (Splash) 3D Centralizado nas Águas -->
-        <div id="pesca-splash" style="position:absolute; top:54%; left:0; right:0; margin:0 auto; transform:scale(0.2); width:160px; height:50px; border-radius:50%; border:3px solid #ffffff; background:radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(56,189,248,0.6) 60%, rgba(2,132,199,0) 100%); z-index:22; opacity:0; pointer-events:none; transition:all 0.4s ease-out; box-shadow:0 0 20px rgba(56, 189, 248, 0.9);"></div>
+        <div id="pesca-splash" style="position:absolute; top:43%; left:0; right:0; margin:0 auto; transform:scale(0.2); width:160px; height:50px; border-radius:50%; border:3px solid #ffffff; background:radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(56,189,248,0.6) 60%, rgba(2,132,199,0) 100%); z-index:22; opacity:0; pointer-events:none; transition:all 0.4s ease-out; box-shadow:0 0 20px rgba(56, 189, 248, 0.9);"></div>
 
         <!-- Corda de Tração dourada descendo do barco de Pedro para a Rede -->
-        <div id="pesca-corda-conexao" style="position:absolute; top:42%; left:0; right:0; margin:0 auto; width:3.5px; height:0px; background:linear-gradient(180deg, #fde047 0%, #ca8a04 100%); box-shadow:0 0 8px #fde047; z-index:18; opacity:0; transition:all 0.5s ease-out; pointer-events:none;"></div>
+        <div id="pesca-corda-conexao" style="position:absolute; top:36%; left:0; right:0; margin:0 auto; width:3.5px; height:0px; background:linear-gradient(180deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%); box-shadow:0 0 6px #ffffff, 0 0 14px rgba(56, 189, 248, 0.8); z-index:18; opacity:0; transition:all 0.5s ease-out; pointer-events:none;"></div>
 
         <!-- 3. ÁREA DAS ÁGUAS CRISTALINAS DA GALILEIA COM PEIXES -->
         <div id="pesca-riozao" style="position:relative; flex:1; width:100%; overflow:hidden;">
@@ -966,8 +966,8 @@
           </div>
 
           <!-- A REDINHA (Lançada do barco de Pedro diretamente nas águas da Galileia) -->
-          <div id="pesca-rede-lanca" style="position:absolute; top:42%; left:0; right:0; margin:0 auto; transform:scale(0.2); width:190px; height:190px; z-index:20; opacity:0; pointer-events:none; transition:all 0.65s cubic-bezier(0.2, 0.9, 0.3, 1);">
-            <img src="./2_ASSETS_UI_BOTOES/rede_pesca_maravilhosa.svg?v=93" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 0 16px rgba(253, 224, 71, 0.8));" alt="Rede de Pesca">
+          <div id="pesca-rede-lanca" style="position:absolute; top:38%; left:0; right:0; margin:0 auto; transform:scale(0.2); width:190px; height:190px; z-index:20; opacity:0; pointer-events:none; transition:all 0.65s cubic-bezier(0.2, 0.9, 0.3, 1);">
+            <img src="./2_ASSETS_UI_BOTOES/rede_pesca_maravilhosa.svg?v=94" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 4px 12px rgba(255, 255, 255, 0.85)) drop-shadow(0 0 18px rgba(56, 189, 248, 0.7));" alt="Rede de Pesca">
             <!-- Peixinhos recolhidos na rede (EXATAMENTE a mesma quantidade da fase) -->
             <div id="peixes-na-rede" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s ease;">
               ${peixesNaRedeHtml}
@@ -1047,14 +1047,14 @@
           if (rede) {
             rede.style.opacity = "1";
             rede.style.transform = "scale(0.75)";
-            rede.style.top = "46%";
+            rede.style.top = "44%";
           }
           if (corda) {
             corda.style.opacity = "1";
-            corda.style.height = "75px";
+            corda.style.height = "80px";
           }
 
-          // 2. A rede mergulha na água com splash e respingos bem no centro
+          // 2. A rede mergulha fundo nas águas turquesas onde os peixes estão
           setTimeout(() => {
             TronoAudio.play("splash");
             if (splash) {
@@ -1063,11 +1063,11 @@
               setTimeout(() => { splash.style.opacity = "0"; }, 350);
             }
             if (rede) {
-              rede.style.transform = "scale(1.15)";
-              rede.style.top = "60%";
+              rede.style.transform = "scale(1.2)";
+              rede.style.top = "70%";
             }
             if (corda) {
-              corda.style.height = "165px";
+              corda.style.height = "240px";
             }
           }, 250);
 
@@ -1087,16 +1087,16 @@
             }
           }, 700);
 
-          // 4. A rede sobe puxando os peixes cheia de glória!
+          // 4. A rede sobe puxando os peixes cheia de glória de volta ao barco!
           setTimeout(() => {
             TronoAudio.play("success");
             TronoAudio.play("fanfare");
             if (rede) {
-              rede.style.top = "45%";
+              rede.style.top = "40%";
               rede.style.transform = "scale(1.15)";
             }
             if (corda) {
-              corda.style.height = "70px";
+              corda.style.height = "60px";
             }
           }, 1100);
 

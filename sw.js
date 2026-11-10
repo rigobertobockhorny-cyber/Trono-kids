@@ -1,15 +1,15 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v93.0';
+const CACHE_VERSION = 'vortice-trono-ebd-v94.0';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './ebd_super_arcade_audiovisual.js?v=93.0',
-  './ebd_modulos_educativos.js?v=93.0',
+  './ebd_super_arcade_audiovisual.js?v=94.0',
+  './ebd_modulos_educativos.js?v=94.0',
   './manifest.json',
   './2_ASSETS_UI_BOTOES/icon_512_oficial.png',
   './2_ASSETS_UI_BOTOES/icon_192_oficial.png',
   './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png',
   './2_ASSETS_UI_BOTOES/logo_oficial_kids_v50.png',
-  './2_ASSETS_UI_BOTOES/fundo_pesca_maravilhosa_3d.jpg?v=93'
+  './2_ASSETS_UI_BOTOES/fundo_pesca_maravilhosa_3d.jpg?v=94'
 ];
 
 self.addEventListener('install', (event) => {
