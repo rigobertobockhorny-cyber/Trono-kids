@@ -766,6 +766,32 @@
     }
   };
 
+  function unlockVictoryContinueButton() {
+    const btn = document.getElementById("btn-canonical-continue");
+    if (!btn) return;
+    const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
+    const current = currentPhase || 1;
+
+    if (!isVip && current >= 5) {
+      btn.textContent = "🔓 LIBERAR +10 FASES VIP!";
+      btn.style.background = "linear-gradient(180deg, #f59e0b 0%, #d97706 100%)";
+      btn.style.border = "2.5px solid #fde047";
+      btn.style.boxShadow = "0 0 22px rgba(245,158,11,0.85), 0 6px 16px rgba(0,0,0,0.75)";
+    } else {
+      const btnText = (isVip && current >= 15) ? "🎉 FINALIZAR JOGUINHO!" : "CONTINUAR BRINCANDO";
+      btn.textContent = btnText;
+      btn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
+      btn.style.border = "2.5px solid #ffffff";
+      btn.style.boxShadow = "0 0 22px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75)";
+    }
+    btn.style.color = "#ffffff";
+    btn.style.cursor = "pointer";
+    btn.style.opacity = "1";
+    btn.style.pointerEvents = "auto";
+    btn.style.animation = "aliveBtnFloat 1.9s ease-in-out infinite";
+    TronoAudio.play("pop");
+  }
+
   let celebrationClapAudio = null;
 
   function triggerArcadeVictory() {
@@ -806,9 +832,11 @@
 
     // 4. Voz afetuosa do Vovô Nésio ("Parabéns! Muito bem!")
     // TIMING PERFEITO: Entra 1.4s após o estouro inicial de fanfarra e gritos das crianças,
-    // brilhando límpida e cristalina enquanto as palmas continuam ao fundo!
+    // e SOMENTE DEPOIS que o Vovô terminar a fala, o botão 'CONTINUAR BRINCANDO' é liberado!
     setTimeout(() => {
-      TronoAudio.falarVovo("vovo_vitoria.mp3");
+      TronoAudio.falarVovo("vovo_vitoria.mp3", () => {
+        unlockVictoryContinueButton();
+      });
     }, 1400);
   }
 
@@ -877,18 +905,17 @@
     let actionsHtml = "";
     if (!isVip && current >= 5) {
       actionsHtml = `
-        <button id="btn-canonical-continue" style="position:relative; z-index:2; width:100%; padding:15px; font-size:18px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2.5px solid #fde047; border-radius:999px; box-shadow:0 0 22px rgba(245,158,11,0.85), 0 6px 16px rgba(0,0,0,0.75); cursor:pointer; text-shadow:0 2px 4px rgba(0,0,0,0.5); animation:aliveBtnFloat 1.9s ease-in-out infinite;" onclick="if(typeof openModal === 'function') openModal('modal-subscribe');">
-          🔓 LIBERAR +10 FASES VIP!
+        <button id="btn-canonical-continue" style="position:relative; z-index:2; width:100%; padding:15px; font-size:18px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:all 0.35s ease; pointer-events:none;" onclick="if(typeof openModal === 'function') openModal('modal-subscribe');">
+          ⭐ MUITO BEM!...
         </button>
         <div onclick="window.closeTronoArcadeStage()" style="margin-top:14px; color:#fef08a; font-weight:800; font-size:15px; cursor:pointer; text-decoration:underline;">
           Voltar à Sala de Jogos
         </div>
       `;
     } else {
-      const btnText = (isVip && current >= 15) ? "🎉 FINALIZAR JOGUINHO!" : "CONTINUAR BRINCANDO";
       actionsHtml = `
-        <button id="btn-canonical-continue" style="position:relative; z-index:2; width:100%; padding:15px; font-size:19px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2.5px solid #ffffff; border-radius:999px; box-shadow:0 0 22px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75); cursor:pointer; text-shadow:0 2px 4px rgba(0,0,0,0.5); animation:aliveBtnFloat 1.9s ease-in-out infinite; transition:transform 0.15s ease;" onclick="window.advanceArcadePhase()">
-          ${btnText}
+        <button id="btn-canonical-continue" style="position:relative; z-index:2; width:100%; padding:15px; font-size:19px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:all 0.35s ease; pointer-events:none;" onclick="window.advanceArcadePhase()">
+          ⭐ MUITO BEM!...
         </button>
       `;
     }
@@ -1158,7 +1185,7 @@
 
           <!-- Botão com Trava de Segurança Pedagógica (Ouve o Vovô antes de liberar) -->
           <button id="btn-pescar-action" style="width:90%; max-width:360px; background:#1e293b; color:#94a3b8; font-weight:900; font-size:18px; padding:15px; border-radius:999px; border:2.5px solid #475569; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:all 0.35s ease; pointer-events:none;">
-            👂 OUÇA O VOVÔ NÉSIO...
+            🎯 PREPARE-SE...
           </button>
         </div>
       </div>
