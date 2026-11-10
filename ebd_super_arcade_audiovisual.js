@@ -463,51 +463,46 @@
       
       
       
-      /* --- JOGO 3: O POMBO DA ARCA (CANÔNICO RIGOBERTO v110.0) --- */
+      /* --- JOGO 3: O POMBO DA ARCA (TELA CHEIA TOTAL v121.0 - ZERO BLOQUINHOS) --- */
       .pombo-v110-wrapper {
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        padding: 6px 12px;
-        background: radial-gradient(circle at 50% 15%, #38bdf8 0%, #0284c7 55%, #0369a1 100%);
+        justify-content: center;
+        background: radial-gradient(circle at 50% 20%, #38bdf8 0%, #0284c7 50%, #0369a1 100%);
         user-select: none;
         -webkit-user-select: none;
         box-sizing: border-box;
         overflow: hidden;
+        padding: 0;
+        margin: 0;
       }
       .pombo-v110-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        margin-bottom: 2px;
+        display: none !important;
       }
       .pombo-v110-title {
-        background: rgba(15, 23, 42, 0.75);
-        color: #ffffff;
-        font-weight: 800;
-        font-size: 13px;
-        padding: 4px 16px;
-        border-radius: 999px;
-        border: 1.5px solid #38bdf8;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+        display: none !important;
       }
       .pombo-v110-board {
-        position: relative;
-        border-radius: 20px;
-        background: linear-gradient(180deg, #38bdf8 0%, #7dd3fc 45%, #bae6fd 100%);
-        border: 4px solid #ffffff;
-        box-shadow: 0 8px 24px rgba(2, 132, 199, 0.4), inset 0 2px 6px rgba(255, 255, 255, 0.7);
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        background: transparent;
         overflow: hidden;
         touch-action: none;
       }
       .pombo-v110-sky-bg {
         position: absolute;
         inset: 0;
-        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25) 0%, transparent 60%);
+        background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.3) 0%, transparent 70%);
         pointer-events: none;
       }
       .pombo-v110-walls-layer {
@@ -519,7 +514,7 @@
       .pombo-uniform-cloud {
         position: absolute;
         transform: translate(-50%, -50%);
-        filter: drop-shadow(0 2px 4px rgba(2, 132, 199, 0.3));
+        filter: drop-shadow(0 3px 6px rgba(2, 132, 199, 0.45));
         pointer-events: none;
         user-select: none;
       }
@@ -537,7 +532,7 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
-        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35));
+        filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
       }
       @keyframes arkBob {
         0%, 100% { transform: translate(-50%, -50%) rotate(-1deg); }
@@ -551,14 +546,14 @@
         align-items: center;
         justify-content: center;
         pointer-events: none;
-        transition: left 0.11s cubic-bezier(0.2, 0.8, 0.4, 1), top 0.11s cubic-bezier(0.2, 0.8, 0.4, 1);
+        transition: left 0.12s cubic-bezier(0.2, 0.8, 0.4, 1), top 0.12s cubic-bezier(0.2, 0.8, 0.4, 1);
       }
       .pombo-v110-dove-img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-        filter: drop-shadow(0 3px 6px rgba(2, 132, 199, 0.4));
-        transition: transform 0.11s ease;
+        filter: drop-shadow(0 3px 8px rgba(2, 132, 199, 0.5));
+        transition: transform 0.12s ease;
       }
       .dove-blocked-bump {
         animation: doveBump 0.18s ease;
@@ -568,22 +563,28 @@
         50% { transform: translate(-50%, -50%) scale(0.88); }
       }
       .pombo-v110-controller-area {
-        width: 100%;
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 50;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 4px;
+        pointer-events: auto;
       }
       .pombo-v110-dpad-disc {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 3px;
-        background: linear-gradient(150deg, #1e293b 0%, #0f172a 100%);
-        border: 3px solid #334155;
+        background: rgba(15, 23, 42, 0.65);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 2.5px solid rgba(56, 189, 248, 0.6);
         border-radius: 36px;
-        padding: 10px 14px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+        padding: 8px 14px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.15);
       }
       .pombo-v110-mid-row {
         display: flex;
@@ -638,36 +639,35 @@
       }
 
       
-            /* --- JOGO 4: DAVI E A LANÇA DE SAUL (PERSPECTIVA 2.5D TELA CHEIA v119.0) --- */
+            /* --- JOGO 4: DAVI E A LANÇA DE SAUL (PERSPECTIVA 3D TELA CHEIA v121.0 - ZERO BLOQUINHOS) --- */
       .davi-game-fullscreen {
-        position: relative;
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
         overflow: hidden;
         user-select: none;
         -webkit-user-select: none;
         background: #0f172a;
         box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
       .davi-top-spear-tracker {
         position: absolute;
-        top: 10px;
+        top: 12px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 25;
         display: flex;
         align-items: center;
         gap: 8px;
-        background: rgba(15, 23, 42, 0.88);
+        background: rgba(15, 23, 42, 0.82);
         border: 1.5px solid #fde047;
         border-radius: 999px;
         padding: 4px 14px;
         box-shadow: 0 4px 14px rgba(0,0,0,0.5);
-        backdrop-filter: blur(4px);
+        backdrop-filter: blur(6px);
       }
       .davi-tracker-title {
         color: #fde047;
@@ -691,12 +691,12 @@
         from { transform: scale(1); }
         to { transform: scale(1.3); }
       }
-      /* PALCO 3D EM TELA CHEIA (100% DO DISPOSITIVO ACIMA DOS CONTROLES) */
+      /* PALCO 3D EM TELA CHEIA TOTAL (100% DA TELA DO DISPOSITIVO) */
       .davi-palace-stage {
-        position: relative;
+        position: absolute;
+        inset: 0;
         width: 100%;
-        flex: 1;
-        min-height: 240px;
+        height: 100%;
         overflow: hidden;
       }
       .davi-palace-bg {
@@ -705,58 +705,43 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center 42%;
+        object-position: center 36%;
         pointer-events: none;
         z-index: 1;
       }
       .davi-palace-vignette {
         position: absolute;
         inset: 0;
-        background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.5) 100%);
+        background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45) 100%);
         pointer-events: none;
         z-index: 2;
       }
-      .davi-banner-biblico {
-        position: absolute;
-        top: 48px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(15, 23, 42, 0.72);
-        color: #fef08a;
-        font-weight: 800;
-        font-size: 11px;
-        padding: 2px 10px;
-        border-radius: 6px;
-        letter-spacing: 1px;
-        border: 1px solid rgba(254, 240, 138, 0.35);
-        z-index: 3;
-      }
-      /* REI SAUL NO TRONO AO FUNDO (VISÃO FRONTAL MAJESTOSA) */
+      /* REI SAUL DE CORPO INTEIRO AO FUNDO (EM PÉ DIANTE DO TRONO REAL) */
       .davi-saul-throne {
         position: absolute;
-        top: 15%;
+        top: 13%;
         left: 50%;
         transform: translateX(-50%);
-        width: 160px;
-        height: 108px;
+        width: 135px;
+        height: 165px;
         z-index: 4;
         display: flex;
         align-items: center;
         justify-content: center;
-        transform-origin: 50% 85%;
+        transform-origin: 50% 88%;
         transition: transform 0.22s ease;
       }
       .saul-throne-img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-        filter: drop-shadow(0 6px 14px rgba(0,0,0,0.7));
+        filter: drop-shadow(0 6px 16px rgba(0,0,0,0.75));
       }
       .saul-throne-spear {
         display: none !important;
       }
       .davi-saul-throne.windup {
-        transform: translateX(-50%) scale(1.08) translateY(-4px) !important;
+        transform: translateX(-50%) scale(1.08) translateY(-6px) !important;
       }
       .davi-saul-throne.throw {
         transform: translateX(-50%) scale(0.96) translateY(4px) !important;
@@ -765,7 +750,7 @@
       .davi-spear-projectile {
         position: absolute;
         display: none;
-        z-index: 10;
+        z-index: 12;
         pointer-events: none;
         width: 135px;
         height: 70px;
@@ -776,7 +761,7 @@
         object-fit: contain;
         filter: drop-shadow(0 0 16px rgba(253, 224, 71, 0.95)) drop-shadow(0 8px 24px rgba(245, 158, 11, 0.85));
       }
-      /* CAMADA DE LANÇAS CRAVADAS NO CHÃO */
+      /* CAMADA DE LANÇAS CRAVADAS NO PISO / PAREDE */
       .davi-stuck-impact-layer {
         position: absolute;
         inset: 0;
@@ -787,19 +772,19 @@
         position: absolute;
         width: 110px;
         height: 58px;
-        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=120") no-repeat center / contain;
+        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=121") no-repeat center / contain;
         filter: drop-shadow(0 4px 10px rgba(0,0,0,0.85)) drop-shadow(0 0 8px rgba(253, 224, 71, 0.6));
         opacity: 0.92;
       }
-      /* DAVI NO PRIMEIRO PLANO (DE COSTAS, OLHANDO PARA O TRONO) */
+      /* DAVI NO PRIMEIRO PLANO (DE COSTAS, ACIMA DO CONTROLE FLUTUANTE) */
       .davi-hero-box {
         position: absolute;
-        bottom: 8px;
+        bottom: 120px;
         left: 50%;
         transform: translateX(-50%);
-        width: 125px;
-        height: 155px;
-        z-index: 8;
+        width: 110px;
+        height: 145px;
+        z-index: 15;
         transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), left 0.24s cubic-bezier(0.25, 1, 0.5, 1);
       }
       .davi-hero-box.center-pos {
@@ -842,28 +827,35 @@
         background: radial-gradient(circle, rgba(0,0,0,0.65) 0%, transparent 75%);
         z-index: -1;
       }
-      /* BARRA DE CONTROLES D-PAD EM DISCO ERGONÔMICO */
+      /* BARRA DE CONTROLES FLUTUANTE SOBREPOSTA NO RODAPÉ (INSERIDA NA IMAGEM) */
       .davi-controls-bar {
-        width: 100%;
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 25;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 6px 12px 10px;
-        background: rgba(15, 23, 42, 0.95);
-        border-top: 1.5px solid rgba(253, 224, 71, 0.3);
-        z-index: 20;
-        box-shadow: 0 -4px 16px rgba(0,0,0,0.4);
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        pointer-events: auto;
       }
       .davi-dpad-disc {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 3px;
-        background: linear-gradient(150deg, #1e293b 0%, #0f172a 100%);
-        border: 3px solid #334155;
+        background: rgba(15, 23, 42, 0.65);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 2.5px solid rgba(253, 224, 71, 0.55);
         border-radius: 36px;
         padding: 8px 14px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.15);
       }
       .davi-mid-row {
         display: flex;
@@ -1095,21 +1087,21 @@
       stage.className = "trono-fullscreen-stage";
       stage.innerHTML = `
         <div class="arcade-top-bar">
-          <button class="arcade-btn-circle" id="arcade-btn-back" onclick="window.closeTronoArcadeStage()" title="Voltar à Sala de Jogos">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <button class="arcade-btn-circle" id="arcade-btn-back" type="button" title="Voltar à Sala de Jogos" style="pointer-events:auto; z-index:99;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="pointer-events:none;"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="arcade-phase-badge" id="arcade-phase-display" onclick="window.handleArcadeDevTap()" style="cursor:pointer;" title="Toque 3x para Modo Desenvolvedor (12345)">
             ⭐ FASE <span id="arcade-phase-num">1</span> / <span id="arcade-phase-total">5</span>
           </div>
-          <button class="arcade-btn-circle" id="arcade-btn-sound" onclick="window.toggleArcadeSound()" title="Cortar / Ligar Som" style="background:linear-gradient(180deg, #eab308 0%, #ca8a04 100%);">
-            <svg id="arcade-sound-icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <button class="arcade-btn-circle" id="arcade-btn-sound" type="button" title="Cortar / Ligar Som" style="background:linear-gradient(180deg, #eab308 0%, #ca8a04 100%); pointer-events:auto; z-index:99;">
+            <svg id="arcade-sound-icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="pointer-events:none;">
               <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
               <path d="M15.54 8.46C16.47 9.4 17 10.66 17 12C17 13.34 16.47 14.6 15.54 15.54M19.07 4.93C20.94 6.8 22 9.33 22 12C22 14.67 20.94 17.2 19.07 19.07" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
         </div>
 
-        <!-- Área de Jogo Limpa (Sem balões de texto bloqueando a tela) -->
+        <!-- Área de Jogo Limpa em Tela Cheia (Sem balões de texto bloqueando a tela) -->
         <div class="arcade-game-canvas-area" id="arcade-game-stage-container"></div>
 
         <canvas id="arcade-confetti-canvas" class="confetti-canvas"></canvas>
@@ -1118,6 +1110,27 @@
         <div id="trono-victory-modal"></div>
       `;
       document.body.appendChild(stage);
+
+      // Eventos Diretos Ultra-responsivos para Mobile & Touch
+      const backBtn = document.getElementById("arcade-btn-back");
+      if (backBtn) {
+        const handleBack = (e) => {
+          if (e) { e.preventDefault(); e.stopPropagation(); }
+          window.closeTronoArcadeStage();
+        };
+        backBtn.addEventListener("pointerdown", handleBack);
+        backBtn.addEventListener("click", handleBack);
+      }
+
+      const soundBtn = document.getElementById("arcade-btn-sound");
+      if (soundBtn) {
+        const handleSound = (e) => {
+          if (e) { e.preventDefault(); e.stopPropagation(); }
+          window.toggleArcadeSound();
+        };
+        soundBtn.addEventListener("pointerdown", handleSound);
+        soundBtn.addEventListener("click", handleSound);
+      }
     }
   }
 
@@ -1239,13 +1252,21 @@
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
     if (TronoAudio.vovoPlayer) { try { TronoAudio.vovoPlayer.pause(); } catch(e){} }
     if (celebrationClapAudio) { try { celebrationClapAudio.pause(); } catch(e){} }
+    if (window._daviSpearTimer) { clearTimeout(window._daviSpearTimer); window._daviSpearTimer = null; }
+    if (window._daviWindupTimer) { clearTimeout(window._daviWindupTimer); window._daviWindupTimer = null; }
+
     const stage = document.getElementById("screen-trono-arcade-stage");
     if (stage) {
       stage.classList.remove("active");
       stage.style.display = "none";
     }
+    const container = document.getElementById("arcade-game-stage-container");
+    if (container) container.innerHTML = "";
+
     if (typeof openGamesHubScreen === "function") {
       openGamesHubScreen();
+    } else if (typeof navigateTo === "function") {
+      navigateTo("screen-home");
     }
   };
 
@@ -1288,36 +1309,54 @@
   window.toggleArcadeSound = function() {
     window._arcadeAudioMuted = !window._arcadeAudioMuted;
     if (window._arcadeAudioMuted) {
+      // 1. Pausa Web Audio API
+      if (TronoAudio && TronoAudio.ctx && TronoAudio.ctx.state === "running") {
+        try { TronoAudio.ctx.suspend(); } catch(e){}
+      }
+      // 2. Pausa voz do Vovô
+      if (TronoAudio && TronoAudio.vovoPlayer) {
+        try { TronoAudio.vovoPlayer.pause(); } catch(e){}
+      }
+      // 3. Pausa som ambiente / background
       if (typeof bgAudioPlayer !== 'undefined' && bgAudioPlayer && !bgAudioPlayer.paused) {
         try { bgAudioPlayer.pause(); } catch(e){}
       }
       if (typeof ambientPlaying !== 'undefined') ambientPlaying = false;
-      if (TronoAudio.vovoPlayer) {
-        try { TronoAudio.vovoPlayer.pause(); } catch(e){}
-      }
+      // 4. Pausa qualquer outro áudio HTML5 da página
       if (celebrationClapAudio) {
         try { celebrationClapAudio.pause(); } catch(e){}
       }
+      document.querySelectorAll("audio").forEach(a => {
+        try { a.pause(); } catch(e){}
+      });
     } else {
+      // Retoma Web Audio API
+      if (TronoAudio && TronoAudio.ctx && TronoAudio.ctx.state === "suspended") {
+        try { TronoAudio.ctx.resume(); } catch(e){}
+      }
+      TronoAudio.play("click");
       if (typeof toggleAmbientSound === 'function') {
-        toggleAmbientSound();
+        try { toggleAmbientSound(); } catch(e){}
       }
     }
     if (typeof updateSoundButtonIcon === 'function') {
-      updateSoundButtonIcon();
+      try { updateSoundButtonIcon(); } catch(e){}
     }
     window.updateArcadeSoundIcon();
   };
 
   window.updateArcadeSoundIcon = function() {
+    const btn = document.getElementById("arcade-btn-sound");
     const svg = document.getElementById("arcade-sound-icon-svg");
     if (!svg) return;
     if (window._arcadeAudioMuted) {
+      if (btn) btn.style.background = "linear-gradient(180deg, #ef4444 0%, #b91c1c 100%)";
       svg.innerHTML = `
         <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#ffffff"/>
         <path d="M22 9L16 15M16 9L22 15" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
       `;
     } else {
+      if (btn) btn.style.background = "linear-gradient(180deg, #eab308 0%, #ca8a04 100%)";
       svg.innerHTML = `
         <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
         <path d="M15.54 8.46C16.47 9.4 17 10.66 17 12C17 13.34 16.47 14.6 15.54 15.54M19.07 4.93C20.94 6.8 22 9.33 22 12C22 14.67 20.94 17.2 19.07 19.07" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2262,25 +2301,45 @@
       isUnlocked = true;
     };
 
-    // Medidas do tabuleiro quadrado
-    const maxW = Math.min(window.innerWidth - 20, 480);
-    const maxH = Math.min(window.innerHeight - 230, 480);
-    const boardSize = Math.max(340, Math.min(maxW, maxH));
-    const cellW = boardSize / width;
-    const cellH = boardSize / height;
-    const cloudSize = Math.round(cellW * 1.18);
-    const doveSize = Math.round(cellW * 0.78);
-    const arkSize = Math.round(cellW * 1.48);
+    // Medidas em TELA CHEIA TOTAL (Sem bloquinhos com margem):
+    const totalW = container.clientWidth || window.innerWidth;
+    const totalH = container.clientHeight || (window.innerHeight - 60);
+
+    // Área útil para o labirinto: largura total com margem leve de 14px nas laterais;
+    // Altura: do topo até acima do D-PAD flutuante (reserva ~145px no rodapé para os botões).
+    const availW = Math.max(260, totalW - 24);
+    const availH = Math.max(260, totalH - 145);
+
+    // Célula quadrada proporcional que preenche a tela sem distorção:
+    const cellSize = Math.floor(Math.min(availW / width, availH / height));
+    const gridTotalW = cellSize * width;
+    const gridTotalH = cellSize * height;
+
+    // Offsets para centralizar o labirinto no céu:
+    const offsetX = Math.round((totalW - gridTotalW) / 2);
+    const offsetY = Math.round(14 + (availH - gridTotalH) / 2);
+
+    const cloudSize = Math.round(cellSize * 1.25);
+    const doveSize = Math.round(cellSize * 0.85);
+    const arkSize = Math.round(cellSize * 1.48);
 
     container.innerHTML = `
       <div class="pombo-v110-wrapper">
 
-        <!-- Palco do Labirinto de Nuvens -->
-        <div class="pombo-v110-board" id="pombo-board" style="width:${boardSize}px; height:${boardSize}px;">
-          <!-- Camada de Céu de Fundo -->
+        <!-- Palco do Labirinto de Nuvens em Tela Cheia -->
+        <div class="pombo-v110-board" id="pombo-board">
+          <!-- Camada de Céu de Fundo Contínuo -->
           <div class="pombo-v110-sky-bg"></div>
 
-          <!-- Paredes de Nuvenzinhas (Todas com o mesmo tamanho uniforme) -->
+          <!-- Nuvens Atmosféricas Flutuantes de Fundo -->
+          <div class="pombo-v110-sky-decor" style="position:absolute; inset:0; pointer-events:none; opacity:0.35;">
+            <img src="./2_ASSETS_UI_BOTOES/nuvem_branca.svg?v=110" style="position:absolute; top:4%; left:8%; width:90px; filter:blur(1px);"/>
+            <img src="./2_ASSETS_UI_BOTOES/nuvem_branca.svg?v=110" style="position:absolute; top:12%; right:6%; width:110px; filter:blur(1.5px);"/>
+            <img src="./2_ASSETS_UI_BOTOES/nuvem_branca.svg?v=110" style="position:absolute; bottom:18%; left:4%; width:100px; filter:blur(1px);"/>
+            <img src="./2_ASSETS_UI_BOTOES/nuvem_branca.svg?v=110" style="position:absolute; bottom:22%; right:8%; width:120px; filter:blur(1.5px);"/>
+          </div>
+
+          <!-- Paredes de Nuvenzinhas do Labirinto -->
           <div class="pombo-v110-walls-layer" id="pombo-walls-layer"></div>
 
           <!-- Arca de Noé (No final do beco comprido, 100% inteira sem cortes) -->
@@ -2294,7 +2353,7 @@
           </div>
         </div>
 
-        <!-- CONSOLE D-PAD CENTRALIZADO (PADRÃO VIDEOGAME NEUTRO) -->
+        <!-- CONSOLE D-PAD FLUTUANTE SOBREPOSTO NO RODAPÉ (INSERIDO NA TELA) -->
         <div class="pombo-v110-controller-area">
           <div class="pombo-v110-dpad-disc">
             <button class="pombo-v110-btn btn-up" id="btn-pombo-up" data-dir="up" aria-label="Cima">
@@ -2319,7 +2378,7 @@
       </div>
     `;
 
-    // Renderiza as nuvenzinhas que formam as paredes (todas de tamanho idêntico)
+    // Renderiza as nuvenzinhas que formam as paredes
     const wallsLayer = document.getElementById("pombo-walls-layer");
     let cloudsHtml = "";
     const cloudImgSrc = "./2_ASSETS_UI_BOTOES/nuvem_branca.svg?v=110";
@@ -2327,18 +2386,18 @@
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         if (grid[y][x] === 0) {
-          const posX = Math.round(x * cellW + cellW / 2);
-          const posY = Math.round(y * cellH + cellH / 2);
+          const posX = Math.round(offsetX + x * cellSize + cellSize / 2);
+          const posY = Math.round(offsetY + y * cellSize + cellSize / 2);
           cloudsHtml += `<img src="${cloudImgSrc}" class="pombo-uniform-cloud" style="left:${posX}px; top:${posY}px; width:${cloudSize}px; height:${cloudSize}px;"/>`;
         }
       }
     }
     wallsLayer.innerHTML = cloudsHtml;
 
-    // Posiciona a Arca de Noé no fim do beco comprido
+    // Posiciona a Arca de Noé no fim do caminho
     const arkEl = document.getElementById("pombo-ark");
-    const arkX = Math.round(goalX * cellW + cellW / 2);
-    const arkY = Math.round(goalY * cellH + cellH / 2);
+    const arkX = Math.round(offsetX + goalX * cellSize + cellSize / 2);
+    const arkY = Math.round(offsetY + goalY * cellSize + cellSize / 2);
     arkEl.style.left = arkX + "px";
     arkEl.style.top = arkY + "px";
 
@@ -2347,8 +2406,8 @@
     const doveImg = document.getElementById("pombo-dove-img");
 
     function renderDovePos() {
-      const px = Math.round(currX * cellW + cellW / 2);
-      const py = Math.round(currY * cellH + cellH / 2);
+      const px = Math.round(offsetX + currX * cellSize + cellSize / 2);
+      const py = Math.round(offsetY + currY * cellSize + cellSize / 2);
       doveEl.style.left = px + "px";
       doveEl.style.top = py + "px";
     }
@@ -2437,13 +2496,11 @@
   }
 
   // ==========================================================================
-  // JOGO 4: DAVI E A LANÇA DE SAUL (PILOTO v111.0 - ESQUIVA BÍBLICA)
-  // - Davi se esquiva das lanças atiradas pelo Rei Saul
-  // - Ações: PULAR (lanças rasteiras) e AGACHAR (lanças altas)
-  // - Movimentação lateral para posicionamento no salão de pedra
-  // - 15 Fases progressivas com sinalização prévia da mira
-  // ==========================================================================
-  // --- JOGO 4: DAVI E A LANÇA DE SAUL (v115.0) ---
+  // JOGO 4: DAVI E A LANÇA DE SAUL (v121.0 - PERSPECTIVA 3D TELA CHEIA)
+  // - Saul de corpo inteiro em pé diante do trono monumental
+  // - Davi em primeiro plano com esquiva ágil (Pular, Abaixar, Esquerda, Direita)
+  // - Controles D-PAD flutuantes sobrepostos no rodapé (inseridos na cena)
+  // - 15 Fases progressivas: Fase 1 = 1 lança suave, ritmo cinematográfico
   // ==========================================================================
   function runJonatasAlvo(container, phase) {
     const currentPhaseNum = phase || 1;
@@ -2461,10 +2518,10 @@
     let isCrouching = false;
 
     // Catálogo das Lanças em Perspectiva 3D:
-    // 1. "baixa" -> Lança rente ao tapete no centro -> Davi PULA (▲)
-    // 2. "alta"  -> Lança alta no centro -> Davi ABAIXA (▼)
-    // 3. "esquerda" -> Lança vem no lado esquerdo -> Davi vai para a DIREITA (▶)
-    // 4. "direita"  -> Lança vem no lado direito -> Davi vai para a ESQUERDA (◀)
+    // 1. "baixa" -> Lança rente ao chão -> Davi PULA (▲)
+    // 2. "alta"  -> Lança alta no peito -> Davi ABAIXA (▼)
+    // 3. "esquerda" -> Lança no flanco esquerdo -> Davi esquiva para a DIREITA (▶)
+    // 4. "direita"  -> Lança no flanco direito -> Davi esquiva para a ESQUERDA (◀)
     let attackCatalog = [];
     if (currentPhaseNum === 1) {
       attackCatalog = ["baixa"]; // Fase 1: 1 única lança rasteira (Pular!)
@@ -2493,31 +2550,30 @@
         <!-- PALCO 3D EM TELA CHEIA (SALÃO DO TRONO) -->
         <div class="davi-palace-stage" id="davi-palace-stage">
           <!-- Fundo Real 3D Pixar do Palácio de Saul -->
-          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=120" class="davi-palace-bg" alt="Palácio Real de Saul 3D"/>
+          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=121" class="davi-palace-bg" alt="Palácio Real de Saul 3D"/>
           <div class="davi-palace-vignette"></div>
 
-          <!-- REI SAUL NO TRONO AO FUNDO (PERSPECTIVA 3D) -->
+          <!-- REI SAUL DE CORPO INTEIRO AO FUNDO (EM PÉ DIANTE DO TRONO) -->
           <div class="davi-saul-throne" id="davi-saul-throne">
-            <img src="./2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=120" alt="Rei Saul no Trono" class="saul-throne-img" id="saul-throne-img"/>
-            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=120" alt="Lança na Mão de Saul" class="saul-throne-spear" id="saul-throne-spear"/>
+            <img src="./2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=121" alt="Rei Saul 3D" class="saul-throne-img" id="saul-throne-img"/>
           </div>
 
           <!-- A LANÇA REAL VOANDO EM DIREÇÃO À TELA (PERSPECTIVA 3D) -->
           <div class="davi-spear-projectile" id="davi-spear-projectile">
-            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=120" alt="Lança em Voo 3D"/>
+            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=121" alt="Lança em Voo 3D"/>
           </div>
 
           <!-- CAMADA DE LANÇAS CRAVADAS NO PISO / TAPETE -->
           <div class="davi-stuck-impact-layer" id="davi-stuck-layer"></div>
 
-          <!-- DAVI JOVEM PASTOR NO PRIMEIRO PLANO (PERSPECTIVA 3D) -->
+          <!-- DAVI JOVEM PASTOR NO PRIMEIRO PLANO (PERSPECTIVA 3D ACIMA DOS BOTÕES) -->
           <div class="davi-hero-box center-pos" id="davi-hero-box">
             <div class="davi-hero-shadow"></div>
-            <img src="./2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=120" alt="Davi Pastor 3D" class="davi-hero-img" id="davi-hero-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=121" alt="Davi Pastor 3D" class="davi-hero-img" id="davi-hero-img"/>
           </div>
         </div>
 
-        <!-- CONSOLE D-PAD CENTRALIZADO (PADRÃO 100% IDÊNTICO AO POMBO) -->
+        <!-- CONSOLE D-PAD FLUTUANTE SOBREPOSTO NO RODAPÉ (INSERIDO NA CENA) -->
         <div class="davi-controls-bar">
           <div class="davi-dpad-disc">
             <button class="davi-dpad-btn" id="btn-davi-up" aria-label="Pular">
@@ -2562,7 +2618,6 @@
 
     const heroBox = document.getElementById("davi-hero-box");
     const saulThrone = document.getElementById("davi-saul-throne");
-    const throneSpear = document.getElementById("saul-throne-spear");
     const spearProjectile = document.getElementById("davi-spear-projectile");
     const stuckLayer = document.getElementById("davi-stuck-layer");
 
@@ -2647,12 +2702,10 @@
     // =========================================================================
     // CICLO DA LANÇA EM PERSPECTIVA 3D REAL (VINDO DO TRONO DE SAUL)
     // =========================================================================
-    let spearTimer = null;
-
     function scheduleNextSpear(delay) {
       if (isGameWon) return;
-      clearTimeout(spearTimer);
-      spearTimer = setTimeout(launchSpearFromThrone, delay || 1400);
+      if (window._daviSpearTimer) clearTimeout(window._daviSpearTimer);
+      window._daviSpearTimer = setTimeout(launchSpearFromThrone, delay || 1400);
     }
 
     function launchSpearFromThrone() {
@@ -2661,49 +2714,48 @@
 
       const attackType = attackCatalog[spearIndex] || "baixa";
 
-      // 1. SAUL PREPARA O GOLPE NO TRONO (SUSPENSE SUAVE)
+      // 1. SAUL PREPARA O GOLPE (SUSPENSE SUAVE VISUAL)
       saulThrone.classList.add("windup");
-      throneSpear.style.opacity = "1";
       TronoAudio.play("click");
 
       // Tempo de preparação visual suave para a criança prestar atenção: 900ms
-      setTimeout(() => {
+      if (window._daviWindupTimer) clearTimeout(window._daviWindupTimer);
+      window._daviWindupTimer = setTimeout(() => {
         if (isGameWon) return;
 
         // 2. ARREMESSO FÍSICO DO TRONO
         saulThrone.classList.remove("windup");
         saulThrone.classList.add("throw");
-        throneSpear.style.opacity = "0"; // Lança sai da mão de Saul!
 
-        // Configuração inicial da lança saindo da mão do Rei Saul no trono com brilho
+        // Configuração inicial da lança saindo da mão de Saul no trono
         spearProjectile.style.display = "block";
         spearProjectile.style.transition = "none";
         spearProjectile.style.top = "20%";
         spearProjectile.style.left = "50%";
-        spearProjectile.style.width = "65px";
-        spearProjectile.style.height = "34px";
+        spearProjectile.style.width = "70px";
+        spearProjectile.style.height = "36px";
         spearProjectile.style.transform = "translate(-50%, -50%) scale(0.35)";
 
         // Força reflow para animação CSS fluida
         void spearProjectile.offsetWidth;
 
-        // Destino da Lança frontal em perspectiva 3D:
+        // Destino da Lança frontal em perspectiva 3D (ajustado à posição de Davi):
         let targetLeft = "50%";
-        let targetTop = "88%";
-        let targetScale = "1.55";
-        const flyDurationMs = 1850; // Voo cinematográfico e suave (~1.85s)
+        let targetTop = "78%";
+        let targetScale = "1.45";
+        const flyDurationMs = 1550; // Voo cinematográfico e suave (~1.55s)
 
         if (attackType === "baixa") {
-          targetTop = "91%";
+          targetTop = "80%";
           targetLeft = "50%";
         } else if (attackType === "alta") {
-          targetTop = "68%";
+          targetTop = "66%";
           targetLeft = "50%";
         } else if (attackType === "esquerda") {
-          targetTop = "86%";
+          targetTop = "73%";
           targetLeft = "24%";
         } else if (attackType === "direita") {
-          targetTop = "86%";
+          targetTop = "73%";
           targetLeft = "76%";
         }
 
@@ -2715,7 +2767,7 @@
 
         TronoAudio.play("arrow");
 
-        // 3. MOMENTO DO IMPACTO / CHECAGEM DE ESQUIVA (aos 1550ms)
+        // 3. MOMENTO DO IMPACTO / CHECAGEM DE ESQUIVA (aos 1250ms)
         setTimeout(() => {
           if (isGameWon) return;
 
@@ -2751,7 +2803,6 @@
             TronoAudio.play("star");
             spearProjectile.style.display = "none";
             saulThrone.classList.remove("throw");
-            throneSpear.style.opacity = "1";
 
             if (successfulDodges >= totalSpears) {
               // VITÓRIA DA FASE!
@@ -2761,7 +2812,7 @@
                 showTronoArcadeVictory(currentPhaseNum);
               }, 600);
             } else {
-              // Próxima lança com intervalo calmo e relaxado de 2.2s
+              // Próxima lança com intervalo calmo e relaxado
               setTimeout(() => {
                 doHeroCenter();
                 scheduleNextSpear(1600);
@@ -2774,7 +2825,6 @@
 
             spearProjectile.style.display = "none";
             saulThrone.classList.remove("throw");
-            throneSpear.style.opacity = "1";
 
             setTimeout(() => {
               heroBox.classList.remove("hit-stumble");
@@ -2783,10 +2833,14 @@
               scheduleNextSpear(1400);
             }, 900);
           }
-        }, 1450);
+        }, 1250);
 
       }, 900);
     }
+
+    // Inicia a primeira lança após introdução suave
+    scheduleNextSpear(1600);
+  }
 
     // Inicia a primeira lança após introdução suave
     scheduleNextSpear(1600);

@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v120.0';
+        const CURRENT_VER = 'v121.0';
         const urlParams = new URLSearchParams(window.location.search);
         const forceClear = urlParams.get('limpar') === '1' || urlParams.get('reset') === '1' || urlParams.get('v') !== null;
         const savedVer = localStorage.getItem('trono_app_version');
@@ -36,7 +36,7 @@
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=120.0').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=121.0').then(reg => {
           reg.update();
         }).catch(() => {});
         let refreshing = false;
@@ -2552,7 +2552,7 @@
 </div>
 
 <script src="ebd_modulos_educativos.js?v=118.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=120.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=121.0"></script>
 <script>
   // LAZY-LOAD INTELIGENTE DE PINTURAS (6.3 MB)
   // Reduz em 90% o peso inicial do app, abrindo em menos de 1 segundo!
@@ -5725,7 +5725,7 @@ startInitialThemeMusic();
 
           // 4. Se o palco de arcade estiver ativo, fecha o jogo e volta para a sala de jogos
           const arcadeStage = document.getElementById('screen-trono-arcade-stage');
-          if (arcadeStage && arcadeStage.style.display !== 'none' && arcadeStage.classList.contains('active')) {
+          if (arcadeStage && (arcadeStage.style.display !== 'none' || arcadeStage.classList.contains('active'))) {
             if (typeof window.closeTronoArcadeStage === 'function') {
               window.closeTronoArcadeStage();
             }
