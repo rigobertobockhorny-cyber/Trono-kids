@@ -547,8 +547,11 @@
       .confetti-canvas {
         position: absolute;
         inset: 0;
+        width: 100%;
+        height: 100%;
         pointer-events: none;
-        z-index: 98;
+        z-index: 150 !important;
+        display: none;
       }
     `;
     document.head.appendChild(style);
@@ -655,6 +658,7 @@
 
     const modal = document.getElementById("trono-victory-modal");
     if (modal) modal.style.display = "none";
+    stopArcadeCelebrationConfetti();
 
     // O Vovô Nésio fala a instrução apenas em áudio (tela 100% limpa, sem texto)
     if (currentActiveGame && currentActiveGame.audioFile) {
@@ -670,6 +674,8 @@
 
   window.closeTronoArcadeStage = function() {
     TronoAudio.play("click");
+    stopArcadeCelebrationConfetti();
+    if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
     if (TronoAudio.vovoPlayer) { try { TronoAudio.vovoPlayer.pause(); } catch(e){} }
     if (celebrationClapAudio) { try { celebrationClapAudio.pause(); } catch(e){} }
     const stage = document.getElementById("screen-trono-arcade-stage");
@@ -684,11 +690,15 @@
 
   window.retryCurrentArcadePhase = function() {
     TronoAudio.play("click");
+    stopArcadeCelebrationConfetti();
+    if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
     loadPhase(currentPhase);
   };
 
   window.advanceArcadePhase = function() {
     TronoAudio.play("click");
+    stopArcadeCelebrationConfetti();
+    if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
     const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
 
     if (currentPhase < FREE_PHASES) {
@@ -722,26 +732,32 @@
   let celebrationClapAudio = null;
 
   function triggerArcadeVictory() {
-    // 1. Crianças aplaudindo e comemorando ("êêê!")
+    // 1. Áudio oficial canônico: Palmas + Crianças Comemorando ("Êêê/Aê!") + Fanfarra
     try {
-      if (!celebrationClapAudio) {
-        celebrationClapAudio = new Audio('./6_ASSETS_AUDIO/11_festa_comemoracao_aplausos.wav');
+      if (typeof window.playSoundCelebrationClaps === 'function') {
+        window.playSoundCelebrationClaps();
+      } else {
+        if (!celebrationClapAudio) {
+          celebrationClapAudio = new Audio('./6_ASSETS_AUDIO/11_festa_comemoracao_aplausos.wav');
+        }
+        celebrationClapAudio.currentTime = 0;
+        celebrationClapAudio.volume = 1.0;
+        celebrationClapAudio.play().catch(() => {});
       }
-      celebrationClapAudio.currentTime = 0;
-      celebrationClapAudio.volume = 1.0;
-      celebrationClapAudio.play().catch(() => {});
-    } catch(e) {}
+    } catch(e) {
+      console.warn("Celebration audio err:", e);
+    }
 
     // 2. Voz afetuosa e neutra do Vovô Nésio
     setTimeout(() => {
       TronoAudio.falarVovo("vovo_vitoria.mp3");
-    }, 450);
+    }, 550);
 
-    // 3. Chuva de confetes coloridos
-    launchConfetti();
-
-    // 4. Monta e exibe o CARD CANÔNICO OFICIAL DO TRONO KIDS
+    // 3. Monta e exibe o CARD CANÔNICO OFICIAL DO TRONO KIDS
     renderCanonicalVictoryModal();
+
+    // 4. Chuva de confetes 3D e fogos de artifício estourando pela tela toda
+    startArcadeCelebrationConfetti();
   }
 
   function renderCanonicalVictoryModal() {
@@ -850,51 +866,146 @@
     modal.style.display = "flex";
   }
 
-  function launchConfetti() {
-    const canvas = document.getElementById("arcade-confetti-canvas");
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  // ==========================================================================
+  // MOTOR CANÔNICO DE CONFETES 3D, SERPENTINAS E FOGOS DE ARTIFÍCIO
+  // ==========================================================================
+  let arcadeConfettiAnimId = null;
+  let arcadeConfettiParticles = [];
+  let arcadeFireworkSparks = [];
 
-    const pieces = [];
-    const colors = ["#fde047", "#38bdf8", "#4ade80", "#f43f5e", "#a855f7", "#fb923c"];
-    for (let i = 0; i < 90; i++) {
-      pieces.push({
-        x: canvas.width / 2 + (Math.random() - 0.5) * 80,
-        y: canvas.height / 2 + (Math.random() - 0.5) * 80,
-        vx: (Math.random() - 0.5) * 16,
-        vy: (Math.random() - 1.2) * 15,
-        size: Math.random() * 8 + 6,
+  function spawnArcadeFireworkBurst(cx, cy) {
+    const colors = ['#fde047', '#00e676', '#00e5ff', '#ff4081', '#e040fb', '#ff9100', '#ffffff'];
+    const count = 26;
+    for (let i = 0; i < count; i++) {
+      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.15;
+      const speed = 2.2 + Math.random() * 4.5;
+      arcadeFireworkSparks.push({
+        x: cx,
+        y: cy,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 0.8,
+        size: 3.5 + Math.random() * 4.5,
         color: colors[Math.floor(Math.random() * colors.length)],
-        rotation: Math.random() * 360,
-        vr: (Math.random() - 0.5) * 12
+        alpha: 1,
+        decay: 0.014 + Math.random() * 0.012
+      });
+    }
+  }
+
+  function startArcadeCelebrationConfetti() {
+    const cvs = document.getElementById("arcade-confetti-canvas");
+    if (!cvs) return;
+    cvs.style.display = 'block';
+    const ctx = cvs.getContext('2d');
+    const W = (cvs.width = window.innerWidth);
+    const H = (cvs.height = window.innerHeight);
+
+    const colors = ['#fde047', '#00e676', '#00e5ff', '#ff4081', '#aa00ff', '#ff9100', '#ffffff'];
+    arcadeConfettiParticles = [];
+    arcadeFireworkSparks = [];
+
+    for (let i = 0; i < 95; i++) {
+      const fromLeft = i % 2 === 0;
+      arcadeConfettiParticles.push({
+        x: Math.random() * W,
+        y: -20 - Math.random() * H * 0.7,
+        vx: (Math.random() - 0.5) * 3.4 + (fromLeft ? 0.6 : -0.6),
+        vy: 2.2 + Math.random() * 3.8,
+        w: 8 + Math.random() * 8,
+        h: 12 + Math.random() * 10,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        rot: Math.random() * Math.PI * 2,
+        vRot: (Math.random() - 0.5) * 0.18,
+        tilt: Math.random() * Math.PI * 2,
+        vTilt: 0.08 + Math.random() * 0.12,
+        shape: i % 5 === 0 ? 'star' : 'ribbon'
       });
     }
 
-    let frame = 0;
-    function renderConfetti() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      pieces.forEach(p => {
-        p.x += p.vx;
+    spawnArcadeFireworkBurst(W * 0.25, H * 0.22);
+    spawnArcadeFireworkBurst(W * 0.75, H * 0.22);
+    spawnArcadeFireworkBurst(W * 0.50, H * 0.16);
+
+    let frameCount = 0;
+    if (arcadeConfettiAnimId) cancelAnimationFrame(arcadeConfettiAnimId);
+
+    function renderArcadeFrame() {
+      frameCount++;
+      ctx.clearRect(0, 0, W, H);
+
+      // Estouros periódicos de fogos com estrelinhas brilhantes ("aquele negocinho que estoura")
+      if (frameCount % 36 === 0) {
+        spawnArcadeFireworkBurst(W * (0.18 + Math.random() * 0.64), H * (0.14 + Math.random() * 0.28));
+      }
+
+      // 1. Desenha faíscas dos fogos
+      for (let i = arcadeFireworkSparks.length - 1; i >= 0; i--) {
+        const sp = arcadeFireworkSparks[i];
+        sp.x += sp.vx;
+        sp.y += sp.vy;
+        sp.vy += 0.06;
+        sp.alpha -= sp.decay;
+        if (sp.alpha <= 0) {
+          arcadeFireworkSparks.splice(i, 1);
+          continue;
+        }
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, sp.alpha);
+        ctx.fillStyle = sp.color;
+        ctx.shadowColor = sp.color;
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // 2. Desenha confetes 3D voando (fitas e estrelas)
+      arcadeConfettiParticles.forEach(p => {
+        p.x += p.vx + Math.sin(p.tilt) * 0.9;
         p.y += p.vy;
-        p.vy += 0.35;
-        p.rotation += p.vr;
+        p.rot += p.vRot;
+        p.tilt += p.vTilt;
+
+        if (p.y > H + 25) {
+          p.y = -18;
+          p.x = Math.random() * W;
+        }
+        if (p.x < -20) p.x = W + 15;
+        if (p.x > W + 20) p.x = -15;
+
         ctx.save();
         ctx.translate(p.x, p.y);
-        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.rotate(p.rot);
+        ctx.scale(Math.cos(p.tilt), 1);
         ctx.fillStyle = p.color;
-        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        if (p.shape === 'star') {
+          ctx.beginPath();
+          ctx.arc(0, 0, p.w * 0.55, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        }
         ctx.restore();
       });
-      frame++;
-      if (frame < 120) {
-        requestAnimationFrame(renderConfetti);
-      } else {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
+
+      arcadeConfettiAnimId = requestAnimationFrame(renderArcadeFrame);
     }
-    renderConfetti();
+
+    arcadeConfettiAnimId = requestAnimationFrame(renderArcadeFrame);
+  }
+
+  function stopArcadeCelebrationConfetti() {
+    if (arcadeConfettiAnimId) {
+      cancelAnimationFrame(arcadeConfettiAnimId);
+      arcadeConfettiAnimId = null;
+    }
+    const cvs = document.getElementById("arcade-confetti-canvas");
+    if (cvs) {
+      cvs.style.display = 'none';
+      const ctx = cvs.getContext('2d');
+      ctx.clearRect(0, 0, cvs.width, cvs.height);
+    }
   }
 
   // --- JOGO 1: PESCA MARAVILHOSA (BARRA DE TIMING) ---
@@ -906,19 +1017,20 @@
     // REGRA DE OURO RIGOBERTO: Fase 1 = 1 peixinho, Fase 2 = 2 peixinhos, Fase 3 = 3 peixinhos...
     const totalPeixes = Math.min(phase, 5);
 
-    // Peixes nadando na água turquesa cristalina da pintura 3D Pixar
+    // Peixes nadando no fundo das águas turquesas cristalinas da Galileia
+    // Quase todos na mesma linha horizontal, bem lá no fundo (sem tocar o chão)
     const peixesPos = [
-      { top: "69%", left: "calc(50% - 35px)", delay: "0s", dur: "3.0s", size: "60px", isBlue: false },
-      { top: "64%", left: "calc(50% - 95px)", delay: "0.4s", dur: "3.3s", size: "54px", isBlue: true },
-      { top: "74%", left: "calc(50% + 35px)", delay: "0.8s", dur: "2.8s", size: "58px", isBlue: false },
-      { top: "66%", left: "calc(50% + 75px)", delay: "0.2s", dur: "3.5s", size: "52px", isBlue: true },
-      { top: "77%", left: "calc(50% - 80px)", delay: "1.0s", dur: "3.1s", size: "56px", isBlue: false }
+      { bottom: "50px", left: "calc(50% - 32px)", delay: "0s", dur: "3.0s", size: "58px", isBlue: false },
+      { bottom: "60px", left: "calc(50% - 95px)", delay: "0.4s", dur: "3.3s", size: "54px", isBlue: true },
+      { bottom: "46px", left: "calc(50% + 35px)", delay: "0.8s", dur: "2.8s", size: "56px", isBlue: false },
+      { bottom: "58px", left: "calc(50% + 85px)", delay: "0.2s", dur: "3.5s", size: "52px", isBlue: true },
+      { bottom: "52px", left: "calc(50% - 145px)", delay: "1.0s", dur: "3.1s", size: "55px", isBlue: false }
     ];
 
     const peixesHtml = peixesPos.slice(0, totalPeixes).map((p, idx) => {
-      const src = p.isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=94" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=94";
+      const src = p.isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=95" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=95";
       return `
-        <div class="peixe-rio-item" id="peixe-rio-${idx}" style="position:absolute; top:${p.top}; left:${p.left}; width:${p.size}; height:auto; animation:peixeNadoSuave ${p.dur} infinite ease-in-out ${p.delay}; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.5)); transition:all 0.4s ease;">
+        <div class="peixe-rio-item" id="peixe-rio-${idx}" style="position:absolute; bottom:${p.bottom}; left:${p.left}; width:${p.size}; height:auto; animation:peixeNadoSuave ${p.dur} infinite ease-in-out ${p.delay}; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.5)); transition:all 0.4s ease;">
           <img src="${src}" style="width:100%; height:auto;" alt="Peixinho da Pesca">
         </div>
       `;
@@ -927,7 +1039,7 @@
     // Peixes capturados dentro da rede (EXATAMENTE a mesma quantidade da fase)
     const peixesNaRedeHtml = Array.from({ length: totalPeixes }).map((_, i) => {
       const isBlue = i % 2 === 1;
-      const src = isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=94" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=94";
+      const src = isBlue ? "./2_ASSETS_UI_BOTOES/peixinho_pesca_azul.svg?v=95" : "./2_ASSETS_UI_BOTOES/peixinho_pesca.svg?v=95";
       const rot = (i % 2 === 0 ? -12 : 16) + (i * 6);
       const size = Math.max(54 - i * 3, 40);
       return `<img src="${src}" style="width:${size}px; height:auto; transform:rotate(${rot}deg); margin:0 -6px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.6));">`;
@@ -936,7 +1048,7 @@
     container.innerHTML = `
       <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; overflow:hidden; user-select:none; touch-action:none; background: linear-gradient(180deg, #38bdf8 0%, #0284c7 35%, #0369a1 70%, #0c4a6e 100%);">
         <!-- 0. IMAGEM OFICIAL 3D PIXAR COM CARREGAMENTO IMEDIATO E ALTA PRIORIDADE -->
-        <img src="./2_ASSETS_UI_BOTOES/fundo_pesca_maravilhosa_3d.jpg?v=94" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none; z-index:0;" alt="Cenário 3D Pesca Maravilhosa" loading="eager" decoding="async">
+        <img src="./2_ASSETS_UI_BOTOES/fundo_pesca_maravilhosa_3d.jpg?v=95" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none; z-index:0;" alt="Cenário 3D Pesca Maravilhosa" loading="eager" decoding="async">
         <!-- 1. CAMADA DE PROFUNDIDADE CINEMATOGRÁFICA 3D PIXAR -->
         <!-- Brilho dourado celestial sutil no céu -->
         <div style="position:absolute; top:0; left:0; width:100%; height:35%; pointer-events:none; background:radial-gradient(circle at 18% 38%, rgba(254, 240, 138, 0.28) 0%, rgba(253, 224, 71, 0.08) 50%, transparent 80%);"></div>
@@ -967,7 +1079,7 @@
 
           <!-- A REDINHA (Lançada do barco de Pedro diretamente nas águas da Galileia) -->
           <div id="pesca-rede-lanca" style="position:absolute; top:38%; left:0; right:0; margin:0 auto; transform:scale(0.2); width:190px; height:190px; z-index:20; opacity:0; pointer-events:none; transition:all 0.65s cubic-bezier(0.2, 0.9, 0.3, 1);">
-            <img src="./2_ASSETS_UI_BOTOES/rede_pesca_maravilhosa.svg?v=94" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 4px 12px rgba(255, 255, 255, 0.85)) drop-shadow(0 0 18px rgba(56, 189, 248, 0.7));" alt="Rede de Pesca">
+            <img src="./2_ASSETS_UI_BOTOES/rede_pesca_maravilhosa.svg?v=95" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 4px 12px rgba(255, 255, 255, 0.85)) drop-shadow(0 0 18px rgba(56, 189, 248, 0.7));" alt="Rede de Pesca">
             <!-- Peixinhos recolhidos na rede (EXATAMENTE a mesma quantidade da fase) -->
             <div id="peixes-na-rede" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s ease;">
               ${peixesNaRedeHtml}
@@ -1047,11 +1159,11 @@
           if (rede) {
             rede.style.opacity = "1";
             rede.style.transform = "scale(0.75)";
-            rede.style.top = "44%";
+            rede.style.top = "42%";
           }
           if (corda) {
             corda.style.opacity = "1";
-            corda.style.height = "80px";
+            corda.style.height = "60px";
           }
 
           // 2. A rede mergulha fundo nas águas turquesas onde os peixes estão
@@ -1064,10 +1176,10 @@
             }
             if (rede) {
               rede.style.transform = "scale(1.2)";
-              rede.style.top = "70%";
+              rede.style.top = "calc(100% - 150px)";
             }
             if (corda) {
-              corda.style.height = "240px";
+              corda.style.height = "calc(100% - 165px)";
             }
           }, 250);
 
@@ -1083,7 +1195,7 @@
               peixesNaRede.style.opacity = "1";
             }
             if (rede) {
-              rede.style.transform = "scale(1.0)";
+              rede.style.transform = "scale(1.05)";
             }
           }, 700);
 
@@ -1092,11 +1204,11 @@
             TronoAudio.play("success");
             TronoAudio.play("fanfare");
             if (rede) {
-              rede.style.top = "40%";
+              rede.style.top = "36%";
               rede.style.transform = "scale(1.15)";
             }
             if (corda) {
-              corda.style.height = "60px";
+              corda.style.height = "50px";
             }
           }, 1100);
 
@@ -1126,8 +1238,8 @@
           setTimeout(() => {
             if (rede) {
               rede.style.opacity = "0";
-              rede.style.top = "4%";
-              rede.style.transform = "scale(0.18)";
+              rede.style.top = "36%";
+              rede.style.transform = "scale(0.2)";
             }
             peixes.forEach(p => {
               p.style.transform = "translateX(0) scale(1)";
