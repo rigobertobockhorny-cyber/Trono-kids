@@ -733,7 +733,7 @@
         right: -8px;
         width: 48px;
         height: 12px;
-        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=117") no-repeat center / contain;
+        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=118") no-repeat center / contain;
         transform: translateY(-50%) rotate(8deg);
         filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
       }
@@ -741,7 +741,7 @@
         position: absolute;
         width: 46px;
         height: 12px;
-        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=117") no-repeat center / contain;
+        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=118") no-repeat center / contain;
         transform: translateY(-50%) rotate(55deg);
         filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
       }
@@ -1146,7 +1146,7 @@
       stage.className = "trono-fullscreen-stage";
       stage.innerHTML = `
         <div class="arcade-top-bar">
-          <button class="arcade-btn-circle" onclick="window.closeTronoArcadeStage()" title="Voltar à Sala de Jogos">
+          <button class="arcade-btn-circle" onclick="window.confirmOrCloseArcadeStage()" title="Voltar à Sala de Jogos">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="arcade-phase-badge" id="arcade-phase-display" onclick="window.handleArcadeDevTap()" style="cursor:pointer;" title="Toque 3x para Modo Desenvolvedor (12345)">
@@ -1177,6 +1177,7 @@
   let _vovoAlreadySpokeInSession = false;
 
   window.openTronoArcadeGame = function(gameId) {
+    try { history.pushState({ screen: "arcade-stage", gameId: gameId }, ""); } catch(e){}
     TronoAudio.init();
     TronoAudio.play("click");
     ensureArcadeStageInDOM();
@@ -1239,6 +1240,45 @@
       }, 300);
     }
   }
+
+  
+  // Modal de Pausa ao clicar no botão Voltar no topo
+  window.confirmOrCloseArcadeStage = function() {
+    TronoAudio.play("click");
+    let modal = document.getElementById("arcade-pause-confirm-modal");
+    if (!modal) {
+      modal = document.createElement("div");
+      modal.id = "arcade-pause-confirm-modal";
+      modal.style.cssText = "position:fixed; inset:0; background:rgba(7,10,25,0.88); backdrop-filter:blur(10px); z-index:999999; display:flex; align-items:center; justify-content:center; padding:16px;";
+      modal.innerHTML = `
+        <div style="background:linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%); border:3px solid #fde047; border-radius:24px; padding:22px; max-width:340px; width:90%; text-align:center; box-shadow:0 12px 36px rgba(0,0,0,0.8);">
+          <div style="font-size:38px; margin-bottom:6px;">⏸️</div>
+          <div style="font-size:18px; font-weight:900; color:#fde047; margin-bottom:6px;">JOGO EM PAUSA</div>
+          <div style="font-size:13.5px; font-weight:700; color:#e2e8f0; margin-bottom:18px;">O que você deseja fazer?</div>
+          <button onclick="window.resumeArcadeGame()" style="width:100%; padding:13px; border-radius:999px; background:linear-gradient(180deg, #22c55e 0%, #15803d 100%); border:2px solid #86efac; color:#ffffff; font-weight:900; font-size:14px; margin-bottom:10px; cursor:pointer; box-shadow:0 4px 14px rgba(34,197,94,0.4);">
+            ▶️ CONTINUAR JOGANDO
+          </button>
+          <button onclick="window.forceCloseArcadeStage()" style="width:100%; padding:11px; border-radius:999px; background:transparent; border:2px solid #64748b; color:#94a3b8; font-weight:800; font-size:13px; cursor:pointer;">
+            🚪 Sair para a Sala de Jogos
+          </button>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+    modal.style.display = "flex";
+  };
+
+  window.resumeArcadeGame = function() {
+    TronoAudio.play("click");
+    const modal = document.getElementById("arcade-pause-confirm-modal");
+    if (modal) modal.style.display = "none";
+  };
+
+  window.forceCloseArcadeStage = function() {
+    const modal = document.getElementById("arcade-pause-confirm-modal");
+    if (modal) modal.style.display = "none";
+    window.closeTronoArcadeStage();
+  };
 
   window.closeTronoArcadeStage = function() {
     _vovoAlreadySpokeInSession = false;
@@ -2230,7 +2270,9 @@
     };
 
     // Medidas do tabuleiro quadrado
-    const boardSize = 336;
+    const maxW = Math.min(window.innerWidth - 20, 480);
+    const maxH = Math.min(window.innerHeight - 230, 480);
+    const boardSize = Math.max(340, Math.min(maxW, maxH));
     const cellW = boardSize / width;
     const cellH = boardSize / height;
     const cloudSize = Math.round(cellW * 1.18);
@@ -2416,109 +2458,106 @@
   // ==========================================================================
   function runJonatasAlvo(container, phase) {
     const currentPhaseNum = phase || 1;
-    // Quantidade de lanças na fase (3 na fase 1, até 8 nas fases altas)
-    const totalSpears = Math.min(8, 2 + currentPhaseNum);
+    // REGRA DE OURO RIGOBERTO: Fase 1 = 1 única lança suave! Fase 2 = 2 lanças...
+    const totalSpears = Math.min(phase || 1, 5);
     let spearIndex = 0;
     let successfulDodges = 0;
-    let isDodging = "stand"; // "stand", "crouch", "jump"
-    let daviX = 68; // percentual de posição horizontal de Davi (44% a 88%)
     let isGameWon = false;
     let isShooting = false;
     let isUnlocked = true;
 
-    // Catálogo dos 4 tipos de lanças do Rei Saul:
-    // 1. "alta": Lança no peito/cabeça -> Davi abaixa (▼)
-    // 2. "baixa": Lança nos pés/chão -> Davi pula (▲)
-    // 3. "fraca": Lança sem força caindo na frente -> Davi recua para trás (▶)
-    // 4. "funda": Lança forte em arco caindo no fundo -> Davi avança para frente (◀)
-    let spearCatalog = [];
+    // Posições de Davi no Primeiro Plano: "center", "left", "right"
+    let daviPosition = "center";
+    let isJumping = false;
+    let isCrouching = false;
+
+    // Catálogo das Lanças em Perspectiva 3D:
+    // 1. "baixa" -> Lança rente ao tapete no centro -> Davi PULA (▲)
+    // 2. "alta"  -> Lança alta no centro -> Davi ABAIXA (▼)
+    // 3. "esquerda" -> Lança vem no lado esquerdo -> Davi vai para a DIREITA (▶)
+    // 4. "direita"  -> Lança vem no lado direito -> Davi vai para a ESQUERDA (◀)
+    let attackCatalog = [];
     if (currentPhaseNum === 1) {
-      spearCatalog = ["alta", "baixa", "fraca"];
+      attackCatalog = ["baixa"]; // Fase 1: 1 única lança rasteira (Pular!)
     } else if (currentPhaseNum === 2) {
-      spearCatalog = ["baixa", "alta", "fraca", "funda"];
+      attackCatalog = ["baixa", "alta"];
     } else if (currentPhaseNum === 3) {
-      spearCatalog = ["alta", "baixa", "funda", "fraca", "alta"];
+      attackCatalog = ["esquerda", "baixa", "direita"];
     } else {
-      const allTypes = ["alta", "baixa", "fraca", "funda"];
+      const allAttacks = ["baixa", "alta", "esquerda", "direita"];
       for (let i = 0; i < totalSpears; i++) {
-        spearCatalog.push(allTypes[i % allTypes.length]);
+        attackCatalog.push(allAttacks[i % allAttacks.length]);
       }
-      // Embaralha levemente sem repetir 3 seguidas
-      for (let i = spearCatalog.length - 1; i > 0; i--) {
+      for (let i = attackCatalog.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [spearCatalog[i], spearCatalog[j]] = [spearCatalog[j], spearCatalog[i]];
+        [attackCatalog[i], attackCatalog[j]] = [attackCatalog[j], attackCatalog[i]];
       }
     }
 
     window._arcadeUnlockGameAction = function() {
       isUnlocked = true;
-      scheduleNextSpear(800);
+      scheduleNextSpear(1500);
     };
 
     container.innerHTML = `
-      <div class="davi-game-wrapper">
-        <!-- Barra de Progresso de Lanças no Topo -->
-        <div class="davi-spear-tracker">
-          <span class="davi-tracker-label">🛡️ LIVRAMENTO:</span>
-          <div class="davi-spear-icons" id="davi-spear-icons"></div>
+      <div class="davi-game-fullscreen">
+        <!-- Barra de Progresso no Topo do Salão -->
+        <div class="davi-top-spear-tracker">
+          <div class="davi-tracker-title">🛡️ LIVRAMENTO DE DAVI</div>
+          <div class="davi-spear-badges" id="davi-spear-badges"></div>
         </div>
 
-        <!-- Palco do Salão Real de Pedra do Rei Saul -->
-        <div class="davi-stage-arena" id="davi-stage-arena">
-          <!-- Cenário Bíblico Real Ilustrado 3D do Palácio -->
-          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=117" class="davi-stage-bg-img" alt="Palácio Real do Rei Saul 3D"/>
-          <div class="davi-stage-vignette"></div>
+        <!-- PALCO 3D EM TELA CHEIA (SALÃO DO TRONO) -->
+        <div class="davi-palace-stage" id="davi-palace-stage">
+          <!-- Fundo Real 3D Pixar do Palácio de Saul -->
+          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=118" class="davi-palace-bg" alt="Palácio Real de Saul 3D"/>
+          <div class="davi-palace-vignette"></div>
 
-          <!-- Banner Sagrado com Referência Bíblica -->
-          <div class="davi-wall-banner">1 SAMUEL 18:11</div>
+          <!-- Referência Bíblica Sagrada -->
+          <div class="davi-banner-biblico">1 SAMUEL 18:11</div>
 
-          <!-- Camada de Lanças Cravadas na Parede e no Piso -->
-          <div class="davi-stuck-layer" id="davi-stuck-layer"></div>
-
-          <!-- Rei Saul à Esquerda -->
-          <div class="davi-saul-box aiming-idle" id="davi-saul-box">
-            <img src="./2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=117" alt="Rei Saul 3D" class="davi-saul-img" id="davi-saul-img"/>
-            <!-- Lança Real na mão de Saul durante a mira -->
-            <div class="davi-saul-hand-spear" id="davi-saul-hand-spear">
-              <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=117" alt="Lança Real na Mão" style="width:100%; height:100%; object-fit:contain;"/>
-            </div>
-            <!-- Indicador / Balão de Mira na Cabeça de Saul -->
-            <div class="davi-saul-aim-indicator" id="davi-aim-indicator" style="display:none;"></div>
+          <!-- REI SAUL NO TRONO AO FUNDO (PERSPECTIVA 3D) -->
+          <div class="davi-saul-throne" id="davi-saul-throne">
+            <img src="./2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=118" alt="Rei Saul no Trono" class="saul-throne-img" id="saul-throne-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=118" alt="Lança na Mão de Saul" class="saul-throne-spear" id="saul-throne-spear"/>
           </div>
 
-          <!-- Lança Real em Voo pelo Salão -->
-          <div class="davi-flying-spear" id="davi-spear" style="display:none;">
-            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=117" alt="Lança Real em Voo" class="davi-spear-img"/>
+          <!-- A LANÇA REAL VOANDO EM DIREÇÃO À TELA (PERSPECTIVA 3D) -->
+          <div class="davi-spear-projectile" id="davi-spear-projectile">
+            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=118" alt="Lança em Voo 3D"/>
           </div>
 
-          <!-- Davi Jovem Pastor 3D à Direita -->
-          <div class="davi-character-box" id="davi-char-box" style="left:${daviX}%;">
-            <img src="./2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=117" alt="Davi Pastor 3D" id="davi-sprite" class="davi-sprite-img"/>
-            <div class="davi-action-bubble" id="davi-bubble"></div>
+          <!-- CAMADA DE LANÇAS CRAVADAS NO PISO / TAPETE -->
+          <div class="davi-stuck-impact-layer" id="davi-stuck-layer"></div>
+
+          <!-- DAVI JOVEM PASTOR NO PRIMEIRO PLANO (PERSPECTIVA 3D) -->
+          <div class="davi-hero-box center-pos" id="davi-hero-box">
+            <div class="davi-hero-shadow"></div>
+            <img src="./2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=118" alt="Davi Pastor 3D" class="davi-hero-img" id="davi-hero-img"/>
           </div>
         </div>
 
-        <!-- CONSOLE D-PAD REDONDO DE VIDEOGAME (PADRÃO IDÊNTICO AO DO POMBO) -->
-        <div class="davi-controller-area">
+        <!-- CONSOLE D-PAD REDONDO ERGONÔMICO (IGUAL AO DO POMBO) -->
+        <div class="davi-controls-bar">
           <div class="davi-dpad-disc">
-            <button class="davi-dpad-btn btn-up" id="btn-davi-up" data-action="jump" aria-label="Pular">
+            <button class="davi-dpad-btn btn-up" id="btn-davi-up" aria-label="Pular">
               <span class="dpad-arrow-sym">▲</span>
               <span class="dpad-sub-txt">PULAR</span>
             </button>
             <div class="davi-mid-row">
-              <button class="davi-dpad-btn btn-left" id="btn-davi-left" data-action="forward" aria-label="Avançar">
+              <button class="davi-dpad-btn btn-left" id="btn-davi-left" aria-label="Esquerda">
                 <span class="dpad-arrow-sym">◀</span>
-                <span class="dpad-sub-txt">AVANÇAR</span>
+                <span class="dpad-sub-txt">ESQUERDA</span>
               </button>
               <div class="davi-center-core">
                 <div class="dpad-hub-dot"></div>
               </div>
-              <button class="davi-dpad-btn btn-right" id="btn-davi-right" data-action="backward" aria-label="Recuar">
+              <button class="davi-dpad-btn btn-right" id="btn-davi-right" aria-label="Direita">
                 <span class="dpad-arrow-sym">▶</span>
-                <span class="dpad-sub-txt">RECUAR</span>
+                <span class="dpad-sub-txt">DIREITA</span>
               </button>
             </div>
-            <button class="davi-dpad-btn btn-down" id="btn-davi-down" data-action="crouch" aria-label="Abaixar">
+            <button class="davi-dpad-btn btn-down" id="btn-davi-down" aria-label="Abaixar">
               <span class="dpad-arrow-sym">▼</span>
               <span class="dpad-sub-txt">ABAIXAR</span>
             </button>
@@ -2527,320 +2566,260 @@
       </div>
     `;
 
-    // Atualiza rastreador de lanças no topo
-    const trackerEl = document.getElementById("davi-spear-icons");
-    function updateTracker() {
-      let html = "";
+    // Atualiza badges de livramentos no topo
+    const badgesEl = document.getElementById("davi-spear-badges");
+    function updateBadges() {
+      let h = "";
       for (let i = 0; i < totalSpears; i++) {
         if (i < successfulDodges) {
-          html += `<span class="spear-badge dodged">⭐</span>`;
+          h += `<span class="davi-badge done">⭐</span>`;
         } else if (i === spearIndex) {
-          html += `<span class="spear-badge current">🗡️</span>`;
+          h += `<span class="davi-badge current">🗡️</span>`;
         } else {
-          html += `<span class="spear-badge pending">⚪</span>`;
+          h += `<span class="davi-badge pending">⚪</span>`;
         }
       }
-      trackerEl.innerHTML = html;
+      badgesEl.innerHTML = h;
     }
-    updateTracker();
+    updateBadges();
 
-    const charBox = document.getElementById("davi-char-box");
-    const daviSprite = document.getElementById("davi-sprite");
-    const bubbleEl = document.getElementById("davi-bubble");
-    const spearEl = document.getElementById("davi-spear");
-    const saulBox = document.getElementById("davi-saul-box");
-    const handSpear = document.getElementById("davi-saul-hand-spear");
-    const aimIndicator = document.getElementById("davi-aim-indicator");
+    const heroBox = document.getElementById("davi-hero-box");
+    const saulThrone = document.getElementById("davi-saul-throne");
+    const throneSpear = document.getElementById("saul-throne-spear");
+    const spearProjectile = document.getElementById("davi-spear-projectile");
     const stuckLayer = document.getElementById("davi-stuck-layer");
 
-    function showBubble(text, color) {
-      bubbleEl.textContent = text;
-      bubbleEl.style.color = color || "#ffffff";
-      bubbleEl.style.opacity = "1";
-      bubbleEl.style.transform = "translate(-50%, -20px) scale(1.1)";
-      setTimeout(() => {
-        bubbleEl.style.opacity = "0";
-        bubbleEl.style.transform = "translate(-50%, 0) scale(0.9)";
-      }, 800);
-    }
-
-    // AÇÕES DOS 4 BOTÕES:
+    // =========================================================================
+    // MOVIMENTOS NATURAIS DE DAVI
+    // =========================================================================
     // 1. Pular (▲ Cima)
-    let jumpTimeout = null;
-    function doJump() {
-      if (isGameWon || isDodging === "jump") return;
-      isDodging = "jump";
-      // Mantém sprite 3D no pulo
-      charBox.classList.remove("crouching");
-      charBox.classList.add("jumping");
+    let jumpTimer = null;
+    function doHeroJump() {
+      if (isGameWon || isJumping) return;
+      isJumping = true;
+      heroBox.classList.remove("crouching");
+      heroBox.classList.add("jumping");
       TronoAudio.play("click");
 
-      clearTimeout(jumpTimeout);
-      jumpTimeout = setTimeout(doStand, 850);
+      clearTimeout(jumpTimer);
+      jumpTimer = setTimeout(() => {
+        heroBox.classList.remove("jumping");
+        isJumping = false;
+      }, 820);
     }
 
-    // 2. Abaixar / Agachar (▼ Baixo)
-    let crouchTimeout = null;
-    function doCrouch() {
-      if (isGameWon || isDodging === "jump") return;
-      isDodging = "crouch";
-      // Mantém sprite 3D agachado
-      charBox.classList.add("crouching");
+    // 2. Abaixar (▼ Baixo)
+    let crouchTimer = null;
+    function doHeroCrouch() {
+      if (isGameWon || isJumping) return;
+      isCrouching = true;
+      heroBox.classList.add("crouching");
       TronoAudio.play("click");
 
-      clearTimeout(crouchTimeout);
-      crouchTimeout = setTimeout(doStand, 850);
+      clearTimeout(crouchTimer);
+      crouchTimer = setTimeout(() => {
+        heroBox.classList.remove("crouching");
+        isCrouching = false;
+      }, 820);
     }
 
-    // 3. Ficar em pé normal
-    function doStand() {
+    // 3. Desviar para a Esquerda (◀ Esquerda)
+    function doHeroLeft() {
       if (isGameWon) return;
-      isDodging = "stand";
-      // Mantém sprite 3D em pé
-      charBox.classList.remove("jumping");
-      charBox.classList.remove("crouching");
-    }
-
-    // 4. Avançar para a frente (◀ Esquerda)
-    function doForward() {
-      if (isGameWon) return;
-      daviX = Math.max(44, daviX - 14);
-      charBox.style.left = daviX + "%";
+      daviPosition = "left";
+      heroBox.className = "davi-hero-box dodge-left" + (isJumping ? " jumping" : "") + (isCrouching ? " crouching" : "");
       TronoAudio.play("click");
     }
 
-    // 5. Recuar para trás (▶ Direita)
-    function doBackward() {
+    // 4. Desviar para a Direita (▶ Direita)
+    function doHeroRight() {
       if (isGameWon) return;
-      daviX = Math.min(88, daviX + 14);
-      charBox.style.left = daviX + "%";
+      daviPosition = "right";
+      heroBox.className = "davi-hero-box dodge-right" + (isJumping ? " jumping" : "") + (isCrouching ? " crouching" : "");
       TronoAudio.play("click");
     }
 
-    // BINDING DOS BOTÕES COM TOQUE RÁPIDO (POINTERDOWN)
-    const btnUp = document.getElementById("btn-davi-up");
-    const btnDown = document.getElementById("btn-davi-down");
-    const btnLeft = document.getElementById("btn-davi-left");
-    const btnRight = document.getElementById("btn-davi-right");
+    // Voltar para o Centro suavemente
+    function doHeroCenter() {
+      if (isGameWon) return;
+      daviPosition = "center";
+      heroBox.className = "davi-hero-box center-pos" + (isJumping ? " jumping" : "") + (isCrouching ? " crouching" : "");
+    }
 
-    btnUp.addEventListener("pointerdown", (e) => { e.preventDefault(); doJump(); });
-    btnDown.addEventListener("pointerdown", (e) => { e.preventDefault(); doCrouch(); });
-    btnLeft.addEventListener("pointerdown", (e) => { e.preventDefault(); doForward(); });
-    btnRight.addEventListener("pointerdown", (e) => { e.preventDefault(); doBackward(); });
+    // BINDINGS TOUCH POINTERDOWN
+    document.getElementById("btn-davi-up").addEventListener("pointerdown", (e) => { e.preventDefault(); doHeroJump(); });
+    document.getElementById("btn-davi-down").addEventListener("pointerdown", (e) => { e.preventDefault(); doHeroCrouch(); });
+    document.getElementById("btn-davi-left").addEventListener("pointerdown", (e) => { e.preventDefault(); doHeroLeft(); });
+    document.getElementById("btn-davi-right").addEventListener("pointerdown", (e) => { e.preventDefault(); doHeroRight(); });
 
     // SUPORTE AO TECLADO
     function handleKeyDown(e) {
       if (isGameWon) return;
       if (e.key === "ArrowUp" || e.key === "w" || e.key === " ") {
-        e.preventDefault(); doJump();
+        e.preventDefault(); doHeroJump();
       } else if (e.key === "ArrowDown" || e.key === "s") {
-        e.preventDefault(); doCrouch();
+        e.preventDefault(); doHeroCrouch();
       } else if (e.key === "ArrowLeft" || e.key === "a") {
-        e.preventDefault(); doForward();
+        e.preventDefault(); doHeroLeft();
       } else if (e.key === "ArrowRight" || e.key === "d") {
-        e.preventDefault(); doBackward();
+        e.preventDefault(); doHeroRight();
       }
     }
     window.addEventListener("keydown", handleKeyDown);
 
-    // CICLO DE DISPARO DAS LANÇAS DE SAUL
+    // =========================================================================
+    // CICLO DA LANÇA EM PERSPECTIVA 3D REAL (VINDO DO TRONO DE SAUL)
+    // =========================================================================
     let spearTimer = null;
 
     function scheduleNextSpear(delay) {
       if (isGameWon) return;
       clearTimeout(spearTimer);
-      spearTimer = setTimeout(launchNextSpear, delay || 1300);
+      spearTimer = setTimeout(launchSpearFromThrone, delay || 1400);
     }
 
-    function launchNextSpear() {
+    function launchSpearFromThrone() {
       if (isGameWon || spearIndex >= totalSpears) return;
       isShooting = true;
 
-      const spearType = spearCatalog[spearIndex] || "alta";
+      const attackType = attackCatalog[spearIndex] || "baixa";
 
-      // 1. FASE DE MIRA / ANIMAÇÃO FÍSICA DE RECUO DE SAUL
-      saulBox.classList.remove("aiming-idle");
-      saulBox.classList.add("charging-windup");
-      handSpear.style.opacity = "1";
-
-      // Balão de aviso colorido na cabeça de Saul
-      aimIndicator.style.display = "block";
-      if (spearType === "alta") {
-        aimIndicator.className = "davi-saul-aim-indicator aim-high";
-        aimIndicator.textContent = "⬇️ ALTA! (Abaixe!)";
-      } else if (spearType === "baixa") {
-        aimIndicator.className = "davi-saul-aim-indicator aim-low";
-        aimIndicator.textContent = "⬆️ BAIXA! (Pule!)";
-      } else if (spearType === "fraca") {
-        aimIndicator.className = "davi-saul-aim-indicator aim-weak";
-        aimIndicator.textContent = "▶️ FRACA! (Recue!)";
-      } else {
-        aimIndicator.className = "davi-saul-aim-indicator aim-deep";
-        aimIndicator.textContent = "◀️ FUNDA! (Avance!)";
-      }
-
+      // 1. SAUL PREPARA O GOLPE NO TRONO (SUSPENSE SUAVE)
+      saulThrone.classList.add("windup");
+      throneSpear.style.opacity = "1";
       TronoAudio.play("click");
 
-      // Tempo de preparação para a criança reagir: 600ms
+      // Tempo de preparação visual suave para a criança prestar atenção: 900ms
       setTimeout(() => {
         if (isGameWon) return;
 
-        // 2. FASE DO ARREMESSO FÍSICO (RELEASE)
-        saulBox.classList.remove("charging-windup");
-        saulBox.classList.add("throw-release");
-        handSpear.style.opacity = "0"; // Lança sai da mão!
-        aimIndicator.style.display = "none";
+        // 2. ARREMESSO FÍSICO DO TRONO
+        saulThrone.classList.remove("windup");
+        saulThrone.classList.add("throw");
+        throneSpear.style.opacity = "0"; // Lança sai da mão de Saul!
 
-        spearEl.style.display = "block";
-        spearEl.style.transition = "none";
-        spearEl.style.left = "76px";
-        spearEl.style.transform = "translateY(-50%) rotate(0deg)";
+        // Configuração inicial da lança lá no fundo (trono)
+        spearProjectile.style.display = "block";
+        spearProjectile.style.transition = "none";
+        spearProjectile.style.top = "30%";
+        spearProjectile.style.left = "50%";
+        spearProjectile.style.width = "42px";
+        spearProjectile.style.height = "16px";
+        spearProjectile.style.transform = "translate(-50%, -50%) scale(0.24) rotate(45deg)";
 
-        // Configuração de altura e trajetória
-        let targetLeft = "96%";
-        let targetTop = "38%";
-        let targetRotate = "0deg";
-        const flyDuration = Math.max(560, 820 - (currentPhaseNum * 18));
+        // Força reflow para animação CSS fluida
+        void spearProjectile.offsetWidth;
 
-        if (spearType === "alta") {
-          targetTop = "36%";
-          spearEl.style.top = "36%";
-        } else if (spearType === "baixa") {
-          targetTop = "80%";
-          spearEl.style.top = "80%";
-        } else if (spearType === "fraca") {
-          targetTop = "84%";
-          targetLeft = "64%"; // Cai no chão antes!
+        // Destino da Lança conforme o tipo de ataque:
+        let targetLeft = "50%";
+        let targetTop = "88%";
+        let targetScale = "1.25";
+        let targetRotate = "55deg";
+        const flyDurationMs = 1750; // Voo lento, majestoso e visível (~1.75s)!
+
+        if (attackType === "baixa") {
+          targetTop = "90%";
+          targetLeft = "50%";
+          targetRotate = "50deg";
+        } else if (attackType === "alta") {
+          targetTop = "68%";
+          targetLeft = "50%";
+          targetRotate = "40deg";
+        } else if (attackType === "esquerda") {
+          targetTop = "86%";
+          targetLeft = "28%";
           targetRotate = "35deg";
-          spearEl.style.top = "44%";
-        } else {
-          // Funda (arco alto)
-          targetTop = "76%";
-          targetLeft = "92%";
-          targetRotate = "25deg";
-          spearEl.style.top = "28%";
+        } else if (attackType === "direita") {
+          targetTop = "86%";
+          targetLeft = "72%";
+          targetRotate = "65deg";
         }
+
+        // DISPARA O VOO EM PERSPECTIVA 3D CRESCENDO EM DIREÇÃO À TELA!
+        spearProjectile.style.transition = `top ${flyDurationMs}ms cubic-bezier(0.25, 0.46, 0.45, 0.94), left ${flyDurationMs}ms ease-out, transform ${flyDurationMs}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+        spearProjectile.style.top = targetTop;
+        spearProjectile.style.left = targetLeft;
+        spearProjectile.style.transform = `translate(-50%, -50%) scale(${targetScale}) rotate(${targetRotate})`;
 
         TronoAudio.play("arrow");
 
-        // Força reflow para animação CSS disparar
-        void spearEl.offsetWidth;
-
-        spearEl.style.transition = `left ${flyDuration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94), top ${flyDuration}ms ease, transform ${flyDuration}ms ease`;
-        spearEl.style.left = targetLeft;
-        spearEl.style.top = targetTop;
-        spearEl.style.transform = `translateY(-50%) rotate(${targetRotate})`;
-
-        // Momento do cruzamento na posição atual de Davi
-        const crossTime = Math.round(flyDuration * 0.72);
-
+        // 3. MOMENTO DO IMPACTO / CHECAGEM DE ESQUIVA (aos 1450ms)
         setTimeout(() => {
           if (isGameWon) return;
 
-          // VERIFICAÇÃO DAS 4 REGRAS DE ESQUIVA (RIGOBERTO GAME DESIGN)
-          let dodged = false;
-          let feedbackTxt = "ESQUIVOU! 👏";
-
-          if (spearType === "alta") {
-            if (isDodging === "crouch") {
-              dodged = true;
-              feedbackTxt = "ESQUIVOU! 👏";
-            }
-          } else if (spearType === "baixa") {
-            if (isDodging === "jump") {
-              dodged = true;
-              feedbackTxt = "PULOU! 🌟";
-            }
-          } else if (spearType === "fraca") {
-            // Lança cai nos pés em 64%. Se Davi recuou para trás (>= 74%), ela cai no chão livre!
-            if (daviX >= 74) {
-              dodged = true;
-              feedbackTxt = "RECUOU A TEMPO! 🛡️";
-            }
-          } else if (spearType === "funda") {
-            // Lança cai no fundo em 92%. Se Davi avançou para a frente (<= 64%), ela cai atrás!
-            if (daviX <= 64) {
-              dodged = true;
-              feedbackTxt = "AVANÇOU A TEMPO! ⚡";
-            }
+          let didDodge = false;
+          if (attackType === "baixa") {
+            // Lança rasteira nos pés: Davi precisa estar pulando!
+            didDodge = isJumping;
+          } else if (attackType === "alta") {
+            // Lança alta na cabeça: Davi precisa estar agachado!
+            didDodge = isCrouching;
+          } else if (attackType === "esquerda") {
+            // Lança na esquerda: Davi precisa ter saído da esquerda!
+            didDodge = (daviPosition !== "left");
+          } else if (attackType === "direita") {
+            // Lança na direita: Davi precisa ter saído da direita!
+            didDodge = (daviPosition !== "right");
           }
 
-          if (dodged) {
+          if (didDodge) {
+            // SUCESSO! LIVRAMENTO ABENÇOADO!
             successfulDodges++;
-            TronoAudio.play("star");
-            showBubble(feedbackTxt, "#fde047");
-          } else {
-            TronoAudio.play("pop");
-            charBox.classList.add("stumble");
-            showBubble("QUASE! 🛡️", "#f87171");
-            setTimeout(() => charBox.classList.remove("stumble"), 400);
-          }
+            spearIndex++;
+            updateBadges();
 
-          updateTracker();
-        }, crossTime);
-
-        // FIM DO VOO DA LANÇA (CRAVOU NA PAREDE OU NO CHÃO)
-        setTimeout(() => {
-          if (isGameWon) return;
-          spearEl.style.display = "none";
-
-          // Cria a lança cravada fixa como troféu
-          const stuck = document.createElement("div");
-          if (spearType === "fraca" || spearType === "funda") {
-            stuck.className = "stuck-spear-floor";
+            // Crava a lança no chão com faísca
+            const stuck = document.createElement("div");
+            stuck.className = "davi-stuck-impact-spear";
             stuck.style.left = targetLeft;
             stuck.style.top = targetTop;
-          } else {
-            stuck.className = "stuck-spear-wall";
-            stuck.style.top = targetTop;
-          }
-          stuckLayer.appendChild(stuck);
+            stuck.style.transform = `translate(-50%, -50%) scale(1.05) rotate(${targetRotate})`;
+            stuckLayer.appendChild(stuck);
 
-          TronoAudio.play("pop");
+            TronoAudio.play("star");
+            spearProjectile.style.display = "none";
+            saulThrone.classList.remove("throw");
+            throneSpear.style.opacity = "1";
 
-          // Saul retorna à postura de mira para a próxima
-          saulBox.classList.remove("throw-release");
-          saulBox.classList.add("aiming-idle");
-          handSpear.style.opacity = "1";
-
-          isShooting = false;
-          spearIndex++;
-          updateTracker();
-
-          // Concluiu todas as lanças da fase?
-          if (successfulDodges >= totalSpears || spearIndex >= totalSpears) {
-            if (successfulDodges >= Math.ceil(totalSpears * 0.55)) {
-              // Vitória com Bênção!
+            if (successfulDodges >= totalSpears) {
+              // VITÓRIA DA FASE!
               isGameWon = true;
               window.removeEventListener("keydown", handleKeyDown);
-              TronoAudio.play("success");
-              // Mantém sprite 3D em pé
-              charBox.classList.add("victory-arms-up");
-              showBubble("DEUS PROTEGEU DAVI! ✨", "#4ade80");
-              setTimeout(triggerArcadeVictory, 950);
-            } else {
-              // Se errou muitas, reinicia a fase amigavelmente
               setTimeout(() => {
-                spearIndex = 0;
-                successfulDodges = 0;
-                stuckLayer.innerHTML = "";
-                updateTracker();
-                scheduleNextSpear(1200);
-              }, 1100);
+                showTronoArcadeVictory(currentPhaseNum);
+              }, 600);
+            } else {
+              // Próxima lança com intervalo calmo e relaxado de 2.2s
+              setTimeout(() => {
+                doHeroCenter();
+                scheduleNextSpear(1600);
+              }, 700);
             }
           } else {
-            // Próxima lança de Saul
-            scheduleNextSpear(1300);
+            // NÃO ESQUIVOU A TEMPO: FEEDBACK CARINHOSO SEM PUNIÇÃO
+            heroBox.classList.add("hit-stumble");
+            TronoAudio.play("pop");
+
+            spearProjectile.style.display = "none";
+            saulThrone.classList.remove("throw");
+            throneSpear.style.opacity = "1";
+
+            setTimeout(() => {
+              heroBox.classList.remove("hit-stumble");
+              doHeroCenter();
+              // Repete a mesma lança com calma
+              scheduleNextSpear(1400);
+            }, 900);
           }
-        }, flyDuration);
-      }, 600);
+        }, 1450);
+
+      }, 900);
     }
 
-    // Inicia a primeira lança após introdução
-    scheduleNextSpear(1200);
+    // Inicia a primeira lança após introdução suave
+    scheduleNextSpear(1600);
   }
 
-  // ==========================================================================
   function runOvelhaPerdida(container, phase) {
     let achadas = 0;
     const total = 3;
