@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v118.0';
+        const CURRENT_VER = 'v119.0';
         const urlParams = new URLSearchParams(window.location.search);
         const forceClear = urlParams.get('limpar') === '1' || urlParams.get('reset') === '1' || urlParams.get('v') !== null;
         const savedVer = localStorage.getItem('trono_app_version');
@@ -36,7 +36,7 @@
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=118.0').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=119.0').then(reg => {
           reg.update();
         }).catch(() => {});
         let refreshing = false;
@@ -2552,7 +2552,7 @@
 </div>
 
 <script src="ebd_modulos_educativos.js?v=118.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=118.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=119.0"></script>
 <script>
   // LAZY-LOAD INTELIGENTE DE PINTURAS (6.3 MB)
   // Reduz em 90% o peso inicial do app, abrindo em menos de 1 segundo!
@@ -5583,8 +5583,7 @@ function printOrSaveBlankPDF() {
     downloadColoredPaintingPNG();
     return;
   }
-  printWin.document.write(`
-    <!DOCTYPE html>
+  printWin.document.write(`<!DOCTYPE html>
     <html lang="pt-BR">
     <head>
       <meta charset="UTF-8">
@@ -5608,66 +5607,13 @@ function printOrSaveBlankPDF() {
           border-radius: 12px;
         }
       </style>
-      <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_oficial.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192_oficial.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="./2_ASSETS_UI_BOTOES/icon_512_oficial.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Trono Kids">
-</head>
+    </head>
     <body>
       <h1>Trono da Promessa Kids — ${currentStory.title}</h1>
       <p>Atividade de Colorir • Nome da Criança: _____________________________________</p>
       <img src="${imgSrc}" onload="setTimeout(() => { window.print(); }, 300);">
-    
-  <script>
-    // BLINDAGEM DO BOTÃO "VOLTAR" DO CELULAR (ANDROID BACK & GESTURE SWIPE)
-    // Impede que o usuário ou criança saia do aplicativo ou reinicie do zero ao tocar em Voltar!
-    (function initMobileBackShield() {
-      try {
-        history.replaceState({ screen: 'home' }, '');
-        window.addEventListener('popstate', function(event) {
-          // 1. Se estiver no modal de pausa do arcade, fecha a pausa
-          const pauseModal = document.getElementById('arcade-pause-confirm-modal');
-          if (pauseModal && pauseModal.style.display !== 'none') {
-            pauseModal.style.display = 'none';
-            history.pushState({ screen: 'arcade-stage' }, '');
-            return;
-          }
-
-          // 2. Se o palco de arcade estiver ativo, fecha o jogo e volta para a sala de jogos
-          const arcadeStage = document.getElementById('screen-trono-arcade-stage');
-          if (arcadeStage && arcadeStage.style.display !== 'none' && arcadeStage.classList.contains('active')) {
-            if (typeof window.closeTronoArcadeStage === 'function') {
-              window.closeTronoArcadeStage();
-            }
-            history.pushState({ screen: 'games-hub' }, '');
-            return;
-          }
-
-          // 3. Se estiver na sala de jogos, volta para a tela inicial
-          const gamesHub = document.getElementById('screen-games-hub');
-          if (gamesHub && gamesHub.classList.contains('active')) {
-            if (typeof showScreen === 'function') showScreen('screen-home');
-            history.pushState({ screen: 'home' }, '');
-            return;
-          }
-
-          // 4. Se estiver em qualquer outra tela, volta para a tela inicial
-          const homeScreen = document.getElementById('screen-home');
-          if (homeScreen && !homeScreen.classList.contains('active')) {
-            if (typeof showScreen === 'function') showScreen('screen-home');
-            history.pushState({ screen: 'home' }, '');
-            return;
-          }
-        });
-      } catch (e) {}
-    })();
-  </script>
-
-</body>
-    </html>
-  `);
+    </body>
+    </html>`);
   printWin.document.close();
   closeModal('modal-download-paint');
 }
@@ -5745,42 +5691,58 @@ startInitialThemeMusic();
 
   <script>
     // BLINDAGEM DO BOTÃO "VOLTAR" DO CELULAR (ANDROID BACK & GESTURE SWIPE)
-    // Impede que o usuário ou criança saia do aplicativo ou reinicie do zero ao tocar em Voltar!
+    // Impede 100% que a criança ou usuário saia do aplicativo ou reinicie do zero ao tocar em Voltar!
     (function initMobileBackShield() {
       try {
-        history.replaceState({ screen: 'home' }, '');
+        // Mantém buffer de segurança na pilha de histórico
+        history.replaceState({ app: 'trono-kids-base' }, '');
+        history.pushState({ app: 'trono-kids-active' }, '');
+
         window.addEventListener('popstate', function(event) {
-          // 1. Se estiver no modal de pausa do arcade, fecha a pausa
-          const pauseModal = document.getElementById('arcade-pause-confirm-modal');
-          if (pauseModal && pauseModal.style.display !== 'none') {
-            pauseModal.style.display = 'none';
-            history.pushState({ screen: 'arcade-stage' }, '');
+          // Re-empurra imediatamente para blindar contra fechamento da aba/PWA
+          history.pushState({ app: 'trono-kids-active' }, '');
+
+          // 1. Se houver modal de vitória do arcade aberto, fecha
+          const victoryModal = document.getElementById('trono-victory-modal');
+          if (victoryModal && victoryModal.style.display !== 'none') {
+            victoryModal.style.display = 'none';
             return;
           }
 
-          // 2. Se o palco de arcade estiver ativo, fecha o jogo e volta para a sala de jogos
+          // 2. Se estiver no modal de pausa do arcade, fecha a pausa
+          const pauseModal = document.getElementById('arcade-pause-confirm-modal');
+          if (pauseModal && pauseModal.style.display !== 'none') {
+            pauseModal.style.display = 'none';
+            return;
+          }
+
+          // 3. Se houver modal de pintura ou downloads aberto, fecha
+          const paintModal = document.getElementById('modal-download-paint');
+          if (paintModal && paintModal.classList.contains('active')) {
+            if (typeof closeModal === 'function') closeModal('modal-download-paint');
+            return;
+          }
+
+          // 4. Se o palco de arcade estiver ativo, fecha o jogo e volta para a sala de jogos
           const arcadeStage = document.getElementById('screen-trono-arcade-stage');
           if (arcadeStage && arcadeStage.style.display !== 'none' && arcadeStage.classList.contains('active')) {
             if (typeof window.closeTronoArcadeStage === 'function') {
               window.closeTronoArcadeStage();
             }
-            history.pushState({ screen: 'games-hub' }, '');
             return;
           }
 
-          // 3. Se estiver na sala de jogos, volta para a tela inicial
+          // 5. Se estiver na sala de jogos, volta para a tela inicial
           const gamesHub = document.getElementById('screen-games-hub');
-          if (gamesHub && gamesHub.classList.contains('active')) {
+          if (gamesHub && (gamesHub.classList.contains('active') || gamesHub.style.display === 'block')) {
             if (typeof showScreen === 'function') showScreen('screen-home');
-            history.pushState({ screen: 'home' }, '');
             return;
           }
 
-          // 4. Se estiver em qualquer outra tela, volta para a tela inicial
+          // 6. Se estiver em qualquer outra tela secundária, volta para a tela inicial
           const homeScreen = document.getElementById('screen-home');
           if (homeScreen && !homeScreen.classList.contains('active')) {
             if (typeof showScreen === 'function') showScreen('screen-home');
-            history.pushState({ screen: 'home' }, '');
             return;
           }
         });

@@ -633,266 +633,228 @@
       }
 
       
-            /* --- JOGO 4: DAVI E A LANÇA DE SAUL (v115.0) --- */
-      .davi-game-wrapper {
+            /* --- JOGO 4: DAVI E A LANÇA DE SAUL (PERSPECTIVA 2.5D TELA CHEIA v119.0) --- */
+      .davi-game-fullscreen {
+        position: relative;
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: space-between;
-        padding: 6px 12px;
-        background: radial-gradient(circle at 50% 15%, #1e1b4b 0%, #0f172a 100%);
+        align-items: center;
+        overflow: hidden;
         user-select: none;
         -webkit-user-select: none;
+        background: #0f172a;
         box-sizing: border-box;
-        overflow: hidden;
       }
-      .davi-spear-tracker {
+      .davi-top-spear-tracker {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 25;
         display: flex;
         align-items: center;
         gap: 8px;
-        background: rgba(15, 23, 42, 0.85);
+        background: rgba(15, 23, 42, 0.88);
         border: 1.5px solid #fde047;
         border-radius: 999px;
         padding: 4px 14px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+        backdrop-filter: blur(4px);
       }
-      .davi-tracker-label {
+      .davi-tracker-title {
         color: #fde047;
         font-weight: 900;
         font-size: 12px;
         letter-spacing: 0.5px;
       }
-      .davi-spear-icons {
+      .davi-spear-badges {
         display: flex;
-        gap: 5px;
+        gap: 6px;
         font-size: 14px;
+        align-items: center;
       }
-      .spear-badge {
+      .davi-badge {
         transition: transform 0.2s ease;
       }
-      .spear-badge.current {
+      .davi-badge.current {
         animation: spearPulse 0.8s ease-in-out infinite alternate;
       }
       @keyframes spearPulse {
         from { transform: scale(1); }
         to { transform: scale(1.3); }
       }
-      .davi-stage-arena {
+      /* PALCO 3D EM TELA CHEIA (100% DO DISPOSITIVO ACIMA DOS CONTROLES) */
+      .davi-palace-stage {
         position: relative;
         width: 100%;
-        max-width: 380px;
-        height: 52%;
-        min-height: 235px;
-        border-radius: 22px;
-        border: 3.5px solid #ffffff;
-        box-shadow: 0 10px 28px rgba(0,0,0,0.5), inset 0 2px 6px rgba(255,255,255,0.4);
+        flex: 1;
+        min-height: 240px;
         overflow: hidden;
       }
-      .davi-stage-bg-img {
+      .davi-palace-bg {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center 60%;
+        object-position: center 42%;
         pointer-events: none;
         z-index: 1;
       }
-      .davi-stage-vignette {
+      .davi-palace-vignette {
         position: absolute;
         inset: 0;
-        background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.35) 100%);
+        background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.5) 100%);
         pointer-events: none;
         z-index: 2;
       }
-      .davi-wall-banner {
+      .davi-banner-biblico {
         position: absolute;
-        top: 8px;
+        top: 48px;
         left: 50%;
         transform: translateX(-50%);
-        background: rgba(15, 23, 42, 0.75);
+        background: rgba(15, 23, 42, 0.72);
         color: #fef08a;
         font-weight: 800;
         font-size: 11px;
         padding: 2px 10px;
         border-radius: 6px;
         letter-spacing: 1px;
-        border: 1px solid rgba(254, 240, 138, 0.4);
+        border: 1px solid rgba(254, 240, 138, 0.35);
         z-index: 3;
       }
-      .davi-stuck-layer {
+      /* REI SAUL NO TRONO AO FUNDO */
+      .davi-saul-throne {
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 115px;
+        height: 125px;
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform-origin: 50% 85%;
+        transition: transform 0.22s ease;
+      }
+      .saul-throne-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 6px 14px rgba(0,0,0,0.7));
+      }
+      .saul-throne-spear {
+        position: absolute;
+        right: 4px;
+        top: 20px;
+        width: 44px;
+        height: 16px;
+        transform: rotate(-25deg);
+        filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
+        transition: opacity 0.12s ease;
+      }
+      .davi-saul-throne.windup {
+        transform: translateX(-50%) scale(1.08) translateY(-4px) !important;
+      }
+      .davi-saul-throne.throw {
+        transform: translateX(-50%) scale(0.96) translateY(4px) !important;
+      }
+      /* A LANÇA REAL VOANDO EM DIREÇÃO À TELA */
+      .davi-spear-projectile {
+        position: absolute;
+        display: none;
+        z-index: 10;
+        pointer-events: none;
+        width: 85px;
+        height: 28px;
+      }
+      .davi-spear-projectile img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 8px 16px rgba(0,0,0,0.85));
+      }
+      /* CAMADA DE LANÇAS CRAVADAS NO CHÃO */
+      .davi-stuck-impact-layer {
         position: absolute;
         inset: 0;
         pointer-events: none;
-        z-index: 3;
-      }
-      .stuck-spear-wall {
-        position: absolute;
-        right: -8px;
-        width: 48px;
-        height: 12px;
-        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=118") no-repeat center / contain;
-        transform: translateY(-50%) rotate(8deg);
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
-      }
-      .stuck-spear-floor {
-        position: absolute;
-        width: 46px;
-        height: 12px;
-        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=118") no-repeat center / contain;
-        transform: translateY(-50%) rotate(55deg);
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
-      }
-      .davi-saul-box {
-        position: absolute;
-        left: 6px;
-        bottom: 14px;
-        width: 96px;
-        height: 122px;
         z-index: 5;
-        transform-origin: 40% 90%;
-        transition: transform 0.22s cubic-bezier(0.25, 1, 0.5, 1);
       }
-      .davi-saul-box.aiming-idle {
-        animation: saulAimRock 1.2s ease-in-out infinite alternate;
-      }
-      @keyframes saulAimRock {
-        0% { transform: rotate(0deg) translateY(0); }
-        50% { transform: rotate(-3deg) translateY(-2px); }
-        100% { transform: rotate(2deg) translateY(0); }
-      }
-      .davi-saul-box.charging-windup {
-        transform: translateX(-12px) rotate(-8deg) scale(1.05) !important;
-        transition: transform 0.35s ease;
-      }
-      .davi-saul-box.throw-release {
-        transform: translateX(14px) rotate(6deg) scale(0.98) !important;
-        transition: transform 0.12s cubic-bezier(0.1, 0.9, 0.2, 1);
-      }
-      .davi-saul-img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-      .davi-saul-hand-spear {
+      .davi-stuck-impact-spear {
         position: absolute;
-        right: -8px;
-        top: 24px;
-        width: 46px;
-        height: 14px;
-        transform: rotate(-15deg);
-        pointer-events: none;
-        transition: opacity 0.1s ease;
+        width: 58px;
+        height: 18px;
+        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=119") no-repeat center / contain;
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8));
+        opacity: 0.88;
       }
-      .davi-saul-aim-indicator {
+      /* DAVI NO PRIMEIRO PLANO (PERSPECTIVA 3D) */
+      .davi-hero-box {
         position: absolute;
-        top: -26px;
+        bottom: 8px;
         left: 50%;
         transform: translateX(-50%);
-        color: #ffffff;
-        font-weight: 900;
-        font-size: 11px;
-        padding: 3px 9px;
-        border-radius: 999px;
-        white-space: nowrap;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.5);
-        animation: aimBlink 0.3s ease infinite alternate;
-        border: 1.5px solid #ffffff;
-      }
-      .aim-high { background: #38bdf8; color: #0f172a; }
-      .aim-low { background: #22c55e; color: #ffffff; }
-      .aim-weak { background: #f59e0b; color: #ffffff; }
-      .aim-deep { background: #a855f7; color: #ffffff; }
-      @keyframes aimBlink {
-        from { opacity: 0.8; }
-        to { opacity: 1; }
-      }
-      .davi-flying-spear {
-        position: absolute;
-        width: 72px;
-        height: 24px;
+        width: 125px;
+        height: 155px;
         z-index: 8;
-        transform: translateY(-50%);
-        pointer-events: none;
+        transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), left 0.24s cubic-bezier(0.25, 1, 0.5, 1);
       }
-      .davi-spear-img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+      .davi-hero-box.center-pos {
+        left: 50% !important;
       }
-      .davi-character-box {
-        position: absolute;
-        bottom: 14px;
-        width: 76px;
-        height: 110px;
-        transform: translateX(-50%);
-        z-index: 10;
-        transition: left 0.18s cubic-bezier(0.25, 1, 0.5, 1), bottom 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      .davi-hero-box.dodge-left {
+        left: 20% !important;
       }
-      .davi-character-box.crouching {
-        bottom: 8px !important;
-        transform: translateX(-50%) scaleY(0.62) scaleX(1.08) translateY(22px) !important;
-        transform-origin: center bottom;
+      .davi-hero-box.dodge-right {
+        left: 80% !important;
       }
-      .davi-sprite-img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+      .davi-hero-box.jumping {
+        transform: translateX(-50%) translateY(-65px) scale(0.96) !important;
       }
-      .davi-character-box.jumping {
-        bottom: 96px !important;
-        animation: jumpAir 0.85s ease forwards;
+      .davi-hero-box.crouching {
+        transform: translateX(-50%) translateY(32px) scale(0.72) !important;
       }
-      @keyframes jumpAir {
-        0% { bottom: 14px; }
-        45% { bottom: 102px; }
-        100% { bottom: 14px; }
+      .davi-hero-box.hit-stumble {
+        animation: daviStumble 0.6s ease;
       }
-      .davi-character-box.crouching {
-        bottom: 8px !important;
-        transform: translateX(-50%) scale(0.92);
-      }
-      .davi-character-box.stumble {
-        animation: stumbleWiggle 0.4s ease;
-      }
-      @keyframes stumbleWiggle {
+      @keyframes daviStumble {
         0%, 100% { transform: translateX(-50%) rotate(0deg); }
-        25% { transform: translateX(-50%) rotate(-15deg); }
-        75% { transform: translateX(-50%) rotate(15deg); }
+        25% { transform: translateX(-58%) rotate(-10deg); filter: brightness(1.3) drop-shadow(0 0 10px #f87171); }
+        75% { transform: translateX(-42%) rotate(8deg); }
       }
-      .davi-character-box.victory-arms-up {
-        animation: victoryBounce 0.5s ease infinite alternate;
+      .davi-hero-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 8px 16px rgba(0,0,0,0.7));
       }
-      @keyframes victoryBounce {
-        from { transform: translateX(-50%) translateY(0); }
-        to { transform: translateX(-50%) translateY(-10px); }
-      }
-      .davi-action-bubble {
+      .davi-hero-shadow {
         position: absolute;
-        top: -18px;
+        bottom: 2px;
         left: 50%;
-        transform: translate(-50%, 0);
-        background: rgba(15, 23, 42, 0.92);
-        border: 1.5px solid #fde047;
-        font-weight: 900;
-        font-size: 11px;
-        padding: 3px 8px;
-        border-radius: 8px;
-        white-space: nowrap;
-        pointer-events: none;
-        opacity: 0;
-        transition: all 0.2s ease;
+        transform: translateX(-50%);
+        width: 70px;
+        height: 16px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(0,0,0,0.65) 0%, transparent 75%);
+        z-index: -1;
       }
-      /* CONSOLE D-PAD DE VIDEOGAME (PADRÃO IDÊNTICO AO POMBO) */
-      .davi-controller-area {
+      /* BARRA DE CONTROLES D-PAD EM DISCO ERGONÔMICO */
+      .davi-controls-bar {
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 4px;
+        padding: 6px 12px 10px;
+        background: rgba(15, 23, 42, 0.95);
+        border-top: 1.5px solid rgba(253, 224, 71, 0.3);
+        z-index: 20;
+        box-shadow: 0 -4px 16px rgba(0,0,0,0.4);
       }
       .davi-dpad-disc {
         display: flex;
@@ -911,11 +873,11 @@
         gap: 3px;
       }
       .davi-dpad-btn {
-        width: 54px;
-        height: 52px;
+        width: 68px;
+        height: 48px;
         background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
         border: 2px solid #475569;
-        border-radius: 16px;
+        border-radius: 14px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.2);
         display: flex;
         flex-direction: column;
@@ -932,26 +894,26 @@
       .davi-dpad-btn:active {
         transform: scale(0.92);
         background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-        border-color: #38bdf8;
+        border-color: #fde047;
       }
       .davi-dpad-btn .dpad-arrow-sym {
-        color: #f8fafc;
-        font-size: 20px;
+        color: #fde047;
+        font-size: 18px;
         font-weight: 900;
         line-height: 1;
         text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         pointer-events: none;
       }
       .davi-dpad-btn .dpad-sub-txt {
-        color: #94a3b8;
-        font-size: 8px;
+        color: #f8fafc;
+        font-size: 8.5px;
         font-weight: 800;
         letter-spacing: 0.5px;
         margin-top: 1px;
         pointer-events: none;
       }
       .davi-dpad-btn:active .dpad-sub-txt {
-        color: #38bdf8;
+        color: #fde047;
       }
       .davi-center-core {
         width: 36px;
@@ -967,7 +929,8 @@
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        background: radial-gradient(circle at 30% 30%, #64748b 0%, #334155 100%);
+        background: radial-gradient(circle at 30% 30%, #fde047 0%, #ca8a04 100%);
+        box-shadow: 0 0 6px #fde047;
       }
 
       /* TELA CHEIA OFICIAL DE VITÓRIA (100% ROXA DO TRONO KIDS - SEM BLOCO/CARD) */
@@ -2510,7 +2473,7 @@
         <!-- PALCO 3D EM TELA CHEIA (SALÃO DO TRONO) -->
         <div class="davi-palace-stage" id="davi-palace-stage">
           <!-- Fundo Real 3D Pixar do Palácio de Saul -->
-          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=118" class="davi-palace-bg" alt="Palácio Real de Saul 3D"/>
+          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=119" class="davi-palace-bg" alt="Palácio Real de Saul 3D"/>
           <div class="davi-palace-vignette"></div>
 
           <!-- Referência Bíblica Sagrada -->
@@ -2518,13 +2481,13 @@
 
           <!-- REI SAUL NO TRONO AO FUNDO (PERSPECTIVA 3D) -->
           <div class="davi-saul-throne" id="davi-saul-throne">
-            <img src="./2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=118" alt="Rei Saul no Trono" class="saul-throne-img" id="saul-throne-img"/>
-            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=118" alt="Lança na Mão de Saul" class="saul-throne-spear" id="saul-throne-spear"/>
+            <img src="./2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=119" alt="Rei Saul no Trono" class="saul-throne-img" id="saul-throne-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=119" alt="Lança na Mão de Saul" class="saul-throne-spear" id="saul-throne-spear"/>
           </div>
 
           <!-- A LANÇA REAL VOANDO EM DIREÇÃO À TELA (PERSPECTIVA 3D) -->
           <div class="davi-spear-projectile" id="davi-spear-projectile">
-            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=118" alt="Lança em Voo 3D"/>
+            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=119" alt="Lança em Voo 3D"/>
           </div>
 
           <!-- CAMADA DE LANÇAS CRAVADAS NO PISO / TAPETE -->
@@ -2533,7 +2496,7 @@
           <!-- DAVI JOVEM PASTOR NO PRIMEIRO PLANO (PERSPECTIVA 3D) -->
           <div class="davi-hero-box center-pos" id="davi-hero-box">
             <div class="davi-hero-shadow"></div>
-            <img src="./2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=118" alt="Davi Pastor 3D" class="davi-hero-img" id="davi-hero-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=119" alt="Davi Pastor 3D" class="davi-hero-img" id="davi-hero-img"/>
           </div>
         </div>
 
