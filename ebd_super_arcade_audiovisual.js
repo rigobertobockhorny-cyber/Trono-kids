@@ -456,109 +456,88 @@
       }
 
       
-      /* --- JOGO 3: O POMBO DA ARCA (CANÔNICO RIGOBERTO - NUVENS & ARCA) --- */
-      .pombo-game-wrapper {
+      
+      /* --- JOGO 3: O POMBO DA ARCA (CANÔNICO RIGOBERTO v109.0) --- */
+      .pombo-v109-wrapper {
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        padding: 6px 10px;
-        background: radial-gradient(circle at 50% 15%, #38bdf8 0%, #0284c7 60%, #075985 100%);
+        padding: 6px 12px;
+        background: radial-gradient(circle at 50% 15%, #38bdf8 0%, #0284c7 55%, #0369a1 100%);
         user-select: none;
         -webkit-user-select: none;
         box-sizing: border-box;
+        overflow: hidden;
       }
-      .pombo-sky-banner {
+      .pombo-v109-header {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         width: 100%;
-        max-width: 360px;
         margin-bottom: 2px;
       }
-      .pombo-badge {
+      .pombo-v109-title {
         background: rgba(15, 23, 42, 0.75);
         color: #ffffff;
         font-weight: 800;
         font-size: 13px;
-        padding: 4px 12px;
+        padding: 4px 16px;
         border-radius: 999px;
         border: 1.5px solid #38bdf8;
-        backdrop-filter: blur(6px);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
       }
-      .pombo-sub-badge {
-        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-        color: #ffffff;
-        font-weight: 900;
-        font-size: 12px;
-        padding: 4px 10px;
-        border-radius: 999px;
-        border: 1.5px solid #fde047;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      }
-      .pombo-board {
+      .pombo-v109-board {
         position: relative;
-        border-radius: 22px;
+        border-radius: 20px;
         background: linear-gradient(180deg, #38bdf8 0%, #7dd3fc 45%, #bae6fd 100%);
         border: 4px solid #ffffff;
-        box-shadow: 0 10px 25px rgba(2, 132, 199, 0.4), inset 0 2px 6px rgba(255, 255, 255, 0.7);
+        box-shadow: 0 8px 24px rgba(2, 132, 199, 0.4), inset 0 2px 6px rgba(255, 255, 255, 0.7);
         overflow: hidden;
         touch-action: none;
       }
-      .pombo-corridors-svg {
+      .pombo-v109-sky-bg {
         position: absolute;
         inset: 0;
-        width: 100%;
-        height: 100%;
+        background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25) 0%, transparent 60%);
         pointer-events: none;
-        z-index: 1;
       }
-      .pombo-clouds-layer {
+      .pombo-v109-walls-layer {
         position: absolute;
         inset: 0;
         pointer-events: none;
         z-index: 2;
       }
-      .pombo-cloud-item {
+      .pombo-uniform-cloud {
         position: absolute;
         transform: translate(-50%, -50%);
-        filter: drop-shadow(0 3px 5px rgba(2, 132, 199, 0.3));
+        filter: drop-shadow(0 2px 4px rgba(2, 132, 199, 0.3));
         pointer-events: none;
         user-select: none;
       }
-      .pombo-deadend-cloud {
-        position: absolute;
-        transform: translate(-50%, -50%);
-        filter: drop-shadow(0 4px 8px rgba(15, 23, 42, 0.45));
-        pointer-events: none;
-        animation: cloudPuff 2.5s ease-in-out infinite alternate;
-      }
-      @keyframes cloudPuff {
-        0% { transform: translate(-50%, -50%) scale(1); }
-        100% { transform: translate(-50%, -50%) scale(1.1); }
-      }
-      .pombo-goal-ark {
+      .pombo-v109-ark-harbor {
         position: absolute;
         transform: translate(-50%, -50%);
         z-index: 5;
         display: flex;
         align-items: center;
         justify-content: center;
-        animation: arkBob 2.5s ease-in-out infinite;
+        pointer-events: none;
+        animation: arkGentleFloat 2.6s ease-in-out infinite;
       }
-      .pombo-ark-img {
+      .pombo-v109-ark-img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-        filter: drop-shadow(0 6px 10px rgba(0,0,0,0.35));
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35));
       }
-      @keyframes arkBob {
-        0%, 100% { transform: translateY(0) rotate(-1.5deg); }
-        50% { transform: translateY(-4px) rotate(2deg); }
+      @keyframes arkGentleFloat {
+        0%, 100% { transform: translate(-50%, -50%) rotate(-1deg); }
+        50% { transform: translate(-50%, -54%) rotate(1.5deg); }
       }
-      .pombo-avatar {
+      .pombo-v109-dove-avatar {
         position: absolute;
         transform: translate(-50%, -50%);
         z-index: 10;
@@ -566,160 +545,90 @@
         align-items: center;
         justify-content: center;
         pointer-events: none;
-        animation: doveHover 1.6s ease-in-out infinite;
+        transition: left 0.12s cubic-bezier(0.2, 0.8, 0.4, 1), top 0.12s cubic-bezier(0.2, 0.8, 0.4, 1);
       }
-      .pombo-dove-img {
+      .pombo-v109-dove-img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-        filter: drop-shadow(0 4px 8px rgba(2, 132, 199, 0.4));
-        transition: transform 0.2s ease;
+        filter: drop-shadow(0 3px 6px rgba(2, 132, 199, 0.4));
+        transition: transform 0.12s ease;
       }
-      @keyframes doveHover {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-3px); }
+      .dove-blocked-bump {
+        animation: doveBump 0.2s ease;
       }
-      .pombo-arrows-container {
-        position: absolute;
-        inset: 0;
-        pointer-events: auto;
-        z-index: 15;
+      @keyframes doveBump {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(0.88); }
       }
-      .pombo-path-arrow {
-        position: absolute;
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        outline: none;
-        animation: arrowPulse 1.2s ease-in-out infinite;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        touch-action: manipulation;
-      }
-      .pombo-path-arrow:active {
-        transform: scale(0.9) !important;
-      }
-      @keyframes arrowPulse {
-        0%, 100% { transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 4px #fde047); }
-        50% { transform: translate(-50%, -50%) scale(1.18); filter: drop-shadow(0 0 10px #facc15); }
-      }
-      .pombo-dpad-console {
+      .pombo-v109-controller-area {
         width: 100%;
-        max-width: 360px;
-        background: linear-gradient(160deg, #1e293b 0%, #0f172a 100%);
-        border: 2.5px solid #334155;
-        border-radius: 26px;
-        padding: 8px 14px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.1);
         display: flex;
+        justify-content: center;
         align-items: center;
-        justify-content: space-around;
         margin-top: 4px;
-        box-sizing: border-box;
       }
-      .pombo-dpad-cross {
+      .pombo-v109-dpad-disc {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 2px;
+        gap: 3px;
+        background: linear-gradient(150deg, #1e293b 0%, #0f172a 100%);
+        border: 3px solid #334155;
+        border-radius: 36px;
+        padding: 10px 14px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.1);
       }
-      .pombo-dpad-row {
+      .pombo-v109-mid-row {
         display: flex;
         align-items: center;
-        gap: 2px;
+        gap: 3px;
       }
-      .pombo-dpad-btn {
-        width: 50px;
-        height: 50px;
+      .pombo-v109-btn {
+        width: 52px;
+        height: 52px;
         background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
         border: 2px solid #475569;
-        border-radius: 14px;
-        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.2);
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: all 0.15s ease;
+        transition: transform 0.08s ease, background 0.08s ease;
         user-select: none;
         -webkit-user-select: none;
         touch-action: manipulation;
         outline: none;
       }
-      .pombo-dpad-btn .dpad-arrow {
-        color: #94a3b8;
+      .pombo-v109-btn:active {
+        transform: scale(0.92);
+        background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+        border-color: #38bdf8;
+      }
+      .pombo-v109-btn .dpad-arrow-sym {
+        color: #f8fafc;
         font-size: 24px;
         font-weight: 900;
         line-height: 1;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-        transition: color 0.15s ease, transform 0.15s ease;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        pointer-events: none;
       }
-      .pombo-dpad-btn.active-open {
-        background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
-        border-color: #38bdf8;
-        box-shadow: 0 0 14px #38bdf8, 0 6px 14px rgba(2, 132, 199, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.5);
-        animation: dpadPulse 1.8s ease-in-out infinite;
-      }
-      .pombo-dpad-btn.active-open .dpad-arrow {
-        color: #ffffff;
-        text-shadow: 0 0 8px #fde047;
-      }
-      .pombo-dpad-btn.active-open:active {
-        transform: scale(0.92);
-        filter: brightness(1.2);
-      }
-      .pombo-dpad-btn.blocked {
-        opacity: 0.32;
-        cursor: not-allowed;
-      }
-      .pombo-dpad-btn.shake-blocked {
-        animation: btnShake 0.25s ease;
-      }
-      @keyframes dpadPulse {
-        0%, 100% { border-color: #38bdf8; }
-        50% { border-color: #fde047; }
-      }
-      .pombo-dpad-center-hub {
-        width: 38px;
-        height: 38px;
-        background: radial-gradient(circle, #334155 40%, #0f172a 100%);
+      .pombo-v109-center-core {
+        width: 36px;
+        height: 36px;
+        background: radial-gradient(circle, #334155 30%, #0f172a 100%);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
       }
-      .pombo-dpad-center-hub .dpad-gem {
-        width: 12px;
-        height: 12px;
+      .pombo-v109-center-core .dpad-hub-dot {
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
-        background: radial-gradient(circle at 30% 30%, #38bdf8 0%, #0284c7 100%);
-        box-shadow: 0 0 6px #38bdf8;
-      }
-      .pombo-dpad-meta {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-      }
-      .pombo-reset-btn {
-        background: linear-gradient(180deg, #475569 0%, #334155 100%);
-        color: #e2e8f0;
-        border: 1.5px solid #64748b;
-        border-radius: 16px;
-        padding: 8px 12px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2px;
-        cursor: pointer;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        transition: all 0.15s ease;
-      }
-      .pombo-reset-btn:active {
-        transform: scale(0.92);
-        filter: brightness(1.2);
+        background: radial-gradient(circle at 30% 30%, #64748b 0%, #334155 100%);
       }
 
       /* TELA CHEIA OFICIAL DE VITÓRIA (100% ROXA DO TRONO KIDS - SEM BLOCO/CARD) */
@@ -1953,359 +1862,218 @@
   }
 
   // ==========================================================================
-  // JOGO 3: O POMBO DA ARCA (LABIRINTO DE NUVENS CANÔNICO - PADRÃO RIGOBERTO)
-  // - Labirinto com caminhos claros de céu entre barreiras de nuvenzinhas
-  // - Nuvens variadas: Brancas fofas, Cinzas lisas, Chuva com gotas, Raio dourado
-  // - Arca de Noé com madeira, janelinhas e arco-íris (arca_de_noe_labirinto.svg)
-  // - Pombinha Branca da Promessa com raminho de oliveira (pombinha_branca_voando.svg)
-  // - D-Pad de Videogame tátil com iluminação dinâmica das direções abertas
-  // - Setas amarelas no caminho idênticas ao print de referência
-  // - Voo suave com planar pelo carreirinho até o próximo entroncamento/arca
+  // JOGO 3: O POMBO DA ARCA (LABIRINTO CANÔNICO RIGOBERTO v109.0)
+  // - Labirinto de verdade com caminhos estreitos e múltiplas opções de erro
+  // - 15 Fases com labirintos únicos e progressivos
+  // - Nuvens uniformes do mesmo tamanho formando as paredes (sem nuvens soltas no caminho)
+  // - Arca de Noé 100% visível em porto aberto, sem corte
+  // - Pombinha com controle direcional direto no D-Pad centralizado
+  // - Zero setinhas na tela; resposta tátil imediata (se bloqueado, trava)
   // ==========================================================================
-  const POMBO_MAZE_PHASES = [{"cols": 3, "rows": 3, "start": {"x": 0, "y": 2}, "goal": {"x": 2, "y": 0}, "walls_h": [[1, 0], [0, 0]], "walls_v": [[1, 1], [0, 2]], "special_clouds": {"cell_0_0": "chuva"}, "graph": {"0,0": ["right"], "1,0": ["left", "right"], "2,0": ["down", "left"], "0,1": ["down", "right"], "1,1": ["down", "left"], "2,1": ["up", "down"], "0,2": ["up"], "1,2": ["up", "right"], "2,2": ["up", "left"]}, "solution_len": 7, "phase": 1}, {"cols": 4, "rows": 3, "start": {"x": 0, "y": 2}, "goal": {"x": 3, "y": 0}, "walls_h": [[0, 1], [1, 0], [1, 1], [2, 1]], "walls_v": [[1, 0], [2, 1]], "special_clouds": {"cell_1_0": "chuva"}, "graph": {"0,0": ["down", "right"], "1,0": ["left"], "2,0": ["down", "right"], "3,0": ["down", "left"], "0,1": ["up", "right"], "1,1": ["left", "right"], "2,1": ["up", "left"], "3,1": ["up", "down"], "0,2": ["right"], "1,2": ["left", "right"], "2,2": ["left", "right"], "3,2": ["up", "left"]}, "solution_len": 6, "phase": 2}, {"cols": 4, "rows": 3, "start": {"x": 0, "y": 2}, "goal": {"x": 3, "y": 0}, "walls_h": [[1, 1], [2, 0], [2, 1]], "walls_v": [[0, 1], [1, 0], [0, 2]], "special_clouds": {"cell_2_0": "chuva", "cell_1_2": "raio"}, "graph": {"0,0": ["down", "right"], "1,0": ["down", "left"], "2,0": ["right"], "3,0": ["down", "left"], "0,1": ["up", "down"], "1,1": ["up", "right"], "2,1": ["left", "right"], "3,1": ["up", "down", "left"], "0,2": ["up"], "1,2": ["right"], "2,2": ["left", "right"], "3,2": ["up", "left"]}, "solution_len": 8, "phase": 3}, {"cols": 4, "rows": 4, "start": {"x": 0, "y": 3}, "goal": {"x": 3, "y": 0}, "walls_h": [[0, 1], [1, 2], [2, 1], [1, 0], [3, 2]], "walls_v": [[0, 1], [1, 2], [2, 1], [0, 3]], "special_clouds": {"cell_0_1": "chuva", "cell_1_3": "raio", "cell_3_3": "cinza"}, "graph": {"0,0": ["down", "right"], "1,0": ["left", "right"], "2,0": ["down", "left", "right"], "3,0": ["down", "left"], "0,1": ["up"], "1,1": ["down", "right"], "2,1": ["up", "left"], "3,1": ["up", "down"], "0,2": ["down", "right"], "1,2": ["up", "left"], "2,2": ["down", "right"], "3,2": ["up", "left"], "0,3": ["up"], "1,3": ["right"], "2,3": ["up", "left", "right"], "3,3": ["left"]}, "solution_len": 7, "phase": 4}, {"cols": 4, "rows": 4, "start": {"x": 0, "y": 3}, "goal": {"x": 3, "y": 0}, "walls_h": [[0, 1], [3, 1], [1, 1], [2, 2], [1, 0]], "walls_v": [[1, 1], [1, 2], [2, 1], [0, 3]], "special_clouds": {"cell_1_1": "chuva", "cell_3_1": "raio"}, "graph": {"0,0": ["down", "right"], "1,0": ["left", "right"], "2,0": ["down", "left", "right"], "3,0": ["down", "left"], "0,1": ["up", "right"], "1,1": ["left"], "2,1": ["up", "down"], "3,1": ["up"], "0,2": ["down", "right"], "1,2": ["down", "left"], "2,2": ["up", "right"], "3,2": ["down", "left"], "0,3": ["up"], "1,3": ["up", "right"], "2,3": ["left", "right"], "3,3": ["up", "left"]}, "solution_len": 11, "phase": 5}, {"cols": 5, "rows": 4, "start": {"x": 0, "y": 3}, "goal": {"x": 4, "y": 0}, "walls_h": [[0, 1], [1, 2], [2, 1], [3, 1], [1, 1], [3, 0], [1, 0]], "walls_v": [[3, 1], [0, 3], [3, 3], [2, 2], [1, 0]], "special_clouds": {"cell_1_0": "chuva", "cell_3_1": "raio", "cell_1_3": "cinza", "cell_4_3": "raio"}, "graph": {"0,0": ["down", "right"], "1,0": ["left"], "2,0": ["down", "right"], "3,0": ["left", "right"], "4,0": ["down", "left"], "0,1": ["up", "right"], "1,1": ["left", "right"], "2,1": ["up", "left", "right"], "3,1": ["left"], "4,1": ["up", "down"], "0,2": ["down", "right"], "1,2": ["left", "right"], "2,2": ["down", "left"], "3,2": ["down", "right"], "4,2": ["up", "down", "left"], "0,3": ["up"], "1,3": ["right"], "2,3": ["up", "left", "right"], "3,3": ["up", "left"], "4,3": ["up"]}, "solution_len": 10, "phase": 6}, {"cols": 5, "rows": 4, "start": {"x": 0, "y": 3}, "goal": {"x": 4, "y": 0}, "walls_h": [[0, 1], [4, 0], [1, 2], [2, 1], [3, 1], [1, 1], [2, 0], [2, 2], [1, 0], [3, 2]], "walls_v": [[0, 3], [2, 1]], "special_clouds": {"cell_2_1": "chuva", "cell_1_3": "raio"}, "graph": {"0,0": ["down", "right"], "1,0": ["left", "right"], "2,0": ["left", "right"], "3,0": ["down", "left", "right"], "4,0": ["left"], "0,1": ["up", "right"], "1,1": ["left", "right"], "2,1": ["left"], "3,1": ["up", "right"], "4,1": ["down", "left"], "0,2": ["down", "right"], "1,2": ["left", "right"], "2,2": ["left", "right"], "3,2": ["left", "right"], "4,2": ["up", "down", "left"], "0,3": ["up"], "1,3": ["right"], "2,3": ["left", "right"], "3,3": ["left", "right"], "4,3": ["up", "left"]}, "solution_len": 10, "phase": 7}, {"cols": 5, "rows": 4, "start": {"x": 0, "y": 3}, "goal": {"x": 4, "y": 0}, "walls_h": [[1, 2], [3, 1], [2, 0], [3, 0], [0, 2], [2, 2], [1, 0]], "walls_v": [[0, 1], [1, 2], [2, 1], [3, 3], [3, 2]], "special_clouds": {"cell_3_1": "chuva", "cell_4_3": "raio"}, "graph": {"0,0": ["down", "right"], "1,0": ["left", "right"], "2,0": ["left", "right"], "3,0": ["left", "right"], "4,0": ["down", "left"], "0,1": ["up", "down"], "1,1": ["down", "right"], "2,1": ["down", "left"], "3,1": ["right"], "4,1": ["up", "down", "left"], "0,2": ["up", "right"], "1,2": ["up", "left"], "2,2": ["up", "right"], "3,2": ["down", "left"], "4,2": ["up", "down"], "0,3": ["right"], "1,3": ["left", "right"], "2,3": ["left", "right"], "3,3": ["up", "left"], "4,3": ["up"]}, "solution_len": 16, "phase": 8}, {"cols": 5, "rows": 4, "start": {"x": 0, "y": 3}, "goal": {"x": 4, "y": 0}, "walls_h": [[0, 1], [1, 2], [3, 1], [1, 1], [2, 2], [1, 0]], "walls_v": [[2, 1], [1, 1], [0, 3], [3, 0], [2, 2], [3, 2]], "special_clouds": {"cell_1_1": "chuva", "cell_3_2": "raio", "cell_1_3": "cinza"}, "graph": {"0,0": ["down", "right"], "1,0": ["left", "right"], "2,0": ["down", "left", "right"], "3,0": ["down", "left"], "4,0": ["down"], "0,1": ["up", "right"], "1,1": ["left"], "2,1": ["up", "down"], "3,1": ["up", "right"], "4,1": ["up", "down", "left"], "0,2": ["down", "right"], "1,2": ["left", "right"], "2,2": ["up", "left"], "3,2": ["down"], "4,2": ["up", "down"], "0,3": ["up"], "1,3": ["right"], "2,3": ["left", "right"], "3,3": ["up", "left", "right"], "4,3": ["up", "left"]}, "solution_len": 10, "phase": 9}, {"cols": 5, "rows": 4, "start": {"x": 0, "y": 3}, "goal": {"x": 4, "y": 0}, "walls_h": [[1, 2], [0, 0], [2, 2], [1, 0], [3, 2]], "walls_v": [[2, 1], [3, 1], [1, 1], [0, 3], [3, 0], [0, 2], [2, 2]], "special_clouds": {"cell_0_0": "chuva", "cell_1_3": "raio"}, "graph": {"0,0": ["right"], "1,0": ["left", "right"], "2,0": ["down", "left", "right"], "3,0": ["down", "left"], "4,0": ["down"], "0,1": ["down", "right"], "1,1": ["down", "left"], "2,1": ["up", "down"], "3,1": ["up", "down"], "4,1": ["up", "down"], "0,2": ["up", "down"], "1,2": ["up", "right"], "2,2": ["up", "left"], "3,2": ["up", "right"], "4,2": ["up", "down", "left"], "0,3": ["up"], "1,3": ["right"], "2,3": ["left", "right"], "3,3": ["left", "right"], "4,3": ["up", "left"]}, "solution_len": 14, "phase": 10}, {"cols": 5, "rows": 5, "start": {"x": 0, "y": 4}, "goal": {"x": 4, "y": 0}, "walls_h": [[0, 1], [1, 2], [3, 1], [1, 1], [2, 0], [4, 2], [2, 3], [3, 3], [2, 2], [1, 0]], "walls_v": [[0, 4], [2, 1], [0, 3], [3, 0], [3, 3], [2, 2]], "special_clouds": {"cell_4_3": "chuva"}, "graph": {"0,0": ["down", "right"], "1,0": ["left", "right"], "2,0": ["left", "right"], "3,0": ["down", "left"], "4,0": ["down"], "0,1": ["up", "right"], "1,1": ["left", "right"], "2,1": ["down", "left"], "3,1": ["up", "right"], "4,1": ["up", "down", "left"], "0,2": ["down", "right"], "1,2": ["left", "right"], "2,2": ["up", "left"], "3,2": ["down", "right"], "4,2": ["up", "left"], "0,3": ["up", "down"], "1,3": ["down", "right"], "2,3": ["left", "right"], "3,3": ["up", "left"], "4,3": ["down"], "0,4": ["up"], "1,4": ["up", "right"], "2,4": ["left", "right"], "3,4": ["left", "right"], "4,4": ["up", "left"]}, "solution_len": 15, "phase": 11}, {"cols": 5, "rows": 5, "start": {"x": 0, "y": 4}, "goal": {"x": 4, "y": 0}, "walls_h": [[2, 1], [4, 1], [3, 1], [1, 1], [0, 3], [2, 0], [2, 3], [3, 2], [1, 3]], "walls_v": [[0, 1], [1, 2], [3, 4], [3, 1], [0, 3], [2, 3], [1, 0]], "special_clouds": {"cell_2_0": "chuva", "cell_4_1": "raio", "cell_0_3": "cinza", "cell_4_4": "raio"}, "graph": {"0,0": ["down", "right"], "1,0": ["down", "left"], "2,0": ["right"], "3,0": ["down", "left", "right"], "4,0": ["down", "left"], "0,1": ["up", "down"], "1,1": ["up", "right"], "2,1": ["left", "right"], "3,1": ["up", "left"], "4,1": ["up"], "0,2": ["up", "down", "right"], "1,2": ["down", "left"], "2,2": ["down", "right"], "3,2": ["left", "right"], "4,2": ["down", "left"], "0,3": ["up"], "1,3": ["up", "right"], "2,3": ["up", "left"], "3,3": ["down", "right"], "4,3": ["up", "down", "left"], "0,4": ["right"], "1,4": ["left", "right"], "2,4": ["left", "right"], "3,4": ["up", "left"], "4,4": ["up"]}, "solution_len": 21, "phase": 12}, {"cols": 5, "rows": 5, "start": {"x": 0, "y": 4}, "goal": {"x": 4, "y": 0}, "walls_h": [[0, 1], [1, 2], [1, 1], [0, 3], [2, 0], [2, 3], [2, 2], [1, 0], [3, 2], [4, 1]], "walls_v": [[2, 1], [3, 1], [0, 3], [1, 4], [3, 3], [2, 2]], "special_clouds": {"cell_4_1": "chuva", "cell_0_3": "raio", "cell_2_4": "cinza"}, "graph": {"0,0": ["down", "right"], "1,0": ["left", "right"], "2,0": ["left", "right"], "3,0": ["down", "left", "right"], "4,0": ["down", "left"], "0,1": ["up", "right"], "1,1": ["left", "right"], "2,1": ["down", "left"], "3,1": ["up", "down"], "4,1": ["up"], "0,2": ["down", "right"], "1,2": ["left", "right"], "2,2": ["up", "left"], "3,2": ["up", "right"], "4,2": ["down", "left"], "0,3": ["up"], "1,3": ["down", "right"], "2,3": ["left", "right"], "3,3": ["down", "left"], "4,3": ["up", "down"], "0,4": ["right"], "1,4": ["up", "left"], "2,4": ["right"], "3,4": ["up", "left", "right"], "4,4": ["up", "left"]}, "solution_len": 13, "phase": 13}, {"cols": 5, "rows": 5, "start": {"x": 0, "y": 4}, "goal": {"x": 4, "y": 0}, "walls_h": [[0, 0], [1, 1], [2, 0], [4, 2], [3, 0], [3, 3], [3, 2]], "walls_v": [[1, 2], [0, 4], [3, 1], [1, 1], [0, 3], [2, 3], [0, 2], [2, 2], [1, 3]], "special_clouds": {"cell_0_0": "chuva", "cell_1_2": "raio", "cell_3_3": "cinza"}, "graph": {"0,0": ["right"], "1,0": ["down", "left", "right"], "2,0": ["left", "right"], "3,0": ["left", "right"], "4,0": ["down", "left"], "0,1": ["down", "right"], "1,1": ["up", "left"], "2,1": ["down", "right"], "3,1": ["down", "left"], "4,1": ["up", "down"], "0,2": ["up", "down"], "1,2": ["down"], "2,2": ["up", "down"], "3,2": ["up", "right"], "4,2": ["up", "left"], "0,3": ["up", "down"], "1,3": ["up", "down"], "2,3": ["up", "down"], "3,3": ["right"], "4,3": ["down", "left"], "0,4": ["up"], "1,4": ["up", "right"], "2,4": ["up", "left", "right"], "3,4": ["left", "right"], "4,4": ["up", "left"]}, "solution_len": 9, "phase": 14}, {"cols": 5, "rows": 5, "start": {"x": 0, "y": 4}, "goal": {"x": 4, "y": 0}, "walls_h": [[1, 2], [2, 1], [3, 1], [1, 1], [0, 3], [2, 3], [2, 2], [1, 0], [3, 2], [4, 1]], "walls_v": [[0, 1], [3, 1], [0, 3], [2, 0], [1, 4], [3, 3]], "special_clouds": {"cell_1_1": "chuva", "cell_4_1": "raio", "cell_0_3": "cinza", "cell_2_4": "raio"}, "graph": {"0,0": ["down", "right"], "1,0": ["left", "right"], "2,0": ["down", "left"], "3,0": ["down", "right"], "4,0": ["down", "left"], "0,1": ["up", "down"], "1,1": ["right"], "2,1": ["up", "left", "right"], "3,1": ["up", "left"], "4,1": ["up"], "0,2": ["up", "down", "right"], "1,2": ["left", "right"], "2,2": ["left", "right"], "3,2": ["left", "right"], "4,2": ["down", "left"], "0,3": ["up"], "1,3": ["down", "right"], "2,3": ["left", "right"], "3,3": ["down", "left"], "4,3": ["up", "down"], "0,4": ["right"], "1,4": ["up", "left"], "2,4": ["right"], "3,4": ["up", "left", "right"], "4,4": ["up", "left"]}, "solution_len": 21, "phase": 15}];
+  const CANONICAL_POMBO_MAZES = [{"width": 7, "height": 7, "start": {"x": 1, "y": 5}, "goal": {"x": 5, "y": 1}, "ark_area": [{"x": 5, "y": 1}, {"x": 4, "y": 1}, {"x": 5, "y": 2}, {"x": 4, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1, 0], [0, 1, 0, 0, 1, 1, 0], [0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0], [0, 1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0]], "solution_len": 8, "dead_ends": 1, "phase": 1}, {"width": 7, "height": 7, "start": {"x": 1, "y": 5}, "goal": {"x": 5, "y": 1}, "ark_area": [{"x": 5, "y": 1}, {"x": 4, "y": 1}, {"x": 5, "y": 2}, {"x": 4, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 1, 1, 1, 0], [0, 1, 0, 1, 1, 1, 0], [0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0], [0, 1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0]], "solution_len": 7, "dead_ends": 1, "phase": 2}, {"width": 7, "height": 7, "start": {"x": 1, "y": 5}, "goal": {"x": 5, "y": 1}, "ark_area": [{"x": 5, "y": 1}, {"x": 4, "y": 1}, {"x": 5, "y": 2}, {"x": 4, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1, 0], [0, 1, 0, 1, 1, 1, 0], [0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 0, 0, 1, 0], [0, 1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0]], "solution_len": 8, "dead_ends": 1, "phase": 3}, {"width": 9, "height": 9, "start": {"x": 1, "y": 7}, "goal": {"x": 7, "y": 1}, "ark_area": [{"x": 7, "y": 1}, {"x": 6, "y": 1}, {"x": 7, "y": 2}, {"x": 6, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 1, 1, 1, 1, 1, 0], [0, 1, 0, 0, 0, 1, 1, 1, 0], [0, 1, 1, 1, 1, 1, 1, 1, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1, 0, 1, 0], [0, 1, 0, 0, 0, 0, 0, 1, 0], [0, 1, 1, 1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]], "solution_len": 11, "dead_ends": 4, "phase": 4}, {"width": 9, "height": 9, "start": {"x": 1, "y": 7}, "goal": {"x": 7, "y": 1}, "ark_area": [{"x": 7, "y": 1}, {"x": 6, "y": 1}, {"x": 7, "y": 2}, {"x": 6, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 0, 1, 1, 1, 0], [0, 1, 0, 0, 0, 0, 1, 1, 0], [0, 1, 1, 1, 0, 1, 1, 1, 0], [0, 0, 0, 1, 0, 0, 0, 1, 0], [0, 1, 1, 1, 1, 1, 1, 1, 0], [0, 0, 0, 1, 0, 1, 0, 0, 0], [0, 1, 1, 1, 0, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]], "solution_len": 12, "dead_ends": 5, "phase": 5}, {"width": 9, "height": 9, "start": {"x": 1, "y": 7}, "goal": {"x": 7, "y": 1}, "ark_area": [{"x": 7, "y": 1}, {"x": 6, "y": 1}, {"x": 7, "y": 2}, {"x": 6, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1, 1, 1, 0], [0, 1, 0, 1, 0, 0, 1, 1, 0], [0, 1, 0, 1, 1, 1, 0, 1, 0], [0, 1, 0, 0, 0, 1, 0, 0, 0], [0, 1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 0, 0, 1, 0], [0, 1, 1, 1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]], "solution_len": 12, "dead_ends": 4, "phase": 6}, {"width": 9, "height": 9, "start": {"x": 1, "y": 7}, "goal": {"x": 7, "y": 1}, "ark_area": [{"x": 7, "y": 1}, {"x": 6, "y": 1}, {"x": 7, "y": 2}, {"x": 6, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1, 1, 1, 0], [0, 0, 0, 1, 0, 0, 1, 1, 0], [0, 1, 0, 1, 1, 1, 0, 1, 0], [0, 1, 0, 1, 0, 0, 0, 1, 0], [0, 1, 1, 1, 0, 1, 1, 1, 0], [0, 1, 0, 0, 0, 1, 0, 0, 0], [0, 1, 1, 1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]], "solution_len": 12, "dead_ends": 4, "phase": 7}, {"width": 11, "height": 11, "start": {"x": 1, "y": 9}, "goal": {"x": 9, "y": 1}, "ark_area": [{"x": 9, "y": 1}, {"x": 8, "y": 1}, {"x": 9, "y": 2}, {"x": 8, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], [0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0], [0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], "solution_len": 16, "dead_ends": 8, "phase": 8}, {"width": 11, "height": 11, "start": {"x": 1, "y": 9}, "goal": {"x": 9, "y": 1}, "ark_area": [{"x": 9, "y": 1}, {"x": 8, "y": 1}, {"x": 9, "y": 2}, {"x": 8, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0], [0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0], [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0], [0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0], [0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0], [0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], "solution_len": 23, "dead_ends": 6, "phase": 9}, {"width": 11, "height": 11, "start": {"x": 1, "y": 9}, "goal": {"x": 9, "y": 1}, "ark_area": [{"x": 9, "y": 1}, {"x": 8, "y": 1}, {"x": 9, "y": 2}, {"x": 8, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], [0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0], [0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0], [0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0], [0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], "solution_len": 16, "dead_ends": 6, "phase": 10}, {"width": 11, "height": 11, "start": {"x": 1, "y": 9}, "goal": {"x": 9, "y": 1}, "ark_area": [{"x": 9, "y": 1}, {"x": 8, "y": 1}, {"x": 9, "y": 2}, {"x": 8, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0], [0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0], [0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0], [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0], [0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0], [0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0], [0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0], [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], "solution_len": 15, "dead_ends": 7, "phase": 11}, {"width": 11, "height": 11, "start": {"x": 1, "y": 9}, "goal": {"x": 9, "y": 1}, "ark_area": [{"x": 9, "y": 1}, {"x": 8, "y": 1}, {"x": 9, "y": 2}, {"x": 8, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0], [0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0], [0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0], [0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0], [0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], "solution_len": 16, "dead_ends": 6, "phase": 12}, {"width": 11, "height": 11, "start": {"x": 1, "y": 9}, "goal": {"x": 9, "y": 1}, "ark_area": [{"x": 9, "y": 1}, {"x": 8, "y": 1}, {"x": 9, "y": 2}, {"x": 8, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0], [0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], [0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0], [0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], "solution_len": 15, "dead_ends": 7, "phase": 13}, {"width": 11, "height": 11, "start": {"x": 1, "y": 9}, "goal": {"x": 9, "y": 1}, "ark_area": [{"x": 9, "y": 1}, {"x": 8, "y": 1}, {"x": 9, "y": 2}, {"x": 8, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0], [0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0], [0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0], [0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0], [0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0], [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0], [0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], "solution_len": 19, "dead_ends": 6, "phase": 14}, {"width": 11, "height": 11, "start": {"x": 1, "y": 9}, "goal": {"x": 9, "y": 1}, "ark_area": [{"x": 9, "y": 1}, {"x": 8, "y": 1}, {"x": 9, "y": 2}, {"x": 8, "y": 2}], "grid": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0], [0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0], [0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0], [0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0], [0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0], [0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0], [0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0], [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0], [0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], "solution_len": 16, "dead_ends": 7, "phase": 15}];
 
   function runPomboArca(container, phase) {
-    const phaseIndex = Math.max(0, Math.min(POMBO_MAZE_PHASES.length - 1, (phase || 1) - 1));
-    const mazeData = POMBO_MAZE_PHASES[phaseIndex];
-    const cols = mazeData.cols;
-    const rows = mazeData.rows;
-    const graph = mazeData.graph;
-    const specialClouds = mazeData.special_clouds || {};
+    const phaseIndex = Math.max(0, Math.min(CANONICAL_POMBO_MAZES.length - 1, (phase || 1) - 1));
+    const mazeData = CANONICAL_POMBO_MAZES[phaseIndex];
+    const width = mazeData.width;
+    const height = mazeData.height;
+    const grid = mazeData.grid;
+    const arkArea = mazeData.ark_area || [];
 
     let currX = mazeData.start.x;
     let currY = mazeData.start.y;
-    const goalX = mazeData.goal.x;
-    const goalY = mazeData.goal.y;
+    let isGameWon = false;
+    let isUnlocked = true; // Liberado para jogar direto
 
-    let isMoving = false;
-    let isUnlocked = false;
-
-    // Registra desbloqueio do Vovô
     window._arcadeUnlockGameAction = function() {
       isUnlocked = true;
-      updateUI();
     };
 
-    // Medidas do tabuleiro
-    const boardWidth = 340;
-    const boardHeight = 340;
-    const cw = boardWidth / cols;
-    const ch = boardHeight / rows;
-
-    function getCenter(x, y) {
-      return {
-        cx: Math.round((x + 0.5) * cw),
-        cy: Math.round((y + 0.5) * ch)
-      };
-    }
+    // Tamanho do tabuleiro de céu (proporção quadrada responsiva)
+    const boardSize = 336;
+    const cellW = boardSize / width;
+    const cellH = boardSize / height;
+    const cloudSize = Math.round(cellW * 1.18);
+    const doveSize = Math.round(cellW * 0.76);
 
     // Constrói HTML do palco
     container.innerHTML = `
-      <div class="pombo-game-wrapper">
-        <!-- Banner de Orientação Lúdica -->
-        <div class="pombo-sky-banner">
-          <span class="pombo-badge">🕊️ Voe entre as nuvens até a Arca!</span>
-          <span class="pombo-sub-badge">🌈 Promessa de Paz</span>
+      <div class="pombo-v109-wrapper">
+        <!-- Banner Superior Limpo -->
+        <div class="pombo-v109-header">
+          <span class="pombo-v109-title">🕊️ Guie o Pombinho pelo Labirinto!</span>
         </div>
 
-        <!-- Palco do Labirinto de Céu -->
-        <div class="pombo-board" id="pombo-board-el" style="width:${boardWidth}px; height:${boardHeight}px;">
-          <!-- SVG das Passagens / Carreirinhos de Céu -->
-          <svg class="pombo-corridors-svg" viewBox="0 0 ${boardWidth} ${boardHeight}">
-            <defs>
-              <linearGradient id="skyCorridorGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
-                <stop offset="100%" stop-color="#e0f2fe" stop-opacity="0.4"/>
-              </linearGradient>
-            </defs>
-            <g id="pombo-svg-paths-layer"></g>
-          </svg>
+        <!-- Palco do Labirinto de Nuvens -->
+        <div class="pombo-v109-board" id="pombo-board" style="width:${boardSize}px; height:${boardSize}px;">
+          <!-- Camada de Céu de Fundo -->
+          <div class="pombo-v109-sky-bg"></div>
 
-          <!-- Camada de Nuvenzinhas que Separam os Caminhos -->
-          <div class="pombo-clouds-layer" id="pombo-clouds-layer"></div>
+          <!-- Parede de Nuvenzinhas (Todas com o mesmo tamanho uniforme) -->
+          <div class="pombo-v109-walls-layer" id="pombo-walls-layer"></div>
 
-          <!-- Arca de Noé no Ponto Final -->
-          <div class="pombo-goal-ark" id="pombo-goal-ark" style="width:${Math.round(cw * 0.95)}px; height:${Math.round(ch * 0.95)}px;">
-            <img src="./2_ASSETS_UI_BOTOES/arca_de_noe_labirinto.svg?v=108" alt="Arca de Noé" class="pombo-ark-img"/>
+          <!-- Porto da Arca de Noé (100% visível, sem cortes) -->
+          <div class="pombo-v109-ark-harbor" id="pombo-ark-harbor">
+            <img src="./2_ASSETS_UI_BOTOES/arca_de_noe_labirinto.svg?v=109" alt="Arca de Noé" class="pombo-v109-ark-img"/>
           </div>
 
-          <!-- Pombinha Branca Navegadora -->
-          <div class="pombo-avatar" id="pombo-avatar-el" style="width:${Math.round(cw * 0.72)}px; height:${Math.round(ch * 0.72)}px;">
-            <img src="./2_ASSETS_UI_BOTOES/pombinha_branca_voando.svg?v=108" alt="Pombinha" class="pombo-dove-img" id="pombo-dove-img"/>
+          <!-- Pombinha Branca da Promessa -->
+          <div class="pombo-v109-dove-avatar" id="pombo-dove-el" style="width:${doveSize}px; height:${doveSize}px;">
+            <img src="./2_ASSETS_UI_BOTOES/pombinha_branca_voando.svg?v=109" alt="Pombinha" id="pombo-dove-img" class="pombo-v109-dove-img"/>
           </div>
-
-          <!-- Setas Amarelas de Decisão no Caminho (Print Canônico) -->
-          <div class="pombo-arrows-container" id="pombo-arrows-container"></div>
         </div>
 
-        <!-- CONSOLE D-PAD DE VIDEOGAME TÁTIL (PADRÃO CANÔNICO RIGOBERTO) -->
-        <div class="pombo-dpad-console">
-          <div class="pombo-dpad-cross">
-            <button class="pombo-dpad-btn btn-up" id="dpad-btn-up" onclick="window._arcadePomboGlide('up')" title="Voar para Cima">
-              <span class="dpad-arrow">▲</span>
+        <!-- CONSOLE D-PAD CENTRALIZADO (PADRÃO VIDEOGAME CANÔNICO) -->
+        <div class="pombo-v109-controller-area">
+          <div class="pombo-v109-dpad-disc">
+            <button class="pombo-v109-btn btn-up" id="btn-pombo-up" data-dir="up">
+              <span class="dpad-arrow-sym">▲</span>
             </button>
-            <div class="pombo-dpad-row">
-              <button class="pombo-dpad-btn btn-left" id="dpad-btn-left" onclick="window._arcadePomboGlide('left')" title="Voar para a Esquerda">
-                <span class="dpad-arrow">◀</span>
+            <div class="pombo-v109-mid-row">
+              <button class="pombo-v109-btn btn-left" id="btn-pombo-left" data-dir="left">
+                <span class="dpad-arrow-sym">◀</span>
               </button>
-              <div class="pombo-dpad-center-hub">
-                <span class="dpad-gem"></span>
+              <div class="pombo-v109-center-core">
+                <div class="dpad-hub-dot"></div>
               </div>
-              <button class="pombo-dpad-btn btn-right" id="dpad-btn-right" onclick="window._arcadePomboGlide('right')" title="Voar para a Direita">
-                <span class="dpad-arrow">▶</span>
+              <button class="pombo-v109-btn btn-right" id="btn-pombo-right" data-dir="right">
+                <span class="dpad-arrow-sym">▶</span>
               </button>
             </div>
-            <button class="pombo-dpad-btn btn-down" id="dpad-btn-down" onclick="window._arcadePomboGlide('down')" title="Voar para Baixo">
-              <span class="dpad-arrow">▼</span>
-            </button>
-          </div>
-
-          <!-- Botões de Apoio Rápido do Videogame -->
-          <div class="pombo-dpad-meta">
-            <button class="pombo-reset-btn" onclick="window._arcadePomboReset()" title="Voltar ao Ponto de Partida">
-              <span style="font-size:16px;">🔄</span>
-              <span style="font-size:11px; font-weight:800; letter-spacing:0.5px;">INÍCIO</span>
+            <button class="pombo-v109-btn btn-down" id="btn-pombo-down" data-dir="down">
+              <span class="dpad-arrow-sym">▼</span>
             </button>
           </div>
         </div>
       </div>
     `;
 
-    // Renderiza os carreirinhos no SVG
-    const svgLayer = document.getElementById("pombo-svg-paths-layer");
-    let pathsHtml = "";
-    const corridorWidth = Math.round(Math.min(cw, ch) * 0.72);
-
-    for (let y = 0; y < rows; y++) {
-      for (let x = 0; x < cols; x++) {
-        const c1 = getCenter(x, y);
-        const exits = graph[`${x},${y}`] || [];
-        if (exits.includes("right") && x + 1 < cols) {
-          const c2 = getCenter(x + 1, y);
-          pathsHtml += `<line x1="${c1.cx}" y1="${c1.cy}" x2="${c2.cx}" y2="${c2.cy}" stroke="url(#skyCorridorGrad)" stroke-width="${corridorWidth}" stroke-linecap="round"/>`;
-        }
-        if (exits.includes("down") && y + 1 < rows) {
-          const c2 = getCenter(x, y + 1);
-          pathsHtml += `<line x1="${c1.cx}" y1="${c1.cy}" x2="${c2.cx}" y2="${c2.cy}" stroke="url(#skyCorridorGrad)" stroke-width="${corridorWidth}" stroke-linecap="round"/>`;
-        }
-      }
-    }
-    svgLayer.innerHTML = pathsHtml;
-
-    // Renderiza as nuvenzinhas ao longo das paredes
-    const cloudsLayer = document.getElementById("pombo-clouds-layer");
+    // Renderiza as paredes de nuvens (todas idênticas em tamanho)
+    const wallsLayer = document.getElementById("pombo-walls-layer");
     let cloudsHtml = "";
+    const cloudImgSrc = "./2_ASSETS_UI_BOTOES/nuvem_branca.svg?v=109";
 
-    const cloudTypes = [
-      "./2_ASSETS_UI_BOTOES/nuvem_branca.svg?v=108",
-      "./2_ASSETS_UI_BOTOES/nuvem_branca.svg?v=108",
-      "./2_ASSETS_UI_BOTOES/nuvem_branca.svg?v=108",
-      "./2_ASSETS_UI_BOTOES/nuvem_cinza.svg?v=108"
-    ];
-
-    function pickCloud(isSpecial) {
-      if (isSpecial === "chuva") return "./2_ASSETS_UI_BOTOES/nuvem_chuva.svg?v=108";
-      if (isSpecial === "raio") return "./2_ASSETS_UI_BOTOES/nuvem_raio.svg?v=108";
-      if (isSpecial === "cinza") return "./2_ASSETS_UI_BOTOES/nuvem_cinza.svg?v=108";
-      return cloudTypes[Math.floor(Math.random() * cloudTypes.length)];
-    }
-
-    const cloudW = Math.round(cw * 0.46);
-    const cloudH = Math.round(ch * 0.36);
-
-    // Paredes horizontais bloqueadas
-    (mazeData.walls_h || []).forEach(([wx, wy]) => {
-      const special = specialClouds[`h_${wx}_${wy}`];
-      const yPos = (wy + 1) * ch;
-      [0.2, 0.5, 0.8].forEach(pct => {
-        const xPos = wx * cw + cw * pct;
-        const icon = pickCloud(special);
-        cloudsHtml += `<img src="${icon}" class="pombo-cloud-item" style="left:${xPos}px; top:${yPos}px; width:${cloudW}px; height:${cloudH}px;"/>`;
-      });
-    });
-
-    // Paredes verticais bloqueadas
-    (mazeData.walls_v || []).forEach(([wx, wy]) => {
-      const special = specialClouds[`v_${wx}_${wy}`];
-      const xPos = (wx + 1) * cw;
-      [0.2, 0.5, 0.8].forEach(pct => {
-        const yPos = wy * ch + ch * pct;
-        const icon = pickCloud(special);
-        cloudsHtml += `<img src="${icon}" class="pombo-cloud-item" style="left:${xPos}px; top:${yPos}px; width:${cloudW}px; height:${cloudH}px;"/>`;
-      });
-    });
-
-    // Nuvens de tempestade / chuva nos becos sem saída
-    Object.keys(specialClouds).forEach(k => {
-      if (k.startsWith("cell_")) {
-        const parts = k.split("_");
-        const cx = parseInt(parts[1], 10);
-        const cy = parseInt(parts[2], 10);
-        const icon = pickCloud(specialClouds[k]);
-        const center = getCenter(cx, cy);
-        cloudsHtml += `<img src="${icon}" class="pombo-deadend-cloud" style="left:${center.cx}px; top:${center.cy}px; width:${Math.round(cw * 0.65)}px; height:${Math.round(ch * 0.55)}px;"/>`;
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        if (grid[y][x] === 0) {
+          // Célula de parede: insere nuvenzinha do tamanho exato
+          const posX = Math.round(x * cellW + cellW / 2);
+          const posY = Math.round(y * cellH + cellH / 2);
+          cloudsHtml += `<img src="${cloudImgSrc}" class="pombo-uniform-cloud" style="left:${posX}px; top:${posY}px; width:${cloudSize}px; height:${cloudSize}px;"/>`;
+        }
       }
-    });
-
-    // Moldura de nuvens no perímetro externo
-    for (let c = 0; c < cols; c++) {
-      const x1 = c * cw + cw * 0.25;
-      const x2 = c * cw + cw * 0.75;
-      cloudsHtml += `<img src="${cloudTypes[0]}" class="pombo-cloud-item" style="left:${x1}px; top:0px; width:${cloudW}px; height:${cloudH}px;"/>`;
-      cloudsHtml += `<img src="${cloudTypes[0]}" class="pombo-cloud-item" style="left:${x2}px; top:0px; width:${cloudW}px; height:${cloudH}px;"/>`;
-      cloudsHtml += `<img src="${cloudTypes[0]}" class="pombo-cloud-item" style="left:${x1}px; top:${boardHeight}px; width:${cloudW}px; height:${cloudH}px;"/>`;
-      cloudsHtml += `<img src="${cloudTypes[0]}" class="pombo-cloud-item" style="left:${x2}px; top:${boardHeight}px; width:${cloudW}px; height:${cloudH}px;"/>`;
     }
-    for (let r = 0; r < rows; r++) {
-      const y1 = r * ch + ch * 0.25;
-      const y2 = r * ch + ch * 0.75;
-      cloudsHtml += `<img src="${cloudTypes[0]}" class="pombo-cloud-item" style="left:0px; top:${y1}px; width:${cloudW}px; height:${cloudH}px;"/>`;
-      cloudsHtml += `<img src="${cloudTypes[0]}" class="pombo-cloud-item" style="left:0px; top:${y2}px; width:${cloudW}px; height:${cloudH}px;"/>`;
-      cloudsHtml += `<img src="${cloudTypes[0]}" class="pombo-cloud-item" style="left:${boardWidth}px; top:${y1}px; width:${cloudW}px; height:${cloudH}px;"/>`;
-      cloudsHtml += `<img src="${cloudTypes[0]}" class="pombo-cloud-item" style="left:${boardWidth}px; top:${y2}px; width:${cloudW}px; height:${cloudH}px;"/>`;
-    }
+    wallsLayer.innerHTML = cloudsHtml;
 
-    cloudsLayer.innerHTML = cloudsHtml;
+    // Posiciona a Arca de Noé no porto aberto (canto superior direito 2x2, sem corte!)
+    const arkEl = document.getElementById("pombo-ark-harbor");
+    const arkWidth = Math.round(cellW * 1.9);
+    const arkHeight = Math.round(cellH * 1.7);
+    arkEl.style.width = arkWidth + "px";
+    arkEl.style.height = arkHeight + "px";
 
-    // Posiciona a Arca de Noé no objetivo
-    const arkEl = document.getElementById("pombo-goal-ark");
-    const goalCenter = getCenter(goalX, goalY);
-    arkEl.style.left = `${goalCenter.cx}px`;
-    arkEl.style.top = `${goalCenter.cy}px`;
+    // Centraliza a Arca na área aberta reservada
+    const arkCenterX = Math.round((width - 2.5) * cellW + cellW / 2);
+    const arkCenterY = Math.round(1.5 * cellH + cellH / 2);
+    arkEl.style.left = arkCenterX + "px";
+    arkEl.style.top = arkCenterY + "px";
 
-    // Posiciona o pombo no início
-    const avatarEl = document.getElementById("pombo-avatar-el");
+    // Posiciona a Pombinha Branca
+    const doveEl = document.getElementById("pombo-dove-el");
     const doveImg = document.getElementById("pombo-dove-img");
-    function updateDovePosition(animated) {
-      const pos = getCenter(currX, currY);
-      if (animated) {
-        avatarEl.style.transition = "left 0.24s cubic-bezier(0.25, 1, 0.5, 1), top 0.24s cubic-bezier(0.25, 1, 0.5, 1)";
+
+    function renderDovePos() {
+      const px = Math.round(currX * cellW + cellW / 2);
+      const py = Math.round(currY * cellH + cellH / 2);
+      doveEl.style.left = px + "px";
+      doveEl.style.top = py + "px";
+    }
+    renderDovePos();
+
+    // LÓGICA DE MOVIMENTAÇÃO DIRETA (RIGOBERTO UX):
+    // Apertou direita -> vai direita
+    // Apertou esquerda -> vai esquerda
+    // Apertou cima -> vai cima
+    // Apertou baixo -> vai baixo
+    // Se o caminho tiver nuvem -> trava e não anda
+    const dirDeltas = {
+      up: [0, -1],
+      down: [0, 1],
+      left: [-1, 0],
+      right: [1, 0]
+    };
+
+    function tryMove(dir) {
+      if (isGameWon || !isUnlocked) return;
+      const [dx, dy] = dirDeltas[dir];
+      const nx = currX + dx;
+      const ny = currY + dy;
+
+      // Verifica se o destino está dentro do tabuleiro e é caminho aberto (grid === 1)
+      if (nx >= 0 && nx < width && ny >= 0 && ny < height && grid[ny][nx] === 1) {
+        // Caminho livre: move a pombinha
+        currX = nx;
+        currY = ny;
+
+        if (dir === "left") doveImg.style.transform = "scaleX(-1)";
+        else if (dir === "right") doveImg.style.transform = "scaleX(1)";
+
+        renderDovePos();
+        TronoAudio.play("click");
+
+        // Chegou na Arca de Noé?
+        const isAtArk = arkArea.some(a => a.x === currX && a.y === currY) ||
+                        (currX >= width - 3 && currY <= 2);
+
+        if (isAtArk) {
+          isGameWon = true;
+          TronoAudio.play("success");
+          TronoAudio.play("star");
+          doveEl.style.transform = "translate(-50%, -50%) scale(1.4) rotate(-10deg)";
+          setTimeout(triggerArcadeVictory, 600);
+        }
       } else {
-        avatarEl.style.transition = "none";
-      }
-      avatarEl.style.left = `${pos.cx}px`;
-      avatarEl.style.top = `${pos.cy}px`;
-    }
-    updateDovePosition(false);
-
-    // Atualiza controles (D-Pad e setas amarelas no caminho)
-    function updateUI() {
-      const availableDirs = graph[`${currX},${currY}`] || [];
-      const arrowsContainer = document.getElementById("pombo-arrows-container");
-      const center = getCenter(currX, currY);
-
-      // Renderiza setas amarelas canônicas próximas à pombinha
-      let arrowsHtml = "";
-      if (!isMoving && (currX !== goalX || currY !== goalY)) {
-        availableDirs.forEach(dir => {
-          let ax = center.cx;
-          let ay = center.cy;
-          let rot = 0;
-          const offset = Math.round(Math.min(cw, ch) * 0.44);
-          if (dir === "up") { ay -= offset; rot = 0; }
-          else if (dir === "right") { ax += offset; rot = 90; }
-          else if (dir === "down") { ay += offset; rot = 180; }
-          else if (dir === "left") { ax -= offset; rot = 270; }
-
-          arrowsHtml += `
-            <button class="pombo-path-arrow arrow-${dir}" style="left:${ax}px; top:${ay}px; transform:translate(-50%,-50%) rotate(${rot}deg);" onclick="window._arcadePomboGlide('${dir}')">
-              <svg width="28" height="28" viewBox="0 0 32 32">
-                <path d="M16 3 L28 17 L21 17 L21 29 L11 29 L11 17 L4 17 Z" fill="#fde047" stroke="#854d0e" stroke-width="2.5" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          `;
-        });
-      }
-      arrowsContainer.innerHTML = arrowsHtml;
-
-      // Atualiza botões do Videogame D-Pad
-      ["up", "down", "left", "right"].forEach(d => {
-        const btn = document.getElementById(`dpad-btn-${d}`);
-        if (!btn) return;
-        const isOpen = availableDirs.includes(d);
-        if (isOpen && !isMoving) {
-          btn.classList.add("active-open");
-          btn.classList.remove("blocked");
-        } else {
-          btn.classList.remove("active-open");
-          btn.classList.add("blocked");
-        }
-      });
-    }
-
-    updateUI();
-
-    // Função de voo planar contínuo pelo carreirinho até o próximo cruzamento ou arca
-    const dirMap = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
-    const oppMap = { up: "down", down: "up", left: "right", right: "left" };
-
-    window._arcadePomboGlide = function(dir) {
-      if (isMoving) return;
-      const availableDirs = graph[`${currX},${currY}`] || [];
-      if (!availableDirs.includes(dir)) {
-        // Som suave de bloqueio
+        // Caminho bloqueado por nuvem: pombinha trava!
         TronoAudio.play("pop");
-        const btn = document.getElementById(`dpad-btn-${dir}`);
-        if (btn) {
-          btn.classList.add("shake-blocked");
-          setTimeout(() => btn.classList.remove("shake-blocked"), 300);
-        }
-        return;
+        doveEl.classList.add("dove-blocked-bump");
+        setTimeout(() => doveEl.classList.remove("dove-blocked-bump"), 200);
+      }
+    }
+
+    // VINCULAÇÃO DOS BOTÕES D-PAD COM TOQUE E REPETIÇÃO AO SEGURAR
+    ["up", "down", "left", "right"].forEach(dir => {
+      const btn = document.getElementById(`btn-pombo-${dir}`);
+      if (!btn) return;
+
+      let holdTimer = null;
+      let repeatInterval = null;
+
+      function startAction(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        tryMove(dir);
+
+        clearInterval(repeatInterval);
+        clearTimeout(holdTimer);
+
+        // Se a criança segurar o botão, a pombinha anda continuamente pelo carreirinho
+        holdTimer = setTimeout(() => {
+          repeatInterval = setInterval(() => {
+            tryMove(dir);
+          }, 130);
+        }, 250);
       }
 
-      isMoving = true;
-      TronoAudio.play("click");
-
-      // Ajusta orientação da pombinha
-      if (dir === "left") doveImg.style.transform = "scaleX(-1)";
-      else if (dir === "right") doveImg.style.transform = "scaleX(1)";
-
-      function stepGlide(currentDir) {
-        const [dx, dy] = dirMap[currentDir];
-        currX += dx;
-        currY += dy;
-        updateDovePosition(true);
-
-        setTimeout(() => {
-          // Chegou na Arca de Noé?
-          if (currX === goalX && currY === goalY) {
-            isMoving = false;
-            updateUI();
-            TronoAudio.play("success");
-            TronoAudio.play("star");
-            // Efeito visual de pouso sagrado na janela da Arca
-            avatarEl.style.transform = "translate(-50%, -50%) scale(1.3) rotate(-10deg)";
-            setTimeout(triggerArcadeVictory, 700);
-            return;
-          }
-
-          // Verifica se continua reto ou para no cruzamento/curva
-          const nextExits = graph[`${currX},${currY}`] || [];
-          const continuingExits = nextExits.filter(e => e !== oppMap[currentDir]);
-
-          if (continuingExits.length === 1 && continuingExits[0] === currentDir) {
-            // Continua voando pelo carreirinho reto
-            stepGlide(currentDir);
-          } else {
-            // Parou no entroncamento, curva ou fim de linha
-            isMoving = false;
-            updateUI();
-          }
-        }, 240);
+      function stopAction(e) {
+        clearTimeout(holdTimer);
+        clearInterval(repeatInterval);
       }
 
-      stepGlide(dir);
-    };
-
-    window._arcadePomboReset = function() {
-      if (isMoving) return;
-      TronoAudio.play("click");
-      currX = mazeData.start.x;
-      currY = mazeData.start.y;
-      doveImg.style.transform = "scaleX(1)";
-      updateDovePosition(false);
-      updateUI();
-    };
+      btn.addEventListener("pointerdown", startAction);
+      btn.addEventListener("pointerup", stopAction);
+      btn.addEventListener("pointercancel", stopAction);
+      btn.addEventListener("pointerleave", stopAction);
+    });
   }
 
   // --- JOGO 4: JÔNATAS E O ALVO (TIRO COM ARCO) ---
