@@ -733,7 +733,7 @@
         right: -8px;
         width: 48px;
         height: 12px;
-        background: url("./2_ASSETS_UI_BOTOES/lanca_bronze.svg?v=112") no-repeat center / contain;
+        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=116") no-repeat center / contain;
         transform: translateY(-50%) rotate(8deg);
         filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
       }
@@ -741,7 +741,7 @@
         position: absolute;
         width: 46px;
         height: 12px;
-        background: url("./2_ASSETS_UI_BOTOES/lanca_bronze.svg?v=112") no-repeat center / contain;
+        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=116") no-repeat center / contain;
         transform: translateY(-50%) rotate(55deg);
         filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
       }
@@ -749,11 +749,11 @@
         position: absolute;
         left: 6px;
         bottom: 14px;
-        width: 82px;
-        height: 112px;
+        width: 96px;
+        height: 122px;
         z-index: 5;
-        transform-origin: 30% 90%;
-        transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+        transform-origin: 40% 90%;
+        transition: transform 0.22s cubic-bezier(0.25, 1, 0.5, 1);
       }
       .davi-saul-box.aiming-idle {
         animation: saulAimRock 1.2s ease-in-out infinite alternate;
@@ -811,8 +811,8 @@
       }
       .davi-flying-spear {
         position: absolute;
-        width: 58px;
-        height: 15px;
+        width: 72px;
+        height: 24px;
         z-index: 8;
         transform: translateY(-50%);
         pointer-events: none;
@@ -826,11 +826,16 @@
       .davi-character-box {
         position: absolute;
         bottom: 14px;
-        width: 70px;
-        height: 98px;
+        width: 76px;
+        height: 110px;
         transform: translateX(-50%);
         z-index: 10;
         transition: left 0.18s cubic-bezier(0.25, 1, 0.5, 1), bottom 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .davi-character-box.crouching {
+        bottom: 8px !important;
+        transform: translateX(-50%) scaleY(0.62) scaleX(1.08) translateY(22px) !important;
+        transform-origin: center bottom;
       }
       .davi-sprite-img {
         width: 100%;
@@ -2472,23 +2477,23 @@
 
           <!-- Rei Saul à Esquerda -->
           <div class="davi-saul-box aiming-idle" id="davi-saul-box">
-            <img src="./2_ASSETS_UI_BOTOES/saul_arremessando.svg?v=112" alt="Rei Saul" class="davi-saul-img" id="davi-saul-img"/>
-            <!-- Lança na mão de Saul durante a mira -->
+            <img src="./2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=116" alt="Rei Saul 3D" class="davi-saul-img" id="davi-saul-img"/>
+            <!-- Lança Real na mão de Saul durante a mira -->
             <div class="davi-saul-hand-spear" id="davi-saul-hand-spear">
-              <img src="./2_ASSETS_UI_BOTOES/lanca_bronze.svg?v=112" alt="Lança na Mão" style="width:100%; height:100%; object-fit:contain;"/>
+              <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=116" alt="Lança Real na Mão" style="width:100%; height:100%; object-fit:contain;"/>
             </div>
             <!-- Indicador / Balão de Mira na Cabeça de Saul -->
             <div class="davi-saul-aim-indicator" id="davi-aim-indicator" style="display:none;"></div>
           </div>
 
-          <!-- Lança em Voo pelo Salão -->
+          <!-- Lança Real em Voo pelo Salão -->
           <div class="davi-flying-spear" id="davi-spear" style="display:none;">
-            <img src="./2_ASSETS_UI_BOTOES/lanca_bronze.svg?v=112" alt="Lança em Voo" class="davi-spear-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=116" alt="Lança Real em Voo" class="davi-spear-img"/>
           </div>
 
-          <!-- Davizinho à Direita -->
+          <!-- Davi Jovem Pastor 3D à Direita -->
           <div class="davi-character-box" id="davi-char-box" style="left:${daviX}%;">
-            <img src="./2_ASSETS_UI_BOTOES/davi_em_pe.svg?v=112" alt="Davizinho" id="davi-sprite" class="davi-sprite-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=116" alt="Davi Pastor 3D" id="davi-sprite" class="davi-sprite-img"/>
             <div class="davi-action-bubble" id="davi-bubble"></div>
           </div>
         </div>
@@ -2565,7 +2570,7 @@
     function doJump() {
       if (isGameWon || isDodging === "jump") return;
       isDodging = "jump";
-      daviSprite.src = "./2_ASSETS_UI_BOTOES/davi_pulando.svg?v=112";
+      // Mantém sprite 3D no pulo
       charBox.classList.remove("crouching");
       charBox.classList.add("jumping");
       TronoAudio.play("click");
@@ -2579,7 +2584,7 @@
     function doCrouch() {
       if (isGameWon || isDodging === "jump") return;
       isDodging = "crouch";
-      daviSprite.src = "./2_ASSETS_UI_BOTOES/davi_agachado.svg?v=112";
+      // Mantém sprite 3D agachado
       charBox.classList.add("crouching");
       TronoAudio.play("click");
 
@@ -2591,7 +2596,7 @@
     function doStand() {
       if (isGameWon) return;
       isDodging = "stand";
-      daviSprite.src = "./2_ASSETS_UI_BOTOES/davi_em_pe.svg?v=112";
+      // Mantém sprite 3D em pé
       charBox.classList.remove("jumping");
       charBox.classList.remove("crouching");
     }
@@ -2809,7 +2814,7 @@
               isGameWon = true;
               window.removeEventListener("keydown", handleKeyDown);
               TronoAudio.play("success");
-              daviSprite.src = "./2_ASSETS_UI_BOTOES/davi_em_pe.svg?v=112";
+              // Mantém sprite 3D em pé
               charBox.classList.add("victory-arms-up");
               showBubble("DEUS PROTEGEU DAVI! ✨", "#4ade80");
               setTimeout(triggerArcadeVictory, 950);
