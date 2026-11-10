@@ -34,6 +34,7 @@
     },
 
     play(type) {
+      if (window._arcadeAudioMuted) return;
       try {
         this.init();
         if (!this.ctx) return;
@@ -143,6 +144,10 @@
     },
 
     falarVovo(audioFile, onFinish) {
+      if (window._arcadeAudioMuted) {
+        if (typeof onFinish === 'function') onFinish();
+        return;
+      }
       if (this.vovoPlayer) {
         try {
           this.vovoPlayer.pause();
@@ -726,14 +731,14 @@
         border: 1px solid rgba(254, 240, 138, 0.35);
         z-index: 3;
       }
-      /* REI SAUL NO TRONO AO FUNDO */
+      /* REI SAUL NO TRONO AO FUNDO (VISÃO FRONTAL MAJESTOSA) */
       .davi-saul-throne {
         position: absolute;
         top: 15%;
         left: 50%;
         transform: translateX(-50%);
-        width: 115px;
-        height: 125px;
+        width: 160px;
+        height: 108px;
         z-index: 4;
         display: flex;
         align-items: center;
@@ -748,14 +753,7 @@
         filter: drop-shadow(0 6px 14px rgba(0,0,0,0.7));
       }
       .saul-throne-spear {
-        position: absolute;
-        right: 4px;
-        top: 20px;
-        width: 44px;
-        height: 16px;
-        transform: rotate(-25deg);
-        filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
-        transition: opacity 0.12s ease;
+        display: none !important;
       }
       .davi-saul-throne.windup {
         transform: translateX(-50%) scale(1.08) translateY(-4px) !important;
@@ -763,20 +761,20 @@
       .davi-saul-throne.throw {
         transform: translateX(-50%) scale(0.96) translateY(4px) !important;
       }
-      /* A LANÇA REAL VOANDO EM DIREÇÃO À TELA */
+      /* A LANÇA REAL FRONTAL COM BRILHO DOURADO (VOANDO EM DIREÇÃO À TELA) */
       .davi-spear-projectile {
         position: absolute;
         display: none;
         z-index: 10;
         pointer-events: none;
-        width: 85px;
-        height: 28px;
+        width: 135px;
+        height: 70px;
       }
       .davi-spear-projectile img {
         width: 100%;
         height: 100%;
         object-fit: contain;
-        filter: drop-shadow(0 8px 16px rgba(0,0,0,0.85));
+        filter: drop-shadow(0 0 16px rgba(253, 224, 71, 0.95)) drop-shadow(0 8px 24px rgba(245, 158, 11, 0.85));
       }
       /* CAMADA DE LANÇAS CRAVADAS NO CHÃO */
       .davi-stuck-impact-layer {
@@ -787,13 +785,13 @@
       }
       .davi-stuck-impact-spear {
         position: absolute;
-        width: 58px;
-        height: 18px;
-        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=119") no-repeat center / contain;
-        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8));
-        opacity: 0.88;
+        width: 110px;
+        height: 58px;
+        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=120") no-repeat center / contain;
+        filter: drop-shadow(0 4px 10px rgba(0,0,0,0.85)) drop-shadow(0 0 8px rgba(253, 224, 71, 0.6));
+        opacity: 0.92;
       }
-      /* DAVI NO PRIMEIRO PLANO (PERSPECTIVA 3D) */
+      /* DAVI NO PRIMEIRO PLANO (DE COSTAS, OLHANDO PARA O TRONO) */
       .davi-hero-box {
         position: absolute;
         bottom: 8px;
@@ -873,14 +871,13 @@
         gap: 3px;
       }
       .davi-dpad-btn {
-        width: 68px;
-        height: 48px;
+        width: 52px;
+        height: 52px;
         background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
         border: 2px solid #475569;
-        border-radius: 14px;
+        border-radius: 16px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.2);
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
         cursor: pointer;
@@ -889,31 +886,20 @@
         -webkit-user-select: none;
         touch-action: manipulation;
         outline: none;
-        padding: 2px;
+        padding: 0;
       }
       .davi-dpad-btn:active {
         transform: scale(0.92);
         background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-        border-color: #fde047;
+        border-color: #38bdf8;
       }
       .davi-dpad-btn .dpad-arrow-sym {
-        color: #fde047;
-        font-size: 18px;
+        color: #f8fafc;
+        font-size: 24px;
         font-weight: 900;
         line-height: 1;
         text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         pointer-events: none;
-      }
-      .davi-dpad-btn .dpad-sub-txt {
-        color: #f8fafc;
-        font-size: 8.5px;
-        font-weight: 800;
-        letter-spacing: 0.5px;
-        margin-top: 1px;
-        pointer-events: none;
-      }
-      .davi-dpad-btn:active .dpad-sub-txt {
-        color: #fde047;
       }
       .davi-center-core {
         width: 36px;
@@ -1109,14 +1095,17 @@
       stage.className = "trono-fullscreen-stage";
       stage.innerHTML = `
         <div class="arcade-top-bar">
-          <button class="arcade-btn-circle" onclick="window.confirmOrCloseArcadeStage()" title="Voltar à Sala de Jogos">
+          <button class="arcade-btn-circle" id="arcade-btn-back" onclick="window.closeTronoArcadeStage()" title="Voltar à Sala de Jogos">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="arcade-phase-badge" id="arcade-phase-display" onclick="window.handleArcadeDevTap()" style="cursor:pointer;" title="Toque 3x para Modo Desenvolvedor (12345)">
             ⭐ FASE <span id="arcade-phase-num">1</span> / <span id="arcade-phase-total">5</span>
           </div>
-          <button class="arcade-btn-circle" onclick="window.repeatVovoInstruction()" title="Repetir Instrução do Vovô" style="background:linear-gradient(180deg, #eab308 0%, #ca8a04 100%);">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.54 8.46C16.47 9.4 17 10.66 17 12C17 13.34 16.47 14.6 15.54 15.54M19.07 4.93C20.94 6.8 22 9.33 22 12C22 14.67 20.94 17.2 19.07 19.07" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <button class="arcade-btn-circle" id="arcade-btn-sound" onclick="window.toggleArcadeSound()" title="Cortar / Ligar Som" style="background:linear-gradient(180deg, #eab308 0%, #ca8a04 100%);">
+            <svg id="arcade-sound-icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M15.54 8.46C16.47 9.4 17 10.66 17 12C17 13.34 16.47 14.6 15.54 15.54M19.07 4.93C20.94 6.8 22 9.33 22 12C22 14.67 20.94 17.2 19.07 19.07" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </button>
         </div>
 
@@ -1295,8 +1284,49 @@
     }
   };
 
+  window._arcadeAudioMuted = false;
+  window.toggleArcadeSound = function() {
+    window._arcadeAudioMuted = !window._arcadeAudioMuted;
+    if (window._arcadeAudioMuted) {
+      if (typeof bgAudioPlayer !== 'undefined' && bgAudioPlayer && !bgAudioPlayer.paused) {
+        try { bgAudioPlayer.pause(); } catch(e){}
+      }
+      if (typeof ambientPlaying !== 'undefined') ambientPlaying = false;
+      if (TronoAudio.vovoPlayer) {
+        try { TronoAudio.vovoPlayer.pause(); } catch(e){}
+      }
+      if (celebrationClapAudio) {
+        try { celebrationClapAudio.pause(); } catch(e){}
+      }
+    } else {
+      if (typeof toggleAmbientSound === 'function') {
+        toggleAmbientSound();
+      }
+    }
+    if (typeof updateSoundButtonIcon === 'function') {
+      updateSoundButtonIcon();
+    }
+    window.updateArcadeSoundIcon();
+  };
+
+  window.updateArcadeSoundIcon = function() {
+    const svg = document.getElementById("arcade-sound-icon-svg");
+    if (!svg) return;
+    if (window._arcadeAudioMuted) {
+      svg.innerHTML = `
+        <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#ffffff"/>
+        <path d="M22 9L16 15M16 9L22 15" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+      `;
+    } else {
+      svg.innerHTML = `
+        <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M15.54 8.46C16.47 9.4 17 10.66 17 12C17 13.34 16.47 14.6 15.54 15.54M19.07 4.93C20.94 6.8 22 9.33 22 12C22 14.67 20.94 17.2 19.07 19.07" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      `;
+    }
+  };
+
   window.repeatVovoInstruction = function() {
-    if (currentActiveGame && currentActiveGame.audioFile) {
+    if (currentActiveGame && currentActiveGame.audioFile && !window._arcadeAudioMuted) {
       TronoAudio.falarVovo(currentActiveGame.audioFile);
     }
   };
@@ -2244,10 +2274,6 @@
 
     container.innerHTML = `
       <div class="pombo-v110-wrapper">
-        <!-- Banner Superior Limpo -->
-        <div class="pombo-v110-header">
-          <span class="pombo-v110-title">🕊️ Encontre a Arca no Fundo do Labirinto!</span>
-        </div>
 
         <!-- Palco do Labirinto de Nuvens -->
         <div class="pombo-v110-board" id="pombo-board" style="width:${boardSize}px; height:${boardSize}px;">
@@ -2464,30 +2490,21 @@
 
     container.innerHTML = `
       <div class="davi-game-fullscreen">
-        <!-- Barra de Progresso no Topo do Salão -->
-        <div class="davi-top-spear-tracker">
-          <div class="davi-tracker-title">🛡️ LIVRAMENTO DE DAVI</div>
-          <div class="davi-spear-badges" id="davi-spear-badges"></div>
-        </div>
-
         <!-- PALCO 3D EM TELA CHEIA (SALÃO DO TRONO) -->
         <div class="davi-palace-stage" id="davi-palace-stage">
           <!-- Fundo Real 3D Pixar do Palácio de Saul -->
-          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=119" class="davi-palace-bg" alt="Palácio Real de Saul 3D"/>
+          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=120" class="davi-palace-bg" alt="Palácio Real de Saul 3D"/>
           <div class="davi-palace-vignette"></div>
-
-          <!-- Referência Bíblica Sagrada -->
-          <div class="davi-banner-biblico">1 SAMUEL 18:11</div>
 
           <!-- REI SAUL NO TRONO AO FUNDO (PERSPECTIVA 3D) -->
           <div class="davi-saul-throne" id="davi-saul-throne">
-            <img src="./2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=119" alt="Rei Saul no Trono" class="saul-throne-img" id="saul-throne-img"/>
-            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=119" alt="Lança na Mão de Saul" class="saul-throne-spear" id="saul-throne-spear"/>
+            <img src="./2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=120" alt="Rei Saul no Trono" class="saul-throne-img" id="saul-throne-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=120" alt="Lança na Mão de Saul" class="saul-throne-spear" id="saul-throne-spear"/>
           </div>
 
           <!-- A LANÇA REAL VOANDO EM DIREÇÃO À TELA (PERSPECTIVA 3D) -->
           <div class="davi-spear-projectile" id="davi-spear-projectile">
-            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=119" alt="Lança em Voo 3D"/>
+            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=120" alt="Lança em Voo 3D"/>
           </div>
 
           <!-- CAMADA DE LANÇAS CRAVADAS NO PISO / TAPETE -->
@@ -2496,42 +2513,39 @@
           <!-- DAVI JOVEM PASTOR NO PRIMEIRO PLANO (PERSPECTIVA 3D) -->
           <div class="davi-hero-box center-pos" id="davi-hero-box">
             <div class="davi-hero-shadow"></div>
-            <img src="./2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=119" alt="Davi Pastor 3D" class="davi-hero-img" id="davi-hero-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=120" alt="Davi Pastor 3D" class="davi-hero-img" id="davi-hero-img"/>
           </div>
         </div>
 
-        <!-- CONSOLE D-PAD REDONDO ERGONÔMICO (IGUAL AO DO POMBO) -->
+        <!-- CONSOLE D-PAD CENTRALIZADO (PADRÃO 100% IDÊNTICO AO POMBO) -->
         <div class="davi-controls-bar">
           <div class="davi-dpad-disc">
-            <button class="davi-dpad-btn btn-up" id="btn-davi-up" aria-label="Pular">
+            <button class="davi-dpad-btn" id="btn-davi-up" aria-label="Pular">
               <span class="dpad-arrow-sym">▲</span>
-              <span class="dpad-sub-txt">PULAR</span>
             </button>
             <div class="davi-mid-row">
-              <button class="davi-dpad-btn btn-left" id="btn-davi-left" aria-label="Esquerda">
+              <button class="davi-dpad-btn" id="btn-davi-left" aria-label="Esquerda">
                 <span class="dpad-arrow-sym">◀</span>
-                <span class="dpad-sub-txt">ESQUERDA</span>
               </button>
               <div class="davi-center-core">
                 <div class="dpad-hub-dot"></div>
               </div>
-              <button class="davi-dpad-btn btn-right" id="btn-davi-right" aria-label="Direita">
+              <button class="davi-dpad-btn" id="btn-davi-right" aria-label="Direita">
                 <span class="dpad-arrow-sym">▶</span>
-                <span class="dpad-sub-txt">DIREITA</span>
               </button>
             </div>
-            <button class="davi-dpad-btn btn-down" id="btn-davi-down" aria-label="Abaixar">
+            <button class="davi-dpad-btn" id="btn-davi-down" aria-label="Abaixar">
               <span class="dpad-arrow-sym">▼</span>
-              <span class="dpad-sub-txt">ABAIXAR</span>
             </button>
           </div>
         </div>
       </div>
     `;
 
-    // Atualiza badges de livramentos no topo
-    const badgesEl = document.getElementById("davi-spear-badges");
+    // Atualiza badges de livramentos no topo se o elemento existir
     function updateBadges() {
+      const badgesEl = document.getElementById("davi-spear-badges");
+      if (!badgesEl) return;
       let h = "";
       for (let i = 0; i < totalSpears; i++) {
         if (i < successfulDodges) {
@@ -2661,52 +2675,47 @@
         saulThrone.classList.add("throw");
         throneSpear.style.opacity = "0"; // Lança sai da mão de Saul!
 
-        // Configuração inicial da lança lá no fundo (trono)
+        // Configuração inicial da lança saindo da mão do Rei Saul no trono com brilho
         spearProjectile.style.display = "block";
         spearProjectile.style.transition = "none";
-        spearProjectile.style.top = "30%";
+        spearProjectile.style.top = "20%";
         spearProjectile.style.left = "50%";
-        spearProjectile.style.width = "42px";
-        spearProjectile.style.height = "16px";
-        spearProjectile.style.transform = "translate(-50%, -50%) scale(0.24) rotate(45deg)";
+        spearProjectile.style.width = "65px";
+        spearProjectile.style.height = "34px";
+        spearProjectile.style.transform = "translate(-50%, -50%) scale(0.35)";
 
         // Força reflow para animação CSS fluida
         void spearProjectile.offsetWidth;
 
-        // Destino da Lança conforme o tipo de ataque:
+        // Destino da Lança frontal em perspectiva 3D:
         let targetLeft = "50%";
         let targetTop = "88%";
-        let targetScale = "1.25";
-        let targetRotate = "55deg";
-        const flyDurationMs = 1750; // Voo lento, majestoso e visível (~1.75s)!
+        let targetScale = "1.55";
+        const flyDurationMs = 1850; // Voo cinematográfico e suave (~1.85s)
 
         if (attackType === "baixa") {
-          targetTop = "90%";
+          targetTop = "91%";
           targetLeft = "50%";
-          targetRotate = "50deg";
         } else if (attackType === "alta") {
           targetTop = "68%";
           targetLeft = "50%";
-          targetRotate = "40deg";
         } else if (attackType === "esquerda") {
           targetTop = "86%";
-          targetLeft = "28%";
-          targetRotate = "35deg";
+          targetLeft = "24%";
         } else if (attackType === "direita") {
           targetTop = "86%";
-          targetLeft = "72%";
-          targetRotate = "65deg";
+          targetLeft = "76%";
         }
 
-        // DISPARA O VOO EM PERSPECTIVA 3D CRESCENDO EM DIREÇÃO À TELA!
-        spearProjectile.style.transition = `top ${flyDurationMs}ms cubic-bezier(0.25, 0.46, 0.45, 0.94), left ${flyDurationMs}ms ease-out, transform ${flyDurationMs}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+        // DISPARA O VOO EM PERSPECTIVA 3D CRESCENDO COM BRILHO EM DIREÇÃO À TELA!
+        spearProjectile.style.transition = `top ${flyDurationMs}ms cubic-bezier(0.2, 0.6, 0.4, 1), left ${flyDurationMs}ms ease-out, transform ${flyDurationMs}ms cubic-bezier(0.2, 0.6, 0.4, 1)`;
         spearProjectile.style.top = targetTop;
         spearProjectile.style.left = targetLeft;
-        spearProjectile.style.transform = `translate(-50%, -50%) scale(${targetScale}) rotate(${targetRotate})`;
+        spearProjectile.style.transform = `translate(-50%, -50%) scale(${targetScale})`;
 
         TronoAudio.play("arrow");
 
-        // 3. MOMENTO DO IMPACTO / CHECAGEM DE ESQUIVA (aos 1450ms)
+        // 3. MOMENTO DO IMPACTO / CHECAGEM DE ESQUIVA (aos 1550ms)
         setTimeout(() => {
           if (isGameWon) return;
 
@@ -2736,7 +2745,7 @@
             stuck.className = "davi-stuck-impact-spear";
             stuck.style.left = targetLeft;
             stuck.style.top = targetTop;
-            stuck.style.transform = `translate(-50%, -50%) scale(1.05) rotate(${targetRotate})`;
+            stuck.style.transform = `translate(-50%, -50%) scale(1.15)`;
             stuckLayer.appendChild(stuck);
 
             TronoAudio.play("star");

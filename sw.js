@@ -1,9 +1,9 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v119.0';
+const CACHE_VERSION = 'vortice-trono-ebd-v120.0';
 const ASSETS_TO_CACHE = [
-  './2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=119',
-  './2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=119',
-  './2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=119',
-  './2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=119',
+  './2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=120',
+  './2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=120',
+  './2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=120',
+  './2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=120',
   './2_ASSETS_UI_BOTOES/btn_jogo_04_lanca_saul.svg?v=114',
   './2_ASSETS_UI_BOTOES/lanca_bronze.svg?v=114',
   './2_ASSETS_UI_BOTOES/saul_arremessando.svg?v=114',
