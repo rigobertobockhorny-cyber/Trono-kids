@@ -379,9 +379,20 @@
       #screen-trono-arcade-stage.active {
         display: flex !important;
       }
+      @keyframes rotatePhoneAnimation {
+        0%, 20% { transform: rotate(0deg); }
+        50%, 70% { transform: rotate(90deg); }
+        100% { transform: rotate(0deg); }
+      }
+      @media (orientation: portrait) {
+        #arcade-rotate-overlay { display: flex !important; }
+      }
+      @media (orientation: landscape) {
+        #arcade-rotate-overlay { display: none !important; }
+      }
       .arcade-top-bar {
-        height: 60px;
-        min-height: 60px;
+        height: 50px;
+        min-height: 50px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -630,6 +641,14 @@
       stage.id = "screen-trono-arcade-stage";
       stage.className = "trono-fullscreen-stage";
       stage.innerHTML = `
+        <!-- OVERLAY DE ORIENTAÇÃO HORIZONTAL (GIRE O CELULAR) -->
+        <div id="arcade-rotate-overlay" style="position:fixed; inset:0; z-index:99999999; background:rgba(12, 9, 28, 0.96); display:none; flex-direction:column; align-items:center; justify-content:center; gap:16px; color:#ffffff; font-family:'Fredoka',sans-serif; text-align:center; padding:20px; touch-action:none;">
+          <div style="font-size:64px; animation:rotatePhoneAnimation 2s ease-in-out infinite;">📱🔄</div>
+          <div style="font-size:22px; font-weight:900; color:#fde047; text-shadow:0 2px 8px rgba(0,0,0,0.8);">GIRE O CELULAR NA HORIZONTAL!</div>
+          <div style="font-size:15px; color:#cbd5e1; max-width:320px; line-height:1.4;">Para a melhor diversão, segure o aparelho com as duas mãos!</div>
+          <button class="arcade-btn-circle" onclick="document.getElementById('arcade-rotate-overlay').style.display='none'" style="margin-top:8px; width:auto; border-radius:999px; padding:10px 24px; font-size:15px; font-weight:800; background:linear-gradient(180deg, #22c55e 0%, #15803d 100%);">Continuar Mesmo Assim ▶️</button>
+        </div>
+
         <div class="arcade-top-bar">
           <button class="arcade-btn-circle" onclick="window.closeTronoArcadeStage()" title="Voltar à Sala de Jogos">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -672,6 +691,25 @@
     currentActiveGame = game;
     currentPhase = 1;
     _vovoAlreadySpokeInSession = false; // Reset da sessão: ao entrar no jogo, o Vovô falará na primeira fase!
+
+    // SOLICITA ROTAÇÃO AUTOMÁTICA PARA HORIZONTAL (LANDSCAPE) NO CELULAR:
+    try {
+      const docEl = document.documentElement;
+      const reqFs = docEl.requestFullscreen || docEl.webkitRequestFullscreen || docEl.mozRequestFullScreen || docEl.msRequestFullscreen;
+      if (reqFs) {
+        reqFs.call(docEl).then(() => {
+          if (screen.orientation && screen.orientation.lock) {
+            screen.orientation.lock("landscape").catch(() => {});
+          }
+        }).catch(() => {
+          if (screen.orientation && screen.orientation.lock) {
+            screen.orientation.lock("landscape").catch(() => {});
+          }
+        });
+      } else if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock("landscape").catch(() => {});
+      }
+    } catch(e) {}
 
     const stage = document.getElementById("screen-trono-arcade-stage");
     if (stage) {
@@ -729,6 +767,18 @@
     _vovoAlreadySpokeInSession = false;
     TronoAudio.play("click");
     stopArcadeCelebrationConfetti();
+
+    // DESBLOQUEIA ROTAÇÃO E RETORNA AO MODO VERTICAL ORIGINAL:
+    try {
+      if (screen.orientation && screen.orientation.unlock) {
+        screen.orientation.unlock();
+      }
+      if (document.exitFullscreen && document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      } else if (document.webkitExitFullscreen && document.webkitFullscreenElement) {
+        document.webkitExitFullscreen();
+      }
+    } catch(e) {}
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
     if (TronoAudio.vovoPlayer) { try { TronoAudio.vovoPlayer.pause(); } catch(e){} }
     if (celebrationClapAudio) { try { celebrationClapAudio.pause(); } catch(e){} }
@@ -1390,11 +1440,11 @@
     // Fase 4: 4 Moedas, Foco Fechado (92px), Moedas semi-ocultas em cestos e cantos.
     // Fase 5+: 5 Moedas, Foco Estreito (72px), Moedas bem escondidas na sombra e atrás de objetos.
     const totalMoedas = Math.min(phase, 5);
-    const raioLuz = phase === 1 ? 155 :
-                    phase === 2 ? 130 :
-                    phase === 3 ? 110 :
-                    phase === 4 ? 92 :
-                    Math.max(74 - (phase - 5) * 3, 58);
+    const raioLuz = phase === 1 ? 140 :
+                    phase === 2 ? 118 :
+                    phase === 3 ? 98 :
+                    phase === 4 ? 80 :
+                    Math.max(64 - (phase - 5) * 3, 50);
 
     let moedasAchadas = 0;
     let isInteractionLocked = true;
@@ -1402,22 +1452,22 @@
     // Catálogo de esconderijos ancorados organicamente nos elementos visuais do cenário 3D da casa:
     // (A mulher, os vasos de barro, a tigela, o cesto no alto, a parede de pedra e o chão rústico)
     const allHidingSpots = [
-      // 0: Chão aberto iluminado em frente à mulher (Fácil - Fase 1)
-      { id: "spot_floor_open", x: 44, y: 74, occlude: null },
-      // 1: Perto da base do grande vaso de barro (Fase 2)
-      { id: "spot_jar_base", x: 26, y: 70, occlude: "jar" },
+      // 0: Chão aberto no centro em frente à mulher (16:9 Horizontal - Fácil Fase 1)
+      { id: "spot_floor_open", x: 52, y: 90, occlude: null },
+      // 1: Perto da base do grande vaso de barro central (Fase 2)
+      { id: "spot_jar_base", x: 48, y: 72, occlude: "jar" },
       // 2: Atrás da tigela de azeite na direita (Fase 3)
-      { id: "spot_bowl_side", x: 65, y: 84, occlude: "bowl" },
-      // 3: Canto escuro de pedra abaixo da janela (Fase 3/4)
-      { id: "spot_wall_shadow", x: 16, y: 56, occlude: "shadow" },
-      // 4: No cesto de palha no alto da estante à direita (Fase 4/5)
-      { id: "spot_basket_shelf", x: 84, y: 38, occlude: "straw" },
-      // 5: Atrás do vaso inferior esquerdo (Fase 5)
-      { id: "spot_bottom_pot", x: 15, y: 88, occlude: "jar" },
-      // 6: Na dobra de sombra da túnica da mulher (Fase 5)
-      { id: "spot_tunic_shadow", x: 42, y: 86, occlude: "shadow" },
+      { id: "spot_bowl_side", x: 76, y: 85, occlude: "bowl" },
+      // 3: Canto escuro de pedras e vasos na esquerda (Fase 3/4)
+      { id: "spot_wall_shadow", x: 16, y: 82, occlude: "jar" },
+      // 4: No cesto de palha no alto da prateleira na direita (Fase 4/5)
+      { id: "spot_basket_shelf", x: 74, y: 34, occlude: "straw" },
+      // 5: Na sombra do chão perto dos meninos na esquerda (Fase 5)
+      { id: "spot_bottom_pot", x: 28, y: 84, occlude: "shadow" },
+      // 6: Na sombra profunda da parede na extrema direita (Fase 5)
+      { id: "spot_tunic_shadow", x: 91, y: 68, occlude: "shadow" },
       // 7: Parapeito de pedra da janela rústica (Fase 5+)
-      { id: "spot_window_ledge", x: 24, y: 36, occlude: "stone" }
+      { id: "spot_window_ledge", x: 44, y: 36, occlude: "stone" }
     ];
 
     // Seleciona os esconderijos de acordo com a fase
