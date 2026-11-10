@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 30" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bronzeTip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <filter id="lancaGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <g filter="url(#lancaGlow)">
+    <!-- Haste de Madeira Lisa -->
+    <rect x="0" y="12" width="130" height="6" rx="2" fill="#78350f" stroke="#451a03" stroke-width="1"/>
+    <!-- Amarrações de Couro -->
+    <rect x="110" y="10" width="8" height="10" rx="1" fill="#b45309"/>
+    <rect x="114" y="10" width="3" height="10" rx="1" fill="#fde047"/>
+    <!-- Ponta Afiada de Bronze Reluzente -->
+    <polygon points="126,6 160,15 126,24 132,15" fill="url(#bronzeTip)" stroke="#78350f" stroke-width="1.5"/>
+  </g>
+</svg>

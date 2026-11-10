@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 140" width="100%" height="100%">
+  <defs>
+    <filter id="saulShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <g filter="url(#saulShadow)">
+    <!-- Manto Real Vermelho Carmesim -->
+    <path d="M25 45 C15 70 12 110 20 130 L45 130 L42 50 Z" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
+    
+    <!-- Pernas de Guerreiro com Caneleiras de Bronze -->
+    <rect x="42" y="100" width="12" height="26" rx="4" fill="#d97706" stroke="#78350f" stroke-width="2"/>
+    <rect x="62" y="100" width="12" height="26" rx="4" fill="#d97706" stroke="#78350f" stroke-width="2"/>
+    <ellipse cx="48" cy="128" rx="9" ry="5" fill="#451a03"/>
+    <ellipse cx="68" cy="128" rx="9" ry="5" fill="#451a03"/>
+    
+    <!-- Armadura / Couraça Real -->
+    <path d="M35 48 L75 48 L80 102 L30 102 Z" fill="#b45309" stroke="#78350f" stroke-width="2.5"/>
+    <rect x="36" y="58" width="38" height="10" rx="2" fill="#fde047" stroke="#d97706" stroke-width="1.5"/>
+    
+    <!-- Braço Esquerdo segurando Lança para trás -->
+    <path d="M72 52 L95 38" stroke="#fed7aa" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- Cabeça e Barba Negra Imponente -->
+    <circle cx="55" cy="30" r="16" fill="#fed7aa"/>
+    <!-- Barba Negra Grossa -->
+    <path d="M40 32 C40 50 70 50 70 32 C65 42 45 42 40 32 Z" fill="#1e293b"/>
+    
+    <!-- Elmo Real de Bronze com Penacho -->
+    <path d="M38 24 C40 8 70 8 72 24 Z" fill="#d97706" stroke="#78350f" stroke-width="2"/>
+    <path d="M52 8 C52 0 58 0 58 8" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Olhos Severos / Focados -->
+    <circle cx="50" cy="26" r="2.5" fill="#0f172a"/>
+    <circle cx="60" cy="26" r="2.5" fill="#0f172a"/>
+    <!-- Sobrancelhas franzidas -->
+    <line x1="46" y1="21" x2="52" y2="23" stroke="#0f172a" stroke-width="2"/>
+    <line x1="64" y1="21" x2="58" y2="23" stroke="#0f172a" stroke-width="2"/>
+  </g>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 130" width="100%" height="100%">
+  <defs>
+    <filter id="daviShadow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <g filter="url(#daviShadow2)">
+    <!-- Pernas dobradas no chão -->
+    <path d="M25 116 Q40 100 55 116" stroke="#fed7aa" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <path d="M45 116 Q60 100 75 116" stroke="#fed7aa" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <ellipse cx="30" cy="120" rx="8" ry="4" fill="#78350f"/>
+    <ellipse cx="70" cy="120" rx="8" ry="4" fill="#78350f"/>
+    
+    <!-- Túnica rebaixada / encolhida -->
+    <path d="M26 80 L74 80 L78 114 L22 114 Z" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <rect x="25" y="92" width="50" height="7" rx="2" fill="#92400e"/>
+    
+    <!-- Harpa inclinada nas costas -->
+    <path d="M18 78 C12 65 14 52 26 50 C32 48 38 58 34 70 Z" fill="#b45309" stroke="#78350f" stroke-width="2"/>
+    
+    <!-- Cabeça abaixada / protegida -->
+    <circle cx="50" cy="62" r="16" fill="#fed7aa"/>
+    <!-- Cabelo Ruivo -->
+    <path d="M34 62 C32 46 42 38 52 38 C62 38 70 46 66 62 Z" fill="#b45309"/>
+    <!-- Faixinha -->
+    <path d="M34 56 C42 52 58 52 66 56" stroke="#0284c7" stroke-width="3" stroke-linecap="round" fill="none"/>
+    
+    <!-- Olhos focados e atentos -->
+    <ellipse cx="46" cy="62" rx="2.5" ry="1.5" fill="#0f172a"/>
+    <ellipse cx="56" cy="62" rx="2.5" ry="1.5" fill="#0f172a"/>
+    
+    <!-- Boca de esforço/agilidade -->
+    <line x1="48" y1="69" x2="54" y2="69" stroke="#78350f" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>
