@@ -1,0 +1,10 @@
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+/ebd_super_arcade_audiovisual.js
+  Cache-Control: no-cache, no-store, must-revalidate
+/ebd_modulos_educativos.js
+  Cache-Control: no-cache, no-store, must-revalidate
