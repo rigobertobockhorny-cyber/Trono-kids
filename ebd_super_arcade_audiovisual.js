@@ -633,7 +633,7 @@
       }
 
       
-            /* --- JOGO 4: DAVI E A LANÇA DE SAUL (v114.0) --- */
+            /* --- JOGO 4: DAVI E A LANÇA DE SAUL (v115.0) --- */
       .davi-game-wrapper {
         width: 100%;
         height: 100%;
@@ -2407,7 +2407,7 @@
   // - Movimentação lateral para posicionamento no salão de pedra
   // - 15 Fases progressivas com sinalização prévia da mira
   // ==========================================================================
-  // --- JOGO 4: DAVI E A LANÇA DE SAUL (v114.0) ---
+  // --- JOGO 4: DAVI E A LANÇA DE SAUL (v115.0) ---
   // ==========================================================================
   function runJonatasAlvo(container, phase) {
     const currentPhaseNum = phase || 1;
@@ -2461,7 +2461,7 @@
         <!-- Palco do Salão Real de Pedra do Rei Saul -->
         <div class="davi-stage-arena" id="davi-stage-arena">
           <!-- Cenário Bíblico Real Ilustrado 3D do Palácio -->
-          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=112" class="davi-stage-bg-img" alt="Palácio Real do Rei Saul 3D"/>
+          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=115" class="davi-stage-bg-img" alt="Palácio Real do Rei Saul 3D"/>
           <div class="davi-stage-vignette"></div>
 
           <!-- Banner Sagrado com Referência Bíblica -->
