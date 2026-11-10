@@ -733,7 +733,7 @@
         right: -8px;
         width: 48px;
         height: 12px;
-        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=116") no-repeat center / contain;
+        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=117") no-repeat center / contain;
         transform: translateY(-50%) rotate(8deg);
         filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
       }
@@ -741,7 +741,7 @@
         position: absolute;
         width: 46px;
         height: 12px;
-        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=116") no-repeat center / contain;
+        background: url("./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=117") no-repeat center / contain;
         transform: translateY(-50%) rotate(55deg);
         filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
       }
@@ -2466,7 +2466,7 @@
         <!-- Palco do Salão Real de Pedra do Rei Saul -->
         <div class="davi-stage-arena" id="davi-stage-arena">
           <!-- Cenário Bíblico Real Ilustrado 3D do Palácio -->
-          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=115" class="davi-stage-bg-img" alt="Palácio Real do Rei Saul 3D"/>
+          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=117" class="davi-stage-bg-img" alt="Palácio Real do Rei Saul 3D"/>
           <div class="davi-stage-vignette"></div>
 
           <!-- Banner Sagrado com Referência Bíblica -->
@@ -2477,10 +2477,10 @@
 
           <!-- Rei Saul à Esquerda -->
           <div class="davi-saul-box aiming-idle" id="davi-saul-box">
-            <img src="./2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=116" alt="Rei Saul 3D" class="davi-saul-img" id="davi-saul-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/rei_saul_3d.png?v=117" alt="Rei Saul 3D" class="davi-saul-img" id="davi-saul-img"/>
             <!-- Lança Real na mão de Saul durante a mira -->
             <div class="davi-saul-hand-spear" id="davi-saul-hand-spear">
-              <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=116" alt="Lança Real na Mão" style="width:100%; height:100%; object-fit:contain;"/>
+              <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=117" alt="Lança Real na Mão" style="width:100%; height:100%; object-fit:contain;"/>
             </div>
             <!-- Indicador / Balão de Mira na Cabeça de Saul -->
             <div class="davi-saul-aim-indicator" id="davi-aim-indicator" style="display:none;"></div>
@@ -2488,12 +2488,12 @@
 
           <!-- Lança Real em Voo pelo Salão -->
           <div class="davi-flying-spear" id="davi-spear" style="display:none;">
-            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=116" alt="Lança Real em Voo" class="davi-spear-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/lanca_real_3d.png?v=117" alt="Lança Real em Voo" class="davi-spear-img"/>
           </div>
 
           <!-- Davi Jovem Pastor 3D à Direita -->
           <div class="davi-character-box" id="davi-char-box" style="left:${daviX}%;">
-            <img src="./2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=116" alt="Davi Pastor 3D" id="davi-sprite" class="davi-sprite-img"/>
+            <img src="./2_ASSETS_UI_BOTOES/davi_pastor_3d.png?v=117" alt="Davi Pastor 3D" id="davi-sprite" class="davi-sprite-img"/>
             <div class="davi-action-bubble" id="davi-bubble"></div>
           </div>
         </div>
@@ -2841,329 +2841,6 @@
   }
 
   // ==========================================================================
-  function runJonatasAlvo(container, phase) {
-    const currentPhaseNum = phase || 1;
-    // Quantidade de lanças na fase (3 na fase 1 até 8 nas fases altas)
-    const totalSpears = Math.min(8, 2 + currentPhaseNum);
-    let spearIndex = 0;
-    let successfulDodges = 0;
-    let isDodging = false; // "stand", "crouch", "jump"
-    let daviX = 70; // percentual de posição horizontal de Davi (50% a 85%)
-    let isGameWon = false;
-    let isShooting = false;
-    let isUnlocked = true;
-
-    window._arcadeUnlockGameAction = function() {
-      isUnlocked = true;
-      scheduleNextSpear(800);
-    };
-
-    container.innerHTML = `
-      <div class="davi-game-wrapper">
-        <!-- Barra de Progresso de Lanças no Topo -->
-        <div class="davi-spear-tracker">
-          <span class="davi-tracker-label">🛡️ LIVRAMENTO:</span>
-          <div class="davi-spear-icons" id="davi-spear-icons"></div>
-        </div>
-
-        <!-- Palco do Salão Real de Pedra / Caverna -->
-        <div class="davi-stage-arena" id="davi-stage-arena">
-          <!-- Fachada de Rocha / Parede ao Fundo com Tochas -->
-          <div class="davi-arena-wall">
-            <div class="davi-torch torch-left">🔥</div>
-            <div class="davi-torch torch-right">🔥</div>
-            <div class="davi-wall-banner">1 SAMUEL 18:11</div>
-          </div>
-
-          <!-- Paredão de Pedra atrás de Davi onde as lanças cravam -->
-          <div class="davi-target-backwall" id="davi-backwall"></div>
-
-          <!-- Rei Saul à Esquerda -->
-          <div class="davi-saul-box" id="davi-saul-box">
-            <img src="./2_ASSETS_UI_BOTOES/saul_arremessando.svg?v=111" alt="Rei Saul" class="davi-saul-img" id="davi-saul-img"/>
-            <div class="davi-saul-aim-indicator" id="davi-aim-indicator"></div>
-          </div>
-
-          <!-- Lança Voando no Ar -->
-          <div class="davi-flying-spear" id="davi-spear" style="display:none;">
-            <img src="./2_ASSETS_UI_BOTOES/lanca_bronze.svg?v=111" alt="Lança" class="davi-spear-img"/>
-          </div>
-
-          <!-- Davizinho à Direita -->
-          <div class="davi-character-box" id="davi-char-box" style="left:${daviX}%;">
-            <img src="./2_ASSETS_UI_BOTOES/davi_em_pe.svg?v=111" alt="Davi" id="davi-sprite" class="davi-sprite-img"/>
-            <div class="davi-action-bubble" id="davi-bubble"></div>
-          </div>
-
-          <!-- Chão de Pedras -->
-          <div class="davi-ground-floor"></div>
-        </div>
-
-        <!-- CONSOLE DE COMANDOS DE VIDEOGAME TÁTIL -->
-        <div class="davi-controls-console">
-          <!-- Controles de Passo Lateral (Esquerda / Direita) -->
-          <div class="davi-dpad-lateral">
-            <button class="davi-step-btn" id="btn-davi-left" title="Dar passo para trás">
-              <span class="step-arrow">◀</span>
-              <span class="step-txt">RECUAR</span>
-            </button>
-            <button class="davi-step-btn" id="btn-davi-right" title="Dar passo para frente">
-              <span class="step-arrow">▶</span>
-              <span class="step-txt">AVANÇAR</span>
-            </button>
-          </div>
-
-          <!-- Botões Principais de Ação (PULAR e AGACHAR) -->
-          <div class="davi-action-buttons">
-            <button class="davi-big-btn btn-crouch" id="btn-davi-crouch" title="Agachar de lança alta">
-              <span class="btn-icon">⬇️</span>
-              <span class="btn-label">AGACHAR</span>
-            </button>
-            <button class="davi-big-btn btn-jump" id="btn-davi-jump" title="Pular lança rasteira">
-              <span class="btn-icon">⬆️</span>
-              <span class="btn-label">PULAR</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-
-    // Atualiza rastreador de lanças no topo
-    const trackerEl = document.getElementById("davi-spear-icons");
-    function updateTracker() {
-      let html = "";
-      for (let i = 0; i < totalSpears; i++) {
-        if (i < successfulDodges) {
-          html += `<span class="spear-badge dodged">⭐</span>`;
-        } else if (i === spearIndex) {
-          html += `<span class="spear-badge current">🗡️</span>`;
-        } else {
-          html += `<span class="spear-badge pending">⚪</span>`;
-        }
-      }
-      trackerEl.innerHTML = html;
-    }
-    updateTracker();
-
-    const charBox = document.getElementById("davi-char-box");
-    const daviSprite = document.getElementById("davi-sprite");
-    const bubbleEl = document.getElementById("davi-bubble");
-    const spearEl = document.getElementById("davi-spear");
-    const saulBox = document.getElementById("davi-saul-box");
-    const aimIndicator = document.getElementById("davi-aim-indicator");
-    const backwallEl = document.getElementById("davi-backwall");
-
-    function showBubble(text, color) {
-      bubbleEl.textContent = text;
-      bubbleEl.style.color = color || "#ffffff";
-      bubbleEl.style.opacity = "1";
-      bubbleEl.style.transform = "translate(-50%, -20px) scale(1.1)";
-      setTimeout(() => {
-        bubbleEl.style.opacity = "0";
-        bubbleEl.style.transform = "translate(-50%, 0) scale(0.9)";
-      }, 700);
-    }
-
-    // AÇÕES DE DAVI:
-    // 1. Agachar
-    let crouchTimeout = null;
-    function doCrouch() {
-      if (isDodging === "jump") return;
-      isDodging = "crouch";
-      daviSprite.src = "./2_ASSETS_UI_BOTOES/davi_agachado.svg?v=111";
-      charBox.classList.add("crouching");
-      TronoAudio.play("click");
-
-      clearTimeout(crouchTimeout);
-      crouchTimeout = setTimeout(doStand, 900);
-    }
-
-    // 2. Pular
-    let jumpTimeout = null;
-    function doJump() {
-      if (isDodging === "jump") return;
-      isDodging = "jump";
-      daviSprite.src = "./2_ASSETS_UI_BOTOES/davi_pulando.svg?v=111";
-      charBox.classList.remove("crouching");
-      charBox.classList.add("jumping");
-      TronoAudio.play("click");
-
-      clearTimeout(jumpTimeout);
-      jumpTimeout = setTimeout(doStand, 850);
-    }
-
-    // 3. Ficar em pé normal
-    function doStand() {
-      if (isGameWon) return;
-      isDodging = "stand";
-      daviSprite.src = "./2_ASSETS_UI_BOTOES/davi_em_pe.svg?v=111";
-      charBox.classList.remove("jumping");
-      charBox.classList.remove("crouching");
-    }
-
-    // 4. Mover para a esquerda / direita
-    function moveDavi(delta) {
-      daviX = Math.max(35, Math.min(88, daviX + delta));
-      charBox.style.left = daviX + "%";
-    }
-
-    // BINDING DOS BOTÕES COM TOQUE RÁPIDO E SUPORTE A TOUCH
-    const btnCrouch = document.getElementById("btn-davi-crouch");
-    const btnJump = document.getElementById("btn-davi-jump");
-    const btnLeft = document.getElementById("btn-davi-left");
-    const btnRight = document.getElementById("btn-davi-right");
-
-    btnCrouch.addEventListener("pointerdown", (e) => { e.preventDefault(); doCrouch(); });
-    btnJump.addEventListener("pointerdown", (e) => { e.preventDefault(); doJump(); });
-
-    let moveInterval = null;
-    function startMove(delta) {
-      moveDavi(delta);
-      clearInterval(moveInterval);
-      moveInterval = setInterval(() => moveDavi(delta), 100);
-    }
-    function stopMove() {
-      clearInterval(moveInterval);
-    }
-    btnLeft.addEventListener("pointerdown", (e) => { e.preventDefault(); startMove(-4); });
-    btnLeft.addEventListener("pointerup", stopMove);
-    btnLeft.addEventListener("pointerleave", stopMove);
-
-    btnRight.addEventListener("pointerdown", (e) => { e.preventDefault(); startMove(4); });
-    btnRight.addEventListener("pointerup", stopMove);
-    btnRight.addEventListener("pointerleave", stopMove);
-
-    // CICLO DE DISPARO DAS LANÇAS
-    let spearTimer = null;
-
-    function scheduleNextSpear(delay) {
-      if (isGameWon) return;
-      clearTimeout(spearTimer);
-      spearTimer = setTimeout(launchNextSpear, delay || 1400);
-    }
-
-    function launchNextSpear() {
-      if (isGameWon || spearIndex >= totalSpears) return;
-      isShooting = true;
-
-      // Decide se a lança será ALTA ou BAIXA
-      // Alterna entre fases para a criança treinar pular e agachar
-      const isHigh = (spearIndex % 2 === 0);
-      const spearType = isHigh ? "alta" : "baixa";
-
-      // 1. Sinalização Prévia da Mira de Saul (Dá tempo para a criança reagir!)
-      aimIndicator.style.display = "block";
-      aimIndicator.className = "davi-saul-aim-indicator " + (isHigh ? "aim-high" : "aim-low");
-      aimIndicator.textContent = isHigh ? "⚠️ ALTA! (Agache!)" : "⚠️ BAIXA! (Pule!)";
-
-      // Animação de recuo do braço de Saul
-      saulBox.style.transform = "scale(1.08) rotate(-4deg)";
-
-      setTimeout(() => {
-        if (isGameWon) return;
-        // 2. Dispara a lança!
-        saulBox.style.transform = "scale(1) rotate(0deg)";
-        aimIndicator.style.display = "none";
-
-        spearEl.style.display = "block";
-        spearEl.style.transition = "none";
-        spearEl.style.left = "80px";
-
-        // Altura da lança no palco
-        const targetTop = isHigh ? "42%" : "78%";
-        spearEl.style.top = targetTop;
-
-        TronoAudio.play("arrow");
-
-        // Duração do voo da lança (mais suave na fase 1: 750ms)
-        const flyDuration = Math.max(500, 750 - (currentPhaseNum * 18));
-
-        // Força reflow para CSS transition funcionar
-        void spearEl.offsetWidth;
-
-        spearEl.style.transition = `left ${flyDuration}ms linear`;
-        spearEl.style.left = "96%";
-
-        // Momento exato em que a lança cruza a posição de Davi
-        // Davi fica em daviX% (ex: 70%). Momento do cruzamento:
-        const crossTime = Math.round(flyDuration * (daviX / 100));
-
-        setTimeout(() => {
-          if (isGameWon) return;
-          // VERIFICAÇÃO DE ESQUIVA:
-          let dodged = false;
-          if (isHigh && isDodging === "crouch") {
-            dodged = true; // Passou por cima!
-          } else if (!isHigh && isDodging === "jump") {
-            dodged = true; // Passou por baixo!
-          }
-
-          if (dodged) {
-            // Sucesso!
-            successfulDodges++;
-            TronoAudio.play("star");
-            showBubble(isHigh ? "ESQUIVOU! 👏" : "PULOU! 🌟", "#fde047");
-          } else {
-            // Lança acertou de raspão
-            TronoAudio.play("pop");
-            charBox.classList.add("stumble");
-            showBubble("QUASE! 🛡️", "#f87171");
-            setTimeout(() => charBox.classList.remove("stumble"), 400);
-          }
-
-          updateTracker();
-        }, crossTime);
-
-        // Fim do voo da lança: crava na parede atrás
-        setTimeout(() => {
-          if (isGameWon) return;
-          spearEl.style.display = "none";
-
-          // Cria lança cravada na parede de pedra atrás
-          const stuck = document.createElement("div");
-          stuck.className = "stuck-spear";
-          stuck.style.top = targetTop;
-          backwallEl.appendChild(stuck);
-
-          TronoAudio.play("pop");
-
-          isShooting = false;
-          spearIndex++;
-          updateTracker();
-
-          // Concluiu todas as lanças da fase?
-          if (successfulDodges >= totalSpears || spearIndex >= totalSpears) {
-            if (successfulDodges >= Math.ceil(totalSpears * 0.6)) {
-              // Vitória da Fase!
-              isGameWon = true;
-              TronoAudio.play("success");
-              daviSprite.src = "./2_ASSETS_UI_BOTOES/davi_em_pe.svg?v=111";
-              charBox.classList.add("victory-arms-up");
-              showBubble("DEUS PROTEGEU DAVI! ✨", "#4ade80");
-              setTimeout(triggerArcadeVictory, 900);
-            } else {
-              // Se errou muitas, reinicia a fase amigavelmente
-              setTimeout(() => {
-                spearIndex = 0;
-                successfulDodges = 0;
-                backwallEl.innerHTML = "";
-                updateTracker();
-                scheduleNextSpear(1200);
-              }, 1000);
-            }
-          } else {
-            // Próxima lança
-            scheduleNextSpear(1300);
-          }
-        }, flyDuration);
-      }, 650);
-    }
-
-    // Inicia a primeira lança após delay de introdução
-    scheduleNextSpear(1100);
-  }
-
-  // --- JOGO 5: A PARÁBOLA DA OVELHA PERDIDA (CENÁRIO DESLIZANTE) ---
   function runOvelhaPerdida(container, phase) {
     let achadas = 0;
     const total = 3;

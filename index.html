@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v116.0';
+        const CURRENT_VER = 'v117.0';
         const urlParams = new URLSearchParams(window.location.search);
         const forceClear = urlParams.get('limpar') === '1' || urlParams.get('reset') === '1' || urlParams.get('v') !== null;
         const savedVer = localStorage.getItem('trono_app_version');
@@ -36,7 +36,7 @@
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=116.0').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=117.0').then(reg => {
           reg.update();
         }).catch(() => {});
         let refreshing = false;
@@ -2551,8 +2551,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=116.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=116.0"></script>
+<script src="ebd_modulos_educativos.js?v=117.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=117.0"></script>
 <script>
   // LAZY-LOAD INTELIGENTE DE PINTURAS (6.3 MB)
   // Reduz em 90% o peso inicial do app, abrindo em menos de 1 segundo!
