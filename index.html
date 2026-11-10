@@ -12,36 +12,33 @@
   <title>Trono da Promessa EBD • Revista Digital & Jogos Bíblicos</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
   <script>
-    (function forcePurgeOldMobileCacheV55() {
+    (function forcePurgeMobileCacheV114() {
       try {
+        const CURRENT_VER = 'v114.0';
         const urlParams = new URLSearchParams(window.location.search);
-        const alreadyPurged = localStorage.getItem('trono_cache_purged_v113') === '1';
-        if (!alreadyPurged || urlParams.get('limpar') === '1') {
-          localStorage.setItem('trono_cache_purged_v113', '1');
+        const savedVer = localStorage.getItem('trono_app_version');
+        const forceClear = urlParams.get('limpar') === '1' || urlParams.get('v') !== null;
+        if (savedVer !== CURRENT_VER || forceClear) {
+          localStorage.setItem('trono_app_version', CURRENT_VER);
+          localStorage.setItem('trono_cache_purged_v114', '1');
           if ('caches' in window) {
             caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
-          }
-          if (urlParams.get('limpar') === '1' && window.history && window.history.replaceState) {
-            window.history.replaceState({}, document.title, window.location.pathname + '?v=66');
           }
         }
       } catch (e) {}
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=111').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=114').then(reg => {
           reg.update();
-          reg.addEventListener('updatefound', () => {
-            const newWorker = reg.installing;
-            if (newWorker) {
-              newWorker.addEventListener('statechange', () => {
-                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  console.log('App Trono Kids atualizado com sucesso para v93.0!');
-                }
-              });
-            }
-          });
         }).catch(() => {});
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (!refreshing) {
+            refreshing = true;
+            window.location.reload();
+          }
+        });
       });
     }
   </script>
@@ -2544,8 +2541,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=111.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=111.0"></script>
+<script src="ebd_modulos_educativos.js?v=114.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=114.0"></script>
 <script>
   // LAZY-LOAD INTELIGENTE DE PINTURAS (6.3 MB)
   // Reduz em 90% o peso inicial do app, abrindo em menos de 1 segundo!

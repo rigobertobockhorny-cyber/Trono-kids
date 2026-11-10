@@ -633,7 +633,7 @@
       }
 
       
-            /* --- JOGO 4: DAVI E A LANÇA DE SAUL (v112.0) --- */
+            /* --- JOGO 4: DAVI E A LANÇA DE SAUL (v114.0) --- */
       .davi-game-wrapper {
         width: 100%;
         height: 100%;
@@ -2407,7 +2407,7 @@
   // - Movimentação lateral para posicionamento no salão de pedra
   // - 15 Fases progressivas com sinalização prévia da mira
   // ==========================================================================
-  // --- JOGO 4: DAVI E A LANÇA DE SAUL (v112.0) ---
+  // --- JOGO 4: DAVI E A LANÇA DE SAUL (v114.0) ---
   // ==========================================================================
   function runJonatasAlvo(container, phase) {
     const currentPhaseNum = phase || 1;

@@ -1,21 +1,22 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v113.0';
+const CACHE_VERSION = 'vortice-trono-ebd-v114.0';
 const ASSETS_TO_CACHE = [
-  './2_ASSETS_UI_BOTOES/btn_jogo_04_lanca_saul.svg?v=111',
-  './2_ASSETS_UI_BOTOES/lanca_bronze.svg?v=111',
-  './2_ASSETS_UI_BOTOES/saul_arremessando.svg?v=111',
-  './2_ASSETS_UI_BOTOES/davi_pulando.svg?v=111',
-  './2_ASSETS_UI_BOTOES/davi_agachado.svg?v=111',
-  './2_ASSETS_UI_BOTOES/davi_em_pe.svg?v=111',
-  './2_ASSETS_UI_BOTOES/nuvem_raio.svg?v=108',
-  './2_ASSETS_UI_BOTOES/nuvem_chuva.svg?v=108',
-  './2_ASSETS_UI_BOTOES/nuvem_cinza.svg?v=108',
-  './2_ASSETS_UI_BOTOES/nuvem_branca.svg?v=108',
-  './2_ASSETS_UI_BOTOES/pombinha_branca_voando.svg?v=108',
-  './2_ASSETS_UI_BOTOES/arca_de_noe_labirinto.svg?v=108',
+  './2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=114',
+  './2_ASSETS_UI_BOTOES/btn_jogo_04_lanca_saul.svg?v=114',
+  './2_ASSETS_UI_BOTOES/lanca_bronze.svg?v=114',
+  './2_ASSETS_UI_BOTOES/saul_arremessando.svg?v=114',
+  './2_ASSETS_UI_BOTOES/davi_pulando.svg?v=114',
+  './2_ASSETS_UI_BOTOES/davi_agachado.svg?v=114',
+  './2_ASSETS_UI_BOTOES/davi_em_pe.svg?v=114',
+  './2_ASSETS_UI_BOTOES/nuvem_raio.svg?v=114',
+  './2_ASSETS_UI_BOTOES/nuvem_chuva.svg?v=114',
+  './2_ASSETS_UI_BOTOES/nuvem_cinza.svg?v=114',
+  './2_ASSETS_UI_BOTOES/nuvem_branca.svg?v=114',
+  './2_ASSETS_UI_BOTOES/pombinha_branca_voando.svg?v=114',
+  './2_ASSETS_UI_BOTOES/arca_de_noe_labirinto.svg?v=114',
   './',
   './index.html',
-  './ebd_super_arcade_audiovisual.js?v=111.0',
-  './ebd_modulos_educativos.js?v=111.0',
+  './ebd_super_arcade_audiovisual.js?v=114.0',
+  './ebd_modulos_educativos.js?v=114.0',
   './manifest.json',
   './2_ASSETS_UI_BOTOES/icon_512_oficial.png',
   './2_ASSETS_UI_BOTOES/icon_192_oficial.png',
@@ -39,6 +40,7 @@ self.addEventListener('activate', (event) => {
       Promise.all(
         keys.map((key) => {
           if (key !== CACHE_VERSION) {
+            console.log('[SW] Apagando cache antigo:', key);
             return caches.delete(key);
           }
         })
@@ -51,7 +53,43 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = event.request.url.toLowerCase();
 
-  // Mídias (Imagens, Áudios, Fontes): Cache-First ultra veloz
+  // 1. PÁGINA HTML / NAVEGAÇÃO: NETWORK-FIRST OBRIGATÓRIO!
+  // Garante que o tablet SEMPRE baixa a versão atualizada da nuvem quando online!
+  const isHtml = event.request.mode === 'navigate' || url.endsWith('/') || url.includes('index.html');
+  if (isHtml) {
+    event.respondWith(
+      fetch(event.request)
+        .then((netResp) => {
+          if (netResp && netResp.status === 200) {
+            const clone = netResp.clone();
+            caches.open(CACHE_VERSION).then((c) => c.put(event.request, clone));
+          }
+          return netResp;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // 2. SCRIPTS JS PRINCIPAIS: NETWORK-FIRST COM FALLBACK PARA CACHE
+  // Evita que celulares e tablets fiquem com versões antigas do código!
+  const isCoreScript = url.includes('ebd_super_arcade') || url.includes('ebd_modulos');
+  if (isCoreScript) {
+    event.respondWith(
+      fetch(event.request)
+        .then((netResp) => {
+          if (netResp && netResp.status === 200) {
+            const clone = netResp.clone();
+            caches.open(CACHE_VERSION).then((c) => c.put(event.request, clone));
+          }
+          return netResp;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // 3. MÍDIAS (Imagens, Áudios, Fontes): Cache-First rápido
   const isMedia = url.includes('.jpg') || url.includes('.jpeg') || url.includes('.png') || url.includes('.webp') || url.includes('.svg') || url.includes('.mp3') || url.includes('fonts.googleapis') || url.includes('gstatic');
 
   if (isMedia) {
@@ -70,20 +108,18 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Scripts e Páginas: Stale-While-Revalidate (Resposta instantânea do cache + atualização em segundo plano)
+  // Demais requisições
   event.respondWith(
     caches.match(event.request).then((cachedResp) => {
       const fetchPromise = fetch(event.request).then((networkResponse) => {
         if (networkResponse && networkResponse.status === 200) {
           const cloned = networkResponse.clone();
-          caches.open(CACHE_VERSION).then((cache) => {
-            cache.put(event.request, cloned);
-          });
+          caches.open(CACHE_VERSION).then((cache) => cache.put(event.request, cloned));
         }
         return networkResponse;
       }).catch(() => cachedResp);
 
-      return cachedResp || fetchPromise;
+      return fetchPromise || cachedResp;
     })
   );
 });
