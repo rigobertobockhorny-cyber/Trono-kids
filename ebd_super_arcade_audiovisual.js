@@ -211,7 +211,7 @@
       id: "dracma_perdida",
       title: "A DRACMA PERDIDA",
       sub: "Ache a Moeda no Escuro",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_02_dracma.svg?v=91",
+      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_02_dracma.svg?v=105",
       audioFile: "vovo_jogo_02.mp3",
       vovoFala: "A mulher perdeu a dracma! Mova a luz da lamparina e encontre as moedinhas!",
       run: (container, phase) => runDracmaPerdida(container, phase)
@@ -1381,87 +1381,308 @@
     }
   }
 
-  // --- JOGO 2: A DRACMA PERDIDA (LANTERNA NO ESCURO) ---
+  // --- JOGO 2: A DRACMA PERDIDA (LANTERNA NO ESCURO NA CASA BÍBLICA) ---
   function runDracmaPerdida(container, phase) {
-    const totalMoedas = Math.min(phase, 4);
+    // 1. CURVA DE DIFICULDADE (RIGOBERTO GAME DESIGN):
+    // Fase 1: 1 Moeda, Foco Grande (155px), Moeda no chão aberto bem fácil de achar.
+    // Fase 2: 2 Moedas, Foco Médio-Grande (130px), Moeda perto do vaso.
+    // Fase 3: 3 Moedas, Foco Médio (110px), Moedas nos cantos e tigela.
+    // Fase 4: 4 Moedas, Foco Fechado (92px), Moedas semi-ocultas em cestos e cantos.
+    // Fase 5+: 5 Moedas, Foco Estreito (72px), Moedas bem escondidas na sombra e atrás de objetos.
+    const totalMoedas = Math.min(phase, 5);
+    const raioLuz = phase === 1 ? 155 :
+                    phase === 2 ? 130 :
+                    phase === 3 ? 110 :
+                    phase === 4 ? 92 :
+                    Math.max(74 - (phase - 5) * 3, 58);
+
     let moedasAchadas = 0;
+    let isInteractionLocked = true;
+
+    // Catálogo de esconderijos ancorados organicamente nos elementos visuais do cenário 3D da casa:
+    // (A mulher, os vasos de barro, a tigela, o cesto no alto, a parede de pedra e o chão rústico)
+    const allHidingSpots = [
+      // 0: Chão aberto iluminado em frente à mulher (Fácil - Fase 1)
+      { id: "spot_floor_open", x: 44, y: 74, occlude: null },
+      // 1: Perto da base do grande vaso de barro (Fase 2)
+      { id: "spot_jar_base", x: 26, y: 70, occlude: "jar" },
+      // 2: Atrás da tigela de azeite na direita (Fase 3)
+      { id: "spot_bowl_side", x: 65, y: 84, occlude: "bowl" },
+      // 3: Canto escuro de pedra abaixo da janela (Fase 3/4)
+      { id: "spot_wall_shadow", x: 16, y: 56, occlude: "shadow" },
+      // 4: No cesto de palha no alto da estante à direita (Fase 4/5)
+      { id: "spot_basket_shelf", x: 84, y: 38, occlude: "straw" },
+      // 5: Atrás do vaso inferior esquerdo (Fase 5)
+      { id: "spot_bottom_pot", x: 15, y: 88, occlude: "jar" },
+      // 6: Na dobra de sombra da túnica da mulher (Fase 5)
+      { id: "spot_tunic_shadow", x: 42, y: 86, occlude: "shadow" },
+      // 7: Parapeito de pedra da janela rústica (Fase 5+)
+      { id: "spot_window_ledge", x: 24, y: 36, occlude: "stone" }
+    ];
+
+    // Seleciona os esconderijos de acordo com a fase
+    let currentSpots = [];
+    if (phase === 1) {
+      currentSpots = [allHidingSpots[0]];
+    } else if (phase === 2) {
+      currentSpots = [allHidingSpots[0], allHidingSpots[1]];
+    } else if (phase === 3) {
+      currentSpots = [allHidingSpots[1], allHidingSpots[2], allHidingSpots[3]];
+    } else if (phase === 4) {
+      currentSpots = [allHidingSpots[2], allHidingSpots[3], allHidingSpots[4], allHidingSpots[5]];
+    } else {
+      currentSpots = [allHidingSpots[2], allHidingSpots[3], allHidingSpots[4], allHidingSpots[5], allHidingSpots[6]];
+    }
+
+    // HTML das Moedas e dos Objetos de Sobreposição (Tampando a Moeda)
+    const coinsHtml = currentSpots.map((spot, idx) => {
+      let occludeHtml = "";
+      if (spot.occlude === "jar") {
+        occludeHtml = `<div style="position:absolute; left:${spot.x - 3}%; top:${spot.y - 2}%; width:30px; height:34px; background:radial-gradient(circle at 40% 35%, #78350f, #271306); border-radius:50% 50% 40% 40%; box-shadow:0 3px 6px rgba(0,0,0,0.65); pointer-events:none; z-index:4;"></div>`;
+      } else if (spot.occlude === "bowl") {
+        occludeHtml = `<div style="position:absolute; left:${spot.x + 1}%; top:${spot.y + 1}%; width:28px; height:20px; background:radial-gradient(circle at 50% 30%, #92400e, #3e1602); border-radius:25% 25% 60% 60%; box-shadow:0 2px 5px rgba(0,0,0,0.65); pointer-events:none; z-index:4;"></div>`;
+      } else if (spot.occlude === "straw") {
+        occludeHtml = `<div style="position:absolute; left:${spot.x - 2}%; top:${spot.y - 2}%; width:34px; height:22px; background:repeating-linear-gradient(45deg, #d97706 0px, #b45309 3px, transparent 3px, transparent 7px); pointer-events:none; z-index:4;"></div>`;
+      } else if (spot.occlude === "shadow") {
+        occludeHtml = `<div style="position:absolute; left:${spot.x - 4}%; top:${spot.y - 3}%; width:36px; height:26px; background:radial-gradient(circle, rgba(15,10,6,0.85) 0%, transparent 80%); pointer-events:none; z-index:4;"></div>`;
+      }
+
+      return `
+        <!-- Moeda Dracma Bíblica #${idx + 1} -->
+        <div id="dracma-coin-${idx}" class="dracma-coin-item" data-idx="${idx}" data-x="${spot.x}" data-y="${spot.y}" style="position:absolute; left:${spot.x}%; top:${spot.y}%; transform:translate(-50%, -50%); width:46px; height:46px; cursor:pointer; z-index:3; display:flex; align-items:center; justify-content:center; touch-action:none;">
+          <div class="dracma-coin-inner" style="width:100%; height:100%; border-radius:50%; background:radial-gradient(circle at 35% 35%, #fffbeb 0%, #fde047 30%, #eab308 70%, #92400e 100%); border:2.5px solid #ffffff; box-shadow:0 0 16px rgba(253, 224, 71, 0.9), 0 4px 10px rgba(0,0,0,0.8); display:flex; align-items:center; justify-content:center; color:#78350f; font-weight:900; font-size:22px; text-shadow:0 1px 2px rgba(255,255,255,0.8); user-select:none; transition:all 0.4s ease;">
+            🪙
+          </div>
+          <!-- Partícula de Brilho Sutil -->
+          <div class="dracma-sparkle" style="position:absolute; inset:-8px; border-radius:50%; background:radial-gradient(circle, rgba(253,224,71,0.5) 0%, transparent 70%); pointer-events:none; animation:alivePulseDracma 1.8s ease-in-out infinite;"></div>
+        </div>
+        <!-- Objeto de Sobreposição (Tampando Parcialmente a Moeda) -->
+        ${occludeHtml}
+      `;
+    }).join("");
 
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; background:radial-gradient(circle at center, #78350f 0%, #271306 100%); overflow:hidden; touch-action:none;">
-        <!-- Moedas escondidas no chão -->
-        <div id="dracmas-layer" style="position:absolute; inset:0;"></div>
-        <!-- Canvas de escuridão com máscara de luz -->
-        <canvas id="dracma-canvas" style="position:absolute; inset:0; width:100%; height:100%; z-index:5;"></canvas>
-        <!-- Contador de Moedas -->
-        <div style="position:absolute; top:16px; left:16px; background:rgba(0,0,0,0.7); border:2px solid #fde047; padding:6px 14px; border-radius:999px; color:#fde047; font-weight:900; z-index:10;">
-          🪙 <span id="dracmas-count">0</span> / ${totalMoedas}
+      <style>
+        @keyframes alivePulseDracma {
+          0%, 100% { transform:scale(1); opacity:0.6; }
+          50% { transform:scale(1.25); opacity:1; }
+        }
+        @keyframes dracmaFoundBurst {
+          0% { transform:translate(-50%, -50%) scale(1); opacity:1; }
+          40% { transform:translate(-50%, -80px) scale(1.8); opacity:1; filter:brightness(1.5); }
+          100% { transform:translate(-50%, -130px) scale(2.2); opacity:0; }
+        }
+        @keyframes lampFlamePulse {
+          0%, 100% { transform:scale(1); filter:drop-shadow(0 0 14px rgba(253,224,71,0.95)); }
+          50% { transform:scale(1.12); filter:drop-shadow(0 0 22px rgba(245,158,11,1)); }
+        }
+      </style>
+      <div style="position:relative; width:100%; height:100%; overflow:hidden; user-select:none; touch-action:none; background:#120b06;">
+        <!-- 0. IMAGEM OFICIAL 3D PIXAR DO AMBIENTE BÍBLICO (A MULHER, A CASA E O CHÃO COM VASOS) -->
+        <img src="./2_ASSETS_UI_BOTOES/fundo_dracma_perdida_3d.jpg?v=105" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none; z-index:1;" alt="Cenário 3D A Dracma Perdida" loading="eager" decoding="async">
+
+        <!-- 1. CAMADA DE MOEDAS E OBJETOS DE SOBREPOSIÇÃO -->
+        <div id="dracmas-layer" style="position:absolute; inset:0; z-index:3;">
+          ${coinsHtml}
+        </div>
+
+        <!-- 2. CANVAS DE ESCURIDÃO COM RECORTE DA LUZ DA LAMPARINA -->
+        <canvas id="dracma-canvas" style="position:absolute; inset:0; width:100%; height:100%; z-index:5; pointer-events:auto; transition:opacity 0.8s ease;"></canvas>
+
+        <!-- 3. ÍCONE DA LAMPARINA BÍBLICA FLUTUANTE GUIADA PELO DEDINHO -->
+        <div id="dracma-lamparina-glow" style="position:absolute; width:68px; height:68px; margin-left:-34px; margin-top:-34px; pointer-events:none; z-index:6; display:flex; align-items:center; justify-content:center; animation:lampFlamePulse 1.8s ease-in-out infinite; transition:transform 0.05s ease-out;">
+          <span style="font-size:36px; transform:translateY(-4px);">🪔</span>
+        </div>
+
+        <!-- 4. CONTADOR OFICIAL DE DRACMAS ENCONTRADAS -->
+        <div style="position:absolute; top:18px; left:18px; background:rgba(18, 11, 6, 0.88); border:2.5px solid #fde047; padding:8px 18px; border-radius:999px; color:#fde047; font-weight:900; font-size:18px; z-index:10; box-shadow:0 6px 16px rgba(0,0,0,0.75); display:flex; align-items:center; gap:8px;">
+          <span style="font-size:22px;">🪙</span> <span id="dracmas-count">0</span> / ${totalMoedas}
+        </div>
+
+        <!-- 5. CRACHÁ DE NÍVEL & FOCO DA LAMPARINA -->
+        <div style="position:absolute; top:18px; right:18px; background:rgba(18, 11, 6, 0.88); border:2px solid #ca8a04; padding:6px 14px; border-radius:999px; color:#fef08a; font-weight:800; font-size:13px; z-index:10; box-shadow:0 4px 12px rgba(0,0,0,0.65);">
+          💡 FOCO FASE ${phase}
+        </div>
+
+        <!-- 6. DICA VISUAL ANIMADA EM TELA (ORIENTAÇÃO DA CRIANÇA) -->
+        <div id="dracma-instruction-tip" style="position:absolute; bottom:24px; left:50%; transform:translateX(-50%); background:rgba(18, 11, 6, 0.88); border:2px solid #ca8a04; padding:8px 20px; border-radius:999px; color:#ffffff; font-weight:800; font-size:14px; z-index:10; box-shadow:0 4px 14px rgba(0,0,0,0.7); pointer-events:none; transition:all 0.5s ease; white-space:nowrap;">
+          🔍 Arraste a lamparina para iluminar o chão!
         </div>
       </div>
     `;
 
-    const layer = document.getElementById("dracmas-layer");
     const canvas = document.getElementById("dracma-canvas");
+    const lampGlow = document.getElementById("dracma-lamparina-glow");
+    const countEl = document.getElementById("dracmas-count");
     const ctx = canvas.getContext("2d");
+
     canvas.width = container.clientWidth || window.innerWidth;
     canvas.height = container.clientHeight || (window.innerHeight - 60);
 
-    // Gera posições aleatórias para as moedas
-    for (let i = 0; i < totalMoedas; i++) {
-      const x = 50 + Math.random() * (canvas.width - 120);
-      const y = 60 + Math.random() * (canvas.height - 140);
-      const coin = document.createElement("div");
-      coin.className = "dracma-coin";
-      coin.style.cssText = `
-        position:absolute; left:${x}px; top:${y}px; width:44px; height:44px;
-        background:radial-gradient(circle, #fde047 30%, #eab308 80%);
-        border:2.5px solid #ffffff; border-radius:50%; box-shadow:0 0 15px #fde047;
-        display:flex; align-items:center; justify-content:center; font-size:22px; cursor:pointer;
-      `;
-      coin.innerHTML = "✨";
-      coin.onclick = () => {
-        if (coin.dataset.found) return;
-        coin.dataset.found = "true";
-        coin.style.transform = "scale(1.4)";
-        coin.style.opacity = "0";
-        coin.style.transition = "all 0.4s ease";
-        TronoAudio.play("coin");
-        moedasAchadas++;
-        document.getElementById("dracmas-count").textContent = moedasAchadas;
-        if (moedasAchadas >= totalMoedas) {
-          setTimeout(triggerArcadeVictory, 600);
-        }
-      };
-      layer.appendChild(coin);
-    }
+    let lightX = canvas.width / 2;
+    let lightY = canvas.height * 0.65;
 
-    // Desenha escuridão e furo de luz
-    const raioLuz = Math.max(90 - phase * 10, 48);
-    function drawDarkness(lx, ly) {
+    // Desenha a escuridão bíblica suave com máscara de luz de lamparina
+    function renderDarkness(lx, ly) {
+      lightX = lx;
+      lightY = ly;
+
+      // Move a lamparina guia
+      if (lampGlow) {
+        lampGlow.style.left = lx + "px";
+        lampGlow.style.top = ly + "px";
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 1. Escuridão suave de noite bíblica (mantém silhueta atmosférica)
       ctx.globalCompositeOperation = "source-over";
-      ctx.fillStyle = "rgba(7, 10, 24, 0.94)";
+      ctx.fillStyle = "rgba(14, 9, 6, 0.94)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+      // 2. Furo de Luz da Lamparina com recorte e transição orgânica
       ctx.globalCompositeOperation = "destination-out";
-      const radG = ctx.createRadialGradient(lx, ly, raioLuz * 0.2, lx, ly, raioLuz);
+      const radG = ctx.createRadialGradient(lx, ly, raioLuz * 0.15, lx, ly, raioLuz);
       radG.addColorStop(0, "rgba(0,0,0,1)");
+      radG.addColorStop(0.65, "rgba(0,0,0,0.95)");
+      radG.addColorStop(0.85, "rgba(0,0,0,0.55)");
       radG.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = radG;
       ctx.beginPath();
       ctx.arc(lx, ly, raioLuz, 0, Math.PI * 2);
       ctx.fill();
-    }
-    drawDarkness(canvas.width / 2, canvas.height / 2);
 
-    function onMove(e) {
+      // 3. Auréola de luz âmbar dourada ao redor do foco da lamparina
+      ctx.globalCompositeOperation = "source-over";
+      const glowG = ctx.createRadialGradient(lx, ly, raioLuz * 0.45, lx, ly, raioLuz * 1.15);
+      glowG.addColorStop(0, "rgba(253, 224, 71, 0.20)");
+      glowG.addColorStop(0.65, "rgba(245, 158, 11, 0.08)");
+      glowG.addColorStop(1, "rgba(245, 158, 11, 0)");
+      ctx.fillStyle = glowG;
+      ctx.beginPath();
+      ctx.arc(lx, ly, raioLuz * 1.15, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    renderDarkness(lightX, lightY);
+
+    // FUNÇÃO QUE COLETA A MOEDA
+    function collectCoin(coinEl, idx) {
+      if (!coinEl || coinEl.dataset.found === "true") return;
+      coinEl.dataset.found = "true";
+      coinEl.style.zIndex = "25";
+      coinEl.style.pointerEvents = "none";
+      coinEl.style.animation = "dracmaFoundBurst 0.65s cubic-bezier(0.2, 0.9, 0.3, 1) forwards";
+
+      TronoAudio.play("coin");
+      moedasAchadas++;
+
+      if (countEl) {
+        countEl.textContent = moedasAchadas;
+        countEl.style.transform = "scale(1.4)";
+        setTimeout(() => { if (countEl) countEl.style.transform = "scale(1)"; }, 250);
+      }
+
+      // Vitória quando encontrar todas as moedas da fase!
+      if (moedasAchadas >= totalMoedas) {
+        // Revela a casa toda iluminada por 1 segundo!
+        setTimeout(() => {
+          if (canvas) canvas.style.opacity = "0";
+          if (lampGlow) lampGlow.style.display = "none";
+          TronoAudio.play("success");
+        }, 350);
+
+        setTimeout(triggerArcadeVictory, 1100);
+      }
+    }
+
+    // Clique direto nas moedas
+    currentSpots.forEach((_, idx) => {
+      const coin = document.getElementById(`dracma-coin-${idx}`);
+      if (coin) {
+        coin.addEventListener("click", (e) => {
+          e.stopPropagation();
+          collectCoin(coin, idx);
+        });
+      }
+    });
+
+    // MOVIMENTAÇÃO DA LUZ E TOQUE NA TELA (TOUCH / MOUSE)
+    function handlePointer(e) {
       const rect = canvas.getBoundingClientRect();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const clientY = e.touches ? e.touches[0].clientY : e.clientY;
       const lx = clientX - rect.left;
       const ly = clientY - rect.top;
-      drawDarkness(lx, ly);
+
+      renderDarkness(lx, ly);
+
+      // Verificação de proximidade para coletar a moeda caso a criança toque na luz sobre ela
+      currentSpots.forEach((spot, idx) => {
+        const coin = document.getElementById(`dracma-coin-${idx}`);
+        if (!coin || coin.dataset.found === "true") return;
+
+        const coinPixelX = (spot.x / 100) * canvas.width;
+        const coinPixelY = (spot.y / 100) * canvas.height;
+
+        const dist = Math.hypot(lx - coinPixelX, ly - coinPixelY);
+        // Se a luz passou por cima da moeda e a criança tocou ou está sobre ela
+        if (dist <= Math.max(raioLuz * 0.75, 42)) {
+          // Destaca o brilho da moeda quando a luz está em cima
+          coin.style.filter = "brightness(1.4) drop-shadow(0 0 16px #fde047)";
+        } else {
+          coin.style.filter = "none";
+        }
+      });
     }
-    canvas.addEventListener("mousemove", onMove);
-    canvas.addEventListener("touchmove", onMove, { passive: true });
+
+    canvas.addEventListener("mousemove", handlePointer);
+    canvas.addEventListener("touchmove", handlePointer, { passive: true });
+    canvas.addEventListener("pointermove", handlePointer);
+
+    // Toque direto no canvas: verifica se tocou em cima de uma moeda revelada pela luz
+    function handleCanvasTap(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.changedTouches ? e.changedTouches[0].clientX : (e.touches ? e.touches[0].clientX : e.clientX);
+      const clientY = e.changedTouches ? e.changedTouches[0].clientY : (e.touches ? e.touches[0].clientY : e.clientY);
+      const lx = clientX - rect.left;
+      const ly = clientY - rect.top;
+
+      currentSpots.forEach((spot, idx) => {
+        const coin = document.getElementById(`dracma-coin-${idx}`);
+        if (!coin || coin.dataset.found === "true") return;
+
+        const coinPixelX = (spot.x / 100) * canvas.width;
+        const coinPixelY = (spot.y / 100) * canvas.height;
+
+        const distToTouch = Math.hypot(lx - coinPixelX, ly - coinPixelY);
+        const distToLight = Math.hypot(lightX - coinPixelX, lightY - coinPixelY);
+
+        // Se tocou perto da moeda E a moeda está dentro da área iluminada pela lamparina
+        if (distToTouch <= 46 || (distToTouch <= raioLuz && distToLight <= raioLuz)) {
+          collectCoin(coin, idx);
+        }
+      });
+    }
+
+    canvas.addEventListener("click", handleCanvasTap);
+    canvas.addEventListener("touchend", handleCanvasTap, { passive: true });
+
+    // TRAVA PEDAGÓGICA DO VOVÔ NÉSIO:
+    window._arcadeUnlockGameAction = function() {
+      if (!isInteractionLocked) return;
+      isInteractionLocked = false;
+      TronoAudio.play("pop");
+      const tip = document.getElementById("dracma-instruction-tip");
+      if (tip) {
+        tip.textContent = "✨ Encontre as moedinhas com a lamparina!";
+        tip.style.background = "rgba(34, 197, 94, 0.92)";
+        tip.style.borderColor = "#ffffff";
+        setTimeout(() => {
+          if (tip) tip.style.opacity = "0";
+        }, 2200);
+      }
+    };
   }
 
   // --- JOGO 3: O POMBO DA ARCA (LABIRINTO DE NUVENS) ---
