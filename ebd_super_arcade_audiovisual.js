@@ -125,6 +125,31 @@
             osc.start(now + idx * 0.09);
             osc.stop(now + idx * 0.09 + 0.6);
           });
+        } else if (type === "hit") {
+          // Som expressivo de Davi atingido ("bó-óim / poum" suave de arcade infantil)
+          const osc1 = this.ctx.createOscillator();
+          const gain1 = this.ctx.createGain();
+          osc1.type = "sawtooth";
+          osc1.frequency.setValueAtTime(290, now);
+          osc1.frequency.exponentialRampToValueAtTime(115, now + 0.28);
+          gain1.gain.setValueAtTime(0.28, now);
+          gain1.gain.exponentialRampToValueAtTime(0.008, now + 0.3);
+          osc1.connect(gain1);
+          gain1.connect(this.ctx.destination);
+          osc1.start(now);
+          osc1.stop(now + 0.3);
+
+          const osc2 = this.ctx.createOscillator();
+          const gain2 = this.ctx.createGain();
+          osc2.type = "triangle";
+          osc2.frequency.setValueAtTime(190, now + 0.06);
+          osc2.frequency.exponentialRampToValueAtTime(85, now + 0.32);
+          gain2.gain.setValueAtTime(0.32, now + 0.06);
+          gain2.gain.exponentialRampToValueAtTime(0.008, now + 0.34);
+          osc2.connect(gain2);
+          gain2.connect(this.ctx.destination);
+          osc2.start(now + 0.06);
+          osc2.stop(now + 0.34);
         } else if (type === "error") {
           const osc = this.ctx.createOscillator();
           const gain = this.ctx.createGain();
@@ -655,41 +680,64 @@
       }
       .davi-top-spear-tracker {
         position: absolute;
-        top: 12px;
+        top: 10px;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 25;
+        z-index: 30;
         display: flex;
         align-items: center;
-        gap: 8px;
-        background: rgba(15, 23, 42, 0.82);
-        border: 1.5px solid #fde047;
+        justify-content: center;
+        gap: 10px;
+        background: rgba(15, 23, 42, 0.72);
+        border: 2px solid rgba(253, 224, 71, 0.65);
         border-radius: 999px;
-        padding: 4px 14px;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.5);
-        backdrop-filter: blur(6px);
+        padding: 5px 14px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.55);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
       }
-      .davi-tracker-title {
-        color: #fde047;
-        font-weight: 900;
-        font-size: 12px;
-        letter-spacing: 0.5px;
+      .davi-top-spear-tracker.tracker-reset-shake {
+        animation: trackerShake 0.45s ease;
       }
-      .davi-spear-badges {
+      @keyframes trackerShake {
+        0%, 100% { transform: translateX(-50%); }
+        20% { transform: translateX(calc(-50% - 8px)); }
+        40% { transform: translateX(calc(-50% + 8px)); }
+        60% { transform: translateX(calc(-50% - 5px)); }
+        80% { transform: translateX(calc(-50% + 5px)); }
+      }
+      .davi-check-slot {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
         display: flex;
-        gap: 6px;
-        font-size: 14px;
         align-items: center;
+        justify-content: center;
+        background: rgba(30, 41, 59, 0.85);
+        border: 2px solid rgba(253, 224, 71, 0.45);
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.6);
+        transition: transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.2s ease, border-color 0.2s ease;
       }
-      .davi-badge {
-        transition: transform 0.2s ease;
+      .davi-check-slot.active-aim {
+        border-color: #fde047;
+        box-shadow: 0 0 10px rgba(253, 224, 71, 0.75);
+        animation: spearPulse 0.65s ease-in-out infinite alternate;
       }
-      .davi-badge.current {
-        animation: spearPulse 0.8s ease-in-out infinite alternate;
+      .davi-check-slot.slot-green {
+        background: linear-gradient(180deg, #22c55e 0%, #15803d 100%);
+        border: 2px solid #ffffff;
+        box-shadow: 0 0 14px rgba(34, 197, 94, 0.9), 0 3px 8px rgba(0,0,0,0.5);
+        transform: scale(1.1);
+      }
+      .davi-check-slot.slot-red {
+        background: linear-gradient(180deg, #ef4444 0%, #b91c1c 100%);
+        border: 2px solid #ffffff;
+        box-shadow: 0 0 14px rgba(239, 68, 68, 0.9), 0 3px 8px rgba(0,0,0,0.5);
+        transform: scale(1.06);
       }
       @keyframes spearPulse {
-        from { transform: scale(1); }
-        to { transform: scale(1.3); }
+        from { transform: scale(0.96); }
+        to { transform: scale(1.12); }
       }
       /* PALCO 3D EM TELA CHEIA TOTAL (100% DA TELA DO DISPOSITIVO) */
       .davi-palace-stage {
@@ -805,12 +853,19 @@
         transform: translateX(-50%) scaleY(0.64) scaleX(1.06) !important;
       }
       .davi-hero-box.hit-stumble {
-        animation: daviStumble 0.6s ease;
+        animation: daviStumble 0.68s ease;
       }
       @keyframes daviStumble {
         0%, 100% { transform: translateX(-50%) rotate(0deg); }
-        25% { transform: translateX(-58%) rotate(-10deg); filter: brightness(1.3) drop-shadow(0 0 10px #f87171); }
-        75% { transform: translateX(-42%) rotate(8deg); }
+        20% { transform: translateX(-62%) rotate(-12deg); }
+        45% { transform: translateX(-38%) rotate(10deg); }
+        70% { transform: translateX(-56%) rotate(-7deg); }
+      }
+      .davi-hero-img.hit-red-tint {
+        filter: sepia(1) saturate(8) hue-rotate(-50deg) brightness(1.08) drop-shadow(0 0 18px #ef4444) !important;
+      }
+      .davi-hero-img.dodge-green-glow {
+        filter: brightness(1.18) drop-shadow(0 0 14px #4ade80) !important;
       }
       .davi-hero-img {
         width: 100%;
@@ -1257,6 +1312,9 @@
     if (celebrationClapAudio) { try { celebrationClapAudio.pause(); } catch(e){} }
     if (window._daviSpearTimer) { clearTimeout(window._daviSpearTimer); window._daviSpearTimer = null; }
     if (window._daviWindupTimer) { clearTimeout(window._daviWindupTimer); window._daviWindupTimer = null; }
+    if (window._daviImpactTimer) { clearTimeout(window._daviImpactTimer); window._daviImpactTimer = null; }
+    if (window._daviNextRoundTimer) { clearTimeout(window._daviNextRoundTimer); window._daviNextRoundTimer = null; }
+    if (window._daviKeyHandler) { window.removeEventListener("keydown", window._daviKeyHandler); window._daviKeyHandler = null; }
 
     const stage = document.getElementById("screen-trono-arcade-stage");
     if (stage) {
@@ -2499,53 +2557,52 @@
   }
 
   // ==========================================================================
-  // JOGO 4: DAVI E A LANÇA DE SAUL (v121.0 - PERSPECTIVA 3D TELA CHEIA)
-  // - Saul de corpo inteiro em pé diante do trono monumental
-  // - Davi em primeiro plano com esquiva ágil (Pular, Abaixar, Esquerda, Direita)
-  // - Controles D-PAD flutuantes sobrepostos no rodapé (inseridos na cena)
-  // - 15 Fases progressivas: Fase 1 = 1 lança suave, ritmo cinematográfico
+  // JOGO 4: DAVI E A LANÇA DE SAUL (v125.0 - 3 DIREÇÕES + 3 VERDINHOS P/ FASE)
+  // - Saul de frente no centro arremessando em 3 direções (Centro, Diagonal Esq, Diagonal Dir)
+  // - Davi caminha livremente pelas 3 faixas (Esquerda <-> Centro <-> Direita) + Pula/Abaixa
+  // - Se atingir Davi: fica vermelhinho + som de impacto + marca X vermelho
+  // - Se desviar: ponto + brilho + tique verdinho (✓)
+  // - 3 Verdinhos seguidos na rodada (✓ ✓ ✓) = Confetes + Vovô Nésio + Passa de Fase!
   // ==========================================================================
   function runJonatasAlvo(container, phase) {
-    const currentPhaseNum = phase || 1;
-    // REGRA DE OURO RIGOBERTO: Fase 1 = 1 única lança suave! Fase 2 = 2 lanças...
-    const totalSpears = Math.min(phase || 1, 5);
-    let spearIndex = 0;
-    let successfulDodges = 0;
-    let isGameWon = false;
-    let isShooting = false;
-    let isUnlocked = true;
+    // Limpa quaisquer timers ou listeners de fase anterior
+    if (window._daviSpearTimer) { clearTimeout(window._daviSpearTimer); window._daviSpearTimer = null; }
+    if (window._daviWindupTimer) { clearTimeout(window._daviWindupTimer); window._daviWindupTimer = null; }
+    if (window._daviImpactTimer) { clearTimeout(window._daviImpactTimer); window._daviImpactTimer = null; }
+    if (window._daviNextRoundTimer) { clearTimeout(window._daviNextRoundTimer); window._daviNextRoundTimer = null; }
+    if (window._daviKeyHandler) { window.removeEventListener("keydown", window._daviKeyHandler); window._daviKeyHandler = null; }
 
-    // Posições de Davi no Primeiro Plano: "center", "left", "right"
+    const currentPhaseNum = Math.max(1, phase || 1);
+    const SPEARS_PER_ROUND = 3;
+    let spearIndex = 0;
+    let roundResults = [null, null, null]; // "green" | "red" | null
+    let isGameWon = false;
+
+    // Velocidade progressiva por fase (Fase 1 calma e didática -> Fase 15 ágil e emocionante)
+    const windupMs = Math.max(480, 820 - (currentPhaseNum - 1) * 24);
+    const flyDurationMs = Math.max(880, 1480 - (currentPhaseNum - 1) * 42);
+    const impactCheckMs = Math.round(flyDurationMs * 0.82);
+    const betweenSpearsMs = Math.max(660, 1050 - (currentPhaseNum - 1) * 26);
+
+    // Posições de Davi no Primeiro Plano: "left", "center", "right"
     let daviPosition = "center";
     let isJumping = false;
     let isCrouching = false;
 
-    // Catálogo das Lanças em Perspectiva 3D:
-    // 1. "baixa" -> Lança rente ao chão -> Davi PULA (▲)
-    // 2. "alta"  -> Lança alta no peito -> Davi ABAIXA (▼)
-    // 3. "esquerda" -> Lança no flanco esquerdo -> Davi esquiva para a DIREITA (▶)
-    // 4. "direita"  -> Lança no flanco direito -> Davi esquiva para a ESQUERDA (◀)
-    let attackCatalog = [];
-    if (currentPhaseNum === 1) {
-      attackCatalog = ["baixa"]; // Fase 1: 1 única lança rasteira (Pular!)
-    } else if (currentPhaseNum === 2) {
-      attackCatalog = ["baixa", "alta"];
-    } else if (currentPhaseNum === 3) {
-      attackCatalog = ["esquerda", "baixa", "direita"];
-    } else {
-      const allAttacks = ["baixa", "alta", "esquerda", "direita"];
-      for (let i = 0; i < totalSpears; i++) {
-        attackCatalog.push(allAttacks[i % allAttacks.length]);
-      }
-      for (let i = attackCatalog.length - 1; i > 0; i--) {
+    // Sorteia as 3 direções da rodada (sempre inclui Centro, Esquerda e Direita embaralhados!)
+    function buildRoundLanes() {
+      const lanes = ["center", "left", "right"];
+      for (let i = lanes.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [attackCatalog[i], attackCatalog[j]] = [attackCatalog[j], attackCatalog[i]];
+        [lanes[i], lanes[j]] = [lanes[j], lanes[i]];
       }
+      return lanes;
     }
 
+    let attackLanes = buildRoundLanes();
+
     window._arcadeUnlockGameAction = function() {
-      isUnlocked = true;
-      scheduleNextSpear(900);
+      scheduleNextSpear(750);
     };
 
     container.innerHTML = `
@@ -2555,6 +2612,13 @@
           <!-- Fundo Real 3D Pixar do Palácio de Saul -->
           <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=123" class="davi-palace-bg" alt="Palácio Real de Saul 3D"/>
           <div class="davi-palace-vignette"></div>
+
+          <!-- PLACAR VISUAL DAS 3 LANÇAS DA FASE (3 VERDINHOS = PASSA DE FASE! ZERO TEXTO!) -->
+          <div class="davi-top-spear-tracker" id="davi-top-spear-tracker">
+            <div class="davi-check-slot active-aim" id="davi-slot-0"></div>
+            <div class="davi-check-slot" id="davi-slot-1"></div>
+            <div class="davi-check-slot" id="davi-slot-2"></div>
+          </div>
 
           <!-- REI SAUL DE CORPO INTEIRO DE FRENTE NO CHÃO DIANTE DO TRONO -->
           <div class="davi-saul-throne" id="davi-saul-throne">
@@ -2601,84 +2665,98 @@
       </div>
     `;
 
-    // Atualiza badges de livramentos no topo se o elemento existir
+    const SVG_CHECK_GREEN = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 13L9.5 17.5L19 7" stroke="#ffffff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const SVG_CROSS_RED = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="#ffffff" stroke-width="3.6" stroke-linecap="round"/></svg>`;
+
     function updateBadges() {
-      const badgesEl = document.getElementById("davi-spear-badges");
-      if (!badgesEl) return;
-      let h = "";
-      for (let i = 0; i < totalSpears; i++) {
-        if (i < successfulDodges) {
-          h += `<span class="davi-badge done">⭐</span>`;
-        } else if (i === spearIndex) {
-          h += `<span class="davi-badge current">🗡️</span>`;
+      for (let i = 0; i < SPEARS_PER_ROUND; i++) {
+        const slot = document.getElementById("davi-slot-" + i);
+        if (!slot) continue;
+        const res = roundResults[i];
+        if (res === "green") {
+          slot.className = "davi-check-slot slot-green";
+          slot.innerHTML = SVG_CHECK_GREEN;
+        } else if (res === "red") {
+          slot.className = "davi-check-slot slot-red";
+          slot.innerHTML = SVG_CROSS_RED;
+        } else if (i === spearIndex && !isGameWon) {
+          slot.className = "davi-check-slot active-aim";
+          slot.innerHTML = "";
         } else {
-          h += `<span class="davi-badge pending">⚪</span>`;
+          slot.className = "davi-check-slot";
+          slot.innerHTML = "";
         }
       }
-      badgesEl.innerHTML = h;
     }
     updateBadges();
 
     const heroBox = document.getElementById("davi-hero-box");
+    const heroImg = document.getElementById("davi-hero-img");
     const saulThrone = document.getElementById("davi-saul-throne");
     const spearProjectile = document.getElementById("davi-spear-projectile");
     const stuckLayer = document.getElementById("davi-stuck-layer");
+    const trackerEl = document.getElementById("davi-top-spear-tracker");
+
+    function syncHeroClasses() {
+      if (!heroBox) return;
+      const laneClass = daviPosition === "left" ? "dodge-left" : (daviPosition === "right" ? "dodge-right" : "center-pos");
+      heroBox.className = "davi-hero-box " + laneClass + (isJumping ? " jumping" : "") + (isCrouching ? " crouching" : "");
+    }
 
     // =========================================================================
-    // MOVIMENTOS NATURAIS DE DAVI
+    // MOVIMENTOS NATURAIS DE DAVI PELAS 3 FAIXAS (ESQUERDA <-> CENTRO <-> DIREITA)
     // =========================================================================
-    // 1. Pular (▲ Cima)
     let jumpTimer = null;
     function doHeroJump() {
       if (isGameWon || isJumping) return;
       isJumping = true;
-      heroBox.classList.remove("crouching");
-      heroBox.classList.add("jumping");
+      isCrouching = false;
+      syncHeroClasses();
       TronoAudio.play("click");
 
       clearTimeout(jumpTimer);
       jumpTimer = setTimeout(() => {
-        heroBox.classList.remove("jumping");
         isJumping = false;
+        syncHeroClasses();
       }, 820);
     }
 
-    // 2. Abaixar (▼ Baixo)
     let crouchTimer = null;
     function doHeroCrouch() {
       if (isGameWon || isJumping) return;
       isCrouching = true;
-      heroBox.classList.add("crouching");
+      syncHeroClasses();
       TronoAudio.play("click");
 
       clearTimeout(crouchTimer);
       crouchTimer = setTimeout(() => {
-        heroBox.classList.remove("crouching");
         isCrouching = false;
+        syncHeroClasses();
       }, 820);
     }
 
-    // 3. Desviar para a Esquerda (◀ Esquerda)
+    // Passo para a Esquerda: Direita -> Centro -> Esquerda
     function doHeroLeft() {
       if (isGameWon) return;
-      daviPosition = "left";
-      heroBox.className = "davi-hero-box dodge-left" + (isJumping ? " jumping" : "") + (isCrouching ? " crouching" : "");
+      if (daviPosition === "right") {
+        daviPosition = "center";
+      } else {
+        daviPosition = "left";
+      }
+      syncHeroClasses();
       TronoAudio.play("click");
     }
 
-    // 4. Desviar para a Direita (▶ Direita)
+    // Passo para a Direita: Esquerda -> Centro -> Direita
     function doHeroRight() {
       if (isGameWon) return;
-      daviPosition = "right";
-      heroBox.className = "davi-hero-box dodge-right" + (isJumping ? " jumping" : "") + (isCrouching ? " crouching" : "");
+      if (daviPosition === "left") {
+        daviPosition = "center";
+      } else {
+        daviPosition = "right";
+      }
+      syncHeroClasses();
       TronoAudio.play("click");
-    }
-
-    // Voltar para o Centro suavemente
-    function doHeroCenter() {
-      if (isGameWon) return;
-      daviPosition = "center";
-      heroBox.className = "davi-hero-box center-pos" + (isJumping ? " jumping" : "") + (isCrouching ? " crouching" : "");
     }
 
     // BINDINGS TOUCH POINTERDOWN
@@ -2700,154 +2778,186 @@
         e.preventDefault(); doHeroRight();
       }
     }
+    window._daviKeyHandler = handleKeyDown;
     window.addEventListener("keydown", handleKeyDown);
 
     // =========================================================================
-    // CICLO DA LANÇA EM PERSPECTIVA 3D REAL (VINDO DO TRONO DE SAUL)
+    // CICLO DAS 3 LANÇAS EM 3 DIREÇÕES (CENTRO, DIAGONAL ESQ, DIAGONAL DIR)
     // =========================================================================
     function scheduleNextSpear(delay) {
       if (isGameWon) return;
       if (window._daviSpearTimer) clearTimeout(window._daviSpearTimer);
-      window._daviSpearTimer = setTimeout(launchSpearFromThrone, delay || 1400);
+      window._daviSpearTimer = setTimeout(launchSpearFromThrone, delay || 1000);
+    }
+
+    function checkEndOfRoundOrContinue() {
+      if (isGameWon) return;
+      if (spearIndex < SPEARS_PER_ROUND) {
+        updateBadges();
+        scheduleNextSpear(betweenSpearsMs);
+        return;
+      }
+
+      // Fechou as 3 lanças da rodada! Verifica se conquistou os 3 VERDINHOS (✓ ✓ ✓):
+      const allThreeGreen = roundResults.every(r => r === "green");
+      if (allThreeGreen) {
+        isGameWon = true;
+        if (window._daviKeyHandler) {
+          window.removeEventListener("keydown", window._daviKeyHandler);
+          window._daviKeyHandler = null;
+        }
+        TronoAudio.play("success");
+        window._daviNextRoundTimer = setTimeout(() => {
+          triggerArcadeVictory();
+        }, 550);
+      } else {
+        // Teve pelo menos 1 vermelho: mostra o resultado por 950ms, sacode o placar e reinicia nova rodada de 3 lanças!
+        window._daviNextRoundTimer = setTimeout(() => {
+          if (isGameWon) return;
+          TronoAudio.play("error");
+          if (trackerEl) {
+            trackerEl.classList.remove("tracker-reset-shake");
+            void trackerEl.offsetWidth;
+            trackerEl.classList.add("tracker-reset-shake");
+          }
+          window._daviNextRoundTimer = setTimeout(() => {
+            if (isGameWon) return;
+            if (stuckLayer) stuckLayer.innerHTML = "";
+            spearIndex = 0;
+            roundResults = [null, null, null];
+            attackLanes = buildRoundLanes();
+            updateBadges();
+            scheduleNextSpear(750);
+          }, 520);
+        }, 900);
+      }
     }
 
     function launchSpearFromThrone() {
-      if (isGameWon || spearIndex >= totalSpears) return;
-      isShooting = true;
+      if (isGameWon || spearIndex >= SPEARS_PER_ROUND) return;
+      if (!saulThrone || !spearProjectile) return;
 
-      const attackType = attackCatalog[spearIndex] || "baixa";
+      // Nas fases avançadas (5+), na 3ª lança Saul tem 50% de chance de mirar direto onde Davi está!
+      let lane = attackLanes[spearIndex] || "center";
+      if (currentPhaseNum >= 5 && spearIndex === 2 && Math.random() < 0.5) {
+        lane = daviPosition;
+      }
 
-      // 1. SAUL PREPARA O GOLPE (SUSPENSE SUAVE VISUAL)
+      updateBadges();
+
+      // 1. SAUL PREPARA O ARREMESSO NO CENTRO
       saulThrone.classList.add("windup");
       TronoAudio.play("click");
 
-      // Tempo de preparação visual suave para a criança prestar atenção: 900ms
       if (window._daviWindupTimer) clearTimeout(window._daviWindupTimer);
       window._daviWindupTimer = setTimeout(() => {
-        if (isGameWon) return;
+        if (isGameWon || !saulThrone || !spearProjectile) return;
 
-        // 2. ARREMESSO FÍSICO DE SAUL DE FRENTE PARA DAVI NO CENTRO
+        // 2. ARREMESSO SAINDO DA PONTA CENTRAL DA LANÇA DE SAUL (top: 46%, left: 50%)
         saulThrone.classList.remove("windup");
         saulThrone.classList.add("throw");
 
-        // Configuração inicial da lança saindo exatamente da ponta central da lança de Saul (top: 46%, left: 50%)
+        const stageEl = document.getElementById("davi-palace-stage");
+        const stageH = (stageEl && stageEl.clientHeight) ? stageEl.clientHeight : (window.innerHeight - 60);
+        const stageW = (stageEl && stageEl.clientWidth) ? stageEl.clientWidth : Math.min(window.innerWidth, 450);
+
+        // Posição vertical do corpo de Davi no palco atual (heroBox: bottom 142px, height 128px)
+        const heroBottomPx = stageH - 142;
+        const heroTopPx = heroBottomPx - 128;
+        const targetYpx = heroTopPx + 66;
+        const midPct = Math.round((targetYpx / stageH) * 100);
+
+        // Ângulo geométrico exato da diagonal saindo de (50%, 46%) até (24% ou 76%, midPct)
+        const startYpx = stageH * 0.46;
+        const dy = Math.max(110, targetYpx - startYpx);
+        const dx = stageW * 0.26;
+        const diagDeg = Math.max(18, Math.min(28, Math.round(Math.atan2(dx, dy) * (180 / Math.PI))));
+
+        let targetLeft = "50%";
+        let angleDeg = 0;
+        if (lane === "left") {
+          targetLeft = "24%";
+          angleDeg = diagDeg; // Ponta aponta na diagonal inferior-esquerda (↙)
+        } else if (lane === "right") {
+          targetLeft = "76%";
+          angleDeg = -diagDeg; // Ponta aponta na diagonal inferior-direita (↘)
+        }
+
+        const targetTop = midPct + "%";
+
+        // Nasce na ponta da lança de Saul já alinhada com a trajetória (reta ou diagonal!)
         spearProjectile.style.display = "block";
         spearProjectile.style.transition = "none";
         spearProjectile.style.top = "46%";
         spearProjectile.style.left = "50%";
         spearProjectile.style.width = "62px";
         spearProjectile.style.height = "126px";
-        spearProjectile.style.transform = "translate(-50%, -50%) scale(0.28)";
+        spearProjectile.style.transform = `translate(-50%, -50%) rotate(${angleDeg}deg) scale(0.28)`;
 
-        // Força reflow para animação CSS fluida
         void spearProjectile.offsetWidth;
 
-        // Cálculo dinâmico exato da altura de Davi no palco atual (qualquer tamanho de tela)
-        const stageEl = document.getElementById("davi-palace-stage");
-        const stageH = (stageEl && stageEl.clientHeight) ? stageEl.clientHeight : (window.innerHeight - 60);
-        // heroBox tem bottom: 142px e height: 128px
-        const heroBottomPx = stageH - 142;
-        const heroTopPx = heroBottomPx - 128;
-        const lowPct = Math.round(((heroBottomPx - 18) / stageH) * 100);
-        const highPct = Math.round(((heroTopPx + 26) / stageH) * 100);
-        const midPct = Math.round(((heroTopPx + 64) / stageH) * 100);
-
-        let targetLeft = "50%";
-        let targetTop = lowPct + "%";
-        let targetScale = "1.22";
-        const flyDurationMs = 1500; // Voo cinematográfico e suave (~1.5s)
-
-        if (attackType === "baixa") {
-          targetTop = lowPct + "%";
-          targetLeft = "50%";
-        } else if (attackType === "alta") {
-          targetTop = highPct + "%";
-          targetLeft = "50%";
-        } else if (attackType === "esquerda") {
-          targetTop = midPct + "%";
-          targetLeft = "24%";
-        } else if (attackType === "direita") {
-          targetTop = midPct + "%";
-          targetLeft = "76%";
-        }
-
-        // DISPARA O VOO EM PERSPECTIVA 3D CRESCENDO DO CENTRO DE SAUL ATÉ DAVI!
-        spearProjectile.style.transition = `top ${flyDurationMs}ms cubic-bezier(0.2, 0.6, 0.4, 1), left ${flyDurationMs}ms ease-out, transform ${flyDurationMs}ms cubic-bezier(0.2, 0.6, 0.4, 1)`;
+        // Voo em perspectiva 3D até a faixa alvo (Centro 50%, Esquerda 24% ou Direita 76%)
+        spearProjectile.style.transition = `top ${flyDurationMs}ms cubic-bezier(0.2, 0.6, 0.4, 1), left ${flyDurationMs}ms cubic-bezier(0.2, 0.6, 0.4, 1), transform ${flyDurationMs}ms cubic-bezier(0.2, 0.6, 0.4, 1)`;
         spearProjectile.style.top = targetTop;
         spearProjectile.style.left = targetLeft;
-        spearProjectile.style.transform = `translate(-50%, -50%) scale(${targetScale})`;
+        spearProjectile.style.transform = `translate(-50%, -50%) rotate(${angleDeg}deg) scale(1.22)`;
 
         TronoAudio.play("arrow");
 
-        // 3. MOMENTO DO IMPACTO / CHECAGEM DE ESQUIVA (aos 1220ms)
-        setTimeout(() => {
+        // 3. MOMENTO DO IMPACTO NA LINHA DE DAVI
+        if (window._daviImpactTimer) clearTimeout(window._daviImpactTimer);
+        window._daviImpactTimer = setTimeout(() => {
           if (isGameWon) return;
 
-          let didDodge = false;
-          if (attackType === "baixa") {
-            // Lança rasteira nos pés: Davi precisa estar pulando!
-            didDodge = isJumping;
-          } else if (attackType === "alta") {
-            // Lança alta na cabeça: Davi precisa estar agachado!
-            didDodge = isCrouching;
-          } else if (attackType === "esquerda") {
-            // Lança na esquerda: Davi precisa ter saído da esquerda!
-            didDodge = (daviPosition !== "left");
-          } else if (attackType === "direita") {
-            // Lança na direita: Davi precisa ter saído da direita!
-            didDodge = (daviPosition !== "right");
-          }
+          // Atinge Davi se ele estiver na mesma faixa da lança sem pular nem agachar
+          const hitDavi = (daviPosition === lane) && !isJumping && !isCrouching;
 
-          if (didDodge) {
-            // SUCESSO! LIVRAMENTO ABENÇOADO!
-            successfulDodges++;
+          spearProjectile.style.display = "none";
+          saulThrone.classList.remove("throw");
+
+          if (!hitDavi) {
+            // DESVIOU! PONTO + VERDINHO (✓)!
+            roundResults[spearIndex] = "green";
             spearIndex++;
             updateBadges();
 
-            // Crava a lança no chão com faísca
-            const stuck = document.createElement("div");
-            stuck.className = "davi-stuck-impact-spear";
-            stuck.style.left = targetLeft;
-            stuck.style.top = targetTop;
-            stuck.style.transform = `translate(-50%, -50%) scale(1.05)`;
-            stuckLayer.appendChild(stuck);
-
-            TronoAudio.play("star");
-            spearProjectile.style.display = "none";
-            saulThrone.classList.remove("throw");
-
-            if (successfulDodges >= totalSpears) {
-              // VITÓRIA DA FASE!
-              isGameWon = true;
-              window.removeEventListener("keydown", handleKeyDown);
-              setTimeout(() => {
-                triggerArcadeVictory();
-              }, 550);
-            } else {
-              // Próxima lança com intervalo calmo e relaxado
-              setTimeout(() => {
-                doHeroCenter();
-                scheduleNextSpear(1500);
-              }, 700);
+            // Crava a lança no tapete mantendo a inclinação exata do arremesso
+            if (stuckLayer) {
+              const stuck = document.createElement("div");
+              stuck.className = "davi-stuck-impact-spear";
+              stuck.style.left = targetLeft;
+              stuck.style.top = targetTop;
+              stuck.style.transform = `translate(-50%, -50%) rotate(${angleDeg}deg) scale(1.05)`;
+              stuckLayer.appendChild(stuck);
             }
-          } else {
-            // NÃO ESQUIVOU A TEMPO: FEEDBACK CARINHOSO SEM PUNIÇÃO
-            heroBox.classList.add("hit-stumble");
-            TronoAudio.play("pop");
 
-            spearProjectile.style.display = "none";
-            saulThrone.classList.remove("throw");
+            if (heroImg) {
+              heroImg.classList.add("dodge-green-glow");
+              setTimeout(() => { if (heroImg) heroImg.classList.remove("dodge-green-glow"); }, 420);
+            }
+
+            TronoAudio.play("coin");
+            checkEndOfRoundOrContinue();
+          } else {
+            // ATINGIDO! DAVIZINHO FICA VERMELHINHO + SOM DE IMPACTO + MARCA VERMELHA (✕)!
+            roundResults[spearIndex] = "red";
+            spearIndex++;
+            updateBadges();
+
+            if (heroBox) heroBox.classList.add("hit-stumble");
+            if (heroImg) heroImg.classList.add("hit-red-tint");
+            TronoAudio.play("hit");
 
             setTimeout(() => {
-              heroBox.classList.remove("hit-stumble");
-              doHeroCenter();
-              // Repete a mesma lança com calma
-              scheduleNextSpear(1400);
-            }, 900);
-          }
-        }, 1220);
+              if (heroBox) heroBox.classList.remove("hit-stumble");
+              if (heroImg) heroImg.classList.remove("hit-red-tint");
+            }, 680);
 
-      }, 900);
+            checkEndOfRoundOrContinue();
+          }
+        }, impactCheckMs);
+
+      }, windupMs);
     }
   }
 

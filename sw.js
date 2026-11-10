@@ -1,10 +1,10 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v124.0';
+const CACHE_VERSION = 'vortice-trono-ebd-v125.0';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './version.json',
-  './ebd_super_arcade_audiovisual.js?v=124.0',
-  './ebd_modulos_educativos.js?v=124.0',
+  './ebd_super_arcade_audiovisual.js?v=125.0',
+  './ebd_modulos_educativos.js?v=125.0',
   './2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=123',
   './2_ASSETS_UI_BOTOES/rei_saul_centro_v124.png?v=124',
   './2_ASSETS_UI_BOTOES/lanca_frontal_v123.png?v=123',
