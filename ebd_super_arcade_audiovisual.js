@@ -24,6 +24,13 @@
       if (this.ctx && this.ctx.state === "suspended") {
         this.ctx.resume();
       }
+      if (!this.splashAudio) {
+        try {
+          this.splashAudio = new Audio('./6_ASSETS_AUDIO/jogos_vovo/som_splash_agua.mp3?v=103');
+          this.splashAudio.volume = 0.95;
+          this.splashAudio.preload = "auto";
+        } catch(e) {}
+      }
     },
 
     play(type) {
@@ -71,17 +78,50 @@
             osc.stop(now + i * 0.05 + 0.35);
           });
         } else if (type === "splash") {
-          const osc = this.ctx.createOscillator();
-          const gain = this.ctx.createGain();
-          osc.type = "sawtooth";
-          osc.frequency.setValueAtTime(140, now);
-          osc.frequency.exponentialRampToValueAtTime(40, now + 0.3);
-          gain.gain.setValueAtTime(0.4, now);
-          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
-          osc.connect(gain);
-          gain.connect(this.ctx.destination);
-          osc.start(now);
-          osc.stop(now + 0.3);
+          // 1. Toca o arquivo de áudio de alta fidelidade do splash de água (Tchibum!)
+          if (this.splashAudio) {
+            try {
+              this.splashAudio.currentTime = 0;
+              this.splashAudio.play().catch(() => {});
+            } catch(e) {}
+          }
+          // 2. Camada WebAudio simultânea (Impacto aquático + Espirro de espuma 'CHÁÁÁÁÁ')
+          try {
+            // Camada A: Impacto e mergulho na água (cavidade 450Hz -> 85Hz)
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(450, now);
+            osc.frequency.exponentialRampToValueAtTime(85, now + 0.18);
+            gain.gain.setValueAtTime(0.55, now);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.22);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.22);
+
+            // Camada B: Espirro de espuma e água ('CHÁÁÁÁÁ') via ruído filtrado
+            const bufferSize = Math.floor(this.ctx.sampleRate * 0.45);
+            const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+              data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (this.ctx.sampleRate * 0.15));
+            }
+            const noise = this.ctx.createBufferSource();
+            noise.buffer = buffer;
+            const filter = this.ctx.createBiquadFilter();
+            filter.type = "bandpass";
+            filter.frequency.setValueAtTime(2800, now);
+            filter.frequency.exponentialRampToValueAtTime(800, now + 0.4);
+            filter.Q.setValueAtTime(3.5, now);
+            const noiseGain = this.ctx.createGain();
+            noiseGain.gain.setValueAtTime(0.5, now);
+            noiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+            noise.connect(filter);
+            filter.connect(noiseGain);
+            noiseGain.connect(this.ctx.destination);
+            noise.start(now);
+          } catch(e) {}
         } else if (type === "arrow") {
           const osc = this.ctx.createOscillator();
           const gain = this.ctx.createGain();
@@ -1342,6 +1382,7 @@
 
         } else {
           // === ERROU O TIMING: TENTE DE NOVO ===
+          TronoAudio.play("splash");
           TronoAudio.play("error");
           btn.textContent = "TENTE DE NOVO!";
           btn.style.background = "linear-gradient(180deg, #ef4444 0%, #b91c1c 100%)";
