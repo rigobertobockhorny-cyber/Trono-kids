@@ -15,9 +15,9 @@
     (function forcePurgeOldMobileCacheV55() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
-        const alreadyPurged = localStorage.getItem('trono_cache_purged_v109') === '1';
+        const alreadyPurged = localStorage.getItem('trono_cache_purged_v110') === '1';
         if (!alreadyPurged || urlParams.get('limpar') === '1') {
-          localStorage.setItem('trono_cache_purged_v109', '1');
+          localStorage.setItem('trono_cache_purged_v110', '1');
           if ('caches' in window) {
             caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
           }
@@ -29,7 +29,7 @@
     })();
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=109').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=110').then(reg => {
           reg.update();
           reg.addEventListener('updatefound', () => {
             const newWorker = reg.installing;
@@ -2555,8 +2555,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=109.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=109.0"></script>
+<script src="ebd_modulos_educativos.js?v=110.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=110.0"></script>
 <script>
   // LAZY-LOAD INTELIGENTE DE PINTURAS (6.3 MB)
   // Reduz em 90% o peso inicial do app, abrindo em menos de 1 segundo!
