@@ -7466,7 +7466,8 @@ window.openGamesHubScreen = function(filterCat) {
 
   const filterBar = document.getElementById("games-hub-filter-bar");
   if (filterBar) {
-    filterBar.innerHTML = `<span style="font-size:12.5px; font-weight:900; color:#fde047; padding:2px 8px;">SALA DE JOGOS — 17 JOGOS EM TELA CHEIA</span>`;
+    filterBar.innerHTML = "";
+    filterBar.style.display = "none";
   }
 
   if (typeof window.renderAll17ArcadeGamesInHub === "function") {

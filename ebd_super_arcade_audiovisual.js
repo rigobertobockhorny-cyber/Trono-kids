@@ -317,80 +317,80 @@
     {
       id: "pesca_maravilhosa",
       title: "PESCA MARAVILHOSA",
-      sub: "Toque na Zona Verde!",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=91",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_01_pesca_v130.png?v=130",
       audioFile: "vovo_jogo_01.mp3",
       vovoFala: "Vamos pescar com Pedro! Toque na tela quando a agulha estiver no verde!",
       run: (container, phase) => runPescaMaravilhosa(container, phase)
     },
     {
       id: "dracma_perdida",
-      title: "A DRACMA PERDIDA",
-      sub: "Ache a Moeda no Escuro",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_02_dracma.svg?v=105",
+      title: "ACHE A MOEDA",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_02_moeda_v130.png?v=130",
       audioFile: "vovo_jogo_02.mp3",
       vovoFala: "A mulher perdeu a dracma! Mova a luz da lamparina e encontre as moedinhas!",
       run: (container, phase) => runDracmaPerdida(container, phase)
     },
     {
       id: "pombo_arca",
-      title: "O POMBO DA ARCA",
-      sub: "Labirinto de Nuvens",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_03_pombo.svg?v=91",
+      title: "POMBINHA DA PAZ",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_03_pombo_v130.png?v=130",
       audioFile: "vovo_jogo_03.mp3",
       vovoFala: "Guie o pombinho pelas nuvens até pousar na janela da Arca de Noé!",
       run: (container, phase) => runPomboArca(container, phase)
     },
     {
       id: "jonatas_alvo",
-      title: "DAVI E A LANÇA DE SAUL",
-      sub: "Pule, Abaixe, Avance e Recue",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_04_lanca_saul.svg?v=112",
+      title: "DESVIE DA LANÇA",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_04_lanca_v130.png?v=130",
       audioFile: "vovo_jogo_04.mp3",
       vovoFala: "O rei Saul atirou a lança, mas Deus protegeu Davi! Use o controle para pular, abaixar, avançar e recuar!",
       run: (container, phase) => runJonatasAlvo(container, phase)
     },
     {
       id: "ovelha_perdida",
-      title: "A OVELHA PERDIDA",
-      sub: "Deslize e Ache a Ovelha",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_05_ovelha_perdida.svg?v=91",
+      title: "CADÊ A OVELHA?",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_05_ovelha1_v130.png?v=130",
       audioFile: "vovo_jogo_05.mp3",
       vovoFala: "Deslize o campo para os lados e encontre as ovelhinhas escondidas!",
       run: (container, phase) => runOvelhaPerdida(container, phase)
     },
     {
       id: "ovelha_fujona",
-      title: "A OVELHA FUJONA",
-      sub: "Alcance a Ovelhinha Sapeca",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_06_ovelha_fujona.svg?v=91",
+      title: "PEGA A OVELHA!",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_06_ovelha2_v130.png?v=130",
       audioFile: "vovo_jogo_06.mp3",
       vovoFala: "Arraste o pastorzinho pelo pasto até alcançar a ovelhinha fujona!",
       run: (container, phase) => runOvelhaFujona(container, phase)
     },
     {
       id: "animais_eden",
-      title: "ANIMAIS DO ÉDEN",
-      sub: "Encaixe na Silhueta Certa",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_07_animais_eden.svg?v=91",
+      title: "BICHINHOS DO ÉDEN",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_07_eden_v130.png?v=130",
       audioFile: "vovo_jogo_07.mp3",
       vovoFala: "Arraste cada animal para a sua sombra no Jardim do Éden!",
       run: (container, phase) => runAnimaisEden(container, phase)
     },
     {
       id: "quem_entrou_arca",
-      title: "QUEM ENTROU NA ARCA?",
-      sub: "Ouça e Toque no Animal",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_08_arca_noe.svg?v=91",
+      title: "ARCA DE NOÉ",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_08_arca_v130.png?v=130",
       audioFile: "vovo_jogo_08.mp3",
       vovoFala: "Ouça com atenção o que o Vovô falar e toque no bichinho certo!",
       run: (container, phase) => runQuemEntrouArca(container, phase)
     },
     {
       id: "quiz_visual",
-      title: "O GRANDE DESAFIO",
-      sub: "Perguntas com 3 Imagens",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_09_quiz.svg?v=91",
+      title: "QUIZ DA BÍBLIA",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png?v=130",
       audioFile: "vovo_jogo_09.mp3",
       vovoFala: "Escute a pergunta da Bíblia e toque na imagem da resposta certa!",
       run: (container, phase) => runQuizVisual(container, phase)
@@ -398,62 +398,62 @@
     {
       id: "ligue_pontos",
       title: "LIGUE OS PONTOS",
-      sub: "Conecte os Números 1, 2, 3...",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_10_pontos.svg?v=91",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_10_pontos_v130.png?v=130",
       audioFile: "vovo_jogo_10.mp3",
       vovoFala: "Ligue os pontinhos brilhantes na ordem dos números para revelar o desenho!",
       run: (container, phase) => runLiguePontos(container, phase)
     },
     {
       id: "seis_erros",
-      title: "OS 6 ERROS DO ÉDEN",
-      sub: "Ache o que está Diferente",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_11_erros.svg?v=91",
+      title: "JOGO DOS ERROS",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_11_erros_v130.png?v=130",
       audioFile: "vovo_jogo_11.mp3",
       vovoFala: "Compare as duas imagens e toque nos detalhes que estão diferentes!",
       run: (container, phase) => runSeisErros(container, phase)
     },
     {
       id: "criacao_ordem",
-      title: "A CRIAÇÃO DO MUNDO",
-      sub: "Coloque os Dias na Ordem",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_12_criacao.svg?v=91",
+      title: "CRIAÇÃO DO MUNDO",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_12_criacao_v130.png?v=130",
       audioFile: "vovo_jogo_12.mp3",
       vovoFala: "Coloque os quadros da Criação na ordem dos dias da semana!",
       run: (container, phase) => runCriacaoOrdem(container, phase)
     },
     {
       id: "memoria_sonoro",
-      title: "MEMÓRIA DOS BICHOS",
-      sub: "Encontre os Pares com Som",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_13_memoria.svg?v=91",
+      title: "JOGO DA MEMÓRIA",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_13_memoria_v130.png?v=130",
       audioFile: "vovo_jogo_13.mp3",
       vovoFala: "Vire as cartas e descubra os pares dos animais criados por Deus!",
       run: (container, phase) => runMemoriaSonoro(container, phase)
     },
     {
       id: "mana_deserto",
-      title: "O MANÁ NO DESERTO",
-      sub: "Ache as Cestas de Pão",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_14_mana.svg?v=91",
+      title: "PÃOZINHO DO CÉU",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_14_mana_v130.png?v=130",
       audioFile: "vovo_jogo_14.mp3",
       vovoFala: "Procure as cestinhas de maná fresquinho caídas no acampamento!",
       run: (container, phase) => runManaDeserto(container, phase)
     },
     {
       id: "tabernaculo_cesto",
-      title: "O CESTO DE MOISÉS",
-      sub: "Monte as Peças Sagradas",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_15_cesto.svg?v=91",
+      title: "BEBÊ MOISÉS",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_15_moises_v130.png?v=130",
       audioFile: "vovo_jogo_15.mp3",
       vovoFala: "Encaixe cada pecinha para montar o cestinho de juncos de Moisés!",
       run: (container, phase) => runTabernaculoCesto(container, phase)
     },
     {
       id: "puzzle_3d",
-      title: "QUEBRA-CABEÇA 3D",
-      sub: "Monte a Cena de Cinema",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_16_puzzle.svg?v=91",
+      title: "QUEBRA-CABEÇA",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_16_puzzle_v130.png?v=130",
       audioFile: "vovo_jogo_16.mp3",
       vovoFala: "Vamos montar o quebra-cabeça! Arraste as peças para formar a cena linda!",
       run: (container, phase) => runQuebraCabecaArcade(container, phase)
@@ -461,8 +461,8 @@
     {
       id: "pintura_magica",
       title: "PINTURA MÁGICA",
-      sub: "Vamos Colorir a História?",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_17_pintura.svg?v=91",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_17_pintura_v130.png?v=130",
       audioFile: "vovo_jogo_17.mp3",
       vovoFala: "Vamos colorir? Escolha as cores mágicas e toque para pintar o desenho!",
       run: (container, phase) => runPinturaMagicaArcade(container, phase)
@@ -1702,8 +1702,8 @@
     modal.innerHTML = `
       <div class="trono-victory-screen-content" style="width:100%; max-width:400px; display:flex; flex-direction:column; align-items:center; text-align:center; z-index:2; animation:vicCardPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
         <!-- 1. Único Ícone 3D Oficial do Jogo no Topo Flutuando Solto -->
-        <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
-          <img src="${game.icon}" style="width:96px; height:96px; object-fit:contain; border-radius:24px; border:3.5px solid #fde047; background:rgba(255,255,255,0.15); box-shadow:0 0 28px rgba(253,224,71,0.85), 0 8px 20px rgba(0,0,0,0.6); animation:aliveBtnFloat 2.0s ease-in-out infinite;" alt="${game.title}">
+        <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; margin-bottom:14px;">
+          <img src="${game.icon}" style="width:116px; height:116px; object-fit:contain; animation:aliveBtnFloat 2.0s ease-in-out infinite;" alt="${game.title}">
         </div>
 
         <!-- 2. Título Amarelo Dourado Brilhante Solto na Tela Roxa -->
@@ -3514,32 +3514,85 @@
   }
 
   // ==========================================================================
-  // 7. INJEÇÃO DOS 17 JOGOS NA SALA DE JOGOS (#screen-games-hub)
+  // 7. INJEÇÃO DOS 17 JOGOS NA SALA DE JOGOS (#screen-games-hub) — VISUAL LIMPO 3D PIXAR (ZERO BLOCOS!)
   // ==========================================================================
   window.renderAll17ArcadeGamesInHub = function() {
+    const filterBar = document.getElementById("games-hub-filter-bar");
+    if (filterBar) {
+      filterBar.style.display = "none";
+    }
+
     const gridEl = document.getElementById("games-hub-grid");
     if (!gridEl) return;
 
     gridEl.innerHTML = `
-      <div class="ebd-glass-card" style="padding:10px; margin-bottom:0;">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:10px;">
-          <div style="font-size:14px; font-weight:900; color:#fde047; text-align:left; line-height:1.15;">SALA DE JOGOS DO TRONO</div>
-          <span style="background:linear-gradient(180deg,#00e676,#00c853); color:#052e16; font-size:10.5px; font-weight:900; padding:3px 10px; border-radius:999px; border:1.5px solid #ffffff; white-space:nowrap;">17 JOGOS EM TELA CHEIA</span>
-        </div>
-        <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:8px;">
-          ${SUPER_ARCADE_GAMES.map(g => `
-            <div class="inner-purple-green" onclick="window.openTronoArcadeGame('${g.id}')" style="border-radius:16px; padding:8px 6px; display:flex; flex-direction:column; align-items:center; text-align:center; cursor:pointer; transition:transform 0.15s ease;">
-              <img src="${g.icon}" alt="${g.title}" style="width:58px; height:58px; object-fit:contain; margin-bottom:6px; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.55)); transition:transform 0.15s ease;">
-              <div style="font-size:11.5px; font-weight:900; color:#fde047; line-height:1.15;">${g.title}</div>
-              <div style="font-size:9.5px; font-weight:800; color:#f3e8ff; margin-top:2px;">${g.sub}</div>
-            </div>
-          `).join("")}
-        </div>
+      <style id="arcade-hub-clean-styles">
+        .arcade-hub-clean-grid {
+          width: 100%;
+          max-width: 420px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 14px;
+          row-gap: 20px;
+          padding: 4px 6px 38px 6px;
+          justify-items: center;
+          box-sizing: border-box;
+        }
+        .arcade-hub-item {
+          background: transparent !important;
+          border: none !important;
+          box-shadow: none !important;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          cursor: pointer;
+          padding: 4px 2px;
+          width: 100%;
+          transition: transform 0.14s ease;
+          -webkit-tap-highlight-color: transparent;
+          user-select: none;
+        }
+        .arcade-hub-item:active {
+          transform: scale(0.90);
+        }
+        .arcade-hub-item:last-child:nth-child(odd) {
+          grid-column: 1 / -1;
+          max-width: 52%;
+        }
+        .arcade-hub-icon-3d {
+          width: 116px;
+          height: 116px;
+          max-width: 31vw;
+          object-fit: contain;
+          pointer-events: none;
+        }
+        .arcade-hub-title {
+          margin-top: 3px;
+          font-family: 'Fredoka', sans-serif;
+          font-weight: 800;
+          font-size: 15.5px;
+          line-height: 1.12;
+          color: #fde047;
+          text-shadow: 0 2px 0 #3b1704, 0 0 3px #3b1704, 0 4px 8px rgba(0, 0, 0, 0.96);
+          text-align: center;
+          letter-spacing: 0.25px;
+          pointer-events: none;
+        }
+      </style>
+      <div class="arcade-hub-clean-grid">
+        ${SUPER_ARCADE_GAMES.map(g => `
+          <div class="arcade-hub-item" onclick="window.openTronoArcadeGame('${g.id}')">
+            <img src="${g.icon}" alt="${g.title}" class="arcade-hub-icon-3d" decoding="async">
+            <div class="arcade-hub-title">${g.title}</div>
+          </div>
+        `).join("")}
       </div>
     `;
   };
 
-  // Sobrescreve a abertura do Hub de Jogos para carregar os 17 jogos oficiais
+  // Sobrescreve a abertura do Hub de Jogos para carregar os 17 jogos oficiais com fundo Jardim Real
   const originalOpenGamesHub = window.openGamesHubScreen;
   window.openGamesHubScreen = function(filterCat) {
     if (typeof originalOpenGamesHub === "function") {

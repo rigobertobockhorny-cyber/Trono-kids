@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v129.0';
+        const CURRENT_VER = 'v130.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=129.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=130.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -2085,7 +2085,7 @@
       <button class="btn-nav-circle" onclick="goHome()" title="Voltar ao Início">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div id="games-hub-filter-bar" class="puzzle-diff-bar" style="overflow-x:auto;"></div>
+      <div id="games-hub-filter-bar" class="puzzle-diff-bar" style="display:none; overflow-x:auto;"></div>
       <button class="btn-nav-circle" onclick="openLessonHubScreen()" title="Ir para a Lição">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
@@ -2584,8 +2584,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=129.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=129.0"></script>
+<script src="ebd_modulos_educativos.js?v=130.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=130.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -3228,14 +3228,18 @@ function showScreen(screenId) {
   const paintNextBtn = document.getElementById('btn-paint-next');
   if (paintNextBtn) paintNextBtn.style.visibility = isFromLesson ? 'hidden' : 'visible';
 
-  if (typeof applyEbdBackgroundForScreen === 'function') {
-    applyEbdBackgroundForScreen(screenId);
-  } else {
-    const shell = document.getElementById('app-shell');
+  const shell = document.getElementById('app-shell');
+  if (shell) {
     if (screenId === 'screen-sleep') {
       shell.classList.add('sleep-dark-mode');
+      shell.style.backgroundImage = '';
     } else {
       shell.classList.remove('sleep-dark-mode');
+      if (screenId === 'screen-games-hub') {
+        shell.style.backgroundImage = "linear-gradient(180deg, rgba(10, 18, 42, 0.30) 0%, rgba(10, 18, 42, 0.45) 100%), url('./2_ASSETS_UI_BOTOES/bg_ebd_02_jardim.jpg')";
+      } else {
+        shell.style.backgroundImage = "url('./2_ASSETS_UI_BOTOES/ui_asset_01.jpg')";
+      }
     }
   }
 }
