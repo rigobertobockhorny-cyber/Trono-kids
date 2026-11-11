@@ -721,6 +721,37 @@
     return Object.assign({ gameId: gameId, gameTitle: entry.gameTitle, gameNum: entry.gameNum }, c);
   };
 
+  window.getAllArcadeRewardCardsList = function() {
+    const wonMap = window.getWonArcadeCardsMap();
+    const list = [];
+    SUPER_ARCADE_GAMES.forEach(g => {
+      const entry = ARCADE_REWARD_CARDS_DB[g.id];
+      if (!entry || !entry.milestones) return;
+      Object.keys(entry.milestones).map(Number).sort((a, b) => a - b).forEach(ph => {
+        const c = entry.milestones[ph];
+        if (!c) return;
+        list.push({
+          code: c.code,
+          cardNum: c.num,
+          phase: c.phase,
+          tier: c.tier,
+          shortTitle: c.title,
+          title: `${g.title} • ${c.title}`,
+          superCardImg: c.img,
+          img: c.img,
+          gameId: g.id,
+          gameTitle: g.title,
+          gameIcon: g.icon,
+          free: c.phase <= 5,
+          is16x9Card: true,
+          wonAt: Number(wonMap[c.code]) || 0,
+          conquered: !!wonMap[c.code]
+        });
+      });
+    });
+    return list;
+  };
+
   window.unlockArcadeMilestoneCard = function(gameId, phase) {
     if (!window.isArcadeRewardMilestonePhase(phase)) return null;
     const card = window.getArcadeMilestoneCard(gameId, phase);
@@ -738,8 +769,9 @@
     return card;
   };
 
-  window.shareOrDownloadArcadeRewardCard = async function(cardCode) {
-    TronoAudio.play("pop");
+  // Download DIRETO na memória do celular/tablet (SEM abrir WhatsApp nem menu externo!)
+  window.shareOrDownloadArcadeRewardCard = async function(cardCode, btnFeedbackEl) {
+    TronoAudio.play("success");
     const card = window.getArcadeCardByCode(cardCode);
     if (!card) return;
     const wonMap = window.getWonArcadeCardsMap();
@@ -748,26 +780,37 @@
       return;
     }
     const cleanUrl = String(card.img || "").split("?")[0];
-    const safeSlug = String(card.title || "card_trono_kids")
+    const safeSlug = String(card.title || "super_card_trono_kids")
       .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
       .toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
-    const fileName = `trono_kids_card_${String(card.num).padStart(2, "0")}_${safeSlug}.jpg`;
+    const fileName = `trono_kids_super_card_${String(card.num).padStart(2, "0")}_${safeSlug}.jpg`;
+
+    const showSavedFeedback = () => {
+      const targetBtn = btnFeedbackEl || document.getElementById("btn-canonical-reward-card");
+      if (targetBtn) {
+        const prevText = targetBtn.dataset.origLabel || targetBtn.textContent;
+        targetBtn.dataset.origLabel = prevText;
+        targetBtn.textContent = "SUPER CARD BAIXADO!";
+        setTimeout(() => {
+          if (targetBtn) targetBtn.textContent = prevText;
+        }, 2200);
+      }
+    };
 
     try {
-      const resp = await fetch(card.img);
+      const resp = await fetch(card.img || cleanUrl);
       const blob = await resp.blob();
-      const file = new File([blob], fileName, { type: "image/jpeg" });
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({
-          title: `Card Trono Kids - ${card.title}`,
-          text: ` Ganhei o Card "${card.title}" (Fase ${card.phase} do jogo ${card.gameTitle}) no app Trono da Promessa Kids!`,
-          files: [file]
-        });
-        return;
-      }
-    } catch (err) {
-      if (err && err.name === "AbortError") return;
-    }
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 4000);
+      showSavedFeedback();
+      return;
+    } catch (err) {}
 
     const a = document.createElement("a");
     a.href = cleanUrl;
@@ -775,6 +818,7 @@
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+    showSavedFeedback();
   };
 
   // ==========================================================================
@@ -1411,7 +1455,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: safe center;
-        padding: 58px 16px 24px 16px;
+        padding: 52px 14px 16px 14px;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         z-index: 130;
@@ -1592,10 +1636,14 @@
     return { maxCompleted: migratedMax, lastPhase: Math.max(1, migratedLast) };
   };
 
+  // REGRA OFICIAL DE DESBLOQUEIO:
+  // Fases 1 a 5 são 100% GRATUITAS e SEMPRE ABERTAS sem cadeado em todos os 16 jogos!
+  // Cadeados começam ESTRITAMENTE a partir da Fase 6 (6 a 15 para Assinantes, liberando 6 -> 7 -> 8... conforme vence)!
   window.getArcadeGameMaxUnlocked = function(gameId) {
+    if (!isArcadeVipActive()) return FREE_PHASES;
     const prog = window.getArcadeGameProgress(gameId);
-    const cap = isArcadeVipActive() ? TOTAL_PHASES : FREE_PHASES;
-    return Math.max(1, Math.min(cap, prog.maxCompleted + 1));
+    if (prog.maxCompleted < FREE_PHASES) return FREE_PHASES;
+    return Math.min(TOTAL_PHASES, prog.maxCompleted + 1);
   };
 
   window.saveArcadeLastPhase = function(gameId, phase) {
@@ -1617,8 +1665,10 @@
     const prog = window.getArcadeGameProgress(gameId);
     const pWon = Math.max(1, Math.min(TOTAL_PHASES, Math.floor(Number(phaseWon) || 1)));
     const newMaxCompleted = Math.max(prog.maxCompleted, pWon);
-    const cap = isArcadeVipActive() ? TOTAL_PHASES : FREE_PHASES;
-    const newMaxUnlocked = Math.max(1, Math.min(cap, newMaxCompleted + 1));
+    const isVip = isArcadeVipActive();
+    const newMaxUnlocked = !isVip
+      ? FREE_PHASES
+      : (newMaxCompleted < FREE_PHASES ? FREE_PHASES : Math.min(TOTAL_PHASES, newMaxCompleted + 1));
     const nextResumePhase = (pWon < newMaxUnlocked) ? (pWon + 1) : pWon;
     map[gameId] = {
       maxCompleted: newMaxCompleted,
@@ -1641,15 +1691,15 @@
         const totalEl = document.getElementById("arcade-phase-total");
         if (totalEl) totalEl.textContent = isVip ? "15" : "5";
       } else {
-        const pass = prompt("🔐 Senha do Desenvolvedor (Liberar 15 Fases):");
+        const pass = prompt("Senha do Desenvolvedor (Liberar 15 Fases):");
         if (pass && pass.trim() === "12345") {
           localStorage.setItem('trono_vip_active_v4', '1');
           if (typeof isVipUnlocked !== 'undefined') isVipUnlocked = true;
           const totalEl = document.getElementById("arcade-phase-total");
           if (totalEl) totalEl.textContent = "15";
-          alert("🛠️ Senha 12345 aceita! 15 Fases Liberadas no Arcade!");
+          alert("Senha 12345 aceita! 15 Fases Liberadas no Arcade!");
         } else if (pass) {
-          alert("❌ Senha incorreta!");
+          alert("Senha incorreta!");
         }
       }
       const pickerModal = document.getElementById("arcade-phase-picker-modal");
@@ -1674,7 +1724,7 @@
           <div class="arcade-phase-nav-group">
             <button class="arcade-phase-arrow-btn" id="arcade-phase-prev" type="button" title="Fase anterior">◀</button>
             <div class="arcade-phase-badge" id="arcade-phase-display" onclick="window.openArcadePhasePickerModal()" style="cursor:pointer;" title="Escolher Fase Desbloqueada">
-              ⭐ FASE <span id="arcade-phase-num">1</span> / <span id="arcade-phase-total">5</span> <span style="font-size:11px; opacity:0.9;">▾</span>
+              FASE <span id="arcade-phase-num">1</span> / <span id="arcade-phase-total">5</span> <span style="font-size:11px; opacity:0.9;">▾</span>
             </div>
             <button class="arcade-phase-arrow-btn" id="arcade-phase-next" type="button" title="Próxima fase desbloqueada">▶</button>
           </div>
@@ -1762,10 +1812,10 @@
     if (!game) return;
 
     currentActiveGame = game;
-    // RETOMA SEMPRE NA ÚLTIMA FASE JOGADA / DESBLOQUEADA (NUNCA VOLTA PARA A FASE 1 AO SAIR SEM QUERER!)
+    // RETOMA SEMPRE NA ÚLTIMA FASE JOGADA (ou inicia na Fase 1 se novo, mantendo 1 a 5 sempre abertas sem cadeado!)
     const maxUnl = window.getArcadeGameMaxUnlocked(game.id);
     const prog = window.getArcadeGameProgress(game.id);
-    currentPhase = Math.max(1, Math.min(maxUnl, prog.lastPhase || maxUnl));
+    currentPhase = Math.max(1, Math.min(maxUnl, prog.lastPhase || 1));
     _vovoAlreadySpokeInSession = false; // Reset da sessão: ao entrar no jogo, o Vovô falará na primeira fase!
 
     const stage = document.getElementById("screen-trono-arcade-stage");
@@ -1820,11 +1870,11 @@
         TronoAudio.play("click");
         currentPhase = target;
         loadPhase(currentPhase);
-      } else if (!isVip && target > FREE_PHASES && window.getArcadeGameProgress(currentActiveGame.id).maxCompleted >= FREE_PHASES) {
+      } else if (!isVip && target > FREE_PHASES) {
         window.openVipFromArcade();
       } else {
         TronoAudio.play("error");
-        window.openArcadePhasePickerModal(`🔒 Passe a Fase ${maxUnl} primeiro para liberar a Fase ${Math.min(TOTAL_PHASES, maxUnl + 1)}!`);
+        window.openArcadePhasePickerModal(`Passe a Fase ${maxUnl} primeiro para liberar a Fase ${Math.min(TOTAL_PHASES, maxUnl + 1)}.`);
       }
     }
   };
@@ -1834,7 +1884,6 @@
     const p = Math.floor(Number(phaseNum) || 1);
     const isVip = isArcadeVipActive();
     const maxUnl = window.getArcadeGameMaxUnlocked(currentActiveGame.id);
-    const prog = window.getArcadeGameProgress(currentActiveGame.id);
 
     if (p >= 1 && p <= maxUnl) {
       TronoAudio.play("click");
@@ -1847,7 +1896,7 @@
       return;
     }
 
-    if (!isVip && p > FREE_PHASES && prog.maxCompleted >= FREE_PHASES) {
+    if (!isVip && p > FREE_PHASES) {
       const pickerModal = document.getElementById("arcade-phase-picker-modal");
       if (pickerModal) pickerModal.style.display = "none";
       window.openVipFromArcade();
@@ -1857,11 +1906,7 @@
     TronoAudio.play("error");
     const noticeEl = document.getElementById("arcade-phase-picker-notice");
     if (noticeEl) {
-      if (!isVip && p > FREE_PHASES) {
-        noticeEl.innerHTML = `🔒 Passe até a Fase 5 e assine o Clube para liberar a Fase ${p}!`;
-      } else {
-        noticeEl.innerHTML = `🔒 Passe a <b>Fase ${maxUnl}</b> primeiro para liberar a Fase ${p}!`;
-      }
+      noticeEl.innerHTML = `Passe a <b>Fase ${maxUnl}</b> primeiro para liberar a Fase ${p}.`;
       noticeEl.style.color = "#fca5a5";
       noticeEl.style.borderColor = "#ef4444";
       noticeEl.style.background = "rgba(127,29,29,0.55)";
@@ -1896,7 +1941,7 @@
       let bg = "linear-gradient(180deg, #1e293b 0%, #0f172a 100%)";
       let border = "2px solid #475569";
       let shadow = "0 3px 8px rgba(0,0,0,0.45)";
-      let subIcon = "🔒";
+      let subIcon = `<img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="" style="width:12px; height:12px; object-fit:contain;">`;
       let textColor = "#94a3b8";
 
       if (isUnlocked) {
@@ -1904,11 +1949,13 @@
         if (isCompleted) {
           bg = "linear-gradient(180deg, #22c55e 0%, #15803d 100%)";
           border = isCurrent ? "3px solid #fde047" : "2px solid #86efac";
-          subIcon = "✓";
+          subIcon = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
         } else {
-          bg = "linear-gradient(180deg, #f59e0b 0%, #d97706 100%)";
-          border = "3px solid #fde047";
-          subIcon = "⭐";
+          bg = isCurrent
+            ? "linear-gradient(180deg, #f59e0b 0%, #d97706 100%)"
+            : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
+          border = isCurrent ? "3px solid #fde047" : "2px solid #7dd3fc";
+          subIcon = `<span style="font-size:8.5px; font-weight:900; letter-spacing:0.2px;">${isCurrent ? "ATUAL" : "LIVRE"}</span>`;
         }
         if (isCurrent) {
           shadow = "0 0 16px rgba(253,224,71,0.95), 0 4px 10px rgba(0,0,0,0.6)";
@@ -1917,25 +1964,25 @@
         bg = "linear-gradient(180deg, #451a03 0%, #1c1917 100%)";
         border = "2px solid rgba(245,158,11,0.55)";
         textColor = "#fcd34d";
-        subIcon = "👑🔒";
+        subIcon = `<img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="" style="width:12px; height:12px; object-fit:contain;">`;
       }
 
       gridHtml += `
         <button type="button" onclick="window.jumpToArcadeUnlockedPhase(${p})" style="position:relative; height:52px; border-radius:16px; background:${bg}; border:${border}; box-shadow:${shadow}; color:${textColor}; font-family:'Fredoka',sans-serif; font-weight:900; font-size:17px; display:flex; flex-direction:column; align-items:center; justify-content:center; line-height:1.05; cursor:pointer; padding:2px; touch-action:manipulation;">
           <span>${p}</span>
-          <span style="font-size:10px; opacity:0.95; margin-top:1px;">${subIcon}</span>
+          <span style="display:flex; align-items:center; justify-content:center; margin-top:2px;">${subIcon}</span>
         </button>
       `;
     }
 
-    const defaultNotice = `✅ Fases liberadas: <b>1 até ${maxUnl}</b>. Toque em qualquer fase liberada para jogar!`;
+    const defaultNotice = `Fases liberadas: <b>1 até ${maxUnl}</b>. Toque em qualquer fase liberada para jogar.`;
     const noticeStyle = initialNotice
       ? "background:rgba(127,29,29,0.55); border:1.5px solid #ef4444; color:#fca5a5;"
       : "background:rgba(15,23,42,0.75); border:1.5px solid rgba(56,189,248,0.55); color:#bae6fd;";
 
-    const jumpMaxBtnHtml = (currentPhase < maxUnl)
+    const jumpMaxBtnHtml = (currentPhase < maxUnl && prog.maxCompleted > 0)
       ? `<button type="button" onclick="window.jumpToArcadeUnlockedPhase(${maxUnl})" style="width:100%; padding:11px 14px; border-radius:999px; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2px solid #fde047; color:#ffffff; font-weight:900; font-size:13.5px; margin-bottom:9px; cursor:pointer; box-shadow:0 4px 12px rgba(245,158,11,0.4);">
-           ⚡ VOLTAR DIRETO PARA A FASE ${maxUnl}
+           IR DIRETO PARA A FASE ${maxUnl}
          </button>`
       : "";
 
@@ -1946,10 +1993,12 @@
             <img src="${currentActiveGame.icon}" alt="" style="width:40px; height:40px; object-fit:contain;">
             <div>
               <div style="font-size:15.5px; font-weight:900; color:#fde047; line-height:1.1;">ESCOLHER FASE</div>
-              <div style="font-size:11.5px; font-weight:800; color:#cbd5e1;">${currentActiveGame.title} • Atual: Fase ${currentPhase}</div>
+              <div style="font-size:11.5px; font-weight:800; color:#cbd5e1;">${currentActiveGame.title} • Fase ${currentPhase}</div>
             </div>
           </div>
-          <button type="button" onclick="document.getElementById('arcade-phase-picker-modal').style.display='none'" style="width:34px; height:34px; border-radius:50%; background:linear-gradient(180deg,#ef4444,#b91c1c); border:2px solid #ffffff; color:#ffffff; font-weight:900; font-size:15px; cursor:pointer; flex-shrink:0;">✕</button>
+          <button type="button" onclick="document.getElementById('arcade-phase-picker-modal').style.display='none'" aria-label="Fechar" style="width:34px; height:34px; border-radius:50%; background:linear-gradient(180deg,#0284c7,#0369a1); border:2px solid #ffffff; color:#ffffff; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
         </div>
 
         <div id="arcade-phase-picker-notice" style="${noticeStyle} border-radius:12px; padding:7px 10px; font-size:12px; font-weight:800; margin-bottom:12px; line-height:1.28;">
@@ -1963,7 +2012,7 @@
         ${jumpMaxBtnHtml}
 
         <button type="button" onclick="document.getElementById('arcade-phase-picker-modal').style.display='none'" style="width:100%; padding:12px; border-radius:999px; background:linear-gradient(180deg, #22c55e 0%, #15803d 100%); border:2px solid #86efac; color:#ffffff; font-weight:900; font-size:14px; cursor:pointer;">
-          ▶️ CONTINUAR NA FASE ${currentPhase}
+          CONTINUAR NA FASE ${currentPhase}
         </button>
       </div>
     `;
@@ -2064,19 +2113,18 @@
       : currentPhase;
     modal.innerHTML = `
       <div style="background:linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%); border:3px solid #fde047; border-radius:24px; padding:22px 20px; max-width:345px; width:92%; text-align:center; box-shadow:0 12px 36px rgba(0,0,0,0.85);">
-        <div style="font-size:38px; margin-bottom:4px;">⏸️</div>
-        <div style="font-size:18px; font-weight:900; color:#fde047; margin-bottom:4px;">JOGO EM PAUSA</div>
+        <div style="font-size:18px; font-weight:900; color:#fde047; margin-bottom:6px;">JOGO EM PAUSA</div>
         <div style="font-size:12.5px; font-weight:800; color:#bae6fd; margin-bottom:16px; line-height:1.3;">
-          💾 Sua <b>Fase ${currentPhase}</b> já está salva! Se sair, voltará direto nela.
+          Sua <b>Fase ${currentPhase}</b> já está salva. Se sair, voltará direto nela.
         </div>
         <button type="button" onclick="window.resumeArcadeGame()" style="width:100%; padding:13px; border-radius:999px; background:linear-gradient(180deg, #22c55e 0%, #15803d 100%); border:2px solid #86efac; color:#ffffff; font-weight:900; font-size:14.5px; margin-bottom:10px; cursor:pointer; box-shadow:0 4px 14px rgba(34,197,94,0.4);">
-          ▶️ CONTINUAR JOGANDO
+          CONTINUAR JOGANDO
         </button>
         <button type="button" onclick="window.openArcadePhasePickerModal()" style="width:100%; padding:11px; border-radius:999px; background:linear-gradient(180deg, #0284c7 0%, #0369a1 100%); border:2px solid #7dd3fc; color:#ffffff; font-weight:900; font-size:13.5px; margin-bottom:10px; cursor:pointer;">
-          🔢 ESCOLHER FASE (1 A ${maxUnl})
+          ESCOLHER FASE (1 A ${maxUnl})
         </button>
         <button type="button" onclick="window.forceCloseArcadeStage()" style="width:100%; padding:11px; border-radius:999px; background:transparent; border:2px solid #64748b; color:#cbd5e1; font-weight:800; font-size:13px; cursor:pointer;">
-          🚪 Sair para a Sala de Jogos
+          Sair para a Sala de Jogos
         </button>
       </div>
     `;
@@ -2296,26 +2344,24 @@
       rewardBtn.style.animation = "btnGlowPulse 1.8s ease-in-out infinite";
     }
 
-    if (!isVip && current >= 5) {
-      // TELA PADRONIZADA DE FIM DAS 5 FASES GRÁTIS (IGUAL EM TODOS OS 16 JOGOS!):
-      // Botão Dourado Principal: Assinar o App (+10 Fases)
-      // (Sem frase/botão extra "Voltar à Sala de Jogos", pois o botão azul redondo já fica fixo no topo!)
-      btn.textContent = "🔓 ASSINAR O APP (+10 FASES)";
-      btn.style.background = "linear-gradient(180deg, #f59e0b 0%, #d97706 100%)";
-      btn.style.border = "2.5px solid #fde047";
-      btn.style.boxShadow = "0 0 22px rgba(245,158,11,0.85), 0 6px 16px rgba(0,0,0,0.75)";
-    } else {
-      const btnText = (isVip && current >= TOTAL_PHASES) ? "🎉 FINALIZAR JOGUINHO!" : "CONTINUAR BRINCANDO";
-      btn.textContent = btnText;
-      btn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
-      btn.style.border = "2.5px solid #ffffff";
-      btn.style.boxShadow = "0 0 22px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75)";
+    const subBtn = document.getElementById("btn-canonical-subscribe");
+    if (subBtn) {
+      subBtn.dataset.unlocked = "1";
+      subBtn.style.opacity = "1";
+      subBtn.style.pointerEvents = "auto";
+      subBtn.style.cursor = "pointer";
+      subBtn.style.animation = "btnGlowPulse 1.8s ease-in-out infinite";
     }
+
+    const btnText = (isVip && current >= TOTAL_PHASES) ? "FINALIZAR JOGUINHO" : "CONTINUAR BRINCANDO";
+    btn.textContent = btnText;
+    btn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
+    btn.style.border = "2.5px solid #ffffff";
+    btn.style.boxShadow = "0 0 22px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75)";
     btn.style.color = "#ffffff";
     btn.style.cursor = "pointer";
     btn.style.opacity = "1";
     btn.style.pointerEvents = "auto";
-    // Hitbox 100% estática (sem translateY movendo o botão sob o dedo no Android!)
     btn.style.animation = "btnGlowPulse 1.8s ease-in-out infinite";
     TronoAudio.play("pop");
   }
@@ -2443,42 +2489,42 @@
         ? window.getArcadeGameMaxUnlocked(game.id)
         : current;
 
+      const dotSizePx = milestoneCard ? 38 : 42;
+      const dotFontPx = milestoneCard ? 15.5 : 17;
+
       let dotsHtml = "";
       if (!isVip) {
-        // 5 Bolinhas Gratuitas (1 a 5) + 6ª Bolinha com Cadeadinho VIP
+        // 5 Bolinhas Gratuitas SEMPRE ABERTAS (1 a 5 sem cadeado!) + 6ª Bolinha com Cadeadinho Oficial VIP
         for (let i = 1; i <= 5; i++) {
           const isJustWon = i === current;
           const isDone = i <= prog.maxCompleted;
-          const isUnl = i <= maxUnl;
           const bg = (isJustWon || isDone)
             ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)"
-            : (isUnl ? "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)" : "linear-gradient(180deg, #334155 0%, #1e293b 100%)");
-          const border = isJustWon ? "3px solid #fde047" : (isUnl ? "2px solid #ffffff" : "2px solid #64748b");
+            : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
+          const border = isJustWon ? "3px solid #fde047" : "2px solid #ffffff";
           const shadow = isJustWon
             ? "box-shadow: 0 0 16px rgba(253,224,71,0.95), 0 4px 10px rgba(0,0,0,0.5);"
             : "box-shadow: 0 4px 8px rgba(0,0,0,0.4);";
           const starIcon = (isJustWon || (prog.maxCompleted >= 5 && i === 5))
-            ? `<img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" style="position:absolute; top:-14px; right:-8px; width:22px; height:22px; object-fit:contain; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));" alt="Estrela">`
+            ? `<img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" style="position:absolute; top:-13px; right:-7px; width:20px; height:20px; object-fit:contain; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));" alt="Estrela">`
             : "";
-          const clickAttr = isUnl ? `onclick="window.jumpToArcadeUnlockedPhase(${i})"` : "";
-          const cursorCss = isUnl ? "cursor:pointer;" : "opacity:0.7;";
 
           dotsHtml += `
-            <div ${clickAttr} style="position:relative; width:42px; height:42px; border-radius:50%; background:${bg}; border:${border}; ${shadow} display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:17px; ${cursorCss}">
-              <span>${isUnl ? i : "🔒"}</span>
+            <div onclick="window.jumpToArcadeUnlockedPhase(${i})" style="position:relative; width:${dotSizePx}px; height:${dotSizePx}px; border-radius:50%; background:${bg}; border:${border}; ${shadow} display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:${dotFontPx}px; cursor:pointer;">
+              <span>${i}</span>
               ${starIcon}
             </div>
           `;
         }
 
-        // 6ª Bolinha com Cadeadinho Dourado (+10 Fases VIP — fecha o palco antes para abrir o modal visível!)
+        // 6ª Bolinha com Cadeado Oficial 3D (+10 Fases VIP — sem emoji!)
         dotsHtml += `
-          <div onclick="window.openVipFromArcade()" style="position:relative; width:42px; height:42px; border-radius:50%; background:linear-gradient(180deg, #f59e0b 0%, #b45309 100%); border:2.5px solid #fde047; box-shadow:0 0 14px rgba(253,224,71,0.7), 0 4px 8px rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; color:#ffffff; font-size:19px; cursor:pointer;" title="Liberar +10 Fases VIP">
-            <span>🔒</span>
+          <div onclick="window.openVipFromArcade()" style="position:relative; width:${dotSizePx}px; height:${dotSizePx}px; border-radius:50%; background:linear-gradient(180deg, #f59e0b 0%, #b45309 100%); border:2.5px solid #fde047; box-shadow:0 0 14px rgba(253,224,71,0.7), 0 4px 8px rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; color:#ffffff; cursor:pointer;" title="Liberar +10 Fases VIP">
+            <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Bloqueado" style="width:18px; height:18px; object-fit:contain;">
           </div>
         `;
       } else {
-        // Jogador VIP: mostra o bloco de 5 fases correspondente à fase atual
+        // Jogador VIP: mostra o bloco de 5 fases correspondente à fase atual (1..5 abertas; 6..15 com cadeado progressivo)
         const batchStart = Math.floor((current - 1) / 5) * 5 + 1;
         for (let i = batchStart; i < batchStart + 5 && i <= TOTAL_PHASES; i++) {
           const isJustWon = i === current;
@@ -2489,89 +2535,78 @@
             : (isUnl ? "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)" : "linear-gradient(180deg, #334155 0%, #1e293b 100%)");
           const border = isJustWon ? "3px solid #fde047" : (isUnl ? "2px solid #ffffff" : "2px solid #64748b");
           const clickAttr = isUnl ? `onclick="window.jumpToArcadeUnlockedPhase(${i})"` : "";
-          const cursorCss = isUnl ? "cursor:pointer;" : "opacity:0.7;";
+          const cursorCss = isUnl ? "cursor:pointer;" : "opacity:0.75;";
           dotsHtml += `
-            <div ${clickAttr} style="position:relative; width:42px; height:42px; border-radius:50%; background:${bg}; border:${border}; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:17px; ${cursorCss}">
-              <span>${isUnl ? i : "🔒"}</span>
+            <div ${clickAttr} style="position:relative; width:${dotSizePx}px; height:${dotSizePx}px; border-radius:50%; background:${bg}; border:${border}; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:${dotFontPx}px; ${cursorCss}">
+              ${isUnl ? `<span>${i}</span>` : `<img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Bloqueado" style="width:17px; height:17px; object-fit:contain;">`}
             </div>
           `;
         }
       }
 
+      // SUPER CARD SOLTO DIRETO NO FUNDO ROXO (ZERO BLOCO AZUL, ZERO BORDA BRANCA, ZERO TÍTULO INTERNO, ZERO EMOJI!)
+      // Moldura colorida girando (.frame-3d-alive) idêntica aos outros módulos do app + botão direto BAIXAR SUPER CARD!
       let rewardCardShowcaseHtml = "";
       if (milestoneCard) {
-        const badgeHeader = current >= 15
-          ? "🏆 CAMPEÃO! VOCÊ GANHOU UM SUPER CARD!"
-          : "🎁 PARABÉNS! VOCÊ GANHOU UM SUPER CARD!";
         rewardCardShowcaseHtml = `
-          <div style="position:relative; z-index:2; width:100%; max-width:330px; background:linear-gradient(180deg, rgba(30,27,75,0.92), rgba(15,23,42,0.95)); border:2.5px solid #fde047; border-radius:18px; padding:9px 10px 11px 10px; margin-bottom:12px; box-shadow:0 8px 24px rgba(0,0,0,0.75), 0 0 22px rgba(253,224,71,0.45);">
-            <div style="font-size:12.5px; font-weight:900; color:#fde047; margin-bottom:6px; letter-spacing:0.2px;">
-              ${badgeHeader}
-            </div>
-            <div style="width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:2px solid #ffffff; background:#050b1a; box-shadow:0 4px 12px rgba(0,0,0,0.7); margin-bottom:6px;">
-              <img src="${milestoneCard.img}" alt="${milestoneCard.title}" style="width:100%; height:100%; object-fit:cover; display:block;">
-            </div>
-            <div style="font-size:13px; font-weight:900; color:#ffffff; margin-bottom:8px; line-height:1.2;">
-              Super Card #${String(milestoneCard.num).padStart(2, "0")} • ${milestoneCard.title}
-            </div>
-            <button id="btn-canonical-reward-card" type="button" data-unlocked="1" data-card-code="${milestoneCard.code}" style="width:100%; padding:11px 12px; font-size:14px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #16a34a 0%, #15803d 100%); border:2px solid #86efac; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); opacity:1; cursor:pointer; pointer-events:auto; touch-action:manipulation; animation:btnGlowPulse 1.8s ease-in-out infinite;">
-              📲 BAIXAR / ENVIAR SUPER CARD
-            </button>
+          <div style="position:relative; z-index:2; font-size:14.5px; font-weight:900; color:#fde047; text-shadow:0 2px 8px rgba(0,0,0,0.88); margin-bottom:6px; letter-spacing:0.3px;">
+            VOCÊ GANHOU UM SUPER CARD!
           </div>
+          <div class="frame-3d-alive" style="position:relative; z-index:2; width:90%; max-width:276px; aspect-ratio:16/9; padding:5px; border-radius:18px; margin:0 auto 9px auto; box-sizing:border-box;">
+            <img src="${milestoneCard.img}" alt="Super Card" style="width:100%; height:100%; object-fit:cover; border-radius:13px; display:block; border:none;">
+          </div>
+          <button id="btn-canonical-reward-card" type="button" data-unlocked="1" data-card-code="${milestoneCard.code}" style="position:relative; z-index:2; width:100%; max-width:316px; padding:11px 14px; font-size:15px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #00b0ff 0%, #0066ff 100%); border:2.5px solid #b3e5fc; border-radius:999px; box-shadow:0 5px 14px rgba(0,0,0,0.6), 0 0 16px rgba(0,176,255,0.5); margin-bottom:8px; opacity:1; cursor:pointer; pointer-events:auto; touch-action:manipulation; animation:btnGlowPulse 1.8s ease-in-out infinite;">
+            BAIXAR SUPER CARD
+          </button>
         `;
       }
 
-      let phase5NoticeHtml = "";
       let actionsHtml = "";
       if (!isVip && current >= 5) {
-        phase5NoticeHtml = milestoneCard ? "" : `
-          <div style="position:relative; z-index:2; background:rgba(15, 23, 42, 0.55); border:2px solid rgba(253, 224, 71, 0.75); border-radius:18px; padding:10px 14px; margin-bottom:14px; max-width:330px; color:#ffffff; font-size:14.5px; font-weight:800; line-height:1.3;">
-            <span style="color:#fde047; font-weight:900;">🎉 5 Fases Grátis Concluídas!</span><br>
-            Assine o Clube para liberar as fases 6 a 15!
-          </div>
-        `;
+        // FASE 5 NO MODO GRÁTIS: Botão de Assinar (+10 Fases) + Botão Continuar Brincando (soltos no roxo, sem bloco extra!)
         actionsHtml = `
-          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:14px 16px; font-size:17px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
-            ⭐ MUITO BEM!...
+          <button id="btn-canonical-subscribe" type="button" data-unlocked="1" style="position:relative; z-index:2; width:100%; padding:11px 14px; font-size:15px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2.5px solid #fde047; border-radius:999px; box-shadow:0 0 18px rgba(245,158,11,0.7), 0 5px 14px rgba(0,0,0,0.65); margin-bottom:8px; cursor:pointer; pointer-events:auto; touch-action:manipulation; animation:btnGlowPulse 1.8s ease-in-out infinite;">
+            ASSINAR O APP (+10 FASES)
           </button>
-          <div id="btn-canonical-replay" style="margin-top:11px; color:#fef08a; font-weight:800; font-size:13.5px; cursor:pointer; text-decoration:underline; padding:4px;">
-            🔄 Jogar novamente desde a Fase 1
-          </div>
+          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:12px 14px; font-size:15.5px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
+            MUITO BEM!...
+          </button>
         `;
       } else {
+        const contPad = milestoneCard ? "12px 14px" : "15px";
+        const contFont = milestoneCard ? "16.5px" : "18.5px";
         actionsHtml = `
-          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:15px; font-size:18.5px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
-            ⭐ MUITO BEM!...
+          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:${contPad}; font-size:${contFont}; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
+            MUITO BEM!...
           </button>
         `;
       }
 
-      const iconSizePx = milestoneCard ? 76 : 104;
-      const titleFontPx = milestoneCard ? 23 : 28;
-      const spacingPx = milestoneCard ? 10 : 16;
+      const iconSizePx = milestoneCard ? 58 : 104;
+      const titleFontPx = milestoneCard ? 21 : 28;
+      const spacingPx = milestoneCard ? 7 : 16;
 
       modal.innerHTML = `
-        <div class="trono-victory-screen-content" style="width:100%; max-width:400px; display:flex; flex-direction:column; align-items:center; text-align:center; z-index:2; animation:vicCardPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+        <div class="trono-victory-screen-content" style="width:100%; max-width:380px; display:flex; flex-direction:column; align-items:center; text-align:center; z-index:2; animation:vicCardPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
           <!-- 1. Único Ícone 3D Oficial do Jogo no Topo Flutuando Solto -->
-          <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; margin-bottom:6px;">
+          <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; margin-bottom:4px;">
             <img src="${game.icon}" style="width:${iconSizePx}px; height:${iconSizePx}px; object-fit:contain; animation:aliveBtnFloat 2.0s ease-in-out infinite;" alt="${game.title}">
           </div>
 
           <!-- 2. Título Amarelo Dourado Brilhante Solto na Tela Roxa -->
-          <div style="position:relative; z-index:2; font-size:${titleFontPx}px; font-weight:900; color:#fde047; text-shadow:0 4px 12px rgba(0,0,0,0.9), 0 0 22px rgba(253,224,71,0.6); line-height:1.12; margin-bottom:${spacingPx}px; letter-spacing:0.6px; animation:titlePopBounce 1.4s ease-in-out infinite;">
+          <div style="position:relative; z-index:2; font-size:${titleFontPx}px; font-weight:900; color:#fde047; text-shadow:0 4px 12px rgba(0,0,0,0.9), 0 0 22px rgba(253,224,71,0.6); line-height:1.1; margin-bottom:${spacingPx}px; letter-spacing:0.5px; animation:titlePopBounce 1.4s ease-in-out infinite;">
             PARABÉNS!<br>MUITO BEM!
           </div>
 
-          <!-- 3. Bolinhas de Progresso Soltas (1 a 5 + 🔒) -->
-          <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:${spacingPx}px; min-height:46px;">
+          <!-- 3. Bolinhas de Progresso Soltas (1 a 5 + Cadeado Oficial) -->
+          <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:7px; margin-bottom:${spacingPx}px; min-height:${dotSizePx + 4}px;">
             ${dotsHtml}
           </div>
 
           ${rewardCardShowcaseHtml}
-          ${phase5NoticeHtml}
 
           <!-- 4. Ações Padronizadas de Vitória Soltas na Tela Roxa -->
-          <div style="position:relative; z-index:2; width:100%; max-width:330px;">
+          <div style="position:relative; z-index:2; width:100%; max-width:316px;">
             ${actionsHtml}
           </div>
         </div>
@@ -2584,17 +2619,30 @@
           if (ev) { ev.preventDefault(); ev.stopPropagation(); }
           const code = rewardBtn.getAttribute("data-card-code");
           if (code && typeof window.shareOrDownloadArcadeRewardCard === "function") {
-            window.shareOrDownloadArcadeRewardCard(code);
+            window.shareOrDownloadArcadeRewardCard(code, rewardBtn);
           }
         });
       }
+
+      const subBtn = document.getElementById("btn-canonical-subscribe");
+      if (subBtn) {
+        subBtn.addEventListener("click", (ev) => {
+          if (ev) { ev.preventDefault(); ev.stopPropagation(); }
+          window.openVipFromArcade();
+        });
+      }
+
       const mainBtn = document.getElementById("btn-canonical-continue");
       if (mainBtn) {
         mainBtn.addEventListener("click", (ev) => {
           if (mainBtn.dataset.unlocked !== "1") return;
           if (ev) { ev.preventDefault(); ev.stopPropagation(); }
           if (!isVip && current >= 5) {
-            window.openVipFromArcade();
+            // No modo normal (não assinante) ao clicar em Continuar Brincando na Fase 5:
+            // Carrega a Fase 1 livre e exibe o painel das 15 fases mostrando 6 a 15 bloqueadas com cadeado!
+            currentPhase = 1;
+            loadPhase(1);
+            window.openArcadePhasePickerModal("Fases 1 a 5 concluídas! As Fases 6 a 15 são exclusivas para assinantes.");
           } else {
             window.advanceArcadePhase();
           }
@@ -2894,7 +2942,7 @@
 
           <!-- Botão com Trava de Segurança Pedagógica (Ouve o Vovô antes de liberar) -->
           <button id="btn-pescar-action" style="width:90%; max-width:360px; background:#1e293b; color:#94a3b8; font-weight:900; font-size:18px; padding:15px; border-radius:999px; border:2.5px solid #475569; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:all 0.35s ease; pointer-events:none;">
-            🎯 PREPARE-SE...
+            PREPARE-SE...
           </button>
         </div>
       </div>
@@ -2922,7 +2970,7 @@
       isGameLocked = false;
       const b = document.getElementById("btn-pescar-action");
       if (b) {
-        b.textContent = "🎣 LANÇAR A REDE!";
+        b.textContent = "LANÇAR A REDE!";
         b.style.background = "linear-gradient(180deg, #22c55e 0%, #15803d 100%)";
         b.style.color = "#ffffff";
         b.style.border = "3px solid #ffffff";
@@ -2957,7 +3005,7 @@
 
         if (pos >= minGreen && pos <= maxGreen) {
           // === SUCESSO: ACERTOU NO VERDE! ===
-          btn.textContent = "✨ LANÇOU A REDE!";
+          btn.textContent = "LANÇOU A REDE!";
           btn.style.filter = "brightness(1.15)";
 
           // Movimento de arremesso do barco/Pedro
@@ -3061,7 +3109,7 @@
             peixes.forEach(p => {
               p.style.transform = "translateX(0) scale(1)";
             });
-            btn.textContent = "🎣 LANÇAR A REDE!";
+            btn.textContent = "LANÇAR A REDE!";
             btn.style.background = "linear-gradient(180deg, #22c55e 0%, #15803d 100%)";
             isActionInProgress = false;
             animId = requestAnimationFrame(loopTiming);
@@ -3071,7 +3119,7 @@
     }
   }
 
-  // --- JOGO 2: A DRACMA PERDIDA (LANTERNA NO ESCURO COM FOCO AO LADO DO DEDO + 1 A 15 DRACMAS ESPALHADAS) ---
+  // --- JOGO 2: A DRACMA PERDIDA (LANTERNA NO ESCURO COM FOCO AO LADO DO DEDO + TOQUE/CLIQUEZINHO PARA CAPTURAR) ---
   function runDracmaPerdida(container, phase) {
     if (window._dracmaCheckInterval) {
       clearInterval(window._dracmaCheckInterval);
@@ -3086,16 +3134,14 @@
     const raioLuz = Math.round(Math.max(52, 142 - (pNum - 1) * 6.4));
 
     // Tamanho da dracma diminui levemente nas fases avançadas para ficar mais desafiador sem sobrepor
-    const coinSizePx = pNum <= 4 ? 44 : (pNum <= 9 ? 38 : 33);
-    const coinFontPx = pNum <= 4 ? 21 : (pNum <= 9 ? 18 : 16);
+    const coinSizePx = pNum <= 4 ? 44 : (pNum <= 9 ? 38 : 34);
 
     let moedasAchadas = 0;
     let isInteractionLocked = true;
     let hasPlayerMovedLamp = false;
+    let activeCapturePointer = false;
 
     // 24 lugares 100% naturais no cenário (ZERO moedas dentro/na boca dos jarros e ZERO pedrinhas falsas na frente!):
-    // Cobre: em cima da janela, batente/parapeito da janela, parede de pedra, cestos no fundo,
-    // onde a mulher está ajoelhada, pertinho dos pés/sandália da mulher, atrás dos vasos e bem lá embaixo no chão!
     const allHidingSpots = [
       { id: "s01_acima_janela_esq",   x: 14, y: 13.0 },
       { id: "s02_acima_janela_dir",   x: 27, y: 12.5 },
@@ -3123,13 +3169,7 @@
       { id: "s24_chao_baixo_dir",     x: 36, y: 93.5 }
     ];
 
-    // Embaralhamento variado por fase + leve variação para nunca repetir sempre os mesmos lugares!
-    const pool = allHidingSpots.map((sp) => ({
-      id: sp.id,
-      x: sp.x,
-      y: sp.y,
-      litSince: 0
-    }));
+    const pool = allHidingSpots.map((sp) => ({ id: sp.id, x: sp.x, y: sp.y }));
     for (let i = pool.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       const tmp = pool[i];
@@ -3138,11 +3178,36 @@
     }
     const currentSpots = pool.slice(0, totalMoedas);
 
-    // HTML limpo das Dracmas (SEM pedrinhas/objetos falsos na frente!)
+    const dracmaCoinSvg = `
+      <svg viewBox="0 0 36 36" width="100%" height="100%" style="display:block; pointer-events:none;">
+        <defs>
+          <radialGradient id="dracmaGoldGrad" cx="35%" cy="32%" r="68%">
+            <stop offset="0%" stop-color="#fffef2"/>
+            <stop offset="32%" stop-color="#fde047"/>
+            <stop offset="72%" stop-color="#eab308"/>
+            <stop offset="100%" stop-color="#92400e"/>
+          </radialGradient>
+        </defs>
+        <circle cx="18" cy="18" r="16" fill="url(#dracmaGoldGrad)" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="18" cy="18" r="11.5" fill="none" stroke="#92400e" stroke-width="1.3" stroke-dasharray="2.5 1.8" opacity="0.75"/>
+        <path d="M18 10.5L20.1 15.1L25 15.7L21.3 19.1L22.3 24L18 21.5L13.7 24L14.7 19.1L11 15.7L15.9 15.1Z" fill="#fffbeb" stroke="#92400e" stroke-width="1"/>
+      </svg>
+    `;
+
+    const oilLampSvg = `
+      <svg viewBox="0 0 44 44" width="44" height="44" style="display:block; pointer-events:none;">
+        <path d="M31 18C31 12.5 34.5 9 34.5 9C34.5 9 38 12.5 38 18C38 20.6 36.4 22.5 34.5 22.5C32.6 22.5 31 20.6 31 18Z" fill="#fde047" stroke="#ffffff" stroke-width="1.2"/>
+        <path d="M33 18.2C33 15.2 34.5 13 34.5 13C34.5 13 36 15.2 36 18.2C36 19.6 35.3 20.6 34.5 20.6C33.7 20.6 33 19.6 33 18.2Z" fill="#f97316"/>
+        <path d="M9 24C9 20 14 18 21 18C27 18 31 20.5 35 22.5L33 26.5C29.5 29.5 25 31.5 19.5 31.5C13.5 31.5 9 28.2 9 24Z" fill="#d97706" stroke="#fde047" stroke-width="1.8"/>
+        <path d="M9.5 23C6.2 22.5 4.5 20 5.5 17.8C6.5 15.8 9.2 16.5 11 19" fill="none" stroke="#fde047" stroke-width="2.2" stroke-linecap="round"/>
+        <ellipse cx="20" cy="32.5" rx="7.5" ry="2.2" fill="#92400e" stroke="#fde047" stroke-width="1.2"/>
+      </svg>
+    `;
+
     const coinsHtml = currentSpots.map((spot, idx) => `
-      <div id="dracma-coin-${idx}" class="dracma-coin-item" data-idx="${idx}" data-x="${spot.x}" data-y="${spot.y}" style="position:absolute; left:${spot.x}%; top:${spot.y}%; transform:translate(-50%, -50%); width:${coinSizePx}px; height:${coinSizePx}px; cursor:pointer; z-index:3; display:flex; align-items:center; justify-content:center; touch-action:none; transition:transform 0.15s ease, filter 0.15s ease;">
-        <div class="dracma-coin-inner" style="width:100%; height:100%; border-radius:50%; background:radial-gradient(circle at 35% 35%, #fffbeb 0%, #fde047 32%, #eab308 72%, #92400e 100%); border:2px solid #ffffff; box-shadow:0 0 12px rgba(253, 224, 71, 0.85), 0 3px 8px rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; color:#78350f; font-weight:900; font-size:${coinFontPx}px; user-select:none;">
-          🪙
+      <div id="dracma-coin-${idx}" class="dracma-coin-item" data-idx="${idx}" data-x="${spot.x}" data-y="${spot.y}" style="position:absolute; left:${spot.x}%; top:${spot.y}%; transform:translate(-50%, -50%); width:${coinSizePx}px; height:${coinSizePx}px; cursor:pointer; z-index:3; display:flex; align-items:center; justify-content:center; touch-action:none; transition:transform 0.14s ease, filter 0.14s ease;">
+        <div class="dracma-coin-inner" style="width:100%; height:100%; border-radius:50%; box-shadow:0 0 12px rgba(253, 224, 71, 0.85), 0 3px 8px rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; user-select:none;">
+          ${dracmaCoinSvg}
         </div>
       </div>
     `).join("");
@@ -3174,24 +3239,25 @@
         <!-- 3. ANEL DE APOIO DO DEDINHO (ONDE A CRIANÇA ENCOSTA) -->
         <div id="dracma-finger-ring" style="position:absolute; width:38px; height:38px; margin-left:-19px; margin-top:-19px; border-radius:50%; border:2px dashed rgba(253,224,71,0.55); background:rgba(253,224,71,0.10); pointer-events:none; z-index:6; opacity:0; transition:opacity 0.25s ease;"></div>
 
-        <!-- 4. ÍCONE DA LAMPARINA ENTRE O DEDO E O FOCO (SEM TAMPAR O CENTRO DO FOCO DE LUZ!) -->
-        <div id="dracma-lamparina-glow" style="position:absolute; width:54px; height:54px; margin-left:-27px; margin-top:-27px; pointer-events:none; z-index:7; display:flex; align-items:center; justify-content:center; opacity:0.42; filter:grayscale(0.9) brightness(0.6); transition:opacity 0.45s ease, filter 0.45s ease;">
-          <span style="font-size:30px;">🪔</span>
+        <!-- 4. LAMPARINA VETORIAL ENTRE O DEDO E O FOCO (SEM TAMPAR O CENTRO DO FOCO DE LUZ!) -->
+        <div id="dracma-lamparina-glow" style="position:absolute; width:50px; height:50px; margin-left:-25px; margin-top:-25px; pointer-events:none; z-index:7; display:flex; align-items:center; justify-content:center; opacity:0.42; filter:grayscale(0.9) brightness(0.6); transition:opacity 0.45s ease, filter 0.45s ease;">
+          ${oilLampSvg}
         </div>
 
-        <!-- 5. CONTADOR OFICIAL DE DRACMAS ENCONTRADAS -->
-        <div style="position:absolute; top:14px; left:14px; background:rgba(18, 11, 6, 0.88); border:2.5px solid #fde047; padding:6px 15px; border-radius:999px; color:#fde047; font-weight:900; font-size:17px; z-index:10; box-shadow:0 6px 16px rgba(0,0,0,0.75); display:flex; align-items:center; gap:7px; pointer-events:none;">
-          <span style="font-size:20px;">🪙</span> <span id="dracmas-count">0</span> / ${totalMoedas}
+        <!-- 5. CONTADOR OFICIAL DE DRACMAS ENCONTRADAS (ZERO EMOJI) -->
+        <div style="position:absolute; top:14px; left:14px; background:rgba(18, 11, 6, 0.88); border:2.5px solid #fde047; padding:6px 14px; border-radius:999px; color:#fde047; font-weight:900; font-size:17px; z-index:10; box-shadow:0 6px 16px rgba(0,0,0,0.75); display:flex; align-items:center; gap:7px; pointer-events:none;">
+          <span style="width:22px; height:22px; display:inline-flex;">${dracmaCoinSvg}</span>
+          <span><span id="dracmas-count">0</span> / ${totalMoedas}</span>
         </div>
 
-        <!-- 6. CRACHÁ DE NÍVEL & FOCO DA LAMPARINA -->
+        <!-- 6. CRACHÁ DE FASE LIMPO (ZERO EMOJI) -->
         <div style="position:absolute; top:14px; right:14px; background:rgba(18, 11, 6, 0.88); border:2px solid #ca8a04; padding:6px 13px; border-radius:999px; color:#fef08a; font-weight:800; font-size:12.5px; z-index:10; box-shadow:0 4px 12px rgba(0,0,0,0.65); pointer-events:none;">
-          💡 FOCO FASE ${pNum}
+          FASE ${pNum}
         </div>
 
         <!-- 7. DICA VISUAL (SOME LOGO AO MOVER PARA NÃO TAMPAR AS MOEDAS DE BAIXO!) -->
-        <div id="dracma-instruction-tip" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(18, 11, 6, 0.90); border:2px solid #ca8a04; padding:7px 16px; border-radius:999px; color:#fde047; font-weight:800; font-size:13px; z-index:10; box-shadow:0 4px 14px rgba(0,0,0,0.7); pointer-events:none; transition:opacity 0.4s ease; white-space:nowrap;">
-          🎙️ Ouça o Vovô explicar...
+        <div id="dracma-instruction-tip" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(18, 11, 6, 0.90); border:2px solid #ca8a04; padding:7px 16px; border-radius:999px; color:#fde047; font-weight:800; font-size:12.5px; z-index:10; box-shadow:0 4px 14px rgba(0,0,0,0.7); pointer-events:none; transition:opacity 0.4s ease; white-space:nowrap;">
+          Ouça o Vovô explicar...
         </div>
       </div>
     `;
@@ -3246,7 +3312,6 @@
         fingerRing.style.top = fy + "px";
       }
       if (lampGlow) {
-        // Posiciona a lamparina 🪔 na borda entre o dedo e o foco, deixando o círculo de luz 100% livre para enxergar!
         const iconX = fx + (lx - fx) * 0.34;
         const iconY = fy + (ly - fy) * 0.34;
         lampGlow.style.left = iconX + "px";
@@ -3254,7 +3319,6 @@
       }
     }
 
-    // Casa na penumbra com a lamparina AINDA APAGADA (enquanto o Vovô fala!)
     function renderUnlitRoom() {
       syncCanvasDimensions();
       const pos = computeLightOffsetFromFinger(fingerX, fingerY);
@@ -3267,7 +3331,6 @@
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
-    // Desenha a escuridão bíblica com o foco de luz aberto ao lado do dedinho
     function renderDarkness(fx, fy) {
       syncCanvasDimensions();
       fingerX = fx;
@@ -3279,12 +3342,10 @@
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // 1. Escuridão noturna fechada para esconder 100% as dracmas fora do foco
       ctx.globalCompositeOperation = "source-over";
       ctx.fillStyle = "rgba(12, 8, 5, 0.965)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // 2. Furo limpo de luz da lamparina ao lado do dedo
       ctx.globalCompositeOperation = "destination-out";
       const radG = ctx.createRadialGradient(lightX, lightY, raioLuz * 0.22, lightX, lightY, raioLuz);
       radG.addColorStop(0, "rgba(0,0,0,1)");
@@ -3296,7 +3357,6 @@
       ctx.arc(lightX, lightY, raioLuz, 0, Math.PI * 2);
       ctx.fill();
 
-      // 3. Auréola dourada suave + fio de luz sutil saindo da lamparina até o foco
       ctx.globalCompositeOperation = "source-over";
       const glowG = ctx.createRadialGradient(lightX, lightY, raioLuz * 0.45, lightX, lightY, raioLuz * 1.16);
       glowG.addColorStop(0, "rgba(253, 224, 71, 0.16)");
@@ -3327,10 +3387,6 @@
       }
 
       if (moedasAchadas >= totalMoedas) {
-        if (window._dracmaCheckInterval) {
-          clearInterval(window._dracmaCheckInterval);
-          window._dracmaCheckInterval = null;
-        }
         setTimeout(() => {
           if (canvas) canvas.style.opacity = "0";
           if (lampGlow) lampGlow.style.display = "none";
@@ -3342,11 +3398,11 @@
       }
     }
 
-    function evaluateBeamOverCoins(forceCollectIlluminated) {
+    // Apenas faz a moeda BRILHAR quando a luz passa por cima (NUNCA captura sozinha arrastando!)
+    function highlightCoinsInBeam() {
       if (isInteractionLocked) return;
-      const now = Date.now();
-      const collectRadius = Math.max(28, raioLuz * 0.64);
-      const glowRadius = Math.max(36, raioLuz * 0.86);
+      const innerBeam = Math.max(32, raioLuz * 0.72);
+      const outerBeam = Math.max(42, raioLuz * 0.98);
 
       currentSpots.forEach((spot, idx) => {
         const coin = document.getElementById(`dracma-coin-${idx}`);
@@ -3356,82 +3412,111 @@
         const coinPixelY = (spot.y / 100) * canvas.height;
         const distToLight = Math.hypot(lightX - coinPixelX, lightY - coinPixelY);
 
-        if (distToLight <= collectRadius) {
-          coin.style.filter = "brightness(1.45) drop-shadow(0 0 14px #fde047)";
-          coin.style.transform = "translate(-50%, -50%) scale(1.14)";
-          if (forceCollectIlluminated) {
-            collectCoin(coin);
-            return;
-          }
-          if (!spot.litSince) {
-            spot.litSince = now;
-          } else if (now - spot.litSince >= 140) {
-            collectCoin(coin);
-          }
-        } else if (distToLight <= glowRadius) {
-          spot.litSince = 0;
-          coin.style.filter = "brightness(1.25) drop-shadow(0 0 10px #fde047)";
-          coin.style.transform = "translate(-50%, -50%) scale(1.05)";
-          if (forceCollectIlluminated) {
-            collectCoin(coin);
-          }
+        if (distToLight <= innerBeam) {
+          coin.style.filter = "brightness(1.48) drop-shadow(0 0 15px #fde047)";
+          coin.style.transform = "translate(-50%, -50%) scale(1.18)";
+        } else if (distToLight <= outerBeam) {
+          coin.style.filter = "brightness(1.24) drop-shadow(0 0 10px #fde047)";
+          coin.style.transform = "translate(-50%, -50%) scale(1.06)";
         } else {
-          spot.litSince = 0;
           coin.style.filter = "none";
           coin.style.transform = "translate(-50%, -50%) scale(1)";
         }
       });
     }
 
-    function extractCanvasPoint(e) {
+    // CAPTURA POR CLIQUEZINHO: Quando a moeda já está iluminada pela lamparina, a criança dá um toque na moeda para pegar!
+    function tryCaptureIlluminatedCoinAtTap(tapX, tapY) {
+      if (isInteractionLocked) return false;
+      const illuminatedRadius = Math.max(44, raioLuz * 1.06);
+      const tapHitRadius = Math.max(44, coinSizePx * 1.18);
+
+      for (let idx = 0; idx < currentSpots.length; idx++) {
+        const coin = document.getElementById(`dracma-coin-${idx}`);
+        if (!coin || coin.dataset.found === "true") continue;
+
+        const spot = currentSpots[idx];
+        const coinPixelX = (spot.x / 100) * canvas.width;
+        const coinPixelY = (spot.y / 100) * canvas.height;
+
+        const isCoinIlluminated = Math.hypot(lightX - coinPixelX, lightY - coinPixelY) <= illuminatedRadius;
+        const didTapCoin = Math.hypot(tapX - coinPixelX, tapY - coinPixelY) <= tapHitRadius;
+
+        if (isCoinIlluminated && didTapCoin) {
+          collectCoin(coin);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function markFirstLampMove() {
+      if (!hasPlayerMovedLamp) {
+        hasPlayerMovedLamp = true;
+        if (fingerRing) fingerRing.style.opacity = "0.85";
+        const tip = document.getElementById("dracma-instruction-tip");
+        if (tip) tip.style.opacity = "0";
+      }
+    }
+
+    function extractCanvasPoint(e, preferChangedTouch) {
       const rect = canvas.getBoundingClientRect();
-      const pt = (e.touches && e.touches[0]) ? e.touches[0] : ((e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0] : e);
+      let pt = e;
+      if (preferChangedTouch && e.changedTouches && e.changedTouches.length > 0) {
+        pt = e.changedTouches[0];
+      } else if (e.touches && e.touches.length > 0) {
+        pt = e.touches[0];
+      } else if (e.changedTouches && e.changedTouches.length > 0) {
+        pt = e.changedTouches[0];
+      }
       return {
         fx: pt.clientX - rect.left,
         fy: pt.clientY - rect.top
       };
     }
 
-    function handlePointer(e) {
+    function onDownOrTouchStart(e) {
       if (isInteractionLocked) return;
-      if (!hasPlayerMovedLamp) {
-        hasPlayerMovedLamp = true;
-        if (fingerRing) fingerRing.style.opacity = "0.85";
-        const tip = document.getElementById("dracma-instruction-tip");
-        if (tip) tip.style.opacity = "0";
+      const { fx, fy } = extractCanvasPoint(e, true);
+      // Se tocou direto numa moeda que JÁ está iluminada no foco, captura na hora sem afastar a luz!
+      if (tryCaptureIlluminatedCoinAtTap(fx, fy)) {
+        activeCapturePointer = true;
+        return;
       }
-      const { fx, fy } = extractCanvasPoint(e);
+      activeCapturePointer = false;
+      markFirstLampMove();
       renderDarkness(fx, fy);
-      evaluateBeamOverCoins(false);
+      highlightCoinsInBeam();
     }
 
-    function handlePointerDownOrTap(e) {
+    function onMove(e) {
       if (isInteractionLocked) return;
-      if (!hasPlayerMovedLamp) {
-        hasPlayerMovedLamp = true;
-        if (fingerRing) fingerRing.style.opacity = "0.85";
-        const tip = document.getElementById("dracma-instruction-tip");
-        if (tip) tip.style.opacity = "0";
-      }
-      const { fx, fy } = extractCanvasPoint(e);
+      if (activeCapturePointer) return;
+      // No computador (mouse sem botão pressionado), também permite guiar a luz suavemente
+      markFirstLampMove();
+      const { fx, fy } = extractCanvasPoint(e, false);
       renderDarkness(fx, fy);
-      evaluateBeamOverCoins(true);
+      highlightCoinsInBeam();
     }
 
-    canvas.addEventListener("pointerdown", handlePointer);
-    canvas.addEventListener("pointermove", handlePointer);
-    canvas.addEventListener("touchstart", handlePointer, { passive: true });
-    canvas.addEventListener("touchmove", handlePointer, { passive: true });
-    canvas.addEventListener("mousemove", handlePointer);
-    canvas.addEventListener("click", handlePointerDownOrTap);
-    canvas.addEventListener("touchend", handlePointerDownOrTap, { passive: true });
+    function onUpOrEnd() {
+      activeCapturePointer = false;
+    }
 
-    // Intervalo leve (60ms) para coletar suavemente quando a criança segura o foco da lamparina sobre a dracma!
-    window._dracmaCheckInterval = setInterval(() => {
-      if (!isInteractionLocked && hasPlayerMovedLamp) {
-        evaluateBeamOverCoins(false);
-      }
-    }, 60);
+    function onDesktopClick(e) {
+      if (isInteractionLocked) return;
+      const { fx, fy } = extractCanvasPoint(e, true);
+      tryCaptureIlluminatedCoinAtTap(fx, fy);
+    }
+
+    canvas.addEventListener("pointerdown", onDownOrTouchStart);
+    canvas.addEventListener("pointermove", onMove);
+    canvas.addEventListener("pointerup", onUpOrEnd);
+    canvas.addEventListener("pointercancel", onUpOrEnd);
+    canvas.addEventListener("touchstart", onDownOrTouchStart, { passive: true });
+    canvas.addEventListener("touchmove", onMove, { passive: true });
+    canvas.addEventListener("touchend", onUpOrEnd, { passive: true });
+    canvas.addEventListener("click", onDesktopClick);
 
     // TRAVA PEDAGÓGICA DO VOVÔ NÉSIO: SÓ ACENDE A LAMPARINA E LIBERA O JOGO QUANDO O VOVÔ TERMINA DE FALAR!
     window._arcadeUnlockGameAction = function() {
@@ -3448,15 +3533,16 @@
         fingerRing.style.opacity = "0.75";
       }
       renderDarkness(fingerX, fingerY);
+      highlightCoinsInBeam();
       const tip = document.getElementById("dracma-instruction-tip");
       if (tip) {
-        tip.textContent = "🪔 Arraste o dedinho: a luz abre ao lado!";
+        tip.textContent = "Ilumine a moeda e toque nela para pegar";
         tip.style.color = "#ffffff";
         tip.style.background = "rgba(34, 197, 94, 0.92)";
         tip.style.borderColor = "#ffffff";
         setTimeout(() => {
           if (tip) tip.style.opacity = "0";
-        }, 2200);
+        }, 2600);
       }
     };
   }
@@ -4401,8 +4487,8 @@
         groupEl.style.zIndex = "32";
 
         const burst = document.createElement("div");
-        burst.textContent = "💖✨";
-        burst.style.cssText = "position:absolute; left:50%; top:10%; font-size:24px; pointer-events:none; z-index:25; animation:ovelhaHeartFloat 0.85s ease-out forwards;";
+        burst.innerHTML = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 2px 6px rgba(250,204,21,0.75));"><path d="M12 2L14.8 8.5L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.2 8.5L12 2Z" fill="#fde047" stroke="#f59e0b" stroke-width="1.5"/></svg>`;
+        burst.style.cssText = "position:absolute; left:50%; top:10%; pointer-events:none; z-index:25; animation:ovelhaHeartFloat 0.85s ease-out forwards;";
         groupEl.appendChild(burst);
         setTimeout(() => { try { burst.remove(); } catch(e){} }, 900);
       }
@@ -5505,8 +5591,8 @@
 
     function spawnWindowSparkle(cx, cy) {
       const sp = document.createElement("div");
-      sp.textContent = "✨⭐✨";
-      sp.style.cssText = `position:absolute; left:${cx.toFixed(1)}px; top:${cy.toFixed(1)}px; font-size:20px; pointer-events:none; z-index:90; animation: arcaStarBurst 0.65s ease-out forwards;`;
+      sp.innerHTML = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 2px 6px rgba(250,204,21,0.8));"><path d="M12 2L14.8 8.5L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.2 8.5L12 2Z" fill="#fde047" stroke="#f59e0b" stroke-width="1.5"/></svg>`;
+      sp.style.cssText = `position:absolute; left:${cx.toFixed(1)}px; top:${cy.toFixed(1)}px; pointer-events:none; z-index:90; animation: arcaStarBurst 0.65s ease-out forwards;`;
       winLayer.appendChild(sp);
       setTimeout(() => { if (sp.parentNode) sp.parentNode.removeChild(sp); }, 700);
     }
@@ -5911,105 +5997,17 @@
   function runPinturaMagicaArcade(container, phase) {
     container.innerHTML = `
       <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; background:#0f172a;">
-        <div id="pintura-quadro" style="width:260px; height:160px; background:#ffffff; border:3px solid #fde047; border-radius:20px; display:flex; align-items:center; justify-content:center; font-size:64px; cursor:pointer;" onclick="this.style.background='linear-gradient(180deg,#fde047,#38bdf8)'; TronoAudio.play('success'); setTimeout(triggerArcadeVictory, 700);">
-          🎨 Toque para Colorir!
+        <div id="pintura-quadro" style="width:260px; height:160px; background:#ffffff; border:3px solid #fde047; border-radius:20px; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; color:#1e1b4b; cursor:pointer;" onclick="this.style.background='linear-gradient(180deg,#fde047,#38bdf8)'; TronoAudio.play('success'); setTimeout(triggerArcadeVictory, 700);">
+          TOQUE PARA COLORIR
         </div>
       </div>
     `;
   }
 
   // ==========================================================================
-  // 7. INJEÇÃO DOS 16 JOGOS NA SALA DE JOGOS (#screen-games-hub) + GALERIA DE 32 CARDS 16:9
+  // 7. INJEÇÃO LIMPA DOS 16 JOGOS NA SALA DE JOGOS (#screen-games-hub)
+  // (Ícones 100% limpos: sem pílulas, sem emojis e sem banner duplicado de cards!)
   // ==========================================================================
-  window.openArcadeRewardCardsGalleryModal = function() {
-    TronoAudio.play("click");
-    let modal = document.getElementById("arcade-reward-cards-gallery-modal");
-    if (!modal) {
-      modal = document.createElement("div");
-      modal.id = "arcade-reward-cards-gallery-modal";
-      modal.style.cssText = "position:fixed; inset:0; background:rgba(9,11,28,0.94); backdrop-filter:blur(10px); z-index:999998; display:none; flex-direction:column; align-items:center; padding:14px 12px 22px 12px; overflow-y:auto; -webkit-overflow-scrolling:touch;";
-      document.body.appendChild(modal);
-    }
-
-    const wonMap = window.getWonArcadeCardsMap();
-    const isVip = (typeof isVipUnlocked !== "undefined" && isVipUnlocked) || localStorage.getItem("trono_vip_active_v4") === "1";
-
-    const allCards = [];
-    SUPER_ARCADE_GAMES.forEach(g => {
-      const entry = ARCADE_REWARD_CARDS_DB[g.id];
-      if (!entry || !entry.milestones) return;
-      Object.keys(entry.milestones).map(Number).sort((a, b) => a - b).forEach(ph => {
-        const c = entry.milestones[ph];
-        allCards.push(Object.assign({ gameId: g.id, gameTitle: g.title, gameIcon: g.icon }, c));
-      });
-    });
-
-    const wonCount = allCards.filter(c => !!wonMap[c.code]).length;
-
-    modal.innerHTML = `
-      <div style="width:100%; max-width:440px; display:flex; flex-direction:column; gap:10px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; background:linear-gradient(180deg,#4c1d95,#1e1b4b); border:2.5px solid #fde047; border-radius:18px; padding:10px 12px; box-shadow:0 6px 20px rgba(0,0,0,0.75);">
-          <div style="text-align:left;">
-            <div style="font-size:15px; font-weight:900; color:#fde047; line-height:1.15;">🎁 MEUS CARDS DOS JOGOS (16:9)</div>
-            <div style="font-size:11.5px; font-weight:800; color:#e2e8f0; margin-top:2px;">Conquistados: <span style="color:#4ade80;">${wonCount} / ${allCards.length}</span> • Compartilhe no WhatsApp!</div>
-          </div>
-          <button type="button" onclick="document.getElementById('arcade-reward-cards-gallery-modal').style.display='none'" style="width:36px; height:36px; border-radius:50%; background:linear-gradient(180deg,#ef4444,#b91c1c); border:2px solid #ffffff; color:#ffffff; font-weight:900; font-size:16px; cursor:pointer; flex-shrink:0;">✕</button>
-        </div>
-
-        <div style="background:rgba(30,41,59,0.85); border:1.5px solid rgba(253,224,71,0.55); border-radius:14px; padding:8px 10px; font-size:11.5px; font-weight:800; color:#fef08a; text-align:center; line-height:1.3;">
-          ⭐ Vença a <b>Fase 5</b> (Grátis) de cada jogo para ganhar o 1º Card!<br>
-          🏆 Vença a <b>Fase 15</b> (Assinante) para ganhar o Card Campeão!
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr; gap:11px; padding-bottom:18px;">
-          ${allCards.map(c => {
-            const isWon = !!wonMap[c.code];
-            const needsVip = c.phase > 5 && !isVip;
-            return `
-              <div style="background:linear-gradient(180deg,#1e1b4b,#0f172a); border:2px solid ${isWon ? "#4ade80" : "rgba(148,163,184,0.45)"}; border-radius:16px; padding:9px; box-shadow:0 6px 16px rgba(0,0,0,0.65);">
-                <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:6px;">
-                  <div style="display:flex; align-items:center; gap:6px; min-width:0;">
-                    <img src="${c.gameIcon}" alt="${c.gameTitle}" style="width:26px; height:26px; object-fit:contain; flex-shrink:0;">
-                    <div style="font-size:11.5px; font-weight:900; color:#fde047; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${c.gameTitle}</div>
-                  </div>
-                  <span style="background:${isWon ? "linear-gradient(180deg,#16a34a,#15803d)" : (c.phase === 5 ? "linear-gradient(180deg,#0284c7,#0369a1)" : "linear-gradient(180deg,#d97706,#b45309)")}; color:#ffffff; font-size:10px; font-weight:900; padding:2.5px 8px; border-radius:999px; border:1.5px solid #ffffff; flex-shrink:0;">
-                    ${isWon ? "✅ CONQUISTADO" : `FASE ${c.phase} • ${c.tier}`}
-                  </span>
-                </div>
-
-                <div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:11px; overflow:hidden; border:1.5px solid ${isWon ? "#fde047" : "#475569"}; background:#050b1a; margin-bottom:7px;">
-                  <img src="${c.img}" alt="${c.title}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; ${isWon ? "" : "filter:grayscale(100%) brightness(0.32) blur(2px);"}">
-                  ${!isWon ? `
-                    <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:8px; text-align:center;">
-                      <div style="font-size:26px; margin-bottom:3px;">${needsVip ? "🔒" : "🎁"}</div>
-                      <div style="font-size:12px; font-weight:900; color:#fde047; text-shadow:0 2px 6px #000;">Complete a Fase ${c.phase} para liberar este Card!</div>
-                    </div>
-                  ` : ""}
-                </div>
-
-                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
-                  <div style="font-size:12.5px; font-weight:900; color:#ffffff; text-align:left; line-height:1.2;">
-                    Card #${String(c.num).padStart(2, "0")} • ${c.title}
-                  </div>
-                  ${isWon ? `
-                    <button type="button" onclick="window.shareOrDownloadArcadeRewardCard('${c.code}')" style="background:linear-gradient(180deg,#22c55e,#15803d); border:1.5px solid #ffffff; color:#ffffff; font-weight:900; font-size:11px; padding:6px 11px; border-radius:999px; cursor:pointer; white-space:nowrap; flex-shrink:0;">
-                      📲 WhatsApp / Baixar
-                    </button>
-                  ` : `
-                    <button type="button" onclick="document.getElementById('arcade-reward-cards-gallery-modal').style.display='none'; window.openTronoArcadeGame('${c.gameId}');" style="background:linear-gradient(180deg,#f59e0b,#d97706); border:1.5px solid #fef08a; color:#ffffff; font-weight:900; font-size:11px; padding:6px 11px; border-radius:999px; cursor:pointer; white-space:nowrap; flex-shrink:0;">
-                      🎮 Jogar Agora
-                    </button>
-                  `}
-                </div>
-              </div>
-            `;
-          }).join("")}
-        </div>
-      </div>
-    `;
-    modal.style.display = "flex";
-  };
-
   window.renderAll17ArcadeGamesInHub = function() {
     const filterBar = document.getElementById("games-hub-filter-bar");
     if (filterBar) {
@@ -6019,31 +6017,8 @@
     const gridEl = document.getElementById("games-hub-grid");
     if (!gridEl) return;
 
-    const wonMap = window.getWonArcadeCardsMap();
-    const totalWon = Object.keys(wonMap).filter(k => !!wonMap[k]).length;
-
     gridEl.innerHTML = `
       <style id="arcade-hub-clean-styles">
-        .arcade-hub-cards-banner {
-          width: calc(100% - 14px);
-          max-width: 400px;
-          margin: 2px auto 10px auto;
-          padding: 8px 12px;
-          border-radius: 999px;
-          background: linear-gradient(180deg, rgba(88,28,135,0.92) 0%, rgba(30,27,75,0.96) 100%);
-          border: 2px solid #fde047;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.65);
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 8px;
-          cursor: pointer;
-          box-sizing: border-box;
-          user-select: none;
-        }
-        .arcade-hub-cards-banner:active {
-          transform: scale(0.97);
-        }
         .arcade-hub-clean-grid {
           width: 100%;
           max-width: 420px;
@@ -6095,31 +6070,13 @@
           pointer-events: none;
         }
       </style>
-      <div class="arcade-hub-cards-banner" onclick="window.openArcadeRewardCardsGalleryModal()">
-        <span style="font-size:12.5px; font-weight:900; color:#fde047;">🎁 MEUS CARDS DOS JOGOS</span>
-        <span style="background:linear-gradient(180deg,#16a34a,#15803d); border:1.5px solid #ffffff; color:#ffffff; font-size:11px; font-weight:900; padding:2px 9px; border-radius:999px;">${totalWon}/32 Ver ➡️</span>
-      </div>
       <div class="arcade-hub-clean-grid">
-        ${SUPER_ARCADE_GAMES.map(g => {
-          const entry = ARCADE_REWARD_CARDS_DB[g.id];
-          const c5 = entry && entry.milestones[5] && wonMap[entry.milestones[5].code];
-          const c15 = entry && entry.milestones[15] && wonMap[entry.milestones[15].code];
-          const badgeCount = (c5 ? 1 : 0) + (c15 ? 1 : 0);
-          const prog = window.getArcadeGameProgress(g.id);
-          const maxUnl = window.getArcadeGameMaxUnlocked(g.id);
-          const resumePhase = Math.max(1, Math.min(maxUnl, prog.lastPhase || maxUnl));
-          const showSavedPhase = (prog.maxCompleted > 0 || resumePhase > 1);
-          return `
+        ${SUPER_ARCADE_GAMES.map(g => `
           <div class="arcade-hub-item" onclick="window.openTronoArcadeGame('${g.id}')">
-            <div style="position:relative; display:inline-flex; align-items:center; justify-content:center;">
-              <img src="${g.icon}" alt="${g.title}" class="arcade-hub-icon-3d" decoding="async">
-              ${badgeCount > 0 ? `<span style="position:absolute; top:0; right:-2px; background:linear-gradient(180deg,#16a34a,#15803d); border:2px solid #fde047; color:#ffffff; font-size:10px; font-weight:900; padding:1px 6px; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,0.8); pointer-events:none;">🎁${badgeCount}/2</span>` : ""}
-              ${showSavedPhase ? `<span style="position:absolute; bottom:1px; left:50%; transform:translateX(-50%); background:linear-gradient(180deg,#0284c7,#1e3a8a); border:1.5px solid #fde047; color:#ffffff; font-size:9.5px; font-weight:900; padding:1px 7px; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,0.85); white-space:nowrap; pointer-events:none;">⭐ Fase ${resumePhase}</span>` : ""}
-            </div>
+            <img src="${g.icon}" alt="${g.title}" class="arcade-hub-icon-3d" decoding="async">
             <div class="arcade-hub-title">${g.title}</div>
           </div>
-          `;
-        }).join("")}
+        `).join("")}
       </div>
     `;
   };
@@ -6141,7 +6098,7 @@
     ensureArcadeStageInDOM();
   }
 
-  console.log("✅ [Trono Kids] Super Arcade Audiovisual (16 Jogos Oficiais + 32 Cards 16:9) carregado com sucesso!");
+  console.log("[Trono Kids] Super Arcade Audiovisual (16 Jogos Oficiais + 32 Super Cards 16:9) carregado.");
 
   // ==========================================================================
   // 8. TRAVA PARENTAL OBRIGATÓRIA (FAMÍLIA E PROFESSOR)
@@ -6151,7 +6108,7 @@
     if (!modal) {
       modal = document.createElement("div");
       modal.id = "trono-parental-gate-modal";
-      modal.style.cssText = "position:fixed; inset:0; background:rgba(7,10,25,0.92); backdrop-filter:blur(10px); z-index:9999999; display:flex; align-items:center; justify-content:center; padding:16px;";
+      modal.style.cssText = "position:fixed; inset:0; background:rgba(7,10,25,0.92); backdrop-filter:blur(10px); z-index:10000200; display:flex; align-items:center; justify-content:center; padding:16px;";
       document.body.appendChild(modal);
     }
 
@@ -6170,7 +6127,9 @@
 
     modal.innerHTML = `
       <div style="background:linear-gradient(180deg,#1e1b4b,#0f172a); border:3px solid #fde047; border-radius:24px; padding:24px 20px; max-width:340px; width:100%; text-align:center; box-shadow:0 12px 35px rgba(0,0,0,0.8);">
-        <div style="font-size:36px; margin-bottom:6px;">👨‍👩‍👧‍👦</div>
+        <div style="display:flex; justify-content:center; margin-bottom:8px;">
+          <img src="./2_ASSETS_UI_BOTOES/ebd_icon_professor.png" alt="" style="width:52px; height:52px; object-fit:contain;">
+        </div>
         <div style="font-size:16px; font-weight:900; color:#fde047; margin-bottom:4px;">PORTAL DA FAMÍLIA E PROFESSOR</div>
         <div style="font-size:12px; font-weight:700; color:#cbd5e1; margin-bottom:14px;">Área exclusiva para adultos. Resolva para entrar:</div>
         
@@ -6186,8 +6145,8 @@
           `).join("")}
         </div>
 
-        <button onclick="document.getElementById('trono-parental-gate-modal').style.display='none'" style="background:transparent; border:none; color:#94a3b8; font-weight:800; font-size:12px; cursor:pointer;">
-          ✕ Cancelar e Voltar
+        <button onclick="document.getElementById('trono-parental-gate-modal').style.display='none'" style="background:transparent; border:2px solid #64748b; border-radius:999px; padding:8px 18px; color:#cbd5e1; font-weight:800; font-size:12px; cursor:pointer;">
+          Voltar
         </button>
       </div>
     `;
@@ -6202,7 +6161,9 @@
         TronoAudio.play("error");
         modal.innerHTML = `
           <div style="background:linear-gradient(180deg,#7f1d1d,#450a0a); border:3px solid #ef4444; border-radius:24px; padding:24px 20px; max-width:320px; width:100%; text-align:center;">
-            <div style="font-size:36px; margin-bottom:6px;">🔒</div>
+            <div style="display:flex; justify-content:center; margin-bottom:8px;">
+              <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="" style="width:40px; height:40px; object-fit:contain;">
+            </div>
             <div style="font-size:16px; font-weight:900; color:#ffffff; margin-bottom:6px;">Resposta Incorreta</div>
             <div style="font-size:12px; color:#fca5a5; margin-bottom:14px;">Peça a ajuda de um adulto para acessar este portal.</div>
             <button onclick="document.getElementById('trono-parental-gate-modal').style.display='none'" style="padding:10px 20px; background:#ffffff; color:#991b1b; font-weight:900; border:none; border-radius:999px; cursor:pointer;">

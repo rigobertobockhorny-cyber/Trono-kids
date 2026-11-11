@@ -5379,16 +5379,6 @@ window.downloadLesson16x9Image = async function(imgSrc, titleText) {
     }
     ctx.drawImage(img, sx, sy, sw, sh, 0, 0, 1280, 720);
     const blob = await new Promise(res => canvas.toBlob(res, "image/jpeg", 0.92));
-    const file = new File([blob], fileName, { type: "image/jpeg" });
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      await navigator.share({
-        title: titleText || `Trono da Promessa - Lição ${wk} (16:9)`,
-        text: `${titleText || "Ilustração 16:9 da Lição"} • Trono da Promessa`,
-        files: [file]
-      });
-      if (typeof window.ebdConfetti === "function") window.ebdConfetti();
-      return;
-    }
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -5396,7 +5386,7 @@ window.downloadLesson16x9Image = async function(imgSrc, titleText) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 1500);
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
     if (typeof window.ebdConfetti === "function") window.ebdConfetti();
   } catch (err) {
     const a = document.createElement("a");
@@ -6500,6 +6490,13 @@ window.checkAndSyncFullLessonCompletion = function(weekNum) {
     completed.push(wk);
     localStorage.setItem("trono_ebd_completed_weeks", JSON.stringify(completed));
   }
+  try {
+    const tsMap = JSON.parse(localStorage.getItem("trono_ebd_completed_weeks_ts") || "{}");
+    if (!tsMap[wk]) {
+      tsMap[wk] = Date.now();
+      localStorage.setItem("trono_ebd_completed_weeks_ts", JSON.stringify(tsMap));
+    }
+  } catch (e) {}
 
   try {
     if (typeof unlockedStickers !== "undefined" && Array.isArray(unlockedStickers)) {
@@ -6958,13 +6955,13 @@ window.openLessonModule = function(modType) {
     box.innerHTML = `
       <div onclick="if(typeof openGamesHubScreen === 'function') openGamesHubScreen();" style="cursor:pointer; border-radius:18px; padding:12px; margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; background:linear-gradient(135deg, #f59e0b 0%, #d97706 100%); box-shadow:0 6px 16px rgba(0,0,0,0.4); border:2px solid #fef08a;">
         <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:28px;">🎮</span>
+          <img src="./2_ASSETS_UI_BOTOES/ebd_icon_netos.png" alt="Sala de Jogos" style="width:36px; height:36px; object-fit:contain; flex-shrink:0;">
           <div style="text-align:left;">
             <div style="font-size:13.5px; font-weight:900; color:#ffffff; text-shadow:0 2px 4px rgba(0,0,0,0.5); line-height:1.2;">SALA DE JOGOS (16 JOGOS)</div>
             <div style="font-size:10.5px; font-weight:700; color:#fef3c7;">Palco 100% Tela Cheia no Celular</div>
           </div>
         </div>
-        <button style="background:#ffffff; color:#b45309; font-weight:900; font-size:11.5px; border:none; border-radius:999px; padding:6px 14px; box-shadow:0 2px 6px rgba(0,0,0,0.2); white-space:nowrap;">JOGAR ➡️</button>
+        <button style="background:#ffffff; color:#b45309; font-weight:900; font-size:11.5px; border:none; border-radius:999px; padding:6px 14px; box-shadow:0 2px 6px rgba(0,0,0,0.2); white-space:nowrap;">JOGAR</button>
       </div>
       <div class="ebd-glass-card" style="margin-bottom:0; padding:8px;">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:6px;">

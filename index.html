@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v147.0';
+        const CURRENT_VER = 'v148.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=147.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=148.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -1816,7 +1816,7 @@
         <div style="width:72px; height:72px; border-radius:50%; background:#ffffff; border:none; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 28px rgba(0,0,0,0.6); animation:introPulse 1.6s ease-in-out infinite;">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="#581c87" style="margin-left:4px;"><path d="M8 5V19L19 12L8 5Z"/></svg>
         </div>
-        <div style="font-family:'Fredoka',sans-serif; font-size:15px; font-weight:800; color:#ffffff; text-shadow:0 2px 8px rgba(0,0,0,0.9); background:rgba(0,0,0,0.6); padding:5px 16px; border-radius:999px; border:1px solid rgba(255,255,255,0.3);">Toque para Começar! ✨</div>
+        <div style="font-family:'Fredoka',sans-serif; font-size:15px; font-weight:800; color:#ffffff; text-shadow:0 2px 8px rgba(0,0,0,0.9); background:rgba(0,0,0,0.6); padding:5px 16px; border-radius:999px; border:1px solid rgba(255,255,255,0.3);">Toque para Começar!</div>
       </div>
     </div>
 
@@ -2274,20 +2274,15 @@
   </section>
 
   <!-- ==================================================================== -->
-  <!-- TELA 6: ÁLBUM DA FÉ (CARTINHAS 4 POR VEZ)                            -->
+  <!-- TELA 6: ÁLBUM DA FÉ (SUPER CARDS 4 POR VEZ — CABEÇALHO LIMPO)        -->
   <!-- ==================================================================== -->
   <section id="screen-album" class="screen">
     <div class="module-header">
       <button class="btn-nav-circle" onclick="openLudoTrailBoard()" title="Voltar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="puzzle-diff-bar">
-        <button class="btn-tool-3d" onclick="openLudoTrailBoard()">CAMINHO</button>
-        <button class="btn-tool-3d active">CARTINHAS</button>
-        <button class="btn-tool-3d" onclick="if(typeof window.openArcadeRewardCardsGalleryModal==='function') window.openArcadeRewardCardsGalleryModal()">JOGOS</button>
-        <button class="btn-tool-3d" onclick="openGameRulesModal()">REGRAS</button>
-      </div>
-      <button class="btn-nav-circle" onclick="stepAlbum(2)" title="Próximas Imagens">
+      <div style="flex:1;"></div>
+      <button class="btn-nav-circle" onclick="stepAlbum(4)" title="Próximos Super Cards">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
@@ -2296,20 +2291,15 @@
   </section>
 
   <!-- ==================================================================== -->
-  <!-- TELA 6B: CAMINHO DAS CASINHAS (ESTILO JOGO DA VIDA / LUDO!)          -->
+  <!-- TELA 6B: CAMINHO DAS CASINHAS (JOGO DA VIDA UNIFICADO — 54 CARDS!)   -->
   <!-- ==================================================================== -->
   <section id="screen-ludo-trail" class="screen">
     <div class="module-header">
       <button class="btn-nav-circle" onclick="backFromLudoTrailScreen()" title="Voltar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="puzzle-diff-bar">
-        <button class="btn-tool-3d active">CAMINHO</button>
-        <button class="btn-tool-3d" onclick="openModule('album')">CARTINHAS</button>
-        <button class="btn-tool-3d" onclick="if(typeof window.openArcadeRewardCardsGalleryModal==='function') window.openArcadeRewardCardsGalleryModal()">JOGOS</button>
-        <button class="btn-tool-3d" onclick="openGameRulesModal()">REGRAS</button>
-      </div>
-      <button class="btn-nav-circle" onclick="openModule('album')" title="Ver Cartinhas">
+      <div style="flex:1;"></div>
+      <button class="btn-nav-circle" onclick="openModule('album')" title="Ver Super Cards">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
@@ -2363,7 +2353,7 @@
   <div id="modal-parental-gate" class="modal-backdrop">
     <div class="modal-card" style="padding: 30px 22px; max-width: 355px;">
       <div onclick="window.openDeveloperDialog()" style="font-size: 24px; font-weight: 700; color: #00e5ff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9); line-height: 1.2; margin-bottom: 14px; cursor:pointer;" title="Toque para Modo Desenvolvedor (12345)">
-        Área para Papai e Mamãe 🛠️
+        Área para Papai e Mamãe
       </div>
       <div class="modal-subtitle" style="font-size: 13.5px; color: #f1f5f9; line-height: 1.42; margin-bottom: 24px;">
         Para proteção infantil (Google Play / LGPD / COPPA), peça a um adulto para responder:
@@ -2536,17 +2526,18 @@
   </div>
 
   <!-- ==================================================================== -->
-  <!-- MODAL DO CARD GRANDE COLECIONADO (ABRE AO CLICAR NA CASINHA VERDE!)  -->
+  <!-- MODAL DO SUPER CARD (COLORIDO SE CONQUISTADO / P&B SE EM ESPERA!)    -->
   <!-- ==================================================================== -->
   <div id="modal-collector-card" class="modal-backdrop">
     <div class="modal-card" style="padding: 16px;">
       <div class="frame-3d-alive" style="width: 78%; aspect-ratio: 9/14; margin: 0 auto 10px auto;">
-        <img id="collector-card-img" style="width:100%; height:100%; object-fit:cover; border-radius:16px; display:block;" src="./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_09.jpg" alt="Card Desbloqueado">
+        <img id="collector-card-img" style="width:100%; height:100%; object-fit:cover; border-radius:16px; display:block;" src="./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_09.jpg" alt="Super Card">
       </div>
-      <div id="collector-card-title" style="font-size:18px; font-weight:700; color:#fde047; margin-bottom:12px;">Vovô Nésio, Pedrinho e Aninha</div>
+      <div id="collector-card-title" style="font-size:17px; font-weight:800; color:#fde047; margin-bottom:6px; line-height:1.2;">Vovô Nésio, Pedrinho e Aninha</div>
+      <div id="collector-card-subinfo" style="display:none; font-size:12.5px; font-weight:700; color:#e2e8f0; margin-bottom:10px; line-height:1.3;"></div>
 
-      <button class="btn-gold" style="width:100%; margin-bottom:8px; padding:10px; font-size:15px;" onclick="downloadOrShareCollectorCard()">
-        Baixar Figurinha / Enviar no WhatsApp
+      <button id="collector-card-action-btn" class="btn-gold" style="width:100%; margin-bottom:8px; padding:10px; font-size:15px;" onclick="downloadOrShareCollectorCard()">
+        BAIXAR SUPER CARD
       </button>
 
       <button class="btn-gold" style="width:100%; padding:10px; font-size:15px; background:linear-gradient(180deg, #00b0ff 0%, #0066ff 100%); border-color:#b3e5fc;" onclick="closeModal('modal-collector-card')">
@@ -2614,8 +2605,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=147.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=147.0"></script>
+<script src="ebd_modulos_educativos.js?v=148.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=148.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -3124,12 +3115,15 @@ function updateTopCounters() {
     const arcadeWonMap = JSON.parse(localStorage.getItem('trono_arcade_cards_won_v1') || '{}');
     arcadeWonCount = Object.keys(arcadeWonMap).filter(k => !!arcadeWonMap[k]).length;
   } catch (e) {}
-  if (typeof window.syncAlbumHousesWithCompletedGames === 'function') {
+  let completedWeeksCount = 0;
+  try {
     const completedWeeks = JSON.parse(localStorage.getItem('trono_ebd_completed_weeks') || '[]');
-    document.getElementById('sticker-count').textContent = `${completedWeeks.length + arcadeWonCount}`;
-    return;
+    completedWeeksCount = Array.isArray(completedWeeks) ? completedWeeks.length : 0;
+  } catch (e) {}
+  const el = document.getElementById('sticker-count');
+  if (el) {
+    el.textContent = `${completedWeeksCount + arcadeWonCount}`;
   }
-  document.getElementById('sticker-count').textContent = `${unlockedStickers.size + arcadeWonCount}`;
 }
 
 // ============================================================================
@@ -3805,14 +3799,14 @@ window.handleDevLogoTap = function() {
 };
 
 window.openDeveloperDialog = function() {
-  const pass = prompt('🔐 Modo Desenvolvedor • Trono Kids EBD\n\nDigite a senha do desenvolvedor:');
+  const pass = prompt('Modo Desenvolvedor • Trono Kids EBD\n\nDigite a senha do desenvolvedor:');
   if (!pass) return;
   if (pass.trim() === window.DEVELOPER_PASSWORD) {
     try { playSoundWinCelebration(); } catch(e) {}
     const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
     const choice = confirm(
-      '🛠️ SENHA DO DESENVOLVEDOR CORRETA (12345)!\n\n' +
-      'Status Atual: ' + (isVip ? '👑 MODO VIP ATIVO (15 Fases / Tudo Liberado)' : '⭐ MODO FREE (5 Fases / Modo Grátis)') + '\n\n' +
+      'SENHA DO DESENVOLVEDOR CORRETA (12345)!\n\n' +
+      'Status Atual: ' + (isVip ? 'MODO VIP ATIVO (15 Fases / Tudo Liberado)' : 'MODO FREE (5 Fases / Modo Grátis)') + '\n\n' +
       'Escolha uma ação:\n' +
       '• [OK] = ATIVAR MODO VIP (15 Fases + 22 Lições Liberadas)\n' +
       '• [Cancelar] = DESATIVAR MODO VIP (Voltar ao Modo Free 5 Fases para teste de usuário comum)'
@@ -3820,11 +3814,11 @@ window.openDeveloperDialog = function() {
     if (choice) {
       isVipUnlocked = true;
       localStorage.setItem('trono_vip_active_v4', '1');
-      alert('👑 MODO VIP ATIVADO!\nTodas as 15 fases e histórias foram liberadas com sucesso!');
+      alert('MODO VIP ATIVADO!\nTodas as 15 fases e histórias foram liberadas com sucesso!');
     } else {
       isVipUnlocked = false;
       localStorage.removeItem('trono_vip_active_v4');
-      alert('🔒 MODO FREE ATIVADO!\nO app agora está no modo gratuito (5 fases) para teste de usuário comum.');
+      alert('MODO FREE ATIVADO!\nO app agora está no modo gratuito (5 fases) para teste de usuário comum.');
     }
     updateTopCounters();
     if (document.getElementById('screen-gallery') && document.getElementById('screen-gallery').classList.contains('active')) renderGalleryPage();
@@ -3835,7 +3829,7 @@ window.openDeveloperDialog = function() {
     if (phaseTotalEl) phaseTotalEl.textContent = isVipUnlocked ? '15' : '5';
   } else {
     try { playSoundWrongRed(); } catch(e) {}
-    alert('❌ Senha do desenvolvedor incorreta!');
+    alert('Senha do desenvolvedor incorreta!');
   }
 };
 
@@ -3886,8 +3880,8 @@ function redeemVipCoupon() {
     localStorage.setItem('trono_vip_active_v4', '1');
     msgEl.style.color = '#34d399';
     msgEl.textContent = isDevPass
-      ? '🛠️ SENHA DO DESENVOLVEDOR (12345) ACEITA! Modo VIP e 15 Fases Liberadas!'
-      : ' Cupom aplicado com sucesso! Acesso completo ativado!';
+      ? 'SENHA DO DESENVOLVEDOR (12345) ACEITA! Modo VIP e 15 Fases Liberadas!'
+      : 'Cupom aplicado com sucesso! Acesso completo ativado!';
     playSoundWinCelebration();
     launchCelebrationConfetti();
 
@@ -5268,7 +5262,10 @@ function startMemoryPhase(phaseNum) {
 }
 
 // ============================================================================
-// CAMINHO SINUOSO DO ÁLBUM DA FÉ (22 CASINHAS DAS 22 LIÇÕES) + SUPER CARD 9:16!
+// CAMINHO SINUOSO UNIFICADO DO ÁLBUM DA FÉ ("JOGO DA VIDA" — 54 CASINHAS!)
+// Une os 22 Super Cards das Lições (9:16) + 32 Super Cards dos Jogos (16:9)
+// em ordem contínua: toda conquista acende a próxima casinha verde (1, 2, 3...)
+// SEM BURACOS, não importa qual jogo ou lição a criança jogou primeiro!
 // ============================================================================
 let selectedCollectorStory = STORIES[0];
 
@@ -5302,21 +5299,75 @@ function isLessonSuperCardConquered(weekNum) {
   return completedWeeks.includes(weekNum);
 }
 
-// Coordenadas exatas (x%, y%) das 22 casinhas ao longo da Estradinha Sinuosa em "S"
-const SINUOUS_ROAD_POINTS = [
-  // Curva 1 (Esquerda -> Direita: Casinhas 1 a 4)
-  { x: 16, y: 7 },  { x: 38, y: 7 },  { x: 60, y: 7 },  { x: 82, y: 9 },
-  // Curva 2 (Direita -> Esquerda: Casinhas 5 a 8)
-  { x: 82, y: 23 }, { x: 60, y: 25 }, { x: 38, y: 25 }, { x: 16, y: 27 },
-  // Curva 3 (Esquerda -> Direita: Casinhas 9 a 12)
-  { x: 16, y: 41 }, { x: 38, y: 43 }, { x: 60, y: 43 }, { x: 82, y: 45 },
-  // Curva 4 (Direita -> Esquerda: Casinhas 13 a 16)
-  { x: 82, y: 59 }, { x: 60, y: 61 }, { x: 38, y: 61 }, { x: 16, y: 63 },
-  // Curva 5 (Esquerda -> Direita: Casinhas 17 a 20)
-  { x: 16, y: 77 }, { x: 38, y: 79 }, { x: 60, y: 79 }, { x: 82, y: 81 },
-  // Curva 6 (Final: Casinhas 21 e 22)
-  { x: 64, y: 93 }, { x: 32, y: 93 }
-];
+// Catálogo Unificado de 54 Super Cards (32 Jogos 16:9 + 22 Lições 9:16) com Casinhas Contínuas 1..54!
+function getUnifiedFaithAlbumCatalog() {
+  const completedWeeks = JSON.parse(localStorage.getItem('trono_ebd_completed_weeks') || '[]');
+  let completedWeeksTs = {};
+  try {
+    completedWeeksTs = JSON.parse(localStorage.getItem('trono_ebd_completed_weeks_ts') || '{}');
+  } catch (e) {}
+
+  const lessonCards = getAlbumSuperCardsCatalog().map(l => {
+    const done = completedWeeks.includes(l.week);
+    const ts = done ? (Number(completedWeeksTs[l.week]) || (1000 + l.week)) : 0;
+    return {
+      uid: `LESSON_${l.week}`,
+      sourceType: 'lesson',
+      week: l.week,
+      free: l.week <= 10,
+      title: `Lição ${l.week}: ${l.shortTitle}`,
+      shortTitle: l.shortTitle,
+      unlockHint: `Complete os 6 passos da Lição ${l.week} para colorir e baixar este Super Card.`,
+      superCardImg: l.superCardImg,
+      is16x9Card: false,
+      conquered: done,
+      wonAt: ts,
+      baseOrder: 100 + l.week
+    };
+  });
+
+  const rawArcadeList = (typeof window.getAllArcadeRewardCardsList === 'function')
+    ? window.getAllArcadeRewardCardsList()
+    : [];
+
+  const arcadeCards = rawArcadeList.map((c, idx) => ({
+    uid: c.code,
+    sourceType: 'arcade',
+    code: c.code,
+    cardNum: c.cardNum,
+    phase: c.phase,
+    gameId: c.gameId,
+    gameTitle: c.gameTitle,
+    free: c.phase <= 5,
+    title: `${c.gameTitle}: ${c.shortTitle}`,
+    shortTitle: c.shortTitle,
+    unlockHint: `Vença a Fase ${c.phase} no jogo ${c.gameTitle} para colorir e baixar este Super Card.`,
+    superCardImg: c.superCardImg,
+    is16x9Card: true,
+    conquered: !!c.conquered,
+    wonAt: Number(c.wonAt) || 0,
+    baseOrder: idx + 1
+  }));
+
+  const allItems = arcadeCards.concat(lessonCards);
+
+  // 1) Conquistados SEMPRE primeiro, em ordem cronológica da conquista (Casinhas 1..N sempre verdes e sem furos!)
+  const conqueredList = allItems
+    .filter(it => it.conquered)
+    .sort((a, b) => (a.wonAt - b.wonAt) || (a.baseOrder - b.baseOrder));
+
+  // 2) A conquistar logo em seguida (Casinhas N+1..Total: primeiro os gratuitos disponíveis, depois os de assinante)
+  const unconqueredFree = allItems
+    .filter(it => !it.conquered && it.free)
+    .sort((a, b) => a.baseOrder - b.baseOrder);
+
+  const unconqueredVip = allItems
+    .filter(it => !it.conquered && !it.free)
+    .sort((a, b) => a.baseOrder - b.baseOrder);
+
+  const ordered = conqueredList.concat(unconqueredFree, unconqueredVip);
+  return ordered.map((it, i) => Object.assign({}, it, { houseNum: i + 1 }));
+}
 
 function openLudoTrailBoard() {
   const activeScr = document.querySelector('.screen.active');
@@ -5333,64 +5384,100 @@ function renderLudoTrailBoard() {
   if (!grid) return;
   grid.innerHTML = '';
 
-  const catalog = getAlbumSuperCardsCatalog();
-  const maxFreeHouses = 10;
-  const pool = isVipUnlocked ? catalog : catalog.slice(0, maxFreeHouses);
-  const nextTargetItem = pool.find(item => !isLessonSuperCardConquered(item.week)) || pool[pool.length - 1] || catalog[0];
+  const catalog = getUnifiedFaithAlbumCatalog();
+  const totalHouses = catalog.length;
+  const totalRows = Math.ceil(totalHouses / 4);
+  const VIRTUAL_W = 360;
+  const ROW_STEP_Y = 108;
+  const START_Y = 58;
+  const VIRTUAL_H = START_Y + (totalRows - 1) * ROW_STEP_Y + 76;
+
+  const pointsPx = [];
+  const pathSegments = [];
+
+  for (let r = 0; r < totalRows; r++) {
+    const y = START_Y + r * ROW_STEP_Y;
+    const remaining = totalHouses - r * 4;
+    const countInRow = Math.min(4, remaining);
+    const leftToRight = (r % 2 === 0);
+
+    let rowXs;
+    if (countInRow === 4) {
+      rowXs = leftToRight ? [58, 140, 220, 302] : [302, 220, 140, 58];
+    } else if (countInRow === 3) {
+      rowXs = leftToRight ? [68, 180, 292] : [292, 180, 68];
+    } else if (countInRow === 2) {
+      rowXs = leftToRight ? [108, 252] : [252, 108];
+    } else {
+      rowXs = [180];
+    }
+
+    rowXs.forEach(x => pointsPx.push({ x, y }));
+
+    const firstX = rowXs[0];
+    const lastX = rowXs[rowXs.length - 1];
+    if (r === 0) {
+      pathSegments.push(`M ${firstX} ${y}`);
+    }
+    pathSegments.push(`L ${lastX} ${y}`);
+
+    if (r < totalRows - 1) {
+      const nextY = START_Y + (r + 1) * ROW_STEP_Y;
+      const nextRem = totalHouses - (r + 1) * 4;
+      const nextCount = Math.min(4, nextRem);
+      const nextLeftToRight = ((r + 1) % 2 === 0);
+      let nextStartX = 180;
+      if (nextCount === 4) nextStartX = nextLeftToRight ? 58 : 302;
+      else if (nextCount === 3) nextStartX = nextLeftToRight ? 68 : 292;
+      else if (nextCount === 2) nextStartX = nextLeftToRight ? 108 : 252;
+
+      const curveOutX = leftToRight ? 348 : 12;
+      pathSegments.push(`C ${curveOutX} ${y}, ${curveOutX} ${nextY}, ${nextStartX} ${nextY}`);
+    }
+  }
+
+  const nextWalkerItem = catalog.find(it => !it.conquered) || catalog[catalog.length - 1];
 
   const stageWrap = document.createElement('div');
   stageWrap.style.position = 'relative';
   stageWrap.style.width = '100%';
-  stageWrap.style.height = '640px';
+  stageWrap.style.height = `${VIRTUAL_H}px`;
 
-  // Desenha a Estradinha Sinuosa em "S" conectando todas as 22 casinhas
-  const roadPathD = `
-    M 16 7
-    L 60 7
-    C 92 7, 92 25, 60 25
-    L 38 25
-    C 6 25, 6 43, 38 43
-    L 60 43
-    C 92 43, 92 61, 60 61
-    L 38 61
-    C 6 61, 6 79, 38 79
-    L 60 79
-    C 92 79, 92 93, 64 93
-    L 32 93
-  `;
-
+  const roadPathD = pathSegments.join(' ');
   const svgHtml = `
-    <svg class="sinuous-road-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <!-- Borda Dourada da Estrada Sinuosa -->
-      <path d="${roadPathD}" fill="none" stroke="#fde047" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
-      <!-- Leito Roxo Escuro da Estrada -->
-      <path d="${roadPathD}" fill="none" stroke="#3b0764" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- Trilha Pontilhada Brilhante no Meio da Estrada -->
-      <path d="${roadPathD}" fill="none" stroke="#00e5ff" stroke-width="1.2" stroke-dasharray="2.2 2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <svg class="sinuous-road-svg" viewBox="0 0 ${VIRTUAL_W} ${VIRTUAL_H}" preserveAspectRatio="none">
+      <path d="${roadPathD}" fill="none" stroke="#fde047" stroke-width="25" stroke-linecap="round" stroke-linejoin="round" opacity="0.86"/>
+      <path d="${roadPathD}" fill="none" stroke="#3b0764" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="${roadPathD}" fill="none" stroke="#00e5ff" stroke-width="3.6" stroke-dasharray="9 9" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   `;
   stageWrap.insertAdjacentHTML('beforeend', svgHtml);
 
+  let walkerScrollY = 0;
+
   catalog.forEach((item, idx) => {
-    const pt = SINUOUS_ROAD_POINTS[idx] || { x: 50, y: 50 };
-    const isFreeStory = (item.week <= maxFreeHouses) || isVipUnlocked;
-    const isConquered = isFreeStory && isLessonSuperCardConquered(item.week);
-    const isCurrentWalker = (item.week === nextTargetItem.week);
+    const pt = pointsPx[idx] || { x: 180, y: START_Y };
+    const isUnlockedTier = item.free || isVipUnlocked || item.conquered;
+    const isConquered = !!item.conquered;
+    const isCurrentWalker = (nextWalkerItem && item.houseNum === nextWalkerItem.houseNum);
+    if (isCurrentWalker) {
+      walkerScrollY = pt.y;
+    }
 
     const node = document.createElement('div');
     node.className = 'road-node-house'
       + (isConquered ? ' conquered' : '')
       + (isCurrentWalker ? ' active-walker' : '');
-    node.style.left = `${pt.x}%`;
-    node.style.top = `${pt.y}%`;
+    node.style.left = `${((pt.x / VIRTUAL_W) * 100).toFixed(2)}%`;
+    node.style.top = `${((pt.y / VIRTUAL_H) * 100).toFixed(2)}%`;
 
     let subIconHtml = '';
-    if (!isFreeStory) {
-      subIconHtml = `<img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" style="width:15px; height:15px; object-fit:contain;" alt="Bloqueado">`;
-    } else if (isConquered) {
+    if (isConquered) {
       subIconHtml = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    } else if (!isUnlockedTier) {
+      subIconHtml = `<img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" style="width:14px; height:14px; object-fit:contain;" alt="Bloqueado">`;
     } else {
-      subIconHtml = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" fill="#b3e5fc"/></svg>`;
+      subIconHtml = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.5" fill="#b3e5fc"/></svg>`;
     }
 
     const walkerHtml = isCurrentWalker
@@ -5399,60 +5486,91 @@ function renderLudoTrailBoard() {
 
     node.innerHTML = `
       ${walkerHtml}
-      <div class="road-node-num">${item.week}</div>
+      <div class="road-node-num">${item.houseNum}</div>
       <div class="road-node-subicon">${subIconHtml}</div>
     `;
 
+    // Qualquer casinha clicada abre a prévia do Super Card (colorido se conquistado, preto e branco se em espera)!
     node.onclick = () => {
       playSoundClick();
-      if (!isFreeStory) {
-        openSubscribeModal(`Liberar Casinha ${item.week} (${item.shortTitle})`);
-      } else if (isConquered) {
-        openCollectorCardModal(item);
-      } else {
-        // Se a Lição ainda não foi 100% concluída, leva a criança para a Lição ou mostra o aviso
-        if (typeof window.selectLessonWeek === 'function' && typeof window.openLessonHubScreen === 'function') {
-          window.EBD_STATE.currentWeek = item.week;
-          localStorage.setItem('trono_ebd_week', String(item.week));
-          window.openLessonHubScreen();
-        } else {
-          openCollectorCardModal(item);
-        }
-      }
+      openCollectorCardModal(item);
     };
 
     stageWrap.appendChild(node);
   });
 
   grid.appendChild(stageWrap);
+
+  setTimeout(() => {
+    if (grid && walkerScrollY > 260) {
+      grid.scrollTop = Math.max(0, walkerScrollY - 190);
+    }
+  }, 40);
 }
 
 function openCollectorCardModal(st) {
   selectedCollectorStory = st;
   const imgEl = document.getElementById('collector-card-img');
   const modalEl = document.getElementById('modal-collector-card');
-  const btnEl = modalEl ? modalEl.querySelector('.btn-gold') : null;
+  const subEl = document.getElementById('collector-card-subinfo');
+  const btnEl = document.getElementById('collector-card-action-btn') || (modalEl ? modalEl.querySelector('.btn-gold') : null);
+
+  const isWide = !!(st.is16x9Download || st.is16x9Card);
   const imgUrl = st.superCardImg || st.customImgSrc || `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor || '09'}.jpg`;
+
+  let isConquered = true;
+  if (st.is16x9Download) {
+    isConquered = true;
+  } else if (typeof st.conquered === 'boolean') {
+    isConquered = st.conquered;
+  } else if (st.week) {
+    isConquered = isLessonSuperCardConquered(st.week);
+  }
+
   if (imgEl) {
     imgEl.src = imgUrl;
     imgEl.style.width = '100%';
-    imgEl.style.aspectRatio = st.is16x9Download ? '16 / 9' : '9 / 16';
+    imgEl.style.aspectRatio = isWide ? '16 / 9' : '9 / 16';
     imgEl.style.objectFit = 'cover';
-    imgEl.style.maxHeight = st.is16x9Download ? '38vh' : '56vh';
+    imgEl.style.maxHeight = isWide ? '38vh' : '54vh';
+    imgEl.style.filter = isConquered ? 'none' : 'grayscale(100%) brightness(0.58) contrast(1.06)';
     const frameWrap = imgEl.parentElement;
     if (frameWrap) {
-      frameWrap.style.aspectRatio = st.is16x9Download ? '16/9' : '9/14';
-      frameWrap.style.width = st.is16x9Download ? '96%' : '78%';
+      frameWrap.style.aspectRatio = isWide ? '16/9' : '9/14';
+      frameWrap.style.width = isWide ? '96%' : '76%';
     }
   }
-  const conquered = st.week ? isLessonSuperCardConquered(st.week) : true;
-  if (imgEl) {
-    imgEl.style.filter = (!st.is16x9Download && st.week && !conquered) ? 'grayscale(100%) brightness(0.58)' : 'none';
+
+  const housePrefix = st.houseNum ? `Casinha ${st.houseNum} • ` : '';
+  document.getElementById('collector-card-title').textContent = st.is16x9Download
+    ? (st.title || 'Imagem da Lição')
+    : `${housePrefix}${st.shortTitle || st.title || 'Super Card'}`;
+
+  if (subEl) {
+    if (!isConquered && st.unlockHint) {
+      subEl.textContent = st.unlockHint;
+      subEl.style.display = 'block';
+    } else {
+      subEl.textContent = '';
+      subEl.style.display = 'none';
+    }
   }
+
   if (btnEl) {
-    btnEl.textContent = st.is16x9Download ? 'Baixar Imagem (16:9)' : 'Baixar Super Card (9:16)';
+    if (st.is16x9Download) {
+      btnEl.style.display = 'block';
+      btnEl.textContent = 'BAIXAR IMAGEM';
+    } else if (isConquered) {
+      btnEl.style.display = 'block';
+      btnEl.textContent = 'BAIXAR SUPER CARD';
+    } else if (!st.free && !isVipUnlocked) {
+      btnEl.style.display = 'block';
+      btnEl.textContent = 'LIBERAR NO MODO ASSINANTE';
+    } else {
+      btnEl.style.display = 'none';
+    }
   }
-  document.getElementById('collector-card-title').textContent = st.title || `Super Card ${st.id}`;
+
   if (modalEl) modalEl.classList.add('active');
 }
 
@@ -5461,26 +5579,30 @@ function playCollectorCardStory() {
   goHome();
 }
 
+// Download DIRETO na memória do celular/tablet (SEM WhatsApp / SEM menu externo!)
 async function triggerDirectImageDownloadOrShare(imgUrl, titleText, filePrefix) {
   const cleanUrl = String(imgUrl || '').split('?')[0];
-  const safeName = (titleText || 'imagem').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+  const safeName = (titleText || 'super_card')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+  const fileName = `${filePrefix}_${safeName}.jpg`;
   try {
-    const resp = await fetch(cleanUrl);
+    const resp = await fetch(imgUrl || cleanUrl);
     const blob = await resp.blob();
-    const file = new File([blob], `${filePrefix}_${safeName}.jpg`, { type: 'image/jpeg' });
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      await navigator.share({
-        title: `Trono da Promessa - ${titleText}`,
-        text: `Olha a imagem "${titleText}" do app Trono da Promessa!`,
-        files: [file]
-      });
-      return;
-    }
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 4000);
+    return;
   } catch (e) {}
 
   const a = document.createElement('a');
   a.href = cleanUrl;
-  a.download = `${filePrefix}_${safeName}.jpg`;
+  a.download = fileName;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -5488,7 +5610,8 @@ async function triggerDirectImageDownloadOrShare(imgUrl, titleText, filePrefix) 
 
 function downloadOrShareCollectorCard() {
   const st = selectedCollectorStory || {};
-  // Se for uma imagem 16:9 simples de dentro da lição (Lições 1 a 10 grátis ou VIP), baixa direto!
+
+  // 1) Imagem 16:9 interna da lição
   if (st.is16x9Download) {
     const weekAllowed = !st.week || st.week <= 10 || isVipUnlocked;
     if (!weekAllowed) {
@@ -5505,34 +5628,38 @@ function downloadOrShareCollectorCard() {
     return;
   }
 
-  // Se for Super Card 9:16 do Álbum da Fé:
-  // Verifica se a Lição já foi concluída (todos os 6 tiquezinhos verdes)!
-  if (st.week && !isLessonSuperCardConquered(st.week)) {
+  // 2) Card VIP ainda bloqueado -> Abre modal de assinatura
+  const isConquered = (typeof st.conquered === 'boolean')
+    ? st.conquered
+    : (st.week ? isLessonSuperCardConquered(st.week) : false);
+
+  if (!isConquered) {
     closeModal('modal-collector-card');
-    showProgressToast(`Complete os 6 botões da Lição ${st.week} (com todos os tiquezinhos verdes) para colorir e baixar este Super Card 9:16!`, 4800);
+    if (!st.free && !isVipUnlocked) {
+      openSubscribeModal(`Liberar Super Card: ${st.shortTitle || st.title}`);
+    }
     return;
   }
 
-  if (st.week > 10 && !isVipUnlocked) {
+  // 3) Super Card 16:9 conquistado nos Jogos
+  if (st.sourceType === 'arcade' && st.code && typeof window.shareOrDownloadArcadeRewardCard === 'function') {
     closeModal('modal-collector-card');
-    openSubscribeModal(
-      'Super Cards 11 a 22 (Assinantes)',
-      'Exclusivo para Assinantes! Libere as Lições 11 a 22 e todos os Super Cards 9:16 em alta resolução:'
-    );
+    window.shareOrDownloadArcadeRewardCard(st.code);
     return;
   }
 
+  // 4) Super Card 9:16 conquistado nas Lições
   closeModal('modal-collector-card');
   const imgUrl = st.superCardImg || `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor || '09'}.jpg`;
-  triggerDirectImageDownloadOrShare(imgUrl, st.title, 'super_card_9x16');
+  triggerDirectImageDownloadOrShare(imgUrl, st.shortTitle || st.title, 'super_card_trono_kids');
 }
 
 // ============================================================================
-// MÓDULO 5: ÁLBUM DA FÉ (22 SUPER CARDS 9:16: 10 GRÁTIS EM P&B ATÉ CONCLUIR + 12 VIP COM CADEADO)
+// MÓDULO 5: GALERIA DE 4 SUPER CARDS POR PÁGINA (LIMPA, SEM PÍLULA DE TEXTO!)
 // ============================================================================
 function stepAlbum(delta) {
   playSoundClick();
-  const catalog = getAlbumSuperCardsCatalog();
+  const catalog = getUnifiedFaithAlbumCatalog();
   const maxStart = Math.max(0, catalog.length - 4);
   let next = albumOffset + delta;
   if (next > maxStart) next = 0;
@@ -5544,13 +5671,16 @@ function stepAlbum(delta) {
 function renderStickerAlbum() {
   updateTopCounters();
   const grid = document.getElementById('album-grid');
+  if (!grid) return;
   grid.innerHTML = '';
 
-  const catalog = getAlbumSuperCardsCatalog();
+  const catalog = getUnifiedFaithAlbumCatalog();
+  if (albumOffset >= catalog.length) albumOffset = 0;
   const visibleStories = catalog.slice(albumOffset, albumOffset + 4);
+
   visibleStories.forEach(st => {
-    const isFreeStory = (st.week <= 10) || isVipUnlocked;
-    const hasSticker = isLessonSuperCardConquered(st.week);
+    const isUnlockedTier = st.free || isVipUnlocked || st.conquered;
+    const hasSticker = !!st.conquered;
 
     const card = document.createElement('div');
     card.className = 'story-card';
@@ -5558,30 +5688,24 @@ function renderStickerAlbum() {
     let overlayHtml = '';
     let imgFilter = 'none';
 
-    if (!isFreeStory) {
-      // Lições 11 a 22 no modo Grátis -> Mostra Cadeado!
-      imgFilter = 'grayscale(70%) brightness(0.5)';
-      overlayHtml = `
-        <div class="lock-overlay">
-          <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Exclusivo Assinante">
-        </div>
-      `;
-    } else if (hasSticker) {
-      // Lição 100% Concluída -> Super Card 9:16 Colorido + Tiquezinho Verde!
+    if (hasSticker) {
       imgFilter = 'none';
       overlayHtml = `
         <div class="sticker-star-corner" style="background:linear-gradient(180deg,#00e676,#00c853); border:2px solid #ffffff;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
       `;
-    } else {
-      // Lições 1 a 10 Grátis ainda não concluídas -> Sem cadeado, mas em Preto e Branco (P&B)!
-      imgFilter = 'grayscale(100%) brightness(0.55) contrast(1.08)';
+    } else if (!isUnlockedTier) {
+      imgFilter = 'grayscale(100%) brightness(0.50)';
       overlayHtml = `
-        <div style="position:absolute; top:6px; left:6px; right:6px; background:rgba(15,23,42,0.86); border:1.5px solid #fde047; border-radius:999px; padding:2px 6px; font-size:9.5px; font-weight:800; color:#fde047; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.8);">
-          Conclua a Lição ${st.week} p/ Colorir
+        <div class="lock-overlay">
+          <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Exclusivo Assinante">
         </div>
       `;
+    } else {
+      // Em espera para conquistar: apenas Preto e Branco limpo, SEM pílula de texto em cima da arte!
+      imgFilter = 'grayscale(100%) brightness(0.56) contrast(1.06)';
+      overlayHtml = '';
     }
 
     card.innerHTML = `
@@ -5590,17 +5714,14 @@ function renderStickerAlbum() {
           <img src="${st.superCardImg}" class="story-card-thumb"
                style="filter: ${imgFilter};" alt="${st.title}">
           ${overlayHtml}
-          <div class="story-title-inside">Super Card ${st.week} • ${st.shortTitle}</div>
+          <div class="story-title-inside">Casinha ${st.houseNum} • ${st.shortTitle}</div>
         </div>
       </div>
     `;
 
     card.onclick = () => {
-      if (!isFreeStory) {
-        openSubscribeModal(`Liberar Super Card ${st.week}: ${st.shortTitle}`);
-      } else {
-        openCollectorCardModal(st);
-      }
+      playSoundClick();
+      openCollectorCardModal(st);
     };
     grid.appendChild(card);
   });
@@ -5800,11 +5921,6 @@ startInitialThemeMusic();
           const phasePickerModal = document.getElementById('arcade-phase-picker-modal');
           if (isElementVisible(phasePickerModal)) {
             phasePickerModal.style.display = 'none';
-            return;
-          }
-          const cardsGalModal = document.getElementById('arcade-reward-cards-gallery-modal');
-          if (isElementVisible(cardsGalModal)) {
-            cardsGalModal.style.display = 'none';
             return;
           }
           const pauseModal = document.getElementById('arcade-pause-confirm-modal');
