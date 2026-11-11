@@ -261,7 +261,8 @@
       "vovo_jogo_06.mp3": 5760,
       "vovo_jogo_07.mp3": 10550,
       "vovo_jogo_07_v140.mp3": 10550,
-      "vovo_jogo_08.mp3": 5570,
+      "vovo_jogo_08.mp3": 10820,
+      "vovo_jogo_08_v142.mp3": 10820,
       "vovo_jogo_09.mp3": 5250,
       "vovo_jogo_10.mp3": 6460,
       "vovo_jogo_11.mp3": 5530,
@@ -466,8 +467,8 @@
       title: "ARCA DE NOÉ",
       sub: "",
       icon: "./2_ASSETS_UI_BOTOES/ico_jogo_08_arca_v130.png?v=130",
-      audioFile: "vovo_jogo_08.mp3",
-      vovoFala: "Ouça com atenção o que o Vovô falar e toque no bichinho certo!",
+      audioFile: "vovo_jogo_08_v142.mp3",
+      vovoFala: "Olhe a grande Arca de Noé! Arraste cada bichinho lá de baixo até encaixar na janelinha com a sua sombra certa!",
       run: (container, phase) => runQuemEntrouArca(container, phase)
     },
     {
@@ -1431,6 +1432,9 @@
     if (window._ovelhaFujonaWinTimer) { clearTimeout(window._ovelhaFujonaWinTimer); window._ovelhaFujonaWinTimer = null; }
     if (window._ovelhaFujonaKeyDown) { window.removeEventListener("keydown", window._ovelhaFujonaKeyDown); window._ovelhaFujonaKeyDown = null; }
     if (window._ovelhaFujonaKeyUp) { window.removeEventListener("keyup", window._ovelhaFujonaKeyUp); window._ovelhaFujonaKeyUp = null; }
+    if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
+    if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
+    if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
 
     const container = document.getElementById("arcade-game-stage-container");
     // TRAVA UNIVERSAL DOS 17 JOGOS ENQUANTO O VOVÔ EXPLICA:
@@ -1532,6 +1536,9 @@
     if (window._ovelhaFujonaWinTimer) { clearTimeout(window._ovelhaFujonaWinTimer); window._ovelhaFujonaWinTimer = null; }
     if (window._ovelhaFujonaKeyDown) { window.removeEventListener("keydown", window._ovelhaFujonaKeyDown); window._ovelhaFujonaKeyDown = null; }
     if (window._ovelhaFujonaKeyUp) { window.removeEventListener("keyup", window._ovelhaFujonaKeyUp); window._ovelhaFujonaKeyUp = null; }
+    if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
+    if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
+    if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
     if (window._daviKeyHandler) { window.removeEventListener("keydown", window._daviKeyHandler); window._daviKeyHandler = null; }
 
     const vicModal = document.getElementById("trono-victory-modal");
@@ -1742,6 +1749,9 @@
     if (window._ovelhaFujonaWinTimer) { clearTimeout(window._ovelhaFujonaWinTimer); window._ovelhaFujonaWinTimer = null; }
     if (window._ovelhaFujonaKeyDown) { window.removeEventListener("keydown", window._ovelhaFujonaKeyDown); window._ovelhaFujonaKeyDown = null; }
     if (window._ovelhaFujonaKeyUp) { window.removeEventListener("keyup", window._ovelhaFujonaKeyUp); window._ovelhaFujonaKeyUp = null; }
+    if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
+    if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
+    if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
     if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
     if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
     if (TronoAudio.vovoPlayer) {
@@ -2985,6 +2995,9 @@
     if (window._ovelhaFujonaWinTimer) { clearTimeout(window._ovelhaFujonaWinTimer); window._ovelhaFujonaWinTimer = null; }
     if (window._ovelhaFujonaKeyDown) { window.removeEventListener("keydown", window._ovelhaFujonaKeyDown); window._ovelhaFujonaKeyDown = null; }
     if (window._ovelhaFujonaKeyUp) { window.removeEventListener("keyup", window._ovelhaFujonaKeyUp); window._ovelhaFujonaKeyUp = null; }
+    if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
+    if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
+    if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
     if (window._daviKeyHandler) { window.removeEventListener("keydown", window._daviKeyHandler); window._daviKeyHandler = null; }
 
     const currentPhaseNum = Math.max(1, phase || 1);
@@ -3723,6 +3736,9 @@
     if (window._ovelhaFujonaWinTimer) { clearTimeout(window._ovelhaFujonaWinTimer); window._ovelhaFujonaWinTimer = null; }
     if (window._ovelhaFujonaKeyDown) { window.removeEventListener("keydown", window._ovelhaFujonaKeyDown); window._ovelhaFujonaKeyDown = null; }
     if (window._ovelhaFujonaKeyUp) { window.removeEventListener("keyup", window._ovelhaFujonaKeyUp); window._ovelhaFujonaKeyUp = null; }
+    if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
+    if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
+    if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
 
     const pNum = Math.min(15, Math.max(1, Number(phase) || 1));
     const diffT = (pNum - 1) / 14; // 0.0 na Fase 1 -> 1.0 na Fase 15
@@ -4426,40 +4442,531 @@
     };
   }
 
-  // --- JOGO 8: QUEM ENTROU NA ARCA? (IDENTIFICAÇÃO AUDITIVA) ---
+  // --- JOGO 8: ARCA DE NOÉ 3D PIXAR (15 FASES / 15 JANELAS DE SILHUETA + VOZ DO VOVÔ EM CADA BICHINHO) ---
   function runQuemEntrouArca(container, phase) {
-    const bichos = [
-      { nome: "Leão", icon: "🦁" },
-      { nome: "Pomba", icon: "🕊️" },
-      { nome: "Camelo", icon: "🐪" }
+    const pNum = Math.max(1, Math.min(15, parseInt(phase, 10) || 1));
+
+    const ARCA_ANIMALS_DB = [
+      { id: "leao",      img: "./2_ASSETS_UI_BOTOES/arca_bicho_01_leao_v142.png?v=142",      audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_01_leao_v142.mp3?v=142",      durMs: 1580 },
+      { id: "girafa",    img: "./2_ASSETS_UI_BOTOES/arca_bicho_03_girafa_v142.png?v=142",    audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_03_girafa_v142.mp3?v=142",    durMs: 1570 },
+      { id: "elefante",  img: "./2_ASSETS_UI_BOTOES/arca_bicho_02_elefante_v142.png?v=142",  audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_02_elefante_v142.mp3?v=142",  durMs: 1690 },
+      { id: "ovelha",    img: "./2_ASSETS_UI_BOTOES/arca_bicho_04_ovelha_v142.png?v=142",    audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_04_ovelha_v142.mp3?v=142",    durMs: 1570 },
+      { id: "macaco",    img: "./2_ASSETS_UI_BOTOES/arca_bicho_05_macaco_v142.png?v=142",    audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_05_macaco_v142.mp3?v=142",    durMs: 1640 },
+      { id: "coelho",    img: "./2_ASSETS_UI_BOTOES/arca_bicho_07_coelho_v142.png?v=142",    audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_07_coelho_v142.mp3?v=142",    durMs: 1590 },
+      { id: "tartaruga", img: "./2_ASSETS_UI_BOTOES/arca_bicho_08_tartaruga_v142.png?v=142", audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_08_tartaruga_v142.mp3?v=142", durMs: 1720 },
+      { id: "zebra",     img: "./2_ASSETS_UI_BOTOES/arca_bicho_06_zebra_v142.png?v=142",     audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_06_zebra_v142.mp3?v=142",     durMs: 1570 },
+      { id: "pomba",     img: "./2_ASSETS_UI_BOTOES/arca_bicho_11_pomba_v142.png?v=142",     audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_11_pomba_v142.mp3?v=142",     durMs: 1530 },
+      { id: "camelo",    img: "./2_ASSETS_UI_BOTOES/arca_bicho_10_camelo_v142.png?v=142",    audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_10_camelo_v142.mp3?v=142",    durMs: 1620 },
+      { id: "urso",      img: "./2_ASSETS_UI_BOTOES/arca_bicho_09_urso_v142.png?v=142",      audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_09_urso_v142.mp3?v=142",      durMs: 1670 },
+      { id: "tucano",    img: "./2_ASSETS_UI_BOTOES/arca_bicho_14_tucano_v142.png?v=142",    audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_14_tucano_v142.mp3?v=142",    durMs: 1500 },
+      { id: "cervo",     img: "./2_ASSETS_UI_BOTOES/arca_bicho_13_cervo_v142.png?v=142",     audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_13_cervo_v142.mp3?v=142",     durMs: 1450 },
+      { id: "canguru",   img: "./2_ASSETS_UI_BOTOES/arca_bicho_12_canguru_v142.png?v=142",   audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_12_canguru_v142.mp3?v=142",   durMs: 1540 },
+      { id: "coruja",    img: "./2_ASSETS_UI_BOTOES/arca_bicho_15_coruja_v142.png?v=142",    audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_15_coruja_v142.mp3?v=142",    durMs: 1960 }
     ];
-    const correto = bichos[0];
+
+    // Padrões simétricos e harmônicos das 15 janelinhas (grade 5 colunas x 3 fileiras: índices 0..14)
+    const WINDOW_SLOT_PATTERNS = {
+      1:  [7],
+      2:  [6, 8],
+      3:  [1, 7, 13],
+      4:  [1, 3, 11, 13],
+      5:  [1, 3, 7, 11, 13],
+      6:  [1, 3, 5, 9, 11, 13],
+      7:  [1, 3, 5, 7, 9, 11, 13],
+      8:  [0, 2, 4, 6, 8, 10, 12, 14],
+      9:  [1, 2, 3, 6, 7, 8, 11, 12, 13],
+      10: [0, 1, 3, 4, 5, 6, 8, 9, 11, 13],
+      11: [0, 1, 2, 3, 4, 6, 7, 8, 11, 12, 13],
+      12: [0, 1, 2, 3, 4, 5, 6, 8, 9, 11, 12, 13],
+      13: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13],
+      14: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14],
+      15: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    };
+
+    function shuffleCopy(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+      }
+      return a;
+    }
+
+    // Na Fase N entram exatamente N animais (1 na Fase 1 ... 15 na Fase 15!)
+    const phaseAnimals = ARCA_ANIMALS_DB.slice(0, pNum);
+    const activeWindowIndices = WINDOW_SLOT_PATTERNS[pNum] || WINDOW_SLOT_PATTERNS[15];
+    const windowOrderAnimals = shuffleCopy(phaseAnimals);
+
+    // Embaralha a ordem no gramado garantindo que com 2+ animais não fique igual à ordem das janelas
+    let grassAnimals = shuffleCopy(phaseAnimals);
+    if (pNum >= 2) {
+      let guard = 0;
+      while (guard < 6 && grassAnimals.every((a, idx) => a.id === windowOrderAnimals[idx].id)) {
+        grassAnimals = shuffleCopy(phaseAnimals);
+        guard++;
+      }
+      if (grassAnimals.every((a, idx) => a.id === windowOrderAnimals[idx].id)) {
+        const first = grassAnimals.shift();
+        grassAnimals.push(first);
+      }
+    }
+
+    // Pré-carrega áudios dos animais desta fase para disparo instantâneo no encaixe
+    const audioCache = {};
+    phaseAnimals.forEach(anim => {
+      try {
+        const a = new Audio(anim.audio);
+        a.preload = "auto";
+        audioCache[anim.id] = a;
+      } catch (e) {}
+    });
+
+    const OPEN_WIN_SRC = "./2_ASSETS_UI_BOTOES/janela_arca_aberta_v142.png?v=142";
+    const CLOSED_WIN_SRC = "./2_ASSETS_UI_BOTOES/janela_arca_fechada_v142.png?v=142";
+    const BG_ARCA_SRC = "./2_ASSETS_UI_BOTOES/fundo_arca_noe_3d_v142.jpg?v=142";
 
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:25px; background:linear-gradient(180deg,#3b82f6,#1e3a8a); padding:20px;">
-        <div style="color:#fde047; font-size:22px; font-weight:900; text-align:center;">
-          QUEM ENTROU NA ARCA?
-        </div>
-        <div style="display:flex; gap:16px;">
-          ${bichos.map(b => `
-            <div class="card-arca-bicho" onclick="window._escolherArcaBicho('${b.nome}')" style="width:90px; height:90px; border-radius:20px; background:linear-gradient(180deg,#ffffff,#f1f5f9); border:3px solid #fde047; display:flex; align-items:center; justify-content:center; font-size:46px; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,0.4);">
-              ${b.icon}
-            </div>
-          `).join("")}
-        </div>
+      <style id="arca-noe-v142-styles">
+        @keyframes arcaAnimalIdle {
+          0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+          50% { transform: translate(-50%, -53%) scale(1.03) rotate(1.5deg); }
+        }
+        @keyframes arcaWindowPopIn {
+          0% { transform: translate(-50%, -44%) scale(0.45); opacity: 0.4; }
+          65% { transform: translate(-50%, -48%) scale(1.18); opacity: 1; }
+          100% { transform: translate(-50%, -46%) scale(1); opacity: 1; }
+        }
+        @keyframes arcaWindowWrongShake {
+          0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+          25% { transform: translate(-50%, -50%) translateX(-5px) rotate(-4deg); }
+          75% { transform: translate(-50%, -50%) translateX(5px) rotate(4deg); }
+        }
+        @keyframes arcaStarBurst {
+          0% { transform: translate(-50%, -50%) scale(0.4); opacity: 1; }
+          100% { transform: translate(-50%, -95%) scale(1.35); opacity: 0; }
+        }
+        .arca-win-slot {
+          position: absolute;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          user-select: none;
+          -webkit-user-select: none;
+          transition: transform 0.16s ease, filter 0.16s ease;
+        }
+        .arca-win-slot.hover-target {
+          transform: translate(-50%, -50%) scale(1.10);
+          filter: drop-shadow(0 0 10px #fde047);
+        }
+        .arca-win-slot.wrong-shake {
+          animation: arcaWindowWrongShake 0.32s ease;
+        }
+        .arca-grass-piece {
+          position: absolute;
+          transform: translate(-50%, -50%);
+          cursor: grab;
+          touch-action: none;
+          user-select: none;
+          -webkit-user-select: none;
+          z-index: 30;
+          filter: drop-shadow(0 5px 7px rgba(0, 0, 0, 0.42));
+          animation: arcaAnimalIdle 2.6s ease-in-out infinite;
+          will-change: left, top, transform;
+        }
+        .arca-grass-piece.returning {
+          transition: left 0.28s cubic-bezier(0.22, 1, 0.36, 1), top 0.28s cubic-bezier(0.22, 1, 0.36, 1), transform 0.22s ease;
+        }
+        .arca-grass-piece.dragging {
+          animation: none !important;
+          transition: none !important;
+          z-index: 95 !important;
+          cursor: grabbing;
+          transform: translate(-50%, -50%) scale(1.24) !important;
+          filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.52)) drop-shadow(0 0 10px rgba(253, 224, 71, 0.85)) !important;
+        }
+      </style>
+      <div id="arca-noe-arena" style="position:relative; width:100%; height:100%; overflow:hidden; touch-action:none; user-select:none; -webkit-user-select:none; background:#14532d;">
+        <img src="${BG_ARCA_SRC}" alt="" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; z-index:1;">
+        <div id="arca-windows-layer" style="position:absolute; inset:0; z-index:10; pointer-events:none;"></div>
+        <div id="arca-pieces-layer" style="position:absolute; inset:0; z-index:25; pointer-events:auto;"></div>
       </div>
     `;
 
-    // O áudio oficial vovo_jogo_08.mp3 já toca na entrada da fase
+    const arena = document.getElementById("arca-noe-arena");
+    const winLayer = document.getElementById("arca-windows-layer");
+    const piecesLayer = document.getElementById("arca-pieces-layer");
+    if (!arena || !winLayer || !piecesLayer) return;
 
-    window._escolherArcaBicho = function(nome) {
-      if (nome === "Leão") {
-        TronoAudio.play("success");
-        setTimeout(triggerArcadeVictory, 700);
-      } else {
-        TronoAudio.play("error");
-        TronoAudio.play("error");
+    // Estado do jogo (100% travado enquanto o Vovô explica, sem pílula de texto na tela!)
+    let isArcaUnlocked = false;
+    let isPhaseDone = false;
+    let placedCount = 0;
+
+    // Monta as 15 janelinhas da Arca (N abertas com silhueta + (15-N) fechadas com tramelinha)
+    const activeMap = {};
+    activeWindowIndices.forEach((slotIdx, k) => {
+      activeMap[slotIdx] = windowOrderAnimals[k];
+    });
+
+    const windowSlots = [];
+    for (let i = 0; i < 15; i++) {
+      const assignedAnimal = activeMap[i] || null;
+      const slotEl = document.createElement("div");
+      slotEl.className = "arca-win-slot";
+
+      const frameImg = document.createElement("img");
+      frameImg.src = assignedAnimal ? OPEN_WIN_SRC : CLOSED_WIN_SRC;
+      frameImg.alt = "";
+      frameImg.draggable = false;
+      frameImg.style.cssText = "width:100%; height:100%; object-fit:contain; display:block; pointer-events:none; filter:drop-shadow(0 3px 5px rgba(0,0,0,0.35));";
+      slotEl.appendChild(frameImg);
+
+      let innerAnimalImg = null;
+      if (assignedAnimal) {
+        innerAnimalImg = document.createElement("img");
+        innerAnimalImg.src = assignedAnimal.img;
+        innerAnimalImg.alt = "";
+        innerAnimalImg.draggable = false;
+        // Silhueta escura super nítida sobre o interior iluminado da janelinha da Arca
+        innerAnimalImg.style.cssText = "position:absolute; left:50%; top:50%; transform:translate(-50%, -46%); width:60%; height:64%; object-fit:contain; pointer-events:none; filter:brightness(0) opacity(0.88);";
+        slotEl.appendChild(innerAnimalImg);
       }
+
+      winLayer.appendChild(slotEl);
+      windowSlots.push({
+        index: i,
+        row: Math.floor(i / 5),
+        col: i % 5,
+        isOpen: !!assignedAnimal,
+        animalId: assignedAnimal ? assignedAnimal.id : null,
+        animalObj: assignedAnimal,
+        filled: false,
+        el: slotEl,
+        innerImg: innerAnimalImg,
+        cx: 0,
+        cy: 0
+      });
+    }
+
+    // Monta os N bichinhos 3D soltos sobre o gramado verde embaixo (sem blocos ou caixas!)
+    const pieceItems = grassAnimals.map((anim, idx) => {
+      const el = document.createElement("div");
+      el.className = "arca-grass-piece";
+      el.style.animationDelay = `${(idx % 5) * 0.28}s`;
+
+      const img = document.createElement("img");
+      img.src = anim.img;
+      img.alt = "";
+      img.draggable = false;
+      img.style.cssText = "width:100%; height:100%; object-fit:contain; display:block; pointer-events:none;";
+      el.appendChild(img);
+
+      piecesLayer.appendChild(el);
+      return {
+        id: anim.id,
+        animObj: anim,
+        el: el,
+        placed: false,
+        homeX: 0,
+        homeY: 0,
+        curX: 0,
+        curY: 0,
+        size: 64
+      };
+    });
+
+    let currentHitRadius = 44;
+
+    // Geometria responsiva exata: alinha as 15 janelas dentro do casco de madeira da Arca
+    // e acomoda de 1 até 15 bichinhos soltos no gramado sem sobreposição em qualquer celular!
+    function layoutArcaStage() {
+      const rect = arena.getBoundingClientRect();
+      const W = rect.width || window.innerWidth || 360;
+      const H = rect.height || (window.innerHeight - 60) || 580;
+
+      // Calcula retângulo real da imagem 750x1334 com object-fit: cover
+      const BG_W = 750;
+      const BG_H = 1334;
+      const covScale = Math.max(W / BG_W, H / BG_H);
+      const dispW = BG_W * covScale;
+      const dispH = BG_H * covScale;
+      const imgOx = (W - dispW) * 0.5;
+      const imgOy = (H - dispH) * 0.5;
+
+      // Parede de tábuas da Arca fica entre u=[0.11..0.89] e v=[0.275..0.645] da arte 3D
+      const maxStageW = Math.min(W - 14, H * 0.66);
+      const stageLeftLimit = (W - maxStageW) * 0.5;
+      const stageRightLimit = W - stageLeftLimit;
+
+      const wallLeft = Math.max(stageLeftLimit + 8, imgOx + dispW * 0.115);
+      const wallRight = Math.min(stageRightLimit - 8, imgOx + dispW * 0.885);
+      const wallSpanW = Math.max(220, wallRight - wallLeft);
+
+      const rawWallTop = imgOy + dispH * 0.272;
+      const rawWallBot = imgOy + dispH * 0.648;
+      const wallTop = Math.max(H * 0.20, Math.min(H * 0.30, rawWallTop));
+      const wallBot = Math.max(wallTop + 150, Math.min(H * 0.655, rawWallBot));
+      const wallSpanH = wallBot - wallTop;
+
+      const colStep = wallSpanW / 5;
+      const rowStep = wallSpanH / 3;
+      const winH = Math.max(44, Math.min(78, rowStep * 0.90, colStep * 1.12));
+      const openW = winH * (176 / 168);
+      const closedW = winH * (157 / 168);
+      currentHitRadius = Math.max(38, winH * 0.66);
+
+      windowSlots.forEach(slot => {
+        const cx = wallLeft + (slot.col + 0.5) * colStep;
+        const cy = wallTop + (slot.row + 0.5) * rowStep;
+        slot.cx = cx;
+        slot.cy = cy;
+        const wPx = slot.isOpen ? openW : closedW;
+        slot.el.style.width = `${wPx.toFixed(1)}px`;
+        slot.el.style.height = `${winH.toFixed(1)}px`;
+        slot.el.style.left = `${cx.toFixed(1)}px`;
+        slot.el.style.top = `${cy.toFixed(1)}px`;
+      });
+
+      // Zona do gramado embaixo: de wallBot + 10px até H - 8px
+      const grassTop = Math.max(wallBot + 10, Math.min(H * 0.685, imgOy + dispH * 0.69));
+      const grassBot = H - 8;
+      const grassH = Math.max(110, grassBot - grassTop);
+      const grassLeft = Math.max(stageLeftLimit + 6, W * 0.05);
+      const grassRight = Math.min(stageRightLimit - 6, W * 0.95);
+      const grassW = Math.max(240, grassRight - grassLeft);
+
+      const n = pieceItems.length;
+      let gRows = 1;
+      if (n >= 11) gRows = 3;
+      else if (n >= 4) gRows = 2;
+
+      const baseMaxCols = Math.ceil(n / gRows);
+      const cellW = grassW / Math.max(1, baseMaxCols);
+      const cellH = grassH / gRows;
+
+      let targetSize;
+      if (n === 1) targetSize = Math.min(96, grassH * 0.72, grassW * 0.34);
+      else if (n <= 3) targetSize = Math.min(84, cellW * 0.80, grassH * 0.68);
+      else if (n <= 6) targetSize = Math.min(72, cellW * 0.82, cellH * 0.88);
+      else if (n <= 10) targetSize = Math.min(62, cellW * 0.88, cellH * 0.88);
+      else targetSize = Math.min(56, cellW * 0.90, cellH * 0.92);
+      targetSize = Math.max(42, targetSize);
+
+      let idx = 0;
+      for (let r = 0; r < gRows; r++) {
+        const remaining = n - idx;
+        const rowsLeft = gRows - r;
+        const colsInRow = Math.ceil(remaining / rowsLeft);
+        const rowSpanW = Math.min(grassW, colsInRow * Math.max(targetSize * 1.12, grassW / Math.max(colsInRow, baseMaxCols)));
+        const rowStartX = (W - rowSpanW) * 0.5;
+        const stepX = rowSpanW / colsInRow;
+        const cy = grassTop + (r + 0.5) * (grassH / gRows);
+
+        for (let c = 0; c < colsInRow && idx < n; c++) {
+          const item = pieceItems[idx++];
+          item.size = targetSize;
+          item.homeX = rowStartX + (c + 0.5) * stepX;
+          item.homeY = cy;
+          item.el.style.width = `${targetSize.toFixed(1)}px`;
+          item.el.style.height = `${targetSize.toFixed(1)}px`;
+          if (!item.placed && activeDragItem !== item) {
+            item.curX = item.homeX;
+            item.curY = item.homeY;
+            item.el.style.left = `${item.homeX.toFixed(1)}px`;
+            item.el.style.top = `${item.homeY.toFixed(1)}px`;
+          }
+        }
+      }
+    }
+
+    function playArcaAnimalVoice(animObj) {
+      if (window._arcadeAudioMuted || !animObj) return;
+      try {
+        if (window._arcaBichoPlayer) {
+          try { window._arcaBichoPlayer.pause(); } catch (e) {}
+        }
+        const player = audioCache[animObj.id] || new Audio(animObj.audio);
+        window._arcaBichoPlayer = player;
+        player.muted = false;
+        player.volume = 1.0;
+        try { player.currentTime = 0; } catch (e) {}
+        const p = player.play();
+        if (p && typeof p.catch === "function") p.catch(() => {});
+      } catch (e) {}
+    }
+
+    function spawnWindowSparkle(cx, cy) {
+      const sp = document.createElement("div");
+      sp.textContent = "✨⭐✨";
+      sp.style.cssText = `position:absolute; left:${cx.toFixed(1)}px; top:${cy.toFixed(1)}px; font-size:20px; pointer-events:none; z-index:90; animation: arcaStarBurst 0.65s ease-out forwards;`;
+      winLayer.appendChild(sp);
+      setTimeout(() => { if (sp.parentNode) sp.parentNode.removeChild(sp); }, 700);
+    }
+
+    let activeDragItem = null;
+    let activePointerId = null;
+    let dragLiftY = 0;
+    let hoveredSlot = null;
+
+    function clearHoveredSlot() {
+      if (hoveredSlot) {
+        hoveredSlot.el.classList.remove("hover-target");
+        hoveredSlot = null;
+      }
+    }
+
+    function findNearestOpenSlot(vx, vy) {
+      let best = null;
+      let bestDist = currentHitRadius;
+      for (let i = 0; i < windowSlots.length; i++) {
+        const s = windowSlots[i];
+        if (!s.isOpen || s.filled) continue;
+        const d = Math.hypot(vx - s.cx, vy - s.cy);
+        if (d < bestDist) {
+          bestDist = d;
+          best = s;
+        }
+      }
+      return best;
+    }
+
+    function getArenaCoords(clientX, clientY) {
+      const rect = arena.getBoundingClientRect();
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top,
+        W: rect.width || 360,
+        H: rect.height || 580
+      };
+    }
+
+    function startDragPiece(item, clientX, clientY, isTouch, pointerId) {
+      if (!isArcaUnlocked || isPhaseDone || item.placed) return;
+      TronoAudio.unlockGestureAudio();
+      TronoAudio.play("click");
+
+      activeDragItem = item;
+      activePointerId = pointerId;
+      dragLiftY = isTouch ? 26 : 0;
+
+      item.el.classList.remove("returning");
+      item.el.classList.add("dragging");
+
+      const pt = getArenaCoords(clientX, clientY);
+      const nx = Math.max(20, Math.min(pt.W - 20, pt.x));
+      const ny = Math.max(24, Math.min(pt.H - 20, pt.y - dragLiftY));
+      item.curX = nx;
+      item.curY = ny;
+      item.el.style.left = `${nx.toFixed(1)}px`;
+      item.el.style.top = `${ny.toFixed(1)}px`;
+    }
+
+    function moveDragPiece(clientX, clientY) {
+      if (!activeDragItem || !isArcaUnlocked || isPhaseDone) return;
+      const pt = getArenaCoords(clientX, clientY);
+      const nx = Math.max(18, Math.min(pt.W - 18, pt.x));
+      const ny = Math.max(20, Math.min(pt.H - 18, pt.y - dragLiftY));
+      activeDragItem.curX = nx;
+      activeDragItem.curY = ny;
+      activeDragItem.el.style.left = `${nx.toFixed(1)}px`;
+      activeDragItem.el.style.top = `${ny.toFixed(1)}px`;
+
+      const near = findNearestOpenSlot(nx, ny);
+      if (near !== hoveredSlot) {
+        clearHoveredSlot();
+        if (near) {
+          hoveredSlot = near;
+          hoveredSlot.el.classList.add("hover-target");
+        }
+      }
+    }
+
+    function finishDragPiece() {
+      if (!activeDragItem) return;
+      const item = activeDragItem;
+      activeDragItem = null;
+      activePointerId = null;
+      clearHoveredSlot();
+
+      item.el.classList.remove("dragging");
+
+      const targetSlot = findNearestOpenSlot(item.curX, item.curY);
+      if (targetSlot && targetSlot.animalId === item.id) {
+        // ENCAIXE PERFEITO NA SILHUETA DA JANELINHA DA ARCA!
+        targetSlot.filled = true;
+        item.placed = true;
+        item.el.style.opacity = "0";
+        item.el.style.pointerEvents = "none";
+
+        if (targetSlot.innerImg) {
+          targetSlot.innerImg.style.filter = "drop-shadow(0 2px 4px rgba(0,0,0,0.38))";
+          targetSlot.innerImg.style.width = "64%";
+          targetSlot.innerImg.style.height = "68%";
+          targetSlot.innerImg.style.animation = "arcaWindowPopIn 0.42s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards";
+        }
+        spawnWindowSparkle(targetSlot.cx, targetSlot.cy);
+        TronoAudio.play("star");
+        playArcaAnimalVoice(item.animObj);
+
+        placedCount++;
+        if (placedCount >= phaseAnimals.length) {
+          isPhaseDone = true;
+          // Espera o Vovô terminar de falar o nome do último bichinho antes de abrir a tela de vitória!
+          const waitMs = (item.animObj && item.animObj.durMs ? item.animObj.durMs : 1550) + 320;
+          window._arcaWinTimer = setTimeout(() => {
+            triggerArcadeVictory();
+          }, waitMs);
+        }
+      } else {
+        // Janelinha errada ou soltou fora: desliza suavemente de volta para o gramado
+        if (targetSlot) {
+          TronoAudio.play("error");
+          targetSlot.el.classList.remove("wrong-shake");
+          void targetSlot.el.offsetWidth;
+          targetSlot.el.classList.add("wrong-shake");
+        }
+        item.el.classList.add("returning");
+        item.curX = item.homeX;
+        item.curY = item.homeY;
+        item.el.style.left = `${item.homeX.toFixed(1)}px`;
+        item.el.style.top = `${item.homeY.toFixed(1)}px`;
+      }
+    }
+
+    pieceItems.forEach(item => {
+      item.el.addEventListener("pointerdown", (e) => {
+        if (!isArcaUnlocked || isPhaseDone || item.placed || activeDragItem) return;
+        e.preventDefault();
+        e.stopPropagation();
+        try { item.el.setPointerCapture(e.pointerId); } catch (err) {}
+        startDragPiece(item, e.clientX, e.clientY, e.pointerType === "touch", e.pointerId);
+      });
+    });
+
+    arena.addEventListener("pointermove", (e) => {
+      if (!activeDragItem) return;
+      if (activePointerId !== null && e.pointerId !== activePointerId) return;
+      e.preventDefault();
+      moveDragPiece(e.clientX, e.clientY);
+    });
+
+    const onPointerEnd = (e) => {
+      if (!activeDragItem) return;
+      if (activePointerId !== null && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
+      finishDragPiece();
+    };
+    arena.addEventListener("pointerup", onPointerEnd);
+    arena.addEventListener("pointercancel", onPointerEnd);
+
+    layoutArcaStage();
+    setTimeout(layoutArcaStage, 60);
+    window._arcaResizeHandler = () => layoutArcaStage();
+    window.addEventListener("resize", window._arcaResizeHandler);
+
+    // Libera o toque somente após o Vovô concluir a explicação inicial!
+    window._arcadeUnlockGameAction = function() {
+      isArcaUnlocked = true;
     };
   }
 
