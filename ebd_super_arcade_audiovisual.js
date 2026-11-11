@@ -558,128 +558,128 @@
       gameNum: 1,
       gameTitle: "PESCA MARAVILHOSA",
       milestones: {
-        5:  { code: "CARD_01_F05", num: 1,  phase: 5,  tier: "GRÁTIS",   title: "As Redes Cheias na Galileia",      img: "./5_ASSETS_CARDS_JOGOS/card_01_pesca_f05.jpg?v=144" },
-        15: { code: "CARD_02_F15", num: 2,  phase: 15, tier: "CAMPEÃO",  title: "Encontro na Praia com Jesus",      img: "./5_ASSETS_CARDS_JOGOS/card_02_pesca_f15.jpg?v=144" }
+        5:  { code: "CARD_01_F05", num: 1,  phase: 5,  tier: "GRÁTIS",   title: "As Redes Cheias na Galileia",      img: "./5_ASSETS_CARDS_JOGOS/card_01_pesca_f05.jpg?v=145" },
+        15: { code: "CARD_02_F15", num: 2,  phase: 15, tier: "CAMPEÃO",  title: "Encontro na Praia com Jesus",      img: "./5_ASSETS_CARDS_JOGOS/card_02_pesca_f15.jpg?v=145" }
       }
     },
     dracma_perdida: {
       gameNum: 2,
       gameTitle: "ACHE A MOEDA",
       milestones: {
-        5:  { code: "CARD_03_F05", num: 3,  phase: 5,  tier: "GRÁTIS",   title: "A Moeda de Prata Encontrada",      img: "./5_ASSETS_CARDS_JOGOS/card_03_moeda_f05.jpg?v=144" },
-        15: { code: "CARD_04_F15", num: 4,  phase: 15, tier: "CAMPEÃO",  title: "Festa com as Vizinhas",            img: "./5_ASSETS_CARDS_JOGOS/card_04_moeda_f15.jpg?v=144" }
+        5:  { code: "CARD_03_F05", num: 3,  phase: 5,  tier: "GRÁTIS",   title: "A Moeda de Prata Encontrada",      img: "./5_ASSETS_CARDS_JOGOS/card_03_moeda_f05.jpg?v=145" },
+        15: { code: "CARD_04_F15", num: 4,  phase: 15, tier: "CAMPEÃO",  title: "Festa com as Vizinhas",            img: "./5_ASSETS_CARDS_JOGOS/card_04_moeda_f15.jpg?v=145" }
       }
     },
     pombo_arca: {
       gameNum: 3,
       gameTitle: "POMBINHA DA PAZ",
       milestones: {
-        5:  { code: "CARD_05_F05", num: 5,  phase: 5,  tier: "GRÁTIS",   title: "O Raminho de Oliveira",            img: "./5_ASSETS_CARDS_JOGOS/card_05_pombo_f05.jpg?v=144" },
-        15: { code: "CARD_06_F15", num: 6,  phase: 15, tier: "CAMPEÃO",  title: "A Pombinha Pousa nas Mãos de Noé", img: "./5_ASSETS_CARDS_JOGOS/card_06_pombo_f15.jpg?v=144" }
+        5:  { code: "CARD_05_F05", num: 5,  phase: 5,  tier: "GRÁTIS",   title: "O Raminho de Oliveira",            img: "./5_ASSETS_CARDS_JOGOS/card_05_pombo_f05.jpg?v=145" },
+        15: { code: "CARD_06_F15", num: 6,  phase: 15, tier: "CAMPEÃO",  title: "A Pombinha Pousa nas Mãos de Noé", img: "./5_ASSETS_CARDS_JOGOS/card_06_pombo_f15.jpg?v=145" }
       }
     },
     jonatas_alvo: {
       gameNum: 4,
       gameTitle: "DESVIE DA LANÇA",
       milestones: {
-        5:  { code: "CARD_07_F05", num: 7,  phase: 5,  tier: "GRÁTIS",   title: "A Amizade de Davi e Jônatas",      img: "./5_ASSETS_CARDS_JOGOS/card_07_davi_f05.jpg?v=144" },
-        15: { code: "CARD_08_F15", num: 8,  phase: 15, tier: "CAMPEÃO",  title: "A Harpa de Paz de Davi",           img: "./5_ASSETS_CARDS_JOGOS/card_08_davi_f15.jpg?v=144" }
+        5:  { code: "CARD_07_F05", num: 7,  phase: 5,  tier: "GRÁTIS",   title: "A Amizade de Davi e Jônatas",      img: "./5_ASSETS_CARDS_JOGOS/card_07_davi_f05.jpg?v=145" },
+        15: { code: "CARD_08_F15", num: 8,  phase: 15, tier: "CAMPEÃO",  title: "A Harpa de Paz de Davi",           img: "./5_ASSETS_CARDS_JOGOS/card_08_davi_f15.jpg?v=145" }
       }
     },
     ovelha_perdida: {
       gameNum: 5,
       gameTitle: "CADÊ A OVELHA?",
       milestones: {
-        5:  { code: "CARD_09_F05", num: 9,  phase: 5,  tier: "GRÁTIS",   title: "Achando a Ovelhinha nas Pedras",   img: "./5_ASSETS_CARDS_JOGOS/card_09_ovelha1_f05.jpg?v=144" },
-        15: { code: "CARD_10_F15", num: 10, phase: 15, tier: "CAMPEÃO",  title: "De Volta ao Aprisco nos Ombros",   img: "./5_ASSETS_CARDS_JOGOS/card_10_ovelha1_f15.jpg?v=144" }
+        5:  { code: "CARD_09_F05", num: 9,  phase: 5,  tier: "GRÁTIS",   title: "Achando a Ovelhinha nas Pedras",   img: "./5_ASSETS_CARDS_JOGOS/card_09_ovelha1_f05.jpg?v=145" },
+        15: { code: "CARD_10_F15", num: 10, phase: 15, tier: "CAMPEÃO",  title: "De Volta ao Aprisco nos Ombros",   img: "./5_ASSETS_CARDS_JOGOS/card_10_ovelha1_f15.jpg?v=145" }
       }
     },
     ovelha_fujona: {
       gameNum: 6,
       gameTitle: "PEGA A OVELHA!",
       milestones: {
-        5:  { code: "CARD_11_F05", num: 11, phase: 5,  tier: "GRÁTIS",   title: "Alegria nos Campos de Belém",      img: "./5_ASSETS_CARDS_JOGOS/card_11_ovelha2_f05.jpg?v=144" },
-        15: { code: "CARD_12_F15", num: 12, phase: 15, tier: "CAMPEÃO",  title: "Pastos Verdes e Águas Tranquilas", img: "./5_ASSETS_CARDS_JOGOS/card_12_ovelha2_f15.jpg?v=144" }
+        5:  { code: "CARD_11_F05", num: 11, phase: 5,  tier: "GRÁTIS",   title: "Alegria nos Campos de Belém",      img: "./5_ASSETS_CARDS_JOGOS/card_11_ovelha2_f05.jpg?v=145" },
+        15: { code: "CARD_12_F15", num: 12, phase: 15, tier: "CAMPEÃO",  title: "Pastos Verdes e Águas Tranquilas", img: "./5_ASSETS_CARDS_JOGOS/card_12_ovelha2_f15.jpg?v=145" }
       }
     },
     quem_entrou_arca: {
       gameNum: 7,
       gameTitle: "ARCA DE NOÉ",
       milestones: {
-        5:  { code: "CARD_13_F05", num: 13, phase: 5,  tier: "GRÁTIS",   title: "Os Bichinhos Entrando na Arca",    img: "./5_ASSETS_CARDS_JOGOS/card_13_arca_f05.jpg?v=144" },
-        15: { code: "CARD_14_F15", num: 14, phase: 15, tier: "CAMPEÃO",  title: "A Aliança do Arco-Íris",           img: "./5_ASSETS_CARDS_JOGOS/card_14_arca_f15.jpg?v=144" }
+        5:  { code: "CARD_13_F05", num: 13, phase: 5,  tier: "GRÁTIS",   title: "Os Bichinhos Entrando na Arca",    img: "./5_ASSETS_CARDS_JOGOS/card_13_arca_f05.jpg?v=145" },
+        15: { code: "CARD_14_F15", num: 14, phase: 15, tier: "CAMPEÃO",  title: "A Aliança do Arco-Íris",           img: "./5_ASSETS_CARDS_JOGOS/card_14_arca_f15.jpg?v=145" }
       }
     },
     quiz_visual: {
       gameNum: 8,
       gameTitle: "QUIZ DA BÍBLIA",
       milestones: {
-        5:  { code: "CARD_15_F05", num: 15, phase: 5,  tier: "GRÁTIS",   title: "Os Reis Magos e a Estrela Guia",   img: "./5_ASSETS_CARDS_JOGOS/card_15_quiz_f05.jpg?v=144" },
-        15: { code: "CARD_16_F15", num: 16, phase: 15, tier: "CAMPEÃO",  title: "O Menino Jesus no Templo",         img: "./5_ASSETS_CARDS_JOGOS/card_16_quiz_f15.jpg?v=144" }
+        5:  { code: "CARD_15_F05", num: 15, phase: 5,  tier: "GRÁTIS",   title: "Os Reis Magos e a Estrela Guia",   img: "./5_ASSETS_CARDS_JOGOS/card_15_quiz_f05.jpg?v=145" },
+        15: { code: "CARD_16_F15", num: 16, phase: 15, tier: "CAMPEÃO",  title: "O Menino Jesus no Templo",         img: "./5_ASSETS_CARDS_JOGOS/card_16_quiz_f15.jpg?v=145" }
       }
     },
     ligue_pontos: {
       gameNum: 9,
       gameTitle: "LIGUE OS PONTOS",
       milestones: {
-        5:  { code: "CARD_17_F05", num: 17, phase: 5,  tier: "GRÁTIS",   title: "Abraão e o Céu de Estrelas",       img: "./5_ASSETS_CARDS_JOGOS/card_17_pontos_f05.jpg?v=144" },
-        15: { code: "CARD_18_F15", num: 18, phase: 15, tier: "CAMPEÃO",  title: "A Escada Iluminada de Jacó",       img: "./5_ASSETS_CARDS_JOGOS/card_18_pontos_f15.jpg?v=144" }
+        5:  { code: "CARD_17_F05", num: 17, phase: 5,  tier: "GRÁTIS",   title: "Abraão e o Céu de Estrelas",       img: "./5_ASSETS_CARDS_JOGOS/card_17_pontos_f05.jpg?v=145" },
+        15: { code: "CARD_18_F15", num: 18, phase: 15, tier: "CAMPEÃO",  title: "A Escada Iluminada de Jacó",       img: "./5_ASSETS_CARDS_JOGOS/card_18_pontos_f15.jpg?v=145" }
       }
     },
     seis_erros: {
       gameNum: 10,
       gameTitle: "JOGO DOS ERROS",
       milestones: {
-        5:  { code: "CARD_19_F05", num: 19, phase: 5,  tier: "GRÁTIS",   title: "O Jardim Florido da Criação",      img: "./5_ASSETS_CARDS_JOGOS/card_19_erros_f05.jpg?v=144" },
-        15: { code: "CARD_20_F15", num: 20, phase: 15, tier: "CAMPEÃO",  title: "Daniel na Cova dos Leões",         img: "./5_ASSETS_CARDS_JOGOS/card_20_erros_f15.jpg?v=144" }
+        5:  { code: "CARD_19_F05", num: 19, phase: 5,  tier: "GRÁTIS",   title: "O Jardim Florido da Criação",      img: "./5_ASSETS_CARDS_JOGOS/card_19_erros_f05.jpg?v=145" },
+        15: { code: "CARD_20_F15", num: 20, phase: 15, tier: "CAMPEÃO",  title: "Daniel na Cova dos Leões",         img: "./5_ASSETS_CARDS_JOGOS/card_20_erros_f15.jpg?v=145" }
       }
     },
     criacao_ordem: {
       gameNum: 11,
       gameTitle: "CRIAÇÃO DO MUNDO",
       milestones: {
-        5:  { code: "CARD_21_F05", num: 21, phase: 5,  tier: "GRÁTIS",   title: "O Sol, a Lua e as Estrelinhas",    img: "./5_ASSETS_CARDS_JOGOS/card_21_criacao_f05.jpg?v=144" },
-        15: { code: "CARD_22_F15", num: 22, phase: 15, tier: "CAMPEÃO",  title: "A Grande Festa da Criação",        img: "./5_ASSETS_CARDS_JOGOS/card_22_criacao_f15.jpg?v=144" }
+        5:  { code: "CARD_21_F05", num: 21, phase: 5,  tier: "GRÁTIS",   title: "O Sol, a Lua e as Estrelinhas",    img: "./5_ASSETS_CARDS_JOGOS/card_21_criacao_f05.jpg?v=145" },
+        15: { code: "CARD_22_F15", num: 22, phase: 15, tier: "CAMPEÃO",  title: "A Grande Festa da Criação",        img: "./5_ASSETS_CARDS_JOGOS/card_22_criacao_f15.jpg?v=145" }
       }
     },
     memoria_sonoro: {
       gameNum: 12,
       gameTitle: "JOGO DA MEMÓRIA",
       milestones: {
-        5:  { code: "CARD_23_F05", num: 23, phase: 5,  tier: "GRÁTIS",   title: "Amiguinhos da Natureza de Deus",   img: "./5_ASSETS_CARDS_JOGOS/card_23_memoria_f05.jpg?v=144" },
-        15: { code: "CARD_24_F15", num: 24, phase: 15, tier: "CAMPEÃO",  title: "Jonas e a Grande Baleia Azul",     img: "./5_ASSETS_CARDS_JOGOS/card_24_memoria_f15.jpg?v=144" }
+        5:  { code: "CARD_23_F05", num: 23, phase: 5,  tier: "GRÁTIS",   title: "Amiguinhos da Natureza de Deus",   img: "./5_ASSETS_CARDS_JOGOS/card_23_memoria_f05.jpg?v=145" },
+        15: { code: "CARD_24_F15", num: 24, phase: 15, tier: "CAMPEÃO",  title: "Jonas e a Grande Baleia Azul",     img: "./5_ASSETS_CARDS_JOGOS/card_24_memoria_f15.jpg?v=145" }
       }
     },
     mana_deserto: {
       gameNum: 13,
       gameTitle: "PÃOZINHO DO CÉU",
       milestones: {
-        5:  { code: "CARD_25_F05", num: 25, phase: 5,  tier: "GRÁTIS",   title: "Colhendo o Maná ao Amanhecer",     img: "./5_ASSETS_CARDS_JOGOS/card_25_mana_f05.jpg?v=144" },
-        15: { code: "CARD_26_F15", num: 26, phase: 15, tier: "CAMPEÃO",  title: "Água Viva da Rocha de Horebe",     img: "./5_ASSETS_CARDS_JOGOS/card_26_mana_f15.jpg?v=144" }
+        5:  { code: "CARD_25_F05", num: 25, phase: 5,  tier: "GRÁTIS",   title: "Colhendo o Maná ao Amanhecer",     img: "./5_ASSETS_CARDS_JOGOS/card_25_mana_f05.jpg?v=145" },
+        15: { code: "CARD_26_F15", num: 26, phase: 15, tier: "CAMPEÃO",  title: "Água Viva da Rocha de Horebe",     img: "./5_ASSETS_CARDS_JOGOS/card_26_mana_f15.jpg?v=145" }
       }
     },
     tabernaculo_cesto: {
       gameNum: 14,
       gameTitle: "BEBÊ MOISÉS",
       milestones: {
-        5:  { code: "CARD_27_F05", num: 27, phase: 5,  tier: "GRÁTIS",   title: "O Cestinho do Bebê Moisés no Nilo",img: "./5_ASSETS_CARDS_JOGOS/card_27_moises_f05.jpg?v=144" },
-        15: { code: "CARD_28_F15", num: 28, phase: 15, tier: "CAMPEÃO",  title: "A Travessia do Mar Vermelho",      img: "./5_ASSETS_CARDS_JOGOS/card_28_moises_f15.jpg?v=144" }
+        5:  { code: "CARD_27_F05", num: 27, phase: 5,  tier: "GRÁTIS",   title: "O Cestinho do Bebê Moisés no Nilo",img: "./5_ASSETS_CARDS_JOGOS/card_27_moises_f05.jpg?v=145" },
+        15: { code: "CARD_28_F15", num: 28, phase: 15, tier: "CAMPEÃO",  title: "A Travessia do Mar Vermelho",      img: "./5_ASSETS_CARDS_JOGOS/card_28_moises_f15.jpg?v=145" }
       }
     },
     puzzle_3d: {
       gameNum: 15,
       gameTitle: "QUEBRA-CABEÇA",
       milestones: {
-        5:  { code: "CARD_29_F05", num: 29, phase: 5,  tier: "GRÁTIS",   title: "Cinco Pães e Dois Peixinhos",      img: "./5_ASSETS_CARDS_JOGOS/card_29_puzzle_f05.jpg?v=144" },
-        15: { code: "CARD_30_F15", num: 30, phase: 15, tier: "CAMPEÃO",  title: "Jesus Acalma a Tempestade",        img: "./5_ASSETS_CARDS_JOGOS/card_30_puzzle_f15.jpg?v=144" }
+        5:  { code: "CARD_29_F05", num: 29, phase: 5,  tier: "GRÁTIS",   title: "Cinco Pães e Dois Peixinhos",      img: "./5_ASSETS_CARDS_JOGOS/card_29_puzzle_f05.jpg?v=145" },
+        15: { code: "CARD_30_F15", num: 30, phase: 15, tier: "CAMPEÃO",  title: "Jesus Acalma a Tempestade",        img: "./5_ASSETS_CARDS_JOGOS/card_30_puzzle_f15.jpg?v=145" }
       }
     },
     pintura_magica: {
       gameNum: 16,
       gameTitle: "PINTURA MÁGICA",
       milestones: {
-        5:  { code: "CARD_31_F05", num: 31, phase: 5,  tier: "GRÁTIS",   title: "A Túnica Colorida de José",        img: "./5_ASSETS_CARDS_JOGOS/card_31_pintura_f05.jpg?v=144" },
-        15: { code: "CARD_32_F15", num: 32, phase: 15, tier: "CAMPEÃO",  title: "Jesus Abençoando as Crianças",     img: "./5_ASSETS_CARDS_JOGOS/card_32_pintura_f15.jpg?v=144" }
+        5:  { code: "CARD_31_F05", num: 31, phase: 5,  tier: "GRÁTIS",   title: "A Túnica Colorida de José",        img: "./5_ASSETS_CARDS_JOGOS/card_31_pintura_f05.jpg?v=145" },
+        15: { code: "CARD_32_F15", num: 32, phase: 15, tier: "CAMPEÃO",  title: "Jesus Abençoando as Crianças",     img: "./5_ASSETS_CARDS_JOGOS/card_32_pintura_f15.jpg?v=145" }
       }
     }
   };
@@ -1928,7 +1928,7 @@
     const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
     const current = currentPhase || 1;
 
-    // Libera também o botão de Baixar / Compartilhar Card no WhatsApp quando houver Card conquistado nesta fase!
+    // Destaca o pulso suave do botão de Baixar Super Card
     const rewardBtn = document.getElementById("btn-canonical-reward-card");
     if (rewardBtn) {
       rewardBtn.dataset.unlocked = "1";
@@ -1940,20 +1940,12 @@
 
     if (!isVip && current >= 5) {
       // TELA PADRONIZADA DE FIM DAS 5 FASES GRÁTIS (IGUAL EM TODOS OS 16 JOGOS!):
-      // 1) Botão Dourado Principal: Assinar o App (+10 Fases)
+      // Botão Dourado Principal: Assinar o App (+10 Fases)
+      // (Sem frase/botão extra "Voltar à Sala de Jogos", pois o botão azul redondo já fica fixo no topo!)
       btn.textContent = "🔓 ASSINAR O APP (+10 FASES)";
       btn.style.background = "linear-gradient(180deg, #f59e0b 0%, #d97706 100%)";
       btn.style.border = "2.5px solid #fde047";
       btn.style.boxShadow = "0 0 22px rgba(245,158,11,0.85), 0 6px 16px rgba(0,0,0,0.75)";
-
-      // 2) Botão Verde Secundário: Voltar à Sala de Jogos
-      const hubBtn = document.getElementById("btn-canonical-hub");
-      if (hubBtn) {
-        hubBtn.dataset.unlocked = "1";
-        hubBtn.style.opacity = "1";
-        hubBtn.style.pointerEvents = "auto";
-        hubBtn.style.cursor = "pointer";
-      }
     } else {
       const btnText = (isVip && current >= TOTAL_PHASES) ? "🎉 FINALIZAR JOGUINHO!" : "CONTINUAR BRINCANDO";
       btn.textContent = btnText;
@@ -2133,8 +2125,8 @@
       let rewardCardShowcaseHtml = "";
       if (milestoneCard) {
         const badgeHeader = current >= 15
-          ? "🏆 CAMPEÃO! VOCÊ GANHOU UM CARD EXCLUSIVO!"
-          : "🎁 PARABÉNS! VOCÊ GANHOU UM CARD 16:9!";
+          ? "🏆 CAMPEÃO! VOCÊ GANHOU UM SUPER CARD!"
+          : "🎁 PARABÉNS! VOCÊ GANHOU UM SUPER CARD!";
         rewardCardShowcaseHtml = `
           <div style="position:relative; z-index:2; width:100%; max-width:330px; background:linear-gradient(180deg, rgba(30,27,75,0.92), rgba(15,23,42,0.95)); border:2.5px solid #fde047; border-radius:18px; padding:9px 10px 11px 10px; margin-bottom:12px; box-shadow:0 8px 24px rgba(0,0,0,0.75), 0 0 22px rgba(253,224,71,0.45);">
             <div style="font-size:12.5px; font-weight:900; color:#fde047; margin-bottom:6px; letter-spacing:0.2px;">
@@ -2144,14 +2136,11 @@
               <img src="${milestoneCard.img}" alt="${milestoneCard.title}" style="width:100%; height:100%; object-fit:cover; display:block;">
             </div>
             <div style="font-size:13px; font-weight:900; color:#ffffff; margin-bottom:8px; line-height:1.2;">
-              Card #${String(milestoneCard.num).padStart(2, "0")} • ${milestoneCard.title}
+              Super Card #${String(milestoneCard.num).padStart(2, "0")} • ${milestoneCard.title}
             </div>
-            <button id="btn-canonical-reward-card" type="button" data-card-code="${milestoneCard.code}" style="width:100%; padding:11px 12px; font-size:14px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #16a34a 0%, #15803d 100%); border:2px solid #86efac; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); opacity:0.55; pointer-events:none; touch-action:manipulation;">
-              📲 BAIXAR / ENVIAR NO WHATSAPP
+            <button id="btn-canonical-reward-card" type="button" data-unlocked="1" data-card-code="${milestoneCard.code}" style="width:100%; padding:11px 12px; font-size:14px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #16a34a 0%, #15803d 100%); border:2px solid #86efac; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); opacity:1; cursor:pointer; pointer-events:auto; touch-action:manipulation; animation:btnGlowPulse 1.8s ease-in-out infinite;">
+              📲 BAIXAR / ENVIAR SUPER CARD
             </button>
-            <div style="font-size:10.5px; font-weight:700; color:#cbd5e1; margin-top:5px;">
-              Salvo em "Meus Cards" para ver quando quiser!
-            </div>
           </div>
         `;
       }
@@ -2166,11 +2155,8 @@
           </div>
         `;
         actionsHtml = `
-          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:13px 16px; font-size:16.5px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
+          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:14px 16px; font-size:17px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
             ⭐ MUITO BEM!...
-          </button>
-          <button id="btn-canonical-hub" type="button" style="position:relative; z-index:2; width:100%; margin-top:10px; padding:12px 16px; font-size:15.5px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #0284c7 0%, #0369a1 100%); border:2.5px solid #ffffff; border-radius:999px; box-shadow:0 6px 14px rgba(0,0,0,0.55); opacity:0.45; pointer-events:none; touch-action:manipulation;">
-            🏠 VOLTAR À SALA DE JOGOS
           </button>
           <div id="btn-canonical-replay" style="margin-top:11px; color:#fef08a; font-weight:800; font-size:13.5px; cursor:pointer; text-decoration:underline; padding:4px;">
             🔄 Jogar novamente desde a Fase 1
@@ -2178,12 +2164,9 @@
         `;
       } else {
         actionsHtml = `
-          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:14px; font-size:18px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
+          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:15px; font-size:18.5px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
             ⭐ MUITO BEM!...
           </button>
-          <div id="btn-canonical-hub-link" style="margin-top:12px; color:#e9d5ff; font-weight:800; font-size:13.5px; cursor:pointer; text-decoration:underline; opacity:0.9; padding:4px;">
-            Voltar à Sala de Jogos
-          </div>
         `;
       }
 
@@ -2222,7 +2205,6 @@
       const rewardBtn = document.getElementById("btn-canonical-reward-card");
       if (rewardBtn) {
         rewardBtn.addEventListener("click", (ev) => {
-          if (rewardBtn.dataset.unlocked !== "1") return;
           if (ev) { ev.preventDefault(); ev.stopPropagation(); }
           const code = rewardBtn.getAttribute("data-card-code");
           if (code && typeof window.shareOrDownloadArcadeRewardCard === "function") {
