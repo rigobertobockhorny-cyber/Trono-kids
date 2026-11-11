@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v148.0';
+        const CURRENT_VER = 'v149.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=148.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=149.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -2369,6 +2369,61 @@
   </div>
 
   <!-- ==================================================================== -->
+  <!-- PAINEL SECRETO DO CRIADOR (INVISÍVEL P/ USUÁRIOS • SENHA 12345)       -->
+  <!-- ==================================================================== -->
+  <div id="modal-developer-admin" class="modal-backdrop" style="z-index: 10000500;">
+    <div class="modal-card" style="padding: 24px 20px; max-width: 365px; border: 2.5px solid #fde047;">
+      <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Painel Secreto" style="width: 50px; height: 50px; object-fit: contain; margin-bottom: 6px;">
+      <div style="font-size: 20px; font-weight: 800; color: #fde047; margin-bottom: 6px; line-height: 1.2;">
+        Painel Secreto do Criador
+      </div>
+
+      <!-- ETAPA 1: DIGITAR SENHA -->
+      <div id="dev-auth-step">
+        <div class="modal-subtitle" style="font-size: 13px; color: #e2e8f0; margin-bottom: 14px; line-height: 1.4;">
+          Acesso restrito para testes. Digite sua senha exclusiva:
+        </div>
+        <input
+          type="password"
+          id="input-dev-secret-pass"
+          inputmode="numeric"
+          placeholder="Digite a senha..."
+          onkeydown="if(event.key==='Enter'){ window.submitDeveloperPassword(); }"
+          style="width: 100%; padding: 12px; border-radius: 12px; border: 2px solid rgba(253, 224, 71, 0.65); background: #0f172a; color: #ffffff; font-size: 18px; text-align: center; font-weight: 900; letter-spacing: 3px; margin-bottom: 8px;"
+        >
+        <div id="dev-secret-feedback" style="font-size: 12px; font-weight: 800; color: #f87171; min-height: 16px; margin-bottom: 10px;"></div>
+        <button type="button" class="btn-gold" style="width: 100%; padding: 12px; font-size: 15.5px; margin-bottom: 8px;" onclick="window.submitDeveloperPassword()">
+          ACESSAR PAINEL
+        </button>
+        <button type="button" class="btn-gold" style="width: 100%; padding: 10px; font-size: 14px; background: linear-gradient(180deg, #334155 0%, #1e293b 100%); border-color: #64748b;" onclick="closeModal('modal-developer-admin')">
+          Fechar
+        </button>
+      </div>
+
+      <!-- ETAPA 2: OPÇÕES DE TESTE (APÓS SENHA CORRETA) -->
+      <div id="dev-actions-step" style="display: none;">
+        <div id="dev-status-summary" style="background: rgba(15, 23, 42, 0.72); border: 1.5px solid rgba(253, 224, 71, 0.4); border-radius: 14px; padding: 10px 12px; margin-bottom: 14px; font-size: 12.5px; font-weight: 800; color: #f8fafc; line-height: 1.45;"></div>
+
+        <button type="button" id="btn-dev-reset-all" class="btn-gold" style="width: 100%; padding: 13px 12px; font-size: 14.5px; background: linear-gradient(180deg, #ef4444 0%, #b91c1c 100%); border-color: #fca5a5; margin-bottom: 10px;" onclick="window.resetAllAppProgressToZero(this)">
+          ZERAR TUDO E TESTAR DO INÍCIO
+        </button>
+
+        <button type="button" class="btn-gold" style="width: 100%; padding: 11px 12px; font-size: 14px; margin-bottom: 9px;" onclick="window.setDeveloperVipMode(true)">
+          ATIVAR MODO ASSINANTE (15 FASES)
+        </button>
+
+        <button type="button" class="btn-gold" style="width: 100%; padding: 11px 12px; font-size: 14px; background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%); border-color: #bae6fd; margin-bottom: 10px;" onclick="window.setDeveloperVipMode(false)">
+          USAR MODO GRÁTIS (MANTER FASES)
+        </button>
+
+        <button type="button" class="btn-gold" style="width: 100%; padding: 10px; font-size: 14px; background: linear-gradient(180deg, #334155 0%, #1e293b 100%); border-color: #64748b;" onclick="closeModal('modal-developer-admin')">
+          Fechar Painel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
   <!-- MODAL DE ASSINATURA PAGA (DIRECIONADO AOS PAIS - SEM DARK PATTERNS)  -->
   <!-- ==================================================================== -->
   <div id="modal-subscribe" class="modal-backdrop">
@@ -2605,8 +2660,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=148.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=148.0"></script>
+<script src="ebd_modulos_educativos.js?v=149.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=149.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -3782,7 +3837,7 @@ function startGooglePlayCheckout(plano) {
 
 
 // ============================================================================
-// MODO DESENVOLVEDOR OFICIAL (SENHA: 12345) - RIGOBERTO
+// MODO DESENVOLVEDOR OFICIAL (SENHA: 12345) - EXCLUSIVO DO CRIADOR RIGOBERTO
 // ============================================================================
 window.DEVELOPER_PASSWORD = '12345';
 let devLogoTapCount = 0;
@@ -3798,39 +3853,117 @@ window.handleDevLogoTap = function() {
   }
 };
 
-window.openDeveloperDialog = function() {
-  const pass = prompt('Modo Desenvolvedor • Trono Kids EBD\n\nDigite a senha do desenvolvedor:');
-  if (!pass) return;
-  if (pass.trim() === window.DEVELOPER_PASSWORD) {
-    try { playSoundWinCelebration(); } catch(e) {}
-    const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
-    const choice = confirm(
-      'SENHA DO DESENVOLVEDOR CORRETA (12345)!\n\n' +
-      'Status Atual: ' + (isVip ? 'MODO VIP ATIVO (15 Fases / Tudo Liberado)' : 'MODO FREE (5 Fases / Modo Grátis)') + '\n\n' +
-      'Escolha uma ação:\n' +
-      '• [OK] = ATIVAR MODO VIP (15 Fases + 22 Lições Liberadas)\n' +
-      '• [Cancelar] = DESATIVAR MODO VIP (Voltar ao Modo Free 5 Fases para teste de usuário comum)'
-    );
-    if (choice) {
-      isVipUnlocked = true;
-      localStorage.setItem('trono_vip_active_v4', '1');
-      alert('MODO VIP ATIVADO!\nTodas as 15 fases e histórias foram liberadas com sucesso!');
-    } else {
-      isVipUnlocked = false;
-      localStorage.removeItem('trono_vip_active_v4');
-      alert('MODO FREE ATIVADO!\nO app agora está no modo gratuito (5 fases) para teste de usuário comum.');
+function renderDeveloperStatusSummary() {
+  const summaryEl = document.getElementById('dev-status-summary');
+  if (!summaryEl) return;
+  const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
+  let wonCount = 0;
+  try {
+    if (typeof getUnifiedFaithAlbumCatalog === 'function') {
+      wonCount = getUnifiedFaithAlbumCatalog().filter(x => x.conquered).length;
     }
-    updateTopCounters();
-    if (document.getElementById('screen-gallery') && document.getElementById('screen-gallery').classList.contains('active')) renderGalleryPage();
-    if (document.getElementById('screen-album') && document.getElementById('screen-album').classList.contains('active')) renderStickerAlbum();
-    if (document.getElementById('screen-ludo-trail') && document.getElementById('screen-ludo-trail').classList.contains('active')) renderLudoTrailBoard();
-    if (document.getElementById('screen-sleep') && document.getElementById('screen-sleep').classList.contains('active')) renderSleepCorner();
-    const phaseTotalEl = document.getElementById('arcade-phase-total');
-    if (phaseTotalEl) phaseTotalEl.textContent = isVipUnlocked ? '15' : '5';
-  } else {
-    try { playSoundWrongRed(); } catch(e) {}
-    alert('Senha do desenvolvedor incorreta!');
+  } catch (e) {}
+  summaryEl.innerHTML =
+    `Modo Atual: <span style="color:#fde047;">${isVip ? 'ASSINANTE VIP (15 Fases)' : 'GRÁTIS NORMAL (5 Fases)'}</span><br>` +
+    `Super Cards Conquistados: <span style="color:#38bdf8;">${wonCount} de 54</span>`;
+}
+
+window.openDeveloperDialog = function() {
+  const modal = document.getElementById('modal-developer-admin');
+  const authStep = document.getElementById('dev-auth-step');
+  const actionsStep = document.getElementById('dev-actions-step');
+  const inputEl = document.getElementById('input-dev-secret-pass');
+  const fbEl = document.getElementById('dev-secret-feedback');
+  if (!modal) return;
+
+  if (authStep) authStep.style.display = 'block';
+  if (actionsStep) actionsStep.style.display = 'none';
+  if (fbEl) fbEl.textContent = '';
+  if (inputEl) inputEl.value = '';
+  modal.classList.add('active');
+  setTimeout(() => {
+    try { if (inputEl) inputEl.focus(); } catch (e) {}
+  }, 80);
+};
+
+window.submitDeveloperPassword = function() {
+  const inputEl = document.getElementById('input-dev-secret-pass');
+  const fbEl = document.getElementById('dev-secret-feedback');
+  const authStep = document.getElementById('dev-auth-step');
+  const actionsStep = document.getElementById('dev-actions-step');
+  const code = (inputEl ? inputEl.value : '').trim().toUpperCase();
+
+  if (!code) {
+    if (fbEl) fbEl.textContent = 'Digite sua senha exclusiva.';
+    return;
   }
+
+  // Atalho ultra-rápido: digitar 00000 já zera tudo direto!
+  if (code === '00000') {
+    window.resetAllAppProgressToZero(document.getElementById('btn-dev-reset-all'));
+    return;
+  }
+
+  if (code === window.DEVELOPER_PASSWORD) {
+    try { playSoundWinCelebration(); } catch (e) {}
+    if (fbEl) fbEl.textContent = '';
+    if (authStep) authStep.style.display = 'none';
+    if (actionsStep) actionsStep.style.display = 'block';
+    renderDeveloperStatusSummary();
+  } else {
+    try { playSoundWrongRed(); } catch (e) {}
+    if (fbEl) fbEl.textContent = 'Senha incorreta.';
+  }
+};
+
+window.setDeveloperVipMode = function(enableVip) {
+  playSoundClick();
+  if (enableVip) {
+    isVipUnlocked = true;
+    localStorage.setItem('trono_vip_active_v4', '1');
+  } else {
+    isVipUnlocked = false;
+    localStorage.removeItem('trono_vip_active_v4');
+  }
+  updateTopCounters();
+  if (document.getElementById('screen-gallery') && document.getElementById('screen-gallery').classList.contains('active')) renderGalleryPage();
+  if (document.getElementById('screen-album') && document.getElementById('screen-album').classList.contains('active')) renderStickerAlbum();
+  if (document.getElementById('screen-ludo-trail') && document.getElementById('screen-ludo-trail').classList.contains('active')) renderLudoTrailBoard();
+  if (document.getElementById('screen-sleep') && document.getElementById('screen-sleep').classList.contains('active')) renderSleepCorner();
+  if (typeof window.refreshArcadeUiAfterDevChange === 'function') {
+    window.refreshArcadeUiAfterDevChange();
+  }
+  renderDeveloperStatusSummary();
+  closeModal('modal-developer-admin');
+};
+
+// LIMPEZA TOTAL DE FASES, CARDS E VIP PARA TESTE DO ZERO (EXCLUSIVO DO CRIADOR!)
+// Nas atualizações normais do app para as crianças esta função NUNCA roda — o progresso das crianças permanece 100% intacto!
+window.resetAllAppProgressToZero = function(btnEl) {
+  try { playSoundSnapGreen(); } catch (e) {}
+  if (btnEl) {
+    btnEl.textContent = 'ZERANDO TUDO... AGUARDE';
+    btnEl.disabled = true;
+  }
+  try {
+    const keysToRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.indexOf('trono_') === 0 && k !== 'trono_app_version') {
+        keysToRemove.push(k);
+      }
+    }
+    keysToRemove.forEach(k => localStorage.removeItem(k));
+    isVipUnlocked = false;
+  } catch (e) {}
+
+  try {
+    sessionStorage.setItem('trono_skip_intro_once', '1');
+  } catch (e) {}
+
+  setTimeout(() => {
+    window.location.replace(window.location.pathname + '?_v=' + Date.now());
+  }, 260);
 };
 
 function redeemVipCoupon() {
@@ -3843,6 +3976,14 @@ function redeemVipCoupon() {
   if (!rawCode) {
     msgEl.style.color = '#f87171';
     msgEl.textContent = 'Por favor, digite o código do seu cupom.';
+    return;
+  }
+
+  // Atalho secreto exclusivo do Criador também no campo de cupom:
+  if (rawCode === 'ZERAR12345' || rawCode === '00000') {
+    msgEl.style.color = '#fde047';
+    msgEl.textContent = 'Zerando todo o aplicativo para teste do início...';
+    window.resetAllAppProgressToZero();
     return;
   }
 
@@ -5905,6 +6046,13 @@ startInitialThemeMusic();
           // NUNCA esconde o modal sozinho deixando os confetes rodando sem botão!
           // Ignora swipe acidental de borda nos primeiros 1.1s da vitória (dedo saindo do D-PAD);
           // após isso, se o usuário apertar Voltar, fecha o jogo limpo (parando confetes e áudio) e volta à Sala de Jogos.
+          // 0. Se o Painel Secreto do Criador estiver aberto, fecha
+          const devModal = document.getElementById('modal-developer-admin');
+          if (devModal && devModal.classList.contains('active')) {
+            if (typeof closeModal === 'function') closeModal('modal-developer-admin');
+            return;
+          }
+
           const victoryModal = document.getElementById('trono-victory-modal');
           if (isElementVisible(victoryModal)) {
             const elapsedSinceWin = Date.now() - (window._arcadeVictoryStartedAt || 0);

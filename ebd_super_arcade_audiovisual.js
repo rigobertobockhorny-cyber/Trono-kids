@@ -1677,6 +1677,22 @@
     writeAllArcadeProgressMap(map);
   };
 
+  window.refreshArcadeUiAfterDevChange = function() {
+    if (currentActiveGame && currentActiveGame.id) {
+      const maxUnl = window.getArcadeGameMaxUnlocked(currentActiveGame.id);
+      const stageEl = document.getElementById("screen-trono-arcade-stage");
+      if (currentPhase > maxUnl && stageEl && stageEl.classList.contains("active")) {
+        currentPhase = maxUnl;
+        loadPhase(currentPhase);
+      }
+    }
+    updateArcadeTopPhaseNavState();
+    const pickerModal = document.getElementById("arcade-phase-picker-modal");
+    if (pickerModal && pickerModal.style.display === "flex") {
+      window.openArcadePhasePickerModal();
+    }
+  };
+
   let arcadeDevTapCount = 0;
   let arcadeDevTapTimer = null;
   window.handleArcadeDevTap = function() {
@@ -1687,24 +1703,6 @@
       arcadeDevTapCount = 0;
       if (typeof window.openDeveloperDialog === 'function') {
         window.openDeveloperDialog();
-        const isVip = isArcadeVipActive();
-        const totalEl = document.getElementById("arcade-phase-total");
-        if (totalEl) totalEl.textContent = isVip ? "15" : "5";
-      } else {
-        const pass = prompt("Senha do Desenvolvedor (Liberar 15 Fases):");
-        if (pass && pass.trim() === "12345") {
-          localStorage.setItem('trono_vip_active_v4', '1');
-          if (typeof isVipUnlocked !== 'undefined') isVipUnlocked = true;
-          const totalEl = document.getElementById("arcade-phase-total");
-          if (totalEl) totalEl.textContent = "15";
-          alert("Senha 12345 aceita! 15 Fases Liberadas no Arcade!");
-        } else if (pass) {
-          alert("Senha incorreta!");
-        }
-      }
-      const pickerModal = document.getElementById("arcade-phase-picker-modal");
-      if (pickerModal && pickerModal.style.display === "flex") {
-        window.openArcadePhasePickerModal();
       }
     }
   };
