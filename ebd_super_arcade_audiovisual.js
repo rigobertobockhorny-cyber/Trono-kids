@@ -1426,6 +1426,10 @@
     // Reseta trava de liberação
     window._arcadeUnlockGameAction = null;
     if (window._ovelhaFujonaTimer) { clearInterval(window._ovelhaFujonaTimer); window._ovelhaFujonaTimer = null; }
+    if (window._ovelhaFujonaRaf) { cancelAnimationFrame(window._ovelhaFujonaRaf); window._ovelhaFujonaRaf = null; }
+    if (window._ovelhaFujonaWinTimer) { clearTimeout(window._ovelhaFujonaWinTimer); window._ovelhaFujonaWinTimer = null; }
+    if (window._ovelhaFujonaKeyDown) { window.removeEventListener("keydown", window._ovelhaFujonaKeyDown); window._ovelhaFujonaKeyDown = null; }
+    if (window._ovelhaFujonaKeyUp) { window.removeEventListener("keyup", window._ovelhaFujonaKeyUp); window._ovelhaFujonaKeyUp = null; }
 
     const container = document.getElementById("arcade-game-stage-container");
     // TRAVA UNIVERSAL DOS 17 JOGOS ENQUANTO O VOVÔ EXPLICA:
@@ -1523,6 +1527,10 @@
     if (window._daviImpactTimer) { clearTimeout(window._daviImpactTimer); window._daviImpactTimer = null; }
     if (window._daviNextRoundTimer) { clearTimeout(window._daviNextRoundTimer); window._daviNextRoundTimer = null; }
     if (window._ovelhaFujonaTimer) { clearInterval(window._ovelhaFujonaTimer); window._ovelhaFujonaTimer = null; }
+    if (window._ovelhaFujonaRaf) { cancelAnimationFrame(window._ovelhaFujonaRaf); window._ovelhaFujonaRaf = null; }
+    if (window._ovelhaFujonaWinTimer) { clearTimeout(window._ovelhaFujonaWinTimer); window._ovelhaFujonaWinTimer = null; }
+    if (window._ovelhaFujonaKeyDown) { window.removeEventListener("keydown", window._ovelhaFujonaKeyDown); window._ovelhaFujonaKeyDown = null; }
+    if (window._ovelhaFujonaKeyUp) { window.removeEventListener("keyup", window._ovelhaFujonaKeyUp); window._ovelhaFujonaKeyUp = null; }
     if (window._daviKeyHandler) { window.removeEventListener("keydown", window._daviKeyHandler); window._daviKeyHandler = null; }
 
     const vicModal = document.getElementById("trono-victory-modal");
@@ -1728,6 +1736,11 @@
     if (window._daviWindupTimer) { clearTimeout(window._daviWindupTimer); window._daviWindupTimer = null; }
     if (window._daviImpactTimer) { clearTimeout(window._daviImpactTimer); window._daviImpactTimer = null; }
     if (window._daviNextRoundTimer) { clearTimeout(window._daviNextRoundTimer); window._daviNextRoundTimer = null; }
+    if (window._ovelhaFujonaTimer) { clearInterval(window._ovelhaFujonaTimer); window._ovelhaFujonaTimer = null; }
+    if (window._ovelhaFujonaRaf) { cancelAnimationFrame(window._ovelhaFujonaRaf); window._ovelhaFujonaRaf = null; }
+    if (window._ovelhaFujonaWinTimer) { clearTimeout(window._ovelhaFujonaWinTimer); window._ovelhaFujonaWinTimer = null; }
+    if (window._ovelhaFujonaKeyDown) { window.removeEventListener("keydown", window._ovelhaFujonaKeyDown); window._ovelhaFujonaKeyDown = null; }
+    if (window._ovelhaFujonaKeyUp) { window.removeEventListener("keyup", window._ovelhaFujonaKeyUp); window._ovelhaFujonaKeyUp = null; }
     if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
     if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
     if (TronoAudio.vovoPlayer) {
@@ -2967,6 +2980,10 @@
     if (window._daviImpactTimer) { clearTimeout(window._daviImpactTimer); window._daviImpactTimer = null; }
     if (window._daviNextRoundTimer) { clearTimeout(window._daviNextRoundTimer); window._daviNextRoundTimer = null; }
     if (window._ovelhaFujonaTimer) { clearInterval(window._ovelhaFujonaTimer); window._ovelhaFujonaTimer = null; }
+    if (window._ovelhaFujonaRaf) { cancelAnimationFrame(window._ovelhaFujonaRaf); window._ovelhaFujonaRaf = null; }
+    if (window._ovelhaFujonaWinTimer) { clearTimeout(window._ovelhaFujonaWinTimer); window._ovelhaFujonaWinTimer = null; }
+    if (window._ovelhaFujonaKeyDown) { window.removeEventListener("keydown", window._ovelhaFujonaKeyDown); window._ovelhaFujonaKeyDown = null; }
+    if (window._ovelhaFujonaKeyUp) { window.removeEventListener("keyup", window._ovelhaFujonaKeyUp); window._ovelhaFujonaKeyUp = null; }
     if (window._daviKeyHandler) { window.removeEventListener("keydown", window._daviKeyHandler); window._daviKeyHandler = null; }
 
     const currentPhaseNum = Math.max(1, phase || 1);
@@ -3698,66 +3715,403 @@
     });
   }
 
-  // --- JOGO 6: A OVELHA FUJONA (PERSEGUIÇÃO) ---
+  // --- JOGO 6: PEGA A OVELHA! (CAMPINA 3D PIXAR — PASTORZINHO + OVELHINHA PULANDINHO + CORAÇÃO 3D TRAVADO) ---
   function runOvelhaFujona(container, phase) {
+    if (window._ovelhaFujonaTimer) { clearInterval(window._ovelhaFujonaTimer); window._ovelhaFujonaTimer = null; }
+    if (window._ovelhaFujonaRaf) { cancelAnimationFrame(window._ovelhaFujonaRaf); window._ovelhaFujonaRaf = null; }
+    if (window._ovelhaFujonaWinTimer) { clearTimeout(window._ovelhaFujonaWinTimer); window._ovelhaFujonaWinTimer = null; }
+    if (window._ovelhaFujonaKeyDown) { window.removeEventListener("keydown", window._ovelhaFujonaKeyDown); window._ovelhaFujonaKeyDown = null; }
+    if (window._ovelhaFujonaKeyUp) { window.removeEventListener("keyup", window._ovelhaFujonaKeyUp); window._ovelhaFujonaKeyUp = null; }
+
+    const pNum = Math.min(15, Math.max(1, Number(phase) || 1));
+    const diffT = (pNum - 1) / 14; // 0.0 na Fase 1 -> 1.0 na Fase 15
+
     container.innerHTML = `
-      <div id="pastor-arena" style="position:relative; width:100%; height:100%; background:radial-gradient(circle,#86efac,#16a34a); overflow:hidden;">
-        <div id="pastorzinho" style="position:absolute; left:40px; top:40px; font-size:44px; cursor:pointer; touch-action:none; z-index:10;">
-          🧑‍🌾
+      <style>
+        @keyframes fujonaHeartPopIn {
+          0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.18) rotate(-10deg); }
+          55%  { opacity: 1; transform: translate(-50%, -58%) scale(1.18) rotate(4deg); }
+          80%  { opacity: 1; transform: translate(-50%, -52%) scale(0.95) rotate(-2deg); }
+          100% { opacity: 1; transform: translate(-50%, -54%) scale(1.04) rotate(0deg); }
+        }
+        @keyframes fujonaHeartBeat {
+          0%, 100% { transform: translate(-50%, -54%) scale(1.0); }
+          50%      { transform: translate(-50%, -58%) scale(1.13); }
+        }
+        @keyframes fujonaIdleBreath {
+          0%, 100% { transform: scaleY(1); }
+          50%      { transform: scaleY(1.025); }
+        }
+      </style>
+      <div id="pastor-arena" style="position:relative; width:100%; height:100%; overflow:hidden; touch-action:none; user-select:none; -webkit-user-select:none; background:#2e6f1e;">
+        <!-- Cenário 3D Pixar Campina / Pampa Verdinho -->
+        <img src="./2_ASSETS_UI_BOTOES/fundo_ovelha_fujona_pampa_v138.jpg?v=138"
+             alt=""
+             draggable="false"
+             style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; user-select:none; z-index:1;" />
+
+        <!-- Vinheta suave de luz solar dourada no topo -->
+        <div style="position:absolute; inset:0; background:radial-gradient(circle at 75% 8%, rgba(255,248,205,0.22) 0%, rgba(0,0,0,0) 48%); pointer-events:none; z-index:2;"></div>
+
+        <!-- Pastorzinho 3D -->
+        <div id="pastorzinho-wrap" style="position:absolute; left:0; top:0; width:0; height:0; pointer-events:none; z-index:14; will-change:transform;">
+          <div id="pastor-shadow" style="position:absolute; left:-28px; top:-8px; width:56px; height:15px; border-radius:50%; background:radial-gradient(ellipse, rgba(12,42,10,0.52) 0%, rgba(12,42,10,0) 74%);"></div>
+          <img id="pastor-sprite"
+               src="./2_ASSETS_UI_BOTOES/pastorzinho_3d_v138.png?v=138"
+               alt=""
+               draggable="false"
+               style="position:absolute; left:0; top:0; height:122px; width:auto; max-width:none; transform-origin:50% 94%; transform:translate(-50%, -95%) scaleX(1); filter:drop-shadow(0 4px 6px rgba(0,0,0,0.26)); user-select:none;" />
         </div>
-        <div id="ovelha-fujona" style="position:absolute; right:60px; bottom:60px; font-size:44px; transition:all 0.5s ease;">
-          🐑
+
+        <!-- Ovelhinha Fujona 3D (Pulandinho pelo Pampa!) -->
+        <div id="ovelha-fujona-wrap" style="position:absolute; left:0; top:0; width:0; height:0; pointer-events:none; z-index:13; will-change:transform;">
+          <div id="ovelha-shadow" style="position:absolute; left:-31px; top:-8px; width:62px; height:15px; border-radius:50%; background:radial-gradient(ellipse, rgba(12,42,10,0.48) 0%, rgba(12,42,10,0) 74%);"></div>
+          <img id="ovelha-sprite"
+               src="./2_ASSETS_UI_BOTOES/ovelha_fujona_3d_v138.png?v=138"
+               alt=""
+               draggable="false"
+               style="position:absolute; left:0; top:0; width:82px; height:auto; max-width:none; transform-origin:50% 90%; transform:translate(-50%, -92%) scaleX(-1); filter:drop-shadow(0 4px 6px rgba(0,0,0,0.24)); user-select:none;" />
         </div>
+
+        <!-- Coração 3D (Aparece quando o pastorzinho encosta e TRAVA os dois juntinhos!) -->
+        <img id="fujona-heart-3d"
+             src="./2_ASSETS_UI_BOTOES/coracao_3d_v138.png?v=138"
+             alt=""
+             draggable="false"
+             style="opacity:0; visibility:hidden; position:absolute; left:0; top:0; width:78px; height:auto; max-width:none; pointer-events:none; z-index:26; filter:drop-shadow(0 6px 14px rgba(244,63,94,0.55)); user-select:none;" />
       </div>
     `;
 
-    const pastor = document.getElementById("pastorzinho");
-    const ovelha = document.getElementById("ovelha-fujona");
     const arena = document.getElementById("pastor-arena");
-    let isOvelhaUnlocked = false;
+    const pastorWrap = document.getElementById("pastorzinho-wrap");
+    const pastorSprite = document.getElementById("pastor-sprite");
+    const pastorShadow = document.getElementById("pastor-shadow");
+    const ovelhaWrap = document.getElementById("ovelha-fujona-wrap");
+    const ovelhaSprite = document.getElementById("ovelha-sprite");
+    const ovelhaShadow = document.getElementById("ovelha-shadow");
+    const heartEl = document.getElementById("fujona-heart-3d");
 
-    function moverOvelhaAleatorio() {
-      if (!ovelha || !isOvelhaUnlocked) return;
-      const x = Math.random() * (arena.clientWidth - 80);
-      const y = Math.random() * (arena.clientHeight - 80);
-      ovelha.style.left = x + "px";
-      ovelha.style.top = y + "px";
+    let isOvelhaUnlocked = false;
+    let isCaught = false;
+
+    function getBounds() {
+      const W = Math.max(280, arena ? arena.clientWidth : 360);
+      const H = Math.max(420, arena ? arena.clientHeight : 640);
+      return {
+        W,
+        H,
+        minX: Math.max(46, W * 0.12),
+        maxX: Math.min(W - 46, W * 0.88),
+        minY: Math.max(138, H * 0.30),
+        maxY: Math.min(H - 42, H * 0.89)
+      };
     }
 
-    window._arcadeUnlockGameAction = function() {
-      if (isOvelhaUnlocked) return;
-      isOvelhaUnlocked = true;
-      TronoAudio.play("pop");
-      if (window._ovelhaFujonaTimer) clearInterval(window._ovelhaFujonaTimer);
-      window._ovelhaFujonaTimer = setInterval(moverOvelhaAleatorio, Math.max(450, 1100 - phase * 100));
-    };
+    function clamp(v, lo, hi) {
+      return v < lo ? lo : (v > hi ? hi : v);
+    }
 
-    function onDragPastor(e) {
-      if (!isOvelhaUnlocked) return;
-      const rect = arena.getBoundingClientRect();
-      const cx = e.touches ? e.touches[0].clientX : e.clientX;
-      const cy = e.touches ? e.touches[0].clientY : e.clientY;
-      const px = cx - rect.left - 24;
-      const py = cy - rect.top - 24;
-      pastor.style.left = px + "px";
-      pastor.style.top = py + "px";
+    const initB = getBounds();
+    // Posições iniciais na campina verdinha: Pastorzinho à esquerda-baixo, Ovelhinha à direita-cima
+    let px = clamp(initB.W * 0.24, initB.minX, initB.maxX);
+    let py = clamp(initB.H * 0.75, initB.minY, initB.maxY);
+    let pastorFacing = 1; // 1 = direita, -1 = esquerda
+    let walkPhase = 0;
 
-      // Verifica colisão
-      const ox = ovelha.offsetLeft;
-      const oy = ovelha.offsetTop;
-      const dist = Math.hypot(px - ox, py - oy);
-      if (dist < 48) {
-        if (window._ovelhaFujonaTimer) { clearInterval(window._ovelhaFujonaTimer); window._ovelhaFujonaTimer = null; }
-        arena.removeEventListener("touchmove", onDragPastor);
-        arena.removeEventListener("mousemove", onDragPastor);
-        TronoAudio.play("baa");
-        TronoAudio.play("success");
-        ovelha.innerHTML = "💖🐑";
-        setTimeout(triggerArcadeVictory, 600);
+    let ox = clamp(initB.W * 0.75, initB.minX, initB.maxX);
+    let oy = clamp(initB.H * 0.43, initB.minY, initB.maxY);
+    let sheepFacing = -1;
+    let hopPhase = 0;
+
+    // Velocidade progressiva nas 15 fases (Fase 1 bem calminha -> Fase 15 bem esperta, sempre vencível!)
+    const sheepSpeed = 84 + diffT * 142;   // 84 px/s (Fase 1) -> 226 px/s (Fase 15)
+    const pastorSpeed = 198 + diffT * 138; // 198 px/s (Fase 1) -> 336 px/s (Fase 15)
+    const hopFreq = 6.4 + diffT * 3.2;     // Ritmo do "pulandinho"
+    const evadeStrength = 0.14 + diffT * 0.86;
+    const evadeRadius = 115 + diffT * 32;
+
+    // Direção inicial da ovelhinha andando de um lado para o outro na campina
+    let svx = -sheepSpeed * 0.92;
+    let svy = sheepSpeed * 0.36;
+    let wanderTimer = 1.1;
+    let lastDodgeBaaAt = 0;
+
+    // Alvo do dedo / mouse para o Pastorzinho caminhar suavemente
+    let targetX = px;
+    let targetY = py;
+    let hasPointerTarget = false;
+    let isPointerDown = false;
+    const keysDown = { left: false, right: false, up: false, down: false };
+
+    function renderCharacters(pLift, pTilt, sLift, sTilt, sShadowScale) {
+      if (!pastorWrap || !ovelhaWrap) return;
+      pastorWrap.style.transform = `translate3d(${px.toFixed(1)}px, ${py.toFixed(1)}px, 0)`;
+      ovelhaWrap.style.transform = `translate3d(${ox.toFixed(1)}px, ${oy.toFixed(1)}px, 0)`;
+
+      // Profundidade 3D real na grama: quem está mais abaixo na tela fica na frente
+      pastorWrap.style.zIndex = py >= oy ? "15" : "13";
+      ovelhaWrap.style.zIndex = oy > py ? "15" : "13";
+
+      if (pastorSprite) {
+        pastorSprite.style.transform = `translate(-50%, calc(-95% + ${pLift.toFixed(1)}px)) scaleX(${pastorFacing}) rotate(${pTilt.toFixed(1)}deg)`;
+      }
+      if (pastorShadow) {
+        const pScale = clamp(1 + pLift * 0.015, 0.84, 1.02);
+        pastorShadow.style.transform = `scale(${pScale.toFixed(2)})`;
+      }
+      if (ovelhaSprite) {
+        ovelhaSprite.style.transform = `translate(-50%, calc(-92% + ${sLift.toFixed(1)}px)) scaleX(${sheepFacing}) rotate(${sTilt.toFixed(1)}deg)`;
+      }
+      if (ovelhaShadow) {
+        ovelhaShadow.style.transform = `scale(${sShadowScale.toFixed(2)})`;
       }
     }
-    arena.addEventListener("mousemove", onDragPastor);
-    arena.addEventListener("touchmove", onDragPastor, { passive: true });
+
+    // Renderiza ambos paradinhos no pasto enquanto o Vovô Nésio explica a regra
+    renderCharacters(0, 0, 0, 0, 1);
+
+    function freezeAndCelebrateCatch() {
+      if (isCaught) return;
+      isCaught = true;
+      hasPointerTarget = false;
+      isPointerDown = false;
+
+      // 1. PARA IMEDIATAMENTE QUALQUER MOVIMENTO DOS DOIS!
+      if (window._ovelhaFujonaRaf) {
+        cancelAnimationFrame(window._ovelhaFujonaRaf);
+        window._ovelhaFujonaRaf = null;
+      }
+
+      // 2. TRAVA O PASTORZINHO E A OVELHINHA JUNTINHOS OLHANDO UM PARA O OUTRO NO PASTO!
+      const b = getBounds();
+      const midX = clamp((px + ox) * 0.5, b.minX + 34, b.maxX - 34);
+      const midY = clamp((py + oy) * 0.5, b.minY + 12, b.maxY - 12);
+      const pastorOnLeft = px <= ox;
+
+      px = midX + (pastorOnLeft ? -30 : 30);
+      py = midY;
+      ox = midX + (pastorOnLeft ? 30 : -30);
+      oy = midY + 3;
+      pastorFacing = pastorOnLeft ? 1 : -1;
+      sheepFacing = pastorOnLeft ? -1 : 1;
+
+      // Ambos pousados firmes na grama (sem pulo pendente nem deslize!)
+      renderCharacters(0, 0, 0, 0, 1);
+
+      // 3. EXIBE O CORAÇÃO 3D PULSANDO BEM NO MEIO ACIMA DOS DOIS TRAVADOS!
+      if (heartEl) {
+        heartEl.style.left = `${midX.toFixed(1)}px`;
+        heartEl.style.top = `${(midY - 108).toFixed(1)}px`;
+        heartEl.style.visibility = "visible";
+        heartEl.style.opacity = "1";
+        heartEl.style.animation = "fujonaHeartPopIn 0.42s cubic-bezier(0.22, 1.35, 0.42, 1) forwards, fujonaHeartBeat 0.75s ease-in-out 0.42s infinite";
+      }
+
+      // 4. OVELHINHA DÁ O "BÉÉÉ!" FELIZ + BRILHO DE VITÓRIA + PASSA DE FASE APÓS VEREM OS DOIS TRAVADOS!
+      TronoAudio.play("baa");
+      setTimeout(() => {
+        TronoAudio.play("success");
+      }, 340);
+
+      window._ovelhaFujonaWinTimer = setTimeout(() => {
+        window._ovelhaFujonaWinTimer = null;
+        triggerArcadeVictory();
+      }, 1250);
+    }
+
+    let lastTs = 0;
+    function stepLoop(ts) {
+      if (isCaught || !isOvelhaUnlocked) return;
+      if (!arena || !arena.isConnected) return;
+
+      if (!lastTs) lastTs = ts;
+      const dt = Math.min(0.05, Math.max(0.004, (ts - lastTs) / 1000));
+      lastTs = ts;
+
+      const b = getBounds();
+
+      // --- 1. MOVIMENTO DO PASTORZINHO (DEDO / MOUSE OU TECLADO) ---
+      let moveX = 0;
+      let moveY = 0;
+      const keyDx = (keysDown.right ? 1 : 0) - (keysDown.left ? 1 : 0);
+      const keyDy = (keysDown.down ? 1 : 0) - (keysDown.up ? 1 : 0);
+
+      if (keyDx !== 0 || keyDy !== 0) {
+        const kLen = Math.hypot(keyDx, keyDy) || 1;
+        moveX = (keyDx / kLen) * pastorSpeed * dt;
+        moveY = (keyDy / kLen) * pastorSpeed * dt;
+        hasPointerTarget = false;
+      } else if (hasPointerTarget) {
+        const dxT = targetX - px;
+        const dyT = targetY - py;
+        const distT = Math.hypot(dxT, dyT);
+        if (distT > 3.5) {
+          const step = Math.min(distT, pastorSpeed * dt);
+          moveX = (dxT / distT) * step;
+          moveY = (dyT / distT) * step;
+        } else if (!isPointerDown) {
+          hasPointerTarget = false;
+        }
+      }
+
+      const pastorMoving = Math.hypot(moveX, moveY) > 0.35;
+      if (pastorMoving) {
+        px = clamp(px + moveX, b.minX, b.maxX);
+        py = clamp(py + moveY, b.minY, b.maxY);
+        if (moveX > 0.6) pastorFacing = 1;
+        else if (moveX < -0.6) pastorFacing = -1;
+        walkPhase += dt * 13.5;
+      } else {
+        walkPhase = 0;
+      }
+
+      // --- 2. MOVIMENTO DA OVELHINHA FUJONA ("PULANDINHO" DE UM LADO PARA O OUTRO NA CAMPINA!) ---
+      wanderTimer -= dt;
+      if (wanderTimer <= 0) {
+        wanderTimer = 0.85 + Math.random() * 1.15;
+        // Mantém o passeio lateral característico pelo pampa com leve variação vertical na grama
+        const dirSign = Math.abs(svx) > 10 ? Math.sign(svx) : (Math.random() < 0.5 ? 1 : -1);
+        const flipChance = Math.random() < (0.22 + diffT * 0.18) ? -1 : 1;
+        const horizRatio = 0.78 + Math.random() * 0.18;
+        const vertSign = Math.random() < 0.5 ? -1 : 1;
+        const vertRatio = Math.sqrt(Math.max(0.04, 1 - horizRatio * horizRatio));
+        svx = dirSign * flipChance * sheepSpeed * horizRatio;
+        svy = vertSign * sheepSpeed * vertRatio;
+      }
+
+      // Evasão brincalhona quando o pastorzinho chega perto (escala suave da Fase 1 à Fase 15)
+      const awayX = ox - px;
+      const awayY = oy - py;
+      const distToPastor = Math.hypot(awayX, awayY) || 1;
+      if (distToPastor < evadeRadius && evadeStrength > 0.05) {
+        // Desvia fugindo para o lado mais livre da campina para não ficar presa no canto
+        const centerPullX = ((b.minX + b.maxX) * 0.5 - ox) * 0.008;
+        const centerPullY = ((b.minY + b.maxY) * 0.5 - oy) * 0.008;
+        const fleeX = (awayX / distToPastor) + centerPullX;
+        const fleeY = (awayY / distToPastor) * 0.72 + centerPullY;
+        const fleeLen = Math.hypot(fleeX, fleeY) || 1;
+        const blend = clamp(evadeStrength * 3.4 * dt, 0, 0.35);
+        svx = svx * (1 - blend) + (fleeX / fleeLen) * sheepSpeed * 1.06 * blend;
+        svy = svy * (1 - blend) + (fleeY / fleeLen) * sheepSpeed * 1.06 * blend;
+
+        // Re-normaliza na velocidade da fase
+        const curSpd = Math.hypot(svx, svy) || 1;
+        svx = (svx / curSpd) * sheepSpeed;
+        svy = (svy / curSpd) * sheepSpeed;
+
+        const nowMs = Date.now();
+        if (diffT >= 0.25 && nowMs - lastDodgeBaaAt > 4600) {
+          lastDodgeBaaAt = nowMs;
+          TronoAudio.play("baa");
+        }
+      }
+
+      ox += svx * dt;
+      oy += svy * dt;
+
+      // Rebate suave nas bordas verdinhas do pampa (invertendo o lado para onde ela pula!)
+      if (ox <= b.minX) {
+        ox = b.minX;
+        svx = Math.abs(svx);
+      } else if (ox >= b.maxX) {
+        ox = b.maxX;
+        svx = -Math.abs(svx);
+      }
+      if (oy <= b.minY) {
+        oy = b.minY;
+        svy = Math.abs(svy);
+      } else if (oy >= b.maxY) {
+        oy = b.maxY;
+        svy = -Math.abs(svy);
+      }
+
+      if (svx > 3) sheepFacing = 1;
+      else if (svx < -3) sheepFacing = -1;
+
+      // Arco fofo do "pulandinho" da ovelha
+      hopPhase += dt * hopFreq;
+      const hopSin = Math.abs(Math.sin(hopPhase));
+      const sLift = -hopSin * 15.5;
+      const sTilt = Math.cos(hopPhase) * 6.0 * sheepFacing;
+      const sShadowScale = 1.0 - hopSin * 0.24;
+
+      const pLift = pastorMoving ? -Math.abs(Math.sin(walkPhase)) * 5.5 : 0;
+      const pTilt = pastorMoving ? Math.sin(walkPhase) * 2.6 : 0;
+
+      // --- 3. VERIFICA ENCONTRO PASTORZINHO + OVELHINHA ---
+      const catchDist = Math.hypot(px - ox, (py - oy) * 1.06);
+      if (catchDist <= 56) {
+        freezeAndCelebrateCatch();
+        return;
+      }
+
+      renderCharacters(pLift, pTilt, sLift, sTilt, sShadowScale);
+      window._ovelhaFujonaRaf = requestAnimationFrame(stepLoop);
+    }
+
+    function updateTargetFromEvent(e) {
+      if (!isOvelhaUnlocked || isCaught || !arena) return;
+      const rect = arena.getBoundingClientRect();
+      const pt = (e.touches && e.touches[0]) ? e.touches[0] : e;
+      if (!pt || typeof pt.clientX !== "number") return;
+      const b = getBounds();
+      targetX = clamp(pt.clientX - rect.left, b.minX, b.maxX);
+      targetY = clamp(pt.clientY - rect.top, b.minY, b.maxY);
+      hasPointerTarget = true;
+    }
+
+    arena.addEventListener("pointerdown", (e) => {
+      if (!isOvelhaUnlocked || isCaught) return;
+      isPointerDown = true;
+      try { arena.setPointerCapture(e.pointerId); } catch(err) {}
+      updateTargetFromEvent(e);
+    });
+    arena.addEventListener("pointermove", (e) => {
+      if (!isPointerDown || !isOvelhaUnlocked || isCaught) return;
+      updateTargetFromEvent(e);
+    });
+    const endPointer = () => { isPointerDown = false; };
+    arena.addEventListener("pointerup", endPointer);
+    arena.addEventListener("pointercancel", endPointer);
+
+    // Fallback touch para WebViews antigas
+    arena.addEventListener("touchstart", (e) => {
+      if (!isOvelhaUnlocked || isCaught) return;
+      isPointerDown = true;
+      updateTargetFromEvent(e);
+    }, { passive: true });
+    arena.addEventListener("touchmove", (e) => {
+      if (!isOvelhaUnlocked || isCaught) return;
+      updateTargetFromEvent(e);
+    }, { passive: true });
+    arena.addEventListener("touchend", endPointer, { passive: true });
+
+    // Suporte opcional às setas do teclado / WASD no computador
+    window._ovelhaFujonaKeyDown = function(e) {
+      if (!isOvelhaUnlocked || isCaught) return;
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") keysDown.left = true;
+      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") keysDown.right = true;
+      if (e.key === "ArrowUp" || e.key === "w" || e.key === "W") keysDown.up = true;
+      if (e.key === "ArrowDown" || e.key === "s" || e.key === "S") keysDown.down = true;
+    };
+    window._ovelhaFujonaKeyUp = function(e) {
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") keysDown.left = false;
+      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") keysDown.right = false;
+      if (e.key === "ArrowUp" || e.key === "w" || e.key === "W") keysDown.up = false;
+      if (e.key === "ArrowDown" || e.key === "s" || e.key === "S") keysDown.down = false;
+    };
+    window.addEventListener("keydown", window._ovelhaFujonaKeyDown);
+    window.addEventListener("keyup", window._ovelhaFujonaKeyUp);
+
+    // LIBERAÇÃO SOMENTE DEPOIS QUE O VOVÔ TERMINAR DE EXPLICAR!
+    window._arcadeUnlockGameAction = function() {
+      if (isOvelhaUnlocked || isCaught) return;
+      isOvelhaUnlocked = true;
+      lastDodgeBaaAt = Date.now();
+      TronoAudio.play("baa");
+      lastTs = 0;
+      window._ovelhaFujonaRaf = requestAnimationFrame(stepLoop);
+    };
   }
 
   // --- JOGO 7: ANIMAIS DO ÉDEN (ENCAIXE DE SILHUETAS) ---
