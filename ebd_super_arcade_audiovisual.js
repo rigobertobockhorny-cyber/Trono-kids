@@ -3610,28 +3610,17 @@
           <span style="color:#fde047; opacity:0.85;">/</span>
           <span style="color:#fde047;">${totalOvelhas}</span>
         </div>
-
-        <!-- AVISO SUTIL ENQUANTO O VOVÔ NÉSIO EXPLICA A BRINCADEIRA -->
-        <div id="ovelha-vovo-lock-pill" style="position:absolute; bottom:18px; left:50%; transform:translateX(-50%); background:rgba(24, 15, 9, 0.88); border:2px solid #f59e0b; padding:7px 18px; border-radius:999px; color:#fde047; font-weight:800; font-size:13.5px; z-index:40; box-shadow:0 4px 14px rgba(0,0,0,0.7); pointer-events:none; transition:opacity 0.4s ease, transform 0.4s ease; white-space:nowrap;">
-          🎙️ Ouça o Vovô explicar...
-        </div>
       </div>
     `;
 
     const stageRoot = document.getElementById("ovelha-aprisco-stage");
     const countEl = document.getElementById("ovelha-aprisco-count");
-    const lockPill = document.getElementById("ovelha-vovo-lock-pill");
 
-    // REGRA SUPREMA RIGOBERTO: Só libera o toque nas ovelhinhas DEPOIS que o Vovô terminar 100% da explicação!
+    // REGRA SUPREMA RIGOBERTO: Só libera o toque nas ovelhinhas DEPOIS que o Vovô terminar 100% da explicação! (Zero texto/pílula na tela)
     window._arcadeUnlockGameAction = function() {
       if (isGameUnlocked) return;
       isGameUnlocked = true;
       if (stageRoot) stageRoot.classList.add("aprisco-unlocked");
-      if (lockPill) {
-        lockPill.style.opacity = "0";
-        lockPill.style.transform = "translateX(-50%) translateY(10px)";
-        setTimeout(() => { if (lockPill) lockPill.style.display = "none"; }, 420);
-      }
       TronoAudio.play("pop");
     };
 
