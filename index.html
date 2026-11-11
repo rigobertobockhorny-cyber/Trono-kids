@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v143.0';
+        const CURRENT_VER = 'v144.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=143.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=144.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -2284,6 +2284,7 @@
       <div class="puzzle-diff-bar">
         <button class="btn-tool-3d" onclick="openLudoTrailBoard()">CAMINHO</button>
         <button class="btn-tool-3d active">CARTINHAS</button>
+        <button class="btn-tool-3d" onclick="if(typeof window.openArcadeRewardCardsGalleryModal==='function') window.openArcadeRewardCardsGalleryModal()">JOGOS</button>
         <button class="btn-tool-3d" onclick="openGameRulesModal()">REGRAS</button>
       </div>
       <button class="btn-nav-circle" onclick="stepAlbum(2)" title="Próximas Imagens">
@@ -2305,6 +2306,7 @@
       <div class="puzzle-diff-bar">
         <button class="btn-tool-3d active">CAMINHO</button>
         <button class="btn-tool-3d" onclick="openModule('album')">CARTINHAS</button>
+        <button class="btn-tool-3d" onclick="if(typeof window.openArcadeRewardCardsGalleryModal==='function') window.openArcadeRewardCardsGalleryModal()">JOGOS</button>
         <button class="btn-tool-3d" onclick="openGameRulesModal()">REGRAS</button>
       </div>
       <button class="btn-nav-circle" onclick="openModule('album')" title="Ver Cartinhas">
@@ -2612,8 +2614,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=143.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=143.0"></script>
+<script src="ebd_modulos_educativos.js?v=144.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=144.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -2693,8 +2695,7 @@ const SLEEP_TRACKS = [
   { id: 6,  title: 'O Sonho de Jacó', file: './6_ASSETS_AUDIO/06_melodia_criacao_01.mp3' },
   { id: 7,  title: 'Daniel na Cova dos Leões', file: './6_ASSETS_AUDIO/07_melodia_criacao_02.mp3' },
   { id: 8,  title: 'Paz no Barquinho com Jesus', file: './6_ASSETS_AUDIO/08_melodia_criacao_03.mp3' },
-  { id: 9,  title: 'Jesus e as Criancinhas', file: './6_ASSETS_AUDIO/09_melodia_criacao_04.mp3' },
-  { id: 10, title: 'Noite de Paz no Jardim', file: './6_ASSETS_AUDIO/10_chuva_suave_dormir.mp3' }
+  { id: 10, title: 'Chuvinha de Paz para Dormir', file: './6_ASSETS_AUDIO/10_chuva_suave_dormir.mp3' }
 ];
 
 let bgAudioPlayer = new Audio();
@@ -3118,12 +3119,17 @@ function toggleAmbientSound() {
 }
 
 function updateTopCounters() {
+  let arcadeWonCount = 0;
+  try {
+    const arcadeWonMap = JSON.parse(localStorage.getItem('trono_arcade_cards_won_v1') || '{}');
+    arcadeWonCount = Object.keys(arcadeWonMap).filter(k => !!arcadeWonMap[k]).length;
+  } catch (e) {}
   if (typeof window.syncAlbumHousesWithCompletedGames === 'function') {
     const completedWeeks = JSON.parse(localStorage.getItem('trono_ebd_completed_weeks') || '[]');
-    document.getElementById('sticker-count').textContent = `${completedWeeks.length}`;
+    document.getElementById('sticker-count').textContent = `${completedWeeks.length + arcadeWonCount}`;
     return;
   }
-  document.getElementById('sticker-count').textContent = `${unlockedStickers.size}`;
+  document.getElementById('sticker-count').textContent = `${unlockedStickers.size + arcadeWonCount}`;
 }
 
 // ============================================================================

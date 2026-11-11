@@ -6960,7 +6960,7 @@ window.openLessonModule = function(modType) {
         <div style="display:flex; align-items:center; gap:10px;">
           <span style="font-size:28px;">🎮</span>
           <div style="text-align:left;">
-            <div style="font-size:13.5px; font-weight:900; color:#ffffff; text-shadow:0 2px 4px rgba(0,0,0,0.5); line-height:1.2;">SALA DE JOGOS (17 JOGOS)</div>
+            <div style="font-size:13.5px; font-weight:900; color:#ffffff; text-shadow:0 2px 4px rgba(0,0,0,0.5); line-height:1.2;">SALA DE JOGOS (16 JOGOS)</div>
             <div style="font-size:10.5px; font-weight:700; color:#fef3c7;">Palco 100% Tela Cheia no Celular</div>
           </div>
         </div>
@@ -7073,16 +7073,6 @@ window.openLessonModule = function(modType) {
 
   if (typeof showScreen === "function") showScreen("screen-lesson-module");
   box.scrollTop = 0;
-};
-
-window.downloadCurrentVovoScene16x9 = function() {
-  const lesson = window.getCurrentLessonObj();
-  const scenes = lesson.storyScenes || [{ img: lesson.thumbImg, caption: lesson.title }];
-  const idx = typeof window.EBD_STATE.vovoActiveSceneIdx === "number" ? window.EBD_STATE.vovoActiveSceneIdx : 0;
-  const curScene = scenes[idx] || scenes[0];
-  if (curScene && curScene.img) {
-    window.downloadLesson16x9Image(curScene.img, `Lição ${lesson.week} - Cena ${idx + 1}`);
-  }
 };
 
 window.selectDevotionalWeekday = function(dayIdx) {

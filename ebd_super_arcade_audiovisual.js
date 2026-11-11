@@ -396,7 +396,8 @@
   }, { passive: true });
 
   // ==========================================================================
-  // 2. CATÁLOGO DOS 17 JOGOS OFICIAIS DO TRONO KIDS
+  // 2. CATÁLOGO DOS 16 JOGOS OFICIAIS DO TRONO KIDS (GRADE PAR 8x2)
+  // (Nota: ico_jogo_07_eden_v130.png permanece preservado em disco conforme diretriz!)
   // ==========================================================================
   const SUPER_ARCADE_GAMES = [
     {
@@ -452,15 +453,6 @@
       audioFile: "vovo_jogo_06.mp3",
       vovoFala: "Arraste o pastorzinho pelo pasto até alcançar a ovelhinha fujona!",
       run: (container, phase) => runOvelhaFujona(container, phase)
-    },
-    {
-      id: "animais_eden",
-      title: "BICHINHOS DO ÉDEN",
-      sub: "",
-      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_07_eden_v130.png?v=130",
-      audioFile: "vovo_jogo_07_v140.mp3",
-      vovoFala: "Olhe os bichinhos lá no Jardim do Éden! Arraste cada bichinho até encaixar na sua sombra certa!",
-      run: (container, phase) => runAnimaisEden(container, phase)
     },
     {
       id: "quem_entrou_arca",
@@ -553,6 +545,237 @@
       run: (container, phase) => runPinturaMagicaArcade(container, phase)
     }
   ];
+
+  // ==========================================================================
+  // 2B. BANCO OFICIAL DE 32 CARDS EXCLUSIVOS 16:9 (ZERO REPETIÇÃO!)
+  // Regra Escalável: Fase 5 (Grátis) + Fase 15 (Assinante) + de 10 em 10 (25, 35...)
+  // Nenhuma imagem abaixo se repete na Cronologia Bíblica, Devocional ou Álbum!
+  // ==========================================================================
+  const ARCADE_CARDS_STORAGE_KEY = "trono_arcade_cards_won_v1";
+
+  const ARCADE_REWARD_CARDS_DB = {
+    pesca_maravilhosa: {
+      gameNum: 1,
+      gameTitle: "PESCA MARAVILHOSA",
+      milestones: {
+        5:  { code: "CARD_01_F05", num: 1,  phase: 5,  tier: "GRÁTIS",   title: "As Redes Cheias na Galileia",      img: "./5_ASSETS_CARDS_JOGOS/card_01_pesca_f05.jpg?v=144" },
+        15: { code: "CARD_02_F15", num: 2,  phase: 15, tier: "CAMPEÃO",  title: "Encontro na Praia com Jesus",      img: "./5_ASSETS_CARDS_JOGOS/card_02_pesca_f15.jpg?v=144" }
+      }
+    },
+    dracma_perdida: {
+      gameNum: 2,
+      gameTitle: "ACHE A MOEDA",
+      milestones: {
+        5:  { code: "CARD_03_F05", num: 3,  phase: 5,  tier: "GRÁTIS",   title: "A Moeda de Prata Encontrada",      img: "./5_ASSETS_CARDS_JOGOS/card_03_moeda_f05.jpg?v=144" },
+        15: { code: "CARD_04_F15", num: 4,  phase: 15, tier: "CAMPEÃO",  title: "Festa com as Vizinhas",            img: "./5_ASSETS_CARDS_JOGOS/card_04_moeda_f15.jpg?v=144" }
+      }
+    },
+    pombo_arca: {
+      gameNum: 3,
+      gameTitle: "POMBINHA DA PAZ",
+      milestones: {
+        5:  { code: "CARD_05_F05", num: 5,  phase: 5,  tier: "GRÁTIS",   title: "O Raminho de Oliveira",            img: "./5_ASSETS_CARDS_JOGOS/card_05_pombo_f05.jpg?v=144" },
+        15: { code: "CARD_06_F15", num: 6,  phase: 15, tier: "CAMPEÃO",  title: "A Pombinha Pousa nas Mãos de Noé", img: "./5_ASSETS_CARDS_JOGOS/card_06_pombo_f15.jpg?v=144" }
+      }
+    },
+    jonatas_alvo: {
+      gameNum: 4,
+      gameTitle: "DESVIE DA LANÇA",
+      milestones: {
+        5:  { code: "CARD_07_F05", num: 7,  phase: 5,  tier: "GRÁTIS",   title: "A Amizade de Davi e Jônatas",      img: "./5_ASSETS_CARDS_JOGOS/card_07_davi_f05.jpg?v=144" },
+        15: { code: "CARD_08_F15", num: 8,  phase: 15, tier: "CAMPEÃO",  title: "A Harpa de Paz de Davi",           img: "./5_ASSETS_CARDS_JOGOS/card_08_davi_f15.jpg?v=144" }
+      }
+    },
+    ovelha_perdida: {
+      gameNum: 5,
+      gameTitle: "CADÊ A OVELHA?",
+      milestones: {
+        5:  { code: "CARD_09_F05", num: 9,  phase: 5,  tier: "GRÁTIS",   title: "Achando a Ovelhinha nas Pedras",   img: "./5_ASSETS_CARDS_JOGOS/card_09_ovelha1_f05.jpg?v=144" },
+        15: { code: "CARD_10_F15", num: 10, phase: 15, tier: "CAMPEÃO",  title: "De Volta ao Aprisco nos Ombros",   img: "./5_ASSETS_CARDS_JOGOS/card_10_ovelha1_f15.jpg?v=144" }
+      }
+    },
+    ovelha_fujona: {
+      gameNum: 6,
+      gameTitle: "PEGA A OVELHA!",
+      milestones: {
+        5:  { code: "CARD_11_F05", num: 11, phase: 5,  tier: "GRÁTIS",   title: "Alegria nos Campos de Belém",      img: "./5_ASSETS_CARDS_JOGOS/card_11_ovelha2_f05.jpg?v=144" },
+        15: { code: "CARD_12_F15", num: 12, phase: 15, tier: "CAMPEÃO",  title: "Pastos Verdes e Águas Tranquilas", img: "./5_ASSETS_CARDS_JOGOS/card_12_ovelha2_f15.jpg?v=144" }
+      }
+    },
+    quem_entrou_arca: {
+      gameNum: 7,
+      gameTitle: "ARCA DE NOÉ",
+      milestones: {
+        5:  { code: "CARD_13_F05", num: 13, phase: 5,  tier: "GRÁTIS",   title: "Os Bichinhos Entrando na Arca",    img: "./5_ASSETS_CARDS_JOGOS/card_13_arca_f05.jpg?v=144" },
+        15: { code: "CARD_14_F15", num: 14, phase: 15, tier: "CAMPEÃO",  title: "A Aliança do Arco-Íris",           img: "./5_ASSETS_CARDS_JOGOS/card_14_arca_f15.jpg?v=144" }
+      }
+    },
+    quiz_visual: {
+      gameNum: 8,
+      gameTitle: "QUIZ DA BÍBLIA",
+      milestones: {
+        5:  { code: "CARD_15_F05", num: 15, phase: 5,  tier: "GRÁTIS",   title: "Os Reis Magos e a Estrela Guia",   img: "./5_ASSETS_CARDS_JOGOS/card_15_quiz_f05.jpg?v=144" },
+        15: { code: "CARD_16_F15", num: 16, phase: 15, tier: "CAMPEÃO",  title: "O Menino Jesus no Templo",         img: "./5_ASSETS_CARDS_JOGOS/card_16_quiz_f15.jpg?v=144" }
+      }
+    },
+    ligue_pontos: {
+      gameNum: 9,
+      gameTitle: "LIGUE OS PONTOS",
+      milestones: {
+        5:  { code: "CARD_17_F05", num: 17, phase: 5,  tier: "GRÁTIS",   title: "Abraão e o Céu de Estrelas",       img: "./5_ASSETS_CARDS_JOGOS/card_17_pontos_f05.jpg?v=144" },
+        15: { code: "CARD_18_F15", num: 18, phase: 15, tier: "CAMPEÃO",  title: "A Escada Iluminada de Jacó",       img: "./5_ASSETS_CARDS_JOGOS/card_18_pontos_f15.jpg?v=144" }
+      }
+    },
+    seis_erros: {
+      gameNum: 10,
+      gameTitle: "JOGO DOS ERROS",
+      milestones: {
+        5:  { code: "CARD_19_F05", num: 19, phase: 5,  tier: "GRÁTIS",   title: "O Jardim Florido da Criação",      img: "./5_ASSETS_CARDS_JOGOS/card_19_erros_f05.jpg?v=144" },
+        15: { code: "CARD_20_F15", num: 20, phase: 15, tier: "CAMPEÃO",  title: "Daniel na Cova dos Leões",         img: "./5_ASSETS_CARDS_JOGOS/card_20_erros_f15.jpg?v=144" }
+      }
+    },
+    criacao_ordem: {
+      gameNum: 11,
+      gameTitle: "CRIAÇÃO DO MUNDO",
+      milestones: {
+        5:  { code: "CARD_21_F05", num: 21, phase: 5,  tier: "GRÁTIS",   title: "O Sol, a Lua e as Estrelinhas",    img: "./5_ASSETS_CARDS_JOGOS/card_21_criacao_f05.jpg?v=144" },
+        15: { code: "CARD_22_F15", num: 22, phase: 15, tier: "CAMPEÃO",  title: "A Grande Festa da Criação",        img: "./5_ASSETS_CARDS_JOGOS/card_22_criacao_f15.jpg?v=144" }
+      }
+    },
+    memoria_sonoro: {
+      gameNum: 12,
+      gameTitle: "JOGO DA MEMÓRIA",
+      milestones: {
+        5:  { code: "CARD_23_F05", num: 23, phase: 5,  tier: "GRÁTIS",   title: "Amiguinhos da Natureza de Deus",   img: "./5_ASSETS_CARDS_JOGOS/card_23_memoria_f05.jpg?v=144" },
+        15: { code: "CARD_24_F15", num: 24, phase: 15, tier: "CAMPEÃO",  title: "Jonas e a Grande Baleia Azul",     img: "./5_ASSETS_CARDS_JOGOS/card_24_memoria_f15.jpg?v=144" }
+      }
+    },
+    mana_deserto: {
+      gameNum: 13,
+      gameTitle: "PÃOZINHO DO CÉU",
+      milestones: {
+        5:  { code: "CARD_25_F05", num: 25, phase: 5,  tier: "GRÁTIS",   title: "Colhendo o Maná ao Amanhecer",     img: "./5_ASSETS_CARDS_JOGOS/card_25_mana_f05.jpg?v=144" },
+        15: { code: "CARD_26_F15", num: 26, phase: 15, tier: "CAMPEÃO",  title: "Água Viva da Rocha de Horebe",     img: "./5_ASSETS_CARDS_JOGOS/card_26_mana_f15.jpg?v=144" }
+      }
+    },
+    tabernaculo_cesto: {
+      gameNum: 14,
+      gameTitle: "BEBÊ MOISÉS",
+      milestones: {
+        5:  { code: "CARD_27_F05", num: 27, phase: 5,  tier: "GRÁTIS",   title: "O Cestinho do Bebê Moisés no Nilo",img: "./5_ASSETS_CARDS_JOGOS/card_27_moises_f05.jpg?v=144" },
+        15: { code: "CARD_28_F15", num: 28, phase: 15, tier: "CAMPEÃO",  title: "A Travessia do Mar Vermelho",      img: "./5_ASSETS_CARDS_JOGOS/card_28_moises_f15.jpg?v=144" }
+      }
+    },
+    puzzle_3d: {
+      gameNum: 15,
+      gameTitle: "QUEBRA-CABEÇA",
+      milestones: {
+        5:  { code: "CARD_29_F05", num: 29, phase: 5,  tier: "GRÁTIS",   title: "Cinco Pães e Dois Peixinhos",      img: "./5_ASSETS_CARDS_JOGOS/card_29_puzzle_f05.jpg?v=144" },
+        15: { code: "CARD_30_F15", num: 30, phase: 15, tier: "CAMPEÃO",  title: "Jesus Acalma a Tempestade",        img: "./5_ASSETS_CARDS_JOGOS/card_30_puzzle_f15.jpg?v=144" }
+      }
+    },
+    pintura_magica: {
+      gameNum: 16,
+      gameTitle: "PINTURA MÁGICA",
+      milestones: {
+        5:  { code: "CARD_31_F05", num: 31, phase: 5,  tier: "GRÁTIS",   title: "A Túnica Colorida de José",        img: "./5_ASSETS_CARDS_JOGOS/card_31_pintura_f05.jpg?v=144" },
+        15: { code: "CARD_32_F15", num: 32, phase: 15, tier: "CAMPEÃO",  title: "Jesus Abençoando as Crianças",     img: "./5_ASSETS_CARDS_JOGOS/card_32_pintura_f15.jpg?v=144" }
+      }
+    }
+  };
+
+  window.ARCADE_REWARD_CARDS_DB = ARCADE_REWARD_CARDS_DB;
+
+  // Regra escalável: Fase 5 (Grátis) e de 10 em 10 fases a partir da 15 (15, 25, 35, 45...)
+  window.isArcadeRewardMilestonePhase = function(phase) {
+    const p = Number(phase) || 0;
+    return p === 5 || (p >= 15 && (p - 5) % 10 === 0);
+  };
+
+  window.getWonArcadeCardsMap = function() {
+    try {
+      return JSON.parse(localStorage.getItem(ARCADE_CARDS_STORAGE_KEY) || "{}");
+    } catch (e) {
+      return {};
+    }
+  };
+
+  window.getArcadeCardByCode = function(cardCode) {
+    for (const gId of Object.keys(ARCADE_REWARD_CARDS_DB)) {
+      const entry = ARCADE_REWARD_CARDS_DB[gId];
+      for (const phKey of Object.keys(entry.milestones)) {
+        const c = entry.milestones[phKey];
+        if (c && c.code === cardCode) {
+          return Object.assign({ gameId: gId, gameTitle: entry.gameTitle, gameNum: entry.gameNum }, c);
+        }
+      }
+    }
+    return null;
+  };
+
+  window.getArcadeMilestoneCard = function(gameId, phase) {
+    const entry = ARCADE_REWARD_CARDS_DB[gameId];
+    if (!entry || !entry.milestones) return null;
+    const c = entry.milestones[phase];
+    if (!c) return null;
+    return Object.assign({ gameId: gameId, gameTitle: entry.gameTitle, gameNum: entry.gameNum }, c);
+  };
+
+  window.unlockArcadeMilestoneCard = function(gameId, phase) {
+    if (!window.isArcadeRewardMilestonePhase(phase)) return null;
+    const card = window.getArcadeMilestoneCard(gameId, phase);
+    if (!card) return null;
+    try {
+      const map = window.getWonArcadeCardsMap();
+      if (!map[card.code]) {
+        map[card.code] = Date.now();
+        localStorage.setItem(ARCADE_CARDS_STORAGE_KEY, JSON.stringify(map));
+        if (typeof updateTopCounters === "function") {
+          try { updateTopCounters(); } catch (e) {}
+        }
+      }
+    } catch (e) {}
+    return card;
+  };
+
+  window.shareOrDownloadArcadeRewardCard = async function(cardCode) {
+    TronoAudio.play("pop");
+    const card = window.getArcadeCardByCode(cardCode);
+    if (!card) return;
+    const wonMap = window.getWonArcadeCardsMap();
+    const isDevVip = (typeof isVipUnlocked !== "undefined" && isVipUnlocked && localStorage.getItem("trono_dev_all_cards") === "1");
+    if (!wonMap[card.code] && !isDevVip) {
+      return;
+    }
+    const cleanUrl = String(card.img || "").split("?")[0];
+    const safeSlug = String(card.title || "card_trono_kids")
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+    const fileName = `trono_kids_card_${String(card.num).padStart(2, "0")}_${safeSlug}.jpg`;
+
+    try {
+      const resp = await fetch(card.img);
+      const blob = await resp.blob();
+      const file = new File([blob], fileName, { type: "image/jpeg" });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          title: `Card Trono Kids - ${card.title}`,
+          text: ` Ganhei o Card "${card.title}" (Fase ${card.phase} do jogo ${card.gameTitle}) no app Trono da Promessa Kids!`,
+          files: [file]
+        });
+        return;
+      }
+    } catch (err) {
+      if (err && err.name === "AbortError") return;
+    }
+
+    const a = document.createElement("a");
+    a.href = cleanUrl;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
 
   // ==========================================================================
   // 3. ESTILOS DO PALCO DE JOGO EM TELA CHEIA E MODAL DE VITÓRIA
@@ -1153,8 +1376,10 @@
         display: none;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        padding: 68px 20px 24px 20px;
+        justify-content: safe center;
+        padding: 58px 16px 24px 16px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
         z-index: 130;
         animation: vicModalFade 0.35s ease;
       }
@@ -1380,6 +1605,7 @@
   window._arcadeClosingUntil = 0;
 
   window.openTronoArcadeGame = function(gameId) {
+    if (gameId === "animais_eden") gameId = "quem_entrou_arca";
     // Escudo anti-ghost-click: bloqueia clique fantasma do celular nos 550ms após fechar um jogo!
     if (window._arcadeClosingUntil && Date.now() < window._arcadeClosingUntil) {
       return;
@@ -1574,7 +1800,7 @@
       if (typeof openSubscribeModal === 'function') {
         openSubscribeModal(
           'Desbloquear Fases 6 a 15!',
-          'Você concluiu as 5 fases grátis! Assine o Clube Trono da Promessa para liberar as 15 fases em todos os 17 joguinhos, lições e Super Cards:'
+          'Você concluiu as 5 fases grátis! Assine o Clube Trono da Promessa para liberar as 15 fases em todos os 16 joguinhos, lições e Cards Campeões:'
         );
       } else {
         const subModal = document.getElementById('modal-subscribe');
@@ -1702,8 +1928,18 @@
     const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
     const current = currentPhase || 1;
 
+    // Libera também o botão de Baixar / Compartilhar Card no WhatsApp quando houver Card conquistado nesta fase!
+    const rewardBtn = document.getElementById("btn-canonical-reward-card");
+    if (rewardBtn) {
+      rewardBtn.dataset.unlocked = "1";
+      rewardBtn.style.opacity = "1";
+      rewardBtn.style.pointerEvents = "auto";
+      rewardBtn.style.cursor = "pointer";
+      rewardBtn.style.animation = "btnGlowPulse 1.8s ease-in-out infinite";
+    }
+
     if (!isVip && current >= 5) {
-      // TELA PADRONIZADA DE FIM DAS 5 FASES GRÁTIS (IGUAL EM TODOS OS 17 JOGOS!):
+      // TELA PADRONIZADA DE FIM DAS 5 FASES GRÁTIS (IGUAL EM TODOS OS 16 JOGOS!):
       // 1) Botão Dourado Principal: Assinar o App (+10 Fases)
       btn.textContent = "🔓 ASSINAR O APP (+10 FASES)";
       btn.style.background = "linear-gradient(180deg, #f59e0b 0%, #d97706 100%)";
@@ -1719,7 +1955,7 @@
         hubBtn.style.cursor = "pointer";
       }
     } else {
-      const btnText = (isVip && current >= 15) ? "🎉 FINALIZAR JOGUINHO!" : "CONTINUAR BRINCANDO";
+      const btnText = (isVip && current >= TOTAL_PHASES) ? "🎉 FINALIZAR JOGUINHO!" : "CONTINUAR BRINCANDO";
       btn.textContent = btnText;
       btn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
       btn.style.border = "2.5px solid #ffffff";
@@ -1840,6 +2076,11 @@
       const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
       const current = currentPhase || 1;
 
+      // Verifica se esta fase desbloqueia um Card Exclusivo 16:9 (Fase 5 Grátis, Fase 15 Assinante, Fase 25, 35...)
+      const milestoneCard = (game && game.id && typeof window.unlockArcadeMilestoneCard === "function")
+        ? window.unlockArcadeMilestoneCard(game.id, current)
+        : null;
+
       let dotsHtml = "";
       if (!isVip) {
         // 5 Bolinhas Gratuitas (1 a 5) + 6ª Bolinha com Cadeadinho VIP
@@ -1858,7 +2099,7 @@
             : "";
 
           dotsHtml += `
-            <div style="position:relative; width:44px; height:44px; border-radius:50%; background:${bg}; border:${border}; ${shadow} display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:18px;">
+            <div style="position:relative; width:42px; height:42px; border-radius:50%; background:${bg}; border:${border}; ${shadow} display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:17px;">
               <span>${i}</span>
               ${starIcon}
             </div>
@@ -1867,14 +2108,14 @@
 
         // 6ª Bolinha com Cadeadinho Dourado (+10 Fases VIP — fecha o palco antes para abrir o modal visível!)
         dotsHtml += `
-          <div onclick="window.openVipFromArcade()" style="position:relative; width:44px; height:44px; border-radius:50%; background:linear-gradient(180deg, #f59e0b 0%, #b45309 100%); border:2.5px solid #fde047; box-shadow:0 0 14px rgba(253,224,71,0.7), 0 4px 8px rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; color:#ffffff; font-size:20px; cursor:pointer;" title="Liberar +10 Fases VIP">
+          <div onclick="window.openVipFromArcade()" style="position:relative; width:42px; height:42px; border-radius:50%; background:linear-gradient(180deg, #f59e0b 0%, #b45309 100%); border:2.5px solid #fde047; box-shadow:0 0 14px rgba(253,224,71,0.7), 0 4px 8px rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; color:#ffffff; font-size:19px; cursor:pointer;" title="Liberar +10 Fases VIP">
             <span>🔒</span>
           </div>
         `;
       } else {
-        // Jogador VIP: mostra o bloco das 15 fases
+        // Jogador VIP: mostra o bloco das fases
         const batchStart = Math.floor((current - 1) / 5) * 5 + 1;
-        for (let i = batchStart; i < batchStart + 5 && i <= 15; i++) {
+        for (let i = batchStart; i < batchStart + 5 && i <= TOTAL_PHASES; i++) {
           const isJustWon = i === current;
           const isDone = i < current;
           const bg = (isJustWon || isDone)
@@ -1882,61 +2123,92 @@
             : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
           const border = isJustWon ? "3px solid #fde047" : "2px solid #ffffff";
           dotsHtml += `
-            <div style="position:relative; width:44px; height:44px; border-radius:50%; background:${bg}; border:${border}; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:18px;">
+            <div style="position:relative; width:42px; height:42px; border-radius:50%; background:${bg}; border:${border}; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:17px;">
               <span>${i}</span>
             </div>
           `;
         }
       }
 
+      let rewardCardShowcaseHtml = "";
+      if (milestoneCard) {
+        const badgeHeader = current >= 15
+          ? "🏆 CAMPEÃO! VOCÊ GANHOU UM CARD EXCLUSIVO!"
+          : "🎁 PARABÉNS! VOCÊ GANHOU UM CARD 16:9!";
+        rewardCardShowcaseHtml = `
+          <div style="position:relative; z-index:2; width:100%; max-width:330px; background:linear-gradient(180deg, rgba(30,27,75,0.92), rgba(15,23,42,0.95)); border:2.5px solid #fde047; border-radius:18px; padding:9px 10px 11px 10px; margin-bottom:12px; box-shadow:0 8px 24px rgba(0,0,0,0.75), 0 0 22px rgba(253,224,71,0.45);">
+            <div style="font-size:12.5px; font-weight:900; color:#fde047; margin-bottom:6px; letter-spacing:0.2px;">
+              ${badgeHeader}
+            </div>
+            <div style="width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:2px solid #ffffff; background:#050b1a; box-shadow:0 4px 12px rgba(0,0,0,0.7); margin-bottom:6px;">
+              <img src="${milestoneCard.img}" alt="${milestoneCard.title}" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+            <div style="font-size:13px; font-weight:900; color:#ffffff; margin-bottom:8px; line-height:1.2;">
+              Card #${String(milestoneCard.num).padStart(2, "0")} • ${milestoneCard.title}
+            </div>
+            <button id="btn-canonical-reward-card" type="button" data-card-code="${milestoneCard.code}" style="width:100%; padding:11px 12px; font-size:14px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #16a34a 0%, #15803d 100%); border:2px solid #86efac; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); opacity:0.55; pointer-events:none; touch-action:manipulation;">
+              📲 BAIXAR / ENVIAR NO WHATSAPP
+            </button>
+            <div style="font-size:10.5px; font-weight:700; color:#cbd5e1; margin-top:5px;">
+              Salvo em "Meus Cards" para ver quando quiser!
+            </div>
+          </div>
+        `;
+      }
+
       let phase5NoticeHtml = "";
       let actionsHtml = "";
       if (!isVip && current >= 5) {
-        phase5NoticeHtml = `
-          <div style="position:relative; z-index:2; background:rgba(15, 23, 42, 0.55); border:2px solid rgba(253, 224, 71, 0.75); border-radius:18px; padding:10px 14px; margin-bottom:16px; max-width:330px; color:#ffffff; font-size:14.5px; font-weight:800; line-height:1.3;">
+        phase5NoticeHtml = milestoneCard ? "" : `
+          <div style="position:relative; z-index:2; background:rgba(15, 23, 42, 0.55); border:2px solid rgba(253, 224, 71, 0.75); border-radius:18px; padding:10px 14px; margin-bottom:14px; max-width:330px; color:#ffffff; font-size:14.5px; font-weight:800; line-height:1.3;">
             <span style="color:#fde047; font-weight:900;">🎉 5 Fases Grátis Concluídas!</span><br>
             Assine o Clube para liberar as fases 6 a 15!
           </div>
         `;
         actionsHtml = `
-          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:14px 16px; font-size:17px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
+          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:13px 16px; font-size:16.5px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
             ⭐ MUITO BEM!...
           </button>
-          <button id="btn-canonical-hub" type="button" style="position:relative; z-index:2; width:100%; margin-top:11px; padding:13px 16px; font-size:16px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2.5px solid #ffffff; border-radius:999px; box-shadow:0 6px 14px rgba(0,0,0,0.55); opacity:0.45; pointer-events:none; touch-action:manipulation;">
+          <button id="btn-canonical-hub" type="button" style="position:relative; z-index:2; width:100%; margin-top:10px; padding:12px 16px; font-size:15.5px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #0284c7 0%, #0369a1 100%); border:2.5px solid #ffffff; border-radius:999px; box-shadow:0 6px 14px rgba(0,0,0,0.55); opacity:0.45; pointer-events:none; touch-action:manipulation;">
             🏠 VOLTAR À SALA DE JOGOS
           </button>
-          <div id="btn-canonical-replay" style="margin-top:13px; color:#fef08a; font-weight:800; font-size:14px; cursor:pointer; text-decoration:underline; padding:4px;">
+          <div id="btn-canonical-replay" style="margin-top:11px; color:#fef08a; font-weight:800; font-size:13.5px; cursor:pointer; text-decoration:underline; padding:4px;">
             🔄 Jogar novamente desde a Fase 1
           </div>
         `;
       } else {
         actionsHtml = `
-          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:15px; font-size:19px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
+          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:14px; font-size:18px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
             ⭐ MUITO BEM!...
           </button>
-          <div id="btn-canonical-hub-link" style="margin-top:14px; color:#e9d5ff; font-weight:800; font-size:14px; cursor:pointer; text-decoration:underline; opacity:0.9; padding:4px;">
+          <div id="btn-canonical-hub-link" style="margin-top:12px; color:#e9d5ff; font-weight:800; font-size:13.5px; cursor:pointer; text-decoration:underline; opacity:0.9; padding:4px;">
             Voltar à Sala de Jogos
           </div>
         `;
       }
 
+      const iconSizePx = milestoneCard ? 76 : 104;
+      const titleFontPx = milestoneCard ? 23 : 28;
+      const spacingPx = milestoneCard ? 10 : 16;
+
       modal.innerHTML = `
         <div class="trono-victory-screen-content" style="width:100%; max-width:400px; display:flex; flex-direction:column; align-items:center; text-align:center; z-index:2; animation:vicCardPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
           <!-- 1. Único Ícone 3D Oficial do Jogo no Topo Flutuando Solto -->
-          <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
-            <img src="${game.icon}" style="width:106px; height:106px; object-fit:contain; animation:aliveBtnFloat 2.0s ease-in-out infinite;" alt="${game.title}">
+          <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; margin-bottom:6px;">
+            <img src="${game.icon}" style="width:${iconSizePx}px; height:${iconSizePx}px; object-fit:contain; animation:aliveBtnFloat 2.0s ease-in-out infinite;" alt="${game.title}">
           </div>
 
           <!-- 2. Título Amarelo Dourado Brilhante Solto na Tela Roxa -->
-          <div style="position:relative; z-index:2; font-size:28px; font-weight:900; color:#fde047; text-shadow:0 4px 12px rgba(0,0,0,0.9), 0 0 22px rgba(253,224,71,0.6); line-height:1.15; margin-bottom:16px; letter-spacing:0.6px; animation:titlePopBounce 1.4s ease-in-out infinite;">
+          <div style="position:relative; z-index:2; font-size:${titleFontPx}px; font-weight:900; color:#fde047; text-shadow:0 4px 12px rgba(0,0,0,0.9), 0 0 22px rgba(253,224,71,0.6); line-height:1.12; margin-bottom:${spacingPx}px; letter-spacing:0.6px; animation:titlePopBounce 1.4s ease-in-out infinite;">
             PARABÉNS!<br>MUITO BEM!
           </div>
 
           <!-- 3. Bolinhas de Progresso Soltas (1 a 5 + 🔒) -->
-          <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:9px; margin-bottom:16px; min-height:50px;">
+          <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:${spacingPx}px; min-height:46px;">
             ${dotsHtml}
           </div>
 
+          ${rewardCardShowcaseHtml}
           ${phase5NoticeHtml}
 
           <!-- 4. Ações Padronizadas de Vitória Soltas na Tela Roxa -->
@@ -1947,6 +2219,17 @@
       `;
 
       // Eventos SOMENTE em 'click' (NUNCA 'pointerup' para zero clique fantasma nos ícones da Sala de Jogos!)
+      const rewardBtn = document.getElementById("btn-canonical-reward-card");
+      if (rewardBtn) {
+        rewardBtn.addEventListener("click", (ev) => {
+          if (rewardBtn.dataset.unlocked !== "1") return;
+          if (ev) { ev.preventDefault(); ev.stopPropagation(); }
+          const code = rewardBtn.getAttribute("data-card-code");
+          if (code && typeof window.shareOrDownloadArcadeRewardCard === "function") {
+            window.shareOrDownloadArcadeRewardCard(code);
+          }
+        });
+      }
       const mainBtn = document.getElementById("btn-canonical-continue");
       if (mainBtn) {
         mainBtn.addEventListener("click", (ev) => {
@@ -5214,8 +5497,97 @@
   }
 
   // ==========================================================================
-  // 7. INJEÇÃO DOS 17 JOGOS NA SALA DE JOGOS (#screen-games-hub) — VISUAL LIMPO 3D PIXAR (ZERO BLOCOS!)
+  // 7. INJEÇÃO DOS 16 JOGOS NA SALA DE JOGOS (#screen-games-hub) + GALERIA DE 32 CARDS 16:9
   // ==========================================================================
+  window.openArcadeRewardCardsGalleryModal = function() {
+    TronoAudio.play("click");
+    let modal = document.getElementById("arcade-reward-cards-gallery-modal");
+    if (!modal) {
+      modal = document.createElement("div");
+      modal.id = "arcade-reward-cards-gallery-modal";
+      modal.style.cssText = "position:fixed; inset:0; background:rgba(9,11,28,0.94); backdrop-filter:blur(10px); z-index:999998; display:none; flex-direction:column; align-items:center; padding:14px 12px 22px 12px; overflow-y:auto; -webkit-overflow-scrolling:touch;";
+      document.body.appendChild(modal);
+    }
+
+    const wonMap = window.getWonArcadeCardsMap();
+    const isVip = (typeof isVipUnlocked !== "undefined" && isVipUnlocked) || localStorage.getItem("trono_vip_active_v4") === "1";
+
+    const allCards = [];
+    SUPER_ARCADE_GAMES.forEach(g => {
+      const entry = ARCADE_REWARD_CARDS_DB[g.id];
+      if (!entry || !entry.milestones) return;
+      Object.keys(entry.milestones).map(Number).sort((a, b) => a - b).forEach(ph => {
+        const c = entry.milestones[ph];
+        allCards.push(Object.assign({ gameId: g.id, gameTitle: g.title, gameIcon: g.icon }, c));
+      });
+    });
+
+    const wonCount = allCards.filter(c => !!wonMap[c.code]).length;
+
+    modal.innerHTML = `
+      <div style="width:100%; max-width:440px; display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; background:linear-gradient(180deg,#4c1d95,#1e1b4b); border:2.5px solid #fde047; border-radius:18px; padding:10px 12px; box-shadow:0 6px 20px rgba(0,0,0,0.75);">
+          <div style="text-align:left;">
+            <div style="font-size:15px; font-weight:900; color:#fde047; line-height:1.15;">🎁 MEUS CARDS DOS JOGOS (16:9)</div>
+            <div style="font-size:11.5px; font-weight:800; color:#e2e8f0; margin-top:2px;">Conquistados: <span style="color:#4ade80;">${wonCount} / ${allCards.length}</span> • Compartilhe no WhatsApp!</div>
+          </div>
+          <button type="button" onclick="document.getElementById('arcade-reward-cards-gallery-modal').style.display='none'" style="width:36px; height:36px; border-radius:50%; background:linear-gradient(180deg,#ef4444,#b91c1c); border:2px solid #ffffff; color:#ffffff; font-weight:900; font-size:16px; cursor:pointer; flex-shrink:0;">✕</button>
+        </div>
+
+        <div style="background:rgba(30,41,59,0.85); border:1.5px solid rgba(253,224,71,0.55); border-radius:14px; padding:8px 10px; font-size:11.5px; font-weight:800; color:#fef08a; text-align:center; line-height:1.3;">
+          ⭐ Vença a <b>Fase 5</b> (Grátis) de cada jogo para ganhar o 1º Card!<br>
+          🏆 Vença a <b>Fase 15</b> (Assinante) para ganhar o Card Campeão!
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr; gap:11px; padding-bottom:18px;">
+          ${allCards.map(c => {
+            const isWon = !!wonMap[c.code];
+            const needsVip = c.phase > 5 && !isVip;
+            return `
+              <div style="background:linear-gradient(180deg,#1e1b4b,#0f172a); border:2px solid ${isWon ? "#4ade80" : "rgba(148,163,184,0.45)"}; border-radius:16px; padding:9px; box-shadow:0 6px 16px rgba(0,0,0,0.65);">
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:6px;">
+                  <div style="display:flex; align-items:center; gap:6px; min-width:0;">
+                    <img src="${c.gameIcon}" alt="${c.gameTitle}" style="width:26px; height:26px; object-fit:contain; flex-shrink:0;">
+                    <div style="font-size:11.5px; font-weight:900; color:#fde047; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${c.gameTitle}</div>
+                  </div>
+                  <span style="background:${isWon ? "linear-gradient(180deg,#16a34a,#15803d)" : (c.phase === 5 ? "linear-gradient(180deg,#0284c7,#0369a1)" : "linear-gradient(180deg,#d97706,#b45309)")}; color:#ffffff; font-size:10px; font-weight:900; padding:2.5px 8px; border-radius:999px; border:1.5px solid #ffffff; flex-shrink:0;">
+                    ${isWon ? "✅ CONQUISTADO" : `FASE ${c.phase} • ${c.tier}`}
+                  </span>
+                </div>
+
+                <div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:11px; overflow:hidden; border:1.5px solid ${isWon ? "#fde047" : "#475569"}; background:#050b1a; margin-bottom:7px;">
+                  <img src="${c.img}" alt="${c.title}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; ${isWon ? "" : "filter:grayscale(100%) brightness(0.32) blur(2px);"}">
+                  ${!isWon ? `
+                    <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:8px; text-align:center;">
+                      <div style="font-size:26px; margin-bottom:3px;">${needsVip ? "🔒" : "🎁"}</div>
+                      <div style="font-size:12px; font-weight:900; color:#fde047; text-shadow:0 2px 6px #000;">Complete a Fase ${c.phase} para liberar este Card!</div>
+                    </div>
+                  ` : ""}
+                </div>
+
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                  <div style="font-size:12.5px; font-weight:900; color:#ffffff; text-align:left; line-height:1.2;">
+                    Card #${String(c.num).padStart(2, "0")} • ${c.title}
+                  </div>
+                  ${isWon ? `
+                    <button type="button" onclick="window.shareOrDownloadArcadeRewardCard('${c.code}')" style="background:linear-gradient(180deg,#22c55e,#15803d); border:1.5px solid #ffffff; color:#ffffff; font-weight:900; font-size:11px; padding:6px 11px; border-radius:999px; cursor:pointer; white-space:nowrap; flex-shrink:0;">
+                      📲 WhatsApp / Baixar
+                    </button>
+                  ` : `
+                    <button type="button" onclick="document.getElementById('arcade-reward-cards-gallery-modal').style.display='none'; window.openTronoArcadeGame('${c.gameId}');" style="background:linear-gradient(180deg,#f59e0b,#d97706); border:1.5px solid #fef08a; color:#ffffff; font-weight:900; font-size:11px; padding:6px 11px; border-radius:999px; cursor:pointer; white-space:nowrap; flex-shrink:0;">
+                      🎮 Jogar Agora
+                    </button>
+                  `}
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      </div>
+    `;
+    modal.style.display = "flex";
+  };
+
   window.renderAll17ArcadeGamesInHub = function() {
     const filterBar = document.getElementById("games-hub-filter-bar");
     if (filterBar) {
@@ -5225,8 +5597,31 @@
     const gridEl = document.getElementById("games-hub-grid");
     if (!gridEl) return;
 
+    const wonMap = window.getWonArcadeCardsMap();
+    const totalWon = Object.keys(wonMap).filter(k => !!wonMap[k]).length;
+
     gridEl.innerHTML = `
       <style id="arcade-hub-clean-styles">
+        .arcade-hub-cards-banner {
+          width: calc(100% - 14px);
+          max-width: 400px;
+          margin: 2px auto 10px auto;
+          padding: 8px 12px;
+          border-radius: 999px;
+          background: linear-gradient(180deg, rgba(88,28,135,0.92) 0%, rgba(30,27,75,0.96) 100%);
+          border: 2px solid #fde047;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.65);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+          cursor: pointer;
+          box-sizing: border-box;
+          user-select: none;
+        }
+        .arcade-hub-cards-banner:active {
+          transform: scale(0.97);
+        }
         .arcade-hub-clean-grid {
           width: 100%;
           max-width: 420px;
@@ -5240,6 +5635,7 @@
           box-sizing: border-box;
         }
         .arcade-hub-item {
+          position: relative;
           background: transparent !important;
           border: none !important;
           box-shadow: none !important;
@@ -5256,10 +5652,6 @@
         }
         .arcade-hub-item:active {
           transform: scale(0.90);
-        }
-        .arcade-hub-item:last-child:nth-child(odd) {
-          grid-column: 1 / -1;
-          max-width: 52%;
         }
         .arcade-hub-icon-3d {
           width: 116px;
@@ -5281,18 +5673,31 @@
           pointer-events: none;
         }
       </style>
+      <div class="arcade-hub-cards-banner" onclick="window.openArcadeRewardCardsGalleryModal()">
+        <span style="font-size:12.5px; font-weight:900; color:#fde047;">🎁 MEUS CARDS DOS JOGOS</span>
+        <span style="background:linear-gradient(180deg,#16a34a,#15803d); border:1.5px solid #ffffff; color:#ffffff; font-size:11px; font-weight:900; padding:2px 9px; border-radius:999px;">${totalWon}/32 Ver ➡️</span>
+      </div>
       <div class="arcade-hub-clean-grid">
-        ${SUPER_ARCADE_GAMES.map(g => `
+        ${SUPER_ARCADE_GAMES.map(g => {
+          const entry = ARCADE_REWARD_CARDS_DB[g.id];
+          const c5 = entry && entry.milestones[5] && wonMap[entry.milestones[5].code];
+          const c15 = entry && entry.milestones[15] && wonMap[entry.milestones[15].code];
+          const badgeCount = (c5 ? 1 : 0) + (c15 ? 1 : 0);
+          return `
           <div class="arcade-hub-item" onclick="window.openTronoArcadeGame('${g.id}')">
-            <img src="${g.icon}" alt="${g.title}" class="arcade-hub-icon-3d" decoding="async">
+            <div style="position:relative; display:inline-flex; align-items:center; justify-content:center;">
+              <img src="${g.icon}" alt="${g.title}" class="arcade-hub-icon-3d" decoding="async">
+              ${badgeCount > 0 ? `<span style="position:absolute; top:0; right:-2px; background:linear-gradient(180deg,#16a34a,#15803d); border:2px solid #fde047; color:#ffffff; font-size:10px; font-weight:900; padding:1px 6px; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,0.8); pointer-events:none;">🎁${badgeCount}/2</span>` : ""}
+            </div>
             <div class="arcade-hub-title">${g.title}</div>
           </div>
-        `).join("")}
+          `;
+        }).join("")}
       </div>
     `;
   };
 
-  // Sobrescreve a abertura do Hub de Jogos para carregar os 17 jogos oficiais com fundo Jardim Real
+  // Sobrescreve a abertura do Hub de Jogos para carregar os 16 jogos oficiais com fundo Jardim Real
   const originalOpenGamesHub = window.openGamesHubScreen;
   window.openGamesHubScreen = function(filterCat) {
     if (typeof originalOpenGamesHub === "function") {
@@ -5309,7 +5714,7 @@
     ensureArcadeStageInDOM();
   }
 
-  console.log("✅ [Trono Kids] Super Arcade Audiovisual (17 Jogos Oficiais) carregado com sucesso!");
+  console.log("✅ [Trono Kids] Super Arcade Audiovisual (16 Jogos Oficiais + 32 Cards 16:9) carregado com sucesso!");
 
   // ==========================================================================
   // 8. TRAVA PARENTAL OBRIGATÓRIA (FAMÍLIA E PROFESSOR)
