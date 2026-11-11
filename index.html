@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v138.0';
+        const CURRENT_VER = 'v139.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=138.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=139.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -1623,23 +1623,51 @@
     .plan-card-title {
       text-transform: uppercase !important;
     }
-    /* === UPGRADE V66: PLAYER DE VÍDEO EXPANDIDO 9:16 NA HISTÓRIA DO VOVÔ (SEM SETAS, SEM TEXTOS, FOCO CELULAR) === */
-    #app-shell.vovo-player-fullscreen-mode .topbar {
-      padding: 2px 8px 0px 8px !important;
+    /* === UPGRADE V139: HISTÓRIA DO VOVÔ 100% TELA CHEIA (SEM LOGO, SEM PÍLULA DE TÍTULO, SÓ 2 BOLINHAS NO TOPO E PLAYER LIMPO SOBRE A IMAGEM) === */
+    #app-shell.vovo-player-fullscreen-mode {
+      padding-bottom: 0 !important;
+      background: #000000 !important;
     }
-    #app-shell.vovo-player-fullscreen-mode .topbar-controls-row {
+    #app-shell.vovo-player-fullscreen-mode .topbar {
       display: none !important;
     }
-    #app-shell.vovo-player-fullscreen-mode #main-brand-logo {
-      height: 34px !important;
-      max-height: 4.5vh !important;
-      margin: 0 auto !important;
-    }
     #app-shell.vovo-player-fullscreen-mode #screen-lesson-module {
-      padding-top: 2px !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+      position: relative !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    #app-shell.vovo-player-fullscreen-mode #lesson-module-content {
+      padding: 0 !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+      width: 100% !important;
+      height: 100% !important;
     }
     #app-shell.vovo-player-fullscreen-mode #screen-lesson-module .module-header {
-      margin-bottom: 4px !important;
+      position: absolute !important;
+      top: max(12px, env(safe-area-inset-top, 12px)) !important;
+      left: 14px !important;
+      right: 14px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      z-index: 30 !important;
+      pointer-events: none !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+    }
+    #app-shell.vovo-player-fullscreen-mode #screen-lesson-module .module-header .puzzle-diff-bar {
+      display: none !important;
+    }
+    #app-shell.vovo-player-fullscreen-mode #screen-lesson-module .module-header .btn-nav-circle {
+      pointer-events: auto !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.72) !important;
     }
   
     /* === UPGRADE V76: ONDE TEM IMAGEM (ORDEM CRONOLÓGICA, JOGO DA MEMÓRIA, QUEBRA-CABEÇA, PINTURA) -> MARGEM COLORIDA ÚNICA MUDANDO DE COR (SEM LINHA AZUL DUPLICADA!) === */
@@ -2584,8 +2612,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=138.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=138.0"></script>
+<script src="ebd_modulos_educativos.js?v=139.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=139.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!

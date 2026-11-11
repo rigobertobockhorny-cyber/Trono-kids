@@ -5065,19 +5065,32 @@ window.clearVovoSavedResume = function(weekNum) {
   } catch (e) {}
 };
 
+window.VOVO_ICON_PLAY_SVG = '<svg width="26" height="26" viewBox="0 0 24 24" fill="#0f172a" style="margin-left:3px; display:block;"><path d="M6 4.5L19.5 12L6 19.5V4.5Z" stroke="#0f172a" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+window.VOVO_ICON_PAUSE_SVG = '<svg width="24" height="24" viewBox="0 0 24 24" fill="#0f172a" style="display:block;"><rect x="6" y="4.5" width="4.2" height="15" rx="1.4"/><rect x="13.8" y="4.5" width="4.2" height="15" rx="1.4"/></svg>';
+
+window.setVovoPlayBtnState = function(isPlaying) {
+  const playBtnEl = document.getElementById("vovo-play-btn");
+  if (!playBtnEl) return;
+  playBtnEl.innerHTML = isPlaying ? window.VOVO_ICON_PAUSE_SVG : window.VOVO_ICON_PLAY_SVG;
+  playBtnEl.setAttribute("aria-label", isPlaying ? "Pausar história" : "Tocar história");
+};
+
 window.updateVovoPlayerTimelineUI = function(lesson, currentTime, duration, isPlaying) {
   const scenes = (lesson && lesson.storyScenes) || [{ img: lesson.thumbImg, caption: lesson.title }];
   const dur = Number(duration) || 0;
   const cur = Math.max(0, Number(currentTime) || 0);
   const progress = dur > 0 ? Math.min(1, Math.max(0, cur / dur)) : 0;
+  const pctStr = `${(progress * 100).toFixed(1)}%`;
 
   const barFillEl = document.getElementById("vovo-video-progress-fill");
+  const thumbEl = document.getElementById("vovo-video-progress-thumb");
   const scrubEl = document.getElementById("vovo-video-scrubber");
+  const timeCurEl = document.getElementById("vovo-video-time-current");
+  const timeTotEl = document.getElementById("vovo-video-time-total");
   const timeLabelEl = document.getElementById("vovo-video-time-label");
-  const sceneBadgeEl = document.getElementById("vovo-scene-counter-badge");
-  const playBtnEl = document.getElementById("vovo-play-btn");
 
-  if (barFillEl) barFillEl.style.width = `${(progress * 100).toFixed(1)}%`;
+  if (barFillEl) barFillEl.style.width = pctStr;
+  if (thumbEl) thumbEl.style.left = pctStr;
   if (scrubEl && !window._vovoIsDraggingScrub) {
     scrubEl.value = String(Math.round(progress * 1000));
   }
@@ -5086,23 +5099,20 @@ window.updateVovoPlayerTimelineUI = function(lesson, currentTime, duration, isPl
   if (targetScene !== window.EBD_STATE.vovoActiveSceneIdx) {
     window.selectVovoStoryScene(targetScene, true);
   }
-  const activeIdx = typeof window.EBD_STATE.vovoActiveSceneIdx === "number" ? window.EBD_STATE.vovoActiveSceneIdx : 0;
-  if (sceneBadgeEl) {
-    sceneBadgeEl.textContent = `Cena ${activeIdx + 1}/${scenes.length}`;
+
+  if (timeCurEl) {
+    timeCurEl.textContent = window.formatVovoTime(cur);
+  }
+  if (timeTotEl) {
+    timeTotEl.textContent = dur > 0 ? window.formatVovoTime(dur) : "0:00";
   }
   if (timeLabelEl) {
     timeLabelEl.textContent = dur > 0
       ? `${window.formatVovoTime(cur)} / ${window.formatVovoTime(dur)}`
       : `${window.formatVovoTime(cur)}`;
   }
-  if (playBtnEl && typeof isPlaying === "boolean") {
-    if (isPlaying) {
-      playBtnEl.innerHTML = "PAUSAR";
-    } else if (cur > 1.5) {
-      playBtnEl.innerHTML = `CONTINUAR (${window.formatVovoTime(cur)})`;
-    } else {
-      playBtnEl.innerHTML = "OUVIR A HISTÓRIA";
-    }
+  if (typeof isPlaying === "boolean") {
+    window.setVovoPlayBtnState(isPlaying);
   }
 };
 
@@ -5114,7 +5124,9 @@ window.ensureVovoAudioElement = function(lesson) {
   const audioSrc = String(rawSrc).split("?")[0] + "?v=78";
 
   if (window.EBD_STATE.vovoAudioEl && window.EBD_STATE.vovoAudioWeek === lesson.week) {
-    return window.EBD_STATE.vovoAudioEl;
+    const cachedEl = window.EBD_STATE.vovoAudioEl;
+    window.updateVovoPlayerTimelineUI(lesson, cachedEl.currentTime || 0, cachedEl.duration || 0, !!window.EBD_STATE.vovoAudioPlaying);
+    return cachedEl;
   }
 
   if (window.EBD_STATE.vovoAudioEl) {
@@ -5159,14 +5171,17 @@ window.ensureVovoAudioElement = function(lesson) {
     window.EBD_STATE.vovoAudioPlaying = false;
     window.clearVovoSavedResume(lesson.week);
     try { audio.currentTime = 0; } catch (e) {}
-    const playBtnEl = document.getElementById("vovo-play-btn");
     const imgEl = document.getElementById("vovo-story-scene-img");
     const barFillEl = document.getElementById("vovo-video-progress-fill");
+    const thumbEl = document.getElementById("vovo-video-progress-thumb");
     const scrubEl = document.getElementById("vovo-video-scrubber");
-    if (playBtnEl) playBtnEl.innerHTML = "OUVIR NOVAMENTE";
+    const timeCurEl = document.getElementById("vovo-video-time-current");
+    window.setVovoPlayBtnState(false);
     if (imgEl) imgEl.classList.remove("vovo-video-playing-img");
     if (barFillEl) barFillEl.style.width = "100%";
+    if (thumbEl) thumbEl.style.left = "100%";
     if (scrubEl) scrubEl.value = "1000";
+    if (timeCurEl && audio.duration) timeCurEl.textContent = window.formatVovoTime(audio.duration);
     if (typeof window.markLessonModuleDone === "function" && lesson && lesson.week) {
       window.markLessonModuleDone(lesson.week, "vovo");
     }
@@ -5174,9 +5189,8 @@ window.ensureVovoAudioElement = function(lesson) {
 
   audio.onerror = function() {
     window.EBD_STATE.vovoAudioPlaying = false;
-    const playBtnEl = document.getElementById("vovo-play-btn");
     const imgEl = document.getElementById("vovo-story-scene-img");
-    if (playBtnEl) playBtnEl.innerHTML = "OUVIR A HISTÓRIA";
+    window.setVovoPlayBtnState(false);
     if (imgEl) imgEl.classList.remove("vovo-video-playing-img");
   };
 
@@ -5186,7 +5200,6 @@ window.ensureVovoAudioElement = function(lesson) {
 window.toggleVovoStoryNarration = function() {
   const lesson = window.getCurrentLessonObj();
   window.preloadVovoLessonImages(lesson);
-  const playBtnEl = document.getElementById("vovo-play-btn");
   const imgEl = document.getElementById("vovo-story-scene-img");
 
   // 1. Se já está tocando -> PAUSA exatamente no segundo atual e salva no localStorage!
@@ -5201,9 +5214,7 @@ window.toggleVovoStoryNarration = function() {
       window.EBD_STATE.vovoAudioEl.duration,
       window.EBD_STATE.vovoActiveSceneIdx
     );
-    if (playBtnEl) {
-      playBtnEl.innerHTML = `CONTINUAR (${window.formatVovoTime(window.EBD_STATE.vovoAudioEl.currentTime)})`;
-    }
+    window.setVovoPlayBtnState(false);
     if (imgEl) imgEl.classList.remove("vovo-video-playing-img");
     return;
   }
@@ -5224,16 +5235,12 @@ window.toggleVovoStoryNarration = function() {
   }
 
   window.EBD_STATE.vovoAudioPlaying = true;
-  if (playBtnEl) playBtnEl.innerHTML = "PAUSAR";
+  window.setVovoPlayBtnState(true);
   if (imgEl) imgEl.classList.add("vovo-video-playing-img");
 
   audio.play().catch(() => {
     window.EBD_STATE.vovoAudioPlaying = false;
-    if (playBtnEl) {
-      playBtnEl.innerHTML = audio.currentTime > 1.5
-        ? `CONTINUAR (${window.formatVovoTime(audio.currentTime)})`
-        : "OUVIR A HISTÓRIA";
-    }
+    window.setVovoPlayBtnState(false);
     if (imgEl) imgEl.classList.remove("vovo-video-playing-img");
   });
 };
@@ -5306,12 +5313,9 @@ window.stopVovoStoryNarration = function(forceReset) {
     }
   }
   window.EBD_STATE.vovoAudioPlaying = false;
-  const playBtnEl = document.getElementById("vovo-play-btn");
   const imgEl = document.getElementById("vovo-story-scene-img");
   if (imgEl) imgEl.classList.remove("vovo-video-playing-img");
-  if (playBtnEl && forceReset) {
-    playBtnEl.innerHTML = "OUVIR A HISTÓRIA";
-  }
+  window.setVovoPlayBtnState(false);
 };
 
 // Abre qualquer ilustração 16:9 de Cronologia Bíblica ou Devocional em Tela Cheia (formato 16:9 horizontal) com opção de Baixar 16:9 / WhatsApp!
@@ -6803,7 +6807,7 @@ window.openLessonModule = function(modType) {
     }, 150);
   }
 
-  // 2) HISTÓRIA DO VOVÔ (Player de Vídeo Vertical 9:16 Expandido + Timeline Interativa + Auto-Resume de Onde Parou!)
+  // 2) HISTÓRIA DO VOVÔ (100% TELA CHEIA • SEM BLOCO • CONTROLES DE PLAYER DIRETO SOBRE A IMAGEM)
   else if (modType === "vovo") {
     const scenes = lesson.storyScenes || [{ img: lesson.thumbImg, caption: lesson.title }];
     window.preloadVovoLessonImages(lesson);
@@ -6820,39 +6824,58 @@ window.openLessonModule = function(modType) {
     }
 
     const initImgSrc = String((scenes[initSceneIdx] && scenes[initSceneIdx].img) || scenes[0].img).split("?")[0] + "?v=78";
-    const initTimeText = saved && saved.time > 1.5
-      ? `${window.formatVovoTime(saved.time)}${saved.duration ? " / " + window.formatVovoTime(saved.duration) : ""}`
-      : "0:00";
-    const initBtnLabel = saved && saved.time > 1.5
-      ? `CONTINUAR (${window.formatVovoTime(saved.time)})`
-      : "OUVIR A HISTÓRIA";
+    const initCurStr = saved && saved.time > 1.5 ? window.formatVovoTime(saved.time) : "0:00";
+    const initTotStr = saved && saved.duration > 0 ? window.formatVovoTime(saved.duration) : "0:00";
+    const initPctCss = `${(initPct * 100).toFixed(1)}%`;
 
     box.innerHTML = `
-      <div style="flex:1; min-height:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:6px; padding:0 2px 2px 2px; overflow:hidden;">
-        <div class="frame-3d-alive" onclick="toggleVovoStoryNarration()" style="flex:1; min-height:0; height:100%; aspect-ratio:9/16; max-width:100%; margin:0 auto; overflow:hidden; background:#050811; border-radius:20px; border:3px solid #38bdf8; animation:rainbowBorderCycle 3.6s linear infinite; box-shadow:0 8px 26px rgba(0,0,0,0.92); display:flex; align-items:center; justify-content:center; position:relative; cursor:pointer;">
-          <img id="vovo-story-scene-img" src="${initImgSrc}" alt="História do Vovô" decoding="async" style="width:100%; height:100%; object-fit:cover; border-radius:17px; display:block; transition:opacity 0.16s ease;">
+      <div id="vovo-fullscreen-stage" onclick="toggleVovoStoryNarration()" style="position:relative; width:100%; height:100%; flex:1; min-height:0; overflow:hidden; background:#000000; cursor:pointer;">
+        <!-- IMAGEM 100% TELA CHEIA (SEM MOLDURA, SEM BLOCO) -->
+        <img id="vovo-story-scene-img" src="${initImgSrc}" alt="" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; border:none; border-radius:0; display:block; user-select:none; -webkit-user-drag:none;">
 
-          <div onclick="event.stopPropagation()" style="position:absolute; left:10px; right:10px; bottom:8px; background:rgba(15,23,42,0.88); border:1.5px solid rgba(253,224,71,0.85); border-radius:14px; padding:5px 10px 7px 10px; z-index:4; box-shadow:0 4px 12px rgba(0,0,0,0.9); backdrop-filter:blur(4px);">
-            <div style="display:flex; align-items:center; justify-content:space-between; font-size:11px; font-weight:900; color:#fde047; margin-bottom:4px;">
-              <span id="vovo-scene-counter-badge">Cena ${initSceneIdx + 1}/${scenes.length}</span>
-              <span id="vovo-video-time-label" style="color:#ffffff;">${initTimeText}</span>
-            </div>
-            <div style="position:relative; width:100%; height:10px; background:rgba(255,255,255,0.18); border-radius:999px; overflow:hidden;">
-              <div id="vovo-video-progress-fill" style="width:${(initPct * 100).toFixed(1)}%; height:100%; background:linear-gradient(90deg, #00e676, #fde047); border-radius:999px;"></div>
+        <!-- Sombra sutil no topo apenas para destacar as 2 bolinhas de navegação -->
+        <div style="position:absolute; top:0; left:0; right:0; height:86px; background:linear-gradient(180deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0) 100%); pointer-events:none; z-index:10;"></div>
+
+        <!-- BARRA DE PLAYER LIMPA SOBRE A PRÓPRIA IMAGEM (CONTADOR + DEDINHO + 3 BOTÕES) -->
+        <div onclick="event.stopPropagation()" style="position:absolute; left:0; right:0; bottom:0; padding:38px 18px max(16px, env(safe-area-inset-bottom, 14px)) 18px; background:linear-gradient(0deg, rgba(0,0,0,0.84) 0%, rgba(0,0,0,0.46) 60%, rgba(0,0,0,0) 100%); z-index:22; display:flex; flex-direction:column; gap:11px;">
+          <!-- Contador de Tempo + Barra Deslizante com o Dedinho -->
+          <div style="display:flex; align-items:center; gap:10px; width:100%;">
+            <span id="vovo-video-time-current" style="font-size:12.5px; font-weight:800; color:#ffffff; min-width:34px; text-align:left; text-shadow:0 1px 4px rgba(0,0,0,0.9); font-variant-numeric:tabular-nums;">${initCurStr}</span>
+            <div style="position:relative; flex:1; height:6px; background:rgba(255,255,255,0.32); border-radius:999px;">
+              <div id="vovo-video-progress-fill" style="width:${initPctCss}; height:100%; background:linear-gradient(90deg, #fde047, #f59e0b); border-radius:999px;"></div>
+              <div id="vovo-video-progress-thumb" style="position:absolute; top:50%; left:${initPctCss}; width:15px; height:15px; border-radius:50%; background:#ffffff; border:2.5px solid #fde047; transform:translate(-50%, -50%); box-shadow:0 2px 6px rgba(0,0,0,0.85); pointer-events:none;"></div>
               <input id="vovo-video-scrubber" type="range" min="0" max="1000" value="${Math.round(initPct * 1000)}"
                 onmousedown="window._vovoIsDraggingScrub=true" ontouchstart="window._vovoIsDraggingScrub=true"
                 onmouseup="window._vovoIsDraggingScrub=false" ontouchend="window._vovoIsDraggingScrub=false"
                 oninput="onScrubVovoStory(this.value)" onchange="window._vovoIsDraggingScrub=false; onScrubVovoStory(this.value)"
-                style="position:absolute; inset:-6px 0; width:100%; height:22px; opacity:0; cursor:pointer; margin:0; z-index:5;">
+                style="position:absolute; left:-6px; right:-6px; top:-13px; width:calc(100% + 12px); height:32px; opacity:0; cursor:pointer; margin:0; z-index:5;">
             </div>
+            <span id="vovo-video-time-total" style="font-size:12.5px; font-weight:800; color:rgba(255,255,255,0.88); min-width:34px; text-align:right; text-shadow:0 1px 4px rgba(0,0,0,0.9); font-variant-numeric:tabular-nums;">${initTotStr}</span>
           </div>
-        </div>
 
-        <div style="width:100%; display:flex; align-items:center; gap:6px; flex-shrink:0;">
-          <button type="button" class="btn-tool-3d" style="padding:10px 11px; font-size:13px; font-weight:900; flex-shrink:0;" onclick="stepVovoStoryTime(-10)" title="Voltar 10 segundos">⏪ -10s</button>
-          <button id="vovo-play-btn" type="button" class="btn-gold" style="flex:1; padding:11px 8px; font-size:14.5px; white-space:nowrap;" onclick="toggleVovoStoryNarration()">${initBtnLabel}</button>
-          <button type="button" class="btn-tool-3d" style="padding:10px 11px; font-size:13px; font-weight:900; flex-shrink:0;" onclick="stepVovoStoryTime(10)" title="Avançar 10 segundos">+10s ⏩</button>
-          <button type="button" class="btn-tool-3d" style="padding:10px 10px; font-size:13px; font-weight:900; flex-shrink:0;" onclick="restartVovoStoryFromZero()" title="Recomeçar história do início">↺</button>
+          <!-- Os 3 Botões Característicos de Player: -10s | Play/Pause | +10s -->
+          <div style="display:flex; align-items:center; justify-content:center; gap:28px;">
+            <button type="button" onclick="stepVovoStoryTime(-10)" title="Voltar 10 segundos" aria-label="Voltar 10 segundos"
+              style="width:46px; height:46px; border-radius:50%; background:rgba(15,23,42,0.58); border:1.8px solid rgba(255,255,255,0.72); color:#ffffff; display:inline-flex; align-items:center; justify-content:center; gap:1px; cursor:pointer; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 4px 12px rgba(0,0,0,0.6);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>
+                <text x="12" y="15.3" text-anchor="middle" fill="#ffffff" stroke="none" font-size="7.6" font-weight="900" font-family="Nunito, sans-serif">10</text>
+              </svg>
+            </button>
+
+            <button id="vovo-play-btn" type="button" onclick="toggleVovoStoryNarration()" title="Play / Pausar" aria-label="Tocar história"
+              style="width:60px; height:60px; border-radius:50%; background:linear-gradient(180deg, #fde047 0%, #f59e0b 100%); border:2.5px solid #ffffff; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 5px 18px rgba(0,0,0,0.72), 0 0 16px rgba(253,224,71,0.42);">
+              ${window.VOVO_ICON_PLAY_SVG}
+            </button>
+
+            <button type="button" onclick="stepVovoStoryTime(10)" title="Avançar 10 segundos" aria-label="Avançar 10 segundos"
+              style="width:46px; height:46px; border-radius:50%; background:rgba(15,23,42,0.58); border:1.8px solid rgba(255,255,255,0.72); color:#ffffff; display:inline-flex; align-items:center; justify-content:center; gap:1px; cursor:pointer; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 4px 12px rgba(0,0,0,0.6);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>
+                <text x="12" y="15.3" text-anchor="middle" fill="#ffffff" stroke="none" font-size="7.6" font-weight="900" font-family="Nunito, sans-serif">10</text>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     `;
