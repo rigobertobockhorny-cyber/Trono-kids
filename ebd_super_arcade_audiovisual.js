@@ -5684,22 +5684,17 @@
     let answered = false;
 
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; background:radial-gradient(circle at 50% 25%, #581c87 0%, #2e1065 55%, #0f172a 100%); padding:72px 16px 22px 16px; box-sizing:border-box;">
-        <div style="width:100%; max-width:368px; background:linear-gradient(180deg, rgba(147,51,234,0.65) 0%, rgba(59,7,100,0.88) 100%); border:2.5px solid #fde047; border-radius:20px; padding:12px 14px; box-shadow:0 6px 18px rgba(0,0,0,0.65); text-align:center;">
-          <div style="font-family:'Fredoka',sans-serif; color:#fde047; font-size:17.5px; font-weight:800; line-height:1.24; text-shadow:0 2px 6px rgba(0,0,0,0.9);">
+      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:11px; background:linear-gradient(180deg, rgba(10,18,42,0.22) 0%, rgba(10,18,42,0.38) 100%), url('./2_ASSETS_UI_BOTOES/fundo_ovelha_fujona_pampa_v138.jpg') center/cover no-repeat; padding:70px 16px 18px 16px; box-sizing:border-box;">
+        <div style="width:100%; max-width:356px; background:linear-gradient(180deg, rgba(15,23,42,0.90) 0%, rgba(30,41,59,0.95) 100%); border:2.5px solid #fde047; border-radius:20px; padding:11px 14px; box-shadow:0 8px 20px rgba(0,0,0,0.72); text-align:center;">
+          <div style="font-family:'Fredoka',sans-serif; color:#fde047; font-size:16.5px; font-weight:800; line-height:1.24; text-shadow:0 2px 5px rgba(0,0,0,0.92);">
             ${qData.q}
           </div>
         </div>
 
-        <div style="width:100%; max-width:368px; display:flex; flex-direction:column; gap:11px;">
+        <div style="width:100%; display:flex; flex-direction:column; align-items:center; gap:10px;">
           ${shuffled.map((opt, idx) => `
-            <button type="button" id="quiz-vis-opt-${idx}" onclick="window._quizVisualTap(${idx})" style="width:100%; padding:8px 11px; border-radius:18px; background:linear-gradient(180deg, rgba(30,41,59,0.92) 0%, rgba(15,23,42,0.96) 100%); border:2.5px solid rgba(186,230,253,0.75); box-shadow:0 6px 16px rgba(0,0,0,0.65); display:flex; align-items:center; gap:12px; cursor:pointer; text-align:left; transition:transform 0.14s ease, border-color 0.18s ease, background 0.18s ease;">
-              <div style="width:132px; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:2px solid #fde047; flex-shrink:0; background:#050b1a; box-shadow:0 3px 8px rgba(0,0,0,0.75);">
-                <img src="${opt.img}" alt="${opt.label}" style="width:100%; height:100%; object-fit:cover; display:block; pointer-events:none;">
-              </div>
-              <div style="font-family:'Fredoka',sans-serif; font-size:15px; font-weight:800; color:#ffffff; line-height:1.2; text-transform:uppercase; text-shadow:0 2px 4px rgba(0,0,0,0.85); pointer-events:none;">
-                ${opt.label}
-              </div>
+            <button type="button" id="quiz-vis-opt-${idx}" onclick="window._quizVisualTap(${idx})" aria-label="Alternativa ${idx + 1}" style="width:min(64vw, 228px); aspect-ratio:16/9; padding:0; border-radius:16px; background:#050b1a; border:3px solid #ffffff; box-shadow:0 7px 18px rgba(0,0,0,0.72); overflow:hidden; cursor:pointer; display:block; transition:transform 0.14s ease, border-color 0.18s ease, box-shadow 0.18s ease;">
+              <img src="${opt.img}" alt="" decoding="async" style="width:100%; height:100%; object-fit:cover; display:block; pointer-events:none;">
             </button>
           `).join("")}
         </div>
@@ -5714,15 +5709,15 @@
 
       if (chosen.ok) {
         answered = true;
-        btn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
-        btn.style.borderColor = "#ffffff";
-        btn.style.transform = "scale(1.03)";
+        btn.style.borderColor = "#00e676";
+        btn.style.boxShadow = "0 0 22px rgba(0,230,118,0.95), 0 8px 20px rgba(0,0,0,0.8)";
+        btn.style.transform = "scale(1.05)";
         TronoAudio.play("success");
         setTimeout(triggerArcadeVictory, 650);
       } else {
-        btn.style.background = "linear-gradient(180deg, rgba(220,38,38,0.88) 0%, rgba(153,27,27,0.94) 100%)";
-        btn.style.borderColor = "#fca5a5";
-        btn.style.transform = "translateX(-5px)";
+        btn.style.borderColor = "#ef4444";
+        btn.style.boxShadow = "0 0 18px rgba(239,68,68,0.9), 0 6px 16px rgba(0,0,0,0.75)";
+        btn.style.transform = "translateX(-6px)";
         setTimeout(() => {
           if (!answered && btn) {
             btn.style.transform = "translateX(0)";

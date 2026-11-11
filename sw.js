@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v152.0';
+const CACHE_VERSION = 'vortice-trono-ebd-v153.0';
 const CORE_SHELL = [
   './',
   './index.html'
