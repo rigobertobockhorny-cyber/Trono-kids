@@ -3716,7 +3716,7 @@
     });
   }
 
-  // --- JOGO 6: PEGA A OVELHA! (CAMPINA 3D PIXAR — PASTORZINHO + OVELHINHA PULANDINHO + CORAÇÃO 3D TRAVADO) ---
+  // --- JOGO 6: PEGA A OVELHA! (CAMPINA 3D PIXAR — PASTORZINHO COM INÉRCIA + PEDRAS NO CAMINHO + OVELHINHA COM DISPARADINHAS + CORAÇÃO 3D TRAVADO) ---
   function runOvelhaFujona(container, phase) {
     if (window._ovelhaFujonaTimer) { clearInterval(window._ovelhaFujonaTimer); window._ovelhaFujonaTimer = null; }
     if (window._ovelhaFujonaRaf) { cancelAnimationFrame(window._ovelhaFujonaRaf); window._ovelhaFujonaRaf = null; }
@@ -3726,6 +3726,47 @@
 
     const pNum = Math.min(15, Math.max(1, Number(phase) || 1));
     const diffT = (pNum - 1) / 14; // 0.0 na Fase 1 -> 1.0 na Fase 15
+
+    // Quantidade progressiva de Pedras 3D no caminho (1 na Fase 1 -> 6 na Fase 15)
+    const rockCount = pNum === 1 ? 1 : (pNum <= 3 ? 2 : (pNum <= 5 ? 3 : (pNum <= 8 ? 4 : (pNum <= 11 ? 5 : 6))));
+    const ROCK_PRESETS = {
+      1: [
+        { rxPct: 0.50, ryPct: 0.57, img: 1, w: 58 }
+      ],
+      2: [
+        { rxPct: 0.36, ryPct: 0.49, img: 1, w: 58 },
+        { rxPct: 0.65, ryPct: 0.67, img: 2, w: 60 }
+      ],
+      3: [
+        { rxPct: 0.33, ryPct: 0.46, img: 1, w: 56 },
+        { rxPct: 0.68, ryPct: 0.53, img: 2, w: 58 },
+        { rxPct: 0.46, ryPct: 0.72, img: 3, w: 58 }
+      ],
+      4: [
+        { rxPct: 0.31, ryPct: 0.44, img: 1, w: 56 },
+        { rxPct: 0.69, ryPct: 0.46, img: 2, w: 58 },
+        { rxPct: 0.34, ryPct: 0.70, img: 3, w: 58 },
+        { rxPct: 0.67, ryPct: 0.73, img: 1, w: 56 }
+      ],
+      5: [
+        { rxPct: 0.30, ryPct: 0.42, img: 1, w: 54 },
+        { rxPct: 0.70, ryPct: 0.43, img: 2, w: 56 },
+        { rxPct: 0.50, ryPct: 0.58, img: 3, w: 58 },
+        { rxPct: 0.31, ryPct: 0.74, img: 2, w: 54 },
+        { rxPct: 0.69, ryPct: 0.75, img: 1, w: 56 }
+      ],
+      6: [
+        { rxPct: 0.29, ryPct: 0.40, img: 1, w: 52 },
+        { rxPct: 0.71, ryPct: 0.41, img: 2, w: 54 },
+        { rxPct: 0.42, ryPct: 0.56, img: 3, w: 54 },
+        { rxPct: 0.62, ryPct: 0.61, img: 1, w: 52 },
+        { rxPct: 0.31, ryPct: 0.75, img: 2, w: 54 },
+        { rxPct: 0.69, ryPct: 0.77, img: 3, w: 54 }
+      ]
+    };
+
+    const mirrorHoriz = (pNum % 2 === 0);
+    const chosenPreset = ROCK_PRESETS[rockCount] || ROCK_PRESETS[1];
 
     container.innerHTML = `
       <style>
@@ -3739,10 +3780,6 @@
           0%, 100% { transform: translate(-50%, -54%) scale(1.0); }
           50%      { transform: translate(-50%, -58%) scale(1.13); }
         }
-        @keyframes fujonaIdleBreath {
-          0%, 100% { transform: scaleY(1); }
-          50%      { transform: scaleY(1.025); }
-        }
       </style>
       <div id="pastor-arena" style="position:relative; width:100%; height:100%; overflow:hidden; touch-action:none; user-select:none; -webkit-user-select:none; background:#2e6f1e;">
         <!-- Cenário 3D Pixar Campina / Pampa Verdinho -->
@@ -3754,24 +3791,27 @@
         <!-- Vinheta suave de luz solar dourada no topo -->
         <div style="position:absolute; inset:0; background:radial-gradient(circle at 75% 8%, rgba(255,248,205,0.22) 0%, rgba(0,0,0,0) 48%); pointer-events:none; z-index:2;"></div>
 
-        <!-- Pastorzinho 3D -->
-        <div id="pastorzinho-wrap" style="position:absolute; left:0; top:0; width:0; height:0; pointer-events:none; z-index:14; will-change:transform;">
-          <div id="pastor-shadow" style="position:absolute; left:-28px; top:-8px; width:56px; height:15px; border-radius:50%; background:radial-gradient(ellipse, rgba(12,42,10,0.52) 0%, rgba(12,42,10,0) 74%);"></div>
+        <!-- Camada de Pedras 3D no Caminho -->
+        <div id="fujona-rocks-layer" style="position:absolute; inset:0; pointer-events:none;"></div>
+
+        <!-- Pastorzinho 3D (~33% menor para dar bastante espaço tático na campina!) -->
+        <div id="pastorzinho-wrap" style="position:absolute; left:0; top:0; width:0; height:0; pointer-events:none; z-index:300; will-change:transform;">
+          <div id="pastor-shadow" style="position:absolute; left:-19px; top:-5px; width:38px; height:10px; border-radius:50%; background:radial-gradient(ellipse, rgba(12,42,10,0.54) 0%, rgba(12,42,10,0) 74%);"></div>
           <img id="pastor-sprite"
                src="./2_ASSETS_UI_BOTOES/pastorzinho_3d_v138.png?v=138"
                alt=""
                draggable="false"
-               style="position:absolute; left:0; top:0; height:122px; width:auto; max-width:none; transform-origin:50% 94%; transform:translate(-50%, -95%) scaleX(1); filter:drop-shadow(0 4px 6px rgba(0,0,0,0.26)); user-select:none;" />
+               style="position:absolute; left:0; top:0; height:82px; width:auto; max-width:none; transform-origin:50% 94%; transform:translate(-50%, -95%) scaleX(1); filter:drop-shadow(0 3px 5px rgba(0,0,0,0.28)); user-select:none;" />
         </div>
 
-        <!-- Ovelhinha Fujona 3D (Pulandinho pelo Pampa!) -->
-        <div id="ovelha-fujona-wrap" style="position:absolute; left:0; top:0; width:0; height:0; pointer-events:none; z-index:13; will-change:transform;">
-          <div id="ovelha-shadow" style="position:absolute; left:-31px; top:-8px; width:62px; height:15px; border-radius:50%; background:radial-gradient(ellipse, rgba(12,42,10,0.48) 0%, rgba(12,42,10,0) 74%);"></div>
+        <!-- Ovelhinha Fujona 3D (~34% menor, Pulandinho e dando Disparadinhas!) -->
+        <div id="ovelha-fujona-wrap" style="position:absolute; left:0; top:0; width:0; height:0; pointer-events:none; z-index:290; will-change:transform;">
+          <div id="ovelha-shadow" style="position:absolute; left:-20px; top:-5px; width:40px; height:10px; border-radius:50%; background:radial-gradient(ellipse, rgba(12,42,10,0.50) 0%, rgba(12,42,10,0) 74%);"></div>
           <img id="ovelha-sprite"
                src="./2_ASSETS_UI_BOTOES/ovelha_fujona_3d_v138.png?v=138"
                alt=""
                draggable="false"
-               style="position:absolute; left:0; top:0; width:82px; height:auto; max-width:none; transform-origin:50% 90%; transform:translate(-50%, -92%) scaleX(-1); filter:drop-shadow(0 4px 6px rgba(0,0,0,0.24)); user-select:none;" />
+               style="position:absolute; left:0; top:0; width:54px; height:auto; max-width:none; transform-origin:50% 90%; transform:translate(-50%, -92%) scaleX(-1); filter:drop-shadow(0 3px 5px rgba(0,0,0,0.26)); user-select:none;" />
         </div>
 
         <!-- Coração 3D (Aparece quando o pastorzinho encosta e TRAVA os dois juntinhos!) -->
@@ -3779,11 +3819,12 @@
              src="./2_ASSETS_UI_BOTOES/coracao_3d_v138.png?v=138"
              alt=""
              draggable="false"
-             style="opacity:0; visibility:hidden; position:absolute; left:0; top:0; width:78px; height:auto; max-width:none; pointer-events:none; z-index:26; filter:drop-shadow(0 6px 14px rgba(244,63,94,0.55)); user-select:none;" />
+             style="opacity:0; visibility:hidden; position:absolute; left:0; top:0; width:60px; height:auto; max-width:none; pointer-events:none; z-index:960; filter:drop-shadow(0 5px 12px rgba(244,63,94,0.58)); user-select:none;" />
       </div>
     `;
 
     const arena = document.getElementById("pastor-arena");
+    const rocksLayer = document.getElementById("fujona-rocks-layer");
     const pastorWrap = document.getElementById("pastorzinho-wrap");
     const pastorSprite = document.getElementById("pastor-sprite");
     const pastorShadow = document.getElementById("pastor-shadow");
@@ -3801,10 +3842,10 @@
       return {
         W,
         H,
-        minX: Math.max(46, W * 0.12),
-        maxX: Math.min(W - 46, W * 0.88),
-        minY: Math.max(138, H * 0.30),
-        maxY: Math.min(H - 42, H * 0.89)
+        minX: Math.max(34, W * 0.09),
+        maxX: Math.min(W - 34, W * 0.91),
+        minY: Math.max(126, H * 0.29),
+        maxY: Math.min(H - 32, H * 0.90)
       };
     }
 
@@ -3813,51 +3854,202 @@
     }
 
     const initB = getBounds();
-    // Posições iniciais na campina verdinha: Pastorzinho à esquerda-baixo, Ovelhinha à direita-cima
-    let px = clamp(initB.W * 0.24, initB.minX, initB.maxX);
-    let py = clamp(initB.H * 0.75, initB.minY, initB.maxY);
-    let pastorFacing = 1; // 1 = direita, -1 = esquerda
+
+    // Monta as Pedras 3D no pasto com colisão física real e ordenação de profundidade 2.5D
+    const rocks = chosenPreset.map((rp, idx) => {
+      const normX = mirrorHoriz ? (1 - rp.rxPct) : rp.rxPct;
+      const rx = Math.round(initB.W * normX);
+      const ry = Math.round(initB.H * rp.ryPct);
+      const flipImg = ((idx + pNum) % 2 === 1) ? -1 : 1;
+      const el = document.createElement("div");
+      el.style.cssText = `position:absolute; left:${rx}px; top:${ry}px; width:0; height:0; pointer-events:none; z-index:${100 + ry};`;
+      el.innerHTML = `
+        <div style="position:absolute; left:${-Math.round(rp.w * 0.52)}px; top:-7px; width:${Math.round(rp.w * 1.04)}px; height:14px; border-radius:50%; background:radial-gradient(ellipse, rgba(8,32,8,0.58) 0%, rgba(8,32,8,0) 74%);"></div>
+        <img src="./2_ASSETS_UI_BOTOES/pedra_pampa_0${rp.img}_v141.png?v=141"
+             alt=""
+             draggable="false"
+             style="position:absolute; left:0; top:0; width:${rp.w}px; height:auto; max-width:none; transform:translate(-50%, -84%) scaleX(${flipImg}); filter:drop-shadow(0 3px 5px rgba(0,0,0,0.28)); user-select:none;" />
+      `;
+      if (rocksLayer) rocksLayer.appendChild(el);
+      return {
+        x: rx,
+        y: ry,
+        w: rp.w,
+        radX: rp.w * 0.46,
+        radY: rp.w * 0.28,
+        el
+      };
+    });
+
+    function refreshRockPositions(b) {
+      chosenPreset.forEach((rp, idx) => {
+        const rk = rocks[idx];
+        if (!rk) return;
+        const normX = mirrorHoriz ? (1 - rp.rxPct) : rp.rxPct;
+        rk.x = Math.round(b.W * normX);
+        rk.y = Math.round(b.H * rp.ryPct);
+        if (rk.el) {
+          rk.el.style.left = `${rk.x}px`;
+          rk.el.style.top = `${rk.y}px`;
+          rk.el.style.zIndex = String(100 + rk.y);
+        }
+      });
+    }
+
+    // Empurra suavemente personagem/ovelha para fora das pedras (deslizando pela lateral!)
+    function resolveRockCollision(ent, entRx, entRy) {
+      let hitAny = false;
+      for (let i = 0; i < rocks.length; i++) {
+        const rk = rocks[i];
+        const sumRx = rk.radX + entRx;
+        const sumRy = rk.radY + entRy;
+        const dx = ent.x - rk.x;
+        const dy = ent.y - rk.y;
+        const nx = dx / sumRx;
+        const ny = dy / sumRy;
+        const nd = Math.hypot(nx, ny);
+        if (nd < 1.0) {
+          hitAny = true;
+          const safeNd = nd > 0.001 ? nd : 0.001;
+          const ux = nx / safeNd;
+          const uy = ny / safeNd;
+          ent.x = rk.x + ux * sumRx * 1.01;
+          ent.y = rk.y + uy * sumRy * 1.01;
+          // Remove componente de velocidade que entra na pedra para deslizar suave ao redor dela
+          const wLen = Math.hypot(ux / sumRx, uy / sumRy) || 1;
+          const nrmX = (ux / sumRx) / wLen;
+          const nrmY = (uy / sumRy) / wLen;
+          const vn = ent.vx * nrmX + ent.vy * nrmY;
+          if (vn < 0) {
+            ent.vx -= vn * nrmX;
+            ent.vy -= vn * nrmY;
+          }
+        }
+      }
+      return hitAny;
+    }
+
+    function isPointNearRock(tx, ty, pad) {
+      for (let i = 0; i < rocks.length; i++) {
+        const rk = rocks[i];
+        const nx = (tx - rk.x) / (rk.radX + pad);
+        const ny = (ty - rk.y) / (rk.radY + pad * 0.72);
+        if (nx * nx + ny * ny < 1.0) return true;
+      }
+      return false;
+    }
+
+    // Posições iniciais opostas na campina: Pastorzinho no canto inferior, Ovelhinha no canto superior oposto
+    let px = clamp(initB.W * (mirrorHoriz ? 0.81 : 0.19), initB.minX, initB.maxX);
+    let py = clamp(initB.H * 0.82, initB.minY, initB.maxY);
+    let pvx = 0;
+    let pvy = 0;
+    let pastorFacing = mirrorHoriz ? -1 : 1;
     let walkPhase = 0;
 
-    let ox = clamp(initB.W * 0.75, initB.minX, initB.maxX);
-    let oy = clamp(initB.H * 0.43, initB.minY, initB.maxY);
-    let sheepFacing = -1;
+    let ox = clamp(initB.W * (mirrorHoriz ? 0.20 : 0.80), initB.minX, initB.maxX);
+    let oy = clamp(initB.H * 0.35, initB.minY, initB.maxY);
+    let sheepFacing = mirrorHoriz ? 1 : -1;
     let hopPhase = 0;
 
-    // Velocidade progressiva nas 15 fases (Fase 1 bem calminha -> Fase 15 bem esperta, sempre vencível!)
-    const sheepSpeed = 84 + diffT * 142;   // 84 px/s (Fase 1) -> 226 px/s (Fase 15)
-    const pastorSpeed = 198 + diffT * 138; // 198 px/s (Fase 1) -> 336 px/s (Fase 15)
-    const hopFreq = 6.4 + diffT * 3.2;     // Ritmo do "pulandinho"
-    const evadeStrength = 0.14 + diffT * 0.86;
-    const evadeRadius = 115 + diffT * 32;
+    // --- CALIBRAGEM DE JOGABILIDADE E DIFICULDADE (FASE 1 A FASE 15) ---
+    // Pastorzinho mais cadenciado e com inércia ("delayzinho"): não dá para jogar de uma vez em cima da ovelha!
+    const pastorMaxSpeed = 98 + diffT * 18;      // 98 px/s (Fase 1) -> 116 px/s (Fase 15)
+    const pastorInertia = 3.1 + diffT * 0.4;     // Suavidade / delayzinho ao acelerar e mudar de direção
 
-    // Direção inicial da ovelhinha andando de um lado para o outro na campina
-    let svx = -sheepSpeed * 0.92;
-    let svy = sheepSpeed * 0.36;
-    let wanderTimer = 1.1;
+    // Ovelhinha: passeio + Disparadinhas espertas (fintas rápidas) + Janela de cansaço
+    const roamSpeed = 76 + diffT * 36;           // Velocidade normal pulandinho
+    const dashSpeed = pastorMaxSpeed * (1.42 + diffT * 0.38); // Disparadinha mais rápida que o pastorzinho!
+    const tiredSpeed = pastorMaxSpeed * (0.72 + diffT * 0.08); // Cansadinha (mais lenta que o pastorzinho -> hora de cercar e pegar!)
+    const maxDashes = pNum === 1 ? 1 : (pNum <= 3 ? 2 : (pNum <= 5 ? 3 : (pNum <= 8 ? 4 : (pNum <= 11 ? 5 : (pNum <= 14 ? 6 : 7)))));
+    const dashDuration = 0.64 + diffT * 0.22;
+    const tiredDuration = 2.50 - diffT * 1.45;   // 2.50s na Fase 1 -> 1.05s na Fase 15!
+    const dashTriggerDist = 78 + diffT * 28;     // Distância em que ela assusta e dá a disparadinha
+    const alertDist = 132 + diffT * 30;
+    const baseHopFreq = 6.6 + diffT * 2.4;
+
+    let dashesLeft = maxDashes;
+    let dashTimer = 0;
+    let dashCooldown = 0;
+    let tiredTimer = 0;
+
+    let svx = (mirrorHoriz ? 1 : -1) * roamSpeed * 0.92;
+    let svy = roamSpeed * 0.34;
+    let wanderTimer = 1.0;
     let lastDodgeBaaAt = 0;
 
-    // Alvo do dedo / mouse para o Pastorzinho caminhar suavemente
     let targetX = px;
     let targetY = py;
     let hasPointerTarget = false;
     let isPointerDown = false;
     const keysDown = { left: false, right: false, up: false, down: false };
 
+    // Escolhe o corredor mais livre (longe do Pastorzinho, longe das bordas e desviando das Pedras!)
+    function pickBestEscapeDir(b, curSpeed) {
+      let bestAngle = Math.atan2(oy - py, ox - px);
+      let bestScore = -1e9;
+      const curAngle = Math.atan2(svy, svx);
+
+      for (let k = 0; k < 16; k++) {
+        const ang = (k * Math.PI * 2) / 16;
+        const ca = Math.cos(ang);
+        const sa = Math.sin(ang);
+
+        const midTestX = ox + ca * 46;
+        const midTestY = oy + sa * 46;
+        const farTestX = ox + ca * 92;
+        const farTestY = oy + sa * 92;
+
+        let score = 0;
+        // 1. Penaliza forte se sair dos limites do gramado
+        if (farTestX < b.minX + 14 || farTestX > b.maxX - 14 || farTestY < b.minY + 14 || farTestY > b.maxY - 14) {
+          score -= 360;
+        }
+        if (midTestX < b.minX + 6 || midTestX > b.maxX - 6 || midTestY < b.minY + 6 || midTestY > b.maxY - 6) {
+          score -= 600;
+        }
+
+        // 2. Penaliza se bater em alguma pedra no caminho da fuga
+        if (isPointNearRock(midTestX, midTestY, 22)) score -= 520;
+        if (isPointNearRock(farTestX, farTestY, 18)) score -= 240;
+
+        // 3. Premia afastar-se da posição futura do Pastorzinho (finta lateral inteligente!)
+        const predPx = px + pvx * 0.45;
+        const predPy = py + pvy * 0.45;
+        const distFromPastor = Math.hypot(farTestX - predPx, farTestY - predPy);
+        score += distFromPastor * 2.2;
+
+        // 4. Leve preferência por manter fluidez e puxar suavemente para áreas amplas da campina
+        const centerDist = Math.hypot(farTestX - b.W * 0.5, farTestY - (b.minY + b.maxY) * 0.5);
+        score -= centerDist * 0.28;
+        score += Math.cos(ang - curAngle) * 18;
+
+        if (score > bestScore) {
+          bestScore = score;
+          bestAngle = ang;
+        }
+      }
+
+      return {
+        vx: Math.cos(bestAngle) * curSpeed,
+        vy: Math.sin(bestAngle) * curSpeed
+      };
+    }
+
     function renderCharacters(pLift, pTilt, sLift, sTilt, sShadowScale) {
       if (!pastorWrap || !ovelhaWrap) return;
       pastorWrap.style.transform = `translate3d(${px.toFixed(1)}px, ${py.toFixed(1)}px, 0)`;
       ovelhaWrap.style.transform = `translate3d(${ox.toFixed(1)}px, ${oy.toFixed(1)}px, 0)`;
 
-      // Profundidade 3D real na grama: quem está mais abaixo na tela fica na frente
-      pastorWrap.style.zIndex = py >= oy ? "15" : "13";
-      ovelhaWrap.style.zIndex = oy > py ? "15" : "13";
+      // Profundidade 2.5D real entre Pastorzinho, Ovelhinha e todas as Pedras!
+      pastorWrap.style.zIndex = String(100 + Math.round(py));
+      ovelhaWrap.style.zIndex = String(100 + Math.round(oy));
 
       if (pastorSprite) {
         pastorSprite.style.transform = `translate(-50%, calc(-95% + ${pLift.toFixed(1)}px)) scaleX(${pastorFacing}) rotate(${pTilt.toFixed(1)}deg)`;
       }
       if (pastorShadow) {
-        const pScale = clamp(1 + pLift * 0.015, 0.84, 1.02);
+        const pScale = clamp(1 + pLift * 0.018, 0.84, 1.02);
         pastorShadow.style.transform = `scale(${pScale.toFixed(2)})`;
       }
       if (ovelhaSprite) {
@@ -3876,6 +4068,8 @@
       isCaught = true;
       hasPointerTarget = false;
       isPointerDown = false;
+      pvx = 0;
+      pvy = 0;
 
       // 1. PARA IMEDIATAMENTE QUALQUER MOVIMENTO DOS DOIS!
       if (window._ovelhaFujonaRaf) {
@@ -3883,32 +4077,46 @@
         window._ovelhaFujonaRaf = null;
       }
 
-      // 2. TRAVA O PASTORZINHO E A OVELHINHA JUNTINHOS OLHANDO UM PARA O OUTRO NO PASTO!
+      // 2. TRAVA O PASTORZINHO E A OVELHINHA JUNTINHOS OLHANDO UM PARA O OUTRO NA GRAMA LIVRE!
       const b = getBounds();
-      const midX = clamp((px + ox) * 0.5, b.minX + 34, b.maxX - 34);
-      const midY = clamp((py + oy) * 0.5, b.minY + 12, b.maxY - 12);
-      const pastorOnLeft = px <= ox;
+      let midX = clamp((px + ox) * 0.5, b.minX + 26, b.maxX - 26);
+      let midY = clamp((py + oy) * 0.5, b.minY + 12, b.maxY - 12);
 
-      px = midX + (pastorOnLeft ? -30 : 30);
+      // Se o encontro ocorreu encostado numa pedra, afasta suavemente o par para não sobrepor a pedra
+      for (let i = 0; i < rocks.length; i++) {
+        const rk = rocks[i];
+        const dx = midX - rk.x;
+        const dy = midY - rk.y;
+        const minRx = rk.radX + 30;
+        const minRy = rk.radY + 16;
+        const nd = Math.hypot(dx / minRx, dy / minRy);
+        if (nd < 1.0) {
+          const safe = nd > 0.01 ? nd : 0.01;
+          midX = clamp(rk.x + (dx / safe), b.minX + 26, b.maxX - 26);
+          midY = clamp(rk.y + (dy / safe), b.minY + 12, b.maxY - 12);
+        }
+      }
+
+      const pastorOnLeft = px <= ox;
+      px = midX + (pastorOnLeft ? -20 : 20);
       py = midY;
-      ox = midX + (pastorOnLeft ? 30 : -30);
-      oy = midY + 3;
+      ox = midX + (pastorOnLeft ? 20 : -20);
+      oy = midY + 2;
       pastorFacing = pastorOnLeft ? 1 : -1;
       sheepFacing = pastorOnLeft ? -1 : 1;
 
-      // Ambos pousados firmes na grama (sem pulo pendente nem deslize!)
       renderCharacters(0, 0, 0, 0, 1);
 
       // 3. EXIBE O CORAÇÃO 3D PULSANDO BEM NO MEIO ACIMA DOS DOIS TRAVADOS!
       if (heartEl) {
         heartEl.style.left = `${midX.toFixed(1)}px`;
-        heartEl.style.top = `${(midY - 108).toFixed(1)}px`;
+        heartEl.style.top = `${(midY - 76).toFixed(1)}px`;
         heartEl.style.visibility = "visible";
         heartEl.style.opacity = "1";
         heartEl.style.animation = "fujonaHeartPopIn 0.42s cubic-bezier(0.22, 1.35, 0.42, 1) forwards, fujonaHeartBeat 0.75s ease-in-out 0.42s infinite";
       }
 
-      // 4. OVELHINHA DÁ O "BÉÉÉ!" FELIZ + BRILHO DE VITÓRIA + PASSA DE FASE APÓS VEREM OS DOIS TRAVADOS!
+      // 4. OVELHINHA DÁ O "BÉÉÉ!" FELIZ + BRILHO DE VITÓRIA + PASSA DE FASE!
       TronoAudio.play("baa");
       setTimeout(() => {
         TronoAudio.play("success");
@@ -3930,118 +4138,175 @@
       lastTs = ts;
 
       const b = getBounds();
+      refreshRockPositions(b);
 
-      // --- 1. MOVIMENTO DO PASTORZINHO (DEDO / MOUSE OU TECLADO) ---
-      let moveX = 0;
-      let moveY = 0;
+      // --- 1. MOVIMENTO DO PASTORZINHO COM INÉRCIA ("DELAYZINHO" SUAVE E CADENCIADO) ---
+      let wantVx = 0;
+      let wantVy = 0;
       const keyDx = (keysDown.right ? 1 : 0) - (keysDown.left ? 1 : 0);
       const keyDy = (keysDown.down ? 1 : 0) - (keysDown.up ? 1 : 0);
 
       if (keyDx !== 0 || keyDy !== 0) {
         const kLen = Math.hypot(keyDx, keyDy) || 1;
-        moveX = (keyDx / kLen) * pastorSpeed * dt;
-        moveY = (keyDy / kLen) * pastorSpeed * dt;
+        wantVx = (keyDx / kLen) * pastorMaxSpeed;
+        wantVy = (keyDy / kLen) * pastorMaxSpeed;
         hasPointerTarget = false;
       } else if (hasPointerTarget) {
         const dxT = targetX - px;
         const dyT = targetY - py;
         const distT = Math.hypot(dxT, dyT);
-        if (distT > 3.5) {
-          const step = Math.min(distT, pastorSpeed * dt);
-          moveX = (dxT / distT) * step;
-          moveY = (dyT / distT) * step;
+        if (distT > 5) {
+          // Desacelera suavemente quando chega pertinho do dedo
+          const throttle = clamp(distT / 38, 0.28, 1.0);
+          wantVx = (dxT / distT) * pastorMaxSpeed * throttle;
+          wantVy = (dyT / distT) * pastorMaxSpeed * throttle;
         } else if (!isPointerDown) {
           hasPointerTarget = false;
         }
       }
 
-      const pastorMoving = Math.hypot(moveX, moveY) > 0.35;
+      // Aplica inércia suave (delayzinho realista ao sair do lugar e ao fazer curva!)
+      const lerpAlpha = Math.min(1, dt * pastorInertia);
+      pvx += (wantVx - pvx) * lerpAlpha;
+      pvy += (wantVy - pvy) * lerpAlpha;
+
+      // Freio natural quando solta o dedo
+      if (wantVx === 0 && wantVy === 0) {
+        const damp = Math.pow(0.06, dt);
+        pvx *= damp;
+        pvy *= damp;
+      }
+
+      const pastorEnt = {
+        x: clamp(px + pvx * dt, b.minX, b.maxX),
+        y: clamp(py + pvy * dt, b.minY, b.maxY),
+        vx: pvx,
+        vy: pvy
+      };
+      resolveRockCollision(pastorEnt, 13, 9);
+      px = clamp(pastorEnt.x, b.minX, b.maxX);
+      py = clamp(pastorEnt.y, b.minY, b.maxY);
+      pvx = pastorEnt.vx;
+      pvy = pastorEnt.vy;
+
+      const curPastorSpd = Math.hypot(pvx, pvy);
+      const pastorMoving = curPastorSpd > 8;
       if (pastorMoving) {
-        px = clamp(px + moveX, b.minX, b.maxX);
-        py = clamp(py + moveY, b.minY, b.maxY);
-        if (moveX > 0.6) pastorFacing = 1;
-        else if (moveX < -0.6) pastorFacing = -1;
-        walkPhase += dt * 13.5;
+        if (pvx > 6) pastorFacing = 1;
+        else if (pvx < -6) pastorFacing = -1;
+        walkPhase += dt * (8.5 + (curPastorSpd / pastorMaxSpeed) * 5.0);
       } else {
         walkPhase = 0;
       }
 
-      // --- 2. MOVIMENTO DA OVELHINHA FUJONA ("PULANDINHO" DE UM LADO PARA O OUTRO NA CAMPINA!) ---
-      wanderTimer -= dt;
-      if (wanderTimer <= 0) {
-        wanderTimer = 0.85 + Math.random() * 1.15;
-        // Mantém o passeio lateral característico pelo pampa com leve variação vertical na grama
-        const dirSign = Math.abs(svx) > 10 ? Math.sign(svx) : (Math.random() < 0.5 ? 1 : -1);
-        const flipChance = Math.random() < (0.22 + diffT * 0.18) ? -1 : 1;
-        const horizRatio = 0.78 + Math.random() * 0.18;
-        const vertSign = Math.random() < 0.5 ? -1 : 1;
-        const vertRatio = Math.sqrt(Math.max(0.04, 1 - horizRatio * horizRatio));
-        svx = dirSign * flipChance * sheepSpeed * horizRatio;
-        svy = vertSign * sheepSpeed * vertRatio;
-      }
+      // --- 2. IA DA OVELHINHA FUJONA (PASSEIO + DISPARADINHAS EM ZIGUE-ZAGUE + FÔLEGO) ---
+      if (dashCooldown > 0) dashCooldown = Math.max(0, dashCooldown - dt);
+      const distToPastor = Math.hypot(ox - px, oy - py) || 1;
 
-      // Evasão brincalhona quando o pastorzinho chega perto (escala suave da Fase 1 à Fase 15)
-      const awayX = ox - px;
-      const awayY = oy - py;
-      const distToPastor = Math.hypot(awayX, awayY) || 1;
-      if (distToPastor < evadeRadius && evadeStrength > 0.05) {
-        // Desvia fugindo para o lado mais livre da campina para não ficar presa no canto
-        const centerPullX = ((b.minX + b.maxX) * 0.5 - ox) * 0.008;
-        const centerPullY = ((b.minY + b.maxY) * 0.5 - oy) * 0.008;
-        const fleeX = (awayX / distToPastor) + centerPullX;
-        const fleeY = (awayY / distToPastor) * 0.72 + centerPullY;
-        const fleeLen = Math.hypot(fleeX, fleeY) || 1;
-        const blend = clamp(evadeStrength * 3.4 * dt, 0, 0.35);
-        svx = svx * (1 - blend) + (fleeX / fleeLen) * sheepSpeed * 1.06 * blend;
-        svy = svy * (1 - blend) + (fleeY / fleeLen) * sheepSpeed * 1.06 * blend;
-
-        // Re-normaliza na velocidade da fase
+      if (dashTimer > 0) {
+        // Em plena DISPARADINHA!
+        dashTimer -= dt;
         const curSpd = Math.hypot(svx, svy) || 1;
-        svx = (svx / curSpd) * sheepSpeed;
-        svy = (svy / curSpd) * sheepSpeed;
+        svx = (svx / curSpd) * dashSpeed;
+        svy = (svy / curSpd) * dashSpeed;
+        if (dashTimer <= 0 && dashesLeft <= 0) {
+          tiredTimer = tiredDuration;
+        }
+      } else if (tiredTimer > 0) {
+        // Cansadinha recuperando o fôlego (anda mais devagar que o Pastorzinho -> janela para cercar e pegar!)
+        tiredTimer -= dt;
+        const esc = pickBestEscapeDir(b, tiredSpeed);
+        const blend = Math.min(1, dt * 3.8);
+        svx = svx * (1 - blend) + esc.vx * blend;
+        svy = svy * (1 - blend) + esc.vy * blend;
+        const curSpd = Math.hypot(svx, svy) || 1;
+        svx = (svx / curSpd) * tiredSpeed;
+        svy = (svy / curSpd) * tiredSpeed;
 
-        const nowMs = Date.now();
-        if (diffT >= 0.25 && nowMs - lastDodgeBaaAt > 4600) {
-          lastDodgeBaaAt = nowMs;
-          TronoAudio.play("baa");
+        if (tiredTimer <= 0) {
+          // Recuperou parte do fôlego se o jogador ainda não alcançou!
+          dashesLeft = Math.max(1, Math.ceil(maxDashes * 0.65));
+        }
+      } else {
+        // Verifica se o Pastorzinho chegou perto para disparar uma FINTA / DISPARADINHA!
+        if (distToPastor < dashTriggerDist && dashesLeft > 0 && dashCooldown <= 0) {
+          dashesLeft--;
+          dashTimer = dashDuration;
+          dashCooldown = 0.25;
+          const esc = pickBestEscapeDir(b, dashSpeed);
+          svx = esc.vx;
+          svy = esc.vy;
+          const nowMs = Date.now();
+          if (nowMs - lastDodgeBaaAt > 1800) {
+            lastDodgeBaaAt = nowMs;
+            TronoAudio.play("baa");
+          }
+        } else if (distToPastor < alertDist) {
+          // Alerta: já começa a contornar para o corredor aberto antes da disparadinha
+          const esc = pickBestEscapeDir(b, roamSpeed * 1.08);
+          const blend = Math.min(1, dt * 4.2);
+          svx = svx * (1 - blend) + esc.vx * blend;
+          svy = svy * (1 - blend) + esc.vy * blend;
+        } else {
+          // Passeio alegre de um lado para o outro na campina
+          wanderTimer -= dt;
+          if (wanderTimer <= 0) {
+            wanderTimer = 0.9 + Math.random() * 1.1;
+            const dirSign = Math.abs(svx) > 8 ? Math.sign(svx) : (Math.random() < 0.5 ? 1 : -1);
+            const flipSign = Math.random() < 0.25 ? -1 : 1;
+            const horizRatio = 0.78 + Math.random() * 0.16;
+            const vertSign = Math.random() < 0.5 ? -1 : 1;
+            const vertRatio = Math.sqrt(Math.max(0.05, 1 - horizRatio * horizRatio));
+            svx = dirSign * flipSign * roamSpeed * horizRatio;
+            svy = vertSign * roamSpeed * vertRatio;
+          }
         }
       }
 
-      ox += svx * dt;
-      oy += svy * dt;
+      const sheepEnt = {
+        x: ox + svx * dt,
+        y: oy + svy * dt,
+        vx: svx,
+        vy: svy
+      };
+      const sheepHitRock = resolveRockCollision(sheepEnt, 14, 9);
+      ox = sheepEnt.x;
+      oy = sheepEnt.y;
+      svx = sheepEnt.vx;
+      svy = sheepEnt.vy;
 
-      // Rebate suave nas bordas verdinhas do pampa (invertendo o lado para onde ela pula!)
-      if (ox <= b.minX) {
-        ox = b.minX;
-        svx = Math.abs(svx);
-      } else if (ox >= b.maxX) {
-        ox = b.maxX;
-        svx = -Math.abs(svx);
+      // Se encostou numa pedra durante o passeio/fuga, escolhe imediatamente rota livre ao redor!
+      if (sheepHitRock) {
+        const targetSpd = dashTimer > 0 ? dashSpeed : (tiredTimer > 0 ? tiredSpeed : roamSpeed);
+        const esc = pickBestEscapeDir(b, targetSpd);
+        svx = esc.vx;
+        svy = esc.vy;
       }
-      if (oy <= b.minY) {
-        oy = b.minY;
-        svy = Math.abs(svy);
-      } else if (oy >= b.maxY) {
-        oy = b.maxY;
-        svy = -Math.abs(svy);
-      }
 
-      if (svx > 3) sheepFacing = 1;
-      else if (svx < -3) sheepFacing = -1;
+      // Rebate suave nas bordas verdinhas do pampa
+      if (ox <= b.minX) { ox = b.minX; svx = Math.abs(svx); }
+      else if (ox >= b.maxX) { ox = b.maxX; svx = -Math.abs(svx); }
+      if (oy <= b.minY) { oy = b.minY; svy = Math.abs(svy); }
+      else if (oy >= b.maxY) { oy = b.maxY; svy = -Math.abs(svy); }
 
-      // Arco fofo do "pulandinho" da ovelha
-      hopPhase += dt * hopFreq;
+      if (svx > 4) sheepFacing = 1;
+      else if (svx < -4) sheepFacing = -1;
+
+      // Ritmo do "pulandinho" acompanha se ela está em disparadinha, normal ou cansadinha
+      const hopMult = dashTimer > 0 ? 1.52 : (tiredTimer > 0 ? 0.78 : 1.0);
+      hopPhase += dt * baseHopFreq * hopMult;
       const hopSin = Math.abs(Math.sin(hopPhase));
-      const sLift = -hopSin * 15.5;
-      const sTilt = Math.cos(hopPhase) * 6.0 * sheepFacing;
-      const sShadowScale = 1.0 - hopSin * 0.24;
+      const hopHeight = dashTimer > 0 ? 13.5 : (tiredTimer > 0 ? 7.5 : 10.5);
+      const sLift = -hopSin * hopHeight;
+      const sTilt = Math.cos(hopPhase) * (dashTimer > 0 ? 7.5 : 5.2) * sheepFacing;
+      const sShadowScale = 1.0 - hopSin * 0.22;
 
-      const pLift = pastorMoving ? -Math.abs(Math.sin(walkPhase)) * 5.5 : 0;
-      const pTilt = pastorMoving ? Math.sin(walkPhase) * 2.6 : 0;
+      const pLift = pastorMoving ? -Math.abs(Math.sin(walkPhase)) * 4.2 : 0;
+      const pTilt = pastorMoving ? Math.sin(walkPhase) * 2.4 : 0;
 
-      // --- 3. VERIFICA ENCONTRO PASTORZINHO + OVELHINHA ---
-      const catchDist = Math.hypot(px - ox, (py - oy) * 1.06);
-      if (catchDist <= 56) {
+      // --- 3. VERIFICA ENCONTRO PASTORZINHO + OVELHINHA (RAIO JUSTO DE 31px) ---
+      const catchDist = Math.hypot(px - ox, (py - oy) * 1.08);
+      if (catchDist <= 31) {
         freezeAndCelebrateCatch();
         return;
       }
@@ -4075,7 +4340,6 @@
     arena.addEventListener("pointerup", endPointer);
     arena.addEventListener("pointercancel", endPointer);
 
-    // Fallback touch para WebViews antigas
     arena.addEventListener("touchstart", (e) => {
       if (!isOvelhaUnlocked || isCaught) return;
       isPointerDown = true;
@@ -4087,7 +4351,6 @@
     }, { passive: true });
     arena.addEventListener("touchend", endPointer, { passive: true });
 
-    // Suporte opcional às setas do teclado / WASD no computador
     window._ovelhaFujonaKeyDown = function(e) {
       if (!isOvelhaUnlocked || isCaught) return;
       if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") keysDown.left = true;
