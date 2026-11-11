@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v130.0';
+        const CURRENT_VER = 'v131.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=130.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=131.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -2584,8 +2584,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=130.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=130.0"></script>
+<script src="ebd_modulos_educativos.js?v=131.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=131.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -5728,20 +5728,38 @@ startInitialThemeMusic();
         history.replaceState({ app: 'trono-kids-base' }, '');
         history.pushState({ app: 'trono-kids-active' }, '');
 
+        const isElementVisible = (el) => {
+          if (!el) return false;
+          try {
+            return window.getComputedStyle(el).display !== 'none';
+          } catch (e) {
+            return el.style.display === 'flex' || el.style.display === 'block' || el.classList.contains('active');
+          }
+        };
+
         window.addEventListener('popstate', function(event) {
           // Re-empurra imediatamente para blindar contra fechamento da aba/PWA
           history.pushState({ app: 'trono-kids-active' }, '');
 
-          // 1. Se houver modal de vitória do arcade aberto, fecha
+          // 1. Se houver modal de vitória do arcade aberto:
+          // NUNCA esconde o modal sozinho deixando os confetes rodando sem botão!
+          // Ignora swipe acidental de borda nos primeiros 1.1s da vitória (dedo saindo do D-PAD);
+          // após isso, se o usuário apertar Voltar, fecha o jogo limpo (parando confetes e áudio) e volta à Sala de Jogos.
           const victoryModal = document.getElementById('trono-victory-modal');
-          if (victoryModal && victoryModal.style.display !== 'none') {
-            victoryModal.style.display = 'none';
+          if (isElementVisible(victoryModal)) {
+            const elapsedSinceWin = Date.now() - (window._arcadeVictoryStartedAt || 0);
+            if (elapsedSinceWin < 1100) {
+              return;
+            }
+            if (typeof window.closeTronoArcadeStage === 'function') {
+              window.closeTronoArcadeStage();
+            }
             return;
           }
 
           // 2. Se estiver no modal de pausa do arcade, fecha a pausa
           const pauseModal = document.getElementById('arcade-pause-confirm-modal');
-          if (pauseModal && pauseModal.style.display !== 'none') {
+          if (isElementVisible(pauseModal)) {
             pauseModal.style.display = 'none';
             return;
           }
@@ -5755,7 +5773,7 @@ startInitialThemeMusic();
 
           // 4. Se o palco de arcade estiver ativo, fecha o jogo e volta para a sala de jogos
           const arcadeStage = document.getElementById('screen-trono-arcade-stage');
-          if (arcadeStage && (arcadeStage.style.display !== 'none' || arcadeStage.classList.contains('active'))) {
+          if (arcadeStage && (isElementVisible(arcadeStage) || arcadeStage.classList.contains('active'))) {
             if (typeof window.closeTronoArcadeStage === 'function') {
               window.closeTronoArcadeStage();
             }

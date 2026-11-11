@@ -271,6 +271,10 @@
 
         player.onended = doFinish;
         player.onerror = () => setTimeout(doFinish, 400);
+        player.onabort = () => setTimeout(doFinish, 400);
+        player.onstalled = () => {
+          if (!finished) setTimeout(doFinish, isVictory ? 2800 : 5000);
+        };
 
         // Respeita 100% a duração real do áudio do Vovô (ex: vovo_jogo_04.mp3 tem 12.59s!)
         const applyExactDurationTimer = () => {
@@ -497,6 +501,7 @@
         display: flex !important;
       }
       .arcade-top-bar {
+        position: relative;
         height: 60px;
         min-height: 60px;
         display: flex;
@@ -507,7 +512,7 @@
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 2px solid rgba(253, 224, 71, 0.4);
-        z-index: 10;
+        z-index: 160;
       }
       .arcade-btn-circle {
         width: 48px;
@@ -1066,8 +1071,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 30px 20px;
-        z-index: 100;
+        padding: 68px 20px 24px 20px;
+        z-index: 130;
         animation: vicModalFade 0.35s ease;
       }
       @keyframes vicModalFade {
@@ -1168,6 +1173,10 @@
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(-3px); }
       }
+      @keyframes btnGlowPulse {
+        0%, 100% { filter: brightness(1); }
+        50% { filter: brightness(1.1); }
+      }
       @keyframes titlePopBounce {
         0%, 100% { transform: scale(1); }
         50% { transform: scale(1.04); }
@@ -1253,7 +1262,7 @@
         <canvas id="arcade-confetti-canvas" class="confetti-canvas"></canvas>
 
         <!-- MODAL CANÔNICO DE VITÓRIA (IDENTIDADE VISUAL PADRÃO TRONO KIDS) -->
-        <div id="trono-victory-modal"></div>
+        <div id="trono-victory-modal" style="display:none;"></div>
       `;
       document.body.appendChild(stage);
 
@@ -1286,6 +1295,9 @@
   // Flag de sessão: o Vovô explica a instrução apenas na primeira fase da jogada.
   // Nas fases seguintes da mesma sessão contínua, o jogo entra direto sem repetições cansativas!
   let _vovoAlreadySpokeInSession = false;
+  let _isVictoryActive = false;
+  let _advancingPhaseLock = false;
+  window._arcadeVictoryStartedAt = 0;
 
   window.openTronoArcadeGame = function(gameId) {
     window._userEnteredModule = true;
@@ -1311,6 +1323,10 @@
   };
 
   function loadPhase(phase) {
+    _isVictoryActive = false;
+    _advancingPhaseLock = false;
+    window._arcadeVictoryStartedAt = 0;
+
     const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
     const phaseNumEl = document.getElementById("arcade-phase-num");
     if (phaseNumEl) phaseNumEl.textContent = phase;
@@ -1318,7 +1334,10 @@
     if (phaseTotalEl) phaseTotalEl.textContent = isVip ? "15" : "5";
 
     const modal = document.getElementById("trono-victory-modal");
-    if (modal) modal.style.display = "none";
+    if (modal) {
+      modal.style.display = "none";
+      modal.innerHTML = "";
+    }
     stopArcadeCelebrationConfetti();
     if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
     if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
@@ -1397,6 +1416,9 @@
 
   window.closeTronoArcadeStage = function() {
     _vovoAlreadySpokeInSession = false;
+    _isVictoryActive = false;
+    _advancingPhaseLock = false;
+    window._arcadeVictoryStartedAt = 0;
     TronoAudio.play("click");
     stopArcadeCelebrationConfetti();
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
@@ -1410,6 +1432,12 @@
     if (window._daviImpactTimer) { clearTimeout(window._daviImpactTimer); window._daviImpactTimer = null; }
     if (window._daviNextRoundTimer) { clearTimeout(window._daviNextRoundTimer); window._daviNextRoundTimer = null; }
     if (window._daviKeyHandler) { window.removeEventListener("keydown", window._daviKeyHandler); window._daviKeyHandler = null; }
+
+    const vicModal = document.getElementById("trono-victory-modal");
+    if (vicModal) {
+      vicModal.style.display = "none";
+      vicModal.innerHTML = "";
+    }
 
     const stage = document.getElementById("screen-trono-arcade-stage");
     if (stage) {
@@ -1426,6 +1454,28 @@
     }
   };
 
+  window.openVipFromArcade = function() {
+    window.closeTronoArcadeStage();
+    setTimeout(() => {
+      if (typeof openModal === 'function') {
+        openModal('modal-subscribe');
+      } else {
+        const subModal = document.getElementById('modal-subscribe');
+        if (subModal) subModal.classList.add('active');
+      }
+    }, 60);
+  };
+
+  window.restartArcadeFromPhaseOne = function() {
+    if (_advancingPhaseLock) return;
+    _advancingPhaseLock = true;
+    TronoAudio.play("click");
+    stopArcadeCelebrationConfetti();
+    if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
+    currentPhase = 1;
+    loadPhase(currentPhase);
+  };
+
   window.retryCurrentArcadePhase = function() {
     TronoAudio.play("click");
     stopArcadeCelebrationConfetti();
@@ -1434,6 +1484,8 @@
   };
 
   window.advanceArcadePhase = function() {
+    if (_advancingPhaseLock) return;
+    _advancingPhaseLock = true;
     TronoAudio.play("click");
     stopArcadeCelebrationConfetti();
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
@@ -1447,11 +1499,8 @@
         currentPhase++;
         loadPhase(currentPhase);
       } else {
-        if (typeof openModal === 'function') {
-          openModal('modal-subscribe');
-        } else {
-          alert("Assine o Clube Trono Kids para liberar mais 10 fases exclusivas!");
-        }
+        currentPhase = 1;
+        loadPhase(currentPhase);
       }
     } else if (currentPhase < TOTAL_PHASES) {
       currentPhase++;
@@ -1537,10 +1586,18 @@
     const current = currentPhase || 1;
 
     if (!isVip && current >= 5) {
-      btn.textContent = "🔓 LIBERAR +10 FASES VIP!";
-      btn.style.background = "linear-gradient(180deg, #f59e0b 0%, #d97706 100%)";
-      btn.style.border = "2.5px solid #fde047";
-      btn.style.boxShadow = "0 0 22px rgba(245,158,11,0.85), 0 6px 16px rgba(0,0,0,0.75)";
+      btn.textContent = "🔄 JOGAR DESDE A FASE 1";
+      btn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
+      btn.style.border = "2.5px solid #ffffff";
+      btn.style.boxShadow = "0 0 22px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75)";
+
+      const vipBtn = document.getElementById("btn-canonical-vip");
+      if (vipBtn) {
+        vipBtn.dataset.unlocked = "1";
+        vipBtn.style.opacity = "1";
+        vipBtn.style.pointerEvents = "auto";
+        vipBtn.style.cursor = "pointer";
+      }
     } else {
       const btnText = (isVip && current >= 15) ? "🎉 FINALIZAR JOGUINHO!" : "CONTINUAR BRINCANDO";
       btn.textContent = btnText;
@@ -1552,14 +1609,25 @@
     btn.style.cursor = "pointer";
     btn.style.opacity = "1";
     btn.style.pointerEvents = "auto";
-    btn.style.animation = "aliveBtnFloat 1.9s ease-in-out infinite";
+    // Hitbox 100% estática (sem translateY movendo o botão sob o dedo no Android!)
+    btn.style.animation = "btnGlowPulse 1.8s ease-in-out infinite";
     TronoAudio.play("pop");
   }
 
   let celebrationClapAudio = null;
 
   function triggerArcadeVictory() {
-    // 0. Limpa timers anteriores e áudios pendentes para zero travamento
+    // Blindagem contra disparo duplo na mesma fase
+    if (_isVictoryActive) return;
+    _isVictoryActive = true;
+    _advancingPhaseLock = false;
+    window._arcadeVictoryStartedAt = Date.now();
+
+    // 0. Limpa timers anteriores de jogo e áudios pendentes para zero travamento
+    if (window._daviSpearTimer) { clearTimeout(window._daviSpearTimer); window._daviSpearTimer = null; }
+    if (window._daviWindupTimer) { clearTimeout(window._daviWindupTimer); window._daviWindupTimer = null; }
+    if (window._daviImpactTimer) { clearTimeout(window._daviImpactTimer); window._daviImpactTimer = null; }
+    if (window._daviNextRoundTimer) { clearTimeout(window._daviNextRoundTimer); window._daviNextRoundTimer = null; }
     if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
     if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
     if (TronoAudio.vovoPlayer) {
@@ -1598,130 +1666,177 @@
     // 2. Monta e exibe o CARD CANÔNICO OFICIAL DO TRONO KIDS
     renderCanonicalVictoryModal();
 
-    // 3. Chuva leve e fluida de confetes 3D (60 FPS no celular sem travar!)
+    // 3. Chuva leve e fluida de confetes 3D (com Watchdog acoplado ao modal e ao botão!)
     startArcadeCelebrationConfetti();
 
     // 4. Voz afetuosa do Vovô Nésio ("Parabéns! Muito bem!" = 4.64s)
     // REGRA RIGOBERTO: O botão CONTINUAR BRINCANDO SÓ LIBERA DEPOIS que o Vovô terminar 100% da frase!
     window._arcadeVictoryVoiceTimer = setTimeout(() => {
+      if (!_isVictoryActive) return;
       if (celebrationClapAudio) {
         try { celebrationClapAudio.volume = 0.22; } catch(e) {}
       }
       TronoAudio.falarVovo("vovo_vitoria.mp3", () => {
-        unlockVictoryContinueButton();
+        if (_isVictoryActive) unlockVictoryContinueButton();
       });
     }, 650);
 
-    // 5. Fallback de segurança SOMENTE APÓS o tempo total da fala completa (650ms + 4640ms + 1100ms = 6.4s)
+    // 5. Fallback de segurança SOMENTE APÓS o tempo total da fala completa (~6.0s)
     // Nunca atropela a fala do Vovô, mas garante que nunca trave se o navegador falhar o evento onended!
     window._arcadeVictorySafetyTimer = setTimeout(() => {
-      unlockVictoryContinueButton();
-    }, 6400);
+      if (_isVictoryActive) unlockVictoryContinueButton();
+    }, 6000);
   }
 
   function renderCanonicalVictoryModal() {
+    ensureArcadeStageInDOM();
     const modal = document.getElementById("trono-victory-modal");
     if (!modal) return;
 
-    const game = currentActiveGame || {
-      title: "Pesca Maravilhosa",
-      sub: "Lance a Rede com Pedro",
-      icon: "./2_ASSETS_UI_BOTOES/btn_jogo_01_pesca.svg?v=91"
-    };
+    try {
+      const game = currentActiveGame || {
+        title: "Desvie da Lança",
+        sub: "Desvie no Salão Real",
+        icon: "./2_ASSETS_UI_BOTOES/ico_jogo_04_davi_lanca_v130.png?v=130"
+      };
 
-    const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
-    const current = currentPhase || 1;
+      const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
+      const current = currentPhase || 1;
 
-    let dotsHtml = "";
-    if (!isVip) {
-      // 5 Bolinhas Gratuitas (1 a 5) + 6ª Bolinha com Cadeadinho VIP
-      for (let i = 1; i <= 5; i++) {
-        const isJustWon = i === current;
-        const isDone = i < current || (current >= 5 && i <= 5);
-        const bg = (isJustWon || isDone)
-          ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)"
-          : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
-        const border = isJustWon ? "3px solid #fde047" : "2px solid #ffffff";
-        const shadow = isJustWon
-          ? "box-shadow: 0 0 16px rgba(253,224,71,0.95), 0 4px 10px rgba(0,0,0,0.5);"
-          : "box-shadow: 0 4px 8px rgba(0,0,0,0.4);";
-        const starIcon = (isJustWon || (current >= 5 && i === 5))
-          ? `<img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" style="position:absolute; top:-14px; right:-8px; width:22px; height:22px; object-fit:contain; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));" alt="Estrela">`
-          : "";
+      let dotsHtml = "";
+      if (!isVip) {
+        // 5 Bolinhas Gratuitas (1 a 5) + 6ª Bolinha com Cadeadinho VIP
+        for (let i = 1; i <= 5; i++) {
+          const isJustWon = i === current;
+          const isDone = i < current || (current >= 5 && i <= 5);
+          const bg = (isJustWon || isDone)
+            ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)"
+            : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
+          const border = isJustWon ? "3px solid #fde047" : "2px solid #ffffff";
+          const shadow = isJustWon
+            ? "box-shadow: 0 0 16px rgba(253,224,71,0.95), 0 4px 10px rgba(0,0,0,0.5);"
+            : "box-shadow: 0 4px 8px rgba(0,0,0,0.4);";
+          const starIcon = (isJustWon || (current >= 5 && i === 5))
+            ? `<img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" style="position:absolute; top:-14px; right:-8px; width:22px; height:22px; object-fit:contain; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));" alt="Estrela">`
+            : "";
 
+          dotsHtml += `
+            <div style="position:relative; width:44px; height:44px; border-radius:50%; background:${bg}; border:${border}; ${shadow} display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:18px;">
+              <span>${i}</span>
+              ${starIcon}
+            </div>
+          `;
+        }
+
+        // 6ª Bolinha com Cadeadinho Dourado (+10 Fases VIP — fecha o palco antes para abrir o modal visível!)
         dotsHtml += `
-          <div style="position:relative; width:44px; height:44px; border-radius:50%; background:${bg}; border:${border}; ${shadow} display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:18px;">
-            <span>${i}</span>
-            ${starIcon}
+          <div onclick="window.openVipFromArcade()" style="position:relative; width:44px; height:44px; border-radius:50%; background:linear-gradient(180deg, #f59e0b 0%, #b45309 100%); border:2.5px solid #fde047; box-shadow:0 0 14px rgba(253,224,71,0.7), 0 4px 8px rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; color:#ffffff; font-size:20px; cursor:pointer;" title="Liberar +10 Fases VIP">
+            <span>🔒</span>
+          </div>
+        `;
+      } else {
+        // Jogador VIP: mostra o bloco das 15 fases
+        const batchStart = Math.floor((current - 1) / 5) * 5 + 1;
+        for (let i = batchStart; i < batchStart + 5 && i <= 15; i++) {
+          const isJustWon = i === current;
+          const isDone = i < current;
+          const bg = (isJustWon || isDone)
+            ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)"
+            : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
+          const border = isJustWon ? "3px solid #fde047" : "2px solid #ffffff";
+          dotsHtml += `
+            <div style="position:relative; width:44px; height:44px; border-radius:50%; background:${bg}; border:${border}; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:18px;">
+              <span>${i}</span>
+            </div>
+          `;
+        }
+      }
+
+      let actionsHtml = "";
+      if (!isVip && current >= 5) {
+        actionsHtml = `
+          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:15px; font-size:18px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
+            ⭐ MUITO BEM!...
+          </button>
+          <button id="btn-canonical-vip" type="button" style="position:relative; z-index:2; width:100%; margin-top:10px; padding:12px; font-size:15.5px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2px solid #fde047; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); opacity:0.45; pointer-events:none; touch-action:manipulation;">
+            🔓 LIBERAR +10 FASES VIP!
+          </button>
+          <div onclick="window.closeTronoArcadeStage()" style="margin-top:14px; color:#fef08a; font-weight:800; font-size:15px; cursor:pointer; text-decoration:underline; padding:4px;">
+            Voltar à Sala de Jogos
+          </div>
+        `;
+      } else {
+        actionsHtml = `
+          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:15px; font-size:19px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
+            ⭐ MUITO BEM!...
+          </button>
+          <div onclick="window.closeTronoArcadeStage()" style="margin-top:14px; color:#e9d5ff; font-weight:800; font-size:14px; cursor:pointer; text-decoration:underline; opacity:0.9; padding:4px;">
+            Voltar à Sala de Jogos
           </div>
         `;
       }
 
-      // 6ª Bolinha com Cadeadinho Dourado (+10 Fases VIP)
-      dotsHtml += `
-        <div onclick="if(typeof openModal === 'function') openModal('modal-subscribe');" style="position:relative; width:44px; height:44px; border-radius:50%; background:linear-gradient(180deg, #f59e0b 0%, #b45309 100%); border:2.5px solid #fde047; box-shadow:0 0 14px rgba(253,224,71,0.7), 0 4px 8px rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; color:#ffffff; font-size:20px; cursor:pointer;" title="Liberar +10 Fases VIP">
-          <span>🔒</span>
-        </div>
-      `;
-    } else {
-      // Jogador VIP: mostra o bloco das 15 fases
-      const batchStart = Math.floor((current - 1) / 5) * 5 + 1;
-      for (let i = batchStart; i < batchStart + 5 && i <= 15; i++) {
-        const isJustWon = i === current;
-        const isDone = i < current;
-        const bg = (isJustWon || isDone)
-          ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)"
-          : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
-        const border = isJustWon ? "3px solid #fde047" : "2px solid #ffffff";
-        dotsHtml += `
-          <div style="position:relative; width:44px; height:44px; border-radius:50%; background:${bg}; border:${border}; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:18px;">
-            <span>${i}</span>
+      modal.innerHTML = `
+        <div class="trono-victory-screen-content" style="width:100%; max-width:400px; display:flex; flex-direction:column; align-items:center; text-align:center; z-index:2; animation:vicCardPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+          <!-- 1. Único Ícone 3D Oficial do Jogo no Topo Flutuando Solto -->
+          <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+            <img src="${game.icon}" style="width:112px; height:112px; object-fit:contain; animation:aliveBtnFloat 2.0s ease-in-out infinite;" alt="${game.title}">
           </div>
-        `;
+
+          <!-- 2. Título Amarelo Dourado Brilhante Solto na Tela Roxa -->
+          <div style="position:relative; z-index:2; font-size:30px; font-weight:900; color:#fde047; text-shadow:0 4px 12px rgba(0,0,0,0.9), 0 0 22px rgba(253,224,71,0.6); line-height:1.15; margin-bottom:20px; letter-spacing:0.6px; animation:titlePopBounce 1.4s ease-in-out infinite;">
+            PARABÉNS!<br>MUITO BEM!
+          </div>
+
+          <!-- 3. Bolinhas de Progresso Soltas (1 a 5 + 🔒) -->
+          <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:9px; margin-bottom:24px; min-height:52px;">
+            ${dotsHtml}
+          </div>
+
+          <!-- 4. Ações de Vitória Soltas na Tela Roxa -->
+          <div style="position:relative; z-index:2; width:100%; max-width:330px;">
+            ${actionsHtml}
+          </div>
+        </div>
+      `;
+
+      // Eventos touch/click diretos e ultra-confiáveis para zero falha de toque no celular!
+      const mainBtn = document.getElementById("btn-canonical-continue");
+      if (mainBtn) {
+        const onMainTap = (ev) => {
+          if (mainBtn.dataset.unlocked !== "1") return;
+          if (ev) { ev.preventDefault(); ev.stopPropagation(); }
+          if (!isVip && current >= 5) {
+            window.restartArcadeFromPhaseOne();
+          } else {
+            window.advanceArcadePhase();
+          }
+        };
+        mainBtn.addEventListener("pointerup", onMainTap);
+        mainBtn.addEventListener("click", onMainTap);
       }
-    }
 
-    let actionsHtml = "";
-    if (!isVip && current >= 5) {
-      actionsHtml = `
-        <button id="btn-canonical-continue" style="position:relative; z-index:2; width:100%; padding:15px; font-size:18px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:all 0.35s ease; pointer-events:none;" onclick="if(typeof openModal === 'function') openModal('modal-subscribe');">
-          ⭐ MUITO BEM!...
-        </button>
-        <div onclick="window.closeTronoArcadeStage()" style="margin-top:14px; color:#fef08a; font-weight:800; font-size:15px; cursor:pointer; text-decoration:underline;">
-          Voltar à Sala de Jogos
+      const vipBtn = document.getElementById("btn-canonical-vip");
+      if (vipBtn) {
+        const onVipTap = (ev) => {
+          if (vipBtn.dataset.unlocked !== "1") return;
+          if (ev) { ev.preventDefault(); ev.stopPropagation(); }
+          window.openVipFromArcade();
+        };
+        vipBtn.addEventListener("pointerup", onVipTap);
+        vipBtn.addEventListener("click", onVipTap);
+      }
+    } catch (err) {
+      console.error("Victory modal render fallback:", err);
+      modal.innerHTML = `
+        <div style="text-align:center; padding:24px; max-width:340px;">
+          <div style="font-size:28px; font-weight:900; color:#fde047; margin-bottom:20px;">PARABÉNS! MUITO BEM!</div>
+          <button id="btn-canonical-continue" type="button" onclick="window.advanceArcadePhase()" style="width:100%; padding:15px; font-size:18px; font-weight:900; color:#ffffff; background:#00c853; border:2.5px solid #ffffff; border-radius:999px; cursor:pointer;">
+            CONTINUAR BRINCANDO
+          </button>
         </div>
       `;
-    } else {
-      actionsHtml = `
-        <button id="btn-canonical-continue" style="position:relative; z-index:2; width:100%; padding:15px; font-size:19px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:all 0.35s ease; pointer-events:none;" onclick="window.advanceArcadePhase()">
-          ⭐ MUITO BEM!...
-        </button>
-      `;
     }
-
-    modal.innerHTML = `
-      <div class="trono-victory-screen-content" style="width:100%; max-width:400px; display:flex; flex-direction:column; align-items:center; text-align:center; z-index:2; animation:vicCardPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
-        <!-- 1. Único Ícone 3D Oficial do Jogo no Topo Flutuando Solto -->
-        <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; margin-bottom:14px;">
-          <img src="${game.icon}" style="width:116px; height:116px; object-fit:contain; animation:aliveBtnFloat 2.0s ease-in-out infinite;" alt="${game.title}">
-        </div>
-
-        <!-- 2. Título Amarelo Dourado Brilhante Solto na Tela Roxa -->
-        <div style="position:relative; z-index:2; font-size:30px; font-weight:900; color:#fde047; text-shadow:0 4px 12px rgba(0,0,0,0.9), 0 0 22px rgba(253,224,71,0.6); line-height:1.15; margin-bottom:22px; letter-spacing:0.6px; animation:titlePopBounce 1.4s ease-in-out infinite;">
-          PARABÉNS!<br>MUITO BEM!
-        </div>
-
-        <!-- 3. Bolinhas de Progresso Soltas (1 a 5 + 🔒) -->
-        <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:9px; margin-bottom:28px; min-height:54px;">
-          ${dotsHtml}
-        </div>
-
-        <!-- 4. Ações de Vitória Soltas na Tela Roxa -->
-        <div style="position:relative; z-index:2; width:100%; max-width:330px;">
-          ${actionsHtml}
-        </div>
-      </div>
-    `;
 
     modal.style.display = "flex";
   }
@@ -1790,6 +1905,22 @@
     if (arcadeConfettiAnimId) cancelAnimationFrame(arcadeConfettiAnimId);
 
     function renderArcadeFrame() {
+      // WATCHDOG SUPREMO ANTI-CONFETE ÓRFÃO:
+      // 1) Se não estiver em vitória ativa, mata os confetes na hora!
+      if (!_isVictoryActive) {
+        stopArcadeCelebrationConfetti();
+        return;
+      }
+      // 2) Garante que o modal roxo de vitória e o botão SEMPRE existam e estejam visíveis enquanto houver confete!
+      const vicModal = document.getElementById("trono-victory-modal");
+      if (!vicModal || vicModal.style.display !== "flex" || !document.getElementById("btn-canonical-continue")) {
+        renderCanonicalVictoryModal();
+      }
+      // 3) Se já passaram 6.2s de comemoração (após a fala completa do Vovô), garante 100% que o botão destravou!
+      if (window._arcadeVictoryStartedAt && (Date.now() - window._arcadeVictoryStartedAt >= 6200)) {
+        unlockVictoryContinueButton();
+      }
+
       frameCount++;
       ctx.clearRect(0, 0, W, H);
 
