@@ -653,6 +653,8 @@
         height: calc(100vh - 60px);
         height: calc(100dvh - 60px);
         position: relative;
+        z-index: 1;
+        isolation: isolate;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1440,6 +1442,8 @@
     // TRAVA UNIVERSAL DOS 17 JOGOS ENQUANTO O VOVÔ EXPLICA:
     // Bloqueia 100% qualquer clique/arraste no palco até o Vovô terminar a fala!
     if (container) {
+      container.style.visibility = "visible";
+      container.style.opacity = "1";
       container.style.pointerEvents = "none";
     }
     if (container && currentActiveGame) {
@@ -1816,6 +1820,15 @@
     ensureArcadeStageInDOM();
     const modal = document.getElementById("trono-victory-modal");
     if (!modal) return;
+
+    // Oculta e limpa 100% o palco do jogo atrás da tela de Parabéns para NUNCA vazar pastorzinho, ovelhinha, coração ou pedras!
+    const stageContainer = document.getElementById("arcade-game-stage-container");
+    if (stageContainer) {
+      stageContainer.style.pointerEvents = "none";
+      stageContainer.style.visibility = "hidden";
+      stageContainer.style.opacity = "0";
+      stageContainer.innerHTML = "";
+    }
 
     try {
       const game = currentActiveGame || {
@@ -3743,46 +3756,34 @@
     const pNum = Math.min(15, Math.max(1, Number(phase) || 1));
     const diffT = (pNum - 1) / 14; // 0.0 na Fase 1 -> 1.0 na Fase 15
 
-    // Quantidade progressiva de Pedras 3D no caminho (1 na Fase 1 -> 6 na Fase 15)
-    const rockCount = pNum === 1 ? 1 : (pNum <= 3 ? 2 : (pNum <= 5 ? 3 : (pNum <= 8 ? 4 : (pNum <= 11 ? 5 : 6))));
-    const ROCK_PRESETS = {
-      1: [
-        { rxPct: 0.50, ryPct: 0.57, img: 1, w: 58 }
-      ],
-      2: [
-        { rxPct: 0.36, ryPct: 0.49, img: 1, w: 58 },
-        { rxPct: 0.65, ryPct: 0.67, img: 2, w: 60 }
-      ],
-      3: [
-        { rxPct: 0.33, ryPct: 0.46, img: 1, w: 56 },
-        { rxPct: 0.68, ryPct: 0.53, img: 2, w: 58 },
-        { rxPct: 0.46, ryPct: 0.72, img: 3, w: 58 }
-      ],
-      4: [
-        { rxPct: 0.31, ryPct: 0.44, img: 1, w: 56 },
-        { rxPct: 0.69, ryPct: 0.46, img: 2, w: 58 },
-        { rxPct: 0.34, ryPct: 0.70, img: 3, w: 58 },
-        { rxPct: 0.67, ryPct: 0.73, img: 1, w: 56 }
-      ],
-      5: [
-        { rxPct: 0.30, ryPct: 0.42, img: 1, w: 54 },
-        { rxPct: 0.70, ryPct: 0.43, img: 2, w: 56 },
-        { rxPct: 0.50, ryPct: 0.58, img: 3, w: 58 },
-        { rxPct: 0.31, ryPct: 0.74, img: 2, w: 54 },
-        { rxPct: 0.69, ryPct: 0.75, img: 1, w: 56 }
-      ],
-      6: [
-        { rxPct: 0.29, ryPct: 0.40, img: 1, w: 52 },
-        { rxPct: 0.71, ryPct: 0.41, img: 2, w: 54 },
-        { rxPct: 0.42, ryPct: 0.56, img: 3, w: 54 },
-        { rxPct: 0.62, ryPct: 0.61, img: 1, w: 52 },
-        { rxPct: 0.31, ryPct: 0.75, img: 2, w: 54 },
-        { rxPct: 0.69, ryPct: 0.77, img: 3, w: 54 }
-      ]
-    };
+    // Quantidade progressiva de Pedras 3D no caminho: 1 na Fase 1 até 15 pedras na Fase 15!
+    // Todas espaçadas com corredores largos (>= 70px) e sem árvores para zero sobreposição estranha!
+    const rockBaseW = pNum <= 3 ? 56 : (pNum <= 7 ? 50 : (pNum <= 11 ? 46 : 42));
+    const MASTER_ROCK_SLOTS = [
+      { rxPct: 0.50, ryPct: 0.57, img: 1 },
+      { rxPct: 0.34, ryPct: 0.45, img: 2 },
+      { rxPct: 0.66, ryPct: 0.68, img: 3 },
+      { rxPct: 0.63, ryPct: 0.45, img: 1 },
+      { rxPct: 0.36, ryPct: 0.69, img: 2 },
+      { rxPct: 0.19, ryPct: 0.56, img: 3 },
+      { rxPct: 0.81, ryPct: 0.57, img: 1 },
+      { rxPct: 0.46, ryPct: 0.33, img: 2 },
+      { rxPct: 0.55, ryPct: 0.82, img: 3 },
+      { rxPct: 0.21, ryPct: 0.35, img: 1 },
+      { rxPct: 0.79, ryPct: 0.81, img: 2 },
+      { rxPct: 0.18, ryPct: 0.72, img: 3 },
+      { rxPct: 0.83, ryPct: 0.43, img: 1 },
+      { rxPct: 0.35, ryPct: 0.84, img: 2 },
+      { rxPct: 0.66, ryPct: 0.32, img: 3 }
+    ];
 
     const mirrorHoriz = (pNum % 2 === 0);
-    const chosenPreset = ROCK_PRESETS[rockCount] || ROCK_PRESETS[1];
+    const chosenPreset = MASTER_ROCK_SLOTS.slice(0, pNum).map((s, idx) => ({
+      rxPct: s.rxPct,
+      ryPct: s.ryPct,
+      img: s.img,
+      w: rockBaseW + ((idx % 2 === 0) ? 2 : 0)
+    }));
 
     container.innerHTML = `
       <style>
@@ -3891,8 +3892,8 @@
         x: rx,
         y: ry,
         w: rp.w,
-        radX: rp.w * 0.46,
-        radY: rp.w * 0.28,
+        radX: rp.w * 0.38,
+        radY: rp.w * 0.22,
         el
       };
     });
@@ -3955,34 +3956,35 @@
       return false;
     }
 
-    // Posições iniciais opostas na campina: Pastorzinho no canto inferior, Ovelhinha no canto superior oposto
-    let px = clamp(initB.W * (mirrorHoriz ? 0.81 : 0.19), initB.minX, initB.maxX);
-    let py = clamp(initB.H * 0.82, initB.minY, initB.maxY);
+    // Posições iniciais opostas e livres das pedras na campina: Pastorzinho embaixo, Ovelhinha no topo oposto
+    let px = clamp(initB.W * (mirrorHoriz ? 0.83 : 0.17), initB.minX, initB.maxX);
+    let py = clamp(initB.H * 0.86, initB.minY, initB.maxY);
     let pvx = 0;
     let pvy = 0;
     let pastorFacing = mirrorHoriz ? -1 : 1;
     let walkPhase = 0;
 
-    let ox = clamp(initB.W * (mirrorHoriz ? 0.20 : 0.80), initB.minX, initB.maxX);
-    let oy = clamp(initB.H * 0.35, initB.minY, initB.maxY);
+    let ox = clamp(initB.W * (mirrorHoriz ? 0.17 : 0.83), initB.minX, initB.maxX);
+    let oy = clamp(initB.H * 0.30, initB.minY, initB.maxY);
     let sheepFacing = mirrorHoriz ? 1 : -1;
     let hopPhase = 0;
 
-    // --- CALIBRAGEM DE JOGABILIDADE E DIFICULDADE (FASE 1 A FASE 15) ---
-    // Pastorzinho mais cadenciado e com inércia ("delayzinho"): não dá para jogar de uma vez em cima da ovelha!
-    const pastorMaxSpeed = 98 + diffT * 18;      // 98 px/s (Fase 1) -> 116 px/s (Fase 15)
-    const pastorInertia = 3.1 + diffT * 0.4;     // Suavidade / delayzinho ao acelerar e mudar de direção
+    // --- CALIBRAGEM DE JOGABILIDADE SUAVE E AMIGÁVEL PARA CRIANÇAS (FASE 1 A FASE 15) ---
+    // Delayzinho leve e gostoso no início (Fases 1 a 4), e teto máximo na Fase 15 equivalente à antiga Fase 2/3!
+    // O desafio principal das fases vem do labirinto de pedrinhas no caminho (1 a 15 pedras), nunca de travar o boneco!
+    const pastorMaxSpeed = 148 - diffT * 22;     // 148 px/s (Fase 1) -> 126 px/s (Fase 15): sempre mais rápido que a ovelha!
+    const pastorInertia = 6.8 - diffT * 2.3;     // 6.8 (leve nas Fases 1-4) -> 4.5 no máximo na Fase 15!
 
-    // Ovelhinha: passeio + Disparadinhas espertas (fintas rápidas) + Janela de cansaço
-    const roamSpeed = 76 + diffT * 36;           // Velocidade normal pulandinho
-    const dashSpeed = pastorMaxSpeed * (1.42 + diffT * 0.38); // Disparadinha mais rápida que o pastorzinho!
-    const tiredSpeed = pastorMaxSpeed * (0.72 + diffT * 0.08); // Cansadinha (mais lenta que o pastorzinho -> hora de cercar e pegar!)
-    const maxDashes = pNum === 1 ? 1 : (pNum <= 3 ? 2 : (pNum <= 5 ? 3 : (pNum <= 8 ? 4 : (pNum <= 11 ? 5 : (pNum <= 14 ? 6 : 7)))));
-    const dashDuration = 0.64 + diffT * 0.22;
-    const tiredDuration = 2.50 - diffT * 1.45;   // 2.50s na Fase 1 -> 1.05s na Fase 15!
-    const dashTriggerDist = 78 + diffT * 28;     // Distância em que ela assusta e dá a disparadinha
-    const alertDist = 132 + diffT * 30;
-    const baseHopFreq = 6.6 + diffT * 2.4;
+    // Ovelhinha: passeio alegre + poucas fintas curtas + fôlego amplo para a criança alcançar sem frustração!
+    const roamSpeed = 62 + diffT * 24;           // 62 px/s (Fase 1) -> 86 px/s (Fase 15)
+    const dashSpeed = pastorMaxSpeed * (1.14 + diffT * 0.10); // Disparadinha curta, nunca exagerada
+    const tiredSpeed = 52 + diffT * 12;          // 52..64 px/s (bem mais devagar que o Pastorzinho -> hora fácil de pegar!)
+    const maxDashes = pNum === 1 ? 0 : (pNum <= 5 ? 1 : (pNum <= 11 ? 2 : 3));
+    const dashDuration = 0.38 + diffT * 0.10;    // Finta curtinha (~0.4s)
+    const tiredDuration = 3.80 - diffT * 1.00;   // 3.8s a 2.8s cansadinha para a criança alcançar com folga!
+    const dashTriggerDist = 66 + diffT * 14;
+    const alertDist = 108 + diffT * 18;
+    const baseHopFreq = 6.4 + diffT * 1.8;
 
     let dashesLeft = maxDashes;
     let dashTimer = 0;
@@ -4171,9 +4173,9 @@
         const dxT = targetX - px;
         const dyT = targetY - py;
         const distT = Math.hypot(dxT, dyT);
-        if (distT > 5) {
-          // Desacelera suavemente quando chega pertinho do dedo
-          const throttle = clamp(distT / 38, 0.28, 1.0);
+        if (distT > 4) {
+          // Mantém velocidade firme enquanto o dedo guia o Pastorzinho, desacelerando só nos últimos 16px
+          const throttle = clamp(distT / 16, 0.45, 1.0);
           wantVx = (dxT / distT) * pastorMaxSpeed * throttle;
           wantVy = (dyT / distT) * pastorMaxSpeed * throttle;
         } else if (!isPointerDown) {
@@ -4240,8 +4242,8 @@
         svy = (svy / curSpd) * tiredSpeed;
 
         if (tiredTimer <= 0) {
-          // Recuperou parte do fôlego se o jogador ainda não alcançou!
-          dashesLeft = Math.max(1, Math.ceil(maxDashes * 0.65));
+          // Recupera no máximo 1 finta curta se o jogador demorar bastante
+          dashesLeft = maxDashes > 0 ? 1 : 0;
         }
       } else {
         // Verifica se o Pastorzinho chegou perto para disparar uma FINTA / DISPARADINHA!
@@ -4320,9 +4322,9 @@
       const pLift = pastorMoving ? -Math.abs(Math.sin(walkPhase)) * 4.2 : 0;
       const pTilt = pastorMoving ? Math.sin(walkPhase) * 2.4 : 0;
 
-      // --- 3. VERIFICA ENCONTRO PASTORZINHO + OVELHINHA (RAIO JUSTO DE 31px) ---
-      const catchDist = Math.hypot(px - ox, (py - oy) * 1.08);
-      if (catchDist <= 31) {
+      // --- 3. VERIFICA ENCONTRO PASTORZINHO + OVELHINHA (RAIO GENEROSO DE 34px) ---
+      const catchDist = Math.hypot(px - ox, (py - oy) * 1.06);
+      if (catchDist <= 34) {
         freezeAndCelebrateCatch();
         return;
       }
