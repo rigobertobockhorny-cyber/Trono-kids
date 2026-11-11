@@ -16,13 +16,17 @@
   // ==========================================================================
   const TronoAudio = {
     ctx: null,
+    vovoPlayer: null,
+    vovoVictoryPlayer: null,
+    _victoryAudioPrimed: false,
+    _voicePrimed: false,
     init() {
       if (!this.ctx) {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (AudioCtx) this.ctx = new AudioCtx();
       }
       if (this.ctx && this.ctx.state === "suspended") {
-        this.ctx.resume();
+        this.ctx.resume().catch(() => {});
       }
       if (!this.splashAudio) {
         try {
@@ -30,6 +34,50 @@
           this.splashAudio.volume = 1.0;
           this.splashAudio.preload = "auto";
         } catch(e) {}
+      }
+      if (!this.vovoPlayer) {
+        try {
+          this.vovoPlayer = new Audio();
+          this.vovoPlayer.preload = "auto";
+        } catch(e) {}
+      }
+      if (!this.vovoVictoryPlayer) {
+        try {
+          this.vovoVictoryPlayer = new Audio('./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=126');
+          this.vovoVictoryPlayer.preload = "auto";
+        } catch(e) {}
+      }
+    },
+
+    unlockGestureAudio() {
+      this.init();
+      // Destrava permanentemente o canal HTMLAudioElement do Vovô no celular (Android Chrome / iOS Safari)
+      // para que falarVovo funcione 100% mesmo dentro de setTimeout no fim das fases!
+      if (!this._victoryAudioPrimed && this.vovoVictoryPlayer) {
+        this._victoryAudioPrimed = true;
+        try {
+          const v = this.vovoVictoryPlayer;
+          v.muted = true;
+          const p = v.play();
+          if (p && typeof p.then === "function") {
+            p.then(() => {
+              v.pause();
+              v.currentTime = 0;
+              v.muted = false;
+              v.volume = 1.0;
+            }).catch(() => {
+              v.muted = false;
+              v.volume = 1.0;
+              this._victoryAudioPrimed = false;
+            });
+          } else {
+            v.pause();
+            v.currentTime = 0;
+            v.muted = false;
+          }
+        } catch (e) {
+          this._victoryAudioPrimed = false;
+        }
       }
     },
 
@@ -173,11 +221,19 @@
         if (typeof onFinish === 'function') onFinish();
         return;
       }
+      this.init();
       if (this.vovoPlayer) {
         try {
           this.vovoPlayer.pause();
-          this.vovoPlayer.currentTime = 0;
           this.vovoPlayer.onended = null;
+          this.vovoPlayer.onerror = null;
+        } catch (e) {}
+      }
+      if (this.vovoVictoryPlayer) {
+        try {
+          this.vovoVictoryPlayer.pause();
+          this.vovoVictoryPlayer.onended = null;
+          this.vovoVictoryPlayer.onerror = null;
         } catch (e) {}
       }
       if (this._vovoTimer) {
@@ -189,27 +245,39 @@
         return;
       }
       try {
-        const src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=102`;
-        this.vovoPlayer = new Audio(src);
+        const isVictory = audioFile === "vovo_vitoria.mp3";
+        const player = (isVictory && this.vovoVictoryPlayer) ? this.vovoVictoryPlayer : (this.vovoPlayer || new Audio());
+        if (!isVictory || !player.src) {
+          player.src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=126`;
+        }
+        player.muted = false;
+        player.volume = 1.0;
+        try { player.currentTime = 0; } catch (e) {}
+
         let finished = false;
         const doFinish = () => {
           if (!finished) {
             finished = true;
             if (this._vovoTimer) clearTimeout(this._vovoTimer);
             this._vovoTimer = null;
+            player.onended = null;
+            player.onerror = null;
             if (typeof onFinish === 'function') onFinish();
           }
         };
 
-        this.vovoPlayer.onended = doFinish;
-        // Fallback de segurança: se o áudio passar de 6.2s:
-        this._vovoTimer = setTimeout(doFinish, 6200);
+        player.onended = doFinish;
+        player.onerror = () => setTimeout(doFinish, 400);
+        // Fallback firme para nunca travar botão nem fase:
+        this._vovoTimer = setTimeout(doFinish, isVictory ? 4200 : 5800);
 
-        this.vovoPlayer.play().catch(err => {
-          console.warn("Audio play prevented:", err);
-          // Se bloqueado pelo browser/mudo, libera após 1.2s para a criança brincar
-          setTimeout(doFinish, 1200);
-        });
+        const playPromise = player.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(err => {
+            console.warn("Audio play prevented:", err);
+            setTimeout(doFinish, 600);
+          });
+        }
       } catch (e) {
         console.warn("TronoAudio error:", e);
         if (typeof onFinish === 'function') onFinish();
@@ -223,6 +291,11 @@
       }, 400);
     }
   };
+
+  // Destrava o áudio do Vovô no primeiro toque em qualquer lugar da tela (Android / iPhone)
+  document.addEventListener("pointerdown", () => {
+    try { TronoAudio.unlockGestureAudio(); } catch (e) {}
+  }, { passive: true });
 
   // ==========================================================================
   // 2. CATÁLOGO DOS 17 JOGOS OFICIAIS DO TRONO KIDS
@@ -1231,6 +1304,9 @@
     const modal = document.getElementById("trono-victory-modal");
     if (modal) modal.style.display = "none";
     stopArcadeCelebrationConfetti();
+    if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
+    if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
+    if (TronoAudio.vovoVictoryPlayer) { try { TronoAudio.vovoVictoryPlayer.pause(); } catch(e){} }
 
     // Reseta trava de liberação
     window._arcadeUnlockGameAction = null;
@@ -1309,7 +1385,10 @@
     stopArcadeCelebrationConfetti();
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
     if (TronoAudio.vovoPlayer) { try { TronoAudio.vovoPlayer.pause(); } catch(e){} }
+    if (TronoAudio.vovoVictoryPlayer) { try { TronoAudio.vovoVictoryPlayer.pause(); } catch(e){} }
     if (celebrationClapAudio) { try { celebrationClapAudio.pause(); } catch(e){} }
+    if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
+    if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
     if (window._daviSpearTimer) { clearTimeout(window._daviSpearTimer); window._daviSpearTimer = null; }
     if (window._daviWindupTimer) { clearTimeout(window._daviWindupTimer); window._daviWindupTimer = null; }
     if (window._daviImpactTimer) { clearTimeout(window._daviImpactTimer); window._daviImpactTimer = null; }
@@ -1433,7 +1512,8 @@
 
   function unlockVictoryContinueButton() {
     const btn = document.getElementById("btn-canonical-continue");
-    if (!btn) return;
+    if (!btn || btn.dataset.unlocked === "1") return;
+    btn.dataset.unlocked = "1";
     const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
     const current = currentPhase || 1;
 
@@ -1460,12 +1540,19 @@
   let celebrationClapAudio = null;
 
   function triggerArcadeVictory() {
-    // 0. Interrompe qualquer áudio anterior do Vovô para nunca haver atropelos!
+    // 0. Limpa timers anteriores e áudios pendentes para zero travamento
+    if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
+    if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
     if (TronoAudio.vovoPlayer) {
       try {
         TronoAudio.vovoPlayer.pause();
-        TronoAudio.vovoPlayer.currentTime = 0;
         TronoAudio.vovoPlayer.onended = null;
+      } catch(e) {}
+    }
+    if (TronoAudio.vovoVictoryPlayer) {
+      try {
+        TronoAudio.vovoVictoryPlayer.pause();
+        TronoAudio.vovoVictoryPlayer.onended = null;
       } catch(e) {}
     }
     if (TronoAudio._vovoTimer) {
@@ -1473,16 +1560,16 @@
       TronoAudio._vovoTimer = null;
     }
 
-    // 1. Áudio oficial canônico: Palmas + Crianças Comemorando ("Êêê/Aê!") + Fanfarra
+    // 1. Áudio oficial canônico: Palmas + Crianças Comemorando + Fanfarra
     try {
-      if (typeof window.playSoundCelebrationClaps === 'function') {
-        window.playSoundCelebrationClaps();
-      } else {
+      TronoAudio.play("fanfare");
+      if (!window._arcadeAudioMuted) {
         if (!celebrationClapAudio) {
           celebrationClapAudio = new Audio('./6_ASSETS_AUDIO/11_festa_comemoracao_aplausos.wav');
+          celebrationClapAudio.preload = "auto";
         }
         celebrationClapAudio.currentTime = 0;
-        celebrationClapAudio.volume = 1.0;
+        celebrationClapAudio.volume = 0.55;
         celebrationClapAudio.play().catch(() => {});
       }
     } catch(e) {
@@ -1492,17 +1579,24 @@
     // 2. Monta e exibe o CARD CANÔNICO OFICIAL DO TRONO KIDS
     renderCanonicalVictoryModal();
 
-    // 3. Chuva de confetes 3D e fogos de artifício estourando pela tela toda
+    // 3. Chuva leve e fluida de confetes 3D (60 FPS no celular sem travar!)
     startArcadeCelebrationConfetti();
 
-    // 4. Voz afetuosa do Vovô Nésio ("Parabéns! Muito bem!")
-    // TIMING PERFEITO: Entra 1.4s após o estouro inicial de fanfarra e gritos das crianças,
-    // e SOMENTE DEPOIS que o Vovô terminar a fala, o botão 'CONTINUAR BRINCANDO' é liberado!
-    setTimeout(() => {
+    // 4. Voz afetuosa do Vovô Nésio ("Parabéns! Muito bem!") + Trava de segurança incondicional!
+    window._arcadeVictoryVoiceTimer = setTimeout(() => {
+      if (celebrationClapAudio) {
+        try { celebrationClapAudio.volume = 0.22; } catch(e) {}
+      }
       TronoAudio.falarVovo("vovo_vitoria.mp3", () => {
         unlockVictoryContinueButton();
       });
-    }, 1400);
+    }, 650);
+
+    // 5. GARANTIA ABSOLUTA ANTI-TRAVAMENTO: em no máximo 2.7s o botão verde SEMPRE libera,
+    // mesmo que a rede oscile ou o navegador do celular bloqueie mídia!
+    window._arcadeVictorySafetyTimer = setTimeout(() => {
+      unlockVictoryContinueButton();
+    }, 2700);
   }
 
   function renderCanonicalVictoryModal() {
@@ -1620,20 +1714,21 @@
   let arcadeFireworkSparks = [];
 
   function spawnArcadeFireworkBurst(cx, cy) {
+    if (arcadeFireworkSparks.length > 36) return;
     const colors = ['#fde047', '#00e676', '#00e5ff', '#ff4081', '#e040fb', '#ff9100', '#ffffff'];
-    const count = 26;
+    const count = 14;
     for (let i = 0; i < count; i++) {
       const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.15;
-      const speed = 2.2 + Math.random() * 4.5;
+      const speed = 2.0 + Math.random() * 3.8;
       arcadeFireworkSparks.push({
         x: cx,
         y: cy,
         vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 0.8,
-        size: 3.5 + Math.random() * 4.5,
+        vy: Math.sin(angle) * speed - 0.7,
+        size: 3.2 + Math.random() * 3.5,
         color: colors[Math.floor(Math.random() * colors.length)],
         alpha: 1,
-        decay: 0.014 + Math.random() * 0.012
+        decay: 0.022 + Math.random() * 0.015
       });
     }
   }
@@ -1643,34 +1738,33 @@
     if (!cvs) return;
     cvs.style.display = 'block';
     const ctx = cvs.getContext('2d');
-    const W = (cvs.width = window.innerWidth);
-    const H = (cvs.height = window.innerHeight);
+    const W = (cvs.width = Math.min(window.innerWidth || 420, 480));
+    const H = (cvs.height = Math.min(window.innerHeight || 800, 900));
 
     const colors = ['#fde047', '#00e676', '#00e5ff', '#ff4081', '#aa00ff', '#ff9100', '#ffffff'];
     arcadeConfettiParticles = [];
     arcadeFireworkSparks = [];
 
-    for (let i = 0; i < 95; i++) {
+    for (let i = 0; i < 48; i++) {
       const fromLeft = i % 2 === 0;
       arcadeConfettiParticles.push({
         x: Math.random() * W,
         y: -20 - Math.random() * H * 0.7,
-        vx: (Math.random() - 0.5) * 3.4 + (fromLeft ? 0.6 : -0.6),
-        vy: 2.2 + Math.random() * 3.8,
-        w: 8 + Math.random() * 8,
-        h: 12 + Math.random() * 10,
+        vx: (Math.random() - 0.5) * 2.8 + (fromLeft ? 0.5 : -0.5),
+        vy: 2.2 + Math.random() * 3.2,
+        w: 7 + Math.random() * 6,
+        h: 10 + Math.random() * 8,
         color: colors[Math.floor(Math.random() * colors.length)],
         rot: Math.random() * Math.PI * 2,
-        vRot: (Math.random() - 0.5) * 0.18,
+        vRot: (Math.random() - 0.5) * 0.16,
         tilt: Math.random() * Math.PI * 2,
-        vTilt: 0.08 + Math.random() * 0.12,
+        vTilt: 0.08 + Math.random() * 0.10,
         shape: i % 5 === 0 ? 'star' : 'ribbon'
       });
     }
 
-    spawnArcadeFireworkBurst(W * 0.25, H * 0.22);
-    spawnArcadeFireworkBurst(W * 0.75, H * 0.22);
-    spawnArcadeFireworkBurst(W * 0.50, H * 0.16);
+    spawnArcadeFireworkBurst(W * 0.28, H * 0.22);
+    spawnArcadeFireworkBurst(W * 0.72, H * 0.22);
 
     let frameCount = 0;
     if (arcadeConfettiAnimId) cancelAnimationFrame(arcadeConfettiAnimId);
@@ -1679,12 +1773,12 @@
       frameCount++;
       ctx.clearRect(0, 0, W, H);
 
-      // Estouros periódicos de fogos com estrelinhas brilhantes ("aquele negocinho que estoura")
-      if (frameCount % 36 === 0) {
-        spawnArcadeFireworkBurst(W * (0.18 + Math.random() * 0.64), H * (0.14 + Math.random() * 0.28));
+      // Estouros leves sem shadowBlur pesado para rodar liso a 60 FPS em qualquer celular!
+      if (frameCount % 55 === 0) {
+        spawnArcadeFireworkBurst(W * (0.20 + Math.random() * 0.60), H * (0.14 + Math.random() * 0.26));
       }
 
-      // 1. Desenha faíscas dos fogos
+      // 1. Desenha faíscas dos fogos (zero shadowBlur!)
       for (let i = arcadeFireworkSparks.length - 1; i >= 0; i--) {
         const sp = arcadeFireworkSparks[i];
         sp.x += sp.vx;
@@ -1695,30 +1789,28 @@
           arcadeFireworkSparks.splice(i, 1);
           continue;
         }
-        ctx.save();
         ctx.globalAlpha = Math.max(0, sp.alpha);
         ctx.fillStyle = sp.color;
-        ctx.shadowColor = sp.color;
-        ctx.shadowBlur = 8;
         ctx.beginPath();
         ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
         ctx.fill();
-        ctx.restore();
       }
+      ctx.globalAlpha = 1;
 
       // 2. Desenha confetes 3D voando (fitas e estrelas)
-      arcadeConfettiParticles.forEach(p => {
-        p.x += p.vx + Math.sin(p.tilt) * 0.9;
+      for (let j = 0; j < arcadeConfettiParticles.length; j++) {
+        const p = arcadeConfettiParticles[j];
+        p.x += p.vx + Math.sin(p.tilt) * 0.8;
         p.y += p.vy;
         p.rot += p.vRot;
         p.tilt += p.vTilt;
 
-        if (p.y > H + 25) {
-          p.y = -18;
+        if (p.y > H + 20) {
+          p.y = -16;
           p.x = Math.random() * W;
         }
-        if (p.x < -20) p.x = W + 15;
-        if (p.x > W + 20) p.x = -15;
+        if (p.x < -16) p.x = W + 12;
+        if (p.x > W + 16) p.x = -12;
 
         ctx.save();
         ctx.translate(p.x, p.y);
@@ -1733,7 +1825,7 @@
           ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
         }
         ctx.restore();
-      });
+      }
 
       arcadeConfettiAnimId = requestAnimationFrame(renderArcadeFrame);
     }
@@ -2912,24 +3004,17 @@
           // Atinge Davi se ele estiver na mesma faixa da lança sem pular nem agachar
           const hitDavi = (daviPosition === lane) && !isJumping && !isCrouching;
 
+          // REGRA RIGOBERTO: A lança SEMPRE some limpa assim que passa por Davi (zero lança parada no chão!)
+          spearProjectile.style.transition = "none";
           spearProjectile.style.display = "none";
+          if (stuckLayer) stuckLayer.innerHTML = "";
           saulThrone.classList.remove("throw");
 
           if (!hitDavi) {
-            // DESVIOU! PONTO + VERDINHO (✓)!
+            // DESVIOU! PONTO + VERDINHO (✓) + LANÇA JÁ SUMIU!
             roundResults[spearIndex] = "green";
             spearIndex++;
             updateBadges();
-
-            // Crava a lança no tapete mantendo a inclinação exata do arremesso
-            if (stuckLayer) {
-              const stuck = document.createElement("div");
-              stuck.className = "davi-stuck-impact-spear";
-              stuck.style.left = targetLeft;
-              stuck.style.top = targetTop;
-              stuck.style.transform = `translate(-50%, -50%) rotate(${angleDeg}deg) scale(1.05)`;
-              stuckLayer.appendChild(stuck);
-            }
 
             if (heroImg) {
               heroImg.classList.add("dodge-green-glow");
