@@ -258,18 +258,31 @@
         const doFinish = () => {
           if (!finished) {
             finished = true;
+            this._pendingFinish = null;
             if (this._vovoTimer) clearTimeout(this._vovoTimer);
             this._vovoTimer = null;
             player.onended = null;
             player.onerror = null;
+            player.onloadedmetadata = null;
             if (typeof onFinish === 'function') onFinish();
           }
         };
+        this._pendingFinish = doFinish;
 
         player.onended = doFinish;
         player.onerror = () => setTimeout(doFinish, 400);
-        // Fallback firme para nunca travar botão nem fase:
-        this._vovoTimer = setTimeout(doFinish, isVictory ? 4200 : 5800);
+
+        // Respeita 100% a duração real do áudio do Vovô (ex: vovo_jogo_04.mp3 tem 12.59s!)
+        const applyExactDurationTimer = () => {
+          if (finished) return;
+          if (player.duration && isFinite(player.duration) && player.duration > 0.5) {
+            if (this._vovoTimer) clearTimeout(this._vovoTimer);
+            this._vovoTimer = setTimeout(doFinish, Math.ceil(player.duration * 1000) + 550);
+          }
+        };
+        player.onloadedmetadata = applyExactDurationTimer;
+        this._vovoTimer = setTimeout(doFinish, isVictory ? 5300 : 14500);
+        applyExactDurationTimer();
 
         const playPromise = player.play();
         if (playPromise && typeof playPromise.catch === "function") {
@@ -1453,9 +1466,12 @@
       if (TronoAudio && TronoAudio.ctx && TronoAudio.ctx.state === "running") {
         try { TronoAudio.ctx.suspend(); } catch(e){}
       }
-      // 2. Pausa voz do Vovô
+      // 2. Pausa voz do Vovô (e se estava na introdução travada, já destrava o jogo na hora!)
       if (TronoAudio && TronoAudio.vovoPlayer) {
         try { TronoAudio.vovoPlayer.pause(); } catch(e){}
+      }
+      if (TronoAudio && typeof TronoAudio._pendingFinish === "function") {
+        try { TronoAudio._pendingFinish(); } catch(e){}
       }
       // 3. Pausa som ambiente / background
       if (typeof bgAudioPlayer !== 'undefined' && bgAudioPlayer && !bgAudioPlayer.paused) {
@@ -2669,6 +2685,9 @@
     let spearIndex = 0;
     let roundResults = [null, null, null]; // "green" | "red" | null
     let isGameWon = false;
+    // TRAVA OBRIGATÓRIA ENQUANTO O VOVÔ FALA A INTRODUÇÃO:
+    // Nem os botões movem Davi nem saem lanças até o Vovô terminar 100% de falar!
+    let isControlsUnlocked = false;
 
     // Velocidade progressiva por fase (Fase 1 calma e didática -> Fase 15 ágil e emocionante)
     const windupMs = Math.max(480, 820 - (currentPhaseNum - 1) * 24);
@@ -2694,6 +2713,16 @@
     let attackLanes = buildRoundLanes();
 
     window._arcadeUnlockGameAction = function() {
+      if (isControlsUnlocked || isGameWon) return;
+      isControlsUnlocked = true;
+      const ctrlBar = document.getElementById("davi-controls-bar");
+      if (ctrlBar) {
+        ctrlBar.style.opacity = "1";
+        ctrlBar.style.pointerEvents = "auto";
+        ctrlBar.style.filter = "none";
+      }
+      updateBadges();
+      TronoAudio.play("pop");
       scheduleNextSpear(750);
     };
 
@@ -2707,7 +2736,7 @@
 
           <!-- PLACAR VISUAL DAS 3 LANÇAS DA FASE (3 VERDINHOS = PASSA DE FASE! ZERO TEXTO!) -->
           <div class="davi-top-spear-tracker" id="davi-top-spear-tracker">
-            <div class="davi-check-slot active-aim" id="davi-slot-0"></div>
+            <div class="davi-check-slot" id="davi-slot-0"></div>
             <div class="davi-check-slot" id="davi-slot-1"></div>
             <div class="davi-check-slot" id="davi-slot-2"></div>
           </div>
@@ -2732,8 +2761,8 @@
           </div>
         </div>
 
-        <!-- CONSOLE D-PAD FLUTUANTE SOBREPOSTO NO RODAPÉ (INSERIDO NA CENA) -->
-        <div class="davi-controls-bar">
+        <!-- CONSOLE D-PAD FLUTUANTE SOBREPOSTO NO RODAPÉ (TRAVADO ENQUANTO O VOVÔ FALA!) -->
+        <div class="davi-controls-bar" id="davi-controls-bar" style="opacity:0.45; pointer-events:none; filter:grayscale(0.4); transition:opacity 0.25s ease, filter 0.25s ease;">
           <div class="davi-dpad-disc">
             <button class="davi-dpad-btn" id="btn-davi-up" aria-label="Pular">
               <span class="dpad-arrow-sym">▲</span>
@@ -2771,7 +2800,7 @@
         } else if (res === "red") {
           slot.className = "davi-check-slot slot-red";
           slot.innerHTML = SVG_CROSS_RED;
-        } else if (i === spearIndex && !isGameWon) {
+        } else if (i === spearIndex && !isGameWon && isControlsUnlocked) {
           slot.className = "davi-check-slot active-aim";
           slot.innerHTML = "";
         } else {
@@ -2800,7 +2829,7 @@
     // =========================================================================
     let jumpTimer = null;
     function doHeroJump() {
-      if (isGameWon || isJumping) return;
+      if (!isControlsUnlocked || isGameWon || isJumping) return;
       isJumping = true;
       isCrouching = false;
       syncHeroClasses();
@@ -2815,7 +2844,7 @@
 
     let crouchTimer = null;
     function doHeroCrouch() {
-      if (isGameWon || isJumping) return;
+      if (!isControlsUnlocked || isGameWon || isJumping) return;
       isCrouching = true;
       syncHeroClasses();
       TronoAudio.play("click");
@@ -2829,7 +2858,7 @@
 
     // Passo para a Esquerda: Direita -> Centro -> Esquerda
     function doHeroLeft() {
-      if (isGameWon) return;
+      if (!isControlsUnlocked || isGameWon) return;
       if (daviPosition === "right") {
         daviPosition = "center";
       } else {
@@ -2841,7 +2870,7 @@
 
     // Passo para a Direita: Esquerda -> Centro -> Direita
     function doHeroRight() {
-      if (isGameWon) return;
+      if (!isControlsUnlocked || isGameWon) return;
       if (daviPosition === "left") {
         daviPosition = "center";
       } else {
@@ -2859,7 +2888,7 @@
 
     // SUPORTE AO TECLADO
     function handleKeyDown(e) {
-      if (isGameWon) return;
+      if (!isControlsUnlocked || isGameWon) return;
       if (e.key === "ArrowUp" || e.key === "w" || e.key === " ") {
         e.preventDefault(); doHeroJump();
       } else if (e.key === "ArrowDown" || e.key === "s") {
@@ -2877,7 +2906,7 @@
     // CICLO DAS 3 LANÇAS EM 3 DIREÇÕES (CENTRO, DIAGONAL ESQ, DIAGONAL DIR)
     // =========================================================================
     function scheduleNextSpear(delay) {
-      if (isGameWon) return;
+      if (!isControlsUnlocked || isGameWon) return;
       if (window._daviSpearTimer) clearTimeout(window._daviSpearTimer);
       window._daviSpearTimer = setTimeout(launchSpearFromThrone, delay || 1000);
     }
@@ -2926,7 +2955,7 @@
     }
 
     function launchSpearFromThrone() {
-      if (isGameWon || spearIndex >= SPEARS_PER_ROUND) return;
+      if (!isControlsUnlocked || isGameWon || spearIndex >= SPEARS_PER_ROUND) return;
       if (!saulThrone || !spearProjectile) return;
 
       // Nas fases avançadas (5+), na 3ª lança Saul tem 50% de chance de mirar direto onde Davi está!
