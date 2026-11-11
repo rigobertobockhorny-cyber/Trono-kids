@@ -222,7 +222,8 @@
       "vovo_jogo_02.mp3": 7290,
       "vovo_jogo_03.mp3": 5940,
       "vovo_jogo_04.mp3": 12590,
-      "vovo_jogo_05.mp3": 5110,
+      "vovo_jogo_05.mp3": 11150,
+      "vovo_jogo_05_v135.mp3": 11150,
       "vovo_jogo_06.mp3": 5760,
       "vovo_jogo_07.mp3": 6460,
       "vovo_jogo_08.mp3": 5570,
@@ -403,8 +404,8 @@
       title: "CADÊ A OVELHA?",
       sub: "",
       icon: "./2_ASSETS_UI_BOTOES/ico_jogo_05_ovelha1_v130.png?v=130",
-      audioFile: "vovo_jogo_05.mp3",
-      vovoFala: "Deslize o campo para os lados e encontre as ovelhinhas escondidas!",
+      audioFile: "vovo_jogo_05_v135.mp3",
+      vovoFala: "As ovelhinhas se esconderam atrás das pedras do aprisco! Olhe bem cada cantinho e toque nas ovelhinhas para encontrá-las!",
       run: (container, phase) => runOvelhaPerdida(container, phase)
     },
     {
@@ -3351,37 +3352,289 @@
     }
   }
 
+  // --- JOGO 5: CADÊ A OVELHA? (APRISCO MONTANHOSO 3D EM 3 CAMADAS DE SOBREPOSIÇÃO v135.0) ---
   function runOvelhaPerdida(container, phase) {
+    const pNum = Math.max(1, phase || 1);
+    // Curva Progressiva de Dificuldade (Fases 1 a 5 Grátis + 6 a 15 VIP):
+    // Fase 1: 2 ovelhinhas (espiadinha maior e fácil)
+    // Fase 2: 3 ovelhinhas
+    // Fase 3: 4 ovelhinhas
+    // Fase 4: 5 ovelhinhas (quase toda escondida)
+    // Fase 5: 6 ovelhinhas (só aparece uma patinha, um rabinho ou uma pontinha de orelha!)
+    // Fases 6–15 (VIP): 6 a 8 ovelhinhas com micro-espiadinha mestre!
+    const totalOvelhas = pNum === 1 ? 2 :
+                         pNum === 2 ? 3 :
+                         pNum === 3 ? 4 :
+                         pNum === 4 ? 5 :
+                         pNum === 5 ? 6 :
+                         (pNum <= 8 ? 6 : (pNum <= 12 ? 7 : 8));
+
+    const easyFactor = pNum === 1 ? 1.00 :
+                       pNum === 2 ? 0.65 :
+                       pNum === 3 ? 0.35 :
+                       pNum === 4 ? 0.12 :
+                       pNum === 5 ? 0.00 : -0.06;
+
     let achadas = 0;
-    const total = 3;
+    let isGameUnlocked = false;
+    let isVictoryTriggered = false;
+
+    // 8 Esconderijos Naturais em 3 Camadas no Aprisco de Pedras (9:16):
+    // Camada 1 (z:1): Fundo 3D do Aprisco nas Rochas
+    // Camada 2 (z:2): Pedra Traseira (criando fenda/gruta atrás da ovelha)
+    // Camada 3 (z:3): Ovelhinha 3D Pixar no meio (mostrando só patinha, rabinho ou orelhinha!)
+    // Camada 4 (z:5): Pedra Frontal MAIOR na frente da ovelhinha escondendo o corpinho!
+    const ALL_APRISCO_SPOTS = [
+      // 0: Terraço médio-esquerdo — só a patinha dianteira esquerda de ovelha_01 espiando!
+      {
+        id: 0, x: 27, y: 65,
+        back:  { img: "pedra_aprisco_02_v135.png", w: 94,  dx: -16, dy: -16, flip: false, bright: 0.76 },
+        sheep: { img: "ovelha_3d_01_v135.png",     w: 72,  dx: -32, dy: 5,   flip: false, easyDx: -10, easyDy: -8 },
+        front: { img: "pedra_aprisco_01_v135.png", w: 130, dx: 6,   dy: 2,   flip: false, bright: 0.96 },
+        peekDx: -58, peekDy: 2
+      },
+      // 1: Pedras inferiores à direita — só o rabinho + 2 patinhas traseiras de ovelha_05!
+      {
+        id: 1, x: 72, y: 83,
+        back:  { img: "pedra_aprisco_03_v135.png", w: 106, dx: 14,  dy: -16, flip: true,  bright: 0.72 },
+        sheep: { img: "ovelha_3d_05_v135.png",     w: 90,  dx: 27,  dy: 14,  flip: false, easyDx: 14,  easyDy: -2 },
+        front: { img: "pedra_aprisco_04_v135.png", w: 126, dx: -12, dy: 0,   flip: false, bright: 0.88 },
+        peekDx: 56, peekDy: 14
+      },
+      // 2: Entrada da gruta à direita — só o rabinho fofinho de algodão de ovelha_02!
+      {
+        id: 2, x: 74, y: 49,
+        back:  { img: "pedra_aprisco_05_v135.png", w: 94,  dx: -14, dy: -14, flip: false, bright: 0.70 },
+        sheep: { img: "ovelha_3d_02_v135.png",     w: 74,  dx: -30, dy: 2,   flip: false, easyDx: -12, easyDy: -4 },
+        front: { img: "pedra_aprisco_04_v135.png", w: 126, dx: 6,   dy: 2,   flip: true,  bright: 0.92 },
+        peekDx: -56, peekDy: 0
+      },
+      // 3: Degraus rochosos médio-superiores à esquerda — só a patinha direita esticada de ovelha_04!
+      {
+        id: 3, x: 23, y: 44,
+        back:  { img: "pedra_aprisco_03_v135.png", w: 96,  dx: 14,  dy: -14, flip: false, bright: 0.78 },
+        sheep: { img: "ovelha_3d_04_v135.png",     w: 72,  dx: 27,  dy: 6,   flip: false, easyDx: 13,  easyDy: -8 },
+        front: { img: "pedra_aprisco_05_v135.png", w: 128, dx: -8,  dy: -2,  flip: true,  bright: 0.98 },
+        peekDx: 50, peekDy: 4
+      },
+      // 4: Rochas inferiores à esquerda — só uma orelhinha rosada de ovelha_03 espiando!
+      {
+        id: 4, x: 25, y: 84,
+        back:  { img: "pedra_aprisco_02_v135.png", w: 96,  dx: 8,   dy: -18, flip: false, bright: 0.70 },
+        sheep: { img: "ovelha_3d_03_v135.png",     w: 78,  dx: 22,  dy: -6,  flip: false, easyDx: 10,  easyDy: -10 },
+        front: { img: "pedra_aprisco_03_v135.png", w: 136, dx: -6,  dy: 6,   flip: false, bright: 0.86 },
+        peekDx: 44, peekDy: -22
+      },
+      // 5: Borda superior direita perto do curral — só a orelhinha/topetinho de ovelha_06!
+      {
+        id: 5, x: 76, y: 28,
+        back:  { img: "pedra_aprisco_04_v135.png", w: 90,  dx: 10,  dy: -12, flip: true,  bright: 0.82 },
+        sheep: { img: "ovelha_3d_06_v135.png",     w: 68,  dx: 20,  dy: -6,  flip: false, easyDx: 10,  easyDy: -12 },
+        front: { img: "pedra_aprisco_01_v135.png", w: 124, dx: -4,  dy: 4,   flip: true,  bright: 1.02 },
+        peekDx: 38, peekDy: -34
+      },
+      // 6: Borda superior esquerda junto à cerca — só patinhas traseiras + rabinho (espelhada)!
+      {
+        id: 6, x: 23, y: 27,
+        back:  { img: "pedra_aprisco_01_v135.png", w: 92,  dx: -12, dy: -10, flip: false, bright: 0.80 },
+        sheep: { img: "ovelha_3d_05_v135.png",     w: 86,  dx: -24, dy: 14,  flip: true,  easyDx: -12, easyDy: -2 },
+        front: { img: "pedra_aprisco_02_v135.png", w: 118, dx: 10,  dy: 0,   flip: false, bright: 0.98 },
+        peekDx: -52, peekDy: 12
+      },
+      // 7: Degraus médios à direita — só o rabinho fofinho espiando à direita da rocha!
+      {
+        id: 7, x: 76, y: 67,
+        back:  { img: "pedra_aprisco_01_v135.png", w: 94,  dx: 14,  dy: -14, flip: false, bright: 0.76 },
+        sheep: { img: "ovelha_3d_02_v135.png",     w: 72,  dx: 28,  dy: 5,   flip: true,  easyDx: 12,  easyDy: -4 },
+        front: { img: "pedra_aprisco_05_v135.png", w: 126, dx: -8,  dy: 0,   flip: true,  bright: 0.94 },
+        peekDx: 52, peekDy: 2
+      }
+    ];
+
+    // Sorteia quais das 8 formações rochosas terão ovelhinhas escondidas nesta partida:
+    // Na Fase 1 garante 2 pontos bem visíveis; nas demais embaralha entre todas as 8 pedras!
+    const poolIndices = pNum === 1 ? [0, 1, 2, 3] : [0, 1, 2, 3, 4, 5, 6, 7];
+    for (let i = poolIndices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = poolIndices[i];
+      poolIndices[i] = poolIndices[j];
+      poolIndices[j] = tmp;
+    }
+    const activeSheepSet = new Set(poolIndices.slice(0, totalOvelhas));
+
+    // Escala responsiva proporcional para manter o encaixe milimétrico pedra-ovelha em qualquer celular
+    const stgW = container.clientWidth || Math.min(window.innerWidth, 450);
+    const stgH = container.clientHeight || (window.innerHeight - 60);
+    const spotScale = Math.min(1.06, Math.max(0.78, Math.min(stgW / 390, stgH / 740))).toFixed(3);
+
+    // Ordena de cima para baixo (menor Y primeiro) para perspectiva natural de profundidade
+    const orderedSpots = ALL_APRISCO_SPOTS.slice().sort((a, b) => a.y - b.y);
+
+    const spotsHtml = orderedSpots.map((spot, depthOrder) => {
+      const hasSheep = activeSheepSet.has(spot.id);
+      const baseZ = 4 + depthOrder * 2;
+      const bFlip = spot.back.flip ? "scaleX(-1)" : "scaleX(1)";
+      const fFlip = spot.front.flip ? "scaleX(-1)" : "scaleX(1)";
+      const sFlip = spot.sheep.flip ? -1 : 1;
+
+      const sdx = Math.round(spot.sheep.dx + spot.sheep.easyDx * easyFactor);
+      const sdy = Math.round(spot.sheep.dy + spot.sheep.easyDy * easyFactor);
+      const pkx = Math.round(spot.peekDx + spot.sheep.easyDx * easyFactor * 0.8);
+      const pky = Math.round(spot.peekDy + spot.sheep.easyDy * easyFactor * 0.8);
+
+      const sheepLayerHtml = hasSheep ? `
+        <!-- CAMADA DO MEIO: OVELHINHA 3D ESCONDIDA ENTRE A PEDRA DE TRÁS E A PEDRA DA FRENTE -->
+        <div id="aprisco-sheep-wrap-${spot.id}" class="aprisco-sheep-wrap" data-flip="${sFlip}" data-sdx="${sdx}" data-sdy="${sdy}" style="position:absolute; left:50%; top:50%; width:${spot.sheep.w}px; transform:translate(-50%, -50%) translate(${sdx}px, ${sdy}px) scaleX(${sFlip}); z-index:3; pointer-events:none; transition:transform 0.48s cubic-bezier(0.22, 1.35, 0.36, 1);">
+          <img src="./2_ASSETS_UI_BOTOES/${spot.sheep.img}?v=135" class="aprisco-sheep-img" style="width:100%; height:auto; display:block;" alt="Ovelhinha 3D" draggable="false">
+        </div>
+        <!-- ZONA DE TOQUE PRECISA NA PATINHA / RABINHO / ORELHINHA ESPIANDO -->
+        <div class="aprisco-peek-hit" data-spot="${spot.id}" data-has-sheep="1" style="position:absolute; left:50%; top:50%; width:64px; height:64px; transform:translate(-50%, -50%) translate(${pkx}px, ${pky}px); z-index:9; cursor:pointer; border-radius:50%;"></div>
+      ` : "";
+
+      return `
+        <div id="aprisco-spot-${spot.id}" class="aprisco-spot-group" data-spot="${spot.id}" data-has-sheep="${hasSheep ? '1' : '0'}" style="position:absolute; left:${spot.x}%; top:${spot.y}%; width:150px; height:130px; transform:translate(-50%, -50%) scale(${spotScale}); z-index:${baseZ};">
+          <!-- 1. PEDRA TRASEIRA (ATRÁS DA OVELHA — CRIA FENDA ROCHOSA) -->
+          <img src="./2_ASSETS_UI_BOTOES/${spot.back.img}?v=135" style="position:absolute; left:50%; top:50%; width:${spot.back.w}px; height:auto; transform:translate(-50%, -50%) translate(${spot.back.dx}px, ${spot.back.dy}px) ${bFlip}; z-index:2; pointer-events:none;" alt="" draggable="false">
+
+          ${sheepLayerHtml}
+
+          <!-- 3. PEDRA FRONTAL MAIOR (NA FRENTE DA OVELHA — ESCONDE O CORPINHO!) -->
+          <div id="aprisco-front-rock-${spot.id}" style="position:absolute; left:50%; top:50%; width:${spot.front.w}px; transform:translate(-50%, -50%) translate(${spot.front.dx}px, ${spot.front.dy}px) ${fFlip}; z-index:5; pointer-events:none; transition:transform 0.35s ease;">
+            <img src="./2_ASSETS_UI_BOTOES/${spot.front.img}?v=135" style="width:100%; height:auto; display:block;" alt="" draggable="false">
+          </div>
+
+          <!-- ZONA DE TOQUE NA PEDRA (RESGATA SE TIVER OVELHA ATRÁS OU BALANÇA A PEDRA VAZIA) -->
+          <div class="aprisco-rock-hit" data-spot="${spot.id}" data-has-sheep="${hasSheep ? '1' : '0'}" style="position:absolute; left:50%; top:50%; width:${Math.max(106, spot.front.w - 10)}px; height:92px; transform:translate(-50%, -50%) translate(${spot.front.dx}px, ${spot.front.dy}px); z-index:7; cursor:pointer; border-radius:28px;"></div>
+        </div>
+      `;
+    }).join("");
 
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; overflow-x:auto; overflow-y:hidden; display:flex; touch-action:pan-x;">
-        <div style="position:relative; width:220%; height:100%; background:linear-gradient(180deg,#6ee7b7 0%,#059669 100%); display:flex; align-items:center; justify-content:space-around; padding:20px;">
-          <span style="font-size:72px;">🌳</span>
-          <span id="ovelha-1" style="font-size:46px; cursor:pointer;" onclick="window._acharOvelha(1)">🐑</span>
-          <span style="font-size:68px;">🪨</span>
-          <span id="ovelha-2" style="font-size:46px; cursor:pointer;" onclick="window._acharOvelha(2)">🐑</span>
-          <span style="font-size:72px;">🐮</span>
-          <span id="ovelha-3" style="font-size:46px; cursor:pointer;" onclick="window._acharOvelha(3)">🐑</span>
-          <span style="font-size:72px;">🌾</span>
+      <style>
+        @keyframes ovelhaPeekTwitch {
+          0%, 84%, 100% { transform: rotate(0deg) translateY(0px); }
+          88% { transform: rotate(-4deg) translateY(-2px); }
+          93% { transform: rotate(3.5deg) translateY(-1px); }
+        }
+        @keyframes ovelhaEmptyStoneTap {
+          0%, 100% { margin-left: 0px; }
+          25% { margin-left: -4px; }
+          65% { margin-left: 4px; }
+        }
+        @keyframes ovelhaHeartFloat {
+          0% { transform: translate(-50%, 0px) scale(0.5); opacity: 0; }
+          25% { transform: translate(-50%, -18px) scale(1.15); opacity: 1; }
+          100% { transform: translate(-50%, -56px) scale(1.3); opacity: 0; }
+        }
+        .aprisco-unlocked .aprisco-sheep-wrap:not(.rescued) .aprisco-sheep-img {
+          animation: ovelhaPeekTwitch 3.4s ease-in-out infinite;
+        }
+      </style>
+      <div id="ovelha-aprisco-stage" style="position:relative; width:100%; height:100%; overflow:hidden; user-select:none; -webkit-user-select:none; touch-action:manipulation; background:#1c140d;">
+        <!-- CAMADA 1 (FUNDO): CENÁRIO 3D PIXAR DO APRISCO MONTANHOSO COM GRUTA (9:16) -->
+        <img src="./2_ASSETS_UI_BOTOES/fundo_ovelha_aprisco_v135.jpg?v=135" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; z-index:1;" alt="Aprisco nas Rochas 3D" loading="eager" decoding="async" draggable="false">
+
+        <!-- CAMADAS 2 E 3: PEDRAS DE TRÁS + OVELHINHAS NO MEIO + PEDRAS GRANDES NA FRENTE -->
+        <div id="aprisco-spots-layer" style="position:absolute; inset:0; z-index:3;">
+          ${spotsHtml}
+        </div>
+
+        <!-- PLACAR VISUAL 3D DE OVELHINHAS ENCONTRADAS (ZERO TEXTO DE LEITURA) -->
+        <div style="position:absolute; top:12px; left:50%; transform:translateX(-50%); background:rgba(24, 15, 9, 0.84); border:2.5px solid #fde047; padding:5px 18px 5px 10px; border-radius:999px; color:#fde047; font-weight:900; font-size:20px; z-index:40; box-shadow:0 6px 18px rgba(0,0,0,0.65); display:flex; align-items:center; gap:8px; pointer-events:none;">
+          <img src="./2_ASSETS_UI_BOTOES/ovelha_3d_06_v135.png?v=135" style="width:34px; height:34px; object-fit:contain;" alt="Ovelhinha">
+          <span id="ovelha-aprisco-count" style="color:#ffffff; transition:transform 0.22s ease;">0</span>
+          <span style="color:#fde047; opacity:0.85;">/</span>
+          <span style="color:#fde047;">${totalOvelhas}</span>
+        </div>
+
+        <!-- AVISO SUTIL ENQUANTO O VOVÔ NÉSIO EXPLICA A BRINCADEIRA -->
+        <div id="ovelha-vovo-lock-pill" style="position:absolute; bottom:18px; left:50%; transform:translateX(-50%); background:rgba(24, 15, 9, 0.88); border:2px solid #f59e0b; padding:7px 18px; border-radius:999px; color:#fde047; font-weight:800; font-size:13.5px; z-index:40; box-shadow:0 4px 14px rgba(0,0,0,0.7); pointer-events:none; transition:opacity 0.4s ease, transform 0.4s ease; white-space:nowrap;">
+          🎙️ Ouça o Vovô explicar...
         </div>
       </div>
     `;
 
-    window._acharOvelha = function(num) {
-      const el = document.getElementById(`ovelha-${num}`);
-      if (!el || el.dataset.found) return;
-      el.dataset.found = "true";
-      el.style.transform = "scale(1.5) translateY(-20px)";
-      el.style.transition = "all 0.3s ease";
+    const stageRoot = document.getElementById("ovelha-aprisco-stage");
+    const countEl = document.getElementById("ovelha-aprisco-count");
+    const lockPill = document.getElementById("ovelha-vovo-lock-pill");
+
+    // REGRA SUPREMA RIGOBERTO: Só libera o toque nas ovelhinhas DEPOIS que o Vovô terminar 100% da explicação!
+    window._arcadeUnlockGameAction = function() {
+      if (isGameUnlocked) return;
+      isGameUnlocked = true;
+      if (stageRoot) stageRoot.classList.add("aprisco-unlocked");
+      if (lockPill) {
+        lockPill.style.opacity = "0";
+        lockPill.style.transform = "translateX(-50%) translateY(10px)";
+        setTimeout(() => { if (lockPill) lockPill.style.display = "none"; }, 420);
+      }
+      TronoAudio.play("pop");
+    };
+
+    function handleSpotTap(spotId, hasSheep) {
+      if (!isGameUnlocked || isVictoryTriggered) return;
+      const groupEl = document.getElementById(`aprisco-spot-${spotId}`);
+      if (!groupEl) return;
+
+      if (!hasSheep) {
+        // Pedra vazia sem ovelhinha atrás: balanço leve de pedra + toque suave
+        const frontRock = document.getElementById(`aprisco-front-rock-${spotId}`);
+        if (frontRock) {
+          frontRock.style.animation = "none";
+          void frontRock.offsetWidth;
+          frontRock.style.animation = "ovelhaEmptyStoneTap 0.28s ease";
+        }
+        TronoAudio.play("click");
+        return;
+      }
+
+      if (groupEl.dataset.rescued === "1") return;
+      groupEl.dataset.rescued = "1";
+
+      const sheepWrap = document.getElementById(`aprisco-sheep-wrap-${spotId}`);
+      if (sheepWrap) {
+        const flipDir = Number(sheepWrap.dataset.flip || "1");
+        sheepWrap.classList.add("rescued");
+        // Sobe para a frente da pedra com pulinho alegre 3D!
+        sheepWrap.style.zIndex = "18";
+        sheepWrap.style.transform = `translate(-50%, -50%) translate(0px, -42px) scaleX(${flipDir * 1.18}) scaleY(1.18)`;
+        groupEl.style.zIndex = "30";
+
+        // Coraçãozinho dourado de resgate
+        const burst = document.createElement("div");
+        burst.textContent = "💖✨";
+        burst.style.cssText = "position:absolute; left:50%; top:12%; font-size:24px; pointer-events:none; z-index:25; animation:ovelhaHeartFloat 0.85s ease-out forwards;";
+        groupEl.appendChild(burst);
+        setTimeout(() => { try { burst.remove(); } catch(e){} }, 900);
+      }
+
       TronoAudio.play("baa");
       TronoAudio.play("star");
       achadas++;
-      if (achadas >= total) {
-        setTimeout(triggerArcadeVictory, 700);
+
+      if (countEl) {
+        countEl.textContent = String(achadas);
+        countEl.style.transform = "scale(1.42)";
+        setTimeout(() => { if (countEl) countEl.style.transform = "scale(1)"; }, 240);
       }
-    };
+
+      if (achadas >= totalOvelhas) {
+        isVictoryTriggered = true;
+        setTimeout(() => {
+          TronoAudio.play("success");
+        }, 320);
+        setTimeout(triggerArcadeVictory, 880);
+      }
+    }
+
+    container.querySelectorAll(".aprisco-peek-hit, .aprisco-rock-hit").forEach((hitEl) => {
+      hitEl.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const sId = Number(hitEl.dataset.spot);
+        const hasS = hitEl.dataset.hasSheep === "1";
+        handleSpotTap(sId, hasS);
+      });
+    });
   }
 
   // --- JOGO 6: A OVELHA FUJONA (PERSEGUIÇÃO) ---
