@@ -558,128 +558,128 @@
       gameNum: 1,
       gameTitle: "PESCA MARAVILHOSA",
       milestones: {
-        5:  { code: "CARD_01_F05", num: 1,  phase: 5,  tier: "GRÁTIS",   title: "As Redes Cheias na Galileia",      img: "./5_ASSETS_CARDS_JOGOS/card_01_pesca_f05.jpg?v=146" },
-        15: { code: "CARD_02_F15", num: 2,  phase: 15, tier: "CAMPEÃO",  title: "Encontro na Praia com Jesus",      img: "./5_ASSETS_CARDS_JOGOS/card_02_pesca_f15.jpg?v=146" }
+        5:  { code: "CARD_01_F05", num: 1,  phase: 5,  tier: "GRÁTIS",   title: "As Redes Cheias na Galileia",      img: "./5_ASSETS_CARDS_JOGOS/card_01_pesca_f05.jpg?v=147" },
+        15: { code: "CARD_02_F15", num: 2,  phase: 15, tier: "CAMPEÃO",  title: "Encontro na Praia com Jesus",      img: "./5_ASSETS_CARDS_JOGOS/card_02_pesca_f15.jpg?v=147" }
       }
     },
     dracma_perdida: {
       gameNum: 2,
       gameTitle: "ACHE A MOEDA",
       milestones: {
-        5:  { code: "CARD_03_F05", num: 3,  phase: 5,  tier: "GRÁTIS",   title: "A Moeda de Prata Encontrada",      img: "./5_ASSETS_CARDS_JOGOS/card_03_moeda_f05.jpg?v=146" },
-        15: { code: "CARD_04_F15", num: 4,  phase: 15, tier: "CAMPEÃO",  title: "Festa com as Vizinhas",            img: "./5_ASSETS_CARDS_JOGOS/card_04_moeda_f15.jpg?v=146" }
+        5:  { code: "CARD_03_F05", num: 3,  phase: 5,  tier: "GRÁTIS",   title: "A Moeda de Prata Encontrada",      img: "./5_ASSETS_CARDS_JOGOS/card_03_moeda_f05.jpg?v=147" },
+        15: { code: "CARD_04_F15", num: 4,  phase: 15, tier: "CAMPEÃO",  title: "Festa com as Vizinhas",            img: "./5_ASSETS_CARDS_JOGOS/card_04_moeda_f15.jpg?v=147" }
       }
     },
     pombo_arca: {
       gameNum: 3,
       gameTitle: "POMBINHA DA PAZ",
       milestones: {
-        5:  { code: "CARD_05_F05", num: 5,  phase: 5,  tier: "GRÁTIS",   title: "O Raminho de Oliveira",            img: "./5_ASSETS_CARDS_JOGOS/card_05_pombo_f05.jpg?v=146" },
-        15: { code: "CARD_06_F15", num: 6,  phase: 15, tier: "CAMPEÃO",  title: "A Pombinha Pousa nas Mãos de Noé", img: "./5_ASSETS_CARDS_JOGOS/card_06_pombo_f15.jpg?v=146" }
+        5:  { code: "CARD_05_F05", num: 5,  phase: 5,  tier: "GRÁTIS",   title: "O Raminho de Oliveira",            img: "./5_ASSETS_CARDS_JOGOS/card_05_pombo_f05.jpg?v=147" },
+        15: { code: "CARD_06_F15", num: 6,  phase: 15, tier: "CAMPEÃO",  title: "A Pombinha Pousa nas Mãos de Noé", img: "./5_ASSETS_CARDS_JOGOS/card_06_pombo_f15.jpg?v=147" }
       }
     },
     jonatas_alvo: {
       gameNum: 4,
       gameTitle: "DESVIE DA LANÇA",
       milestones: {
-        5:  { code: "CARD_07_F05", num: 7,  phase: 5,  tier: "GRÁTIS",   title: "A Amizade de Davi e Jônatas",      img: "./5_ASSETS_CARDS_JOGOS/card_07_davi_f05.jpg?v=146" },
-        15: { code: "CARD_08_F15", num: 8,  phase: 15, tier: "CAMPEÃO",  title: "A Harpa de Paz de Davi",           img: "./5_ASSETS_CARDS_JOGOS/card_08_davi_f15.jpg?v=146" }
+        5:  { code: "CARD_07_F05", num: 7,  phase: 5,  tier: "GRÁTIS",   title: "A Amizade de Davi e Jônatas",      img: "./5_ASSETS_CARDS_JOGOS/card_07_davi_f05.jpg?v=147" },
+        15: { code: "CARD_08_F15", num: 8,  phase: 15, tier: "CAMPEÃO",  title: "A Harpa de Paz de Davi",           img: "./5_ASSETS_CARDS_JOGOS/card_08_davi_f15.jpg?v=147" }
       }
     },
     ovelha_perdida: {
       gameNum: 5,
       gameTitle: "CADÊ A OVELHA?",
       milestones: {
-        5:  { code: "CARD_09_F05", num: 9,  phase: 5,  tier: "GRÁTIS",   title: "Achando a Ovelhinha nas Pedras",   img: "./5_ASSETS_CARDS_JOGOS/card_09_ovelha1_f05.jpg?v=146" },
-        15: { code: "CARD_10_F15", num: 10, phase: 15, tier: "CAMPEÃO",  title: "De Volta ao Aprisco nos Ombros",   img: "./5_ASSETS_CARDS_JOGOS/card_10_ovelha1_f15.jpg?v=146" }
+        5:  { code: "CARD_09_F05", num: 9,  phase: 5,  tier: "GRÁTIS",   title: "Achando a Ovelhinha nas Pedras",   img: "./5_ASSETS_CARDS_JOGOS/card_09_ovelha1_f05.jpg?v=147" },
+        15: { code: "CARD_10_F15", num: 10, phase: 15, tier: "CAMPEÃO",  title: "De Volta ao Aprisco nos Ombros",   img: "./5_ASSETS_CARDS_JOGOS/card_10_ovelha1_f15.jpg?v=147" }
       }
     },
     ovelha_fujona: {
       gameNum: 6,
       gameTitle: "PEGA A OVELHA!",
       milestones: {
-        5:  { code: "CARD_11_F05", num: 11, phase: 5,  tier: "GRÁTIS",   title: "Alegria nos Campos de Belém",      img: "./5_ASSETS_CARDS_JOGOS/card_11_ovelha2_f05.jpg?v=146" },
-        15: { code: "CARD_12_F15", num: 12, phase: 15, tier: "CAMPEÃO",  title: "Pastos Verdes e Águas Tranquilas", img: "./5_ASSETS_CARDS_JOGOS/card_12_ovelha2_f15.jpg?v=146" }
+        5:  { code: "CARD_11_F05", num: 11, phase: 5,  tier: "GRÁTIS",   title: "Alegria nos Campos de Belém",      img: "./5_ASSETS_CARDS_JOGOS/card_11_ovelha2_f05.jpg?v=147" },
+        15: { code: "CARD_12_F15", num: 12, phase: 15, tier: "CAMPEÃO",  title: "Pastos Verdes e Águas Tranquilas", img: "./5_ASSETS_CARDS_JOGOS/card_12_ovelha2_f15.jpg?v=147" }
       }
     },
     quem_entrou_arca: {
       gameNum: 7,
       gameTitle: "ARCA DE NOÉ",
       milestones: {
-        5:  { code: "CARD_13_F05", num: 13, phase: 5,  tier: "GRÁTIS",   title: "Os Bichinhos Entrando na Arca",    img: "./5_ASSETS_CARDS_JOGOS/card_13_arca_f05.jpg?v=146" },
-        15: { code: "CARD_14_F15", num: 14, phase: 15, tier: "CAMPEÃO",  title: "A Aliança do Arco-Íris",           img: "./5_ASSETS_CARDS_JOGOS/card_14_arca_f15.jpg?v=146" }
+        5:  { code: "CARD_13_F05", num: 13, phase: 5,  tier: "GRÁTIS",   title: "Os Bichinhos Entrando na Arca",    img: "./5_ASSETS_CARDS_JOGOS/card_13_arca_f05.jpg?v=147" },
+        15: { code: "CARD_14_F15", num: 14, phase: 15, tier: "CAMPEÃO",  title: "A Aliança do Arco-Íris",           img: "./5_ASSETS_CARDS_JOGOS/card_14_arca_f15.jpg?v=147" }
       }
     },
     quiz_visual: {
       gameNum: 8,
       gameTitle: "QUIZ DA BÍBLIA",
       milestones: {
-        5:  { code: "CARD_15_F05", num: 15, phase: 5,  tier: "GRÁTIS",   title: "Os Reis Magos e a Estrela Guia",   img: "./5_ASSETS_CARDS_JOGOS/card_15_quiz_f05.jpg?v=146" },
-        15: { code: "CARD_16_F15", num: 16, phase: 15, tier: "CAMPEÃO",  title: "O Menino Jesus no Templo",         img: "./5_ASSETS_CARDS_JOGOS/card_16_quiz_f15.jpg?v=146" }
+        5:  { code: "CARD_15_F05", num: 15, phase: 5,  tier: "GRÁTIS",   title: "Os Reis Magos e a Estrela Guia",   img: "./5_ASSETS_CARDS_JOGOS/card_15_quiz_f05.jpg?v=147" },
+        15: { code: "CARD_16_F15", num: 16, phase: 15, tier: "CAMPEÃO",  title: "O Menino Jesus no Templo",         img: "./5_ASSETS_CARDS_JOGOS/card_16_quiz_f15.jpg?v=147" }
       }
     },
     ligue_pontos: {
       gameNum: 9,
       gameTitle: "LIGUE OS PONTOS",
       milestones: {
-        5:  { code: "CARD_17_F05", num: 17, phase: 5,  tier: "GRÁTIS",   title: "Abraão e o Céu de Estrelas",       img: "./5_ASSETS_CARDS_JOGOS/card_17_pontos_f05.jpg?v=146" },
-        15: { code: "CARD_18_F15", num: 18, phase: 15, tier: "CAMPEÃO",  title: "A Escada Iluminada de Jacó",       img: "./5_ASSETS_CARDS_JOGOS/card_18_pontos_f15.jpg?v=146" }
+        5:  { code: "CARD_17_F05", num: 17, phase: 5,  tier: "GRÁTIS",   title: "Abraão e o Céu de Estrelas",       img: "./5_ASSETS_CARDS_JOGOS/card_17_pontos_f05.jpg?v=147" },
+        15: { code: "CARD_18_F15", num: 18, phase: 15, tier: "CAMPEÃO",  title: "A Escada Iluminada de Jacó",       img: "./5_ASSETS_CARDS_JOGOS/card_18_pontos_f15.jpg?v=147" }
       }
     },
     seis_erros: {
       gameNum: 10,
       gameTitle: "JOGO DOS ERROS",
       milestones: {
-        5:  { code: "CARD_19_F05", num: 19, phase: 5,  tier: "GRÁTIS",   title: "O Jardim Florido da Criação",      img: "./5_ASSETS_CARDS_JOGOS/card_19_erros_f05.jpg?v=146" },
-        15: { code: "CARD_20_F15", num: 20, phase: 15, tier: "CAMPEÃO",  title: "Daniel na Cova dos Leões",         img: "./5_ASSETS_CARDS_JOGOS/card_20_erros_f15.jpg?v=146" }
+        5:  { code: "CARD_19_F05", num: 19, phase: 5,  tier: "GRÁTIS",   title: "O Jardim Florido da Criação",      img: "./5_ASSETS_CARDS_JOGOS/card_19_erros_f05.jpg?v=147" },
+        15: { code: "CARD_20_F15", num: 20, phase: 15, tier: "CAMPEÃO",  title: "Daniel na Cova dos Leões",         img: "./5_ASSETS_CARDS_JOGOS/card_20_erros_f15.jpg?v=147" }
       }
     },
     criacao_ordem: {
       gameNum: 11,
       gameTitle: "CRIAÇÃO DO MUNDO",
       milestones: {
-        5:  { code: "CARD_21_F05", num: 21, phase: 5,  tier: "GRÁTIS",   title: "O Sol, a Lua e as Estrelinhas",    img: "./5_ASSETS_CARDS_JOGOS/card_21_criacao_f05.jpg?v=146" },
-        15: { code: "CARD_22_F15", num: 22, phase: 15, tier: "CAMPEÃO",  title: "A Grande Festa da Criação",        img: "./5_ASSETS_CARDS_JOGOS/card_22_criacao_f15.jpg?v=146" }
+        5:  { code: "CARD_21_F05", num: 21, phase: 5,  tier: "GRÁTIS",   title: "O Sol, a Lua e as Estrelinhas",    img: "./5_ASSETS_CARDS_JOGOS/card_21_criacao_f05.jpg?v=147" },
+        15: { code: "CARD_22_F15", num: 22, phase: 15, tier: "CAMPEÃO",  title: "A Grande Festa da Criação",        img: "./5_ASSETS_CARDS_JOGOS/card_22_criacao_f15.jpg?v=147" }
       }
     },
     memoria_sonoro: {
       gameNum: 12,
       gameTitle: "JOGO DA MEMÓRIA",
       milestones: {
-        5:  { code: "CARD_23_F05", num: 23, phase: 5,  tier: "GRÁTIS",   title: "Amiguinhos da Natureza de Deus",   img: "./5_ASSETS_CARDS_JOGOS/card_23_memoria_f05.jpg?v=146" },
-        15: { code: "CARD_24_F15", num: 24, phase: 15, tier: "CAMPEÃO",  title: "Jonas e a Grande Baleia Azul",     img: "./5_ASSETS_CARDS_JOGOS/card_24_memoria_f15.jpg?v=146" }
+        5:  { code: "CARD_23_F05", num: 23, phase: 5,  tier: "GRÁTIS",   title: "Amiguinhos da Natureza de Deus",   img: "./5_ASSETS_CARDS_JOGOS/card_23_memoria_f05.jpg?v=147" },
+        15: { code: "CARD_24_F15", num: 24, phase: 15, tier: "CAMPEÃO",  title: "Jonas e a Grande Baleia Azul",     img: "./5_ASSETS_CARDS_JOGOS/card_24_memoria_f15.jpg?v=147" }
       }
     },
     mana_deserto: {
       gameNum: 13,
       gameTitle: "PÃOZINHO DO CÉU",
       milestones: {
-        5:  { code: "CARD_25_F05", num: 25, phase: 5,  tier: "GRÁTIS",   title: "Colhendo o Maná ao Amanhecer",     img: "./5_ASSETS_CARDS_JOGOS/card_25_mana_f05.jpg?v=146" },
-        15: { code: "CARD_26_F15", num: 26, phase: 15, tier: "CAMPEÃO",  title: "Água Viva da Rocha de Horebe",     img: "./5_ASSETS_CARDS_JOGOS/card_26_mana_f15.jpg?v=146" }
+        5:  { code: "CARD_25_F05", num: 25, phase: 5,  tier: "GRÁTIS",   title: "Colhendo o Maná ao Amanhecer",     img: "./5_ASSETS_CARDS_JOGOS/card_25_mana_f05.jpg?v=147" },
+        15: { code: "CARD_26_F15", num: 26, phase: 15, tier: "CAMPEÃO",  title: "Água Viva da Rocha de Horebe",     img: "./5_ASSETS_CARDS_JOGOS/card_26_mana_f15.jpg?v=147" }
       }
     },
     tabernaculo_cesto: {
       gameNum: 14,
       gameTitle: "BEBÊ MOISÉS",
       milestones: {
-        5:  { code: "CARD_27_F05", num: 27, phase: 5,  tier: "GRÁTIS",   title: "O Cestinho do Bebê Moisés no Nilo",img: "./5_ASSETS_CARDS_JOGOS/card_27_moises_f05.jpg?v=146" },
-        15: { code: "CARD_28_F15", num: 28, phase: 15, tier: "CAMPEÃO",  title: "A Travessia do Mar Vermelho",      img: "./5_ASSETS_CARDS_JOGOS/card_28_moises_f15.jpg?v=146" }
+        5:  { code: "CARD_27_F05", num: 27, phase: 5,  tier: "GRÁTIS",   title: "O Cestinho do Bebê Moisés no Nilo",img: "./5_ASSETS_CARDS_JOGOS/card_27_moises_f05.jpg?v=147" },
+        15: { code: "CARD_28_F15", num: 28, phase: 15, tier: "CAMPEÃO",  title: "A Travessia do Mar Vermelho",      img: "./5_ASSETS_CARDS_JOGOS/card_28_moises_f15.jpg?v=147" }
       }
     },
     puzzle_3d: {
       gameNum: 15,
       gameTitle: "QUEBRA-CABEÇA",
       milestones: {
-        5:  { code: "CARD_29_F05", num: 29, phase: 5,  tier: "GRÁTIS",   title: "Cinco Pães e Dois Peixinhos",      img: "./5_ASSETS_CARDS_JOGOS/card_29_puzzle_f05.jpg?v=146" },
-        15: { code: "CARD_30_F15", num: 30, phase: 15, tier: "CAMPEÃO",  title: "Jesus Acalma a Tempestade",        img: "./5_ASSETS_CARDS_JOGOS/card_30_puzzle_f15.jpg?v=146" }
+        5:  { code: "CARD_29_F05", num: 29, phase: 5,  tier: "GRÁTIS",   title: "Cinco Pães e Dois Peixinhos",      img: "./5_ASSETS_CARDS_JOGOS/card_29_puzzle_f05.jpg?v=147" },
+        15: { code: "CARD_30_F15", num: 30, phase: 15, tier: "CAMPEÃO",  title: "Jesus Acalma a Tempestade",        img: "./5_ASSETS_CARDS_JOGOS/card_30_puzzle_f15.jpg?v=147" }
       }
     },
     pintura_magica: {
       gameNum: 16,
       gameTitle: "PINTURA MÁGICA",
       milestones: {
-        5:  { code: "CARD_31_F05", num: 31, phase: 5,  tier: "GRÁTIS",   title: "A Túnica Colorida de José",        img: "./5_ASSETS_CARDS_JOGOS/card_31_pintura_f05.jpg?v=146" },
-        15: { code: "CARD_32_F15", num: 32, phase: 15, tier: "CAMPEÃO",  title: "Jesus Abençoando as Crianças",     img: "./5_ASSETS_CARDS_JOGOS/card_32_pintura_f15.jpg?v=146" }
+        5:  { code: "CARD_31_F05", num: 31, phase: 5,  tier: "GRÁTIS",   title: "A Túnica Colorida de José",        img: "./5_ASSETS_CARDS_JOGOS/card_31_pintura_f05.jpg?v=147" },
+        15: { code: "CARD_32_F15", num: 32, phase: 15, tier: "CAMPEÃO",  title: "Jesus Abençoando as Crianças",     img: "./5_ASSETS_CARDS_JOGOS/card_32_pintura_f15.jpg?v=147" }
       }
     }
   };
@@ -2003,6 +2003,7 @@
     if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
     if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
     if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
+    if (window._dracmaCheckInterval) { clearInterval(window._dracmaCheckInterval); window._dracmaCheckInterval = null; }
 
     const container = document.getElementById("arcade-game-stage-container");
     // TRAVA UNIVERSAL DOS 16 JOGOS ENQUANTO O VOVÔ EXPLICA:
@@ -2126,6 +2127,7 @@
     if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
     if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
     if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
+    if (window._dracmaCheckInterval) { clearInterval(window._dracmaCheckInterval); window._dracmaCheckInterval = null; }
     if (window._daviKeyHandler) { window.removeEventListener("keydown", window._daviKeyHandler); window._daviKeyHandler = null; }
 
     const vicModal = document.getElementById("trono-victory-modal");
@@ -2340,6 +2342,7 @@
     if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
     if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
     if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
+    if (window._dracmaCheckInterval) { clearInterval(window._dracmaCheckInterval); window._dracmaCheckInterval = null; }
     if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
     if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
     if (TronoAudio.vovoPlayer) {
@@ -3068,131 +3071,126 @@
     }
   }
 
-  // --- JOGO 2: A DRACMA PERDIDA (LANTERNA NO ESCURO NA CASA BÍBLICA) ---
+  // --- JOGO 2: A DRACMA PERDIDA (LANTERNA NO ESCURO COM FOCO AO LADO DO DEDO + 1 A 15 DRACMAS ESPALHADAS) ---
   function runDracmaPerdida(container, phase) {
-    // 1. CURVA DE DIFICULDADE (RIGOBERTO GAME DESIGN):
-    // Fase 1: 1 Moeda, Foco Grande (155px), Moeda no chão aberto bem fácil de achar.
-    // Fase 2: 2 Moedas, Foco Médio-Grande (130px), Moeda perto do vaso.
-    // Fase 3: 3 Moedas, Foco Médio (110px), Moedas nos cantos e tigela.
-    // Fase 4: 4 Moedas, Foco Fechado (92px), Moedas semi-ocultas em cestos e cantos.
-    // Fase 5+: 5 Moedas, Foco Estreito (72px), Moedas bem escondidas na sombra e atrás de objetos.
-    const totalMoedas = Math.min(phase, 5);
-    const raioLuz = phase === 1 ? 155 :
-                    phase === 2 ? 130 :
-                    phase === 3 ? 110 :
-                    phase === 4 ? 92 :
-                    Math.max(74 - (phase - 5) * 3, 58);
+    if (window._dracmaCheckInterval) {
+      clearInterval(window._dracmaCheckInterval);
+      window._dracmaCheckInterval = null;
+    }
+
+    const pNum = Math.max(1, Math.min(15, Math.floor(Number(phase) || 1)));
+    // Progressão real de 1 a 15 fases: Fase 1 = 1 dracma ... Fase 5 = 5 ... Fase 10 = 10 ... Fase 15 = 15 dracmas!
+    const totalMoedas = pNum;
+
+    // Foco da lamparina diminui gradualmente da Fase 1 (136px) até a Fase 15 (52px)
+    const raioLuz = Math.round(Math.max(52, 142 - (pNum - 1) * 6.4));
+
+    // Tamanho da dracma diminui levemente nas fases avançadas para ficar mais desafiador sem sobrepor
+    const coinSizePx = pNum <= 4 ? 44 : (pNum <= 9 ? 38 : 33);
+    const coinFontPx = pNum <= 4 ? 21 : (pNum <= 9 ? 18 : 16);
 
     let moedasAchadas = 0;
     let isInteractionLocked = true;
+    let hasPlayerMovedLamp = false;
 
-    // Catálogo de esconderijos ancorados organicamente nos elementos visuais do cenário 3D da casa:
-    // (A mulher, os vasos de barro, a tigela, o cesto no alto, a parede de pedra e o chão rústico)
+    // 24 lugares 100% naturais no cenário (ZERO moedas dentro/na boca dos jarros e ZERO pedrinhas falsas na frente!):
+    // Cobre: em cima da janela, batente/parapeito da janela, parede de pedra, cestos no fundo,
+    // onde a mulher está ajoelhada, pertinho dos pés/sandália da mulher, atrás dos vasos e bem lá embaixo no chão!
     const allHidingSpots = [
-      // 0: Chão aberto iluminado em frente à mulher (Fácil - Fase 1)
-      { id: "spot_floor_open", x: 44, y: 74, occlude: null },
-      // 1: Perto da base do grande vaso de barro (Fase 2)
-      { id: "spot_jar_base", x: 26, y: 70, occlude: "jar" },
-      // 2: Atrás da tigela de azeite na direita (Fase 3)
-      { id: "spot_bowl_side", x: 65, y: 84, occlude: "bowl" },
-      // 3: Canto escuro de pedra abaixo da janela (Fase 3/4)
-      { id: "spot_wall_shadow", x: 16, y: 56, occlude: "shadow" },
-      // 4: No cesto de palha no alto da estante à direita (Fase 4/5)
-      { id: "spot_basket_shelf", x: 84, y: 38, occlude: "straw" },
-      // 5: Atrás do vaso inferior esquerdo (Fase 5)
-      { id: "spot_bottom_pot", x: 15, y: 88, occlude: "jar" },
-      // 6: Na dobra de sombra da túnica da mulher (Fase 5)
-      { id: "spot_tunic_shadow", x: 42, y: 86, occlude: "shadow" },
-      // 7: Parapeito de pedra da janela rústica (Fase 5+)
-      { id: "spot_window_ledge", x: 24, y: 36, occlude: "stone" }
+      { id: "s01_acima_janela_esq",   x: 14, y: 13.0 },
+      { id: "s02_acima_janela_dir",   x: 27, y: 12.5 },
+      { id: "s03_parapeito_janela",   x:  9, y: 28.5 },
+      { id: "s04_batente_janela",     x:  8, y: 19.5 },
+      { id: "s05_parede_abaixo_esq",  x:  9, y: 38.0 },
+      { id: "s06_parede_abaixo_dir",  x: 23, y: 35.5 },
+      { id: "s07_parede_veu_esq",     x: 35, y: 28.5 },
+      { id: "s08_alto_janela_dir",    x: 39, y: 17.5 },
+      { id: "s09_pedra_alta_centro",  x: 50, y: 10.0 },
+      { id: "s10_pedra_alta_dir",     x: 68, y: 13.5 },
+      { id: "s11_parede_fundo_dir",   x: 70, y: 26.5 },
+      { id: "s12_cesto_redondo_topo", x: 89, y: 15.0 },
+      { id: "s13_cesto_redondo_base", x: 81, y: 23.0 },
+      { id: "s14_cesto_vime_dir",     x: 92, y: 33.5 },
+      { id: "s15_bancada_cesto",      x: 80, y: 39.0 },
+      { id: "s16_dobra_ajoelhada",    x: 52, y: 72.5 },
+      { id: "s17_chao_joelho_esq",    x: 47, y: 83.5 },
+      { id: "s18_barra_tunica_chao",  x: 60, y: 82.0 },
+      { id: "s19_atras_vasos_costas", x: 74, y: 65.5 },
+      { id: "s20_pe_sandalia_mulher", x: 86, y: 73.5 },
+      { id: "s21_canto_parede_esq",   x:  7, y: 52.0 },
+      { id: "s22_chao_baixo_esq",     x:  9, y: 94.0 },
+      { id: "s23_chao_baixo_meio",    x: 23, y: 94.5 },
+      { id: "s24_chao_baixo_dir",     x: 36, y: 93.5 }
     ];
 
-    // Seleciona os esconderijos de acordo com a fase
-    let currentSpots = [];
-    if (phase === 1) {
-      currentSpots = [allHidingSpots[0]];
-    } else if (phase === 2) {
-      currentSpots = [allHidingSpots[0], allHidingSpots[1]];
-    } else if (phase === 3) {
-      currentSpots = [allHidingSpots[1], allHidingSpots[2], allHidingSpots[3]];
-    } else if (phase === 4) {
-      currentSpots = [allHidingSpots[2], allHidingSpots[3], allHidingSpots[4], allHidingSpots[5]];
-    } else {
-      currentSpots = [allHidingSpots[2], allHidingSpots[3], allHidingSpots[4], allHidingSpots[5], allHidingSpots[6]];
+    // Embaralhamento variado por fase + leve variação para nunca repetir sempre os mesmos lugares!
+    const pool = allHidingSpots.map((sp) => ({
+      id: sp.id,
+      x: sp.x,
+      y: sp.y,
+      litSince: 0
+    }));
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = pool[i];
+      pool[i] = pool[j];
+      pool[j] = tmp;
     }
+    const currentSpots = pool.slice(0, totalMoedas);
 
-    // HTML das Moedas e dos Objetos de Sobreposição (Tampando a Moeda)
-    const coinsHtml = currentSpots.map((spot, idx) => {
-      let occludeHtml = "";
-      if (spot.occlude === "jar") {
-        occludeHtml = `<div style="position:absolute; left:${spot.x - 3}%; top:${spot.y - 2}%; width:30px; height:34px; background:radial-gradient(circle at 40% 35%, #78350f, #271306); border-radius:50% 50% 40% 40%; box-shadow:0 3px 6px rgba(0,0,0,0.65); pointer-events:none; z-index:4;"></div>`;
-      } else if (spot.occlude === "bowl") {
-        occludeHtml = `<div style="position:absolute; left:${spot.x + 1}%; top:${spot.y + 1}%; width:28px; height:20px; background:radial-gradient(circle at 50% 30%, #92400e, #3e1602); border-radius:25% 25% 60% 60%; box-shadow:0 2px 5px rgba(0,0,0,0.65); pointer-events:none; z-index:4;"></div>`;
-      } else if (spot.occlude === "straw") {
-        occludeHtml = `<div style="position:absolute; left:${spot.x - 2}%; top:${spot.y - 2}%; width:34px; height:22px; background:repeating-linear-gradient(45deg, #d97706 0px, #b45309 3px, transparent 3px, transparent 7px); pointer-events:none; z-index:4;"></div>`;
-      } else if (spot.occlude === "shadow") {
-        occludeHtml = `<div style="position:absolute; left:${spot.x - 4}%; top:${spot.y - 3}%; width:36px; height:26px; background:radial-gradient(circle, rgba(15,10,6,0.85) 0%, transparent 80%); pointer-events:none; z-index:4;"></div>`;
-      }
-
-      return `
-        <!-- Moeda Dracma Bíblica #${idx + 1} -->
-        <div id="dracma-coin-${idx}" class="dracma-coin-item" data-idx="${idx}" data-x="${spot.x}" data-y="${spot.y}" style="position:absolute; left:${spot.x}%; top:${spot.y}%; transform:translate(-50%, -50%); width:46px; height:46px; cursor:pointer; z-index:3; display:flex; align-items:center; justify-content:center; touch-action:none;">
-          <div class="dracma-coin-inner" style="width:100%; height:100%; border-radius:50%; background:radial-gradient(circle at 35% 35%, #fffbeb 0%, #fde047 30%, #eab308 70%, #92400e 100%); border:2.5px solid #ffffff; box-shadow:0 0 16px rgba(253, 224, 71, 0.9), 0 4px 10px rgba(0,0,0,0.8); display:flex; align-items:center; justify-content:center; color:#78350f; font-weight:900; font-size:22px; text-shadow:0 1px 2px rgba(255,255,255,0.8); user-select:none; transition:all 0.4s ease;">
-            🪙
-          </div>
-          <!-- Partícula de Brilho Sutil -->
-          <div class="dracma-sparkle" style="position:absolute; inset:-8px; border-radius:50%; background:radial-gradient(circle, rgba(253,224,71,0.5) 0%, transparent 70%); pointer-events:none; animation:alivePulseDracma 1.8s ease-in-out infinite;"></div>
+    // HTML limpo das Dracmas (SEM pedrinhas/objetos falsos na frente!)
+    const coinsHtml = currentSpots.map((spot, idx) => `
+      <div id="dracma-coin-${idx}" class="dracma-coin-item" data-idx="${idx}" data-x="${spot.x}" data-y="${spot.y}" style="position:absolute; left:${spot.x}%; top:${spot.y}%; transform:translate(-50%, -50%); width:${coinSizePx}px; height:${coinSizePx}px; cursor:pointer; z-index:3; display:flex; align-items:center; justify-content:center; touch-action:none; transition:transform 0.15s ease, filter 0.15s ease;">
+        <div class="dracma-coin-inner" style="width:100%; height:100%; border-radius:50%; background:radial-gradient(circle at 35% 35%, #fffbeb 0%, #fde047 32%, #eab308 72%, #92400e 100%); border:2px solid #ffffff; box-shadow:0 0 12px rgba(253, 224, 71, 0.85), 0 3px 8px rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; color:#78350f; font-weight:900; font-size:${coinFontPx}px; user-select:none;">
+          🪙
         </div>
-        <!-- Objeto de Sobreposição (Tampando Parcialmente a Moeda) -->
-        ${occludeHtml}
-      `;
-    }).join("");
+      </div>
+    `).join("");
 
     container.innerHTML = `
       <style>
-        @keyframes alivePulseDracma {
-          0%, 100% { transform:scale(1); opacity:0.6; }
-          50% { transform:scale(1.25); opacity:1; }
-        }
         @keyframes dracmaFoundBurst {
           0% { transform:translate(-50%, -50%) scale(1); opacity:1; }
-          40% { transform:translate(-50%, -80px) scale(1.8); opacity:1; filter:brightness(1.5); }
-          100% { transform:translate(-50%, -130px) scale(2.2); opacity:0; }
+          40% { transform:translate(-50%, -76px) scale(1.75); opacity:1; filter:brightness(1.5); }
+          100% { transform:translate(-50%, -125px) scale(2.1); opacity:0; }
         }
         @keyframes lampFlamePulse {
-          0%, 100% { transform:scale(1); filter:drop-shadow(0 0 14px rgba(253,224,71,0.95)); }
-          50% { transform:scale(1.12); filter:drop-shadow(0 0 22px rgba(245,158,11,1)); }
+          0%, 100% { transform:scale(1); filter:drop-shadow(0 0 12px rgba(253,224,71,0.95)); }
+          50% { transform:scale(1.10); filter:drop-shadow(0 0 20px rgba(245,158,11,1)); }
         }
       </style>
       <div style="position:relative; width:100%; height:100%; overflow:hidden; user-select:none; touch-action:none; background:#120b06;">
-        <!-- 0. IMAGEM OFICIAL 3D PIXAR DO AMBIENTE BÍBLICO (A MULHER, A CASA E O CHÃO COM VASOS) -->
+        <!-- 0. IMAGEM OFICIAL 3D PIXAR DO AMBIENTE BÍBLICO -->
         <img src="./2_ASSETS_UI_BOTOES/fundo_dracma_perdida_3d.jpg?v=105" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none; z-index:1;" alt="Cenário 3D A Dracma Perdida" loading="eager" decoding="async">
 
-        <!-- 1. CAMADA DE MOEDAS E OBJETOS DE SOBREPOSIÇÃO -->
-        <div id="dracmas-layer" style="position:absolute; inset:0; z-index:3;">
+        <!-- 1. CAMADA DE DRACMAS LIMPAS (SEM PEDRAS NA FRENTE) -->
+        <div id="dracmas-layer" style="position:absolute; inset:0; z-index:3; pointer-events:none;">
           ${coinsHtml}
         </div>
 
-        <!-- 2. CANVAS DE ESCURIDÃO COM RECORTE DA LUZ DA LAMPARINA -->
+        <!-- 2. CANVAS DE ESCURIDÃO COM FOCO DE LUZ ABERTO AO LADO DO DEDINHO -->
         <canvas id="dracma-canvas" style="position:absolute; inset:0; width:100%; height:100%; z-index:5; pointer-events:auto; touch-action:none; transition:opacity 0.8s ease;"></canvas>
 
-        <!-- 3. ÍCONE DA LAMPARINA BÍBLICA FLUTUANTE (COMEÇA APAGADINHA ENQUANTO O VOVÔ EXPLICA!) -->
-        <div id="dracma-lamparina-glow" style="position:absolute; width:68px; height:68px; margin-left:-34px; margin-top:-34px; pointer-events:none; z-index:6; display:flex; align-items:center; justify-content:center; opacity:0.42; filter:grayscale(0.9) brightness(0.6); transition:opacity 0.45s ease, filter 0.45s ease, transform 0.05s ease-out;">
-          <span style="font-size:36px; transform:translateY(-4px);">🪔</span>
+        <!-- 3. ANEL DE APOIO DO DEDINHO (ONDE A CRIANÇA ENCOSTA) -->
+        <div id="dracma-finger-ring" style="position:absolute; width:38px; height:38px; margin-left:-19px; margin-top:-19px; border-radius:50%; border:2px dashed rgba(253,224,71,0.55); background:rgba(253,224,71,0.10); pointer-events:none; z-index:6; opacity:0; transition:opacity 0.25s ease;"></div>
+
+        <!-- 4. ÍCONE DA LAMPARINA ENTRE O DEDO E O FOCO (SEM TAMPAR O CENTRO DO FOCO DE LUZ!) -->
+        <div id="dracma-lamparina-glow" style="position:absolute; width:54px; height:54px; margin-left:-27px; margin-top:-27px; pointer-events:none; z-index:7; display:flex; align-items:center; justify-content:center; opacity:0.42; filter:grayscale(0.9) brightness(0.6); transition:opacity 0.45s ease, filter 0.45s ease;">
+          <span style="font-size:30px;">🪔</span>
         </div>
 
-        <!-- 4. CONTADOR OFICIAL DE DRACMAS ENCONTRADAS -->
-        <div style="position:absolute; top:18px; left:18px; background:rgba(18, 11, 6, 0.88); border:2.5px solid #fde047; padding:8px 18px; border-radius:999px; color:#fde047; font-weight:900; font-size:18px; z-index:10; box-shadow:0 6px 16px rgba(0,0,0,0.75); display:flex; align-items:center; gap:8px;">
-          <span style="font-size:22px;">🪙</span> <span id="dracmas-count">0</span> / ${totalMoedas}
+        <!-- 5. CONTADOR OFICIAL DE DRACMAS ENCONTRADAS -->
+        <div style="position:absolute; top:14px; left:14px; background:rgba(18, 11, 6, 0.88); border:2.5px solid #fde047; padding:6px 15px; border-radius:999px; color:#fde047; font-weight:900; font-size:17px; z-index:10; box-shadow:0 6px 16px rgba(0,0,0,0.75); display:flex; align-items:center; gap:7px; pointer-events:none;">
+          <span style="font-size:20px;">🪙</span> <span id="dracmas-count">0</span> / ${totalMoedas}
         </div>
 
-        <!-- 5. CRACHÁ DE NÍVEL & FOCO DA LAMPARINA -->
-        <div style="position:absolute; top:18px; right:18px; background:rgba(18, 11, 6, 0.88); border:2px solid #ca8a04; padding:6px 14px; border-radius:999px; color:#fef08a; font-weight:800; font-size:13px; z-index:10; box-shadow:0 4px 12px rgba(0,0,0,0.65);">
-          💡 FOCO FASE ${phase}
+        <!-- 6. CRACHÁ DE NÍVEL & FOCO DA LAMPARINA -->
+        <div style="position:absolute; top:14px; right:14px; background:rgba(18, 11, 6, 0.88); border:2px solid #ca8a04; padding:6px 13px; border-radius:999px; color:#fef08a; font-weight:800; font-size:12.5px; z-index:10; box-shadow:0 4px 12px rgba(0,0,0,0.65); pointer-events:none;">
+          💡 FOCO FASE ${pNum}
         </div>
 
-        <!-- 6. DICA VISUAL ANIMADA EM TELA (ORIENTAÇÃO DA CRIANÇA) -->
-        <div id="dracma-instruction-tip" style="position:absolute; bottom:24px; left:50%; transform:translateX(-50%); background:rgba(18, 11, 6, 0.88); border:2px solid #ca8a04; padding:8px 20px; border-radius:999px; color:#fde047; font-weight:800; font-size:14px; z-index:10; box-shadow:0 4px 14px rgba(0,0,0,0.7); pointer-events:none; transition:all 0.5s ease; white-space:nowrap;">
+        <!-- 7. DICA VISUAL (SOME LOGO AO MOVER PARA NÃO TAMPAR AS MOEDAS DE BAIXO!) -->
+        <div id="dracma-instruction-tip" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(18, 11, 6, 0.90); border:2px solid #ca8a04; padding:7px 16px; border-radius:999px; color:#fde047; font-weight:800; font-size:13px; z-index:10; box-shadow:0 4px 14px rgba(0,0,0,0.7); pointer-events:none; transition:opacity 0.4s ease; white-space:nowrap;">
           🎙️ Ouça o Vovô explicar...
         </div>
       </div>
@@ -3200,79 +3198,123 @@
 
     const canvas = document.getElementById("dracma-canvas");
     const lampGlow = document.getElementById("dracma-lamparina-glow");
+    const fingerRing = document.getElementById("dracma-finger-ring");
     const countEl = document.getElementById("dracmas-count");
     const ctx = canvas.getContext("2d");
 
-    canvas.width = container.clientWidth || window.innerWidth;
-    canvas.height = container.clientHeight || (window.innerHeight - 60);
+    function syncCanvasDimensions() {
+      const w = container.clientWidth || window.innerWidth || 360;
+      const h = container.clientHeight || (window.innerHeight - 60) || 640;
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
+    }
+    syncCanvasDimensions();
 
-    let lightX = canvas.width / 2;
-    let lightY = canvas.height * 0.65;
+    let fingerX = canvas.width * 0.62;
+    let fingerY = canvas.height * 0.68;
+    let lightX = canvas.width * 0.44;
+    let lightY = canvas.height * 0.60;
+
+    // Calcula a posição do FOCO DE LUZ AO LADO DO DEDINHO (sem o dedo/mão tampar o foco e alcançando 100% dos cantos!)
+    function computeLightOffsetFromFinger(fx, fy) {
+      const W = canvas.width || 360;
+      const H = canvas.height || 640;
+      const tRight = Math.max(0, Math.min(1, (fx - W * 0.66) / (W * 0.27)));
+      const tBot = Math.max(0, Math.min(1, (fy - H * 0.80) / (H * 0.16)));
+
+      let dx = -70 * (1 - tRight) + 8 * tRight;
+      const dyBase = -44 * (1 - tRight) + (-72) * tRight;
+      let dy = dyBase * (1 - tBot) + (-12) * tBot;
+
+      const dist = Math.hypot(dx, dy);
+      if (dist < 66) {
+        const scale = 66 / Math.max(1, dist);
+        dx *= scale;
+        dy *= scale;
+      }
+
+      const lx = Math.max(14, Math.min(W - 14, fx + dx));
+      const ly = Math.max(14, Math.min(H - 14, fy + dy));
+      return { lx, ly };
+    }
+
+    function updateLampIcons(fx, fy, lx, ly) {
+      if (fingerRing) {
+        fingerRing.style.left = fx + "px";
+        fingerRing.style.top = fy + "px";
+      }
+      if (lampGlow) {
+        // Posiciona a lamparina 🪔 na borda entre o dedo e o foco, deixando o círculo de luz 100% livre para enxergar!
+        const iconX = fx + (lx - fx) * 0.34;
+        const iconY = fy + (ly - fy) * 0.34;
+        lampGlow.style.left = iconX + "px";
+        lampGlow.style.top = iconY + "px";
+      }
+    }
 
     // Casa na penumbra com a lamparina AINDA APAGADA (enquanto o Vovô fala!)
-    function renderUnlitRoom(lx, ly) {
-      if (lampGlow) {
-        lampGlow.style.left = lx + "px";
-        lampGlow.style.top = ly + "px";
-      }
+    function renderUnlitRoom() {
+      syncCanvasDimensions();
+      const pos = computeLightOffsetFromFinger(fingerX, fingerY);
+      lightX = pos.lx;
+      lightY = pos.ly;
+      updateLampIcons(fingerX, fingerY, lightX, lightY);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.globalCompositeOperation = "source-over";
-      ctx.fillStyle = "rgba(14, 9, 6, 0.92)";
+      ctx.fillStyle = "rgba(12, 8, 5, 0.95)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
-    // Desenha a escuridão bíblica suave com máscara de luz da lamparina ACESA
-    function renderDarkness(lx, ly) {
-      lightX = lx;
-      lightY = ly;
-
-      // Move a lamparina guia
-      if (lampGlow) {
-        lampGlow.style.left = lx + "px";
-        lampGlow.style.top = ly + "px";
-      }
+    // Desenha a escuridão bíblica com o foco de luz aberto ao lado do dedinho
+    function renderDarkness(fx, fy) {
+      syncCanvasDimensions();
+      fingerX = fx;
+      fingerY = fy;
+      const pos = computeLightOffsetFromFinger(fx, fy);
+      lightX = pos.lx;
+      lightY = pos.ly;
+      updateLampIcons(fx, fy, lightX, lightY);
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // 1. Escuridão suave de noite bíblica (mantém silhueta atmosférica)
+      // 1. Escuridão noturna fechada para esconder 100% as dracmas fora do foco
       ctx.globalCompositeOperation = "source-over";
-      ctx.fillStyle = "rgba(14, 9, 6, 0.94)";
+      ctx.fillStyle = "rgba(12, 8, 5, 0.965)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // 2. Furo de Luz da Lamparina com recorte e transição orgânica
+      // 2. Furo limpo de luz da lamparina ao lado do dedo
       ctx.globalCompositeOperation = "destination-out";
-      const radG = ctx.createRadialGradient(lx, ly, raioLuz * 0.15, lx, ly, raioLuz);
+      const radG = ctx.createRadialGradient(lightX, lightY, raioLuz * 0.22, lightX, lightY, raioLuz);
       radG.addColorStop(0, "rgba(0,0,0,1)");
-      radG.addColorStop(0.65, "rgba(0,0,0,0.95)");
-      radG.addColorStop(0.85, "rgba(0,0,0,0.55)");
+      radG.addColorStop(0.70, "rgba(0,0,0,0.96)");
+      radG.addColorStop(0.88, "rgba(0,0,0,0.55)");
       radG.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = radG;
       ctx.beginPath();
-      ctx.arc(lx, ly, raioLuz, 0, Math.PI * 2);
+      ctx.arc(lightX, lightY, raioLuz, 0, Math.PI * 2);
       ctx.fill();
 
-      // 3. Auréola de luz âmbar dourada ao redor do foco da lamparina
+      // 3. Auréola dourada suave + fio de luz sutil saindo da lamparina até o foco
       ctx.globalCompositeOperation = "source-over";
-      const glowG = ctx.createRadialGradient(lx, ly, raioLuz * 0.45, lx, ly, raioLuz * 1.15);
-      glowG.addColorStop(0, "rgba(253, 224, 71, 0.20)");
+      const glowG = ctx.createRadialGradient(lightX, lightY, raioLuz * 0.45, lightX, lightY, raioLuz * 1.16);
+      glowG.addColorStop(0, "rgba(253, 224, 71, 0.16)");
       glowG.addColorStop(0.65, "rgba(245, 158, 11, 0.08)");
       glowG.addColorStop(1, "rgba(245, 158, 11, 0)");
       ctx.fillStyle = glowG;
       ctx.beginPath();
-      ctx.arc(lx, ly, raioLuz * 1.15, 0, Math.PI * 2);
+      ctx.arc(lightX, lightY, raioLuz * 1.16, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // Inicia com a lamparina APAGADA enquanto o Vovô fala!
-    renderUnlitRoom(lightX, lightY);
+    renderUnlitRoom();
 
-    // FUNÇÃO QUE COLETA A MOEDA (BLOQUEADA ENQUANTO O VOVÔ FALA!)
-    function collectCoin(coinEl, idx) {
+    function collectCoin(coinEl) {
       if (isInteractionLocked) return;
       if (!coinEl || coinEl.dataset.found === "true") return;
       coinEl.dataset.found = "true";
       coinEl.style.zIndex = "25";
-      coinEl.style.pointerEvents = "none";
       coinEl.style.animation = "dracmaFoundBurst 0.65s cubic-bezier(0.2, 0.9, 0.3, 1) forwards";
 
       TronoAudio.play("coin");
@@ -3280,76 +3322,31 @@
 
       if (countEl) {
         countEl.textContent = moedasAchadas;
-        countEl.style.transform = "scale(1.4)";
-        setTimeout(() => { if (countEl) countEl.style.transform = "scale(1)"; }, 250);
+        countEl.style.transform = "scale(1.38)";
+        setTimeout(() => { if (countEl) countEl.style.transform = "scale(1)"; }, 240);
       }
 
-      // Vitória quando encontrar todas as moedas da fase!
       if (moedasAchadas >= totalMoedas) {
-        // Revela a casa toda iluminada por 1 segundo!
+        if (window._dracmaCheckInterval) {
+          clearInterval(window._dracmaCheckInterval);
+          window._dracmaCheckInterval = null;
+        }
         setTimeout(() => {
           if (canvas) canvas.style.opacity = "0";
           if (lampGlow) lampGlow.style.display = "none";
+          if (fingerRing) fingerRing.style.display = "none";
           TronoAudio.play("success");
-        }, 350);
+        }, 320);
 
-        setTimeout(triggerArcadeVictory, 1100);
+        setTimeout(triggerArcadeVictory, 1050);
       }
     }
 
-    // Clique direto nas moedas
-    currentSpots.forEach((_, idx) => {
-      const coin = document.getElementById(`dracma-coin-${idx}`);
-      if (coin) {
-        coin.addEventListener("click", (e) => {
-          e.stopPropagation();
-          collectCoin(coin, idx);
-        });
-      }
-    });
-
-    // MOVIMENTAÇÃO DA LUZ E TOQUE NA TELA (TOUCH / MOUSE — SÓ DEPOIS QUE O VOVÔ TERMINAR DE FALAR!)
-    function handlePointer(e) {
+    function evaluateBeamOverCoins(forceCollectIlluminated) {
       if (isInteractionLocked) return;
-      const rect = canvas.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      const lx = clientX - rect.left;
-      const ly = clientY - rect.top;
-
-      renderDarkness(lx, ly);
-
-      // Verificação de proximidade para coletar a moeda caso a criança toque na luz sobre ela
-      currentSpots.forEach((spot, idx) => {
-        const coin = document.getElementById(`dracma-coin-${idx}`);
-        if (!coin || coin.dataset.found === "true") return;
-
-        const coinPixelX = (spot.x / 100) * canvas.width;
-        const coinPixelY = (spot.y / 100) * canvas.height;
-
-        const dist = Math.hypot(lx - coinPixelX, ly - coinPixelY);
-        // Se a luz passou por cima da moeda e a criança tocou ou está sobre ela
-        if (dist <= Math.max(raioLuz * 0.75, 42)) {
-          // Destaca o brilho da moeda quando a luz está em cima
-          coin.style.filter = "brightness(1.4) drop-shadow(0 0 16px #fde047)";
-        } else {
-          coin.style.filter = "none";
-        }
-      });
-    }
-
-    canvas.addEventListener("mousemove", handlePointer);
-    canvas.addEventListener("touchmove", handlePointer, { passive: true });
-    canvas.addEventListener("pointermove", handlePointer);
-
-    // Toque direto no canvas: verifica se tocou em cima de uma moeda revelada pela luz
-    function handleCanvasTap(e) {
-      if (isInteractionLocked) return;
-      const rect = canvas.getBoundingClientRect();
-      const clientX = e.changedTouches ? e.changedTouches[0].clientX : (e.touches ? e.touches[0].clientX : e.clientX);
-      const clientY = e.changedTouches ? e.changedTouches[0].clientY : (e.touches ? e.touches[0].clientY : e.clientY);
-      const lx = clientX - rect.left;
-      const ly = clientY - rect.top;
+      const now = Date.now();
+      const collectRadius = Math.max(28, raioLuz * 0.64);
+      const glowRadius = Math.max(36, raioLuz * 0.86);
 
       currentSpots.forEach((spot, idx) => {
         const coin = document.getElementById(`dracma-coin-${idx}`);
@@ -3357,19 +3354,84 @@
 
         const coinPixelX = (spot.x / 100) * canvas.width;
         const coinPixelY = (spot.y / 100) * canvas.height;
-
-        const distToTouch = Math.hypot(lx - coinPixelX, ly - coinPixelY);
         const distToLight = Math.hypot(lightX - coinPixelX, lightY - coinPixelY);
 
-        // Se tocou perto da moeda E a moeda está dentro da área iluminada pela lamparina
-        if (distToTouch <= 46 || (distToTouch <= raioLuz && distToLight <= raioLuz)) {
-          collectCoin(coin, idx);
+        if (distToLight <= collectRadius) {
+          coin.style.filter = "brightness(1.45) drop-shadow(0 0 14px #fde047)";
+          coin.style.transform = "translate(-50%, -50%) scale(1.14)";
+          if (forceCollectIlluminated) {
+            collectCoin(coin);
+            return;
+          }
+          if (!spot.litSince) {
+            spot.litSince = now;
+          } else if (now - spot.litSince >= 140) {
+            collectCoin(coin);
+          }
+        } else if (distToLight <= glowRadius) {
+          spot.litSince = 0;
+          coin.style.filter = "brightness(1.25) drop-shadow(0 0 10px #fde047)";
+          coin.style.transform = "translate(-50%, -50%) scale(1.05)";
+          if (forceCollectIlluminated) {
+            collectCoin(coin);
+          }
+        } else {
+          spot.litSince = 0;
+          coin.style.filter = "none";
+          coin.style.transform = "translate(-50%, -50%) scale(1)";
         }
       });
     }
 
-    canvas.addEventListener("click", handleCanvasTap);
-    canvas.addEventListener("touchend", handleCanvasTap, { passive: true });
+    function extractCanvasPoint(e) {
+      const rect = canvas.getBoundingClientRect();
+      const pt = (e.touches && e.touches[0]) ? e.touches[0] : ((e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0] : e);
+      return {
+        fx: pt.clientX - rect.left,
+        fy: pt.clientY - rect.top
+      };
+    }
+
+    function handlePointer(e) {
+      if (isInteractionLocked) return;
+      if (!hasPlayerMovedLamp) {
+        hasPlayerMovedLamp = true;
+        if (fingerRing) fingerRing.style.opacity = "0.85";
+        const tip = document.getElementById("dracma-instruction-tip");
+        if (tip) tip.style.opacity = "0";
+      }
+      const { fx, fy } = extractCanvasPoint(e);
+      renderDarkness(fx, fy);
+      evaluateBeamOverCoins(false);
+    }
+
+    function handlePointerDownOrTap(e) {
+      if (isInteractionLocked) return;
+      if (!hasPlayerMovedLamp) {
+        hasPlayerMovedLamp = true;
+        if (fingerRing) fingerRing.style.opacity = "0.85";
+        const tip = document.getElementById("dracma-instruction-tip");
+        if (tip) tip.style.opacity = "0";
+      }
+      const { fx, fy } = extractCanvasPoint(e);
+      renderDarkness(fx, fy);
+      evaluateBeamOverCoins(true);
+    }
+
+    canvas.addEventListener("pointerdown", handlePointer);
+    canvas.addEventListener("pointermove", handlePointer);
+    canvas.addEventListener("touchstart", handlePointer, { passive: true });
+    canvas.addEventListener("touchmove", handlePointer, { passive: true });
+    canvas.addEventListener("mousemove", handlePointer);
+    canvas.addEventListener("click", handlePointerDownOrTap);
+    canvas.addEventListener("touchend", handlePointerDownOrTap, { passive: true });
+
+    // Intervalo leve (60ms) para coletar suavemente quando a criança segura o foco da lamparina sobre a dracma!
+    window._dracmaCheckInterval = setInterval(() => {
+      if (!isInteractionLocked && hasPlayerMovedLamp) {
+        evaluateBeamOverCoins(false);
+      }
+    }, 60);
 
     // TRAVA PEDAGÓGICA DO VOVÔ NÉSIO: SÓ ACENDE A LAMPARINA E LIBERA O JOGO QUANDO O VOVÔ TERMINA DE FALAR!
     window._arcadeUnlockGameAction = function() {
@@ -3382,16 +3444,19 @@
         lampGlow.style.filter = "none";
         lampGlow.style.animation = "lampFlamePulse 1.8s ease-in-out infinite";
       }
-      renderDarkness(lightX, lightY);
+      if (fingerRing) {
+        fingerRing.style.opacity = "0.75";
+      }
+      renderDarkness(fingerX, fingerY);
       const tip = document.getElementById("dracma-instruction-tip");
       if (tip) {
-        tip.textContent = "✨ Arraste a lamparina para iluminar o chão!";
+        tip.textContent = "🪔 Arraste o dedinho: a luz abre ao lado!";
         tip.style.color = "#ffffff";
         tip.style.background = "rgba(34, 197, 94, 0.92)";
         tip.style.borderColor = "#ffffff";
         setTimeout(() => {
           if (tip) tip.style.opacity = "0";
-        }, 2400);
+        }, 2200);
       }
     };
   }
@@ -3649,6 +3714,7 @@
     if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
     if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
     if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
+    if (window._dracmaCheckInterval) { clearInterval(window._dracmaCheckInterval); window._dracmaCheckInterval = null; }
     if (window._daviKeyHandler) { window.removeEventListener("keydown", window._daviKeyHandler); window._daviKeyHandler = null; }
 
     const currentPhaseNum = Math.max(1, phase || 1);
@@ -4390,6 +4456,7 @@
     if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
     if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
     if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
+    if (window._dracmaCheckInterval) { clearInterval(window._dracmaCheckInterval); window._dracmaCheckInterval = null; }
 
     const pNum = Math.min(15, Math.max(1, Number(phase) || 1));
     const diffT = (pNum - 1) / 14; // 0.0 na Fase 1 -> 1.0 na Fase 15
