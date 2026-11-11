@@ -17,7 +17,9 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v127.0';
+        const CURRENT_VER = 'v128.0';
+        window._appBootTs = Date.now();
+        window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
         const explicitClear = urlParams.get('limpar') === '1' || urlParams.get('reset') === '1';
 
@@ -36,12 +38,13 @@
           }
         }
 
-        // Checagem ativa da versão real no servidor (auto-atualiza sozinho sem precisar de ?limpar=1)
+        // Checagem rápida da versão apenas nos primeiros 3.5s da abertura (NUNCA recarrega no meio de um jogo!)
         fetch('./version.json?t=' + Date.now(), { cache: 'no-store' })
           .then(r => r.ok ? r.json() : null)
           .then(data => {
             if (data && data.version && data.version !== CURRENT_VER) {
-              if (sessionStorage.getItem('trono_ver_sync') !== data.version) {
+              const elapsed = Date.now() - (window._appBootTs || 0);
+              if (!window._userEnteredModule && elapsed < 3500 && sessionStorage.getItem('trono_ver_sync') !== data.version) {
                 sessionStorage.setItem('trono_ver_sync', data.version);
                 sessionStorage.setItem('trono_skip_intro_once', '1');
                 const p1 = ('caches' in window) ? caches.keys().then(ks => Promise.all(ks.map(k => caches.delete(k)))) : Promise.resolve();
@@ -55,21 +58,17 @@
           .catch(() => {});
       } catch (e) {}
     })();
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=127.0', { updateViaCache: 'none' }).then(reg => {
-          reg.update().catch(() => {});
-        }).catch(() => {});
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-          // Trava absoluta anti-loop: no máximo 1 único reload por versão!
-          if (sessionStorage.getItem('trono_sw_reloaded') !== 'v127.0') {
-            sessionStorage.setItem('trono_sw_reloaded', 'v127.0');
-            sessionStorage.setItem('trono_skip_intro_once', '1');
-            window.location.replace(window.location.pathname);
-          }
-        });
-      });
-    }
+    window._registerAppSW = function() {
+      if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
+      window._swRegisteredOnce = true;
+      navigator.serviceWorker.register('./sw.js?v=128.0', { updateViaCache: 'none' }).then(reg => {
+        reg.update().catch(() => {});
+      }).catch(() => {});
+    };
+    window.addEventListener('load', () => {
+      // Registra o Service Worker somente após a vinheta/abertura estabilizar (zero concorrência com o vídeo!)
+      setTimeout(() => { window._registerAppSW(); }, 18000);
+    });
   </script>
   <style>
     * {
@@ -96,8 +95,8 @@
       justify-content: center;
       align-items: center;
       width: 100vw;
-      height: 100dvh;
       height: 100vh;
+      height: 100dvh;
       margin: 0;
       padding: 0;
       overflow: hidden;
@@ -109,8 +108,8 @@
       position: relative;
       width: 100%;
       max-width: 450px;
-      height: 100dvh;
       height: 100vh;
+      height: 100dvh;
       max-height: 100dvh;
       background-image: url('./2_ASSETS_UI_BOTOES/ui_asset_01.jpg');
       background-size: cover;
@@ -1769,16 +1768,15 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="preload" as="image" href="./2_ASSETS_UI_BOTOES/fundo_pesca_maravilhosa_3d.jpg?v=95">
 </head>
 <body>
 
 <div id="app-shell">
   <!-- TELA DE ABERTURA CINEMATOGRÁFICA OFICIAL - VINHETA DO CANAL (17s) - 100% ROXA SEM MARGEM AMARELA -->
     <div id="app-opening-splash" style="position:fixed; inset:0; z-index:999999; background:#000000; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px; box-sizing:border-box; user-select:none; touch-action:manipulation; transition:opacity 0.5s ease;">
-    <!-- Logo 3D Oficial no Topo com brilho suave -->
+    <!-- Logo 3D Oficial no Topo com brilho suave (acelerado por GPU sem repaint de drop-shadow) -->
     <div style="margin-bottom:14px; display:flex; justify-content:center; align-items:center;">
-      <img src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=113" style="width:190px; max-width:70vw; height:auto; object-fit:contain; filter:drop-shadow(0 4px 18px rgba(0,0,0,0.55)); animation:introLogoFloat 2.6s ease-in-out infinite;" alt="Trono da Promessa EBD">
+      <img src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=128" style="width:190px; max-width:70vw; height:auto; object-fit:contain; will-change:transform; animation:introLogoFloat 2.6s ease-in-out infinite;" alt="Trono da Promessa EBD">
     </div>
 
     <!-- Bloco da Vinheta (16:9) - Sem margem amarela! Cantos arredondados com sombra profunda -->
@@ -1849,6 +1847,9 @@
       window.dismissIntroVideo = function(force) {
         if (window._introDismissed) return;
         window._introDismissed = true;
+        if (typeof window._registerAppSW === 'function') {
+          setTimeout(function() { window._registerAppSW(); }, 1500);
+        }
         if (video) {
           try { video.pause(); } catch(e) {}
         }
@@ -1908,7 +1909,7 @@
   <!-- TOPO COM AMPLO RESPIRO: LOGO EBD 3D EM CIMA + 2 BOLINHAS REDONDINHAS NOS CANTINHOS! -->
   <header class="topbar">
     <div class="brand-logo-wrap" onclick="goHome(); window.handleDevLogoTap();">
-      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=66" alt="Trono da Promessa EBD" class="brand-logo">
+      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=128" alt="Trono da Promessa EBD" class="brand-logo">
     </div>
 
     <div class="topbar-controls-row">
@@ -2583,28 +2584,21 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=127.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=127.0"></script>
+<script src="ebd_modulos_educativos.js?v=128.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=128.0"></script>
 <script>
-  // LAZY-LOAD INTELIGENTE DE PINTURAS (6.3 MB)
-  // Reduz em 90% o peso inicial do app, abrindo em menos de 1 segundo!
+  // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
+  // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
   window.loadPinturasBase64Async = function(callback) {
-    if (window.PINTURAS_B64) { if (callback) callback(); return; }
+    if (window.PINTURAS_B64 || window.location.protocol !== 'file:') {
+      if (callback) callback();
+      return;
+    }
     const s = document.createElement('script');
     s.src = 'pinturas_base64.js?v=78.0';
     s.onload = () => { if (callback) callback(); };
     document.head.appendChild(s);
   };
-  // Carrega em segundo plano com prioridade ociosa 4s após o app abrir
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => window.loadPinturasBase64Async(), { timeout: 6000 });
-      } else {
-        window.loadPinturasBase64Async();
-      }
-    }, 4000);
-  });
 </script>
 <script>
 // ============================================================================
@@ -5710,7 +5704,7 @@ function renderSleepCorner() {
 }
 
 // Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
-document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=79.0';
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=128';
 if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
 if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
 if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');

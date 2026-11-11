@@ -1,5 +1,3 @@
-/*
-  Cache-Control: public, max-age=0, must-revalidate
 /index.html
   Cache-Control: no-cache, no-store, must-revalidate
 /version.json
@@ -10,3 +8,13 @@
   Cache-Control: no-cache, no-store, must-revalidate
 /ebd_modulos_educativos.js
   Cache-Control: no-cache, no-store, must-revalidate
+/2_ASSETS_UI_BOTOES/*
+  Cache-Control: public, max-age=86400
+/6_ASSETS_AUDIO/*
+  Cache-Control: public, max-age=86400
+/4_ASSETS_PINTURA/*
+  Cache-Control: public, max-age=86400
+/3_ASSETS_QUEBRA_CABECA/*
+  Cache-Control: public, max-age=86400
+/*
+  Cache-Control: public, max-age=3600

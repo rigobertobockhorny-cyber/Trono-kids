@@ -482,6 +482,7 @@
         inset: 0 !important;
         width: 100vw !important;
         height: 100vh !important;
+        height: 100dvh !important;
         z-index: 9999999 !important;
         display: none !important;
         flex-direction: column !important;
@@ -564,6 +565,7 @@
         flex: 1;
         width: 100%;
         height: calc(100vh - 60px);
+        height: calc(100dvh - 60px);
         position: relative;
         display: flex;
         align-items: center;
@@ -1286,6 +1288,7 @@
   let _vovoAlreadySpokeInSession = false;
 
   window.openTronoArcadeGame = function(gameId) {
+    window._userEnteredModule = true;
     try { history.pushState({ screen: "arcade-stage", gameId: gameId }, ""); } catch(e){}
     TronoAudio.init();
     TronoAudio.play("click");
@@ -2731,7 +2734,7 @@
         <!-- PALCO 3D EM TELA CHEIA (SALÃO DO TRONO) -->
         <div class="davi-palace-stage" id="davi-palace-stage">
           <!-- Fundo Real 3D Pixar do Palácio de Saul -->
-          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=123" class="davi-palace-bg" alt="Palácio Real de Saul 3D"/>
+          <img src="./2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=128" class="davi-palace-bg" alt="Palácio Real de Saul 3D"/>
           <div class="davi-palace-vignette"></div>
 
           <!-- PLACAR VISUAL DAS 3 LANÇAS DA FASE (3 VERDINHOS = PASSA DE FASE! ZERO TEXTO!) -->
@@ -3605,19 +3608,12 @@
 
   // Substitui a abertura do portal para exigir a trava parental
   window.openTeacherAndFamilyPortal = function() {
+    window._userEnteredModule = true;
     TronoAudio.play("click");
     showParentalGate(() => {
       if (typeof showScreen === "function") showScreen("screen-teacher-portal");
       if (typeof renderTeacherPortalScreen === "function") renderTeacherPortalScreen();
     });
   };
-
-  // Garante que o filterBar da Sala de Jogos sempre mostre '17 JOGOS EM TELA CHEIA'
-  setInterval(() => {
-    const filterBar = document.getElementById("games-hub-filter-bar");
-    if (filterBar && filterBar.textContent.includes("10 JOGOS")) {
-      filterBar.innerHTML = `<span style="font-size:12.5px; font-weight:900; color:#fde047; padding:2px 8px;">SALA DE JOGOS — 17 JOGOS EM TELA CHEIA</span>`;
-    }
-  }, 500);
 
 })();

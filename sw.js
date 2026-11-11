@@ -1,29 +1,13 @@
-const CACHE_VERSION = 'vortice-trono-ebd-v127.0';
-const ASSETS_TO_CACHE = [
+const CACHE_VERSION = 'vortice-trono-ebd-v128.0';
+const CORE_SHELL = [
   './',
-  './index.html',
-  './version.json',
-  './ebd_super_arcade_audiovisual.js?v=127.0',
-  './ebd_modulos_educativos.js?v=127.0',
-  './2_ASSETS_UI_BOTOES/fundo_palacio_saul_3d.jpg?v=123',
-  './2_ASSETS_UI_BOTOES/rei_saul_centro_v124.png?v=124',
-  './2_ASSETS_UI_BOTOES/lanca_frontal_v123.png?v=123',
-  './2_ASSETS_UI_BOTOES/davi_costas_v123.png?v=123',
-  './2_ASSETS_UI_BOTOES/btn_jogo_04_lanca_saul.svg?v=112',
-  './2_ASSETS_UI_BOTOES/nuvem_branca.svg?v=110',
-  './2_ASSETS_UI_BOTOES/pombinha_branca_voando.svg?v=110',
-  './2_ASSETS_UI_BOTOES/arca_de_noe_labirinto.svg?v=110',
-  './manifest.json',
-  './2_ASSETS_UI_BOTOES/icon_512_oficial.png',
-  './2_ASSETS_UI_BOTOES/icon_192_oficial.png',
-  './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png',
-  './2_ASSETS_UI_BOTOES/logo_oficial_kids_v50.png'
+  './index.html'
 ];
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_VERSION).then((cache) => cache.addAll(ASSETS_TO_CACHE).catch(() => {}))
+    caches.open(CACHE_VERSION).then((cache) => cache.addAll(CORE_SHELL).catch(() => {}))
   );
 });
 
@@ -43,15 +27,38 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
-  const url = event.request.url.toLowerCase();
 
-  // version.json NUNCA vem de cache
+  // 1. NUNCA intercepta streaming de vídeo/áudio (.mp4, .mp3, .wav) nem Range requests (206)!
+  // Deixa o decoder nativo C++ do celular tocar a vinheta e os áudios sem zero engasgo!
+  const url = event.request.url.toLowerCase();
+  if (event.request.headers.has('range') || /\.(mp4|mp3|wav|ogg|webm)(\?|$)/i.test(url)) {
+    return;
+  }
+
+  // 2. version.json sempre direto da rede sem cache
   if (url.includes('version.json')) {
     event.respondWith(fetch(event.request, { cache: 'no-store' }));
     return;
   }
 
-  // NETWORK-FIRST UNIVERSAL QUANDO ONLINE (Garante 100% de atualização imediata no celular; cache só se cair a internet!)
+  // 3. Imagens, ícones e fontes (.png, .jpg, .svg, .webp, .woff2): CACHE-FIRST ULTRA-RÁPIDO!
+  if (/\.(png|jpg|jpeg|webp|svg|gif|ico|woff2?|ttf)(\?|$)/i.test(url)) {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        if (cached) return cached;
+        return fetch(event.request).then((netResp) => {
+          if (netResp && netResp.status === 200) {
+            const clone = netResp.clone();
+            caches.open(CACHE_VERSION).then((c) => c.put(event.request, clone)).catch(() => {});
+          }
+          return netResp;
+        });
+      })
+    );
+    return;
+  }
+
+  // 4. HTML, JS e CSS: NETWORK-FIRST para receber qualquer atualização de código na hora!
   event.respondWith(
     fetch(event.request, { cache: 'no-store' })
       .then((netResp) => {
