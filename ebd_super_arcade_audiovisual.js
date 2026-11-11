@@ -216,24 +216,54 @@
       }
     },
 
+    _vovoCallId: 0,
+    _vovoExactDurationsMs: {
+      "vovo_jogo_01.mp3": 5940,
+      "vovo_jogo_02.mp3": 7290,
+      "vovo_jogo_03.mp3": 5940,
+      "vovo_jogo_04.mp3": 12590,
+      "vovo_jogo_05.mp3": 5110,
+      "vovo_jogo_06.mp3": 5760,
+      "vovo_jogo_07.mp3": 6460,
+      "vovo_jogo_08.mp3": 5570,
+      "vovo_jogo_09.mp3": 5250,
+      "vovo_jogo_10.mp3": 6460,
+      "vovo_jogo_11.mp3": 5530,
+      "vovo_jogo_12.mp3": 7060,
+      "vovo_jogo_13.mp3": 4780,
+      "vovo_jogo_14.mp3": 5900,
+      "vovo_jogo_15.mp3": 6040,
+      "vovo_jogo_16.mp3": 6460,
+      "vovo_jogo_17.mp3": 6410,
+      "vovo_vitoria.mp3": 4640
+    },
+
     falarVovo(audioFile, onFinish) {
       if (window._arcadeAudioMuted) {
         if (typeof onFinish === 'function') onFinish();
         return;
       }
       this.init();
+      const callId = ++this._vovoCallId;
+
       if (this.vovoPlayer) {
         try {
-          this.vovoPlayer.pause();
           this.vovoPlayer.onended = null;
           this.vovoPlayer.onerror = null;
+          this.vovoPlayer.onloadedmetadata = null;
+          this.vovoPlayer.onabort = null;
+          this.vovoPlayer.onstalled = null;
+          this.vovoPlayer.pause();
         } catch (e) {}
       }
       if (this.vovoVictoryPlayer) {
         try {
-          this.vovoVictoryPlayer.pause();
           this.vovoVictoryPlayer.onended = null;
           this.vovoVictoryPlayer.onerror = null;
+          this.vovoVictoryPlayer.onloadedmetadata = null;
+          this.vovoVictoryPlayer.onabort = null;
+          this.vovoVictoryPlayer.onstalled = null;
+          this.vovoVictoryPlayer.pause();
         } catch (e) {}
       }
       if (this._vovoTimer) {
@@ -246,53 +276,67 @@
       }
       try {
         const isVictory = audioFile === "vovo_vitoria.mp3";
-        const player = (isVictory && this.vovoVictoryPlayer) ? this.vovoVictoryPlayer : (this.vovoPlayer || new Audio());
-        if (!isVictory || !player.src) {
+        // Usa instância limpa por chamada nos áudios de jogo para NUNCA disparar abort/stalled de troca de src!
+        const player = (isVictory && this.vovoVictoryPlayer) ? this.vovoVictoryPlayer : new Audio(`./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=126`);
+        if (!isVictory) {
+          this.vovoPlayer = player;
+        } else if (!player.src) {
           player.src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=126`;
         }
         player.muted = false;
         player.volume = 1.0;
         try { player.currentTime = 0; } catch (e) {}
 
+        const exactDurationMs = this._vovoExactDurationsMs[audioFile] || (isVictory ? 4640 : 8000);
         let finished = false;
-        const doFinish = () => {
-          if (!finished) {
-            finished = true;
-            this._pendingFinish = null;
-            if (this._vovoTimer) clearTimeout(this._vovoTimer);
-            this._vovoTimer = null;
-            player.onended = null;
-            player.onerror = null;
-            player.onloadedmetadata = null;
-            if (typeof onFinish === 'function') onFinish();
+
+        const doFinish = (forceNow) => {
+          if (finished || callId !== this._vovoCallId) return;
+          // Se chamado por timer mas o áudio do Vovô ainda está tocando ativamente antes do fim real, aguarda terminar!
+          if (!forceNow && !player.paused && !player.ended && player.currentTime > 0) {
+            const totalMs = (player.duration && isFinite(player.duration) && player.duration > 0.5)
+              ? Math.ceil(player.duration * 1000)
+              : exactDurationMs;
+            const playedMs = Math.floor(player.currentTime * 1000);
+            if (playedMs < totalMs - 150) {
+              this._vovoTimer = setTimeout(() => doFinish(true), (totalMs - playedMs) + 300);
+              return;
+            }
           }
+          finished = true;
+          this._pendingFinish = null;
+          if (this._vovoTimer) clearTimeout(this._vovoTimer);
+          this._vovoTimer = null;
+          player.onended = null;
+          player.onerror = null;
+          player.onloadedmetadata = null;
+          if (typeof onFinish === 'function') onFinish();
         };
-        this._pendingFinish = doFinish;
+        this._pendingFinish = () => doFinish(true);
 
-        player.onended = doFinish;
-        player.onerror = () => setTimeout(doFinish, 400);
-        player.onabort = () => setTimeout(doFinish, 400);
-        player.onstalled = () => {
-          if (!finished) setTimeout(doFinish, isVictory ? 2800 : 5000);
+        // Libera no EXATO instante em que o áudio termina de tocar até o fim!
+        player.onended = () => doFinish(true);
+        player.onerror = () => {
+          if (player.error) setTimeout(() => doFinish(true), 500);
         };
 
-        // Respeita 100% a duração real do áudio do Vovô (ex: vovo_jogo_04.mp3 tem 12.59s!)
+        // Timer exato calibrado pela duração real medida via ffprobe + margem de rede (NUNCA corta o Vovô no meio!)
         const applyExactDurationTimer = () => {
-          if (finished) return;
-          if (player.duration && isFinite(player.duration) && player.duration > 0.5) {
-            if (this._vovoTimer) clearTimeout(this._vovoTimer);
-            this._vovoTimer = setTimeout(doFinish, Math.ceil(player.duration * 1000) + 550);
-          }
+          if (finished || callId !== this._vovoCallId) return;
+          const durMs = (player.duration && isFinite(player.duration) && player.duration > 0.5)
+            ? Math.ceil(player.duration * 1000)
+            : exactDurationMs;
+          if (this._vovoTimer) clearTimeout(this._vovoTimer);
+          this._vovoTimer = setTimeout(() => doFinish(false), durMs + 850);
         };
         player.onloadedmetadata = applyExactDurationTimer;
-        this._vovoTimer = setTimeout(doFinish, isVictory ? 5300 : 14500);
-        applyExactDurationTimer();
+        this._vovoTimer = setTimeout(() => doFinish(false), exactDurationMs + 1100);
 
         const playPromise = player.play();
         if (playPromise && typeof playPromise.catch === "function") {
           playPromise.catch(err => {
             console.warn("Audio play prevented:", err);
-            setTimeout(doFinish, 600);
+            setTimeout(() => doFinish(true), 600);
           });
         }
       } catch (e) {
