@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v149.0';
+        const CURRENT_VER = 'v150.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=149.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=150.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -1358,27 +1358,56 @@
     }
 
     .plan-card {
-      background: linear-gradient(180deg, #312e81 0%, #1e1b4b 100%);
-      border: 1.5px solid #38bdf8;
-      border-radius: 16px;
-      padding: 10px 12px;
-      margin: 8px 0;
+      width: 100%;
+      background: linear-gradient(180deg, rgba(168, 85, 247, 0.36) 0%, rgba(88, 28, 135, 0.62) 100%);
+      border: 2px solid rgba(253, 224, 71, 0.78);
+      border-radius: 18px;
+      padding: 11px 14px;
+      margin: 5px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
       cursor: pointer;
       text-align: left;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
     }
     .plan-card-title {
-      font-weight: 700;
-      font-size: 15px;
+      font-weight: 800;
+      font-size: 14.5px;
       color: #fde047;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.85);
     }
     .plan-card-sub {
-      font-weight: 600;
+      font-weight: 700;
       font-size: 12px;
       color: #ffffff;
-      opacity: 0.95;
+      opacity: 0.96;
+    }
+
+    /* TELA ROXA SOLTA PARA ÁREA DOS PAIS E TRAVA PARENTAL (SEM BLOCO AZUL!) */
+    .purple-full-modal {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 10000150 !important;
+      background: radial-gradient(circle at 50% 24%, #7e22ce 0%, #581c87 52%, #2e1065 100%) !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      padding: 20px 16px !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
+      align-items: safe center !important;
+      justify-content: center !important;
+    }
+    .purple-loose-wrap {
+      width: 100%;
+      max-width: 368px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: popInCard 0.28s ease-out;
     }
 
     /* ===================================================================== */
@@ -2348,21 +2377,22 @@
   </div>
 
   <!-- ==================================================================== -->
-  <!-- PARENTAL GATE OBRIGATÓRIO (GOOGLE PLAY FAMILIES / COPPA / LGPD)      -->
+  <!-- PARENTAL GATE OBRIGATÓRIO (TELA ROXA SOLTA • ZERO BLOCO AZUL!)       -->
   <!-- ==================================================================== -->
-  <div id="modal-parental-gate" class="modal-backdrop">
-    <div class="modal-card" style="padding: 30px 22px; max-width: 355px;">
-      <div onclick="window.openDeveloperDialog()" style="font-size: 24px; font-weight: 700; color: #00e5ff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9); line-height: 1.2; margin-bottom: 14px; cursor:pointer;" title="Toque para Modo Desenvolvedor (12345)">
+  <div id="modal-parental-gate" class="modal-backdrop purple-full-modal">
+    <div class="purple-loose-wrap" style="max-width: 355px;">
+      <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Proteção Parental" style="width: 54px; height: 54px; object-fit: contain; margin-bottom: 8px; animation: floatGentle 2.5s ease-in-out infinite;">
+      <div onclick="window.openDeveloperDialog()" style="font-size: 23px; font-weight: 900; color: #fde047; text-shadow: 0 3px 10px rgba(0, 0, 0, 0.9); line-height: 1.2; margin-bottom: 10px; cursor:pointer;" title="Toque para Modo Desenvolvedor (12345)">
         Área para Papai e Mamãe
       </div>
-      <div class="modal-subtitle" style="font-size: 13.5px; color: #f1f5f9; line-height: 1.42; margin-bottom: 24px;">
+      <div class="modal-subtitle" style="font-size: 13.5px; color: #f8fafc; text-shadow: 0 2px 5px rgba(0,0,0,0.8); line-height: 1.42; margin-bottom: 20px;">
         Para proteção infantil (Google Play / LGPD / COPPA), peça a um adulto para responder:
       </div>
-      <div id="parental-gate-question" style="font-size: 20px; font-weight: 700; color: #ffffff; text-shadow: 0 2px 3px rgba(0,0,0,0.85); background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%); border: 2px solid #f3e5f5; box-shadow: 0 5px 12px rgba(0,0,0,0.65); padding: 14px 12px; border-radius: 16px; margin-bottom: 22px;">
+      <div id="parental-gate-question" style="width: 100%; font-size: 20px; font-weight: 800; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.85); background: linear-gradient(180deg, rgba(168, 85, 247, 0.48) 0%, rgba(88, 28, 135, 0.75) 100%); border: 2px solid #fde047; box-shadow: 0 6px 16px rgba(0,0,0,0.55); padding: 14px 12px; border-radius: 18px; margin-bottom: 20px;">
         Quanto é SETE + CINCO?
       </div>
-      <div id="parental-gate-options" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 26px;"></div>
-      <button class="btn-gold" style="width: 100%; padding: 12px; font-size: 16px; background: linear-gradient(180deg, #00e676 0%, #00c853 100%); border-color: #b9f6ca; box-shadow: 0 5px 12px rgba(0,0,0,0.6);" onclick="onBackToPlayFromParentalOrSubscribe()">
+      <div id="parental-gate-options" style="width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px;"></div>
+      <button class="btn-gold" style="width: 100%; padding: 12px; font-size: 16px; border-radius: 999px; background: linear-gradient(180deg, #00e676 0%, #00c853 100%); border-color: #ffffff; box-shadow: 0 5px 14px rgba(0,0,0,0.6);" onclick="onBackToPlayFromParentalOrSubscribe()">
         Voltar para a Brincadeira
       </button>
     </div>
@@ -2424,24 +2454,18 @@
   </div>
 
   <!-- ==================================================================== -->
-  <!-- MODAL DE ASSINATURA PAGA (DIRECIONADO AOS PAIS - SEM DARK PATTERNS)  -->
+  <!-- ÁREA DOS PAIS • TELA ROXA SOLTA (SEM BLOCO AZUL E SEM QUEBRA NO TÍTULO) -->
   <!-- ==================================================================== -->
-  <div id="modal-subscribe" class="modal-backdrop">
-    <div class="modal-card">
-      <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Cadeado VIP" style="width:60px; height:60px; object-fit:contain; margin-bottom:6px; animation: floatGentle 2.5s ease-in-out infinite;">
-      <div id="subscribe-modal-title" style="font-size:19px; font-weight:700; color:#fde047; margin-bottom:6px;">Área dos Pais • Clube Trono da Promessa</div>
-      <div class="modal-subtitle" id="subscribe-modal-desc">
-        Acesso opcional para pais e responsáveis: libera todas as 20 histórias bíblicas, atividades para imprimir em PDF e envio pelo WhatsApp.
+  <div id="modal-subscribe" class="modal-backdrop purple-full-modal">
+    <div class="purple-loose-wrap">
+      <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Cadeado VIP" style="width: 56px; height: 56px; object-fit: contain; margin-bottom: 6px; animation: floatGentle 2.5s ease-in-out infinite;">
+
+      <div id="subscribe-modal-title" style="width: 100%; white-space: nowrap; font-size: clamp(13.2px, 4.0vw, 17px); font-weight: 900; color: #fde047; text-shadow: 0 3px 8px rgba(0,0,0,0.88); margin-bottom: 8px; letter-spacing: -0.1px;">
+        Área dos Pais • Desbloquear Fases 6 a 15
       </div>
 
-      <!-- RESGATAR CUPOM OU CÓDIGO PROMOCIONAL (PADRÃO COMERCIAL IGUAL IFOOD / NETFLIX / PLAY STORE) -->
-      <div class="vip-coupon-box" style="margin: 10px 0 12px 0; padding: 10px 12px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(253, 224, 71, 0.35); border-radius: 14px; text-align: center;">
-        <div style="font-weight: 600; font-size: 12.5px; color: #fde047; margin-bottom: 6px;">Possui um cupom de desconto ou código de acesso?</div>
-        <div style="display: flex; gap: 6px; justify-content: center; align-items: center;">
-          <input type="text" id="input-vip-code" placeholder="Digite o cupom aqui..." style="flex: 1; padding: 8px 10px; border-radius: 9px; border: 1px solid rgba(253, 224, 71, 0.5); background: #0f172a; color: #ffffff; font-size: 13px; text-align: center; font-weight: bold; text-transform: uppercase;">
-          <button class="btn-gold" style="padding: 8px 14px; font-size: 12.5px; background: linear-gradient(180deg, #10b981 0%, #059669 100%); border-color: #6ee7b7; border-radius: 9px;" onclick="redeemVipCoupon()">Aplicar</button>
-        </div>
-        <div id="vip-feedback-msg" style="font-size: 11.5px; margin-top: 5px; min-height: 14px; font-weight: bold;"></div>
+      <div id="subscribe-modal-desc" style="width: 100%; font-size: 13.5px; font-weight: 700; color: #f8fafc; text-shadow: 0 2px 6px rgba(0,0,0,0.8); line-height: 1.38; margin-bottom: 10px;">
+        As fases 1 a 5 de todos os joguinhos são grátis — a criança pode continuar brincando à vontade nos outros jogos! Para liberar todas as 15 fases e todo o aplicativo sem limites, escolha um plano:
       </div>
 
       <div class="plan-card" onclick="startGooglePlayCheckout('mensal')">
@@ -2449,7 +2473,7 @@
           <div class="plan-card-title">Plano Mensal</div>
           <div class="plan-card-sub">Cancele quando quiser no Google Play</div>
         </div>
-        <button class="btn-gold">R$ 7,90/mês</button>
+        <button class="btn-gold" style="white-space: nowrap; flex-shrink: 0;">R$ 7,90/mês</button>
       </div>
 
       <div class="plan-card" onclick="startGooglePlayCheckout('anual')">
@@ -2457,30 +2481,44 @@
           <div class="plan-card-title">Plano Anual (Desconto Família)</div>
           <div class="plan-card-sub">Equivalente a R$ 4,99/mês</div>
         </div>
-        <button class="btn-gold">R$ 59,90/ano</button>
+        <button class="btn-gold" style="white-space: nowrap; flex-shrink: 0;">R$ 59,90/ano</button>
       </div>
 
-      <div style="font-size:11px; color:#cbd5e1; line-height:1.35; margin:8px 0;">
+      <!-- CUPOM OU CÓDIGO DE ACESSO SOLTO COM MARGEM E BOTÃO AZUL OFICIAL -->
+      <div class="vip-coupon-box" style="width: 100%; margin: 12px 0 8px 0; text-align: center;">
+        <div style="font-weight: 800; font-size: 12.5px; color: #fde047; text-shadow: 0 2px 5px rgba(0,0,0,0.85); margin-bottom: 7px;">
+          Possui um cupom de desconto ou código de acesso?
+        </div>
+        <div style="display: flex; gap: 8px; justify-content: center; align-items: center; width: 100%;">
+          <input type="text" id="input-vip-code" placeholder="Digite seu cupom..." style="flex: 1; min-width: 0; padding: 10px 14px; border-radius: 999px; border: 2px solid rgba(255, 255, 255, 0.65); background: rgba(46, 16, 101, 0.72); color: #ffffff; font-size: 13.5px; text-align: center; font-weight: 800; text-transform: uppercase; box-shadow: inset 0 2px 6px rgba(0,0,0,0.45);">
+          <button type="button" class="btn-gold" style="padding: 10px 18px; font-size: 13px; font-weight: 900; border-radius: 999px; background: linear-gradient(180deg, #00b0ff 0%, #0066ff 100%); border-color: #b3e5fc; white-space: nowrap; flex-shrink: 0;" onclick="redeemVipCoupon()">Aplicar</button>
+        </div>
+        <div id="vip-feedback-msg" style="font-size: 12px; margin-top: 5px; min-height: 15px; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.85);"></div>
+      </div>
+
+      <div style="width: 100%; font-size: 11px; color: #e9d5ff; line-height: 1.35; margin: 2px 0 10px 0; text-shadow: 0 1px 4px rgba(0,0,0,0.75);">
         Renovação automática via Google Play. Cancele quando quiser em "Assinaturas" no Google Play. Sem anúncios e 100% seguro para crianças.
       </div>
 
-      <div style="display:flex; gap:6px; margin-bottom:8px;">
-        <button class="btn-gold" style="flex:1; padding:8px 6px; font-size:12px; background:linear-gradient(180deg, #00b0ff 0%, #0066ff 100%); border-color:#b3e5fc;" onclick="restoreGooglePlayPurchases()">
+      <div style="width: 100%; display: flex; gap: 8px; margin-bottom: 10px;">
+        <button type="button" class="btn-gold" style="flex: 1; padding: 9px 6px; font-size: 12px; border-radius: 999px; background: linear-gradient(180deg, #00b0ff 0%, #0066ff 100%); border-color: #b3e5fc;" onclick="restoreGooglePlayPurchases()">
           Restaurar Assinatura
         </button>
-        <button class="btn-gold" style="flex:1; padding:8px 6px; font-size:12px; background:linear-gradient(180deg, #aa00ff 0%, #7200ca 100%); border-color:#f3e5f5;" onclick="openPrivacyPolicyModal()">
+        <button type="button" class="btn-gold" style="flex: 1; padding: 9px 6px; font-size: 12px; border-radius: 999px; background: linear-gradient(180deg, #aa00ff 0%, #7200ca 100%); border-color: #f3e5f5;" onclick="openPrivacyPolicyModal()">
           Política de Privacidade
         </button>
       </div>
 
-      <button class="btn-gold" style="width:100%; padding:10px; font-size:15px;" onclick="onBackToPlayFromParentalOrSubscribe()">Voltar para a Brincadeira</button>
+      <button type="button" class="btn-gold" style="width: 100%; padding: 12px; font-size: 15.5px; border-radius: 999px; background: linear-gradient(180deg, #00e676 0%, #00c853 100%); border-color: #ffffff;" onclick="onBackToPlayFromParentalOrSubscribe()">
+        Voltar para a Brincadeira
+      </button>
     </div>
   </div>
 
   <!-- ==================================================================== -->
   <!-- MODAL DE POLÍTICA DE PRIVACIDADE E TERMOS (DOCUMENTO COMPLETO 18 CLÁUSULAS) -->
   <!-- ==================================================================== -->
-  <div id="modal-privacy-policy" class="modal-backdrop">
+  <div id="modal-privacy-policy" class="modal-backdrop" style="z-index: 10000180;">
     <div class="modal-card" style="max-width:368px; text-align:left; padding:18px 16px;">
       <div style="font-size:18px; font-weight:700; color:#00e5ff; text-align:center; margin-bottom:4px;">
         Política de Privacidade e Termos de Uso
@@ -2660,8 +2698,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=149.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=149.0"></script>
+<script src="ebd_modulos_educativos.js?v=150.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=150.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -3226,9 +3264,16 @@ function requestParentalGate(onAdultVerified) {
 function openSubscribeModal(titleText, customDesc) {
   stopCelebrationConfetti();
   requestParentalGate(() => {
-    document.getElementById('subscribe-modal-title').textContent = titleText ? `Área dos Pais • ${titleText}` : 'Área dos Pais • Clube Trono da Promessa';
-    document.getElementById('subscribe-modal-desc').textContent = customDesc ||
-      'Acesso opcional para pais e responsáveis: libera todas as 20 histórias bíblicas, atividades para imprimir em PDF e envio pelo WhatsApp:';
+    const titleEl = document.getElementById('subscribe-modal-title');
+    const descEl = document.getElementById('subscribe-modal-desc');
+    if (titleEl) {
+      titleEl.textContent = 'Área dos Pais • Desbloquear Fases 6 a 15';
+    }
+    if (descEl) {
+      descEl.textContent = 'As fases 1 a 5 de todos os joguinhos são grátis — a criança pode continuar brincando à vontade nos outros jogos! Para liberar todas as 15 fases e todo o aplicativo sem limites, escolha um plano:';
+    }
+    const msgEl = document.getElementById('vip-feedback-msg');
+    if (msgEl) msgEl.textContent = '';
     document.getElementById('modal-subscribe').classList.add('active');
   });
 }
@@ -3823,14 +3868,16 @@ function attachFourCardSwipeAndWheel(gridId, onStep) {
 function startGooglePlayCheckout(plano) {
   playSoundSnapGreen();
   const liberarTeste = confirm(
-    `Na Google Play Store, este botão abre o pagamento oficial (${plano === 'anual' ? 'Plano Anual R$ 89,90/ano (R$ 7,49/mês)' : 'Plano Mensal R$ 14,90/mês'}).\n\nDeseja SIMULAR a assinatura ativa agora para testar as 20 histórias e o botão de Baixar / Imprimir / WhatsApp?`
+    `Na Google Play Store, este botão abre o pagamento oficial (${plano === 'anual' ? 'Plano Anual R$ 59,90/ano (R$ 4,99/mês)' : 'Plano Mensal R$ 7,90/mês'}).\n\nDeseja SIMULAR a assinatura ativa agora para testar todas as 15 fases dos jogos e todo o aplicativo?`
   );
   if (liberarTeste) {
     isVipUnlocked = true;
     localStorage.setItem('trono_vip_active_v4', '1');
+    updateTopCounters();
     if (document.getElementById('screen-gallery').classList.contains('active')) renderGalleryPage();
     if (document.getElementById('screen-album').classList.contains('active')) renderStickerAlbum();
     if (document.getElementById('screen-ludo-trail').classList.contains('active')) renderLudoTrailBoard();
+    if (typeof window.refreshArcadeUiAfterDevChange === 'function') window.refreshArcadeUiAfterDevChange();
   }
   closeModal('modal-subscribe');
 }

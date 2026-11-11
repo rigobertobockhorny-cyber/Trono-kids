@@ -2203,10 +2203,7 @@
     window.closeTronoArcadeStage();
     setTimeout(() => {
       if (typeof openSubscribeModal === 'function') {
-        openSubscribeModal(
-          'Desbloquear Fases 6 a 15!',
-          'Você concluiu as 5 fases grátis! Assine o Clube Trono da Promessa para liberar as 15 fases em todos os 16 joguinhos, lições e Cards Campeões:'
-        );
+        openSubscribeModal();
       } else {
         const subModal = document.getElementById('modal-subscribe');
         if (subModal) subModal.classList.add('active');
@@ -6106,9 +6103,9 @@
     if (!modal) {
       modal = document.createElement("div");
       modal.id = "trono-parental-gate-modal";
-      modal.style.cssText = "position:fixed; inset:0; background:rgba(7,10,25,0.92); backdrop-filter:blur(10px); z-index:10000200; display:flex; align-items:center; justify-content:center; padding:16px;";
       document.body.appendChild(modal);
     }
+    modal.style.cssText = "position:fixed; inset:0; background:radial-gradient(circle at 50% 24%, #7e22ce 0%, #581c87 52%, #2e1065 100%); z-index:10000200; display:flex; align-items:center; justify-content:center; padding:20px 16px; overflow-y:auto;";
 
     const n1 = Math.floor(Math.random() * 8) + 6; // 6..13
     const n2 = Math.floor(Math.random() * 7) + 5; // 5..11
@@ -6124,26 +6121,24 @@
     opcoes.sort(() => Math.random() - 0.5);
 
     modal.innerHTML = `
-      <div style="background:linear-gradient(180deg,#1e1b4b,#0f172a); border:3px solid #fde047; border-radius:24px; padding:24px 20px; max-width:340px; width:100%; text-align:center; box-shadow:0 12px 35px rgba(0,0,0,0.8);">
-        <div style="display:flex; justify-content:center; margin-bottom:8px;">
-          <img src="./2_ASSETS_UI_BOTOES/ebd_icon_professor.png" alt="" style="width:52px; height:52px; object-fit:contain;">
-        </div>
-        <div style="font-size:16px; font-weight:900; color:#fde047; margin-bottom:4px;">PORTAL DA FAMÍLIA E PROFESSOR</div>
-        <div style="font-size:12px; font-weight:700; color:#cbd5e1; margin-bottom:14px;">Área exclusiva para adultos. Resolva para entrar:</div>
+      <div style="max-width:350px; width:100%; text-align:center; display:flex; flex-direction:column; align-items:center;">
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_professor.png" alt="" style="width:58px; height:58px; object-fit:contain; margin-bottom:8px;">
+        <div style="font-size:18px; font-weight:900; color:#fde047; text-shadow:0 3px 8px rgba(0,0,0,0.85); margin-bottom:6px;">PORTAL DA FAMÍLIA E PROFESSOR</div>
+        <div style="font-size:13px; font-weight:700; color:#f8fafc; text-shadow:0 2px 5px rgba(0,0,0,0.8); margin-bottom:16px;">Área exclusiva para adultos. Resolva para entrar:</div>
         
-        <div style="background:rgba(255,255,255,0.08); border:2px solid #38bdf8; border-radius:16px; padding:12px; font-size:24px; font-weight:900; color:#ffffff; margin-bottom:16px;">
+        <div style="width:100%; background:linear-gradient(180deg, rgba(168,85,247,0.45) 0%, rgba(88,28,135,0.75) 100%); border:2px solid #fde047; border-radius:18px; padding:13px; font-size:24px; font-weight:900; color:#ffffff; box-shadow:0 6px 16px rgba(0,0,0,0.5); margin-bottom:18px;">
           Quanto é ${n1} + ${n2}?
         </div>
 
-        <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; margin-bottom:16px;">
+        <div style="width:100%; display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-bottom:20px;">
           ${opcoes.map(op => `
-            <button class="btn-parent-opt" onclick="window._checkParentAns(${op}, ${correta})" style="padding:12px; background:linear-gradient(180deg,#38bdf8,#0284c7); border:2px solid #ffffff; border-radius:14px; font-size:18px; font-weight:900; color:#ffffff; cursor:pointer;">
+            <button class="btn-parent-opt" onclick="window._checkParentAns(${op}, ${correta})" style="padding:12px; background:linear-gradient(180deg,#00b0ff,#0066ff); border:2px solid #b3e5fc; border-radius:999px; font-size:18px; font-weight:900; color:#ffffff; box-shadow:0 5px 12px rgba(0,0,0,0.55); cursor:pointer;">
               ${op}
             </button>
           `).join("")}
         </div>
 
-        <button onclick="document.getElementById('trono-parental-gate-modal').style.display='none'" style="background:transparent; border:2px solid #64748b; border-radius:999px; padding:8px 18px; color:#cbd5e1; font-weight:800; font-size:12px; cursor:pointer;">
+        <button onclick="document.getElementById('trono-parental-gate-modal').style.display='none'" style="width:100%; background:linear-gradient(180deg,#00e676,#00c853); border:2px solid #ffffff; border-radius:999px; padding:12px 18px; color:#ffffff; font-weight:900; font-size:15px; box-shadow:0 5px 12px rgba(0,0,0,0.55); cursor:pointer;">
           Voltar
         </button>
       </div>
@@ -6157,18 +6152,7 @@
         if (typeof onSuccess === "function") onSuccess();
       } else {
         TronoAudio.play("error");
-        modal.innerHTML = `
-          <div style="background:linear-gradient(180deg,#7f1d1d,#450a0a); border:3px solid #ef4444; border-radius:24px; padding:24px 20px; max-width:320px; width:100%; text-align:center;">
-            <div style="display:flex; justify-content:center; margin-bottom:8px;">
-              <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="" style="width:40px; height:40px; object-fit:contain;">
-            </div>
-            <div style="font-size:16px; font-weight:900; color:#ffffff; margin-bottom:6px;">Resposta Incorreta</div>
-            <div style="font-size:12px; color:#fca5a5; margin-bottom:14px;">Peça a ajuda de um adulto para acessar este portal.</div>
-            <button onclick="document.getElementById('trono-parental-gate-modal').style.display='none'" style="padding:10px 20px; background:#ffffff; color:#991b1b; font-weight:900; border:none; border-radius:999px; cursor:pointer;">
-              Entendido
-            </button>
-          </div>
-        `;
+        modal.style.display = "none";
       }
     };
   }
