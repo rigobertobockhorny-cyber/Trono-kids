@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v150.0';
+        const CURRENT_VER = 'v151.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=150.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=151.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -2698,8 +2698,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=150.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=150.0"></script>
+<script src="ebd_modulos_educativos.js?v=151.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=151.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -6112,32 +6112,17 @@ startInitialThemeMusic();
             return;
           }
 
-          // 2. Se estiver no seletor de fases ou modal de pausa do arcade, fecha o modal e continua no jogo
-          const phasePickerModal = document.getElementById('arcade-phase-picker-modal');
-          if (isElementVisible(phasePickerModal)) {
-            phasePickerModal.style.display = 'none';
-            return;
-          }
-          const pauseModal = document.getElementById('arcade-pause-confirm-modal');
-          if (isElementVisible(pauseModal)) {
-            pauseModal.style.display = 'none';
-            return;
-          }
-
-          // 3. Se houver modal de pintura ou downloads aberto, fecha
+          // 2. Se houver modal de pintura ou downloads aberto, fecha
           const paintModal = document.getElementById('modal-download-paint');
           if (paintModal && paintModal.classList.contains('active')) {
             if (typeof closeModal === 'function') closeModal('modal-download-paint');
             return;
           }
 
-          // 4. Se o palco de arcade estiver ativo durante uma partida, abre a TRAVA DE PAUSA (nunca sai sem querer ao arrastar na borda!)
+          // 3. Se o palco de arcade estiver ativo durante uma partida, salva a fase atual e volta direto para a Sala de Jogos!
           const arcadeStage = document.getElementById('screen-trono-arcade-stage');
           if (arcadeStage && (isElementVisible(arcadeStage) || arcadeStage.classList.contains('active'))) {
-            try { history.pushState({ screen: 'arcade-stage' }, ''); } catch (err) {}
-            if (typeof window.confirmOrCloseArcadeStage === 'function') {
-              window.confirmOrCloseArcadeStage();
-            } else if (typeof window.closeTronoArcadeStage === 'function') {
+            if (typeof window.closeTronoArcadeStage === 'function') {
               window.closeTronoArcadeStage();
             }
             return;

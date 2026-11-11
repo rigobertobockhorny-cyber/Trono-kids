@@ -1687,10 +1687,6 @@
       }
     }
     updateArcadeTopPhaseNavState();
-    const pickerModal = document.getElementById("arcade-phase-picker-modal");
-    if (pickerModal && pickerModal.style.display === "flex") {
-      window.openArcadePhasePickerModal();
-    }
   };
 
   let arcadeDevTapCount = 0;
@@ -1716,13 +1712,13 @@
       stage.className = "trono-fullscreen-stage";
       stage.innerHTML = `
         <div class="arcade-top-bar">
-          <button class="arcade-btn-circle" id="arcade-btn-back" type="button" title="Pausar / Sair" style="pointer-events:auto; z-index:99;">
+          <button class="arcade-btn-circle" id="arcade-btn-back" type="button" title="Voltar" style="pointer-events:auto; z-index:99;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="pointer-events:none;"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="arcade-phase-nav-group">
             <button class="arcade-phase-arrow-btn" id="arcade-phase-prev" type="button" title="Fase anterior">◀</button>
-            <div class="arcade-phase-badge" id="arcade-phase-display" onclick="window.openArcadePhasePickerModal()" style="cursor:pointer;" title="Escolher Fase Desbloqueada">
-              FASE <span id="arcade-phase-num">1</span> / <span id="arcade-phase-total">5</span> <span style="font-size:11px; opacity:0.9;">▾</span>
+            <div class="arcade-phase-badge" id="arcade-phase-display" onclick="window.handleArcadeDevTap()">
+              FASE <span id="arcade-phase-num">1</span> / <span id="arcade-phase-total">5</span>
             </div>
             <button class="arcade-phase-arrow-btn" id="arcade-phase-next" type="button" title="Próxima fase desbloqueada">▶</button>
           </div>
@@ -1744,16 +1740,12 @@
       `;
       document.body.appendChild(stage);
 
-      // Eventos click limpos + TRAVA ANTI-SAÍDA ACIDENTAL DURANTE A PARTIDA!
+      // Botão Voltar: salva automaticamente a fase atual e vai DIRETO para a Sala de Jogos (sem modal de pausa!)
       const backBtn = document.getElementById("arcade-btn-back");
       if (backBtn) {
         backBtn.addEventListener("click", (e) => {
           if (e) { e.preventDefault(); e.stopPropagation(); }
-          if (_isVictoryActive) {
-            window.closeTronoArcadeStage();
-          } else {
-            window.confirmOrCloseArcadeStage();
-          }
+          window.closeTronoArcadeStage();
         });
       }
 
@@ -1872,7 +1864,6 @@
         window.openVipFromArcade();
       } else {
         TronoAudio.play("error");
-        window.openArcadePhasePickerModal(`Passe a Fase ${maxUnl} primeiro para liberar a Fase ${Math.min(TOTAL_PHASES, maxUnl + 1)}.`);
       }
     }
   };
@@ -1885,136 +1876,17 @@
 
     if (p >= 1 && p <= maxUnl) {
       TronoAudio.play("click");
-      const pickerModal = document.getElementById("arcade-phase-picker-modal");
-      if (pickerModal) pickerModal.style.display = "none";
-      const pauseModal = document.getElementById("arcade-pause-confirm-modal");
-      if (pauseModal) pauseModal.style.display = "none";
       currentPhase = p;
       loadPhase(currentPhase);
       return;
     }
 
     if (!isVip && p > FREE_PHASES) {
-      const pickerModal = document.getElementById("arcade-phase-picker-modal");
-      if (pickerModal) pickerModal.style.display = "none";
       window.openVipFromArcade();
       return;
     }
 
     TronoAudio.play("error");
-    const noticeEl = document.getElementById("arcade-phase-picker-notice");
-    if (noticeEl) {
-      noticeEl.innerHTML = `Passe a <b>Fase ${maxUnl}</b> primeiro para liberar a Fase ${p}.`;
-      noticeEl.style.color = "#fca5a5";
-      noticeEl.style.borderColor = "#ef4444";
-      noticeEl.style.background = "rgba(127,29,29,0.55)";
-    }
-  };
-
-  window.openArcadePhasePickerModal = function(initialNotice) {
-    if (!currentActiveGame) return;
-    TronoAudio.play("click");
-    const pauseModal = document.getElementById("arcade-pause-confirm-modal");
-    if (pauseModal) pauseModal.style.display = "none";
-
-    let modal = document.getElementById("arcade-phase-picker-modal");
-    if (!modal) {
-      modal = document.createElement("div");
-      modal.id = "arcade-phase-picker-modal";
-      modal.style.cssText = "position:fixed; inset:0; background:rgba(7,10,25,0.90); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); z-index:10000120; display:none; align-items:center; justify-content:center; padding:14px;";
-      document.body.appendChild(modal);
-    }
-
-    const isVip = isArcadeVipActive();
-    const prog = window.getArcadeGameProgress(currentActiveGame.id);
-    const maxUnl = window.getArcadeGameMaxUnlocked(currentActiveGame.id);
-
-    let gridHtml = "";
-    for (let p = 1; p <= TOTAL_PHASES; p++) {
-      const isCurrent = (p === currentPhase);
-      const isCompleted = (p <= prog.maxCompleted);
-      const isUnlocked = (p <= maxUnl);
-      const isVipGate = (!isVip && p > FREE_PHASES);
-
-      let bg = "linear-gradient(180deg, #1e293b 0%, #0f172a 100%)";
-      let border = "2px solid #475569";
-      let shadow = "0 3px 8px rgba(0,0,0,0.45)";
-      let subIcon = `<img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="" style="width:12px; height:12px; object-fit:contain;">`;
-      let textColor = "#94a3b8";
-
-      if (isUnlocked) {
-        textColor = "#ffffff";
-        if (isCompleted) {
-          bg = "linear-gradient(180deg, #22c55e 0%, #15803d 100%)";
-          border = isCurrent ? "3px solid #fde047" : "2px solid #86efac";
-          subIcon = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-        } else {
-          bg = isCurrent
-            ? "linear-gradient(180deg, #f59e0b 0%, #d97706 100%)"
-            : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
-          border = isCurrent ? "3px solid #fde047" : "2px solid #7dd3fc";
-          subIcon = `<span style="font-size:8.5px; font-weight:900; letter-spacing:0.2px;">${isCurrent ? "ATUAL" : "LIVRE"}</span>`;
-        }
-        if (isCurrent) {
-          shadow = "0 0 16px rgba(253,224,71,0.95), 0 4px 10px rgba(0,0,0,0.6)";
-        }
-      } else if (isVipGate) {
-        bg = "linear-gradient(180deg, #451a03 0%, #1c1917 100%)";
-        border = "2px solid rgba(245,158,11,0.55)";
-        textColor = "#fcd34d";
-        subIcon = `<img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="" style="width:12px; height:12px; object-fit:contain;">`;
-      }
-
-      gridHtml += `
-        <button type="button" onclick="window.jumpToArcadeUnlockedPhase(${p})" style="position:relative; height:52px; border-radius:16px; background:${bg}; border:${border}; box-shadow:${shadow}; color:${textColor}; font-family:'Fredoka',sans-serif; font-weight:900; font-size:17px; display:flex; flex-direction:column; align-items:center; justify-content:center; line-height:1.05; cursor:pointer; padding:2px; touch-action:manipulation;">
-          <span>${p}</span>
-          <span style="display:flex; align-items:center; justify-content:center; margin-top:2px;">${subIcon}</span>
-        </button>
-      `;
-    }
-
-    const defaultNotice = `Fases liberadas: <b>1 até ${maxUnl}</b>. Toque em qualquer fase liberada para jogar.`;
-    const noticeStyle = initialNotice
-      ? "background:rgba(127,29,29,0.55); border:1.5px solid #ef4444; color:#fca5a5;"
-      : "background:rgba(15,23,42,0.75); border:1.5px solid rgba(56,189,248,0.55); color:#bae6fd;";
-
-    const jumpMaxBtnHtml = (currentPhase < maxUnl && prog.maxCompleted > 0)
-      ? `<button type="button" onclick="window.jumpToArcadeUnlockedPhase(${maxUnl})" style="width:100%; padding:11px 14px; border-radius:999px; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2px solid #fde047; color:#ffffff; font-weight:900; font-size:13.5px; margin-bottom:9px; cursor:pointer; box-shadow:0 4px 12px rgba(245,158,11,0.4);">
-           IR DIRETO PARA A FASE ${maxUnl}
-         </button>`
-      : "";
-
-    modal.innerHTML = `
-      <div style="background:linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%); border:3px solid #fde047; border-radius:26px; padding:18px 16px; max-width:360px; width:94%; text-align:center; box-shadow:0 16px 42px rgba(0,0,0,0.88);">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
-          <div onclick="window.handleArcadeDevTap()" style="display:flex; align-items:center; gap:8px; text-align:left; cursor:pointer;" title="Toque 3x para Modo Desenvolvedor">
-            <img src="${currentActiveGame.icon}" alt="" style="width:40px; height:40px; object-fit:contain;">
-            <div>
-              <div style="font-size:15.5px; font-weight:900; color:#fde047; line-height:1.1;">ESCOLHER FASE</div>
-              <div style="font-size:11.5px; font-weight:800; color:#cbd5e1;">${currentActiveGame.title} • Fase ${currentPhase}</div>
-            </div>
-          </div>
-          <button type="button" onclick="document.getElementById('arcade-phase-picker-modal').style.display='none'" aria-label="Fechar" style="width:34px; height:34px; border-radius:50%; background:linear-gradient(180deg,#0284c7,#0369a1); border:2px solid #ffffff; color:#ffffff; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-
-        <div id="arcade-phase-picker-notice" style="${noticeStyle} border-radius:12px; padding:7px 10px; font-size:12px; font-weight:800; margin-bottom:12px; line-height:1.28;">
-          ${initialNotice || defaultNotice}
-        </div>
-
-        <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:8px; margin-bottom:14px;">
-          ${gridHtml}
-        </div>
-
-        ${jumpMaxBtnHtml}
-
-        <button type="button" onclick="document.getElementById('arcade-phase-picker-modal').style.display='none'" style="width:100%; padding:12px; border-radius:999px; background:linear-gradient(180deg, #22c55e 0%, #15803d 100%); border:2px solid #86efac; color:#ffffff; font-weight:900; font-size:14px; cursor:pointer;">
-          CONTINUAR NA FASE ${currentPhase}
-        </button>
-      </div>
-    `;
-    modal.style.display = "flex";
   };
 
   function loadPhase(phase) {
@@ -2092,68 +1964,18 @@
     }
   }
 
-  // Modal de Trava Anti-Saída Acidental ao clicar no botão Voltar ou arrastar a borda do celular durante o jogo!
-  window.confirmOrCloseArcadeStage = function() {
-    if (_isVictoryActive) {
-      window.closeTronoArcadeStage();
-      return;
-    }
-    TronoAudio.play("click");
-    let modal = document.getElementById("arcade-pause-confirm-modal");
-    if (!modal) {
-      modal = document.createElement("div");
-      modal.id = "arcade-pause-confirm-modal";
-      modal.style.cssText = "position:fixed; inset:0; background:rgba(7,10,25,0.88); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); z-index:10000100; display:none; align-items:center; justify-content:center; padding:16px;";
-      document.body.appendChild(modal);
-    }
-    const maxUnl = (currentActiveGame && currentActiveGame.id)
-      ? window.getArcadeGameMaxUnlocked(currentActiveGame.id)
-      : currentPhase;
-    modal.innerHTML = `
-      <div style="background:linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%); border:3px solid #fde047; border-radius:24px; padding:22px 20px; max-width:345px; width:92%; text-align:center; box-shadow:0 12px 36px rgba(0,0,0,0.85);">
-        <div style="font-size:18px; font-weight:900; color:#fde047; margin-bottom:6px;">JOGO EM PAUSA</div>
-        <div style="font-size:12.5px; font-weight:800; color:#bae6fd; margin-bottom:16px; line-height:1.3;">
-          Sua <b>Fase ${currentPhase}</b> já está salva. Se sair, voltará direto nela.
-        </div>
-        <button type="button" onclick="window.resumeArcadeGame()" style="width:100%; padding:13px; border-radius:999px; background:linear-gradient(180deg, #22c55e 0%, #15803d 100%); border:2px solid #86efac; color:#ffffff; font-weight:900; font-size:14.5px; margin-bottom:10px; cursor:pointer; box-shadow:0 4px 14px rgba(34,197,94,0.4);">
-          CONTINUAR JOGANDO
-        </button>
-        <button type="button" onclick="window.openArcadePhasePickerModal()" style="width:100%; padding:11px; border-radius:999px; background:linear-gradient(180deg, #0284c7 0%, #0369a1 100%); border:2px solid #7dd3fc; color:#ffffff; font-weight:900; font-size:13.5px; margin-bottom:10px; cursor:pointer;">
-          ESCOLHER FASE (1 A ${maxUnl})
-        </button>
-        <button type="button" onclick="window.forceCloseArcadeStage()" style="width:100%; padding:11px; border-radius:999px; background:transparent; border:2px solid #64748b; color:#cbd5e1; font-weight:800; font-size:13px; cursor:pointer;">
-          Sair para a Sala de Jogos
-        </button>
-      </div>
-    `;
-    modal.style.display = "flex";
-  };
-
-  window.resumeArcadeGame = function() {
-    TronoAudio.play("click");
-    const modal = document.getElementById("arcade-pause-confirm-modal");
-    if (modal) modal.style.display = "none";
-  };
-
-  window.forceCloseArcadeStage = function() {
-    const modal = document.getElementById("arcade-pause-confirm-modal");
-    if (modal) modal.style.display = "none";
-    const pickerModal = document.getElementById("arcade-phase-picker-modal");
-    if (pickerModal) pickerModal.style.display = "none";
-    window.closeTronoArcadeStage();
-  };
-
   window.closeTronoArcadeStage = function() {
+    // Se a criança saiu no meio da partida (sem estar na tela de vitória, onde a próxima fase já foi gravada),
+    // salva imediatamente a fase atual para retomar exatamente nela quando voltar!
+    if (!_isVictoryActive && currentActiveGame && currentActiveGame.id) {
+      window.saveArcadeLastPhase(currentActiveGame.id, currentPhase);
+    }
     window._arcadeClosingUntil = Date.now() + 550;
     _vovoAlreadySpokeInSession = false;
     _isVictoryActive = false;
     _advancingPhaseLock = false;
     window._arcadeVictoryStartedAt = 0;
     TronoAudio.play("click");
-    const pauseModal = document.getElementById("arcade-pause-confirm-modal");
-    if (pauseModal) pauseModal.style.display = "none";
-    const pickerModal = document.getElementById("arcade-phase-picker-modal");
-    if (pickerModal) pickerModal.style.display = "none";
     stopArcadeCelebrationConfetti();
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
     if (TronoAudio.vovoPlayer) { try { TronoAudio.vovoPlayer.pause(); } catch(e){} }
@@ -2244,7 +2066,7 @@
         currentPhase++;
         loadPhase(currentPhase);
       } else {
-        window.openVipFromArcade();
+        window.closeTronoArcadeStage();
       }
     } else if (currentPhase < TOTAL_PHASES) {
       currentPhase++;
@@ -2348,8 +2170,7 @@
       subBtn.style.animation = "btnGlowPulse 1.8s ease-in-out infinite";
     }
 
-    const btnText = (isVip && current >= TOTAL_PHASES) ? "FINALIZAR JOGUINHO" : "CONTINUAR BRINCANDO";
-    btn.textContent = btnText;
+    btn.textContent = "CONTINUAR BRINCANDO";
     btn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
     btn.style.border = "2.5px solid #ffffff";
     btn.style.boxShadow = "0 0 22px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75)";
@@ -2632,12 +2453,8 @@
         mainBtn.addEventListener("click", (ev) => {
           if (mainBtn.dataset.unlocked !== "1") return;
           if (ev) { ev.preventDefault(); ev.stopPropagation(); }
-          if (!isVip && current >= 5) {
-            // No modo normal (não assinante) ao clicar em Continuar Brincando na Fase 5:
-            // Carrega a Fase 1 livre e exibe o painel das 15 fases mostrando 6 a 15 bloqueadas com cadeado!
-            currentPhase = 1;
-            loadPhase(1);
-            window.openArcadePhasePickerModal("Fases 1 a 5 concluídas! As Fases 6 a 15 são exclusivas para assinantes.");
+          if ((!isVip && current >= FREE_PHASES) || (isVip && current >= TOTAL_PHASES)) {
+            window.closeTronoArcadeStage();
           } else {
             window.advanceArcadePhase();
           }
@@ -3239,20 +3056,10 @@
           ${oilLampSvg}
         </div>
 
-        <!-- 5. CONTADOR OFICIAL DE DRACMAS ENCONTRADAS (ZERO EMOJI) -->
+        <!-- 5. CONTADOR OFICIAL DE DRACMAS ENCONTRADAS (ZERO EMOJI / ZERO DUPLICIDADE) -->
         <div style="position:absolute; top:14px; left:14px; background:rgba(18, 11, 6, 0.88); border:2.5px solid #fde047; padding:6px 14px; border-radius:999px; color:#fde047; font-weight:900; font-size:17px; z-index:10; box-shadow:0 6px 16px rgba(0,0,0,0.75); display:flex; align-items:center; gap:7px; pointer-events:none;">
           <span style="width:22px; height:22px; display:inline-flex;">${dracmaCoinSvg}</span>
           <span><span id="dracmas-count">0</span> / ${totalMoedas}</span>
-        </div>
-
-        <!-- 6. CRACHÁ DE FASE LIMPO (ZERO EMOJI) -->
-        <div style="position:absolute; top:14px; right:14px; background:rgba(18, 11, 6, 0.88); border:2px solid #ca8a04; padding:6px 13px; border-radius:999px; color:#fef08a; font-weight:800; font-size:12.5px; z-index:10; box-shadow:0 4px 12px rgba(0,0,0,0.65); pointer-events:none;">
-          FASE ${pNum}
-        </div>
-
-        <!-- 7. DICA VISUAL (SOME LOGO AO MOVER PARA NÃO TAMPAR AS MOEDAS DE BAIXO!) -->
-        <div id="dracma-instruction-tip" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(18, 11, 6, 0.90); border:2px solid #ca8a04; padding:7px 16px; border-radius:999px; color:#fde047; font-weight:800; font-size:12.5px; z-index:10; box-shadow:0 4px 14px rgba(0,0,0,0.7); pointer-events:none; transition:opacity 0.4s ease; white-space:nowrap;">
-          Ouça o Vovô explicar...
         </div>
       </div>
     `;
@@ -3449,8 +3256,6 @@
       if (!hasPlayerMovedLamp) {
         hasPlayerMovedLamp = true;
         if (fingerRing) fingerRing.style.opacity = "0.85";
-        const tip = document.getElementById("dracma-instruction-tip");
-        if (tip) tip.style.opacity = "0";
       }
     }
 
@@ -3529,16 +3334,6 @@
       }
       renderDarkness(fingerX, fingerY);
       highlightCoinsInBeam();
-      const tip = document.getElementById("dracma-instruction-tip");
-      if (tip) {
-        tip.textContent = "Ilumine a moeda e toque nela para pegar";
-        tip.style.color = "#ffffff";
-        tip.style.background = "rgba(34, 197, 94, 0.92)";
-        tip.style.borderColor = "#ffffff";
-        setTimeout(() => {
-          if (tip) tip.style.opacity = "0";
-        }, 2600);
-      }
     };
   }
 
@@ -5847,8 +5642,7 @@
   // --- JOGO 12: A CRIAÇÃO DO MUNDO (CRONOLOGIA) ---
   function runCriacaoOrdem(container, phase) {
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:space-around; background:#1e1b4b; padding:15px;">
-        <div style="color:#fde047; font-weight:900; font-size:18px;">ORDENE OS DIAS DA CRIAÇÃO</div>
+      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#1e1b4b; padding:15px;">
         <div style="display:flex; gap:10px;">
           <div onclick="window._ordemCheck(1)" style="background:#ffffff; border-radius:16px; padding:12px; font-size:36px; cursor:pointer;">☀️ Dia 1</div>
           <div onclick="window._ordemCheck(2)" style="background:#ffffff; border-radius:16px; padding:12px; font-size:36px; cursor:pointer;">🌊 Dia 2</div>
