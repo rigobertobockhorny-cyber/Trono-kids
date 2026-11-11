@@ -259,7 +259,8 @@
       "vovo_jogo_05.mp3": 11150,
       "vovo_jogo_05_v135.mp3": 11150,
       "vovo_jogo_06.mp3": 5760,
-      "vovo_jogo_07.mp3": 6460,
+      "vovo_jogo_07.mp3": 10550,
+      "vovo_jogo_07_v140.mp3": 10550,
       "vovo_jogo_08.mp3": 5570,
       "vovo_jogo_09.mp3": 5250,
       "vovo_jogo_10.mp3": 6460,
@@ -456,8 +457,8 @@
       title: "BICHINHOS DO ÉDEN",
       sub: "",
       icon: "./2_ASSETS_UI_BOTOES/ico_jogo_07_eden_v130.png?v=130",
-      audioFile: "vovo_jogo_07.mp3",
-      vovoFala: "Arraste cada animal para a sua sombra no Jardim do Éden!",
+      audioFile: "vovo_jogo_07_v140.mp3",
+      vovoFala: "Olhe os bichinhos lá no Jardim do Éden! Arraste cada bichinho até encaixar na sua sombra certa!",
       run: (container, phase) => runAnimaisEden(container, phase)
     },
     {
