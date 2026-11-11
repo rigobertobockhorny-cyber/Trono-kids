@@ -558,128 +558,128 @@
       gameNum: 1,
       gameTitle: "PESCA MARAVILHOSA",
       milestones: {
-        5:  { code: "CARD_01_F05", num: 1,  phase: 5,  tier: "GRÁTIS",   title: "As Redes Cheias na Galileia",      img: "./5_ASSETS_CARDS_JOGOS/card_01_pesca_f05.jpg?v=145" },
-        15: { code: "CARD_02_F15", num: 2,  phase: 15, tier: "CAMPEÃO",  title: "Encontro na Praia com Jesus",      img: "./5_ASSETS_CARDS_JOGOS/card_02_pesca_f15.jpg?v=145" }
+        5:  { code: "CARD_01_F05", num: 1,  phase: 5,  tier: "GRÁTIS",   title: "As Redes Cheias na Galileia",      img: "./5_ASSETS_CARDS_JOGOS/card_01_pesca_f05.jpg?v=146" },
+        15: { code: "CARD_02_F15", num: 2,  phase: 15, tier: "CAMPEÃO",  title: "Encontro na Praia com Jesus",      img: "./5_ASSETS_CARDS_JOGOS/card_02_pesca_f15.jpg?v=146" }
       }
     },
     dracma_perdida: {
       gameNum: 2,
       gameTitle: "ACHE A MOEDA",
       milestones: {
-        5:  { code: "CARD_03_F05", num: 3,  phase: 5,  tier: "GRÁTIS",   title: "A Moeda de Prata Encontrada",      img: "./5_ASSETS_CARDS_JOGOS/card_03_moeda_f05.jpg?v=145" },
-        15: { code: "CARD_04_F15", num: 4,  phase: 15, tier: "CAMPEÃO",  title: "Festa com as Vizinhas",            img: "./5_ASSETS_CARDS_JOGOS/card_04_moeda_f15.jpg?v=145" }
+        5:  { code: "CARD_03_F05", num: 3,  phase: 5,  tier: "GRÁTIS",   title: "A Moeda de Prata Encontrada",      img: "./5_ASSETS_CARDS_JOGOS/card_03_moeda_f05.jpg?v=146" },
+        15: { code: "CARD_04_F15", num: 4,  phase: 15, tier: "CAMPEÃO",  title: "Festa com as Vizinhas",            img: "./5_ASSETS_CARDS_JOGOS/card_04_moeda_f15.jpg?v=146" }
       }
     },
     pombo_arca: {
       gameNum: 3,
       gameTitle: "POMBINHA DA PAZ",
       milestones: {
-        5:  { code: "CARD_05_F05", num: 5,  phase: 5,  tier: "GRÁTIS",   title: "O Raminho de Oliveira",            img: "./5_ASSETS_CARDS_JOGOS/card_05_pombo_f05.jpg?v=145" },
-        15: { code: "CARD_06_F15", num: 6,  phase: 15, tier: "CAMPEÃO",  title: "A Pombinha Pousa nas Mãos de Noé", img: "./5_ASSETS_CARDS_JOGOS/card_06_pombo_f15.jpg?v=145" }
+        5:  { code: "CARD_05_F05", num: 5,  phase: 5,  tier: "GRÁTIS",   title: "O Raminho de Oliveira",            img: "./5_ASSETS_CARDS_JOGOS/card_05_pombo_f05.jpg?v=146" },
+        15: { code: "CARD_06_F15", num: 6,  phase: 15, tier: "CAMPEÃO",  title: "A Pombinha Pousa nas Mãos de Noé", img: "./5_ASSETS_CARDS_JOGOS/card_06_pombo_f15.jpg?v=146" }
       }
     },
     jonatas_alvo: {
       gameNum: 4,
       gameTitle: "DESVIE DA LANÇA",
       milestones: {
-        5:  { code: "CARD_07_F05", num: 7,  phase: 5,  tier: "GRÁTIS",   title: "A Amizade de Davi e Jônatas",      img: "./5_ASSETS_CARDS_JOGOS/card_07_davi_f05.jpg?v=145" },
-        15: { code: "CARD_08_F15", num: 8,  phase: 15, tier: "CAMPEÃO",  title: "A Harpa de Paz de Davi",           img: "./5_ASSETS_CARDS_JOGOS/card_08_davi_f15.jpg?v=145" }
+        5:  { code: "CARD_07_F05", num: 7,  phase: 5,  tier: "GRÁTIS",   title: "A Amizade de Davi e Jônatas",      img: "./5_ASSETS_CARDS_JOGOS/card_07_davi_f05.jpg?v=146" },
+        15: { code: "CARD_08_F15", num: 8,  phase: 15, tier: "CAMPEÃO",  title: "A Harpa de Paz de Davi",           img: "./5_ASSETS_CARDS_JOGOS/card_08_davi_f15.jpg?v=146" }
       }
     },
     ovelha_perdida: {
       gameNum: 5,
       gameTitle: "CADÊ A OVELHA?",
       milestones: {
-        5:  { code: "CARD_09_F05", num: 9,  phase: 5,  tier: "GRÁTIS",   title: "Achando a Ovelhinha nas Pedras",   img: "./5_ASSETS_CARDS_JOGOS/card_09_ovelha1_f05.jpg?v=145" },
-        15: { code: "CARD_10_F15", num: 10, phase: 15, tier: "CAMPEÃO",  title: "De Volta ao Aprisco nos Ombros",   img: "./5_ASSETS_CARDS_JOGOS/card_10_ovelha1_f15.jpg?v=145" }
+        5:  { code: "CARD_09_F05", num: 9,  phase: 5,  tier: "GRÁTIS",   title: "Achando a Ovelhinha nas Pedras",   img: "./5_ASSETS_CARDS_JOGOS/card_09_ovelha1_f05.jpg?v=146" },
+        15: { code: "CARD_10_F15", num: 10, phase: 15, tier: "CAMPEÃO",  title: "De Volta ao Aprisco nos Ombros",   img: "./5_ASSETS_CARDS_JOGOS/card_10_ovelha1_f15.jpg?v=146" }
       }
     },
     ovelha_fujona: {
       gameNum: 6,
       gameTitle: "PEGA A OVELHA!",
       milestones: {
-        5:  { code: "CARD_11_F05", num: 11, phase: 5,  tier: "GRÁTIS",   title: "Alegria nos Campos de Belém",      img: "./5_ASSETS_CARDS_JOGOS/card_11_ovelha2_f05.jpg?v=145" },
-        15: { code: "CARD_12_F15", num: 12, phase: 15, tier: "CAMPEÃO",  title: "Pastos Verdes e Águas Tranquilas", img: "./5_ASSETS_CARDS_JOGOS/card_12_ovelha2_f15.jpg?v=145" }
+        5:  { code: "CARD_11_F05", num: 11, phase: 5,  tier: "GRÁTIS",   title: "Alegria nos Campos de Belém",      img: "./5_ASSETS_CARDS_JOGOS/card_11_ovelha2_f05.jpg?v=146" },
+        15: { code: "CARD_12_F15", num: 12, phase: 15, tier: "CAMPEÃO",  title: "Pastos Verdes e Águas Tranquilas", img: "./5_ASSETS_CARDS_JOGOS/card_12_ovelha2_f15.jpg?v=146" }
       }
     },
     quem_entrou_arca: {
       gameNum: 7,
       gameTitle: "ARCA DE NOÉ",
       milestones: {
-        5:  { code: "CARD_13_F05", num: 13, phase: 5,  tier: "GRÁTIS",   title: "Os Bichinhos Entrando na Arca",    img: "./5_ASSETS_CARDS_JOGOS/card_13_arca_f05.jpg?v=145" },
-        15: { code: "CARD_14_F15", num: 14, phase: 15, tier: "CAMPEÃO",  title: "A Aliança do Arco-Íris",           img: "./5_ASSETS_CARDS_JOGOS/card_14_arca_f15.jpg?v=145" }
+        5:  { code: "CARD_13_F05", num: 13, phase: 5,  tier: "GRÁTIS",   title: "Os Bichinhos Entrando na Arca",    img: "./5_ASSETS_CARDS_JOGOS/card_13_arca_f05.jpg?v=146" },
+        15: { code: "CARD_14_F15", num: 14, phase: 15, tier: "CAMPEÃO",  title: "A Aliança do Arco-Íris",           img: "./5_ASSETS_CARDS_JOGOS/card_14_arca_f15.jpg?v=146" }
       }
     },
     quiz_visual: {
       gameNum: 8,
       gameTitle: "QUIZ DA BÍBLIA",
       milestones: {
-        5:  { code: "CARD_15_F05", num: 15, phase: 5,  tier: "GRÁTIS",   title: "Os Reis Magos e a Estrela Guia",   img: "./5_ASSETS_CARDS_JOGOS/card_15_quiz_f05.jpg?v=145" },
-        15: { code: "CARD_16_F15", num: 16, phase: 15, tier: "CAMPEÃO",  title: "O Menino Jesus no Templo",         img: "./5_ASSETS_CARDS_JOGOS/card_16_quiz_f15.jpg?v=145" }
+        5:  { code: "CARD_15_F05", num: 15, phase: 5,  tier: "GRÁTIS",   title: "Os Reis Magos e a Estrela Guia",   img: "./5_ASSETS_CARDS_JOGOS/card_15_quiz_f05.jpg?v=146" },
+        15: { code: "CARD_16_F15", num: 16, phase: 15, tier: "CAMPEÃO",  title: "O Menino Jesus no Templo",         img: "./5_ASSETS_CARDS_JOGOS/card_16_quiz_f15.jpg?v=146" }
       }
     },
     ligue_pontos: {
       gameNum: 9,
       gameTitle: "LIGUE OS PONTOS",
       milestones: {
-        5:  { code: "CARD_17_F05", num: 17, phase: 5,  tier: "GRÁTIS",   title: "Abraão e o Céu de Estrelas",       img: "./5_ASSETS_CARDS_JOGOS/card_17_pontos_f05.jpg?v=145" },
-        15: { code: "CARD_18_F15", num: 18, phase: 15, tier: "CAMPEÃO",  title: "A Escada Iluminada de Jacó",       img: "./5_ASSETS_CARDS_JOGOS/card_18_pontos_f15.jpg?v=145" }
+        5:  { code: "CARD_17_F05", num: 17, phase: 5,  tier: "GRÁTIS",   title: "Abraão e o Céu de Estrelas",       img: "./5_ASSETS_CARDS_JOGOS/card_17_pontos_f05.jpg?v=146" },
+        15: { code: "CARD_18_F15", num: 18, phase: 15, tier: "CAMPEÃO",  title: "A Escada Iluminada de Jacó",       img: "./5_ASSETS_CARDS_JOGOS/card_18_pontos_f15.jpg?v=146" }
       }
     },
     seis_erros: {
       gameNum: 10,
       gameTitle: "JOGO DOS ERROS",
       milestones: {
-        5:  { code: "CARD_19_F05", num: 19, phase: 5,  tier: "GRÁTIS",   title: "O Jardim Florido da Criação",      img: "./5_ASSETS_CARDS_JOGOS/card_19_erros_f05.jpg?v=145" },
-        15: { code: "CARD_20_F15", num: 20, phase: 15, tier: "CAMPEÃO",  title: "Daniel na Cova dos Leões",         img: "./5_ASSETS_CARDS_JOGOS/card_20_erros_f15.jpg?v=145" }
+        5:  { code: "CARD_19_F05", num: 19, phase: 5,  tier: "GRÁTIS",   title: "O Jardim Florido da Criação",      img: "./5_ASSETS_CARDS_JOGOS/card_19_erros_f05.jpg?v=146" },
+        15: { code: "CARD_20_F15", num: 20, phase: 15, tier: "CAMPEÃO",  title: "Daniel na Cova dos Leões",         img: "./5_ASSETS_CARDS_JOGOS/card_20_erros_f15.jpg?v=146" }
       }
     },
     criacao_ordem: {
       gameNum: 11,
       gameTitle: "CRIAÇÃO DO MUNDO",
       milestones: {
-        5:  { code: "CARD_21_F05", num: 21, phase: 5,  tier: "GRÁTIS",   title: "O Sol, a Lua e as Estrelinhas",    img: "./5_ASSETS_CARDS_JOGOS/card_21_criacao_f05.jpg?v=145" },
-        15: { code: "CARD_22_F15", num: 22, phase: 15, tier: "CAMPEÃO",  title: "A Grande Festa da Criação",        img: "./5_ASSETS_CARDS_JOGOS/card_22_criacao_f15.jpg?v=145" }
+        5:  { code: "CARD_21_F05", num: 21, phase: 5,  tier: "GRÁTIS",   title: "O Sol, a Lua e as Estrelinhas",    img: "./5_ASSETS_CARDS_JOGOS/card_21_criacao_f05.jpg?v=146" },
+        15: { code: "CARD_22_F15", num: 22, phase: 15, tier: "CAMPEÃO",  title: "A Grande Festa da Criação",        img: "./5_ASSETS_CARDS_JOGOS/card_22_criacao_f15.jpg?v=146" }
       }
     },
     memoria_sonoro: {
       gameNum: 12,
       gameTitle: "JOGO DA MEMÓRIA",
       milestones: {
-        5:  { code: "CARD_23_F05", num: 23, phase: 5,  tier: "GRÁTIS",   title: "Amiguinhos da Natureza de Deus",   img: "./5_ASSETS_CARDS_JOGOS/card_23_memoria_f05.jpg?v=145" },
-        15: { code: "CARD_24_F15", num: 24, phase: 15, tier: "CAMPEÃO",  title: "Jonas e a Grande Baleia Azul",     img: "./5_ASSETS_CARDS_JOGOS/card_24_memoria_f15.jpg?v=145" }
+        5:  { code: "CARD_23_F05", num: 23, phase: 5,  tier: "GRÁTIS",   title: "Amiguinhos da Natureza de Deus",   img: "./5_ASSETS_CARDS_JOGOS/card_23_memoria_f05.jpg?v=146" },
+        15: { code: "CARD_24_F15", num: 24, phase: 15, tier: "CAMPEÃO",  title: "Jonas e a Grande Baleia Azul",     img: "./5_ASSETS_CARDS_JOGOS/card_24_memoria_f15.jpg?v=146" }
       }
     },
     mana_deserto: {
       gameNum: 13,
       gameTitle: "PÃOZINHO DO CÉU",
       milestones: {
-        5:  { code: "CARD_25_F05", num: 25, phase: 5,  tier: "GRÁTIS",   title: "Colhendo o Maná ao Amanhecer",     img: "./5_ASSETS_CARDS_JOGOS/card_25_mana_f05.jpg?v=145" },
-        15: { code: "CARD_26_F15", num: 26, phase: 15, tier: "CAMPEÃO",  title: "Água Viva da Rocha de Horebe",     img: "./5_ASSETS_CARDS_JOGOS/card_26_mana_f15.jpg?v=145" }
+        5:  { code: "CARD_25_F05", num: 25, phase: 5,  tier: "GRÁTIS",   title: "Colhendo o Maná ao Amanhecer",     img: "./5_ASSETS_CARDS_JOGOS/card_25_mana_f05.jpg?v=146" },
+        15: { code: "CARD_26_F15", num: 26, phase: 15, tier: "CAMPEÃO",  title: "Água Viva da Rocha de Horebe",     img: "./5_ASSETS_CARDS_JOGOS/card_26_mana_f15.jpg?v=146" }
       }
     },
     tabernaculo_cesto: {
       gameNum: 14,
       gameTitle: "BEBÊ MOISÉS",
       milestones: {
-        5:  { code: "CARD_27_F05", num: 27, phase: 5,  tier: "GRÁTIS",   title: "O Cestinho do Bebê Moisés no Nilo",img: "./5_ASSETS_CARDS_JOGOS/card_27_moises_f05.jpg?v=145" },
-        15: { code: "CARD_28_F15", num: 28, phase: 15, tier: "CAMPEÃO",  title: "A Travessia do Mar Vermelho",      img: "./5_ASSETS_CARDS_JOGOS/card_28_moises_f15.jpg?v=145" }
+        5:  { code: "CARD_27_F05", num: 27, phase: 5,  tier: "GRÁTIS",   title: "O Cestinho do Bebê Moisés no Nilo",img: "./5_ASSETS_CARDS_JOGOS/card_27_moises_f05.jpg?v=146" },
+        15: { code: "CARD_28_F15", num: 28, phase: 15, tier: "CAMPEÃO",  title: "A Travessia do Mar Vermelho",      img: "./5_ASSETS_CARDS_JOGOS/card_28_moises_f15.jpg?v=146" }
       }
     },
     puzzle_3d: {
       gameNum: 15,
       gameTitle: "QUEBRA-CABEÇA",
       milestones: {
-        5:  { code: "CARD_29_F05", num: 29, phase: 5,  tier: "GRÁTIS",   title: "Cinco Pães e Dois Peixinhos",      img: "./5_ASSETS_CARDS_JOGOS/card_29_puzzle_f05.jpg?v=145" },
-        15: { code: "CARD_30_F15", num: 30, phase: 15, tier: "CAMPEÃO",  title: "Jesus Acalma a Tempestade",        img: "./5_ASSETS_CARDS_JOGOS/card_30_puzzle_f15.jpg?v=145" }
+        5:  { code: "CARD_29_F05", num: 29, phase: 5,  tier: "GRÁTIS",   title: "Cinco Pães e Dois Peixinhos",      img: "./5_ASSETS_CARDS_JOGOS/card_29_puzzle_f05.jpg?v=146" },
+        15: { code: "CARD_30_F15", num: 30, phase: 15, tier: "CAMPEÃO",  title: "Jesus Acalma a Tempestade",        img: "./5_ASSETS_CARDS_JOGOS/card_30_puzzle_f15.jpg?v=146" }
       }
     },
     pintura_magica: {
       gameNum: 16,
       gameTitle: "PINTURA MÁGICA",
       milestones: {
-        5:  { code: "CARD_31_F05", num: 31, phase: 5,  tier: "GRÁTIS",   title: "A Túnica Colorida de José",        img: "./5_ASSETS_CARDS_JOGOS/card_31_pintura_f05.jpg?v=145" },
-        15: { code: "CARD_32_F15", num: 32, phase: 15, tier: "CAMPEÃO",  title: "Jesus Abençoando as Crianças",     img: "./5_ASSETS_CARDS_JOGOS/card_32_pintura_f15.jpg?v=145" }
+        5:  { code: "CARD_31_F05", num: 31, phase: 5,  tier: "GRÁTIS",   title: "A Túnica Colorida de José",        img: "./5_ASSETS_CARDS_JOGOS/card_31_pintura_f05.jpg?v=146" },
+        15: { code: "CARD_32_F15", num: 32, phase: 15, tier: "CAMPEÃO",  title: "Jesus Abençoando as Crianças",     img: "./5_ASSETS_CARDS_JOGOS/card_32_pintura_f15.jpg?v=146" }
       }
     }
   };
@@ -796,6 +796,7 @@
         flex-direction: column !important;
         background: radial-gradient(circle at 50% 30%, #1e1b4b 0%, #090a16 100%) !important;
         overflow: hidden !important;
+        overscroll-behavior: none !important;
         user-select: none !important;
         -webkit-user-select: none !important;
         touch-action: manipulation !important;
@@ -835,19 +836,52 @@
         transform: scale(0.92);
         filter: brightness(1.2);
       }
+      .arcade-phase-nav-group {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        z-index: 99;
+      }
+      .arcade-phase-arrow-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+        border: 2px solid #fde047;
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+        transition: transform 0.12s ease, opacity 0.2s ease, background 0.15s ease;
+        padding: 0;
+        user-select: none;
+        touch-action: manipulation;
+      }
+      .arcade-phase-arrow-btn:active {
+        transform: scale(0.90);
+      }
       .arcade-phase-badge {
         background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
         color: #ffffff;
         font-weight: 900;
-        font-size: 15px;
-        padding: 5px 16px;
+        font-size: 14px;
+        padding: 5px 13px;
         border-radius: 999px;
         border: 2px solid #fde047;
         box-shadow: 0 3px 8px rgba(0,0,0,0.4);
         display: flex;
         align-items: center;
-        gap: 6px;
-        letter-spacing: 0.5px;
+        gap: 5px;
+        letter-spacing: 0.4px;
+        white-space: nowrap;
+        transition: transform 0.12s ease;
+      }
+      .arcade-phase-badge:active {
+        transform: scale(0.95);
       }
       .arcade-vovo-bubble {
         position: absolute;
@@ -1511,7 +1545,87 @@
   let currentPhase = 1;
   const TOTAL_PHASES = 15;
   const FREE_PHASES = 5;
+  const ARCADE_PROGRESS_STORAGE_KEY = "trono_arcade_progress_v1";
 
+  function isArcadeVipActive() {
+    return (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
+  }
+
+  function readAllArcadeProgressMap() {
+    try {
+      const raw = localStorage.getItem(ARCADE_PROGRESS_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") return parsed;
+      }
+    } catch (e) {}
+    return {};
+  }
+
+  function writeAllArcadeProgressMap(map) {
+    try {
+      localStorage.setItem(ARCADE_PROGRESS_STORAGE_KEY, JSON.stringify(map || {}));
+    } catch (e) {}
+  }
+
+  window.getArcadeGameProgress = function(gameId) {
+    const map = readAllArcadeProgressMap();
+    const saved = map[gameId];
+    if (saved && typeof saved === "object") {
+      const mc = Math.max(0, Math.min(TOTAL_PHASES, Math.floor(Number(saved.maxCompleted) || 0)));
+      const lp = Math.max(1, Math.min(TOTAL_PHASES, Math.floor(Number(saved.lastPhase) || 1)));
+      return { maxCompleted: mc, lastPhase: lp };
+    }
+    // Migração automática caso o jogador já tenha conquistado Super Cards (Fase 5 ou Fase 15) antes do motor de save
+    let migratedMax = 0;
+    try {
+      const entry = ARCADE_REWARD_CARDS_DB[gameId];
+      const wonCards = (typeof window.getWonArcadeCardsMap === "function") ? window.getWonArcadeCardsMap() : {};
+      if (entry && entry.milestones) {
+        if (entry.milestones[15] && wonCards[entry.milestones[15].code]) migratedMax = 15;
+        else if (entry.milestones[5] && wonCards[entry.milestones[5].code]) migratedMax = 5;
+      }
+    } catch (e) {}
+    const isVip = isArcadeVipActive();
+    const cap = isVip ? TOTAL_PHASES : FREE_PHASES;
+    const migratedLast = migratedMax > 0 ? Math.min(cap, migratedMax + 1) : 1;
+    return { maxCompleted: migratedMax, lastPhase: Math.max(1, migratedLast) };
+  };
+
+  window.getArcadeGameMaxUnlocked = function(gameId) {
+    const prog = window.getArcadeGameProgress(gameId);
+    const cap = isArcadeVipActive() ? TOTAL_PHASES : FREE_PHASES;
+    return Math.max(1, Math.min(cap, prog.maxCompleted + 1));
+  };
+
+  window.saveArcadeLastPhase = function(gameId, phase) {
+    if (!gameId) return;
+    const map = readAllArcadeProgressMap();
+    const prog = window.getArcadeGameProgress(gameId);
+    const maxUnl = window.getArcadeGameMaxUnlocked(gameId);
+    const clamped = Math.max(1, Math.min(maxUnl, Math.floor(Number(phase) || 1)));
+    map[gameId] = {
+      maxCompleted: prog.maxCompleted,
+      lastPhase: clamped
+    };
+    writeAllArcadeProgressMap(map);
+  };
+
+  window.recordArcadePhaseVictory = function(gameId, phaseWon) {
+    if (!gameId) return;
+    const map = readAllArcadeProgressMap();
+    const prog = window.getArcadeGameProgress(gameId);
+    const pWon = Math.max(1, Math.min(TOTAL_PHASES, Math.floor(Number(phaseWon) || 1)));
+    const newMaxCompleted = Math.max(prog.maxCompleted, pWon);
+    const cap = isArcadeVipActive() ? TOTAL_PHASES : FREE_PHASES;
+    const newMaxUnlocked = Math.max(1, Math.min(cap, newMaxCompleted + 1));
+    const nextResumePhase = (pWon < newMaxUnlocked) ? (pWon + 1) : pWon;
+    map[gameId] = {
+      maxCompleted: newMaxCompleted,
+      lastPhase: Math.max(1, Math.min(newMaxUnlocked, nextResumePhase))
+    };
+    writeAllArcadeProgressMap(map);
+  };
 
   let arcadeDevTapCount = 0;
   let arcadeDevTapTimer = null;
@@ -1523,7 +1637,7 @@
       arcadeDevTapCount = 0;
       if (typeof window.openDeveloperDialog === 'function') {
         window.openDeveloperDialog();
-        const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
+        const isVip = isArcadeVipActive();
         const totalEl = document.getElementById("arcade-phase-total");
         if (totalEl) totalEl.textContent = isVip ? "15" : "5";
       } else {
@@ -1538,6 +1652,10 @@
           alert("❌ Senha incorreta!");
         }
       }
+      const pickerModal = document.getElementById("arcade-phase-picker-modal");
+      if (pickerModal && pickerModal.style.display === "flex") {
+        window.openArcadePhasePickerModal();
+      }
     }
   };
 
@@ -1550,11 +1668,15 @@
       stage.className = "trono-fullscreen-stage";
       stage.innerHTML = `
         <div class="arcade-top-bar">
-          <button class="arcade-btn-circle" id="arcade-btn-back" type="button" title="Voltar à Sala de Jogos" style="pointer-events:auto; z-index:99;">
+          <button class="arcade-btn-circle" id="arcade-btn-back" type="button" title="Pausar / Sair" style="pointer-events:auto; z-index:99;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="pointer-events:none;"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <div class="arcade-phase-badge" id="arcade-phase-display" onclick="window.handleArcadeDevTap()" style="cursor:pointer;" title="Toque 3x para Modo Desenvolvedor (12345)">
-            ⭐ FASE <span id="arcade-phase-num">1</span> / <span id="arcade-phase-total">5</span>
+          <div class="arcade-phase-nav-group">
+            <button class="arcade-phase-arrow-btn" id="arcade-phase-prev" type="button" title="Fase anterior">◀</button>
+            <div class="arcade-phase-badge" id="arcade-phase-display" onclick="window.openArcadePhasePickerModal()" style="cursor:pointer;" title="Escolher Fase Desbloqueada">
+              ⭐ FASE <span id="arcade-phase-num">1</span> / <span id="arcade-phase-total">5</span> <span style="font-size:11px; opacity:0.9;">▾</span>
+            </div>
+            <button class="arcade-phase-arrow-btn" id="arcade-phase-next" type="button" title="Próxima fase desbloqueada">▶</button>
           </div>
           <button class="arcade-btn-circle" id="arcade-btn-sound" type="button" title="Cortar / Ligar Som" style="background:linear-gradient(180deg, #eab308 0%, #ca8a04 100%); pointer-events:auto; z-index:99;">
             <svg id="arcade-sound-icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="pointer-events:none;">
@@ -1574,12 +1696,32 @@
       `;
       document.body.appendChild(stage);
 
-      // Eventos click limpos (sem pointerdown duplicado para NUNCA vazar ghost-click na tela de baixo!)
+      // Eventos click limpos + TRAVA ANTI-SAÍDA ACIDENTAL DURANTE A PARTIDA!
       const backBtn = document.getElementById("arcade-btn-back");
       if (backBtn) {
         backBtn.addEventListener("click", (e) => {
           if (e) { e.preventDefault(); e.stopPropagation(); }
-          window.closeTronoArcadeStage();
+          if (_isVictoryActive) {
+            window.closeTronoArcadeStage();
+          } else {
+            window.confirmOrCloseArcadeStage();
+          }
+        });
+      }
+
+      const prevPhaseBtn = document.getElementById("arcade-phase-prev");
+      if (prevPhaseBtn) {
+        prevPhaseBtn.addEventListener("click", (e) => {
+          if (e) { e.preventDefault(); e.stopPropagation(); }
+          window.stepArcadeUnlockedPhase(-1);
+        });
+      }
+
+      const nextPhaseBtn = document.getElementById("arcade-phase-next");
+      if (nextPhaseBtn) {
+        nextPhaseBtn.addEventListener("click", (e) => {
+          if (e) { e.preventDefault(); e.stopPropagation(); }
+          window.stepArcadeUnlockedPhase(1);
         });
       }
 
@@ -1620,7 +1762,10 @@
     if (!game) return;
 
     currentActiveGame = game;
-    currentPhase = 1;
+    // RETOMA SEMPRE NA ÚLTIMA FASE JOGADA / DESBLOQUEADA (NUNCA VOLTA PARA A FASE 1 AO SAIR SEM QUERER!)
+    const maxUnl = window.getArcadeGameMaxUnlocked(game.id);
+    const prog = window.getArcadeGameProgress(game.id);
+    currentPhase = Math.max(1, Math.min(maxUnl, prog.lastPhase || maxUnl));
     _vovoAlreadySpokeInSession = false; // Reset da sessão: ao entrar no jogo, o Vovô falará na primeira fase!
 
     const stage = document.getElementById("screen-trono-arcade-stage");
@@ -1632,16 +1777,211 @@
     loadPhase(currentPhase);
   };
 
+  function updateArcadeTopPhaseNavState() {
+    if (!currentActiveGame) return;
+    const isVip = isArcadeVipActive();
+    const maxUnl = window.getArcadeGameMaxUnlocked(currentActiveGame.id);
+    const phaseNumEl = document.getElementById("arcade-phase-num");
+    if (phaseNumEl) phaseNumEl.textContent = currentPhase;
+    const phaseTotalEl = document.getElementById("arcade-phase-total");
+    if (phaseTotalEl) phaseTotalEl.textContent = isVip ? "15" : "5";
+
+    const prevBtn = document.getElementById("arcade-phase-prev");
+    if (prevBtn) {
+      const canPrev = currentPhase > 1;
+      prevBtn.style.opacity = canPrev ? "1" : "0.35";
+      prevBtn.style.borderColor = canPrev ? "#fde047" : "#64748b";
+    }
+    const nextBtn = document.getElementById("arcade-phase-next");
+    if (nextBtn) {
+      const canNext = currentPhase < maxUnl;
+      nextBtn.style.opacity = canNext ? "1" : "0.42";
+      nextBtn.style.borderColor = canNext ? "#fde047" : "#64748b";
+    }
+  }
+
+  window.stepArcadeUnlockedPhase = function(delta) {
+    if (!currentActiveGame) return;
+    const maxUnl = window.getArcadeGameMaxUnlocked(currentActiveGame.id);
+    const isVip = isArcadeVipActive();
+    const target = currentPhase + delta;
+    if (delta < 0) {
+      if (target >= 1) {
+        TronoAudio.play("click");
+        currentPhase = target;
+        loadPhase(currentPhase);
+      } else {
+        TronoAudio.play("error");
+      }
+      return;
+    }
+    if (delta > 0) {
+      if (target <= maxUnl) {
+        TronoAudio.play("click");
+        currentPhase = target;
+        loadPhase(currentPhase);
+      } else if (!isVip && target > FREE_PHASES && window.getArcadeGameProgress(currentActiveGame.id).maxCompleted >= FREE_PHASES) {
+        window.openVipFromArcade();
+      } else {
+        TronoAudio.play("error");
+        window.openArcadePhasePickerModal(`🔒 Passe a Fase ${maxUnl} primeiro para liberar a Fase ${Math.min(TOTAL_PHASES, maxUnl + 1)}!`);
+      }
+    }
+  };
+
+  window.jumpToArcadeUnlockedPhase = function(phaseNum) {
+    if (!currentActiveGame) return;
+    const p = Math.floor(Number(phaseNum) || 1);
+    const isVip = isArcadeVipActive();
+    const maxUnl = window.getArcadeGameMaxUnlocked(currentActiveGame.id);
+    const prog = window.getArcadeGameProgress(currentActiveGame.id);
+
+    if (p >= 1 && p <= maxUnl) {
+      TronoAudio.play("click");
+      const pickerModal = document.getElementById("arcade-phase-picker-modal");
+      if (pickerModal) pickerModal.style.display = "none";
+      const pauseModal = document.getElementById("arcade-pause-confirm-modal");
+      if (pauseModal) pauseModal.style.display = "none";
+      currentPhase = p;
+      loadPhase(currentPhase);
+      return;
+    }
+
+    if (!isVip && p > FREE_PHASES && prog.maxCompleted >= FREE_PHASES) {
+      const pickerModal = document.getElementById("arcade-phase-picker-modal");
+      if (pickerModal) pickerModal.style.display = "none";
+      window.openVipFromArcade();
+      return;
+    }
+
+    TronoAudio.play("error");
+    const noticeEl = document.getElementById("arcade-phase-picker-notice");
+    if (noticeEl) {
+      if (!isVip && p > FREE_PHASES) {
+        noticeEl.innerHTML = `🔒 Passe até a Fase 5 e assine o Clube para liberar a Fase ${p}!`;
+      } else {
+        noticeEl.innerHTML = `🔒 Passe a <b>Fase ${maxUnl}</b> primeiro para liberar a Fase ${p}!`;
+      }
+      noticeEl.style.color = "#fca5a5";
+      noticeEl.style.borderColor = "#ef4444";
+      noticeEl.style.background = "rgba(127,29,29,0.55)";
+    }
+  };
+
+  window.openArcadePhasePickerModal = function(initialNotice) {
+    if (!currentActiveGame) return;
+    TronoAudio.play("click");
+    const pauseModal = document.getElementById("arcade-pause-confirm-modal");
+    if (pauseModal) pauseModal.style.display = "none";
+
+    let modal = document.getElementById("arcade-phase-picker-modal");
+    if (!modal) {
+      modal = document.createElement("div");
+      modal.id = "arcade-phase-picker-modal";
+      modal.style.cssText = "position:fixed; inset:0; background:rgba(7,10,25,0.90); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); z-index:10000120; display:none; align-items:center; justify-content:center; padding:14px;";
+      document.body.appendChild(modal);
+    }
+
+    const isVip = isArcadeVipActive();
+    const prog = window.getArcadeGameProgress(currentActiveGame.id);
+    const maxUnl = window.getArcadeGameMaxUnlocked(currentActiveGame.id);
+
+    let gridHtml = "";
+    for (let p = 1; p <= TOTAL_PHASES; p++) {
+      const isCurrent = (p === currentPhase);
+      const isCompleted = (p <= prog.maxCompleted);
+      const isUnlocked = (p <= maxUnl);
+      const isVipGate = (!isVip && p > FREE_PHASES);
+
+      let bg = "linear-gradient(180deg, #1e293b 0%, #0f172a 100%)";
+      let border = "2px solid #475569";
+      let shadow = "0 3px 8px rgba(0,0,0,0.45)";
+      let subIcon = "🔒";
+      let textColor = "#94a3b8";
+
+      if (isUnlocked) {
+        textColor = "#ffffff";
+        if (isCompleted) {
+          bg = "linear-gradient(180deg, #22c55e 0%, #15803d 100%)";
+          border = isCurrent ? "3px solid #fde047" : "2px solid #86efac";
+          subIcon = "✓";
+        } else {
+          bg = "linear-gradient(180deg, #f59e0b 0%, #d97706 100%)";
+          border = "3px solid #fde047";
+          subIcon = "⭐";
+        }
+        if (isCurrent) {
+          shadow = "0 0 16px rgba(253,224,71,0.95), 0 4px 10px rgba(0,0,0,0.6)";
+        }
+      } else if (isVipGate) {
+        bg = "linear-gradient(180deg, #451a03 0%, #1c1917 100%)";
+        border = "2px solid rgba(245,158,11,0.55)";
+        textColor = "#fcd34d";
+        subIcon = "👑🔒";
+      }
+
+      gridHtml += `
+        <button type="button" onclick="window.jumpToArcadeUnlockedPhase(${p})" style="position:relative; height:52px; border-radius:16px; background:${bg}; border:${border}; box-shadow:${shadow}; color:${textColor}; font-family:'Fredoka',sans-serif; font-weight:900; font-size:17px; display:flex; flex-direction:column; align-items:center; justify-content:center; line-height:1.05; cursor:pointer; padding:2px; touch-action:manipulation;">
+          <span>${p}</span>
+          <span style="font-size:10px; opacity:0.95; margin-top:1px;">${subIcon}</span>
+        </button>
+      `;
+    }
+
+    const defaultNotice = `✅ Fases liberadas: <b>1 até ${maxUnl}</b>. Toque em qualquer fase liberada para jogar!`;
+    const noticeStyle = initialNotice
+      ? "background:rgba(127,29,29,0.55); border:1.5px solid #ef4444; color:#fca5a5;"
+      : "background:rgba(15,23,42,0.75); border:1.5px solid rgba(56,189,248,0.55); color:#bae6fd;";
+
+    const jumpMaxBtnHtml = (currentPhase < maxUnl)
+      ? `<button type="button" onclick="window.jumpToArcadeUnlockedPhase(${maxUnl})" style="width:100%; padding:11px 14px; border-radius:999px; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2px solid #fde047; color:#ffffff; font-weight:900; font-size:13.5px; margin-bottom:9px; cursor:pointer; box-shadow:0 4px 12px rgba(245,158,11,0.4);">
+           ⚡ VOLTAR DIRETO PARA A FASE ${maxUnl}
+         </button>`
+      : "";
+
+    modal.innerHTML = `
+      <div style="background:linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%); border:3px solid #fde047; border-radius:26px; padding:18px 16px; max-width:360px; width:94%; text-align:center; box-shadow:0 16px 42px rgba(0,0,0,0.88);">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+          <div onclick="window.handleArcadeDevTap()" style="display:flex; align-items:center; gap:8px; text-align:left; cursor:pointer;" title="Toque 3x para Modo Desenvolvedor">
+            <img src="${currentActiveGame.icon}" alt="" style="width:40px; height:40px; object-fit:contain;">
+            <div>
+              <div style="font-size:15.5px; font-weight:900; color:#fde047; line-height:1.1;">ESCOLHER FASE</div>
+              <div style="font-size:11.5px; font-weight:800; color:#cbd5e1;">${currentActiveGame.title} • Atual: Fase ${currentPhase}</div>
+            </div>
+          </div>
+          <button type="button" onclick="document.getElementById('arcade-phase-picker-modal').style.display='none'" style="width:34px; height:34px; border-radius:50%; background:linear-gradient(180deg,#ef4444,#b91c1c); border:2px solid #ffffff; color:#ffffff; font-weight:900; font-size:15px; cursor:pointer; flex-shrink:0;">✕</button>
+        </div>
+
+        <div id="arcade-phase-picker-notice" style="${noticeStyle} border-radius:12px; padding:7px 10px; font-size:12px; font-weight:800; margin-bottom:12px; line-height:1.28;">
+          ${initialNotice || defaultNotice}
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:8px; margin-bottom:14px;">
+          ${gridHtml}
+        </div>
+
+        ${jumpMaxBtnHtml}
+
+        <button type="button" onclick="document.getElementById('arcade-phase-picker-modal').style.display='none'" style="width:100%; padding:12px; border-radius:999px; background:linear-gradient(180deg, #22c55e 0%, #15803d 100%); border:2px solid #86efac; color:#ffffff; font-weight:900; font-size:14px; cursor:pointer;">
+          ▶️ CONTINUAR NA FASE ${currentPhase}
+        </button>
+      </div>
+    `;
+    modal.style.display = "flex";
+  };
+
   function loadPhase(phase) {
     _isVictoryActive = false;
     _advancingPhaseLock = false;
     window._arcadeVictoryStartedAt = 0;
 
-    const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
-    const phaseNumEl = document.getElementById("arcade-phase-num");
-    if (phaseNumEl) phaseNumEl.textContent = phase;
-    const phaseTotalEl = document.getElementById("arcade-phase-total");
-    if (phaseTotalEl) phaseTotalEl.textContent = isVip ? "15" : "5";
+    if (currentActiveGame && currentActiveGame.id) {
+      const maxUnl = window.getArcadeGameMaxUnlocked(currentActiveGame.id);
+      phase = Math.max(1, Math.min(maxUnl, Math.floor(Number(phase) || 1)));
+      currentPhase = phase;
+      window.saveArcadeLastPhase(currentActiveGame.id, currentPhase);
+    }
+    updateArcadeTopPhaseNavState();
 
     const modal = document.getElementById("trono-victory-modal");
     if (modal) {
@@ -1665,7 +2005,7 @@
     if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
 
     const container = document.getElementById("arcade-game-stage-container");
-    // TRAVA UNIVERSAL DOS 17 JOGOS ENQUANTO O VOVÔ EXPLICA:
+    // TRAVA UNIVERSAL DOS 16 JOGOS ENQUANTO O VOVÔ EXPLICA:
     // Bloqueia 100% qualquer clique/arraste no palco até o Vovô terminar a fala!
     if (container) {
       container.style.visibility = "visible";
@@ -1704,30 +2044,41 @@
     }
   }
 
-  
-  // Modal de Pausa ao clicar no botão Voltar no topo
+  // Modal de Trava Anti-Saída Acidental ao clicar no botão Voltar ou arrastar a borda do celular durante o jogo!
   window.confirmOrCloseArcadeStage = function() {
+    if (_isVictoryActive) {
+      window.closeTronoArcadeStage();
+      return;
+    }
     TronoAudio.play("click");
     let modal = document.getElementById("arcade-pause-confirm-modal");
     if (!modal) {
       modal = document.createElement("div");
       modal.id = "arcade-pause-confirm-modal";
-      modal.style.cssText = "position:fixed; inset:0; background:rgba(7,10,25,0.88); backdrop-filter:blur(10px); z-index:999999; display:flex; align-items:center; justify-content:center; padding:16px;";
-      modal.innerHTML = `
-        <div style="background:linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%); border:3px solid #fde047; border-radius:24px; padding:22px; max-width:340px; width:90%; text-align:center; box-shadow:0 12px 36px rgba(0,0,0,0.8);">
-          <div style="font-size:38px; margin-bottom:6px;">⏸️</div>
-          <div style="font-size:18px; font-weight:900; color:#fde047; margin-bottom:6px;">JOGO EM PAUSA</div>
-          <div style="font-size:13.5px; font-weight:700; color:#e2e8f0; margin-bottom:18px;">O que você deseja fazer?</div>
-          <button onclick="window.resumeArcadeGame()" style="width:100%; padding:13px; border-radius:999px; background:linear-gradient(180deg, #22c55e 0%, #15803d 100%); border:2px solid #86efac; color:#ffffff; font-weight:900; font-size:14px; margin-bottom:10px; cursor:pointer; box-shadow:0 4px 14px rgba(34,197,94,0.4);">
-            ▶️ CONTINUAR JOGANDO
-          </button>
-          <button onclick="window.forceCloseArcadeStage()" style="width:100%; padding:11px; border-radius:999px; background:transparent; border:2px solid #64748b; color:#94a3b8; font-weight:800; font-size:13px; cursor:pointer;">
-            🚪 Sair para a Sala de Jogos
-          </button>
-        </div>
-      `;
+      modal.style.cssText = "position:fixed; inset:0; background:rgba(7,10,25,0.88); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); z-index:10000100; display:none; align-items:center; justify-content:center; padding:16px;";
       document.body.appendChild(modal);
     }
+    const maxUnl = (currentActiveGame && currentActiveGame.id)
+      ? window.getArcadeGameMaxUnlocked(currentActiveGame.id)
+      : currentPhase;
+    modal.innerHTML = `
+      <div style="background:linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%); border:3px solid #fde047; border-radius:24px; padding:22px 20px; max-width:345px; width:92%; text-align:center; box-shadow:0 12px 36px rgba(0,0,0,0.85);">
+        <div style="font-size:38px; margin-bottom:4px;">⏸️</div>
+        <div style="font-size:18px; font-weight:900; color:#fde047; margin-bottom:4px;">JOGO EM PAUSA</div>
+        <div style="font-size:12.5px; font-weight:800; color:#bae6fd; margin-bottom:16px; line-height:1.3;">
+          💾 Sua <b>Fase ${currentPhase}</b> já está salva! Se sair, voltará direto nela.
+        </div>
+        <button type="button" onclick="window.resumeArcadeGame()" style="width:100%; padding:13px; border-radius:999px; background:linear-gradient(180deg, #22c55e 0%, #15803d 100%); border:2px solid #86efac; color:#ffffff; font-weight:900; font-size:14.5px; margin-bottom:10px; cursor:pointer; box-shadow:0 4px 14px rgba(34,197,94,0.4);">
+          ▶️ CONTINUAR JOGANDO
+        </button>
+        <button type="button" onclick="window.openArcadePhasePickerModal()" style="width:100%; padding:11px; border-radius:999px; background:linear-gradient(180deg, #0284c7 0%, #0369a1 100%); border:2px solid #7dd3fc; color:#ffffff; font-weight:900; font-size:13.5px; margin-bottom:10px; cursor:pointer;">
+          🔢 ESCOLHER FASE (1 A ${maxUnl})
+        </button>
+        <button type="button" onclick="window.forceCloseArcadeStage()" style="width:100%; padding:11px; border-radius:999px; background:transparent; border:2px solid #64748b; color:#cbd5e1; font-weight:800; font-size:13px; cursor:pointer;">
+          🚪 Sair para a Sala de Jogos
+        </button>
+      </div>
+    `;
     modal.style.display = "flex";
   };
 
@@ -1740,6 +2091,8 @@
   window.forceCloseArcadeStage = function() {
     const modal = document.getElementById("arcade-pause-confirm-modal");
     if (modal) modal.style.display = "none";
+    const pickerModal = document.getElementById("arcade-phase-picker-modal");
+    if (pickerModal) pickerModal.style.display = "none";
     window.closeTronoArcadeStage();
   };
 
@@ -1750,6 +2103,10 @@
     _advancingPhaseLock = false;
     window._arcadeVictoryStartedAt = 0;
     TronoAudio.play("click");
+    const pauseModal = document.getElementById("arcade-pause-confirm-modal");
+    if (pauseModal) pauseModal.style.display = "none";
+    const pickerModal = document.getElementById("arcade-phase-picker-modal");
+    if (pickerModal) pickerModal.style.display = "none";
     stopArcadeCelebrationConfetti();
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
     if (TronoAudio.vovoPlayer) { try { TronoAudio.vovoPlayer.pause(); } catch(e){} }
@@ -1832,7 +2189,7 @@
     TronoAudio.play("click");
     stopArcadeCelebrationConfetti();
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
-    const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
+    const isVip = isArcadeVipActive();
 
     if (currentPhase < FREE_PHASES) {
       currentPhase++;
@@ -1842,8 +2199,7 @@
         currentPhase++;
         loadPhase(currentPhase);
       } else {
-        currentPhase = 1;
-        loadPhase(currentPhase);
+        window.openVipFromArcade();
       }
     } else if (currentPhase < TOTAL_PHASES) {
       currentPhase++;
@@ -2019,7 +2375,11 @@
       console.warn("Celebration audio err:", e);
     }
 
-    // 2. Monta e exibe o CARD CANÔNICO OFICIAL DO TRONO KIDS
+    // 2. Registra vitória permanente da fase no localStorage (libera a próxima fase!) e monta o CARD CANÔNICO OFICIAL
+    if (currentActiveGame && currentActiveGame.id && typeof window.recordArcadePhaseVictory === "function") {
+      window.recordArcadePhaseVictory(currentActiveGame.id, currentPhase);
+      updateArcadeTopPhaseNavState();
+    }
     renderCanonicalVictoryModal();
 
     // 3. Chuva leve e fluida de confetes 3D (com Watchdog acoplado ao modal e ao botão!)
@@ -2073,26 +2433,36 @@
         ? window.unlockArcadeMilestoneCard(game.id, current)
         : null;
 
+      const prog = (game && game.id && typeof window.getArcadeGameProgress === "function")
+        ? window.getArcadeGameProgress(game.id)
+        : { maxCompleted: current, lastPhase: current };
+      const maxUnl = (game && game.id && typeof window.getArcadeGameMaxUnlocked === "function")
+        ? window.getArcadeGameMaxUnlocked(game.id)
+        : current;
+
       let dotsHtml = "";
       if (!isVip) {
         // 5 Bolinhas Gratuitas (1 a 5) + 6ª Bolinha com Cadeadinho VIP
         for (let i = 1; i <= 5; i++) {
           const isJustWon = i === current;
-          const isDone = i < current || (current >= 5 && i <= 5);
+          const isDone = i <= prog.maxCompleted;
+          const isUnl = i <= maxUnl;
           const bg = (isJustWon || isDone)
             ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)"
-            : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
-          const border = isJustWon ? "3px solid #fde047" : "2px solid #ffffff";
+            : (isUnl ? "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)" : "linear-gradient(180deg, #334155 0%, #1e293b 100%)");
+          const border = isJustWon ? "3px solid #fde047" : (isUnl ? "2px solid #ffffff" : "2px solid #64748b");
           const shadow = isJustWon
             ? "box-shadow: 0 0 16px rgba(253,224,71,0.95), 0 4px 10px rgba(0,0,0,0.5);"
             : "box-shadow: 0 4px 8px rgba(0,0,0,0.4);";
-          const starIcon = (isJustWon || (current >= 5 && i === 5))
+          const starIcon = (isJustWon || (prog.maxCompleted >= 5 && i === 5))
             ? `<img src="./2_ASSETS_UI_BOTOES/ui_icon_06.png" style="position:absolute; top:-14px; right:-8px; width:22px; height:22px; object-fit:contain; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));" alt="Estrela">`
             : "";
+          const clickAttr = isUnl ? `onclick="window.jumpToArcadeUnlockedPhase(${i})"` : "";
+          const cursorCss = isUnl ? "cursor:pointer;" : "opacity:0.7;";
 
           dotsHtml += `
-            <div style="position:relative; width:42px; height:42px; border-radius:50%; background:${bg}; border:${border}; ${shadow} display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:17px;">
-              <span>${i}</span>
+            <div ${clickAttr} style="position:relative; width:42px; height:42px; border-radius:50%; background:${bg}; border:${border}; ${shadow} display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:17px; ${cursorCss}">
+              <span>${isUnl ? i : "🔒"}</span>
               ${starIcon}
             </div>
           `;
@@ -2105,18 +2475,21 @@
           </div>
         `;
       } else {
-        // Jogador VIP: mostra o bloco das fases
+        // Jogador VIP: mostra o bloco de 5 fases correspondente à fase atual
         const batchStart = Math.floor((current - 1) / 5) * 5 + 1;
         for (let i = batchStart; i < batchStart + 5 && i <= TOTAL_PHASES; i++) {
           const isJustWon = i === current;
-          const isDone = i < current;
+          const isDone = i <= prog.maxCompleted;
+          const isUnl = i <= maxUnl;
           const bg = (isJustWon || isDone)
             ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)"
-            : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
-          const border = isJustWon ? "3px solid #fde047" : "2px solid #ffffff";
+            : (isUnl ? "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)" : "linear-gradient(180deg, #334155 0%, #1e293b 100%)");
+          const border = isJustWon ? "3px solid #fde047" : (isUnl ? "2px solid #ffffff" : "2px solid #64748b");
+          const clickAttr = isUnl ? `onclick="window.jumpToArcadeUnlockedPhase(${i})"` : "";
+          const cursorCss = isUnl ? "cursor:pointer;" : "opacity:0.7;";
           dotsHtml += `
-            <div style="position:relative; width:42px; height:42px; border-radius:50%; background:${bg}; border:${border}; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:17px;">
-              <span>${i}</span>
+            <div ${clickAttr} style="position:relative; width:42px; height:42px; border-radius:50%; background:${bg}; border:${border}; display:flex; align-items:center; justify-content:center; color:#ffffff; font-weight:900; font-size:17px; ${cursorCss}">
+              <span>${isUnl ? i : "🔒"}</span>
             </div>
           `;
         }
@@ -2801,7 +3174,7 @@
         </div>
 
         <!-- 2. CANVAS DE ESCURIDÃO COM RECORTE DA LUZ DA LAMPARINA -->
-        <canvas id="dracma-canvas" style="position:absolute; inset:0; width:100%; height:100%; z-index:5; pointer-events:auto; transition:opacity 0.8s ease;"></canvas>
+        <canvas id="dracma-canvas" style="position:absolute; inset:0; width:100%; height:100%; z-index:5; pointer-events:auto; touch-action:none; transition:opacity 0.8s ease;"></canvas>
 
         <!-- 3. ÍCONE DA LAMPARINA BÍBLICA FLUTUANTE (COMEÇA APAGADINHA ENQUANTO O VOVÔ EXPLICA!) -->
         <div id="dracma-lamparina-glow" style="position:absolute; width:68px; height:68px; margin-left:-34px; margin-top:-34px; pointer-events:none; z-index:6; display:flex; align-items:center; justify-content:center; opacity:0.42; filter:grayscale(0.9) brightness(0.6); transition:opacity 0.45s ease, filter 0.45s ease, transform 0.05s ease-out;">
@@ -5665,11 +6038,16 @@
           const c5 = entry && entry.milestones[5] && wonMap[entry.milestones[5].code];
           const c15 = entry && entry.milestones[15] && wonMap[entry.milestones[15].code];
           const badgeCount = (c5 ? 1 : 0) + (c15 ? 1 : 0);
+          const prog = window.getArcadeGameProgress(g.id);
+          const maxUnl = window.getArcadeGameMaxUnlocked(g.id);
+          const resumePhase = Math.max(1, Math.min(maxUnl, prog.lastPhase || maxUnl));
+          const showSavedPhase = (prog.maxCompleted > 0 || resumePhase > 1);
           return `
           <div class="arcade-hub-item" onclick="window.openTronoArcadeGame('${g.id}')">
             <div style="position:relative; display:inline-flex; align-items:center; justify-content:center;">
               <img src="${g.icon}" alt="${g.title}" class="arcade-hub-icon-3d" decoding="async">
               ${badgeCount > 0 ? `<span style="position:absolute; top:0; right:-2px; background:linear-gradient(180deg,#16a34a,#15803d); border:2px solid #fde047; color:#ffffff; font-size:10px; font-weight:900; padding:1px 6px; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,0.8); pointer-events:none;">🎁${badgeCount}/2</span>` : ""}
+              ${showSavedPhase ? `<span style="position:absolute; bottom:1px; left:50%; transform:translateX(-50%); background:linear-gradient(180deg,#0284c7,#1e3a8a); border:1.5px solid #fde047; color:#ffffff; font-size:9.5px; font-weight:900; padding:1px 7px; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,0.85); white-space:nowrap; pointer-events:none;">⭐ Fase ${resumePhase}</span>` : ""}
             </div>
             <div class="arcade-hub-title">${g.title}</div>
           </div>
