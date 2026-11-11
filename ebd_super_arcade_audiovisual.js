@@ -1346,33 +1346,43 @@
 
     // Reseta trava de liberação
     window._arcadeUnlockGameAction = null;
+    if (window._ovelhaFujonaTimer) { clearInterval(window._ovelhaFujonaTimer); window._ovelhaFujonaTimer = null; }
 
     const container = document.getElementById("arcade-game-stage-container");
+    // TRAVA UNIVERSAL DOS 17 JOGOS ENQUANTO O VOVÔ EXPLICA:
+    // Bloqueia 100% qualquer clique/arraste no palco até o Vovô terminar a fala!
+    if (container) {
+      container.style.pointerEvents = "none";
+    }
     if (container && currentActiveGame) {
       container.innerHTML = "";
       currentActiveGame.run(container, phase);
     }
 
+    const unlockStageAfterVovo = () => {
+      if (container) {
+        container.style.pointerEvents = "auto";
+      }
+      if (typeof window._arcadeUnlockGameAction === 'function') {
+        window._arcadeUnlockGameAction();
+      }
+    };
+
     // REGRA DE SESSÃO INTELIGENTE (RIGOBERTO UX):
-    // 1) Na primeira fase da sessão (quando entra no jogo), o Vovô explica tudo e a trava aguarda.
+    // 1) Na primeira fase da sessão (quando entra no jogo), o Vovô explica tudo e a trava aguarda 100% da fala!
     // 2) Nas fases seguintes da mesma jogada contínua, o jogo entra direto e ágil sem cansar a criança!
-    // 3) Se o jogador quiser ouvir de novo, o botão do Vovô no topo repete a qualquer momento.
     const shouldSpeak = !_vovoAlreadySpokeInSession && currentActiveGame && currentActiveGame.audioFile;
 
     if (shouldSpeak) {
       _vovoAlreadySpokeInSession = true;
       TronoAudio.falarVovo(currentActiveGame.audioFile, () => {
-        if (typeof window._arcadeUnlockGameAction === 'function') {
-          window._arcadeUnlockGameAction();
-        }
+        unlockStageAfterVovo();
       });
     } else {
-      // Avanço dinâmico nas fases seguintes da mesma sessão: delay suave de 300ms e já libera a ação!
+      // Avanço dinâmico nas fases seguintes da mesma sessão: delay suave de 280ms e já acende/libera a ação!
       setTimeout(() => {
-        if (typeof window._arcadeUnlockGameAction === 'function') {
-          window._arcadeUnlockGameAction();
-        }
-      }, 300);
+        unlockStageAfterVovo();
+      }, 280);
     }
   }
 
@@ -1433,6 +1443,7 @@
     if (window._daviWindupTimer) { clearTimeout(window._daviWindupTimer); window._daviWindupTimer = null; }
     if (window._daviImpactTimer) { clearTimeout(window._daviImpactTimer); window._daviImpactTimer = null; }
     if (window._daviNextRoundTimer) { clearTimeout(window._daviNextRoundTimer); window._daviNextRoundTimer = null; }
+    if (window._ovelhaFujonaTimer) { clearInterval(window._ovelhaFujonaTimer); window._ovelhaFujonaTimer = null; }
     if (window._daviKeyHandler) { window.removeEventListener("keydown", window._daviKeyHandler); window._daviKeyHandler = null; }
 
     const vicModal = document.getElementById("trono-victory-modal");
@@ -2411,8 +2422,8 @@
         <!-- 2. CANVAS DE ESCURIDÃO COM RECORTE DA LUZ DA LAMPARINA -->
         <canvas id="dracma-canvas" style="position:absolute; inset:0; width:100%; height:100%; z-index:5; pointer-events:auto; transition:opacity 0.8s ease;"></canvas>
 
-        <!-- 3. ÍCONE DA LAMPARINA BÍBLICA FLUTUANTE GUIADA PELO DEDINHO -->
-        <div id="dracma-lamparina-glow" style="position:absolute; width:68px; height:68px; margin-left:-34px; margin-top:-34px; pointer-events:none; z-index:6; display:flex; align-items:center; justify-content:center; animation:lampFlamePulse 1.8s ease-in-out infinite; transition:transform 0.05s ease-out;">
+        <!-- 3. ÍCONE DA LAMPARINA BÍBLICA FLUTUANTE (COMEÇA APAGADINHA ENQUANTO O VOVÔ EXPLICA!) -->
+        <div id="dracma-lamparina-glow" style="position:absolute; width:68px; height:68px; margin-left:-34px; margin-top:-34px; pointer-events:none; z-index:6; display:flex; align-items:center; justify-content:center; opacity:0.42; filter:grayscale(0.9) brightness(0.6); transition:opacity 0.45s ease, filter 0.45s ease, transform 0.05s ease-out;">
           <span style="font-size:36px; transform:translateY(-4px);">🪔</span>
         </div>
 
@@ -2427,8 +2438,8 @@
         </div>
 
         <!-- 6. DICA VISUAL ANIMADA EM TELA (ORIENTAÇÃO DA CRIANÇA) -->
-        <div id="dracma-instruction-tip" style="position:absolute; bottom:24px; left:50%; transform:translateX(-50%); background:rgba(18, 11, 6, 0.88); border:2px solid #ca8a04; padding:8px 20px; border-radius:999px; color:#ffffff; font-weight:800; font-size:14px; z-index:10; box-shadow:0 4px 14px rgba(0,0,0,0.7); pointer-events:none; transition:all 0.5s ease; white-space:nowrap;">
-          🔍 Arraste a lamparina para iluminar o chão!
+        <div id="dracma-instruction-tip" style="position:absolute; bottom:24px; left:50%; transform:translateX(-50%); background:rgba(18, 11, 6, 0.88); border:2px solid #ca8a04; padding:8px 20px; border-radius:999px; color:#fde047; font-weight:800; font-size:14px; z-index:10; box-shadow:0 4px 14px rgba(0,0,0,0.7); pointer-events:none; transition:all 0.5s ease; white-space:nowrap;">
+          🎙️ Ouça o Vovô explicar...
         </div>
       </div>
     `;
@@ -2444,7 +2455,19 @@
     let lightX = canvas.width / 2;
     let lightY = canvas.height * 0.65;
 
-    // Desenha a escuridão bíblica suave com máscara de luz de lamparina
+    // Casa na penumbra com a lamparina AINDA APAGADA (enquanto o Vovô fala!)
+    function renderUnlitRoom(lx, ly) {
+      if (lampGlow) {
+        lampGlow.style.left = lx + "px";
+        lampGlow.style.top = ly + "px";
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = "rgba(14, 9, 6, 0.92)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // Desenha a escuridão bíblica suave com máscara de luz da lamparina ACESA
     function renderDarkness(lx, ly) {
       lightX = lx;
       lightY = ly;
@@ -2486,10 +2509,12 @@
       ctx.fill();
     }
 
-    renderDarkness(lightX, lightY);
+    // Inicia com a lamparina APAGADA enquanto o Vovô fala!
+    renderUnlitRoom(lightX, lightY);
 
-    // FUNÇÃO QUE COLETA A MOEDA
+    // FUNÇÃO QUE COLETA A MOEDA (BLOQUEADA ENQUANTO O VOVÔ FALA!)
     function collectCoin(coinEl, idx) {
+      if (isInteractionLocked) return;
       if (!coinEl || coinEl.dataset.found === "true") return;
       coinEl.dataset.found = "true";
       coinEl.style.zIndex = "25";
@@ -2529,8 +2554,9 @@
       }
     });
 
-    // MOVIMENTAÇÃO DA LUZ E TOQUE NA TELA (TOUCH / MOUSE)
+    // MOVIMENTAÇÃO DA LUZ E TOQUE NA TELA (TOUCH / MOUSE — SÓ DEPOIS QUE O VOVÔ TERMINAR DE FALAR!)
     function handlePointer(e) {
+      if (isInteractionLocked) return;
       const rect = canvas.getBoundingClientRect();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const clientY = e.touches ? e.touches[0].clientY : e.clientY;
@@ -2564,6 +2590,7 @@
 
     // Toque direto no canvas: verifica se tocou em cima de uma moeda revelada pela luz
     function handleCanvasTap(e) {
+      if (isInteractionLocked) return;
       const rect = canvas.getBoundingClientRect();
       const clientX = e.changedTouches ? e.changedTouches[0].clientX : (e.touches ? e.touches[0].clientX : e.clientX);
       const clientY = e.changedTouches ? e.changedTouches[0].clientY : (e.touches ? e.touches[0].clientY : e.clientY);
@@ -2590,19 +2617,27 @@
     canvas.addEventListener("click", handleCanvasTap);
     canvas.addEventListener("touchend", handleCanvasTap, { passive: true });
 
-    // TRAVA PEDAGÓGICA DO VOVÔ NÉSIO:
+    // TRAVA PEDAGÓGICA DO VOVÔ NÉSIO: SÓ ACENDE A LAMPARINA E LIBERA O JOGO QUANDO O VOVÔ TERMINA DE FALAR!
     window._arcadeUnlockGameAction = function() {
       if (!isInteractionLocked) return;
       isInteractionLocked = false;
       TronoAudio.play("pop");
+      TronoAudio.play("star");
+      if (lampGlow) {
+        lampGlow.style.opacity = "1";
+        lampGlow.style.filter = "none";
+        lampGlow.style.animation = "lampFlamePulse 1.8s ease-in-out infinite";
+      }
+      renderDarkness(lightX, lightY);
       const tip = document.getElementById("dracma-instruction-tip");
       if (tip) {
-        tip.textContent = "✨ Encontre as moedinhas com a lamparina!";
+        tip.textContent = "✨ Arraste a lamparina para iluminar o chão!";
+        tip.style.color = "#ffffff";
         tip.style.background = "rgba(34, 197, 94, 0.92)";
         tip.style.borderColor = "#ffffff";
         setTimeout(() => {
           if (tip) tip.style.opacity = "0";
-        }, 2200);
+        }, 2400);
       }
     };
   }
@@ -2630,10 +2665,18 @@
     let currX = mazeData.start.x;
     let currY = mazeData.start.y;
     let isGameWon = false;
-    let isUnlocked = true;
+    let isUnlocked = false;
 
     window._arcadeUnlockGameAction = function() {
+      if (isUnlocked) return;
       isUnlocked = true;
+      const ctrlArea = document.getElementById("pombo-controller-area");
+      if (ctrlArea) {
+        ctrlArea.style.opacity = "1";
+        ctrlArea.style.pointerEvents = "auto";
+        ctrlArea.style.filter = "none";
+      }
+      TronoAudio.play("pop");
     };
 
     // Medidas em TELA CHEIA TOTAL (Sem bloquinhos com margem):
@@ -2688,8 +2731,8 @@
           </div>
         </div>
 
-        <!-- CONSOLE D-PAD FLUTUANTE SOBREPOSTO NO RODAPÉ (INSERIDO NA TELA) -->
-        <div class="pombo-v110-controller-area">
+        <!-- CONSOLE D-PAD FLUTUANTE SOBREPOSTO NO RODAPÉ (TRAVADO ENQUANTO O VOVÔ FALA!) -->
+        <div class="pombo-v110-controller-area" id="pombo-controller-area" style="opacity:0.45; pointer-events:none; filter:grayscale(0.4); transition:opacity 0.25s ease, filter 0.25s ease;">
           <div class="pombo-v110-dpad-disc">
             <button class="pombo-v110-btn btn-up" id="btn-pombo-up" data-dir="up" aria-label="Cima">
               <span class="dpad-arrow-sym">▲</span>
@@ -2844,6 +2887,7 @@
     if (window._daviWindupTimer) { clearTimeout(window._daviWindupTimer); window._daviWindupTimer = null; }
     if (window._daviImpactTimer) { clearTimeout(window._daviImpactTimer); window._daviImpactTimer = null; }
     if (window._daviNextRoundTimer) { clearTimeout(window._daviNextRoundTimer); window._daviNextRoundTimer = null; }
+    if (window._ovelhaFujonaTimer) { clearInterval(window._ovelhaFujonaTimer); window._ovelhaFujonaTimer = null; }
     if (window._daviKeyHandler) { window.removeEventListener("keydown", window._daviKeyHandler); window._daviKeyHandler = null; }
 
     const currentPhaseNum = Math.max(1, phase || 1);
@@ -3312,17 +3356,26 @@
     const pastor = document.getElementById("pastorzinho");
     const ovelha = document.getElementById("ovelha-fujona");
     const arena = document.getElementById("pastor-arena");
+    let isOvelhaUnlocked = false;
 
     function moverOvelhaAleatorio() {
-      if (!ovelha) return;
+      if (!ovelha || !isOvelhaUnlocked) return;
       const x = Math.random() * (arena.clientWidth - 80);
       const y = Math.random() * (arena.clientHeight - 80);
       ovelha.style.left = x + "px";
       ovelha.style.top = y + "px";
     }
-    const ovelhaTimer = setInterval(moverOvelhaAleatorio, 1100 - phase * 100);
+
+    window._arcadeUnlockGameAction = function() {
+      if (isOvelhaUnlocked) return;
+      isOvelhaUnlocked = true;
+      TronoAudio.play("pop");
+      if (window._ovelhaFujonaTimer) clearInterval(window._ovelhaFujonaTimer);
+      window._ovelhaFujonaTimer = setInterval(moverOvelhaAleatorio, Math.max(450, 1100 - phase * 100));
+    };
 
     function onDragPastor(e) {
+      if (!isOvelhaUnlocked) return;
       const rect = arena.getBoundingClientRect();
       const cx = e.touches ? e.touches[0].clientX : e.clientX;
       const cy = e.touches ? e.touches[0].clientY : e.clientY;
@@ -3336,7 +3389,7 @@
       const oy = ovelha.offsetTop;
       const dist = Math.hypot(px - ox, py - oy);
       if (dist < 48) {
-        clearInterval(ovelhaTimer);
+        if (window._ovelhaFujonaTimer) { clearInterval(window._ovelhaFujonaTimer); window._ovelhaFujonaTimer = null; }
         arena.removeEventListener("touchmove", onDragPastor);
         arena.removeEventListener("mousemove", onDragPastor);
         TronoAudio.play("baa");
