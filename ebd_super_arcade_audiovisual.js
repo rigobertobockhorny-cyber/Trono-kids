@@ -1266,25 +1266,21 @@
       `;
       document.body.appendChild(stage);
 
-      // Eventos Diretos Ultra-responsivos para Mobile & Touch
+      // Eventos click limpos (sem pointerdown duplicado para NUNCA vazar ghost-click na tela de baixo!)
       const backBtn = document.getElementById("arcade-btn-back");
       if (backBtn) {
-        const handleBack = (e) => {
+        backBtn.addEventListener("click", (e) => {
           if (e) { e.preventDefault(); e.stopPropagation(); }
           window.closeTronoArcadeStage();
-        };
-        backBtn.addEventListener("pointerdown", handleBack);
-        backBtn.addEventListener("click", handleBack);
+        });
       }
 
       const soundBtn = document.getElementById("arcade-btn-sound");
       if (soundBtn) {
-        const handleSound = (e) => {
+        soundBtn.addEventListener("click", (e) => {
           if (e) { e.preventDefault(); e.stopPropagation(); }
           window.toggleArcadeSound();
-        };
-        soundBtn.addEventListener("pointerdown", handleSound);
-        soundBtn.addEventListener("click", handleSound);
+        });
       }
     }
   }
@@ -1298,8 +1294,13 @@
   let _isVictoryActive = false;
   let _advancingPhaseLock = false;
   window._arcadeVictoryStartedAt = 0;
+  window._arcadeClosingUntil = 0;
 
   window.openTronoArcadeGame = function(gameId) {
+    // Escudo anti-ghost-click: bloqueia clique fantasma do celular nos 550ms após fechar um jogo!
+    if (window._arcadeClosingUntil && Date.now() < window._arcadeClosingUntil) {
+      return;
+    }
     window._userEnteredModule = true;
     try { history.pushState({ screen: "arcade-stage", gameId: gameId }, ""); } catch(e){}
     TronoAudio.init();
@@ -1415,6 +1416,7 @@
   };
 
   window.closeTronoArcadeStage = function() {
+    window._arcadeClosingUntil = Date.now() + 550;
     _vovoAlreadySpokeInSession = false;
     _isVictoryActive = false;
     _advancingPhaseLock = false;
@@ -1455,15 +1457,20 @@
   };
 
   window.openVipFromArcade = function() {
+    window._arcadeClosingUntil = Date.now() + 700;
+    window._returnToGamesHubAfterModal = true;
     window.closeTronoArcadeStage();
     setTimeout(() => {
-      if (typeof openModal === 'function') {
-        openModal('modal-subscribe');
+      if (typeof openSubscribeModal === 'function') {
+        openSubscribeModal(
+          'Desbloquear Fases 6 a 15!',
+          'Você concluiu as 5 fases grátis! Assine o Clube Trono da Promessa para liberar as 15 fases em todos os 17 joguinhos, lições e Super Cards:'
+        );
       } else {
         const subModal = document.getElementById('modal-subscribe');
         if (subModal) subModal.classList.add('active');
       }
-    }, 60);
+    }, 80);
   };
 
   window.restartArcadeFromPhaseOne = function() {
@@ -1586,17 +1593,20 @@
     const current = currentPhase || 1;
 
     if (!isVip && current >= 5) {
-      btn.textContent = "🔄 JOGAR DESDE A FASE 1";
-      btn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
-      btn.style.border = "2.5px solid #ffffff";
-      btn.style.boxShadow = "0 0 22px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75)";
+      // TELA PADRONIZADA DE FIM DAS 5 FASES GRÁTIS (IGUAL EM TODOS OS 17 JOGOS!):
+      // 1) Botão Dourado Principal: Assinar o App (+10 Fases)
+      btn.textContent = "🔓 ASSINAR O APP (+10 FASES)";
+      btn.style.background = "linear-gradient(180deg, #f59e0b 0%, #d97706 100%)";
+      btn.style.border = "2.5px solid #fde047";
+      btn.style.boxShadow = "0 0 22px rgba(245,158,11,0.85), 0 6px 16px rgba(0,0,0,0.75)";
 
-      const vipBtn = document.getElementById("btn-canonical-vip");
-      if (vipBtn) {
-        vipBtn.dataset.unlocked = "1";
-        vipBtn.style.opacity = "1";
-        vipBtn.style.pointerEvents = "auto";
-        vipBtn.style.cursor = "pointer";
+      // 2) Botão Verde Secundário: Voltar à Sala de Jogos
+      const hubBtn = document.getElementById("btn-canonical-hub");
+      if (hubBtn) {
+        hubBtn.dataset.unlocked = "1";
+        hubBtn.style.opacity = "1";
+        hubBtn.style.pointerEvents = "auto";
+        hubBtn.style.cursor = "pointer";
       }
     } else {
       const btnText = (isVip && current >= 15) ? "🎉 FINALIZAR JOGUINHO!" : "CONTINUAR BRINCANDO";
@@ -1752,17 +1762,24 @@
         }
       }
 
+      let phase5NoticeHtml = "";
       let actionsHtml = "";
       if (!isVip && current >= 5) {
+        phase5NoticeHtml = `
+          <div style="position:relative; z-index:2; background:rgba(15, 23, 42, 0.55); border:2px solid rgba(253, 224, 71, 0.75); border-radius:18px; padding:10px 14px; margin-bottom:16px; max-width:330px; color:#ffffff; font-size:14.5px; font-weight:800; line-height:1.3;">
+            <span style="color:#fde047; font-weight:900;">🎉 5 Fases Grátis Concluídas!</span><br>
+            Assine o Clube para liberar as fases 6 a 15!
+          </div>
+        `;
         actionsHtml = `
-          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:15px; font-size:18px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
+          <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:14px 16px; font-size:17px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
             ⭐ MUITO BEM!...
           </button>
-          <button id="btn-canonical-vip" type="button" style="position:relative; z-index:2; width:100%; margin-top:10px; padding:12px; font-size:15.5px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2px solid #fde047; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); opacity:0.45; pointer-events:none; touch-action:manipulation;">
-            🔓 LIBERAR +10 FASES VIP!
+          <button id="btn-canonical-hub" type="button" style="position:relative; z-index:2; width:100%; margin-top:11px; padding:13px 16px; font-size:16px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2.5px solid #ffffff; border-radius:999px; box-shadow:0 6px 14px rgba(0,0,0,0.55); opacity:0.45; pointer-events:none; touch-action:manipulation;">
+            🏠 VOLTAR À SALA DE JOGOS
           </button>
-          <div onclick="window.closeTronoArcadeStage()" style="margin-top:14px; color:#fef08a; font-weight:800; font-size:15px; cursor:pointer; text-decoration:underline; padding:4px;">
-            Voltar à Sala de Jogos
+          <div id="btn-canonical-replay" style="margin-top:13px; color:#fef08a; font-weight:800; font-size:14px; cursor:pointer; text-decoration:underline; padding:4px;">
+            🔄 Jogar novamente desde a Fase 1
           </div>
         `;
       } else {
@@ -1770,7 +1787,7 @@
           <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:15px; font-size:19px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
             ⭐ MUITO BEM!...
           </button>
-          <div onclick="window.closeTronoArcadeStage()" style="margin-top:14px; color:#e9d5ff; font-weight:800; font-size:14px; cursor:pointer; text-decoration:underline; opacity:0.9; padding:4px;">
+          <div id="btn-canonical-hub-link" style="margin-top:14px; color:#e9d5ff; font-weight:800; font-size:14px; cursor:pointer; text-decoration:underline; opacity:0.9; padding:4px;">
             Voltar à Sala de Jogos
           </div>
         `;
@@ -1779,52 +1796,66 @@
       modal.innerHTML = `
         <div class="trono-victory-screen-content" style="width:100%; max-width:400px; display:flex; flex-direction:column; align-items:center; text-align:center; z-index:2; animation:vicCardPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
           <!-- 1. Único Ícone 3D Oficial do Jogo no Topo Flutuando Solto -->
-          <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
-            <img src="${game.icon}" style="width:112px; height:112px; object-fit:contain; animation:aliveBtnFloat 2.0s ease-in-out infinite;" alt="${game.title}">
+          <div style="position:relative; z-index:2; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
+            <img src="${game.icon}" style="width:106px; height:106px; object-fit:contain; animation:aliveBtnFloat 2.0s ease-in-out infinite;" alt="${game.title}">
           </div>
 
           <!-- 2. Título Amarelo Dourado Brilhante Solto na Tela Roxa -->
-          <div style="position:relative; z-index:2; font-size:30px; font-weight:900; color:#fde047; text-shadow:0 4px 12px rgba(0,0,0,0.9), 0 0 22px rgba(253,224,71,0.6); line-height:1.15; margin-bottom:20px; letter-spacing:0.6px; animation:titlePopBounce 1.4s ease-in-out infinite;">
+          <div style="position:relative; z-index:2; font-size:28px; font-weight:900; color:#fde047; text-shadow:0 4px 12px rgba(0,0,0,0.9), 0 0 22px rgba(253,224,71,0.6); line-height:1.15; margin-bottom:16px; letter-spacing:0.6px; animation:titlePopBounce 1.4s ease-in-out infinite;">
             PARABÉNS!<br>MUITO BEM!
           </div>
 
           <!-- 3. Bolinhas de Progresso Soltas (1 a 5 + 🔒) -->
-          <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:9px; margin-bottom:24px; min-height:52px;">
+          <div style="position:relative; z-index:2; display:flex; justify-content:center; align-items:center; gap:9px; margin-bottom:16px; min-height:50px;">
             ${dotsHtml}
           </div>
 
-          <!-- 4. Ações de Vitória Soltas na Tela Roxa -->
+          ${phase5NoticeHtml}
+
+          <!-- 4. Ações Padronizadas de Vitória Soltas na Tela Roxa -->
           <div style="position:relative; z-index:2; width:100%; max-width:330px;">
             ${actionsHtml}
           </div>
         </div>
       `;
 
-      // Eventos touch/click diretos e ultra-confiáveis para zero falha de toque no celular!
+      // Eventos SOMENTE em 'click' (NUNCA 'pointerup' para zero clique fantasma nos ícones da Sala de Jogos!)
       const mainBtn = document.getElementById("btn-canonical-continue");
       if (mainBtn) {
-        const onMainTap = (ev) => {
+        mainBtn.addEventListener("click", (ev) => {
           if (mainBtn.dataset.unlocked !== "1") return;
           if (ev) { ev.preventDefault(); ev.stopPropagation(); }
           if (!isVip && current >= 5) {
-            window.restartArcadeFromPhaseOne();
+            window.openVipFromArcade();
           } else {
             window.advanceArcadePhase();
           }
-        };
-        mainBtn.addEventListener("pointerup", onMainTap);
-        mainBtn.addEventListener("click", onMainTap);
+        });
       }
 
-      const vipBtn = document.getElementById("btn-canonical-vip");
-      if (vipBtn) {
-        const onVipTap = (ev) => {
-          if (vipBtn.dataset.unlocked !== "1") return;
+      const hubBtn = document.getElementById("btn-canonical-hub");
+      if (hubBtn) {
+        hubBtn.addEventListener("click", (ev) => {
+          if (hubBtn.dataset.unlocked !== "1") return;
           if (ev) { ev.preventDefault(); ev.stopPropagation(); }
-          window.openVipFromArcade();
-        };
-        vipBtn.addEventListener("pointerup", onVipTap);
-        vipBtn.addEventListener("click", onVipTap);
+          window.closeTronoArcadeStage();
+        });
+      }
+
+      const replayLink = document.getElementById("btn-canonical-replay");
+      if (replayLink) {
+        replayLink.addEventListener("click", (ev) => {
+          if (ev) { ev.preventDefault(); ev.stopPropagation(); }
+          window.restartArcadeFromPhaseOne();
+        });
+      }
+
+      const hubLink = document.getElementById("btn-canonical-hub-link");
+      if (hubLink) {
+        hubLink.addEventListener("click", (ev) => {
+          if (ev) { ev.preventDefault(); ev.stopPropagation(); }
+          window.closeTronoArcadeStage();
+        });
       }
     } catch (err) {
       console.error("Victory modal render fallback:", err);
