@@ -1601,7 +1601,8 @@
     // 3. Chuva leve e fluida de confetes 3D (60 FPS no celular sem travar!)
     startArcadeCelebrationConfetti();
 
-    // 4. Voz afetuosa do Vovô Nésio ("Parabéns! Muito bem!") + Trava de segurança incondicional!
+    // 4. Voz afetuosa do Vovô Nésio ("Parabéns! Muito bem!" = 4.64s)
+    // REGRA RIGOBERTO: O botão CONTINUAR BRINCANDO SÓ LIBERA DEPOIS que o Vovô terminar 100% da frase!
     window._arcadeVictoryVoiceTimer = setTimeout(() => {
       if (celebrationClapAudio) {
         try { celebrationClapAudio.volume = 0.22; } catch(e) {}
@@ -1611,11 +1612,11 @@
       });
     }, 650);
 
-    // 5. GARANTIA ABSOLUTA ANTI-TRAVAMENTO: em no máximo 2.7s o botão verde SEMPRE libera,
-    // mesmo que a rede oscile ou o navegador do celular bloqueie mídia!
+    // 5. Fallback de segurança SOMENTE APÓS o tempo total da fala completa (650ms + 4640ms + 1100ms = 6.4s)
+    // Nunca atropela a fala do Vovô, mas garante que nunca trave se o navegador falhar o evento onended!
     window._arcadeVictorySafetyTimer = setTimeout(() => {
       unlockVictoryContinueButton();
-    }, 2700);
+    }, 6400);
   }
 
   function renderCanonicalVictoryModal() {
@@ -2692,11 +2693,29 @@
     // Nem os botões movem Davi nem saem lanças até o Vovô terminar 100% de falar!
     let isControlsUnlocked = false;
 
-    // Velocidade progressiva por fase (Fase 1 calma e didática -> Fase 15 ágil e emocionante)
-    const windupMs = Math.max(480, 820 - (currentPhaseNum - 1) * 24);
-    const flyDurationMs = Math.max(880, 1480 - (currentPhaseNum - 1) * 42);
-    const impactCheckMs = Math.round(flyDurationMs * 0.82);
-    const betweenSpearsMs = Math.max(660, 1050 - (currentPhaseNum - 1) * 26);
+    // CURVA DE DIFICULDADE PROGRESSIVA REAL (RIGOBERTO GAME DESIGN):
+    // Fase 1: bem devagarzinho (1.90s de voo) para a criança pegar o jeito fácil.
+    // Fase 2: suave (1.42s) | Fase 3: média (1.05s) | Fase 4: rápida (0.78s)
+    // Fase 5: BEM DIFÍCIL E RÁPIDA (0.58s — >3x mais veloz que a Fase 1 + Saul mira 90% em cima de Davi!)
+    // Fases 6 a 15 (VIP): modo lenda acelerando até 0.44s!
+    const PHASE_PRESETS = {
+      1: { windup: 950, fly: 1900, gap: 1250, smartAim: 0.00 },
+      2: { windup: 760, fly: 1420, gap: 1000, smartAim: 0.45 },
+      3: { windup: 580, fly: 1050, gap: 780,  smartAim: 0.68 },
+      4: { windup: 440, fly: 780,  gap: 600,  smartAim: 0.80 },
+      5: { windup: 320, fly: 580,  gap: 460,  smartAim: 0.90 }
+    };
+    const preset = PHASE_PRESETS[currentPhaseNum] || {
+      windup: Math.max(230, 320 - (currentPhaseNum - 5) * 10),
+      fly: Math.max(440, 580 - (currentPhaseNum - 5) * 15),
+      gap: Math.max(360, 460 - (currentPhaseNum - 5) * 11),
+      smartAim: 0.92
+    };
+    const windupMs = preset.windup;
+    const flyDurationMs = preset.fly;
+    const impactCheckMs = Math.round(flyDurationMs * 0.84);
+    const betweenSpearsMs = preset.gap;
+    const smartAimProb = preset.smartAim;
 
     // Posições de Davi no Primeiro Plano: "left", "center", "right"
     let daviPosition = "center";
@@ -2961,12 +2980,6 @@
       if (!isControlsUnlocked || isGameWon || spearIndex >= SPEARS_PER_ROUND) return;
       if (!saulThrone || !spearProjectile) return;
 
-      // Nas fases avançadas (5+), na 3ª lança Saul tem 50% de chance de mirar direto onde Davi está!
-      let lane = attackLanes[spearIndex] || "center";
-      if (currentPhaseNum >= 5 && spearIndex === 2 && Math.random() < 0.5) {
-        lane = daviPosition;
-      }
-
       updateBadges();
 
       // 1. SAUL PREPARA O ARREMESSO NO CENTRO
@@ -2976,6 +2989,16 @@
       if (window._daviWindupTimer) clearTimeout(window._daviWindupTimer);
       window._daviWindupTimer = setTimeout(() => {
         if (isGameWon || !saulThrone || !spearProjectile) return;
+
+        // Mira inteligente no exato instante em que a lança sai da mão de Saul:
+        // Na Fase 1 usa as 3 direções embaralhadas; até a Fase 5 sobe para 90% mirando direto onde Davi está!
+        let lane = attackLanes[spearIndex] || "center";
+        if (smartAimProb > 0 && Math.random() < smartAimProb) {
+          lane = daviPosition;
+        } else if (smartAimProb > 0) {
+          const otherLanes = ["left", "center", "right"].filter(l => l !== daviPosition);
+          lane = otherLanes[Math.floor(Math.random() * otherLanes.length)];
+        }
 
         // 2. ARREMESSO SAINDO DA PONTA CENTRAL DA LANÇA DE SAUL (top: 46%, left: 50%)
         saulThrone.classList.remove("windup");
