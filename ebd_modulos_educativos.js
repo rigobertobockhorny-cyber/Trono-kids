@@ -1282,7 +1282,7 @@ window.EBD_LESSONS_CURRICULUM = [
       },
       {
         "day": 2,
-        "title": "Dia 2 • Meditando na Palavra Dia e Noite",
+        "title": "Dia 2 • Guardando a Palavra Dia e Noite",
         "verse": "\"Não se aparte da tua boca o livro desta lei; antes medita nele dia e noite, para que tenhas cuidado de fazer conforme a tudo quanto nele está escrito.\" (Josué 1:8)",
         "text": "O segredo da vitória de Josué era ler, amar e praticar a Palavra de Deus todos os dias. Quando lemos a Bíblia em família, aprendemos o caminho certo para sermos felizes!",
         "prayer": "Oração em Família: Papai do Céu, que a Tua Palavra esteja sempre em nossos lábios e em nosso coração!",
@@ -1290,7 +1290,7 @@ window.EBD_LESSONS_CURRICULUM = [
       },
       {
         "day": 3,
-        "title": "Dia 3 • ATravessando o Rio Jordão",
+        "title": "Dia 3 • Atravessando o Rio Jordão",
         "verse": "\"Pararam-se as águas que vinham de cima... e todo o Israel passou em seco, até que todo o povo acabou de passar o Jordão.\" (Josué 3:16-17)",
         "text": "Assim que os sacerdotes pisaram na beira do rio Jordão carregando a Arca da Aliança, as águas pararam e o povo atravessou a pé enxuto! O primeiro passo de fé sempre abre o caminho do milagre.",
         "prayer": "Oração em Família: Senhor, ajuda-nos a dar passos de fé e obediência confiando em Ti!",
@@ -6677,8 +6677,14 @@ window.openLessonModule = function(modType) {
     box.style.overflowY = "auto";
   }
 
-  if (headerBar && modType !== "devocional") {
-    headerBar.innerHTML = `<span style="font-size:12.5px; font-weight:800; color:#fde047; padding:2px 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">LIÇÃO ${lesson.week}: ${lesson.title.toUpperCase()}</span>`;
+  if (headerBar) {
+    headerBar.classList.add("ebd-phases-scroll-trail");
+    if (modType === "devocional") {
+      headerBar.style.justifyContent = "flex-start";
+    } else {
+      headerBar.style.justifyContent = "center";
+      headerBar.innerHTML = `<span style="font-size:12.5px; font-weight:800; color:#fde047; padding:2px 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">LIÇÃO ${lesson.week}: ${lesson.title.toUpperCase()}</span>`;
+    }
   }
 
   const modBackBtn = document.querySelector("#screen-lesson-module .module-header .btn-nav-circle");
@@ -6936,55 +6942,37 @@ window.openLessonModule = function(modType) {
       </div>
     `;
   }
-  // 5) JOGOS DA LIÇÃO (8 Cards Roxos que ficam Verdes conforme concluídos; 8/8 marca o Tiquezinho Verde no botão Jogos da Lição!)
+  // 5) JOGOS DA LIÇÃO (8 Jogos soltos na tela igual à Sala de Jogos • Zero bloco dentro de bloco • Tiquezinho verde ao concluir!)
   else if (modType === "jogos_licao") {
     window.EBD_STATE.fromLessonGames = true;
     const prog = window.getLessonProgress(lesson.week);
     const gamesMap = prog.games || {};
     const lessonGames = [
-      { key: "chronology", title: "ORDEM CRONOLÓGICA", sub: "Ordene as Cenas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png" },
-      { key: "verse_builder", title: "VERSÍCULO SECRETO", sub: "Monte a Palavra", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" },
-      { key: "lesson_puzzle", title: "QUEBRA-CABEÇA 3D", sub: "Monte a Cena", icon: "./2_ASSETS_UI_BOTOES/ui_icon_02.png" },
-      { key: "lesson_paint", title: "PINTURA MÁGICA", sub: "Colorir a Lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_03.png" },
-      { key: "word_search", title: "CAÇA-PALAVRAS", sub: "Ache os Termos", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png" },
-      { key: "secret_word", title: "PALAVRA SECRETA", sub: "Descubra as Letras", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png" },
-      { key: "who_am_i", title: "QUEM SOU EU?", sub: "3 Pistas Bíblicas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_vovo.png" },
-      { key: "true_or_myth", title: "VERDADEIRO OU MITO", sub: "Desafio Rápido", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png" }
+      { key: "chronology", title: "ORDEM CRONOLÓGICA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_12_criacao_v130.png" },
+      { key: "verse_builder", title: "VERSÍCULO SECRETO", icon: "./2_ASSETS_UI_BOTOES/ui_icon_06.png" },
+      { key: "lesson_puzzle", title: "QUEBRA-CABEÇA 3D", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_16_puzzle_v130.png" },
+      { key: "lesson_paint", title: "PINTURA MÁGICA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_17_pintura_v130.png" },
+      { key: "word_search", title: "CAÇA-PALAVRAS", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_11_erros_v130.png" },
+      { key: "secret_word", title: "PALAVRA SECRETA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_10_pontos_v130.png" },
+      { key: "who_am_i", title: "QUEM SOU EU?", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png" },
+      { key: "true_or_myth", title: "VERDADEIRO OU MITO", icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png" }
     ];
-    const doneCount = lessonGames.filter(g => !!gamesMap[g.key]).length;
     box.innerHTML = `
-      <div onclick="if(typeof openGamesHubScreen === 'function') openGamesHubScreen();" style="cursor:pointer; border-radius:18px; padding:12px; margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; background:linear-gradient(135deg, #f59e0b 0%, #d97706 100%); box-shadow:0 6px 16px rgba(0,0,0,0.4); border:2px solid #fef08a;">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <img src="./2_ASSETS_UI_BOTOES/ebd_icon_netos.png" alt="Sala de Jogos" style="width:36px; height:36px; object-fit:contain; flex-shrink:0;">
-          <div style="text-align:left;">
-            <div style="font-size:13.5px; font-weight:900; color:#ffffff; text-shadow:0 2px 4px rgba(0,0,0,0.5); line-height:1.2;">SALA DE JOGOS (16 JOGOS)</div>
-            <div style="font-size:10.5px; font-weight:700; color:#fef3c7;">Palco 100% Tela Cheia no Celular</div>
-          </div>
-        </div>
-        <button style="background:#ffffff; color:#b45309; font-weight:900; font-size:11.5px; border:none; border-radius:999px; padding:6px 14px; box-shadow:0 2px 6px rgba(0,0,0,0.2); white-space:nowrap;">JOGAR</button>
-      </div>
-      <div class="ebd-glass-card" style="margin-bottom:0; padding:8px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:6px;">
-          <div style="font-size:13px; font-weight:900; color:#fde047; text-align:left; line-height:1.15;">ATIVIDADES DA LIÇÃO ${lesson.week}</div>
-          <span style="background:${doneCount === 8 ? "linear-gradient(180deg,#00e676,#00c853)" : "linear-gradient(180deg,#7e22ce,#4c1d95)"}; color:#ffffff; font-size:10.5px; font-weight:900; padding:3px 9px; border-radius:999px; border:1.5px solid #fde047; white-space:nowrap;">${doneCount}/8 Concluídos</span>
-        </div>
-        <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:6px;">
-          ${lessonGames.map(g => {
-            const isGameDone = !!gamesMap[g.key];
-            return `
-              <div class="inner-purple-green" onclick="openGameFromLesson('${g.key}')" style="border-radius:14px; padding:5px 4px; display:flex; flex-direction:column; align-items:center; text-align:center; cursor:pointer; position:relative;">
-                ${isGameDone ? `<span style="position:absolute; top:4px; right:4px; width:18px; height:18px; border-radius:50%; background:#052e16; border:1.5px solid #00e676; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 5px rgba(0,0,0,0.6);"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>` : ""}
-                <img src="${g.icon}" alt="${g.title}" style="width:40px; height:40px; object-fit:contain; margin-bottom:2px; filter:drop-shadow(0 2px 5px rgba(0,0,0,0.65));">
-                <div style="font-size:11.5px; font-weight:900; color:#fde047; line-height:1.12;">${g.title}</div>
-                <div style="font-size:9.5px; font-weight:800; color:${isGameDone ? "#86efac" : "#f3e8ff"}; margin-top:1px;">${isGameDone ? "Concluído!" : g.sub}</div>
-              </div>
-            `;
-          }).join("")}
-        </div>
+      <div class="arcade-hub-clean-grid">
+        ${lessonGames.map(g => {
+          const isGameDone = !!gamesMap[g.key];
+          return `
+            <div class="arcade-hub-item ${isGameDone ? "game-item-done" : ""}" onclick="openGameFromLesson('${g.key}')">
+              ${isGameDone ? `<div class="arcade-hub-done-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>` : ""}
+              <img src="${g.icon}" alt="${g.title}" class="arcade-hub-icon-3d" decoding="async">
+              <div class="arcade-hub-title">${g.title}</div>
+            </div>
+          `;
+        }).join("")}
       </div>
     `;
   }
-  // 6) DEVOCIONAL 7 DIAS (Barra roxa superior com Segunda a Domingo + 1 Card Único por Dia da Semana + Download 16:9!)
+  // 6) DEVOCIONAL 7 DIAS (Esteira única Segunda a Domingo + Elementos soltos na tela + Versículo em destaque + Comentário + Dica em Família!)
   else if (modType === "devocional") {
     const checkedMap = JSON.parse(localStorage.getItem("trono_ebd_devotional_checks") || "{}");
     const weekdays = [
@@ -7005,63 +6993,76 @@ window.openLessonModule = function(modType) {
     const activeIdx = window.EBD_STATE.activeDevotionalDayIdx;
     const activeW = weekdays[activeIdx] || weekdays[0];
 
-    // Barra superior roxa com os 7 dias da semana (Segunda | Terça | Quarta | Quinta | Sexta | Sábado | Domingo)
+    // Esteira superior única (DIRETO dentro de headerBar — sem card dentro de card!)
     if (headerBar) {
-      headerBar.innerHTML = `
-        <div id="devocional-weekdays-strip" class="houses-trail ebd-phases-scroll-trail" style="width:100%; display:flex; align-items:center; gap:5px; overflow-x:auto; padding:2px 4px;">
-          ${weekdays.map(w => {
-            const isDayDone = !!checkedMap[`w${lesson.week}_d${w.dayNum}`];
-            const isCur = w.idx === activeIdx;
-            return `<button type="button" id="dev-weekday-pill-${w.idx}" class="devocional-weekday-pill ${isDayDone ? "day-done" : ""} ${isCur ? "active" : ""}" onclick="selectDevotionalWeekday(${w.idx})">${w.short}</button>`;
-          }).join("")}
-        </div>
-      `;
+      headerBar.innerHTML = weekdays.map(w => {
+        const isDayDone = !!checkedMap[`w${lesson.week}_d${w.dayNum}`];
+        const isCur = w.idx === activeIdx;
+        return `<button type="button" id="dev-weekday-pill-${w.idx}" class="devocional-weekday-pill ${isDayDone ? "day-done" : ""} ${isCur ? "active-day" : ""}" onclick="selectDevotionalWeekday(${w.idx})">${w.short}</button>`;
+      }).join("");
       setTimeout(() => {
-        const strip = document.getElementById("devocional-weekdays-strip");
-        if (strip && typeof window.enableHorizontalDragScroll === "function") {
-          window.enableHorizontalDragScroll(strip);
-          const curBtn = document.getElementById(`dev-weekday-pill-${activeIdx}`);
-          if (curBtn && typeof curBtn.scrollIntoView === "function") {
-            curBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-          }
+        if (typeof window.enableHorizontalDragScroll === "function") {
+          window.enableHorizontalDragScroll(headerBar);
+        }
+        const curBtn = document.getElementById(`dev-weekday-pill-${activeIdx}`);
+        if (curBtn && typeof curBtn.scrollIntoView === "function") {
+          curBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
         }
       }, 30);
     }
 
     const daysArr = lesson.devotional5Days || [];
-    const d = daysArr[activeIdx] || daysArr[0] || { day: activeW.dayNum, title: activeW.full, text: "", prayer: "" };
+    const d = daysArr[activeIdx] || daysArr[0] || { day: activeW.dayNum, title: activeW.full, verse: ageData.verse || "", text: "", prayer: "" };
     const key = `w${lesson.week}_d${activeW.dayNum}`;
     const done = !!checkedMap[key];
     const dayImg = d.img || (lesson.storyScenes && lesson.storyScenes[activeIdx % lesson.storyScenes.length] ? lesson.storyScenes[activeIdx % lesson.storyScenes.length].img : lesson.thumbImg);
     const cleanSubTitle = String(d.title || "").replace(/^Dia\s*\d+\s*[•\-:]\s*/i, "").trim();
     const fullDayTitle = cleanSubTitle ? `${activeW.full} • ${cleanSubTitle}` : activeW.full;
+    const safeDayTitle = fullDayTitle.replace(/'/g, "");
     const doneDaysCount = weekdays.filter(w => !!checkedMap[`w${lesson.week}_d${w.dayNum}`]).length;
 
+    const parsedVerse = window.parseDevotionalVerse(d.verse || ageData.verse || "", lesson.bibleRef || "");
+    const familyTipText = window.buildDevotionalFamilyTip(lesson, d, activeIdx, cleanSubTitle);
+
     box.innerHTML = `
-      <div class="ebd-glass-card" style="margin-bottom:4px; padding:10px; text-align:left;">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:6px;">
-          <div>
-            <div style="font-size:11px; font-weight:800; color:#38bdf8;">Lição ${lesson.week}: ${lesson.title}</div>
-            <h3 style="color:#fde047; font-size:15px; margin:0; line-height:1.2;">${fullDayTitle}</h3>
+      <div style="display:flex; flex-direction:column; gap:11px; padding:4px 4px 20px 4px; text-align:left;">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:8px;">
+          <div style="min-width:0;">
+            <div style="font-size:11.5px; font-weight:900; color:#38bdf8; text-transform:uppercase; letter-spacing:0.3px; text-shadow:0 2px 4px rgba(0,0,0,0.85);">Lição ${lesson.week}: ${lesson.title}</div>
+            <div style="font-family:'Fredoka',sans-serif; color:#fde047; font-size:16px; font-weight:800; line-height:1.22; text-transform:uppercase; text-shadow:0 2px 6px rgba(0,0,0,0.92); margin-top:1px;">${fullDayTitle}</div>
           </div>
-          <span style="background:${done ? "linear-gradient(180deg,#00e676,#00c853)" : "rgba(15,23,42,0.9)"}; color:#ffffff; font-size:10.5px; font-weight:900; padding:3px 9px; border-radius:999px; border:1.5px solid ${done ? "#ffffff" : "#fde047"}; flex-shrink:0;">
+          <span style="background:${done ? "linear-gradient(180deg,#00e676,#00c853)" : "linear-gradient(180deg,#7e22ce,#4c1d95)"}; color:#ffffff; font-size:11px; font-weight:900; padding:4px 10px; border-radius:999px; border:1.5px solid ${done ? "#ffffff" : "#fde047"}; flex-shrink:0; box-shadow:0 3px 8px rgba(0,0,0,0.72); text-transform:uppercase;">
             ${doneDaysCount}/7 Dias
           </span>
         </div>
 
-        <div style="width:100%; aspect-ratio:16/9; border-radius:13px; overflow:hidden; border:2px solid #fde047; background:#050b1a; margin-bottom:6px; position:relative; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.8);" onclick="openLessonImageFullModal('${dayImg}', '${fullDayTitle.replace(/'/g, "")}')">
-          <img src="${dayImg}" alt="${fullDayTitle}" style="width:100%; height:100%; object-fit:cover; display:block;">
+        <div style="width:100%; aspect-ratio:16/9; border-radius:16px; overflow:hidden; border:2.5px solid #fde047; background:#050b1a; position:relative; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,0.85);" onclick="openLessonImageFullModal('${dayImg}', '${safeDayTitle}')">
+          <img src="${dayImg}" alt="${safeDayTitle}" style="width:100%; height:100%; object-fit:cover; display:block;">
         </div>
 
-        <div style="display:flex; justify-content:flex-end; margin-bottom:7px;">
-          <button type="button" class="btn-tool-3d" style="padding:4px 10px; font-size:11px; font-weight:900;" onclick="downloadLesson16x9Image('${dayImg}', '${fullDayTitle.replace(/'/g, "")}')">Baixar Imagem (16:9)</button>
+        <button type="button" class="btn-tool-3d" style="width:100%; padding:8px 14px; font-size:12.5px; font-weight:900; border-radius:999px;" onclick="downloadLesson16x9Image('${dayImg}', '${safeDayTitle}')">
+          Baixar Imagem (16:9)
+        </button>
+
+        ${parsedVerse.quote ? `
+          <div style="background:linear-gradient(180deg, rgba(147,51,234,0.90) 0%, rgba(76,29,149,0.96) 100%); border:2.5px solid #fde047; border-radius:18px; padding:14px 14px; box-shadow:0 6px 18px rgba(0,0,0,0.82);">
+            <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:800; color:#fde047; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:6px;">Versículo Bíblico</div>
+            <div style="font-size:16.5px; font-weight:900; color:#ffffff; line-height:1.38; text-shadow:0 2px 5px rgba(0,0,0,0.85); margin-bottom:${parsedVerse.ref ? "7px" : "0"};">"${parsedVerse.quote}"</div>
+            ${parsedVerse.ref ? `<div style="font-size:13px; font-weight:900; color:#86efac; text-align:right;">${parsedVerse.ref}</div>` : ""}
+          </div>
+        ` : ""}
+
+        <div style="background:linear-gradient(180deg, rgba(30,41,59,0.92) 0%, rgba(15,23,42,0.96) 100%); border:2px solid #38bdf8; border-radius:16px; padding:12px 14px; box-shadow:0 5px 14px rgba(0,0,0,0.75);">
+          <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:5px;">Conversando sobre a Palavra</div>
+          <div style="font-size:14px; color:#f8fafc; font-weight:700; line-height:1.45;">${d.text}</div>
         </div>
 
-        ${d.verse ? `<div style="background:rgba(88,28,135,0.82); border-left:3.5px solid #fde047; border-radius:8px; padding:7px 10px; font-size:12.5px; font-weight:800; color:#fef08a; line-height:1.34; margin-bottom:7px;">${d.verse}</div>` : ""}
-        <div style="font-size:13px; color:#ffffff; font-weight:700; line-height:1.42; margin-bottom:7px;">${d.text}</div>
-        ${d.prayer ? `<div style="background:rgba(6,78,59,0.55); border:1.5px solid #00e676; border-radius:10px; padding:7px 9px; font-size:12px; color:#86efac; font-weight:800; line-height:1.34; margin-bottom:10px;">${d.prayer}</div>` : ""}
+        <div style="background:linear-gradient(180deg, rgba(6,78,59,0.86) 0%, rgba(4,47,46,0.95) 100%); border:2px solid #00e676; border-radius:16px; padding:12px 14px; box-shadow:0 5px 14px rgba(0,0,0,0.75);">
+          <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:800; color:#86efac; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:5px;">Dica em Família</div>
+          <div style="font-size:13.5px; color:#ffffff; font-weight:800; line-height:1.44;">${familyTipText}</div>
+        </div>
 
-        <button type="button" class="btn-gold" style="width:100%; padding:11px; font-size:14.5px; ${done ? "background:linear-gradient(180deg,#00e676,#00c853); color:#052e16;" : ""}" onclick="completeLessonDevotionalDay(${activeW.dayNum})">
+        <button type="button" class="btn-gold" style="width:100%; padding:13px; font-size:15px; border-radius:999px; ${done ? "background:linear-gradient(180deg,#00e676,#00c853); color:#ffffff;" : ""}" onclick="completeLessonDevotionalDay(${activeW.dayNum})">
           ${done ? `${activeW.full} Concluído! (Próximo Dia)` : `Concluir Devocional de ${activeW.full}`}
         </button>
       </div>
@@ -7070,6 +7071,49 @@ window.openLessonModule = function(modType) {
 
   if (typeof showScreen === "function") showScreen("screen-lesson-module");
   box.scrollTop = 0;
+};
+
+window.parseDevotionalVerse = function(rawVerse, fallbackRef) {
+  const s = String(rawVerse || "").trim();
+  if (!s) return { quote: "", ref: fallbackRef || "" };
+  const m = s.match(/^(.*?)\s*\(([^()]+)\)\s*["”']*$/);
+  if (m) {
+    const cleanQuote = m[1].replace(/^[\s"“']+/, "").replace(/[\s"”']+$/, "").trim();
+    const cleanRef = m[2].trim();
+    return { quote: cleanQuote, ref: cleanRef || fallbackRef || "" };
+  }
+  const cleanOnly = s.replace(/^[\s"“']+/, "").replace(/[\s"”']+$/, "").trim();
+  return { quote: cleanOnly, ref: fallbackRef || "" };
+};
+
+window.buildDevotionalFamilyTip = function(lesson, d, activeIdx, cleanSubTitle) {
+  const age68 = (lesson && lesson.byAge && lesson.byAge["6-8"]) || {};
+  const age35 = (lesson && lesson.byAge && lesson.byAge["3-5"]) || {};
+  const temaDia = cleanSubTitle || (lesson ? lesson.title : "a Palavra de Deus");
+  const tituloLicao = lesson ? lesson.title : "a história bíblica";
+
+  if (d && d.familyTip) return d.familyTip;
+
+  switch (activeIdx) {
+    case 0:
+      return `Conversem juntos hoje em casa sobre "${temaDia}" e perguntem à criança qual parte da história de "${tituloLicao}" ela achou mais bonita!`;
+    case 1:
+      return `Leiam o versículo bíblico acima juntos em voz alta e escolham uma palavra especial dele para lembrar com alegria durante todo o dia!`;
+    case 2:
+      return age68.actionDesc
+        ? `${age68.actionDesc}`
+        : `Coloquem em prática hoje em família um gesto simples de bondade, ajuda mútua e carinho dentro de casa!`;
+    case 3:
+      return `Momento de gratidão à mesa ou antes de dormir: cada pessoa da família compartilha uma bênção pela qual quer agradecer a Deus hoje!`;
+    case 4:
+      return `Peça para a criança contar com as próprias palavras para a família o que aprendeu em "${temaDia}" e elogie sua dedicação!`;
+    case 5:
+      return age35.actionDesc
+        ? `${age35.actionDesc}`
+        : `Aproveitem o sábado para fazerem uma tarefa ou brincadeira unidos em família, praticando a cooperação e o amor no lar!`;
+    default:
+      return `Relembrem juntos o versículo guardado no coração nesta semana em "${tituloLicao}" e comemorem em família mais uma semana concluída!`;
+  }
 };
 
 window.selectDevotionalWeekday = function(dayIdx) {
