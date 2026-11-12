@@ -5726,27 +5726,105 @@
     const pIdx = Math.max(0, Math.min(QUIZ_VISUAL_15_PHASES.length - 1, (Number(phase) || 1) - 1));
     const qData = QUIZ_VISUAL_15_PHASES[pIdx];
     const shuffled = qData.opts.map(o => Object.assign({}, o)).sort(() => Math.random() - 0.5);
-    const qFontSize = qData.q.length > 95 ? "14.2px" : (qData.q.length > 72 ? "15.2px" : "16.2px");
+    const qFontSize = qData.q.length > 95 ? "14.5px" : (qData.q.length > 72 ? "15.5px" : "16.5px");
     let answered = false;
 
     container.innerHTML = `
+      <style>
+        @keyframes quizMagicFlow {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .quiz-vis-question-btn {
+          position: relative;
+          width: 100%;
+          max-width: 362px;
+          background: linear-gradient(180deg, rgba(147, 51, 234, 0.78) 0%, rgba(88, 28, 135, 0.88) 100%);
+          border: none;
+          border-radius: 20px;
+          padding: 13px 16px;
+          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.78);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          box-sizing: border-box;
+          cursor: pointer;
+          display: block;
+          text-align: center;
+          transition: transform 0.14s ease, box-shadow 0.18s ease;
+          -webkit-tap-highlight-color: transparent;
+        }
+        .quiz-vis-question-btn:active {
+          transform: scale(0.97);
+        }
+        .quiz-vis-question-btn::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          padding: 3.5px;
+          background: linear-gradient(125deg, #38bdf8, #a855f7, #facc15, #34d399, #ec4899, #38bdf8);
+          background-size: 250% 250%;
+          animation: quizMagicFlow 4s ease infinite;
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
+          z-index: 3;
+        }
+        .quiz-vis-opt-card {
+          position: relative;
+          width: min(64vw, 228px);
+          aspect-ratio: 16 / 9;
+          padding: 3.5px;
+          border: none;
+          border-radius: 17px;
+          background: linear-gradient(125deg, #38bdf8, #a855f7, #facc15, #34d399, #ec4899, #38bdf8);
+          background-size: 250% 250%;
+          animation: quizMagicFlow 4s ease infinite;
+          box-shadow: 0 7px 18px rgba(0, 0, 0, 0.72);
+          overflow: hidden;
+          cursor: pointer;
+          display: block;
+          box-sizing: border-box;
+          transition: transform 0.14s ease, box-shadow 0.18s ease;
+          -webkit-tap-highlight-color: transparent;
+        }
+        .quiz-vis-opt-card:active {
+          transform: scale(0.97);
+        }
+        .quiz-vis-opt-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          border-radius: 13.5px;
+          pointer-events: none;
+        }
+        .quiz-vis-opt-card.quiz-opt-correct {
+          animation: none !important;
+          background: #00e676 !important;
+          box-shadow: 0 0 24px rgba(0, 230, 118, 0.95), 0 8px 20px rgba(0, 0, 0, 0.82) !important;
+          transform: scale(1.05) !important;
+        }
+        .quiz-vis-opt-card.quiz-opt-wrong {
+          animation: none !important;
+          background: #ef4444 !important;
+          box-shadow: 0 0 18px rgba(239, 68, 68, 0.92), 0 6px 16px rgba(0, 0, 0, 0.78) !important;
+          transform: translateX(-6px);
+        }
+      </style>
       <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:linear-gradient(180deg, rgba(10,18,42,0.18) 0%, rgba(10,18,42,0.34) 100%), url('./3_ASSETS_QUIZ_ARCADE/quiz_bg_monte_sinai_v154.jpg?v=154') center/cover no-repeat; padding:66px 14px 14px 14px; box-sizing:border-box;">
-        <div style="width:100%; max-width:362px; display:flex; align-items:center; gap:9px; background:linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(30,41,59,0.96) 100%); border:2.5px solid #fde047; border-radius:20px; padding:10px 13px; box-shadow:0 8px 20px rgba(0,0,0,0.72); box-sizing:border-box;">
-          <div style="flex:1; font-family:'Fredoka',sans-serif; color:#fde047; font-size:${qFontSize}; font-weight:800; line-height:1.22; text-align:center; text-shadow:0 2px 5px rgba(0,0,0,0.92);">
+        <button type="button" id="quiz-vis-question-card" class="quiz-vis-question-btn" onclick="window._quizReplayVovo()" title="Toque para ouvir a pergunta novamente" aria-label="Toque para ouvir a pergunta novamente">
+          <span style="display:block; font-family:'Fredoka',sans-serif; color:#ffffff; font-size:${qFontSize}; font-weight:800; line-height:1.23; text-align:center; text-shadow:0 2px 5px rgba(0,0,0,0.92); pointer-events:none;">
             ${qData.q}
-          </div>
-          <button type="button" onclick="window._quizReplayVovo()" title="Ouvir pergunta novamente" aria-label="Ouvir pergunta novamente" style="flex-shrink:0; width:38px; height:38px; border-radius:50%; border:2px solid #ffffff; background:linear-gradient(180deg,#facc15 0%,#ca8a04 100%); box-shadow:0 4px 10px rgba(0,0,0,0.55); display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="pointer-events:none;">
-              <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#1e1b4b" stroke="#1e1b4b" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M15.54 8.46C16.47 9.4 17 10.66 17 12C17 13.34 16.47 14.6 15.54 15.54M19.07 4.93C20.94 6.8 22 9.33 22 12C22 14.67 20.94 17.2 19.07 19.07" stroke="#1e1b4b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
+          </span>
+        </button>
 
-        <div style="width:100%; display:flex; flex-direction:column; align-items:center; gap:9px;">
+        <div style="width:100%; display:flex; flex-direction:column; align-items:center; gap:10px;">
           ${shuffled.map((opt, idx) => `
-            <button type="button" id="quiz-vis-opt-${idx}" onclick="window._quizVisualTap(${idx})" aria-label="Alternativa ${idx + 1}" style="width:min(64vw, 228px); aspect-ratio:16/9; padding:0; border-radius:16px; background:#f8f1df; border:3.5px solid #ffffff; box-shadow:0 7px 18px rgba(0,0,0,0.68); overflow:hidden; cursor:pointer; display:block; transition:transform 0.14s ease, border-color 0.18s ease, box-shadow 0.18s ease;">
-              <img src="${opt.img}" alt="" decoding="async" style="width:100%; height:100%; object-fit:cover; display:block; pointer-events:none;">
+            <button type="button" id="quiz-vis-opt-${idx}" class="quiz-vis-opt-card" onclick="window._quizVisualTap(${idx})" aria-label="Alternativa ${idx + 1}">
+              <img src="${opt.img}" alt="" decoding="async">
             </button>
           `).join("")}
         </div>
@@ -5755,6 +5833,11 @@
 
     window._quizReplayVovo = function() {
       if (answered) return;
+      const qBtn = document.getElementById("quiz-vis-question-card");
+      if (qBtn) {
+        qBtn.style.transform = "scale(0.96)";
+        setTimeout(() => { if (qBtn) qBtn.style.transform = ""; }, 150);
+      }
       TronoAudio.unlockGestureAudio();
       TronoAudio.falarVovo(qData.audio);
     };
@@ -5768,20 +5851,17 @@
       if (chosen.ok) {
         answered = true;
         TronoAudio.falarVovo(null);
-        btn.style.borderColor = "#00e676";
-        btn.style.boxShadow = "0 0 22px rgba(0,230,118,0.95), 0 8px 20px rgba(0,0,0,0.8)";
-        btn.style.transform = "scale(1.05)";
+        btn.classList.remove("quiz-opt-wrong");
+        btn.classList.add("quiz-opt-correct");
         TronoAudio.play("success");
         setTimeout(triggerArcadeVictory, 650);
       } else {
-        btn.style.borderColor = "#ef4444";
-        btn.style.boxShadow = "0 0 18px rgba(239,68,68,0.9), 0 6px 16px rgba(0,0,0,0.75)";
-        btn.style.transform = "translateX(-6px)";
+        btn.classList.add("quiz-opt-wrong");
         setTimeout(() => {
           if (!answered && btn) {
-            btn.style.transform = "translateX(0)";
+            btn.classList.remove("quiz-opt-wrong");
           }
-        }, 180);
+        }, 420);
         TronoAudio.play("error");
       }
     };
