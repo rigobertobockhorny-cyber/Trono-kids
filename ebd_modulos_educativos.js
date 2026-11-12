@@ -5484,7 +5484,11 @@ window.launchLessonSpecificGame = function(gameType) {
     };
     window.renderWordSearchGame(true);
     if (typeof showScreen === "function") showScreen("screen-game-wordsearch");
-  } else if (gameType === "whoami") {
+  } else if (gameType === "whoami" || gameType === "quiz") {
+    if (typeof window.openLessonArcadeGame === "function") {
+      window.openLessonArcadeGame("quiz_visual", wk, "who_am_i");
+      return;
+    }
     const idx = window.WHO_AM_I_BANK.findIndex(l => l.lessonWeek === wk);
     window.EBD_STATE.whoAmIIdx = idx >= 0 ? idx : 0;
     window.EBD_STATE.whoAmIClueCount = 1;
@@ -6966,7 +6970,7 @@ window.openLessonModule = function(modType) {
       { key: "lesson_paint", title: "PINTURA MÁGICA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_17_pintura_v130.png" },
       { key: "word_search", title: "CAÇA-PALAVRAS", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_11_erros_v130.png" },
       { key: "secret_word", title: "PALAVRA SECRETA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_10_pontos_v130.png" },
-      { key: "who_am_i", title: "QUEM SOU EU?", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png" },
+      { key: "who_am_i", title: "QUIZ DA BÍBLIA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png" },
       { key: "true_or_myth", title: "VERDADEIRO OU MITO", icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png" }
     ];
     box.innerHTML = `
@@ -7553,10 +7557,9 @@ window.openGamesHubScreen = function(filterCat) {
     { id: "paint", title: "PINTURA MÁGICA", sub: "Colorir a Lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_03.png", action: "openGalleryFor('paint')" },
     { id: "word_search", title: "CAÇA-PALAVRAS", sub: "Ache os Termos", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png", action: "openEduGame('word_search', false)" },
     { id: "secret_word", title: "PALAVRA SECRETA", sub: "Descubra as Letras", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png", action: "openEduGame('secret_word', false)" },
-    { id: "who_am_i", title: "QUEM SOU EU?", sub: "3 Pistas Bíblicas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_vovo.png", action: "openEduGame('who_am_i', false)" },
+    { id: "quiz_visual", title: "QUIZ DA BÍBLIA", sub: "Perguntas e Pistas", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png", action: "openEduGame('who_am_i', false)" },
     { id: "true_or_myth", title: "VERDADEIRO OU MITO", sub: "Desafio Rápido", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png", action: "openEduGame('true_or_myth', false)" },
-    { id: "memory", title: "JOGO DA MEMÓRIA", sub: "Encontre os Pares", icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png", action: "openModule('memory')" },
-    { id: "quiz", title: "QUIZ DO VOVÔ", sub: "Perguntas da Bíblia", icon: "./2_ASSETS_UI_BOTOES/ui_icon_04.png", action: "openModule('quiz')" }
+    { id: "memory", title: "JOGO DA MEMÓRIA", sub: "Encontre os Pares", icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png", action: "openModule('memory')" }
   ];
 
   const gridEl = document.getElementById("games-hub-grid");
@@ -7600,7 +7603,7 @@ window.LESSON_GAMES_CATALOG_META = [
   { key: "lesson_paint",  title: "PINTURA MÁGICA",    icon: "./2_ASSETS_UI_BOTOES/ico_jogo_17_pintura_v130.png" },
   { key: "word_search",   title: "CAÇA-PALAVRAS",     icon: "./2_ASSETS_UI_BOTOES/ico_jogo_11_erros_v130.png" },
   { key: "secret_word",   title: "PALAVRA SECRETA",   icon: "./2_ASSETS_UI_BOTOES/ico_jogo_10_pontos_v130.png" },
-  { key: "who_am_i",      title: "QUEM SOU EU?",      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png" },
+  { key: "who_am_i",      title: "QUIZ DA BÍBLIA",    icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png" },
   { key: "true_or_myth",  title: "VERDADEIRO OU MITO",icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png" }
 ];
 
@@ -7835,8 +7838,8 @@ window.openGameFromLesson = function(gameKey) {
     window.openLessonArcadeGame("palavra_secreta", lesson.week, "secret_word");
     return;
   }
-  if (gameKey === "who_am_i" && typeof window.openLessonArcadeGame === "function") {
-    window.openLessonArcadeGame("quem_sou_eu", lesson.week, "who_am_i");
+  if ((gameKey === "who_am_i" || gameKey === "quiz_visual") && typeof window.openLessonArcadeGame === "function") {
+    window.openLessonArcadeGame("quiz_visual", lesson.week, "who_am_i");
     return;
   }
   if (gameKey === "true_or_myth" && typeof window.openLessonArcadeGame === "function") {
@@ -8004,13 +8007,13 @@ window.openEduGame = function(gameKey, fromLesson) {
       }
     }
     window.renderStageWordSearch();
-  } else if (gameKey === "who_am_i") {
+  } else if (gameKey === "who_am_i" || gameKey === "quiz_visual") {
     if (fromLesson && typeof window.openLessonArcadeGame === "function") {
-      window.openLessonArcadeGame("quem_sou_eu", wk, "who_am_i");
+      window.openLessonArcadeGame("quiz_visual", wk, "who_am_i");
       return;
     }
     if (!fromLesson && typeof window.openTronoArcadeGame === "function") {
-      window.openTronoArcadeGame("quem_sou_eu");
+      window.openTronoArcadeGame("quiz_visual");
       return;
     }
     if (fromLesson) {

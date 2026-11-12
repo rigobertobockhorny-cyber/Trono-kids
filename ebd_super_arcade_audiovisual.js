@@ -339,7 +339,19 @@
       "palavra_secreta_vovo_19.mp3": 20018,
       "palavra_secreta_vovo_20.mp3": 19414,
       "palavra_secreta_vovo_21.mp3": 20807,
-      "palavra_secreta_vovo_22.mp3": 20811
+      "palavra_secreta_vovo_22.mp3": 20811,
+      "quiz_licao_01.mp3": 17821,
+      "quiz_licao_04.mp3": 19320,
+      "quiz_licao_11.mp3": 20203,
+      "quiz_licao_13.mp3": 21689,
+      "quiz_licao_14.mp3": 20946,
+      "quiz_licao_15.mp3": 19599,
+      "quiz_licao_16.mp3": 20017,
+      "quiz_licao_17.mp3": 20667,
+      "quiz_licao_18.mp3": 21364,
+      "quiz_licao_19.mp3": 20621,
+      "quiz_licao_20.mp3": 23546,
+      "quiz_licao_22.mp3": 23645
     },
 
     attachVoicePresenceBoost(player) {
@@ -1807,6 +1819,9 @@
   const ARCADE_PROGRESS_STORAGE_KEY = "trono_arcade_progress_v1";
 
   function getGameTotalPhases(gameId) {
+    if (gameId === "quiz_visual") {
+      return QUIZ_VISUAL_22_PHASES.length;
+    }
     if (gameId === "criacao_ordem") {
       return (window.CHRONOLOGY_LEVELS && window.CHRONOLOGY_LEVELS.length) ? window.CHRONOLOGY_LEVELS.length : 22;
     }
@@ -2113,6 +2128,7 @@
 
   window.openTronoArcadeGame = function(gameId) {
     if (gameId === "animais_eden") gameId = "quem_entrou_arca";
+    if (gameId === "quem_sou_eu") gameId = "quiz_visual";
     // Escudo anti-ghost-click: bloqueia clique fantasma do celular nos 550ms após fechar um jogo!
     if (window._arcadeClosingUntil && Date.now() < window._arcadeClosingUntil) {
       return;
@@ -2148,6 +2164,7 @@
 
   // Abre o mesmo palco de jogo em tela cheia para "Jogos da Lição" (1 única fase correspondente à lição atual!)
   window.openLessonArcadeGame = function(gameId, lessonWeek, lessonGameKey) {
+    if (gameId === "quem_sou_eu") gameId = "quiz_visual";
     if (window._arcadeClosingUntil && Date.now() < window._arcadeClosingUntil) {
       return;
     }
@@ -2402,11 +2419,12 @@
       const stgEl = document.getElementById("screen-trono-arcade-stage");
       if (!stgEl || !stgEl.classList.contains("active")) return;
 
-      // QUIZ DA BÍBLIA: Em todas as 15 fases o Vovô faz a pergunta e diz as 3 alternativas (com trava até terminar de falar!)
+      // QUIZ DA BÍBLIA UNIFICADO (22 LIÇÕES • PERGUNTAS DA BÍBLIA + QUEM SOU EU?):
+      // Em todas as 22 fases o Vovô faz a pergunta/pista da lição e diz as 3 alternativas (com trava até terminar de falar!)
       if (currentActiveGame && currentActiveGame.id === "quiz_visual") {
         _vovoAlreadySpokeInSession = true;
-        const qNum = Math.max(1, Math.min(15, Math.floor(Number(currentPhase) || 1)));
-        const qAudio = `./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q${String(qNum).padStart(2, "0")}.mp3?v=154`;
+        const qData = getQuizVisualPhaseObj(currentPhase);
+        const qAudio = qData.voiceMp3 || qData.audio;
         TronoAudio.falarVovo(qAudio, () => {
           unlockStageAfterVovo();
         });
@@ -2675,8 +2693,8 @@
     }
     let audioTarget = currentActiveGame.audioFile;
     if (currentActiveGame.id === "quiz_visual") {
-      const qNum = Math.max(1, Math.min(15, Math.floor(Number(currentPhase) || 1)));
-      audioTarget = `./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q${String(qNum).padStart(2, "0")}.mp3?v=154`;
+      const qData = getQuizVisualPhaseObj(currentPhase);
+      audioTarget = qData.voiceMp3 || qData.audio;
     } else if (currentActiveGame.id === "versiculo_secreto") {
       const vBankLen = (window.VERSE_BUILDER_BANK && window.VERSE_BUILDER_BANK.length) ? window.VERSE_BUILDER_BANK.length : 22;
       const vNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % vBankLen) + 1;
@@ -6269,11 +6287,240 @@
     }
   ];
 
+  // --- BANCO UNIFICADO DO QUIZ DA BÍBLIA (22 FASES 1:1 COM AS 22 LIÇÕES • PERGUNTAS BÍBLICAS + QUEM SOU EU? FALADO E VISUAL) ---
+  const QUIZ_VISUAL_22_PHASES = [
+    {
+      lessonWeek: 1,
+      q: "NO PRIMEIRO DIA DA CRIAÇÃO, TUDO ESTAVA ESCURO E DEUS DISSE: HAJA LUZ! O QUE BRILHOU SOBRE AS ÁGUAS?",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_01.mp3?v=166",
+      opts: [
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=78", label: "LUZ DOURADA DE DEUS", ok: true },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f01_opt3_carroca.jpg?v=154", label: "CARROÇA DE MADEIRA", ok: false },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f06_opt2_violao.jpg?v=154", label: "VIOLÃO", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 2,
+      q: "O QUE DEUS PEDIU PARA NOÉ CONSTRUIR PARA SALVAR OS ANIMAIS?",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q01.mp3?v=154",
+      opts: [
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f01_opt1_arca.jpg?v=154", label: "ARCA DE MADEIRA", ok: true },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f01_opt2_tenda.jpg?v=154", label: "TENDA NO DESERTO", ok: false },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f01_opt3_carroca.jpg?v=154", label: "CARROÇA DE MADEIRA", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 3,
+      q: "DEUS PROMETEU A ABRAÃO QUE A SUA DESCENDÊNCIA SERIA TÃO NUMEROSA COMO AS ESTRELAS DO CÉU, COMO OS PEIXES DO MAR OU COMO AS ÁRVORES DAS FLORESTAS?",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q02.mp3?v=154",
+      opts: [
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f02_opt1_estrelas.jpg?v=154", label: "ESTRELAS DO CÉU", ok: true },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f02_opt2_peixes.jpg?v=154", label: "PEIXES DO MAR", ok: false },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f02_opt3_arvores.jpg?v=154", label: "ÁRVORES DAS FLORESTAS", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 4,
+      q: "QUEM SOU EU? USEI UMA PEDRA DE TRAVESSEIRO E SONHEI COM UMA ESCADA BRILHANTE CHEIA DE ANJOS ATÉ O CÉU!",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_04.mp3?v=166",
+      opts: [
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=78", label: "JACÓ E A ESCADA COM ANJOS", ok: true },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=78", label: "NOÉ E A GRANDE ARCA", ok: false },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=78", label: "DAVI TOCANDO HARPA", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 5,
+      q: "QUAL PRESENTE ESPECIAL JACÓ DEU PARA SEU FILHO JOSÉ?",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q03.mp3?v=154",
+      opts: [
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f03_opt1_tunica.jpg?v=154", label: "TÚNICA COLORIDA", ok: true },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f03_opt2_coroa.jpg?v=154", label: "COROA DE OURO", ok: false },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f03_opt3_armadura.jpg?v=154", label: "ARMADURA DE SOLDADO", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 6,
+      q: "O QUE MOISÉS LEVANTOU NA MÃO PARA ABRIR O MAR VERMELHO?",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q05.mp3?v=154",
+      opts: [
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f05_opt1_cajado.jpg?v=154", label: "CAJADO", ok: true },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f05_opt2_vassoura.jpg?v=154", label: "VASSOURA", ok: false },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f05_opt3_guardasol.jpg?v=154", label: "GUARDA-SOL", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 7,
+      q: "O QUE OS SACERDOTES TOCARAM PARA DERRUBAR AS MURALHAS DE JERICÓ?",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q06.mp3?v=154",
+      opts: [
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f06_opt1_trombetas.jpg?v=154", label: "TROMBETAS", ok: true },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f06_opt2_violao.jpg?v=154", label: "VIOLÃO", ok: false },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f06_opt3_piano.jpg?v=154", label: "PIANO", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 8,
+      q: "O QUE DAVI USOU NA SUA FUNDA PARA DERRUBAR O GIGANTE GOLIAS?",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q07.mp3?v=154",
+      opts: [
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f07_opt1_pedrinhas.jpg?v=154", label: "PEDRINHAS LISAS", ok: true },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f07_opt2_diamantes.jpg?v=154", label: "DIAMANTES", ok: false },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f07_opt3_bolinhas_gude.jpg?v=154", label: "BOLINHAS DE GUDE", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 9,
+      q: "QUAL ANIMAL DO MAR ENGOLIU O PROFETA JONAS?",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q09.mp3?v=154",
+      opts: [
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f09_opt1_grande_peixe.jpg?v=154", label: "GRANDE PEIXE", ok: true },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f09_opt2_polvo.jpg?v=154", label: "POLVO", ok: false },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f09_opt3_tartaruga.jpg?v=154", label: "TARTARUGA", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 10,
+      q: "DEUS PROTEGEU DANIEL FECHANDO A BOCA DE QUAIS ANIMAIS LÁ NA COVA?",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q08.mp3?v=154",
+      opts: [
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f08_opt1_leoes.jpg?v=154", label: "LEÕES", ok: true },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f08_opt2_ursos.jpg?v=154", label: "URSOS", ok: false },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f08_opt3_jacares.jpg?v=154", label: "JACARÉS", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 11,
+      q: "QUEM SOU EU? MOREI NO LINDO JARDIM DO ÉDEN E DEI NOME A TODOS OS ANIMAIS QUE DEUS CRIOU!",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_11.mp3?v=166",
+      opts: [
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_213.jpg?v=78", label: "ADÃO COM OS ANIMAIS NO JARDIM", ok: true },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=78", label: "MOISÉS ABRINDO O MAR VERMELHO", ok: false },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg?v=78", label: "JONAS E O GRANDE PEIXE", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 12,
+      q: "ONDE A MAMÃE DE MOISÉS COLOCOU O BEBÊ LÁ NO RIO PARA PROTEGÊ-LO?",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q04.mp3?v=154",
+      opts: [
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f04_opt1_cestinho.jpg?v=154", label: "CESTINHO DE PALHA", ok: true },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f04_opt2_caverna.jpg?v=154", label: "CAVERNA", ok: false },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f04_opt3_casinha.jpg?v=154", label: "CASINHA", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 13,
+      q: "QUEM SOU EU? SUBI AO ALTO DO MONTE SINAI E RECEBI DE DEUS AS DUAS TÁBUAS DOS DEZ MANDAMENTOS!",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_13.mp3?v=166",
+      opts: [
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_221.jpg?v=78", label: "MOISÉS COM AS TÁBUAS DE PEDRA", ok: true },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=78", label: "JOSÉ COM A TÚNICA COLORIDA", ok: false },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=78", label: "DAVI ENFRENTANDO O GIGANTE", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 14,
+      q: "QUEM SOU EU? CUIDEI COM CARINHO DA MINHA SOGRA NOEMI E COLHI ESPIGAS DOURADAS NOS CAMPOS DE BELÉM!",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_14.mp3?v=166",
+      opts: [
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_225.jpg?v=78", label: "RUTE COLHENDO ESPIGAS", ok: true },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=78", label: "ABRAÃO OLHANDO AS ESTRELAS", ok: false },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_32.jpg?v=78", label: "JOSUÉ TOCANDO TROMBETA", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 15,
+      q: "QUEM SOU EU? DESDE MENINO AJUDAVA O SACERDOTE ELI CUIDANDO DA LÂMPADA DOURADA NO TEMPLO DO SENHOR!",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_15.mp3?v=166",
+      opts: [
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_229.jpg?v=78", label: "SAMUEL COM ELI NO TEMPLO", ok: true },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=78", label: "DANIEL NA COVA DOS LEÕES", ok: false },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_253.jpg?v=78", label: "PAULO VIAJANDO DE NAVIO", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 16,
+      q: "QUEM SOU EU? FUI UM JOVEM REI DE COROA DOURADA QUE PEDIU A DEUS UM CORAÇÃO CHEIO DE SABEDORIA!",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_16.mp3?v=166",
+      opts: [
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_232.jpg?v=78", label: "REI SALOMÃO ORANDO A DEUS", ok: true },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_224.jpg?v=78", label: "GIDEÃO COM TOCHAS À NOITE", ok: false },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=78", label: "NOÉ E A GRANDE ARCA", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 17,
+      q: "QUAL MILAGRE DEUS FEZ PELA FÉ DO PROFETA ELISEU PARA AJUDAR A VIÚVA E SEUS DOIS FILHINHOS?",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_17.mp3?v=166",
+      opts: [
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_236.jpg?v=78", label: "MULTIPLICOU O AZEITE NAS VASILHAS", ok: true },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=78", label: "ABRIU O MAR VERMELHO", ok: false },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg?v=78", label: "DERRUBOU UM GIGANTE", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 18,
+      q: "QUEM SOMOS NÓS? SOMOS OS TRÊS AMIGOS FIÉIS QUE CONFIARAM EM DEUS E UM ANJO BRILHANTE NOS PROTEGEU NO FOGO!",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_18.mp3?v=166",
+      opts: [
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_240.jpg?v=78", label: "OS TRÊS JOVENS COM O ANJO NO FOGO", ok: true },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f09_opt1_grande_peixe.jpg?v=154", label: "GRANDE PEIXE NO MAR", ok: false },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f06_opt3_piano.jpg?v=154", label: "PIANO DE MÚSICA", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 19,
+      q: "QUEM SOU EU? FUI A RAINHA CORAJOSA QUE OROU PELO POVO E VIU O REI ESTENDER O CETRO DE OURO PARA ME OUVIR!",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_19.mp3?v=166",
+      opts: [
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_244.jpg?v=78", label: "RAINHA ESTER DIANTE DO REI", ok: true },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=78", label: "DAVI COM SUA HARPA", ok: false },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_218.jpg?v=78", label: "MOISÉS DIANTE DA SARÇA ACESA", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 20,
+      q: "QUEM SOU EU? REUNI TODAS AS FAMÍLIAS COM ALEGRIA PARA TRABALHAREM JUNTAS RECONSTRUINDO OS MUROS DE JERUSALÉM!",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_20.mp3?v=166",
+      opts: [
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_247.jpg?v=78", label: "NEEMIAS E AS FAMÍLIAS NOS MUROS", ok: true },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=78", label: "JACÓ E A ESCADA NO CÉU", ok: false },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_213.jpg?v=78", label: "ADÃO COM OS ANIMAIS NO JARDIM", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 21,
+      q: "ONDE MARIA DEITOU O MENINO JESUS QUANDO ELE NASCEU EM BELÉM?",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q10.mp3?v=154",
+      opts: [
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f10_opt1_manjedoura.jpg?v=154", label: "MANJEDOURA", ok: true },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f10_opt2_berco.jpg?v=154", label: "BERÇO", ok: false },
+        { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f10_opt3_rede.jpg?v=154", label: "REDE", ok: false }
+      ]
+    },
+    {
+      lessonWeek: 22,
+      q: "QUEM SOU EU? VIAJEI DE NAVIO POR MUITAS CIDADES ANUNCIANDO O AMOR DE JESUS E ESCREVENDO CARTAS PARA AS IGREJAS!",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_22.mp3?v=166",
+      opts: [
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_253.jpg?v=78", label: "PAULO NO NAVIO COM OS PERGAMINHOS", ok: true },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_220.jpg?v=78", label: "MOISÉS TIRANDO ÁGUA DA ROCHA", ok: false },
+        { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_225.jpg?v=78", label: "RUTE COLHENDO ESPIGAS NO CAMPO", ok: false }
+      ]
+    }
+  ];
+
+  function getQuizVisualPhaseObj(phase) {
+    const idx = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % QUIZ_VISUAL_22_PHASES.length);
+    return QUIZ_VISUAL_22_PHASES[idx];
+  }
+
   function runQuizVisual(container, phase) {
-    const pIdx = Math.max(0, Math.min(QUIZ_VISUAL_15_PHASES.length - 1, (Number(phase) || 1) - 1));
-    const qData = QUIZ_VISUAL_15_PHASES[pIdx];
+    window._arcadeWaitVisualBeforeVovo = true;
+    const qData = getQuizVisualPhaseObj(phase);
     const shuffled = qData.opts.map(o => Object.assign({}, o)).sort(() => Math.random() - 0.5);
-    const qFontSize = qData.q.length > 95 ? "14.5px" : (qData.q.length > 72 ? "15.5px" : "16.5px");
+    const qFontSize = qData.q.length > 108 ? "13.8px" : (qData.q.length > 90 ? "14.5px" : (qData.q.length > 72 ? "15.5px" : "16.5px"));
     let answered = false;
 
     container.innerHTML = `
@@ -6371,26 +6618,58 @@
         <div style="width:100%; display:flex; flex-direction:column; align-items:center; gap:10px;">
           ${shuffled.map((opt, idx) => `
             <button type="button" id="quiz-vis-opt-${idx}" class="quiz-vis-opt-card" onclick="window._quizVisualTap(${idx})" aria-label="Alternativa ${idx + 1}">
-              <img src="${opt.img}" alt="" decoding="async">
+              <img src="${opt.optImg || opt.img}" alt="" decoding="async">
             </button>
           `).join("")}
         </div>
       </div>
     `;
 
+    // Garante que os 3 cartões visuais 16:9 apareçam nítidos na tela ANTES de o Vovô começar a falar!
+    (function waitQuizVisualCardsReady() {
+      const optImgs = Array.from(container.querySelectorAll(".quiz-vis-opt-card img"));
+      let pending = optImgs.length;
+      const doneOne = () => {
+        pending -= 1;
+        if (pending <= 0 && typeof window._notifyArcadeVisualReady === "function") {
+          window._notifyArcadeVisualReady();
+        }
+      };
+      if (pending === 0 && typeof window._notifyArcadeVisualReady === "function") {
+        window._notifyArcadeVisualReady();
+        return;
+      }
+      optImgs.forEach(imgEl => {
+        if (imgEl.complete && imgEl.naturalWidth > 0) {
+          doneOne();
+        } else {
+          imgEl.addEventListener("load", doneOne, { once: true });
+          imgEl.addEventListener("error", doneOne, { once: true });
+        }
+      });
+      if (window._arcadeVisualReadySafetyTimer) clearTimeout(window._arcadeVisualReadySafetyTimer);
+      window._arcadeVisualReadySafetyTimer = setTimeout(() => {
+        if (typeof window._notifyArcadeVisualReady === "function") window._notifyArcadeVisualReady();
+      }, 1200);
+    })();
+
     window._quizReplayVovo = function() {
-      if (answered) return;
+      if (answered || _isVictoryActive) return;
       const qBtn = document.getElementById("quiz-vis-question-card");
       if (qBtn) {
         qBtn.style.transform = "scale(0.96)";
         setTimeout(() => { if (qBtn) qBtn.style.transform = ""; }, 150);
       }
       TronoAudio.unlockGestureAudio();
-      TronoAudio.falarVovo(qData.audio);
+      if (typeof window.repeatVovoInstruction === "function") {
+        window.repeatVovoInstruction();
+      } else {
+        TronoAudio.falarVovo(qData.voiceMp3 || qData.audio);
+      }
     };
 
     window._quizVisualTap = function(idx) {
-      if (answered) return;
+      if (window._arcadeStageLockedForVovo || answered || _isVictoryActive) return;
       const chosen = shuffled[idx];
       const btn = document.getElementById(`quiz-vis-opt-${idx}`);
       if (!chosen || !btn) return;
@@ -7704,6 +7983,16 @@
         const wkNum = ((Math.max(1, Math.floor(Number(phaseOrStory) || 1)) - 1) % 22) + 1;
         window.preloadArcadeImageUrl("./2_ASSETS_UI_BOTOES/bg_jogo_20_palavrasecreta_v161.jpg?v=161");
         window.preloadArcadeAudioUrl(`./6_ASSETS_AUDIO/palavra_secreta_vovo/palavra_secreta_vovo_${String(wkNum).padStart(2, "0")}.mp3?v=165`);
+        window.preloadArcadeImageUrl("./3_ASSETS_QUIZ_ARCADE/quiz_bg_monte_sinai_v154.jpg?v=154");
+        const qDataPre = getQuizVisualPhaseObj(wkNum);
+        if (qDataPre) {
+          if (qDataPre.voiceMp3 || qDataPre.audio) {
+            window.preloadArcadeAudioUrl(qDataPre.voiceMp3 || qDataPre.audio);
+          }
+          (qDataPre.opts || []).forEach(opt => {
+            if (opt.optImg || opt.img) window.preloadArcadeImageUrl(opt.optImg || opt.img);
+          });
+        }
       }
     } catch (e) {}
   };
@@ -9726,7 +10015,7 @@
         }
       </style>
       <div class="arcade-hub-clean-grid">
-        ${SUPER_ARCADE_GAMES.map(g => `
+        ${SUPER_ARCADE_GAMES.filter(g => g.id !== "quem_sou_eu").map(g => `
           <div class="arcade-hub-item" onclick="window.openTronoArcadeGame('${g.id}')">
             <img src="${g.icon}" alt="${g.title}" class="arcade-hub-icon-3d" decoding="async">
             <div class="arcade-hub-title">${g.title}</div>

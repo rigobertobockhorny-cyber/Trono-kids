@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v165.0';
+        const CURRENT_VER = 'v166.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=165.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=166.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -2810,8 +2810,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=165.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=165.0"></script>
+<script src="ebd_modulos_educativos.js?v=166.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=166.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -2894,7 +2894,7 @@ const SLEEP_TRACKS = [
   { id: 10, title: 'Chuvinha de Paz para Dormir', file: './6_ASSETS_AUDIO/10_chuva_suave_dormir.mp3' }
 ];
 
-// Hierarquia Oficial de Volume (v165.0):
+// Hierarquia Oficial de Volume (v166.0):
 // Música ambiente sempre macia e baixinha (22%) para a voz do Vovô Nésio (100% + presença vocal) SEMPRE se sobressair!
 // Quando o Vovô fala, o fundo cai automaticamente para 5% (ducking) e volta suavemente depois que ele termina!
 window.BG_AMBIENT_BASE_VOL = 0.22;
