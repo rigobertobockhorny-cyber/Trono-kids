@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v155.0';
+        const CURRENT_VER = 'v156.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=155.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=156.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -739,6 +739,13 @@
       -webkit-overflow-scrolling: touch;
     }
 
+    #screen-puzzle {
+      overflow: hidden !important;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
     .puzzle-stage-wrap {
       flex: 1;
       width: 100%;
@@ -748,6 +755,9 @@
       justify-content: center;
       position: relative;
       min-height: 0;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     #puzzle-canvas {
@@ -757,6 +767,9 @@
       max-height: 100%;
       object-fit: contain;
       touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
       cursor: grab;
     }
     #puzzle-canvas:active {
@@ -2774,8 +2787,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=155.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=155.0"></script>
+<script src="ebd_modulos_educativos.js?v=156.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=156.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -4231,6 +4244,7 @@ let puzzleImg = new Image();
 let pCols = 2, pRows = 3;
 let jigsawPieces = [];
 let draggingPiece = null;
+let draggingPointerId = null;
 let dragOffsetX = 0, dragOffsetY = 0;
 let puzzleSolved = false;
 let puzzleAnimHue = 0;
@@ -4320,8 +4334,17 @@ function tracePieceShape(ctx, x, y, w, h, edges) {
 function initJigsawPuzzle() {
   stopCelebrationConfetti();
   updatePuzzleLayoutRects();
+  if (Array.isArray(jigsawPieces)) {
+    jigsawPieces.forEach(oldP => {
+      if (oldP && oldP._flashTimer) {
+        clearInterval(oldP._flashTimer);
+        oldP._flashTimer = null;
+      }
+    });
+  }
   jigsawPieces = [];
   draggingPiece = null;
+  draggingPointerId = null;
   puzzleSolved = false;
 
   const pw = BOARD_RECT.w / pCols;
@@ -4593,15 +4616,20 @@ function renderJigsawScene() {
 }
 
 function triggerPieceFlash(piece, color, onDone) {
+  if (piece._flashTimer) {
+    clearInterval(piece._flashTimer);
+    piece._flashTimer = null;
+  }
   piece.flashState = color;
   piece.flashAlpha = 1.0;
-  const timer = setInterval(() => {
+  piece._flashTimer = setInterval(() => {
     piece.flashAlpha -= 0.14;
     if (piece.flashAlpha <= 0) {
       piece.flashAlpha = 0;
       piece.flashState = null;
-      clearInterval(timer);
-      if (onDone) onDone();
+      clearInterval(piece._flashTimer);
+      piece._flashTimer = null;
+      if (onDone && piece !== draggingPiece) onDone();
     }
   }, 45);
 }
@@ -4610,52 +4638,130 @@ const puzCanvasEl = document.getElementById('puzzle-canvas');
 
 function getPuzzleCoords(ev) {
   const rect = puzCanvasEl.getBoundingClientRect();
+  const cw = puzCanvasEl.width || 540;
+  const ch = puzCanvasEl.height || 840;
+  let clientX = ev.clientX;
+  let clientY = ev.clientY;
+  if (typeof clientX !== 'number' && ev.touches && ev.touches.length > 0) {
+    clientX = ev.touches[0].clientX;
+    clientY = ev.touches[0].clientY;
+  } else if (typeof clientX !== 'number' && ev.changedTouches && ev.changedTouches.length > 0) {
+    clientX = ev.changedTouches[0].clientX;
+    clientY = ev.changedTouches[0].clientY;
+  }
+  // Compensa perfeitamente as faixas criadas por object-fit: contain em tablets e celulares de qualquer proporção
+  const scale = Math.min(rect.width / cw, rect.height / ch) || 1;
+  const renderedW = cw * scale;
+  const renderedH = ch * scale;
+  const offsetX = (rect.width - renderedW) / 2;
+  const offsetY = (rect.height - renderedH) / 2;
   return {
-    x: (ev.clientX - rect.left) * (puzCanvasEl.width / rect.width),
-    y: (ev.clientY - rect.top) * (puzCanvasEl.height / rect.height)
+    x: (clientX - rect.left - offsetX) / scale,
+    y: (clientY - rect.top - offsetY) / scale
   };
 }
 
-puzCanvasEl.addEventListener('pointerdown', (ev) => {
-  if (puzzleSolved) return;
-  const pt = getPuzzleCoords(ev);
-
+function findPuzzlePieceIndexAt(pt) {
+  // 1ª Passada: Caixa visual exata da peça desenhada (incluindo abas do quebra-cabeça e margem de toque generosa)
   for (let i = jigsawPieces.length - 1; i >= 0; i--) {
     const p = jigsawPieces[i];
     if (p.locked) continue;
-
-    const clickedInSlot = (
-      pt.x >= p.slotX && pt.x <= p.slotX + p.slotW &&
-      pt.y >= p.slotY && pt.y <= p.slotY + p.slotH
-    );
-
-    if (clickedInSlot) {
-      playSoundClick();
-      draggingPiece = p;
-      dragOffsetX = p.w / 2;
-      dragOffsetY = p.h / 2;
-      p.x = pt.x - dragOffsetX;
-      p.y = pt.y - dragOffsetY;
-
-      jigsawPieces.splice(i, 1);
-      jigsawPieces.push(p);
-      puzCanvasEl.setPointerCapture(ev.pointerId);
-      break;
+    const curScale = p.trayScale || 0.55;
+    const cx = p.x + p.w / 2;
+    const cy = p.y + p.h / 2;
+    const halfW = (p.w * curScale) / 2 + 12;
+    const halfH = (p.h * curScale) / 2 + 14;
+    if (pt.x >= cx - halfW && pt.x <= cx + halfW && pt.y >= cy - halfH && pt.y <= cy + halfH) {
+      return i;
     }
+  }
+
+  // 2ª Passada: Nicho completo na bandeja azul (com folga extra na borda inferior para a última linha no tablet)
+  for (let i = jigsawPieces.length - 1; i >= 0; i--) {
+    const p = jigsawPieces[i];
+    if (p.locked) continue;
+    if (
+      pt.x >= p.slotX - 4 && pt.x <= p.slotX + p.slotW + 4 &&
+      pt.y >= p.slotY - 4 && pt.y <= p.slotY + p.slotH + 14
+    ) {
+      return i;
+    }
+  }
+
+  // 3ª Passada: Assistência magnética sem pontos cegos (pega a peça solta mais próxima se o dedinho bater entre nichos ou na margem)
+  let bestIdx = -1;
+  let bestDist = 54;
+  for (let i = jigsawPieces.length - 1; i >= 0; i--) {
+    const p = jigsawPieces[i];
+    if (p.locked) continue;
+    const pcx = p.x + p.w / 2;
+    const pcy = p.y + p.h / 2;
+    const scx = p.slotX + p.slotW / 2;
+    const scy = p.slotY + p.slotH / 2;
+    const d = Math.min(Math.hypot(pt.x - pcx, pt.y - pcy), Math.hypot(pt.x - scx, pt.y - scy));
+    if (d < bestDist) {
+      bestDist = d;
+      bestIdx = i;
+    }
+  }
+  return bestIdx;
+}
+
+// Bloqueia atraso de gesto/scroll nativo em tablets Android e iPad ao tocar no canvas
+puzCanvasEl.addEventListener('touchstart', (ev) => {
+  if (!puzzleSolved) ev.preventDefault();
+}, { passive: false });
+puzCanvasEl.addEventListener('touchmove', (ev) => {
+  if (draggingPiece) ev.preventDefault();
+}, { passive: false });
+
+puzCanvasEl.addEventListener('pointerdown', (ev) => {
+  if (puzzleSolved) return;
+  if (draggingPiece && draggingPointerId !== null && ev.pointerId !== draggingPointerId) return;
+  ev.preventDefault();
+  const pt = getPuzzleCoords(ev);
+  const hitIdx = findPuzzlePieceIndexAt(pt);
+
+  if (hitIdx >= 0) {
+    const p = jigsawPieces[hitIdx];
+    if (p._flashTimer) {
+      clearInterval(p._flashTimer);
+      p._flashTimer = null;
+      p.flashState = null;
+      p.flashAlpha = 0;
+    }
+    playSoundClick();
+    draggingPiece = p;
+    draggingPointerId = ev.pointerId;
+    dragOffsetX = p.w / 2;
+    dragOffsetY = p.h / 2;
+    p.x = pt.x - dragOffsetX;
+    p.y = pt.y - dragOffsetY;
+
+    jigsawPieces.splice(hitIdx, 1);
+    jigsawPieces.push(p);
+    try { puzCanvasEl.setPointerCapture(ev.pointerId); } catch (e) {}
   }
 });
 
 puzCanvasEl.addEventListener('pointermove', (ev) => {
   if (!draggingPiece) return;
+  if (draggingPointerId !== null && ev.pointerId !== draggingPointerId) return;
+  ev.preventDefault();
   const pt = getPuzzleCoords(ev);
   draggingPiece.x = pt.x - dragOffsetX;
   draggingPiece.y = pt.y - dragOffsetY;
 });
 
-puzCanvasEl.addEventListener('pointerup', () => {
+function finishPuzzlePieceDrag(ev) {
   if (!draggingPiece) return;
+  if (ev && draggingPointerId !== null && typeof ev.pointerId === 'number' && ev.pointerId !== draggingPointerId) return;
   const p = draggingPiece;
   draggingPiece = null;
+  draggingPointerId = null;
+  if (ev && typeof ev.pointerId === 'number') {
+    try { puzCanvasEl.releasePointerCapture(ev.pointerId); } catch (e) {}
+  }
 
   const distToTarget = Math.hypot((p.x - p.targetX), (p.y - p.targetY));
   const cx = p.x + p.w / 2;
@@ -4665,7 +4771,7 @@ puzCanvasEl.addEventListener('pointerup', () => {
     cy >= BOARD_RECT.y - 20 && cy <= BOARD_RECT.y + BOARD_RECT.h + 20
   );
 
-  if (distToTarget < 58) {
+  if (distToTarget < 66) {
     p.x = p.targetX;
     p.y = p.targetY;
     p.locked = true;
@@ -4688,14 +4794,19 @@ puzCanvasEl.addEventListener('pointerup', () => {
   } else if (insideBoard) {
     playSoundWrongRed();
     triggerPieceFlash(p, 'red', () => {
-      p.x = p.homeX;
-      p.y = p.homeY;
+      if (p !== draggingPiece && !p.locked) {
+        p.x = p.homeX;
+        p.y = p.homeY;
+      }
     });
   } else {
     p.x = p.homeX;
     p.y = p.homeY;
   }
-});
+}
+
+puzCanvasEl.addEventListener('pointerup', finishPuzzlePieceDrag);
+puzCanvasEl.addEventListener('pointercancel', finishPuzzlePieceDrag);
 
 // ============================================================================
 // MÓDULO 2: OFICINA DA PINTURA MÁGICA
