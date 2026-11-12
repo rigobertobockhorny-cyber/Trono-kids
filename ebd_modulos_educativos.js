@@ -6067,7 +6067,7 @@ window.renderWhoAmIGame = function() {
       `<button type="button" class="whoami-opt-btn" onclick="checkWhoAmIAnswer('${opt}')">${opt}</button>`
     ).join("");
   }
-  if (feedbackEl) feedbackEl.textContent = `Valendo ${4 - window.EBD_STATE.whoAmIClueCount} estrelas! Ou peça mais uma pista!`;
+  if (feedbackEl) feedbackEl.textContent = `Pista ${window.EBD_STATE.whoAmIClueCount} de 3 • Quem é este personagem bíblico?`;
 };
 
 window.revealNextWhoAmIClue = function() {
@@ -7568,9 +7568,226 @@ window.openGamesHubScreen = function(filterCat) {
   if (typeof showScreen === "function") showScreen("screen-games-hub");
 };
 
+// ============================================================================
+// TELA CANÔNICA DE VITÓRIA DOS JOGOS DA LIÇÃO (100% ROXO REAL + VOZ DO VOVÔ)
+// Quando a criança conclui qualquer um dos 8 Jogos da Lição, abre "PARABÉNS!
+// MUITO BEM!" com a fala oficial do Vovô Nésio e o botão "VOLTAR AOS JOGOS DA LIÇÃO"!
+// ============================================================================
+window._lessonVicVoicePlayer = null;
+window._lessonVicVoiceTimer = null;
+window._lessonVicSafetyTimer = null;
+window._lessonVicActive = false;
+
+window.LESSON_GAMES_CATALOG_META = [
+  { key: "chronology",    title: "ORDEM CRONOLÓGICA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_12_criacao_v130.png" },
+  { key: "verse_builder", title: "VERSÍCULO SECRETO", icon: "./2_ASSETS_UI_BOTOES/ui_icon_06.png" },
+  { key: "lesson_puzzle", title: "QUEBRA-CABEÇA 3D",  icon: "./2_ASSETS_UI_BOTOES/ico_jogo_16_puzzle_v130.png" },
+  { key: "lesson_paint",  title: "PINTURA MÁGICA",    icon: "./2_ASSETS_UI_BOTOES/ico_jogo_17_pintura_v130.png" },
+  { key: "word_search",   title: "CAÇA-PALAVRAS",     icon: "./2_ASSETS_UI_BOTOES/ico_jogo_11_erros_v130.png" },
+  { key: "secret_word",   title: "PALAVRA SECRETA",   icon: "./2_ASSETS_UI_BOTOES/ico_jogo_10_pontos_v130.png" },
+  { key: "who_am_i",      title: "QUEM SOU EU?",      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png" },
+  { key: "true_or_myth",  title: "VERDADEIRO OU MITO",icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png" }
+];
+
+window.closeLessonGameVictoryModal = function(goBackToLessonGames) {
+  window._lessonVicActive = false;
+  if (window._lessonVicVoiceTimer) { clearTimeout(window._lessonVicVoiceTimer); window._lessonVicVoiceTimer = null; }
+  if (window._lessonVicSafetyTimer) { clearTimeout(window._lessonVicSafetyTimer); window._lessonVicSafetyTimer = null; }
+  if (window._lessonVicVoicePlayer) {
+    try {
+      window._lessonVicVoicePlayer.onended = null;
+      window._lessonVicVoicePlayer.onerror = null;
+      window._lessonVicVoicePlayer.pause();
+      window._lessonVicVoicePlayer.currentTime = 0;
+    } catch (e) {}
+  }
+  if (typeof celebrationAudioPlayer !== "undefined" && celebrationAudioPlayer) {
+    try { celebrationAudioPlayer.pause(); celebrationAudioPlayer.currentTime = 0; } catch (e) {}
+  }
+  if (typeof stopCelebrationConfetti === "function") {
+    try { stopCelebrationConfetti(); } catch (e) {}
+  }
+  const modal = document.getElementById("trono-lesson-victory-modal");
+  if (modal) {
+    modal.style.display = "none";
+    modal.innerHTML = "";
+  }
+  if (goBackToLessonGames && typeof window.openLessonModule === "function") {
+    window.openLessonModule("jogos_licao");
+  }
+};
+
+window.showLessonGameVictoryModal = function(gameKey) {
+  const shell = document.getElementById("app-shell") || document.body;
+  if (!document.getElementById("trono-lesson-victory-styles")) {
+    const st = document.createElement("style");
+    st.id = "trono-lesson-victory-styles";
+    st.textContent = `
+      #trono-lesson-victory-modal {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 32%, #7e22ce 0%, #581c87 50%, #2e1065 100%);
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 36px 16px 24px 16px;
+        z-index: 132;
+        box-sizing: border-box;
+        user-select: none;
+        -webkit-user-select: none;
+        animation: lessonVicFadeIn 0.32s ease;
+      }
+      @keyframes lessonVicFadeIn {
+        from { opacity: 0; transform: scale(0.96); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      @keyframes lessonVicPop {
+        from { transform: scale(0.72); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+      }
+      @keyframes lessonVicTitleBounce {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.04); }
+      }
+    `;
+    document.head.appendChild(st);
+  }
+
+  let modal = document.getElementById("trono-lesson-victory-modal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "trono-lesson-victory-modal";
+    shell.appendChild(modal);
+  }
+
+  const wk = (window.EBD_STATE && window.EBD_STATE.currentWeek) || 1;
+  if (typeof window.markLessonGameCompleted === "function" && gameKey) {
+    window.markLessonGameCompleted(wk, gameKey);
+  }
+  const prog = (typeof window.getLessonProgress === "function") ? window.getLessonProgress(wk) : { games: {} };
+  const gamesMap = prog.games || {};
+  const catalog = window.LESSON_GAMES_CATALOG_META;
+  const meta = catalog.find(g => g.key === gameKey) || catalog[0];
+  const doneCount = catalog.filter(g => !!gamesMap[g.key]).length;
+
+  const dotsHtml = catalog.map((g, i) => {
+    const isJustWon = g.key === gameKey;
+    const isDone = !!gamesMap[g.key] || isJustWon;
+    const bg = isDone
+      ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)"
+      : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
+    const border = isJustWon ? "3px solid #fde047" : "2px solid #ffffff";
+    const glow = isJustWon ? "box-shadow: 0 0 14px rgba(253,224,71,0.9), 0 3px 8px rgba(0,0,0,0.6);" : "box-shadow: 0 3px 8px rgba(0,0,0,0.5);";
+    return `
+      <div style="width:33px; height:33px; border-radius:50%; background:${bg}; border:${border}; ${glow} display:flex; align-items:center; justify-content:center; color:#ffffff; font-family:'Fredoka',sans-serif; font-weight:900; font-size:14.5px;">
+        ${i + 1}
+      </div>
+    `;
+  }).join("");
+
+  modal.innerHTML = `
+    <div style="width:100%; max-width:360px; display:flex; flex-direction:column; align-items:center; text-align:center; animation:lessonVicPop 0.42s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+      <div style="display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+        <img src="${meta.icon}" alt="${meta.title}" style="width:104px; height:104px; object-fit:contain; animation:floatGentle 2.2s ease-in-out infinite; filter:drop-shadow(0 8px 18px rgba(0,0,0,0.75));">
+      </div>
+
+      <div style="font-family:'Fredoka',sans-serif; font-size:28px; font-weight:900; color:#fde047; text-shadow:0 4px 12px rgba(0,0,0,0.9), 0 0 22px rgba(253,224,71,0.6); line-height:1.12; margin-bottom:14px; letter-spacing:0.5px; animation:lessonVicTitleBounce 1.4s ease-in-out infinite;">
+        PARABÉNS!<br>MUITO BEM!
+      </div>
+
+      <div style="display:flex; justify-content:center; align-items:center; gap:5px; margin-bottom:10px; flex-wrap:nowrap;">
+        ${dotsHtml}
+      </div>
+
+      <div style="font-family:'Fredoka',sans-serif; font-size:13.5px; font-weight:800; color:#f3e8ff; text-shadow:0 2px 6px rgba(0,0,0,0.85); margin-bottom:20px; text-transform:uppercase; letter-spacing:0.3px;">
+        LIÇÃO ${wk} • ${doneCount} DE 8 JOGOS CONCLUÍDOS
+      </div>
+
+      <div style="width:100%; max-width:316px;">
+        <button id="btn-lesson-vic-return" type="button" data-unlocked="0" style="width:100%; padding:15px 16px; font-family:'Fredoka',sans-serif; font-size:16.5px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.55); cursor:not-allowed; opacity:0.88; pointer-events:none; transition:all 0.25s ease; text-transform:uppercase;">
+          MUITO BEM!...
+        </button>
+      </div>
+    </div>
+  `;
+
+  modal.style.display = "flex";
+  window._lessonVicActive = true;
+
+  const unlockReturnBtn = () => {
+    const btn = document.getElementById("btn-lesson-vic-return");
+    if (!btn || btn.dataset.unlocked === "1") return;
+    btn.dataset.unlocked = "1";
+    btn.textContent = "VOLTAR AOS JOGOS DA LIÇÃO";
+    btn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
+    btn.style.border = "2.5px solid #ffffff";
+    btn.style.boxShadow = "0 0 22px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75)";
+    btn.style.color = "#ffffff";
+    btn.style.cursor = "pointer";
+    btn.style.opacity = "1";
+    btn.style.pointerEvents = "auto";
+  };
+
+  const retBtn = document.getElementById("btn-lesson-vic-return");
+  if (retBtn) {
+    retBtn.addEventListener("click", (ev) => {
+      if (retBtn.dataset.unlocked !== "1") return;
+      if (ev) { ev.preventDefault(); ev.stopPropagation(); }
+      window.ebdClick();
+      window.closeLessonGameVictoryModal(true);
+    });
+  }
+
+  if (typeof playSoundCelebrationClaps === "function") {
+    try { playSoundCelebrationClaps(); } catch (e) {}
+  }
+  if (typeof startCelebrationConfetti === "function") {
+    try { startCelebrationConfetti(); } catch (e) {}
+  }
+
+  if (window._lessonVicVoiceTimer) clearTimeout(window._lessonVicVoiceTimer);
+  if (window._lessonVicSafetyTimer) clearTimeout(window._lessonVicSafetyTimer);
+
+  window._lessonVicVoiceTimer = setTimeout(() => {
+    if (!window._lessonVicActive) return;
+    if (typeof celebrationAudioPlayer !== "undefined" && celebrationAudioPlayer) {
+      try { celebrationAudioPlayer.volume = 0.22; } catch (e) {}
+    }
+    try {
+      if (!window._lessonVicVoicePlayer) {
+        window._lessonVicVoicePlayer = new Audio("./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3");
+      } else {
+        window._lessonVicVoicePlayer.pause();
+        window._lessonVicVoicePlayer.currentTime = 0;
+      }
+      window._lessonVicVoicePlayer.volume = 1.0;
+      window._lessonVicVoicePlayer.onended = () => {
+        if (window._lessonVicActive) unlockReturnBtn();
+      };
+      window._lessonVicVoicePlayer.onerror = () => {
+        if (window._lessonVicActive) unlockReturnBtn();
+      };
+      const playPromise = window._lessonVicVoicePlayer.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {
+          setTimeout(() => { if (window._lessonVicActive) unlockReturnBtn(); }, 600);
+        });
+      }
+    } catch (e) {
+      unlockReturnBtn();
+    }
+  }, 600);
+
+  window._lessonVicSafetyTimer = setTimeout(() => {
+    if (window._lessonVicActive) unlockReturnBtn();
+  }, 5800);
+};
+
 // Abre um jogo a partir de "Jogos da Lição" (escondendo qualquer botão de mudar de lição ou jogo no topo!)
 window.openGameFromLesson = function(gameKey) {
   window.ebdClick();
+  window.closeLessonGameVictoryModal(false);
   window.EBD_STATE.fromLessonGames = true;
   const lesson = window.getCurrentLessonObj();
   const st = (typeof STORIES !== "undefined" && STORIES.find(s => s.id === lesson.storyIdUnlock)) || (typeof STORIES !== "undefined" ? STORIES[0] : null);
@@ -7590,8 +7807,10 @@ window.openGameFromLesson = function(gameKey) {
     startPaintWithStory(st);
     const nextBtn = document.getElementById("btn-paint-next");
     if (nextBtn) {
-      nextBtn.style.visibility = "hidden";
-      nextBtn.style.pointerEvents = "none";
+      nextBtn.style.visibility = "visible";
+      nextBtn.style.pointerEvents = "auto";
+      nextBtn.title = "Concluir Pintura";
+      nextBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     }
     return;
   }
@@ -7718,6 +7937,8 @@ window.openEduGame = function(gameKey, fromLesson) {
       window.EBD_STATE.whoAmIIdx = 0;
     }
     window.EBD_STATE.whoAmIClueCount = 1;
+    window.EBD_STATE.whoAmIShuffledOpts = null;
+    window.EBD_STATE.whoAmISolved = false;
     window.renderStageWhoAmI();
   } else if (gameKey === "true_or_myth") {
     if (fromLesson) {
@@ -7797,7 +8018,7 @@ window.renderStageChronology = function() {
           </div>
         `).join("")}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageChronoPhase()">Próxima Fase </button>`}
+      ${window.EBD_STATE.fromLessonGames ? "" : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageChronoPhase()">Próxima Fase </button>`}
     </div>
   `;
 };
@@ -7805,6 +8026,7 @@ window.renderStageChronology = function() {
 window.tapStageChronoCard = function(cardId, cardOrder) {
   const levelObj = window.CHRONOLOGY_LEVELS[window.EBD_STATE.chronologyIdx] || window.CHRONOLOGY_LEVELS[0];
   const expected = window.EBD_STATE.chronologyStep;
+  if (expected > 4) return;
   const feedbackEl = document.getElementById("chrono-game-feedback");
   const cardEl = document.getElementById(`chrono-card-${cardId}`);
 
@@ -7825,8 +8047,12 @@ window.tapStageChronoCard = function(cardId, cardOrder) {
     window.EBD_STATE.chronologyStep += 1;
     if (window.EBD_STATE.chronologyStep > 4) {
       if (feedbackEl) feedbackEl.textContent = "Parabéns! Ordem Cronológica perfeita!";
-      window.ebdConfetti();
       window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "chronology");
+      if (window.EBD_STATE.fromLessonGames) {
+        setTimeout(() => { window.showLessonGameVictoryModal("chronology"); }, 700);
+      } else {
+        window.ebdConfetti();
+      }
     } else {
       if (feedbackEl) feedbackEl.textContent = ` Isso mesmo! Agora toque no ${window.EBD_STATE.chronologyStep}º acontecimento!`;
     }
@@ -7891,7 +8117,7 @@ window.renderStageVerseBuilder = function() {
           <button type="button" id="vword-${obj.idx}" class="btn-tool-3d inner-purple-blue" style="font-size:14.5px; padding:8px 13px; border-radius:12px; color:#ffffff;" onclick="tapStageVerseWord(${obj.idx})">${obj.word}</button>
         `).join("")}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="advanceStageVersePhase()">Próximo Versículo </button>`}
+      ${window.EBD_STATE.fromLessonGames ? "" : `<button type="button" class="btn-gold" style="width:100%; padding:10px;" onclick="advanceStageVersePhase()">Próximo Versículo </button>`}
     </div>
   `;
 };
@@ -7899,6 +8125,7 @@ window.renderStageVerseBuilder = function() {
 window.tapStageVerseWord = function(wordIdx) {
   const words = window.EBD_STATE.activeVerseWords || [];
   const nextExpectedIdx = window.EBD_STATE.verseBuilt.length;
+  if (nextExpectedIdx >= words.length) return;
   const clickedWord = words[wordIdx];
   const expectedWord = words[nextExpectedIdx];
   const chipEl = document.getElementById(`vword-${wordIdx}`);
@@ -7917,8 +8144,12 @@ window.tapStageVerseWord = function(wordIdx) {
     }
     if (window.EBD_STATE.verseBuilt.length === words.length) {
       if (feedbackEl) feedbackEl.textContent = "Maravilha! Você completou todo o Versículo!";
-      window.ebdConfetti();
       window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "verse_builder");
+      if (window.EBD_STATE.fromLessonGames) {
+        setTimeout(() => { window.showLessonGameVictoryModal("verse_builder"); }, 700);
+      } else {
+        window.ebdConfetti();
+      }
     } else {
       if (feedbackEl) feedbackEl.textContent = " Muito bem! Continue!";
     }
@@ -8081,7 +8312,7 @@ window.renderStageWordSearch = function() {
       <div style="display:grid; grid-template-columns:repeat(8,1fr); gap:4px; margin-bottom:10px;">
         ${cellsHtml}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageWSPhase()">Próximo Caça-Palavras </button>`}
+      ${window.EBD_STATE.fromLessonGames ? "" : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageWSPhase()">Próximo Caça-Palavras </button>`}
     </div>
   `;
   window.updateStageWSPills();
@@ -8099,6 +8330,7 @@ window.updateStageWSPills = function() {
 
 window.tapStageWSCell = function(cellId) {
   const placements = window.EBD_STATE.wsPlacements || {};
+  if (window.EBD_STATE.wordSearchFound.length >= Object.keys(placements).length) return;
   for (const [word, coords] of Object.entries(placements)) {
     if (coords.includes(cellId) && !window.EBD_STATE.wordSearchFound.includes(word)) {
       window.ebdWinSound();
@@ -8112,8 +8344,12 @@ window.tapStageWSCell = function(cellId) {
       });
       window.updateStageWSPills();
       if (window.EBD_STATE.wordSearchFound.length === Object.keys(placements).length) {
-        window.ebdConfetti();
         window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "word_search");
+        if (window.EBD_STATE.fromLessonGames) {
+          setTimeout(() => { window.showLessonGameVictoryModal("word_search"); }, 700);
+        } else {
+          window.ebdConfetti();
+        }
       }
       return;
     }
@@ -8146,6 +8382,8 @@ window.selectStageWhoAmIPhase = function(idx) {
   window.ebdClick();
   window.EBD_STATE.whoAmIIdx = idx;
   window.EBD_STATE.whoAmIClueCount = 1;
+  window.EBD_STATE.whoAmIShuffledOpts = null;
+  window.EBD_STATE.whoAmISolved = false;
   window.renderStageWhoAmI();
 };
 
@@ -8157,32 +8395,38 @@ window.renderStageWhoAmI = function() {
   if (!stageEl) return;
 
   const item = window.WHO_AM_I_BANK[window.EBD_STATE.whoAmIIdx] || window.WHO_AM_I_BANK[0];
-  const shuffled = [...item.options].sort(() => Math.random() - 0.5);
+  if (!Array.isArray(window.EBD_STATE.whoAmIShuffledOpts) || window.EBD_STATE.whoAmIShuffledForIdx !== window.EBD_STATE.whoAmIIdx) {
+    window.EBD_STATE.whoAmIShuffledOpts = [...item.options].sort(() => Math.random() - 0.5);
+    window.EBD_STATE.whoAmIShuffledForIdx = window.EBD_STATE.whoAmIIdx;
+    window.EBD_STATE.whoAmISolved = false;
+  }
+  const shuffled = window.EBD_STATE.whoAmIShuffledOpts;
 
   stageEl.innerHTML = `
     ${window.buildTenPhasesBarHtml(window.WHO_AM_I_BANK, window.EBD_STATE.whoAmIIdx, "selectStageWhoAmIPhase")}
     <div class="ebd-glass-card">
-      <div class="ebd-badge-era" style="margin-bottom:8px;">Desafio de Pistas • Valendo ${4 - window.EBD_STATE.whoAmIClueCount} Estrelas</div>
+      <div class="ebd-badge-era" style="margin-bottom:8px;">Pista ${window.EBD_STATE.whoAmIClueCount} de 3</div>
       <div style="display:flex; flex-direction:column; gap:6px; text-align:left; margin-bottom:10px;">
         ${item.clues.slice(0, window.EBD_STATE.whoAmIClueCount).map(c => `
-          <div class="inner-purple-yellow" style="border-radius:12px; padding:9px 11px; color:#ffffff; font-size:13.5px; line-height:1.35;"> ${c}</div>
+          <div class="inner-purple-yellow" style="border-radius:12px; padding:9px 11px; color:#ffffff; font-size:13.5px; line-height:1.35;">${c}</div>
         `).join("")}
       </div>
       ${window.EBD_STATE.whoAmIClueCount < 3 ? `
         <button type="button" class="btn-tool-3d" style="margin-bottom:10px; padding:6px 14px; font-size:12.5px;" onclick="revealStageWhoAmIClue()">Revelar Próxima Pista (${window.EBD_STATE.whoAmIClueCount}/3)</button>
       ` : ""}
       <div id="whoami-feedback" style="font-size:13px; font-weight:800; color:#86efac; margin-bottom:10px;">Quem é este personagem bíblico?</div>
-      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:10px;">
-        ${shuffled.map(opt => `
-          <button type="button" class="quiz-opt-btn" style="justify-content:center; text-align:center;" onclick="answerStageWhoAmI('${opt}')">${opt}</button>
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:6px;">
+        ${shuffled.map((opt, idx) => `
+          <button type="button" id="whoami-opt-${idx}" class="quiz-opt-btn" style="justify-content:center; text-align:center; transition:all 0.18s ease;" onclick="answerStageWhoAmI(${idx})">${opt}</button>
         `).join("")}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageWhoAmIPhase()">Próximo Desafio </button>`}
+      ${window.EBD_STATE.fromLessonGames ? "" : `<button type="button" class="btn-gold" style="width:100%; padding:9px; margin-top:6px;" onclick="advanceStageWhoAmIPhase()">Próximo Desafio </button>`}
     </div>
   `;
 };
 
 window.revealStageWhoAmIClue = function() {
+  if (window.EBD_STATE.whoAmISolved) return;
   window.ebdClick();
   if (window.EBD_STATE.whoAmIClueCount < 3) {
     window.EBD_STATE.whoAmIClueCount += 1;
@@ -8190,24 +8434,69 @@ window.revealStageWhoAmIClue = function() {
   }
 };
 
-window.answerStageWhoAmI = function(selected) {
+window.answerStageWhoAmI = function(optIdx) {
+  if (window.EBD_STATE.whoAmISolved) return;
   const item = window.WHO_AM_I_BANK[window.EBD_STATE.whoAmIIdx] || window.WHO_AM_I_BANK[0];
+  const opts = window.EBD_STATE.whoAmIShuffledOpts || item.options;
+  const selected = opts[optIdx];
+  const btn = document.getElementById(`whoami-opt-${optIdx}`);
   const fb = document.getElementById("whoami-feedback");
+
   if (selected === item.answer) {
-    window.ebdConfetti();
-    window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "who_am_i");
+    window.EBD_STATE.whoAmISolved = true;
+    window.ebdWinSound();
+    if (btn) {
+      btn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
+      btn.style.border = "2.5px solid #ffffff";
+      btn.style.color = "#ffffff";
+      btn.style.boxShadow = "0 0 20px rgba(0, 230, 118, 0.92), 0 4px 12px rgba(0, 0, 0, 0.72)";
+      btn.style.transform = "scale(1.04)";
+    }
+    opts.forEach((_, i) => {
+      if (i !== optIdx) {
+        const other = document.getElementById(`whoami-opt-${i}`);
+        if (other) {
+          other.style.opacity = "0.48";
+          other.style.pointerEvents = "none";
+        }
+      }
+    });
     if (fb) fb.textContent = `Acertou! Era ${item.answer}!`;
+    window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "who_am_i");
+    if (window.EBD_STATE.fromLessonGames) {
+      setTimeout(() => { window.showLessonGameVictoryModal("who_am_i"); }, 750);
+    } else {
+      window.ebdConfetti();
+    }
   } else {
     window.ebdErrSound();
-    if (fb) fb.textContent = " Quase! Revele mais uma pista e tente novamente!";
+    if (btn) {
+      const prevBg = btn.style.background;
+      const prevBorder = btn.style.borderColor;
+      btn.style.background = "linear-gradient(180deg, #ef4444 0%, #b91c1c 100%)";
+      btn.style.borderColor = "#fecaca";
+      setTimeout(() => {
+        if (!window.EBD_STATE.whoAmISolved && btn) {
+          btn.style.background = prevBg;
+          btn.style.borderColor = prevBorder;
+        }
+      }, 480);
+    }
+    if (fb) fb.textContent = window.EBD_STATE.whoAmIClueCount < 3
+      ? "Quase! Revele a próxima pista ou tente outra opção!"
+      : "Quase! Tente outra opção!";
   }
 };
 
 window.advanceStageWhoAmIPhase = function() {
   window.ebdStopConfetti();
   window.ebdClick();
+  window.EBD_STATE.whoAmIShuffledOpts = null;
+  window.EBD_STATE.whoAmISolved = false;
   if (window.EBD_STATE.fromLessonGames) {
     window.EBD_STATE.whoAmIClueCount = 1;
+    window.EBD_STATE.whoAmIShuffledOpts = null;
+    window.EBD_STATE.whoAmISolved = false;
     window.renderStageWhoAmI();
     return;
   }
@@ -8229,6 +8518,7 @@ window.selectStageTrueMythPhase = function(idx) {
   window.ebdStopConfetti();
   window.ebdClick();
   window.EBD_STATE.trueMythIdx = idx;
+  window.EBD_STATE.trueMythSolved = false;
   window.renderStageTrueOrMyth();
 };
 
@@ -8239,41 +8529,67 @@ window.renderStageTrueOrMyth = function() {
   if (headerEl) headerEl.textContent = "VERDADEIRO OU MITO?";
   if (!stageEl) return;
 
+  window.EBD_STATE.trueMythSolved = false;
   const item = window.TRUE_OR_MYTH_BANK[window.EBD_STATE.trueMythIdx] || window.TRUE_OR_MYTH_BANK[0];
   stageEl.innerHTML = `
     ${window.buildTenPhasesBarHtml(window.TRUE_OR_MYTH_BANK, window.EBD_STATE.trueMythIdx, "selectStageTrueMythPhase")}
     <div class="ebd-glass-card">
-      <div class="ebd-badge-era" style="margin-bottom:8px;">Desafio Rápido • Fase ${window.EBD_STATE.trueMythIdx + 1}</div>
+      <div class="ebd-badge-era" style="margin-bottom:8px;">${window.EBD_STATE.fromLessonGames ? "Desafio da Lição" : `Desafio Rápido • Fase ${window.EBD_STATE.trueMythIdx + 1}`}</div>
       <div class="inner-purple-blue" style="border-radius:16px; padding:16px 12px; font-size:15.5px; font-weight:800; color:#ffffff; line-height:1.4; margin-bottom:12px;">
         "${item.statement}"
       </div>
       <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:12px;">
-        <button type="button" class="btn-gold" style="padding:12px; font-size:15px;" onclick="answerStageTrueMyth(true)">VERDADEIRO</button>
-        <button type="button" class="btn-gold" style="padding:12px; font-size:15px; background:linear-gradient(180deg,#ff1744,#b71c1c); border-color:#ffcdd2;" onclick="answerStageTrueMyth(false)">MITO</button>
+        <button type="button" id="truemyth-btn-true" class="btn-gold" style="padding:12px; font-size:15px; transition:all 0.18s ease;" onclick="answerStageTrueMyth(true)">VERDADEIRO</button>
+        <button type="button" id="truemyth-btn-false" class="btn-gold" style="padding:12px; font-size:15px; background:linear-gradient(180deg,#ff1744,#b71c1c); border-color:#ffcdd2; transition:all 0.18s ease;" onclick="answerStageTrueMyth(false)">MITO</button>
       </div>
-      <div id="truemyth-explanation" class="inner-purple-blue" style="border-radius:12px; padding:8px 10px; font-size:13px; color:#fde047; font-weight:800; line-height:1.35; min-height:40px; margin-bottom:10px;">Toque em VERDADEIRO ou MITO para descobrir!
+      <div id="truemyth-explanation" class="inner-purple-blue" style="border-radius:12px; padding:8px 10px; font-size:13px; color:#fde047; font-weight:800; line-height:1.35; min-height:40px; margin-bottom:6px;">Toque em VERDADEIRO ou MITO para descobrir!
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-tool-3d" style="padding:8px 18px; font-size:13px;" onclick="advanceStageTrueMythPhase()">Próxima Pergunta </button>`}
+      ${window.EBD_STATE.fromLessonGames ? "" : `<button type="button" class="btn-tool-3d" style="padding:8px 18px; font-size:13px; margin-top:4px;" onclick="advanceStageTrueMythPhase()">Próxima Pergunta </button>`}
     </div>
   `;
 };
 
 window.answerStageTrueMyth = function(choice) {
+  if (window.EBD_STATE.trueMythSolved) return;
   const item = window.TRUE_OR_MYTH_BANK[window.EBD_STATE.trueMythIdx] || window.TRUE_OR_MYTH_BANK[0];
   const expEl = document.getElementById("truemyth-explanation");
+  const clickedBtn = document.getElementById(choice ? "truemyth-btn-true" : "truemyth-btn-false");
+  const otherBtn = document.getElementById(choice ? "truemyth-btn-false" : "truemyth-btn-true");
+
   if (choice === item.isTrue) {
-    window.ebdConfetti();
-    window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "true_or_myth");
+    window.EBD_STATE.trueMythSolved = true;
+    window.ebdWinSound();
+    if (clickedBtn) {
+      clickedBtn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
+      clickedBtn.style.border = "3px solid #ffffff";
+      clickedBtn.style.boxShadow = "0 0 22px rgba(0, 230, 118, 0.92), 0 4px 12px rgba(0, 0, 0, 0.75)";
+      clickedBtn.style.transform = "scale(1.04)";
+    }
+    if (otherBtn) {
+      otherBtn.style.opacity = "0.42";
+      otherBtn.style.pointerEvents = "none";
+    }
     if (expEl) expEl.textContent = `Acertou! ${item.explanation}`;
+    window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "true_or_myth");
+    if (window.EBD_STATE.fromLessonGames) {
+      setTimeout(() => { window.showLessonGameVictoryModal("true_or_myth"); }, 850);
+    } else {
+      window.ebdConfetti();
+    }
   } else {
     window.ebdErrSound();
-    if (expEl) expEl.textContent = ` Aprenda com a Bíblia: ${item.explanation}`;
+    if (clickedBtn) {
+      clickedBtn.style.transform = "scale(0.95)";
+      setTimeout(() => { if (clickedBtn && !window.EBD_STATE.trueMythSolved) clickedBtn.style.transform = ""; }, 220);
+    }
+    if (expEl) expEl.textContent = `Pense um pouquinho: ${item.explanation}`;
   }
 };
 
 window.advanceStageTrueMythPhase = function() {
   window.ebdStopConfetti();
   window.ebdClick();
+  window.EBD_STATE.trueMythSolved = false;
   if (window.EBD_STATE.fromLessonGames) {
     window.renderStageTrueOrMyth();
     return;
@@ -8310,7 +8626,7 @@ window.renderStageSecretWord = function() {
   if (!stageEl) return;
 
   const item = window.SECRET_WORD_BANK[window.EBD_STATE.secretWordIdx] || window.SECRET_WORD_BANK[0];
-  const starsLeft = Math.max(0, 6 - window.EBD_STATE.secretWordErrors);
+  const chancesLeft = Math.max(0, 6 - window.EBD_STATE.secretWordErrors);
   const letters = item.word.split("");
   const allFound = letters.every(ch => window.EBD_STATE.secretWordGuessed.includes(ch));
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -8318,24 +8634,24 @@ window.renderStageSecretWord = function() {
   stageEl.innerHTML = `
     ${window.buildTenPhasesBarHtml(window.SECRET_WORD_BANK, window.EBD_STATE.secretWordIdx, "selectStageSWPhase")}
     <div class="ebd-glass-card">
-      <div style="font-size:15px; margin-bottom:6px;">Chances restantes: ${starsLeft} de 6</div>
+      <div style="font-size:15px; margin-bottom:6px;">Chances restantes: ${chancesLeft} de 6</div>
       <div style="font-size:13.5px; color:#fde047; font-weight:800; margin-bottom:10px; line-height:1.35;">
-        ${allFound ? ` Parabéns! A Palavra Secreta era ${item.word}!` : ` Pista: ${item.hint}`}
+        ${allFound ? `Parabéns! A Palavra Secreta era ${item.word}!` : `Pista: ${item.hint}`}
       </div>
       <div style="display:flex; justify-content:center; gap:6px; flex-wrap:wrap; margin-bottom:12px;">
         ${letters.map(ch => `
-          <span class="inner-purple-yellow" style="width:32px; height:38px; border-radius:9px; display:inline-flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:#ffffff;">
+          <span class="${allFound ? "" : "inner-purple-yellow"}" style="width:32px; height:38px; border-radius:9px; display:inline-flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; color:#ffffff; ${allFound ? "background:linear-gradient(180deg,#00e676,#00c853); border:2px solid #ffffff; box-shadow:0 0 12px rgba(0,230,118,0.8);" : ""}">
             ${window.EBD_STATE.secretWordGuessed.includes(ch) ? ch : "_"}
           </span>
         `).join("")}
       </div>
-      <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin-bottom:10px;">
+      <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin-bottom:6px;">
         ${alphabet.map(ch => {
           const used = window.EBD_STATE.secretWordGuessed.includes(ch);
           return `<button type="button" ${used || allFound ? "disabled" : ""} onclick="tapStageSWLetter('${ch}')" style="height:34px; border-radius:8px; border:2px solid #38bdf8; background:${used ? "rgba(30,41,59,0.5)" : "linear-gradient(180deg,rgba(147,51,234,0.54),rgba(88,28,135,0.66))"}; color:#fff; font-weight:800; font-size:13px; opacity:${used ? "0.35" : "1"}; cursor:pointer;">${ch}</button>`;
         }).join("")}
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageSWPhase()">Próxima Palavra Secreta </button>`}
+      ${window.EBD_STATE.fromLessonGames ? "" : `<button type="button" class="btn-gold" style="width:100%; padding:9px; margin-top:6px;" onclick="advanceStageSWPhase()">Próxima Palavra Secreta </button>`}
     </div>
   `;
 };
@@ -8343,17 +8659,34 @@ window.renderStageSecretWord = function() {
 window.tapStageSWLetter = function(ch) {
   const item = window.SECRET_WORD_BANK[window.EBD_STATE.secretWordIdx] || window.SECRET_WORD_BANK[0];
   if (window.EBD_STATE.secretWordGuessed.includes(ch)) return;
+  if (item.word.split("").every(c => window.EBD_STATE.secretWordGuessed.includes(c))) return;
+
   window.EBD_STATE.secretWordGuessed.push(ch);
   if (item.word.includes(ch)) {
     window.ebdWinSound();
     const allFound = item.word.split("").every(c => window.EBD_STATE.secretWordGuessed.includes(c));
+    window.renderStageSecretWord();
     if (allFound) {
-      window.ebdConfetti();
       window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, "secret_word");
+      if (window.EBD_STATE.fromLessonGames) {
+        setTimeout(() => { window.showLessonGameVictoryModal("secret_word"); }, 750);
+      } else {
+        window.ebdConfetti();
+      }
     }
+    return;
   } else {
     window.EBD_STATE.secretWordErrors += 1;
     window.ebdErrSound();
+    if (window.EBD_STATE.secretWordErrors >= 6) {
+      window.renderStageSecretWord();
+      setTimeout(() => {
+        window.EBD_STATE.secretWordGuessed = [];
+        window.EBD_STATE.secretWordErrors = 0;
+        window.renderStageSecretWord();
+      }, 850);
+      return;
+    }
   }
   window.renderStageSecretWord();
 };

@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v156.0';
+        const CURRENT_VER = 'v157.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=156.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=157.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -2787,8 +2787,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=156.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=156.0"></script>
+<script src="ebd_modulos_educativos.js?v=157.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=157.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -3441,10 +3441,23 @@ function showScreen(screenId) {
   }
 
   const isFromLesson = !!(window.EBD_STATE && window.EBD_STATE.fromLessonGames);
+  if (typeof window.closeLessonGameVictoryModal === 'function') {
+    window.closeLessonGameVictoryModal(false);
+  }
   const puzNextBtn = document.getElementById('btn-puzzle-next');
   if (puzNextBtn) puzNextBtn.style.visibility = isFromLesson ? 'hidden' : 'visible';
   const paintNextBtn = document.getElementById('btn-paint-next');
-  if (paintNextBtn) paintNextBtn.style.visibility = isFromLesson ? 'hidden' : 'visible';
+  if (paintNextBtn) {
+    paintNextBtn.style.visibility = 'visible';
+    paintNextBtn.style.pointerEvents = 'auto';
+    if (isFromLesson) {
+      paintNextBtn.title = 'Concluir Pintura';
+      paintNextBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    } else {
+      paintNextBtn.title = 'Próximo';
+      paintNextBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+  }
 
   const shell = document.getElementById('app-shell');
   if (shell) {
@@ -3481,6 +3494,11 @@ function onBackToPlayFromParentalOrSubscribe() {
 
 function goToNextStory(mode, skipPaintCheck = false) {
   playSoundClick();
+  if (mode === 'paint' && window.EBD_STATE && window.EBD_STATE.fromLessonGames) {
+    currentPaintingTouched = false;
+    registerGameStepCompleted('paint', currentStory);
+    return;
+  }
   if (mode === 'paint' && !skipPaintCheck && currentPaintingTouched) {
     currentPaintingTouched = false;
     registerGameStepCompleted('paint', currentStory);
@@ -3689,6 +3707,11 @@ function registerGameStepCompleted(mode, storyObj) {
     unlockNextSequentialHouse();
   }
   syncAlbumHousesWithCompletedGames();
+
+  if (window.EBD_STATE && window.EBD_STATE.fromLessonGames && typeof window.showLessonGameVictoryModal === 'function') {
+    window.showLessonGameVictoryModal(mode === 'paint' ? 'lesson_paint' : 'lesson_puzzle');
+    return;
+  }
 
   showStepProgressCard(
     label,
