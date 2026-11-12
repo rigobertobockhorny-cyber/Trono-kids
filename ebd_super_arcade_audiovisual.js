@@ -317,7 +317,29 @@
       "versiculo_vovo_19.mp3": 13250,
       "versiculo_vovo_20.mp3": 13020,
       "versiculo_vovo_21.mp3": 11620,
-      "versiculo_vovo_22.mp3": 11220
+      "versiculo_vovo_22.mp3": 11220,
+      "palavra_secreta_vovo_01.mp3": 22478,
+      "palavra_secreta_vovo_02.mp3": 21039,
+      "palavra_secreta_vovo_03.mp3": 21318,
+      "palavra_secreta_vovo_04.mp3": 21272,
+      "palavra_secreta_vovo_05.mp3": 20854,
+      "palavra_secreta_vovo_06.mp3": 19739,
+      "palavra_secreta_vovo_07.mp3": 19228,
+      "palavra_secreta_vovo_08.mp3": 19878,
+      "palavra_secreta_vovo_09.mp3": 20621,
+      "palavra_secreta_vovo_10.mp3": 20482,
+      "palavra_secreta_vovo_11.mp3": 18717,
+      "palavra_secreta_vovo_12.mp3": 20157,
+      "palavra_secreta_vovo_13.mp3": 19646,
+      "palavra_secreta_vovo_14.mp3": 19460,
+      "palavra_secreta_vovo_15.mp3": 19739,
+      "palavra_secreta_vovo_16.mp3": 20807,
+      "palavra_secreta_vovo_17.mp3": 19739,
+      "palavra_secreta_vovo_18.mp3": 24104,
+      "palavra_secreta_vovo_19.mp3": 20018,
+      "palavra_secreta_vovo_20.mp3": 19414,
+      "palavra_secreta_vovo_21.mp3": 20807,
+      "palavra_secreta_vovo_22.mp3": 20811
     },
 
     attachVoicePresenceBoost(player) {
@@ -2403,6 +2425,18 @@
         return;
       }
 
+      // PALAVRA SECRETA: Em cada uma das 22 fases o Vovô convida para brincar, narra a pista da palavra e trava até terminar!
+      if (currentActiveGame && currentActiveGame.id === "palavra_secreta") {
+        _vovoAlreadySpokeInSession = true;
+        const swBankLen = (window.SECRET_WORD_BANK && window.SECRET_WORD_BANK.length) ? window.SECRET_WORD_BANK.length : 22;
+        const swNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % swBankLen) + 1;
+        const swAudio = `./6_ASSETS_AUDIO/palavra_secreta_vovo/palavra_secreta_vovo_${String(swNum).padStart(2, "0")}.mp3?v=165`;
+        TronoAudio.falarVovo(swAudio, () => {
+          unlockStageAfterVovo();
+        });
+        return;
+      }
+
       // REGRA DE SESSÃO INTELIGENTE (TRAVA UNIVERSAL RIGOBERTO UX):
       // 1) Na primeira fase da sessão (quando entra no jogo, incluindo Ordem Cronológica!), o Vovô explica tudo e a trava aguarda 100% da fala!
       // 2) Nas fases seguintes da mesma jogada contínua, o jogo entra direto e ágil sem cansar a criança!
@@ -2647,6 +2681,10 @@
       const vBankLen = (window.VERSE_BUILDER_BANK && window.VERSE_BUILDER_BANK.length) ? window.VERSE_BUILDER_BANK.length : 22;
       const vNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % vBankLen) + 1;
       audioTarget = `./6_ASSETS_AUDIO/versiculo_vovo/versiculo_vovo_${String(vNum).padStart(2, "0")}.mp3?v=160`;
+    } else if (currentActiveGame.id === "palavra_secreta") {
+      const swBankLen = (window.SECRET_WORD_BANK && window.SECRET_WORD_BANK.length) ? window.SECRET_WORD_BANK.length : 22;
+      const swNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % swBankLen) + 1;
+      audioTarget = `./6_ASSETS_AUDIO/palavra_secreta_vovo/palavra_secreta_vovo_${String(swNum).padStart(2, "0")}.mp3?v=165`;
     }
     if (!audioTarget) return;
     TronoAudio.play("click");
@@ -7662,6 +7700,11 @@
         window.preloadArcadeImageUrl(`./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=161`);
       }
       window.preloadArcadeAudioUrl("./6_ASSETS_AUDIO/jogos_vovo/vovo_jogo_17_v162.mp3?v=162");
+      if (typeof phaseOrStory === "number" || typeof phaseOrStory === "string") {
+        const wkNum = ((Math.max(1, Math.floor(Number(phaseOrStory) || 1)) - 1) % 22) + 1;
+        window.preloadArcadeImageUrl("./2_ASSETS_UI_BOTOES/bg_jogo_20_palavrasecreta_v161.jpg?v=161");
+        window.preloadArcadeAudioUrl(`./6_ASSETS_AUDIO/palavra_secreta_vovo/palavra_secreta_vovo_${String(wkNum).padStart(2, "0")}.mp3?v=165`);
+      }
     } catch (e) {}
   };
 
@@ -9292,8 +9335,8 @@
         <img src="./2_ASSETS_UI_BOTOES/bg_jogo_20_palavrasecreta_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
-        <!-- Card Roxo Superior com Margem Colorida e Pista Bíblica -->
-        <div id="arcade-sw-hint-card" class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:430px; padding:14px 15px; text-align:center;">
+        <!-- Card Roxo Superior com Margem Colorida e Pista Bíblica (Toque para ouvir a pista do Vovô novamente!) -->
+        <div id="arcade-sw-hint-card" class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:430px; padding:14px 15px; text-align:center; cursor:pointer;" title="Toque para ouvir a pista do Vovô">
           <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px;">
             <span style="background:rgba(15,23,42,0.88); color:#fde047; font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; padding:3px 10px; border-radius:999px; border:1.5px solid #fde047;">PISTA DA BÍBLIA</span>
             <span id="arcade-sw-chances" style="background:linear-gradient(180deg, #0284c7 0%, #0369a1 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; padding:3px 10px; border-radius:999px; border:1.5px solid #ffffff;">CHANCES: 6 / 6</span>
@@ -9311,10 +9354,25 @@
       </div>
     `;
 
+    const hintCardEl = container.querySelector("#arcade-sw-hint-card");
     const chancesEl = container.querySelector("#arcade-sw-chances");
     const hintTextEl = container.querySelector("#arcade-sw-hint-text");
     const slotsEl = container.querySelector("#arcade-sw-slots");
     const kbEl = container.querySelector("#arcade-sw-keyboard");
+
+    if (hintCardEl) {
+      hintCardEl.addEventListener("click", () => {
+        if (window._arcadeStageLockedForVovo || solved || _isVictoryActive) return;
+        if (typeof window.repeatVovoInstruction === "function") {
+          window.repeatVovoInstruction();
+        }
+      });
+    }
+
+    setTimeout(() => {
+      const nextWk = (wk % 22) + 1;
+      window.preloadArcadeAudioUrl(`./6_ASSETS_AUDIO/palavra_secreta_vovo/palavra_secreta_vovo_${String(nextWk).padStart(2, "0")}.mp3?v=165`);
+    }, 900);
 
     function updateSlotsAndHud() {
       const left = Math.max(0, maxErrors - errors);

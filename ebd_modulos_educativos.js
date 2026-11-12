@@ -4716,7 +4716,7 @@ window.SECRET_WORD_BANK = [
   { level: 15, free: false, lessonWeek: 15, word: "SAMUEL",    hint: "Lição 15: Menino filho de Ana que ouviu o chamado de Deus no templo dizendo: Fala, Senhor!" },
   { level: 16, free: false, lessonWeek: 16, word: "SALOMAO",   hint: "Lição 16: Filho de Davi que pediu a Deus um coração cheio de sabedoria e construiu o Templo!" },
   { level: 17, free: false, lessonWeek: 17, word: "ELISEU",    hint: "Lição 17: Profeta discípulo de Elias que multiplicou o azeite da viúva pelo poder de Deus!" },
-  { level: 18, free: false, lessonWeek: 18, word: "FIEIS",     hint: "Lição 18: Sadraque, Mesaque e Abede-Nego permaneceram unidos e _______ ao Senhor na Babilônia!" },
+  { level: 18, free: false, lessonWeek: 18, word: "FIEIS",     hint: "Lição 18: Sadraque, Mesaque e Abede-Nego nunca desistiram de obedecer, permanecendo sempre leais e firmes com o Senhor!" },
   { level: 19, free: false, lessonWeek: 19, word: "ESTER",     hint: "Lição 19: Rainha corajosa que entrou diante do rei para salvar todo o povo de Deus!" },
   { level: 20, free: false, lessonWeek: 20, word: "NEEMIAS",   hint: "Lição 20: Líder que uniu todas as famílias para reconstruir os muros de Jerusalém em 52 dias!" },
   { level: 21, free: false, lessonWeek: 21, word: "BELEM",     hint: "Lição 21: Cidadezinha onde o menino Jesus nasceu na manjedoura sob o brilho da estrela!" },
