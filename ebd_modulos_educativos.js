@@ -7802,6 +7802,30 @@ window.openGameFromLesson = function(gameKey) {
     window.openLessonArcadeGame("versiculo_secreto", lesson.week, "verse_builder");
     return;
   }
+  if (gameKey === "lesson_puzzle" && typeof window.openLessonArcadeGame === "function") {
+    window.openLessonArcadeGame("puzzle_3d", lesson.week, "lesson_puzzle");
+    return;
+  }
+  if (gameKey === "lesson_paint" && typeof window.openLessonArcadeGame === "function") {
+    window.openLessonArcadeGame("pintura_magica", lesson.week, "lesson_paint");
+    return;
+  }
+  if (gameKey === "word_search" && typeof window.openLessonArcadeGame === "function") {
+    window.openLessonArcadeGame("caca_palavras", lesson.week, "word_search");
+    return;
+  }
+  if (gameKey === "secret_word" && typeof window.openLessonArcadeGame === "function") {
+    window.openLessonArcadeGame("palavra_secreta", lesson.week, "secret_word");
+    return;
+  }
+  if (gameKey === "who_am_i" && typeof window.openLessonArcadeGame === "function") {
+    window.openLessonArcadeGame("quem_sou_eu", lesson.week, "who_am_i");
+    return;
+  }
+  if (gameKey === "true_or_myth" && typeof window.openLessonArcadeGame === "function") {
+    window.openLessonArcadeGame("verdadeiro_mito", lesson.week, "true_or_myth");
+    return;
+  }
   if (gameKey === "lesson_puzzle" && st && typeof startPuzzleWithStory === "function") {
     if (typeof currentStory !== "undefined") currentStory = st;
     startPuzzleWithStory(st);
@@ -7943,6 +7967,14 @@ window.openEduGame = function(gameKey, fromLesson) {
     }
     window.renderStageMimica();
   } else if (gameKey === "word_search") {
+    if (fromLesson && typeof window.openLessonArcadeGame === "function") {
+      window.openLessonArcadeGame("caca_palavras", wk, "word_search");
+      return;
+    }
+    if (!fromLesson && typeof window.openTronoArcadeGame === "function") {
+      window.openTronoArcadeGame("caca_palavras");
+      return;
+    }
     if (fromLesson) {
       window.EBD_STATE.customLessonWordSearch = {
         title: `Lição ${lesson.week}: ${lesson.title}`,
@@ -7956,6 +7988,14 @@ window.openEduGame = function(gameKey, fromLesson) {
     }
     window.renderStageWordSearch();
   } else if (gameKey === "who_am_i") {
+    if (fromLesson && typeof window.openLessonArcadeGame === "function") {
+      window.openLessonArcadeGame("quem_sou_eu", wk, "who_am_i");
+      return;
+    }
+    if (!fromLesson && typeof window.openTronoArcadeGame === "function") {
+      window.openTronoArcadeGame("quem_sou_eu");
+      return;
+    }
     if (fromLesson) {
       const idx = window.WHO_AM_I_BANK.findIndex(l => l.lessonWeek === wk);
       window.EBD_STATE.whoAmIIdx = idx >= 0 ? idx : 0;
@@ -7967,6 +8007,14 @@ window.openEduGame = function(gameKey, fromLesson) {
     window.EBD_STATE.whoAmISolved = false;
     window.renderStageWhoAmI();
   } else if (gameKey === "true_or_myth") {
+    if (fromLesson && typeof window.openLessonArcadeGame === "function") {
+      window.openLessonArcadeGame("verdadeiro_mito", wk, "true_or_myth");
+      return;
+    }
+    if (!fromLesson && typeof window.openTronoArcadeGame === "function") {
+      window.openTronoArcadeGame("verdadeiro_mito");
+      return;
+    }
     if (fromLesson) {
       const idx = window.TRUE_OR_MYTH_BANK.findIndex(l => l.lessonWeek === wk);
       window.EBD_STATE.trueMythIdx = idx >= 0 ? idx : 0;
@@ -7975,6 +8023,14 @@ window.openEduGame = function(gameKey, fromLesson) {
     }
     window.renderStageTrueOrMyth();
   } else if (gameKey === "secret_word") {
+    if (fromLesson && typeof window.openLessonArcadeGame === "function") {
+      window.openLessonArcadeGame("palavra_secreta", wk, "secret_word");
+      return;
+    }
+    if (!fromLesson && typeof window.openTronoArcadeGame === "function") {
+      window.openTronoArcadeGame("palavra_secreta");
+      return;
+    }
     if (fromLesson) {
       const idx = window.SECRET_WORD_BANK.findIndex(l => l.lessonWeek === wk);
       window.EBD_STATE.secretWordIdx = idx >= 0 ? idx : 0;

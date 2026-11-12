@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v160.0';
+        const CURRENT_VER = 'v161.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=160.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=161.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -1213,6 +1213,14 @@
     }
     .modal-backdrop.active {
       display: flex;
+    }
+    #modal-download-paint.active,
+    #modal-parental-gate.active,
+    #modal-subscribe.active,
+    #modal-developer-admin.active {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 10000300 !important;
     }
 
     .modal-card {
@@ -2802,8 +2810,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=160.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=160.0"></script>
+<script src="ebd_modulos_educativos.js?v=161.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=161.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -2849,6 +2857,7 @@ const STORIES = [
   { id: 24, seqColor: '52', seqPaint: '52', free: false, title: 'Os Três Amigos Fiéis de Daniel' },
   { id: 25, seqColor: '53', seqPaint: '53', free: false, title: 'Neemias Reconstruindo os Muros de Jerusalém' }
 ];
+window.STORIES = STORIES;
 
 // Limpa flag antiga de teste para garantir que inicie no Modo Grátis Oficial (6 Liberados + 14/44 Bloqueados com Cadeado!)
 localStorage.removeItem('trono_vip_active');
@@ -3507,6 +3516,11 @@ function onBackToPlayFromParentalOrSubscribe() {
   playSoundClick();
   document.getElementById('modal-parental-gate').classList.remove('active');
   document.getElementById('modal-subscribe').classList.remove('active');
+  const arcadeStage = document.getElementById('screen-trono-arcade-stage');
+  if (arcadeStage && arcadeStage.classList.contains('active')) {
+    window._returnToGamesHubAfterModal = false;
+    return;
+  }
   if (window._returnToGamesHubAfterModal && typeof openGamesHubScreen === 'function') {
     window._returnToGamesHubAfterModal = false;
     openGamesHubScreen();
@@ -3967,6 +3981,10 @@ function renderGalleryPage() {
         openSubscribeModal(st.title);
       } else {
         currentStory = st;
+        if (typeof window.openTronoArcadeStoryDirect === 'function') {
+          window.openTronoArcadeStoryDirect(mode === 'puzzle' ? 'puzzle_3d' : 'pintura_magica', st, 'screen-gallery');
+          return;
+        }
         if (mode === 'puzzle') startPuzzleWithStory(st);
         else startPaintWithStory(st);
       }
@@ -4879,6 +4897,7 @@ const PALETTE_COLORS = [
   { name: 'Branco Nuvem',       hex: '#ffffff', rgb: [255, 255, 255] },
   { name: 'Preto Cabelo',       hex: '#1e293b', rgb: [30, 41, 59] }
 ];
+window.PALETTE_COLORS = PALETTE_COLORS;
 
 let activeColor = PALETTE_COLORS[0];
 let activePaintTool = 'bucket';
@@ -6154,7 +6173,9 @@ function renderStickerAlbum() {
 // DOWNLOAD / IMPRESSÃO PDF / WHATSAPP DA PINTURA (EXCLUSIVO ASSINANTES!)
 // ============================================================================
 function onPaintDownloadOrPrintClick() {
-  const isFromFreeLesson = !!(window.EBD_STATE && window.EBD_STATE.fromLessonGames && (window.EBD_STATE.currentWeek || 1) <= 10);
+  const arcadeActive = !!(document.getElementById('screen-trono-arcade-stage') && document.getElementById('screen-trono-arcade-stage').classList.contains('active'));
+  const isFreeArcadePaint = arcadeActive && (typeof window._arcadeCurrentPhaseNum === 'number' ? window._arcadeCurrentPhaseNum <= 5 : true);
+  const isFromFreeLesson = !!(window.EBD_STATE && window.EBD_STATE.fromLessonGames && (window.EBD_STATE.currentWeek || 1) <= 10) || isFreeArcadePaint || (currentStory && currentStory.free);
   if (!isVipUnlocked && !isFromFreeLesson) {
     openSubscribeModal(
       'Baixar, Imprimir e WhatsApp',
@@ -6172,10 +6193,12 @@ function downloadColoredPaintingPNG() {
   if (window.EBD_STATE && window.EBD_STATE.fromLessonGames && typeof window.markLessonGameCompleted === 'function') {
     window.markLessonGameCompleted(window.EBD_STATE.currentWeek || 1, 'lesson_paint');
   }
-  const canvas = document.getElementById('paint-canvas');
+  const activeArcadeCanvas = document.getElementById('arcade-paint-canvas');
+  const canvas = activeArcadeCanvas || document.getElementById('paint-canvas');
+  const storyObj = window._arcadeActivePaintStory || currentStory || { title: 'pintura', seqPaint: '19' };
   const dataUrl = canvas.toDataURL('image/png');
   const a = document.createElement('a');
-  const safeName = (currentStory.title || 'pintura').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+  const safeName = (storyObj.title || 'pintura').toLowerCase().replace(/[^a-z0-9]+/g, '_');
   a.href = dataUrl;
   a.download = `trono_da_promessa_${safeName}.png`;
   document.body.appendChild(a);
@@ -6186,7 +6209,8 @@ function downloadColoredPaintingPNG() {
 
 function printOrSaveBlankPDF() {
   playSoundSnapGreen();
-  const seq = currentStory.seqPaint;
+  const storyObj = window._arcadeActivePaintStory || currentStory || { title: 'Pintura Bíblica', seqPaint: '19' };
+  const seq = storyObj.seqPaint;
   const imgSrc = (window.PINTURAS_B64 && window.PINTURAS_B64[seq])
     ? window.PINTURAS_B64[seq]
     : `./4_ASSETS_PINTURA/pintura_contorno_${seq}.jpg`;
@@ -6200,7 +6224,7 @@ function printOrSaveBlankPDF() {
     <html lang="pt-BR">
     <head>
       <meta charset="UTF-8">
-      <title>Trono da Promessa - ${currentStory.title}</title>
+      <title>Trono da Promessa - ${storyObj.title}</title>
       <style>
         @page { size: A4 portrait; margin: 12mm; }
         body {
@@ -6222,7 +6246,7 @@ function printOrSaveBlankPDF() {
       </style>
     </head>
     <body>
-      <h1>Trono da Promessa Kids — ${currentStory.title}</h1>
+      <h1>Trono da Promessa Kids — ${storyObj.title}</h1>
       <p>Atividade de Colorir • Nome da Criança: _____________________________________</p>
       <img src="${imgSrc}" onload="setTimeout(() => { window.print(); }, 300);">
     </body>
@@ -6233,16 +6257,18 @@ function printOrSaveBlankPDF() {
 
 async function sharePaintingOnWhatsApp() {
   playSoundSnapGreen();
-  const canvas = document.getElementById('paint-canvas');
+  const activeArcadeCanvas = document.getElementById('arcade-paint-canvas');
+  const canvas = activeArcadeCanvas || document.getElementById('paint-canvas');
+  const storyObj = window._arcadeActivePaintStory || currentStory || { title: 'pintura', seqPaint: '19' };
   try {
     const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
-    const safeName = (currentStory.title || 'pintura').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+    const safeName = (storyObj.title || 'pintura').toLowerCase().replace(/[^a-z0-9]+/g, '_');
     const file = new File([blob], `trono_da_promessa_${safeName}.png`, { type: 'image/png' });
 
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       await navigator.share({
-        title: `Trono da Promessa - ${currentStory.title}`,
-        text: `Olha a pintura da história "${currentStory.title}" que fizemos no app Trono da Promessa!`,
+        title: `Trono da Promessa - ${storyObj.title}`,
+        text: `Olha a pintura da história "${storyObj.title}" que fizemos no app Trono da Promessa!`,
         files: [file]
       });
       closeModal('modal-download-paint');
@@ -6251,7 +6277,7 @@ async function sharePaintingOnWhatsApp() {
   } catch (e) {}
 
   downloadColoredPaintingPNG();
-  const text = encodeURIComponent(`Olha a pintura da história "${currentStory.title}" do app Trono da Promessa! (A imagem foi baixada no seu aparelho para anexar na conversa)`);
+  const text = encodeURIComponent(`Olha a pintura da história "${storyObj.title}" do app Trono da Promessa! (A imagem foi baixada no seu aparelho para anexar na conversa)`);
   window.open(`https://wa.me/?text=${text}`, '_blank');
 }
 

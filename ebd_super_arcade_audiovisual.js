@@ -272,7 +272,13 @@
       "vovo_jogo_14.mp3": 5900,
       "vovo_jogo_15.mp3": 6040,
       "vovo_jogo_16.mp3": 6460,
+      "vovo_jogo_16_v161.mp3": 10280,
       "vovo_jogo_17.mp3": 6410,
+      "vovo_jogo_17_v161.mp3": 16000,
+      "vovo_jogo_19_v161.mp3": 11020,
+      "vovo_jogo_20_v161.mp3": 11910,
+      "vovo_jogo_21_v161.mp3": 9000,
+      "vovo_jogo_22_v161.mp3": 11401,
       "vovo_vitoria.mp3": 4640,
       "quiz_vovo_q01.mp3": 10180,
       "quiz_vovo_q02.mp3": 11600,
@@ -353,8 +359,8 @@
         const isVictory = audioFile === "vovo_vitoria.mp3";
         const rawPath = String(audioFile);
         const resolvedUrl = rawPath.startsWith("./")
-          ? `${rawPath}${rawPath.includes("?") ? "" : "?v=160"}`
-          : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=160`;
+          ? `${rawPath}${rawPath.includes("?") ? "" : "?v=161"}`
+          : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=161`;
         const durKey = rawPath.split("/").pop().split("?")[0];
         const replayBtnEl = document.getElementById("arcade-btn-replay-vovo");
         if (replayBtnEl && !isVictory) replayBtnEl.classList.add("vovo-speaking");
@@ -587,8 +593,8 @@
       title: "QUEBRA-CABEÇA",
       sub: "",
       icon: "./2_ASSETS_UI_BOTOES/ico_jogo_16_puzzle_v130.png?v=130",
-      audioFile: "vovo_jogo_16.mp3",
-      vovoFala: "Vamos montar o quebra-cabeça! Arraste as peças para formar a cena linda!",
+      audioFile: "vovo_jogo_16_v161.mp3",
+      vovoFala: "Vamos montar o quebra-cabeça! Pegue as pecinhas lá embaixo na bandeja azul e encaixe no lugar certinho aqui no quadro de cima!",
       run: (container, phase) => runQuebraCabecaArcade(container, phase)
     },
     {
@@ -596,9 +602,45 @@
       title: "PINTURA MÁGICA",
       sub: "",
       icon: "./2_ASSETS_UI_BOTOES/ico_jogo_17_pintura_v130.png?v=130",
-      audioFile: "vovo_jogo_17.mp3",
-      vovoFala: "Vamos colorir? Escolha as cores mágicas e toque para pintar o desenho!",
+      audioFile: "vovo_jogo_17_v161.mp3",
+      vovoFala: "Vamos colorir esse desenho lindo! Escolha uma cor na barra lá embaixo e use a pontinha do lápis na tela para pintar cada cantinho com precisão! Quando terminar, aperte em pronto!",
       run: (container, phase) => runPinturaMagicaArcade(container, phase)
+    },
+    {
+      id: "caca_palavras",
+      title: "CAÇA-PALAVRAS",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png?v=161",
+      audioFile: "vovo_jogo_19_v161.mp3",
+      vovoFala: "Hora do caça-palavras da Bíblia! Procure no quadro aqui em cima as palavras que estão escritas lá embaixo e passe o dedinho sobre as letras!",
+      run: (container, phase) => runCacaPalavrasArcade(container, phase)
+    },
+    {
+      id: "palavra_secreta",
+      title: "PALAVRA SECRETA",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png?v=161",
+      audioFile: "vovo_jogo_20_v161.mp3",
+      vovoFala: "Qual é a palavra secreta da Bíblia? Olhe a pista lá em cima e toque nas letrinhas aqui embaixo para descobrir a palavra escondida!",
+      run: (container, phase) => runPalavraSecretaArcade(container, phase)
+    },
+    {
+      id: "quem_sou_eu",
+      title: "QUEM SOU EU?",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ui_icon_04.png?v=161",
+      audioFile: "vovo_jogo_21_v161.mp3",
+      vovoFala: "Quem sou eu na Bíblia? Veja as pistas aqui em cima e toque no nome do personagem certo lá embaixo!",
+      run: (container, phase) => runQuemSouEuArcade(container, phase)
+    },
+    {
+      id: "verdadeiro_mito",
+      title: "VERDADEIRO OU MITO",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png?v=161",
+      audioFile: "vovo_jogo_22_v161.mp3",
+      vovoFala: "Verdadeiro ou mito? Leia a frase da Bíblia no cartão roxo aqui em cima e toque em verdadeiro ou em mito lá embaixo!",
+      run: (container, phase) => runVerdadeiroOuMitoArcade(container, phase)
     }
   ];
 
@@ -1711,6 +1753,21 @@
     if (gameId === "versiculo_secreto") {
       return (window.VERSE_BUILDER_BANK && window.VERSE_BUILDER_BANK.length) ? window.VERSE_BUILDER_BANK.length : 22;
     }
+    if (gameId === "puzzle_3d" || gameId === "pintura_magica") {
+      return (window.EBD_LESSONS_CURRICULUM && window.EBD_LESSONS_CURRICULUM.length) ? window.EBD_LESSONS_CURRICULUM.length : 22;
+    }
+    if (gameId === "caca_palavras") {
+      return (window.WORD_SEARCH_LEVELS && window.WORD_SEARCH_LEVELS.length) ? window.WORD_SEARCH_LEVELS.length : 22;
+    }
+    if (gameId === "palavra_secreta") {
+      return (window.SECRET_WORD_BANK && window.SECRET_WORD_BANK.length) ? window.SECRET_WORD_BANK.length : 22;
+    }
+    if (gameId === "quem_sou_eu") {
+      return (window.WHO_AM_I_BANK && window.WHO_AM_I_BANK.length) ? window.WHO_AM_I_BANK.length : 22;
+    }
+    if (gameId === "verdadeiro_mito") {
+      return (window.TRUE_OR_MYTH_BANK && window.TRUE_OR_MYTH_BANK.length) ? window.TRUE_OR_MYTH_BANK.length : 22;
+    }
     return TOTAL_PHASES;
   }
 
@@ -1929,6 +1986,9 @@
   let _arcadeLessonSingleMode = false;
   let _arcadeLessonWeekNum = 1;
   let _arcadeLessonGameKey = "";
+  let _arcadeCustomBackScreen = "";
+  window._arcadeDirectStoryOverride = null;
+  window._arcadeActivePaintStory = null;
   window._arcadeVictoryStartedAt = 0;
   window._arcadeClosingUntil = 0;
 
@@ -1949,6 +2009,34 @@
       clearTimeout(window._verseWinTimer);
       window._verseWinTimer = null;
     }
+    if (window._arcadePuzzleRaf) {
+      cancelAnimationFrame(window._arcadePuzzleRaf);
+      window._arcadePuzzleRaf = null;
+    }
+    if (window._arcadePuzzleWinTimer) {
+      clearTimeout(window._arcadePuzzleWinTimer);
+      window._arcadePuzzleWinTimer = null;
+    }
+    if (window._arcadeWordSearchWinTimer) {
+      clearTimeout(window._arcadeWordSearchWinTimer);
+      window._arcadeWordSearchWinTimer = null;
+    }
+    if (window._arcadeSecretWordWinTimer) {
+      clearTimeout(window._arcadeSecretWordWinTimer);
+      window._arcadeSecretWordWinTimer = null;
+    }
+    if (window._arcadeWhoAmIWinTimer) {
+      clearTimeout(window._arcadeWhoAmIWinTimer);
+      window._arcadeWhoAmIWinTimer = null;
+    }
+    if (window._arcadeTrueMythWinTimer) {
+      clearTimeout(window._arcadeTrueMythWinTimer);
+      window._arcadeTrueMythWinTimer = null;
+    }
+    if (window._arcadePaintKeyHandler) {
+      window.removeEventListener("keydown", window._arcadePaintKeyHandler);
+      window._arcadePaintKeyHandler = null;
+    }
   }
 
   window.openTronoArcadeGame = function(gameId) {
@@ -1959,6 +2047,8 @@
     }
     _arcadeLessonSingleMode = false;
     _arcadeLessonGameKey = "";
+    _arcadeCustomBackScreen = "";
+    window._arcadeDirectStoryOverride = null;
     window._userEnteredModule = true;
     try { history.pushState({ screen: "arcade-stage", gameId: gameId }, ""); } catch(e){}
     TronoAudio.init();
@@ -1993,6 +2083,8 @@
     _arcadeLessonSingleMode = true;
     _arcadeLessonWeekNum = wk;
     _arcadeLessonGameKey = lessonGameKey || "chronology";
+    _arcadeCustomBackScreen = "";
+    window._arcadeDirectStoryOverride = null;
     window._userEnteredModule = true;
     TronoAudio.init();
     TronoAudio.play("click");
@@ -2003,6 +2095,36 @@
 
     currentActiveGame = game;
     currentPhase = wk;
+    _vovoAlreadySpokeInSession = false;
+
+    const stage = document.getElementById("screen-trono-arcade-stage");
+    if (stage) {
+      stage.classList.add("active");
+      stage.style.display = "flex";
+    }
+
+    loadPhase(currentPhase);
+  };
+
+  // Abre Pintura Mágica ou Quebra-Cabeça direto de uma arte escolhida na Galeria (#screen-gallery)
+  window.openTronoArcadeStoryDirect = function(gameId, storyObj, backScreenId) {
+    if (window._arcadeClosingUntil && Date.now() < window._arcadeClosingUntil) {
+      return;
+    }
+    _arcadeLessonSingleMode = false;
+    _arcadeLessonGameKey = "";
+    _arcadeCustomBackScreen = backScreenId || "screen-gallery";
+    window._arcadeDirectStoryOverride = storyObj || null;
+    window._userEnteredModule = true;
+    TronoAudio.init();
+    TronoAudio.play("click");
+    ensureArcadeStageInDOM();
+
+    const game = SUPER_ARCADE_GAMES.find(g => g.id === gameId);
+    if (!game) return;
+
+    currentActiveGame = game;
+    currentPhase = Math.max(1, Math.floor(Number(storyObj && storyObj.id) || 1));
     _vovoAlreadySpokeInSession = false;
 
     const stage = document.getElementById("screen-trono-arcade-stage");
@@ -2025,6 +2147,16 @@
       if (nextBtn) nextBtn.style.display = "none";
       if (displayEl) {
         displayEl.innerHTML = `LIÇÃO <span>${_arcadeLessonWeekNum}</span>`;
+      }
+      return;
+    }
+
+    if (_arcadeCustomBackScreen && window._arcadeDirectStoryOverride) {
+      if (prevBtn) prevBtn.style.display = "none";
+      if (nextBtn) nextBtn.style.display = "none";
+      if (displayEl) {
+        const sid = Number(window._arcadeDirectStoryOverride.id) || currentPhase || 1;
+        displayEl.innerHTML = `${currentActiveGame.id === "pintura_magica" ? "DESENHO" : "CENA"} <span>${sid}</span>`;
       }
       return;
     }
@@ -2106,12 +2238,15 @@
 
     if (_arcadeLessonSingleMode) {
       currentPhase = Math.max(1, Math.floor(Number(phase) || _arcadeLessonWeekNum || 1));
+    } else if (_arcadeCustomBackScreen && window._arcadeDirectStoryOverride) {
+      currentPhase = Math.max(1, Math.floor(Number(phase) || Number(window._arcadeDirectStoryOverride.id) || 1));
     } else if (currentActiveGame && currentActiveGame.id) {
       const maxUnl = window.getArcadeGameMaxUnlocked(currentActiveGame.id);
       phase = Math.max(1, Math.min(maxUnl, Math.floor(Number(phase) || 1)));
       currentPhase = phase;
       window.saveArcadeLastPhase(currentActiveGame.id, currentPhase);
     }
+    window._arcadeCurrentPhaseNum = currentPhase;
     updateArcadeTopPhaseNavState();
 
     const modal = document.getElementById("trono-victory-modal");
@@ -2209,11 +2344,15 @@
 
   window.closeTronoArcadeStage = function(skipHubRedirect) {
     const wasLessonSingleMode = _arcadeLessonSingleMode;
+    const wasCustomBackScreen = _arcadeCustomBackScreen;
     // Se a criança saiu no meio da partida na Sala de Jogos (sem estar na tela de vitória), salva imediatamente a fase atual!
-    if (!wasLessonSingleMode && !_isVictoryActive && currentActiveGame && currentActiveGame.id) {
+    if (!wasLessonSingleMode && !wasCustomBackScreen && !_isVictoryActive && currentActiveGame && currentActiveGame.id) {
       window.saveArcadeLastPhase(currentActiveGame.id, currentPhase);
     }
     _arcadeLessonSingleMode = false;
+    _arcadeCustomBackScreen = "";
+    window._arcadeDirectStoryOverride = null;
+    window._arcadeActivePaintStory = null;
     cleanupChronoDragArtifacts();
     window._arcadeClosingUntil = Date.now() + 550;
     _vovoAlreadySpokeInSession = false;
@@ -2261,6 +2400,13 @@
 
     if (wasLessonSingleMode && typeof window.openLessonModule === "function") {
       window.openLessonModule("jogos_licao");
+    } else if (wasCustomBackScreen) {
+      if (wasCustomBackScreen === "screen-gallery" && typeof window.renderGalleryPage === "function") {
+        try { window.renderGalleryPage(); } catch (e) {}
+      }
+      if (typeof showScreen === "function") {
+        showScreen(wasCustomBackScreen);
+      }
     } else if (typeof openGamesHubScreen === "function") {
       openGamesHubScreen();
     } else if (typeof navigateTo === "function") {
@@ -2305,6 +2451,10 @@
     TronoAudio.play("click");
     stopArcadeCelebrationConfetti();
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
+    if (_arcadeCustomBackScreen) {
+      window.closeTronoArcadeStage();
+      return;
+    }
     const isVip = isArcadeVipActive();
     const totPh = currentActiveGame ? getGameTotalPhases(currentActiveGame.id) : TOTAL_PHASES;
 
@@ -2527,7 +2677,7 @@
     }
 
     // 2. Registra vitória permanente da fase no localStorage (libera a próxima fase!) e monta o CARD CANÔNICO OFICIAL
-    if (currentActiveGame && currentActiveGame.id && typeof window.recordArcadePhaseVictory === "function") {
+    if (!_arcadeCustomBackScreen && currentActiveGame && currentActiveGame.id && typeof window.recordArcadePhaseVictory === "function") {
       window.recordArcadePhaseVictory(currentActiveGame.id, currentPhase);
       updateArcadeTopPhaseNavState();
     }
@@ -7131,29 +7281,1983 @@
     };
   }
 
-  // --- JOGO 16: QUEBRA-CABEÇA 3D ARCADE ---
-  function runQuebraCabecaArcade(container, phase) {
-    container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; background:#1e1b4b;">
-        <div style="width:260px; height:160px; border:3px solid #fde047; border-radius:20px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.6);">
-          <img src="./2_ASSETS_UI_BOTOES/bg_ebd_02_jardim.jpg" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <button class="arcade-btn-circle" onclick="triggerArcadeVictory()" style="width:180px; border-radius:999px; font-weight:900; color:#fff;">
-          COMPLETAR PEÇAS
-        </button>
-      </div>
+  // ==========================================================================
+  // 6B. OS 6 JOGOS DA LIÇÃO E SALA DE JOGOS EM TELA CHEIA (PADRÃO v161.0)
+  // (Quebra-Cabeça 3D, Pintura Mágica c/ Lapizinho Flutuante, Caça-Palavras,
+  //  Palavra Secreta, Quem Sou Eu? e Verdadeiro ou Mito — 22 Fases cada!)
+  // ==========================================================================
+  function injectLessonArcadeV161Styles() {
+    if (document.getElementById("arcade-lesson6-v161-styles")) return;
+    const st = document.createElement("style");
+    st.id = "arcade-lesson6-v161-styles";
+    st.textContent = `
+      .arc-v161-stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .arc-v161-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .arc-v161-vignette {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(15, 12, 41, 0.34) 0%, rgba(15, 12, 41, 0.14) 48%, rgba(15, 12, 41, 0.44) 100%);
+        pointer-events: none;
+        z-index: 1;
+      }
+      .arc-v161-rainbow-card {
+        position: relative;
+        background: linear-gradient(180deg, rgba(126, 34, 206, 0.94) 0%, rgba(59, 7, 100, 0.97) 100%);
+        border-radius: 20px;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.72);
+        box-sizing: border-box;
+      }
+      .arc-v161-rainbow-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 3px;
+        background: linear-gradient(125deg, #38bdf8, #a855f7, #fde047, #34d399, #ec4899, #38bdf8);
+        background-size: 260% 260%;
+        animation: vovoReplayBorderFlow 4s ease infinite;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+      .arc-v161-top-strip {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 520px;
+        height: 40px;
+        min-height: 40px;
+        padding: 4px 104px 2px 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        box-sizing: border-box;
+      }
+      .arc-v161-diff-btn {
+        height: 32px;
+        padding: 0 11px;
+        border-radius: 999px;
+        border: 2px solid rgba(253, 224, 71, 0.78);
+        background: linear-gradient(180deg, rgba(88, 28, 135, 0.92) 0%, rgba(46, 16, 101, 0.96) 100%);
+        color: #ffffff;
+        font-family: 'Fredoka', sans-serif;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.3px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.55);
+        transition: transform 0.12s ease, background 0.15s ease;
+        white-space: nowrap;
+      }
+      .arc-v161-diff-btn.active {
+        background: linear-gradient(180deg, #00e676 0%, #00c853 100%);
+        border-color: #ffffff;
+        box-shadow: 0 0 14px rgba(0, 230, 118, 0.8), 0 4px 10px rgba(0,0,0,0.6);
+      }
+      .arc-v161-diff-btn:active {
+        transform: scale(0.93);
+      }
+      /* LAPIZINHO MÁGICO FLUTUANTE 3D NA PINTURA MÁGICA */
+      #arcade-paint-floating-pencil {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 52px;
+        height: 52px;
+        transform: translate(-5px, -47px);
+        pointer-events: none;
+        z-index: 10000120;
+        opacity: 0;
+        transition: opacity 0.14s ease;
+        filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.65));
+        will-change: left, top, transform;
+      }
+      #arcade-paint-floating-pencil.pencil-visible {
+        opacity: 1;
+      }
+      #arcade-paint-floating-pencil.pencil-tap-pop {
+        animation: arcadePencilTapPop 0.18s ease;
+      }
+      @keyframes arcadePencilTapPop {
+        0%, 100% { transform: translate(-5px, -47px) scale(1); }
+        50% { transform: translate(-5px, -47px) scale(0.90); }
+      }
+      .arc-paint-tool-btn {
+        height: 32px;
+        padding: 0 4px;
+        border-radius: 10px;
+        border: 1.8px solid rgba(253, 224, 71, 0.72);
+        background: linear-gradient(180deg, rgba(76, 29, 149, 0.92) 0%, rgba(30, 27, 75, 0.96) 100%);
+        color: #ffffff;
+        font-family: 'Fredoka', sans-serif;
+        font-size: clamp(10px, 2.65vw, 11.8px);
+        font-weight: 900;
+        letter-spacing: 0.2px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        cursor: pointer;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+        transition: transform 0.1s ease, background 0.14s ease;
+        white-space: nowrap;
+      }
+      .arc-paint-tool-btn.active {
+        background: linear-gradient(180deg, #00e676 0%, #00c853 100%);
+        border-color: #ffffff;
+        box-shadow: 0 0 12px rgba(0, 230, 118, 0.75);
+      }
+      .arc-paint-tool-btn:active {
+        transform: scale(0.92);
+      }
+      .arc-paint-swatch {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        max-width: 30px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.82);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.55);
+        cursor: pointer;
+        justify-self: center;
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+        box-sizing: border-box;
+      }
+      .arc-paint-swatch.active {
+        transform: scale(1.22);
+        border: 3px solid #ffffff;
+        box-shadow: 0 0 12px #fde047, 0 3px 8px rgba(0,0,0,0.8);
+        z-index: 2;
+      }
+      /* CAÇA-PALAVRAS E PALAVRA SECRETA 3D TILES */
+      .arc-ws-cell {
+        aspect-ratio: 1 / 1;
+        border-radius: 10px;
+        border: 2px solid rgba(56, 189, 248, 0.85);
+        background: linear-gradient(180deg, rgba(107, 33, 168, 0.92) 0%, rgba(59, 7, 100, 0.96) 100%);
+        color: #ffffff;
+        font-family: 'Fredoka', sans-serif;
+        font-size: clamp(15px, 4.3vw, 20px);
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.58), inset 0 2px 3px rgba(255,255,255,0.22);
+        cursor: pointer;
+        user-select: none;
+        touch-action: none;
+        transition: transform 0.1s ease, background 0.14s ease, border-color 0.14s ease;
+      }
+      .arc-ws-cell.ws-tap-lit {
+        background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+        border-color: #fde047;
+        box-shadow: 0 0 12px rgba(253, 224, 71, 0.8);
+      }
+      .arc-ws-cell.ws-swipe-preview {
+        background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%) !important;
+        border-color: #ffffff !important;
+        transform: scale(1.06);
+        z-index: 3;
+      }
+      .arc-ws-cell.ws-found {
+        background: linear-gradient(180deg, #00e676 0%, #00c853 100%) !important;
+        border-color: #ffffff !important;
+        box-shadow: 0 0 14px rgba(0, 230, 118, 0.8), 0 4px 10px rgba(0,0,0,0.55);
+      }
+      @keyframes arcGentleShake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+      }
+      .arc-shake-err {
+        animation: arcGentleShake 0.26s ease;
+      }
     `;
+    document.head.appendChild(st);
   }
 
-  // --- JOGO 17: PINTURA MÁGICA ARCADE ---
-  function runPinturaMagicaArcade(container, phase) {
+  function stripLessonPrefixText(raw) {
+    return String(raw || "").replace(/^Lição\s*\d+\s*[•\-:]\s*/i, "").trim();
+  }
+
+  function getLessonStoryForPhase(phase) {
+    if (window._arcadeDirectStoryOverride && window._arcadeDirectStoryOverride.seqColor) {
+      return window._arcadeDirectStoryOverride;
+    }
+    const wk = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 22) + 1;
+    const curriculum = window.EBD_LESSONS_CURRICULUM || [];
+    const lesson = curriculum.find(l => Number(l.week) === wk);
+    const stories = window.STORIES || [];
+    if (lesson && lesson.storyIdUnlock) {
+      const found = stories.find(s => Number(s.id) === Number(lesson.storyIdUnlock));
+      if (found) return found;
+    }
+    if (stories.length > 0) {
+      return stories[(wk - 1) % stories.length];
+    }
+    return { id: 11, seqColor: "11", seqPaint: "29", title: "A Criação Maravilhosa de Deus" };
+  }
+
+  // --- JOGO 16: QUEBRA-CABEÇA 3D ARCADE (22 LIÇÕES + PRECISÃO TABLET v156 + VOZ DO VOVÔ) ---
+  function runQuebraCabecaArcade(container, phase) {
+    injectLessonArcadeV161Styles();
+    const st = getLessonStoryForPhase(phase);
+    let cols = 2, rows = 3;
+    let pieces = [];
+    let activePiece = null;
+    let puzActivePointerId = null;
+    let grabOffX = 0, grabOffY = 0;
+    let puzSolved = false;
+    let animHue = 0;
+
+    const BOARD = { x: 75, y: 12, w: 390, h: 564 };
+    const TRAY  = { x: 14, y: 590, w: 512, h: 258 };
+
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; background:#0f172a;">
-        <div id="pintura-quadro" style="width:260px; height:160px; background:#ffffff; border:3px solid #fde047; border-radius:20px; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; color:#1e1b4b; cursor:pointer;" onclick="this.style.background='linear-gradient(180deg,#fde047,#38bdf8)'; TronoAudio.play('success'); setTimeout(triggerArcadeVictory, 700);">
-          TOQUE PARA COLORIR
+      <div class="arc-v161-stage">
+        <img src="./2_ASSETS_UI_BOTOES/bg_jogo_16_puzzle_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
+        <div class="arc-v161-vignette"></div>
+
+        <div class="arc-v161-top-strip">
+          <button type="button" class="arc-v161-diff-btn active" data-puz-diff="6">6 PEÇAS</button>
+          <button type="button" class="arc-v161-diff-btn" data-puz-diff="9">9 PEÇAS</button>
+          <button type="button" class="arc-v161-diff-btn" data-puz-diff="12">12 PEÇAS</button>
+        </div>
+
+        <div style="position:relative; z-index:5; flex:1; min-height:0; width:100%; display:flex; align-items:center; justify-content:center; padding:0 6px 8px 6px; box-sizing:border-box;">
+          <canvas id="arcade-puzzle-canvas" width="540" height="860" style="width:100%; height:100%; max-width:520px; object-fit:contain; touch-action:none; display:block;"></canvas>
         </div>
       </div>
     `;
+
+    const canvas = container.querySelector("#arcade-puzzle-canvas");
+    const ctx = canvas.getContext("2d");
+    const img = new Image();
+
+    function drawEdge(c2d, x1, y1, x2, y2, tabSign) {
+      if (tabSign === 0) {
+        c2d.lineTo(x2, y2);
+        return;
+      }
+      const dx = x2 - x1, dy = y2 - y1;
+      const len = Math.hypot(dx, dy);
+      const ux = dx / len, uy = dy / len;
+      const nx = -uy * tabSign, ny = ux * tabSign;
+      const pt = (along, perp) => [
+        x1 + ux * (along * len) + nx * (perp * len),
+        y1 + uy * (along * len) + ny * (perp * len)
+      ];
+      const [p1x, p1y] = pt(0.36, 0.0);
+      c2d.lineTo(p1x, p1y);
+      const [c1x, c1y] = pt(0.31, 0.11);
+      const [c2x, c2y] = pt(0.35, 0.25);
+      const [topX, topY] = pt(0.50, 0.25);
+      c2d.bezierCurveTo(c1x, c1y, c2x, c2y, topX, topY);
+      const [c3x, c3y] = pt(0.65, 0.25);
+      const [c4x, c4y] = pt(0.69, 0.11);
+      const [p2x, p2y] = pt(0.64, 0.0);
+      c2d.bezierCurveTo(c3x, c3y, c4x, c4y, p2x, p2y);
+      c2d.lineTo(x2, y2);
+    }
+
+    function traceShape(c2d, x, y, w, h, edges) {
+      c2d.beginPath();
+      c2d.moveTo(x, y);
+      drawEdge(c2d, x, y, x + w, y, edges.top);
+      drawEdge(c2d, x + w, y, x + w, y + h, edges.right);
+      drawEdge(c2d, x + w, y + h, x, y + h, edges.bottom);
+      drawEdge(c2d, x, y + h, x, y, edges.left);
+      c2d.closePath();
+    }
+
+    function drawFrame3D(x, y, w, h, radius, theme) {
+      ctx.save();
+      const rad = (animHue * Math.PI) / 180;
+      const gx1 = x + w / 2 + Math.cos(rad) * (w / 2);
+      const gy1 = y + h / 2 + Math.sin(rad) * (h / 2);
+      const gx2 = x + w / 2 - Math.cos(rad) * (w / 2);
+      const gy2 = y + h / 2 - Math.sin(rad) * (h / 2);
+      const bGrad = ctx.createLinearGradient(gx1, gy1, gx2, gy2);
+      bGrad.addColorStop(0, "#00e676");
+      bGrad.addColorStop(0.5, "#00e5ff");
+      bGrad.addColorStop(1, "#fde047");
+      ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
+      ctx.shadowBlur = 14;
+      ctx.shadowOffsetY = 5;
+      ctx.fillStyle = bGrad;
+      ctx.beginPath();
+      ctx.roundRect(x - 5, y - 5, w + 10, h + 10, radius + 4);
+      ctx.fill();
+
+      ctx.shadowBlur = 0;
+      ctx.shadowOffsetY = 0;
+      const iGrad = ctx.createLinearGradient(x, y, x, y + h);
+      if (theme === "purple") {
+        iGrad.addColorStop(0, "rgba(126, 34, 206, 0.92)");
+        iGrad.addColorStop(1, "rgba(59, 7, 100, 0.96)");
+      } else {
+        iGrad.addColorStop(0, "rgba(2, 132, 199, 0.92)");
+        iGrad.addColorStop(1, "rgba(30, 58, 138, 0.96)");
+      }
+      ctx.fillStyle = iGrad;
+      ctx.beginPath();
+      ctx.roundRect(x, y, w, h, radius);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function buildPieces() {
+      pieces.forEach(oldP => {
+        if (oldP && oldP._flashTimer) clearInterval(oldP._flashTimer);
+      });
+      pieces = [];
+      activePiece = null;
+      puzActivePointerId = null;
+      puzSolved = false;
+
+      const pw = BOARD.w / cols;
+      const ph = BOARD.h / rows;
+      const hTabs = Array.from({ length: rows + 1 }, () => Array(cols).fill(0));
+      const vTabs = Array.from({ length: rows }, () => Array(cols + 1).fill(0));
+      for (let r = 1; r < rows; r++) {
+        for (let c = 0; c < cols; c++) hTabs[r][c] = Math.random() < 0.5 ? 1 : -1;
+      }
+      for (let r = 0; r < rows; r++) {
+        for (let c = 1; c < cols; c++) vTabs[r][c] = Math.random() < 0.5 ? 1 : -1;
+      }
+
+      const list = [];
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          list.push({
+            id: r * cols + c,
+            row: r,
+            col: c,
+            w: pw,
+            h: ph,
+            edges: {
+              top: r === 0 ? 0 : hTabs[r][c],
+              right: c === cols - 1 ? 0 : vTabs[r][c + 1],
+              bottom: r === rows - 1 ? 0 : -hTabs[r + 1][c],
+              left: c === 0 ? 0 : -vTabs[r][c]
+            },
+            targetX: BOARD.x + c * pw,
+            targetY: BOARD.y + r * ph,
+            x: 0,
+            y: 0,
+            homeX: 0,
+            homeY: 0,
+            slotX: 0,
+            slotY: 0,
+            slotW: 0,
+            slotH: 0,
+            trayScale: 0.55,
+            locked: false,
+            flashState: null,
+            flashAlpha: 0
+          });
+        }
+      }
+      list.sort(() => Math.random() - 0.5);
+
+      const tot = list.length;
+      const trayCols = tot === 6 ? 3 : (tot === 9 ? 5 : 6);
+      const trayRows = 2;
+      const padX = 8, padY = 8, gapX = 4, gapY = 4;
+      const slotW = (TRAY.w - padX * 2 - gapX * (trayCols - 1)) / trayCols;
+      const slotH = (TRAY.h - padY * 2 - gapY * (trayRows - 1)) / trayRows;
+      const trayScale = Math.min(slotW / (pw * 1.18), slotH / (ph * 1.18), 0.85);
+
+      list.forEach((p, idx) => {
+        const sr = Math.floor(idx / trayCols);
+        const sc = idx % trayCols;
+        const inRow = (sr === trayRows - 1 && tot % trayCols !== 0) ? (tot % trayCols) : trayCols;
+        const rowW = inRow * slotW + (inRow - 1) * gapX;
+        const rowStartX = TRAY.x + (TRAY.w - rowW) / 2;
+        const sx = rowStartX + sc * (slotW + gapX);
+        const sy = TRAY.y + padY + sr * (slotH + gapY);
+        p.slotX = sx;
+        p.slotY = sy;
+        p.slotW = slotW;
+        p.slotH = slotH;
+        p.trayScale = trayScale;
+        p.homeX = sx + (slotW - pw) / 2;
+        p.homeY = sy + (slotH - ph) / 2;
+        p.x = p.homeX;
+        p.y = p.homeY;
+      });
+      pieces = list;
+      drawScene();
+    }
+
+    function flashPiece(piece, color, onDone) {
+      if (piece._flashTimer) clearInterval(piece._flashTimer);
+      piece.flashState = color;
+      piece.flashAlpha = 1.0;
+      piece._flashTimer = setInterval(() => {
+        piece.flashAlpha -= 0.15;
+        if (piece.flashAlpha <= 0) {
+          piece.flashAlpha = 0;
+          piece.flashState = null;
+          clearInterval(piece._flashTimer);
+          piece._flashTimer = null;
+          if (onDone && piece !== activePiece) onDone();
+        }
+      }, 42);
+    }
+
+    function drawScene() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawFrame3D(BOARD.x - 2, BOARD.y - 2, BOARD.w + 4, BOARD.h + 4, 14, "purple");
+      drawFrame3D(TRAY.x, TRAY.y, TRAY.w, TRAY.h, 16, "blue");
+      if (!img.complete || !img.naturalWidth) return;
+
+      const imgW = img.naturalWidth, imgH = img.naturalHeight;
+      if (puzSolved) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.roundRect(BOARD.x, BOARD.y, BOARD.w, BOARD.h, 12);
+        ctx.clip();
+        ctx.drawImage(img, 0, 0, imgW, imgH, BOARD.x, BOARD.y, BOARD.w, BOARD.h);
+        ctx.restore();
+
+        ctx.save();
+        ctx.strokeStyle = "#fde047";
+        ctx.lineWidth = 5;
+        ctx.shadowColor = "#fde047";
+        ctx.shadowBlur = 18;
+        ctx.beginPath();
+        ctx.roundRect(BOARD.x, BOARD.y, BOARD.w, BOARD.h, 12);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+        const dy = Math.sin(animHue * 0.12) * 5;
+        ctx.font = "900 29px Fredoka, sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#fde047";
+        ctx.shadowColor = "rgba(0,0,0,0.9)";
+        ctx.shadowBlur = 8;
+        ctx.fillText("IMAGEM COMPLETA! PARABÉNS!", canvas.width / 2, TRAY.y + 112 + dy);
+        ctx.font = "800 21px Fredoka, sans-serif";
+        ctx.fillStyle = "#ffffff";
+        ctx.fillText(st.title || "", canvas.width / 2, TRAY.y + 156 + dy);
+        ctx.restore();
+        return;
+      }
+
+      pieces.forEach(p => {
+        ctx.save();
+        traceShape(ctx, p.targetX, p.targetY, p.w, p.h, p.edges);
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.72)";
+        ctx.lineWidth = 2.2;
+        ctx.setLineDash([6, 4]);
+        ctx.stroke();
+        ctx.restore();
+      });
+
+      const ordered = [
+        ...pieces.filter(p => p.locked),
+        ...pieces.filter(p => !p.locked && p !== activePiece),
+        ...(activePiece ? [activePiece] : [])
+      ];
+
+      ordered.forEach(p => {
+        const sc = (p.locked || p === activePiece) ? 1.0 : p.trayScale;
+        const floatY = (!p.locked && p !== activePiece) ? Math.sin((animHue * 0.065) + p.id * 0.9) * 3.0 : 0;
+        const dx = p.x, dy = p.y + floatY;
+        const cx = dx + p.w / 2, cy = dy + p.h / 2;
+
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.scale(sc, sc);
+        ctx.translate(-cx, -cy);
+        if (!p.locked) {
+          ctx.shadowColor = "rgba(0,0,0,0.85)";
+          ctx.shadowBlur = p === activePiece ? 22 : 8;
+          ctx.shadowOffsetY = p === activePiece ? 10 : 4;
+        }
+        traceShape(ctx, dx, dy, p.w, p.h, p.edges);
+        ctx.clip();
+        ctx.drawImage(img, 0, 0, imgW, imgH, dx - p.col * p.w, dy - p.row * p.h, BOARD.w, BOARD.h);
+
+        if (p.flashState === "green" && p.flashAlpha > 0) {
+          ctx.fillStyle = `rgba(34, 197, 94, ${p.flashAlpha * 0.55})`;
+          ctx.fillRect(dx - p.w * 0.4, dy - p.h * 0.4, p.w * 1.8, p.h * 1.8);
+        } else if (p.flashState === "red" && p.flashAlpha > 0) {
+          ctx.fillStyle = `rgba(239, 68, 68, ${p.flashAlpha * 0.65})`;
+          ctx.fillRect(dx - p.w * 0.4, dy - p.h * 0.4, p.w * 1.8, p.h * 1.8);
+        }
+        ctx.restore();
+
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.scale(sc, sc);
+        ctx.translate(-cx, -cy);
+        traceShape(ctx, dx, dy, p.w, p.h, p.edges);
+        if (p.flashState === "green" && p.flashAlpha > 0) {
+          ctx.strokeStyle = "#22c55e";
+          ctx.lineWidth = 6;
+        } else if (p.flashState === "red" && p.flashAlpha > 0) {
+          ctx.strokeStyle = "#ef4444";
+          ctx.lineWidth = 6;
+        } else if (p.locked) {
+          ctx.strokeStyle = "rgba(250, 204, 21, 0.45)";
+          ctx.lineWidth = 1.5;
+        } else {
+          ctx.strokeStyle = "#fde047";
+          ctx.lineWidth = p === activePiece ? 3.8 : 2.8;
+        }
+        ctx.stroke();
+        ctx.restore();
+      });
+    }
+
+    function startLoop() {
+      if (window._arcadePuzzleRaf) cancelAnimationFrame(window._arcadePuzzleRaf);
+      function tick() {
+        const stageEl = document.getElementById("screen-trono-arcade-stage");
+        if (!stageEl || !stageEl.classList.contains("active") || !canvas.isConnected) return;
+        animHue = (animHue + 1.2) % 360;
+        drawScene();
+        window._arcadePuzzleRaf = requestAnimationFrame(tick);
+      }
+      window._arcadePuzzleRaf = requestAnimationFrame(tick);
+    }
+
+    function getCanvasPt(ev) {
+      const rect = canvas.getBoundingClientRect();
+      const cw = canvas.width, ch = canvas.height;
+      let cx = ev.clientX, cy = ev.clientY;
+      if (typeof cx !== "number" && ev.touches && ev.touches.length > 0) {
+        cx = ev.touches[0].clientX;
+        cy = ev.touches[0].clientY;
+      } else if (typeof cx !== "number" && ev.changedTouches && ev.changedTouches.length > 0) {
+        cx = ev.changedTouches[0].clientX;
+        cy = ev.changedTouches[0].clientY;
+      }
+      const scale = Math.min(rect.width / cw, rect.height / ch) || 1;
+      const offX = (rect.width - cw * scale) / 2;
+      const offY = (rect.height - ch * scale) / 2;
+      return {
+        x: (cx - rect.left - offX) / scale,
+        y: (cy - rect.top - offY) / scale
+      };
+    }
+
+    function findPieceAt(pt) {
+      for (let i = pieces.length - 1; i >= 0; i--) {
+        const p = pieces[i];
+        if (p.locked) continue;
+        const sc = p.trayScale || 0.55;
+        const cx = p.x + p.w / 2, cy = p.y + p.h / 2;
+        const hw = (p.w * sc) / 2 + 13;
+        const hh = (p.h * sc) / 2 + 15;
+        if (pt.x >= cx - hw && pt.x <= cx + hw && pt.y >= cy - hh && pt.y <= cy + hh) return i;
+      }
+      for (let i = pieces.length - 1; i >= 0; i--) {
+        const p = pieces[i];
+        if (p.locked) continue;
+        if (pt.x >= p.slotX - 5 && pt.x <= p.slotX + p.slotW + 5 && pt.y >= p.slotY - 5 && pt.y <= p.slotY + p.slotH + 16) {
+          return i;
+        }
+      }
+      let bestIdx = -1, bestDist = 56;
+      for (let i = pieces.length - 1; i >= 0; i--) {
+        const p = pieces[i];
+        if (p.locked) continue;
+        const pcx = p.x + p.w / 2, pcy = p.y + p.h / 2;
+        const scx = p.slotX + p.slotW / 2, scy = p.slotY + p.slotH / 2;
+        const d = Math.min(Math.hypot(pt.x - pcx, pt.y - pcy), Math.hypot(pt.x - scx, pt.y - scy));
+        if (d < bestDist) {
+          bestDist = d;
+          bestIdx = i;
+        }
+      }
+      return bestIdx;
+    }
+
+    canvas.addEventListener("touchstart", (ev) => {
+      if (!puzSolved) ev.preventDefault();
+    }, { passive: false });
+    canvas.addEventListener("touchmove", (ev) => {
+      if (activePiece) ev.preventDefault();
+    }, { passive: false });
+
+    canvas.addEventListener("pointerdown", (ev) => {
+      if (window._arcadeStageLockedForVovo || puzSolved || _isVictoryActive) return;
+      if (activePiece && puzActivePointerId !== null && ev.pointerId !== puzActivePointerId) return;
+      ev.preventDefault();
+      const pt = getCanvasPt(ev);
+      const hitIdx = findPieceAt(pt);
+      if (hitIdx >= 0) {
+        const p = pieces[hitIdx];
+        if (p._flashTimer) {
+          clearInterval(p._flashTimer);
+          p._flashTimer = null;
+          p.flashState = null;
+          p.flashAlpha = 0;
+        }
+        TronoAudio.play("click");
+        activePiece = p;
+        puzActivePointerId = ev.pointerId;
+        grabOffX = p.w / 2;
+        grabOffY = p.h / 2;
+        p.x = pt.x - grabOffX;
+        p.y = pt.y - grabOffY;
+        pieces.splice(hitIdx, 1);
+        pieces.push(p);
+        try { canvas.setPointerCapture(ev.pointerId); } catch (e) {}
+      }
+    });
+
+    canvas.addEventListener("pointermove", (ev) => {
+      if (!activePiece) return;
+      if (puzActivePointerId !== null && ev.pointerId !== puzActivePointerId) return;
+      ev.preventDefault();
+      const pt = getCanvasPt(ev);
+      activePiece.x = pt.x - grabOffX;
+      activePiece.y = pt.y - grabOffY;
+    });
+
+    function endPieceDrag(ev) {
+      if (!activePiece) return;
+      if (ev && puzActivePointerId !== null && typeof ev.pointerId === "number" && ev.pointerId !== puzActivePointerId) return;
+      const p = activePiece;
+      activePiece = null;
+      puzActivePointerId = null;
+      if (ev && typeof ev.pointerId === "number") {
+        try { canvas.releasePointerCapture(ev.pointerId); } catch (e) {}
+      }
+
+      const dist = Math.hypot(p.x - p.targetX, p.y - p.targetY);
+      const cx = p.x + p.w / 2, cy = p.y + p.h / 2;
+      const inBoard = cx >= BOARD.x - 20 && cx <= BOARD.x + BOARD.w + 20 && cy >= BOARD.y - 20 && cy <= BOARD.y + BOARD.h + 20;
+
+      if (dist < 68) {
+        p.x = p.targetX;
+        p.y = p.targetY;
+        p.locked = true;
+        TronoAudio.play("success");
+        flashPiece(p, "green", () => {
+          if (pieces.every(it => it.locked) && !puzSolved) {
+            puzSolved = true;
+            if (_arcadeCustomBackScreen === "screen-gallery" && st && st.id && typeof completedPuzzles !== "undefined") {
+              try {
+                completedPuzzles.add(st.id);
+                if (typeof saveGameProgressSets === "function") saveGameProgressSets();
+              } catch (e) {}
+            }
+            if (window._arcadePuzzleWinTimer) clearTimeout(window._arcadePuzzleWinTimer);
+            window._arcadePuzzleWinTimer = setTimeout(() => {
+              window._arcadePuzzleWinTimer = null;
+              triggerArcadeVictory();
+            }, 1350);
+          }
+        });
+      } else if (inBoard) {
+        TronoAudio.play("error");
+        flashPiece(p, "red", () => {
+          if (p !== activePiece && !p.locked) {
+            p.x = p.homeX;
+            p.y = p.homeY;
+          }
+        });
+      } else {
+        p.x = p.homeX;
+        p.y = p.homeY;
+      }
+    }
+
+    canvas.addEventListener("pointerup", endPieceDrag);
+    canvas.addEventListener("pointercancel", endPieceDrag);
+
+    const diffBtns = container.querySelectorAll(".arc-v161-diff-btn");
+    diffBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (window._arcadeStageLockedForVovo || puzSolved || _isVictoryActive) return;
+        const val = Number(btn.getAttribute("data-puz-diff")) || 6;
+        TronoAudio.play("click");
+        if (val === 6) { cols = 2; rows = 3; }
+        else if (val === 9) { cols = 3; rows = 3; }
+        else { cols = 3; rows = 4; }
+        diffBtns.forEach(b => b.classList.toggle("active", b === btn));
+        buildPieces();
+      });
+    });
+
+    img.onload = () => {
+      buildPieces();
+      startLoop();
+    };
+    img.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=161`;
+  }
+
+  // --- JOGO 17: PINTURA MÁGICA ARCADE (LAPIZINHO 3D FLUTUANTE VISÍVEL + BARRA ÚNICA EMBAIXO) ---
+  function runPinturaMagicaArcade(container, phase) {
+    injectLessonArcadeV161Styles();
+    const st = getLessonStoryForPhase(phase);
+    window._arcadeActivePaintStory = st;
+    if (typeof currentStory !== "undefined") {
+      try { currentStory = st; } catch (e) {}
+    }
+
+    const palette = (window.PALETTE_COLORS && window.PALETTE_COLORS.length) ? window.PALETTE_COLORS : [
+      { name: "Verde Limão Vivo", hex: "#65e717", rgb: [101, 231, 23] },
+      { name: "Verde Folha Vivo", hex: "#16c60c", rgb: [22, 198, 12] },
+      { name: "Verde Esmeralda", hex: "#00b294", rgb: [0, 178, 148] },
+      { name: "Azul Céu Vivo", hex: "#00b4ff", rgb: [0, 180, 255] },
+      { name: "Azul Royal Vivo", hex: "#2563eb", rgb: [37, 99, 235] },
+      { name: "Amarelo Sol Vivo", hex: "#ffe600", rgb: [255, 230, 0] },
+      { name: "Laranja Vivo", hex: "#ff6d00", rgb: [255, 109, 0] },
+      { name: "Vermelho Vivo", hex: "#ff1744", rgb: [255, 23, 68] },
+      { name: "Rosa Choque Vivo", hex: "#ff2a85", rgb: [255, 42, 133] },
+      { name: "Rosa Flor Suave", hex: "#ff80ab", rgb: [255, 128, 171] },
+      { name: "Roxo Real Vivo", hex: "#9c27b0", rgb: [156, 39, 176] },
+      { name: "Lilás Suave", hex: "#b388ff", rgb: [179, 136, 255] },
+      { name: "Dourado Coroa", hex: "#ffb300", rgb: [255, 179, 0] },
+      { name: "Pele Clara", hex: "#ffcc99", rgb: [255, 204, 153] },
+      { name: "Pele Rosada", hex: "#ffab91", rgb: [255, 171, 145] },
+      { name: "Pele Morena", hex: "#c68642", rgb: [198, 134, 66] },
+      { name: "Marrom Tronco", hex: "#8d5524", rgb: [141, 85, 36] },
+      { name: "Marrom Escuro", hex: "#4e342e", rgb: [78, 52, 46] },
+      { name: "Branco Nuvem", hex: "#ffffff", rgb: [255, 255, 255] },
+      { name: "Preto Cabelo", hex: "#1e293b", rgb: [30, 41, 59] }
+    ];
+
+    let curColor = palette[0];
+    let curTool = "bucket"; // 'bucket' (TOQUE) | 'brush' (LÁPIS)
+    let localOutlineMask = null;
+    let undoStack = [];
+    let activePaintPointerId = null;
+    let isPointerDown = false;
+    let lastTipCanvasPt = null;
+    const baseImg = new Image();
+
+    function buildPencilSvg(hex) {
+      return `
+        <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="5" cy="47" r="4.5" fill="rgba(255,255,255,0.88)" stroke="#0f172a" stroke-width="1.3"/>
+          <circle cx="5" cy="47" r="2.1" fill="${hex}"/>
+          <path d="M5 47 L11 33 L19 41 Z" fill="#fde68a" stroke="#0f172a" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M5 47 L8.2 39.5 L12.5 43.8 Z" fill="${hex}" stroke="#0f172a" stroke-width="1.1" stroke-linejoin="round"/>
+          <path d="M11 33 L35 9 L43 17 L19 41 Z" fill="${hex}" stroke="#0f172a" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M13.5 35.5 L37.5 11.5" stroke="rgba(255,255,255,0.48)" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M35 9 L38.5 5.5 L46.5 13.5 L43 17 Z" fill="#e2e8f0" stroke="#0f172a" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M38.5 5.5 L41.5 2.5 C43 1 45.5 1 47 2.5 L49.5 5 C51 6.5 51 9 49.5 10.5 L46.5 13.5 Z" fill="#f472b6" stroke="#0f172a" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+      `;
+    }
+
+    container.innerHTML = `
+      <div class="arc-v161-stage">
+        <img src="./2_ASSETS_UI_BOTOES/bg_jogo_17_pintura_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
+        <div class="arc-v161-vignette"></div>
+
+        <!-- Faixa compacta superior (divide a linha com o botão OUVIR à direita) -->
+        <div class="arc-v161-top-strip">
+          <button type="button" id="arcade-btn-paint-finish" class="arc-v161-diff-btn active" style="padding:0 14px; display:inline-flex; align-items:center; gap:5px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>PRONTO!</span>
+          </button>
+        </div>
+
+        <!-- Área central maximizada da folha de pintura + margem tátil inferior para alcançar 100% da borda com o lapizinho -->
+        <div id="arcade-paint-stage-wrap" style="position:relative; z-index:5; flex:1; min-height:0; width:100%; max-width:520px; display:flex; align-items:center; justify-content:center; padding:2px 8px 26px 8px; box-sizing:border-box; touch-action:none; cursor:none;">
+          <div class="arc-v161-rainbow-card" style="height:100%; max-height:100%; aspect-ratio:9/16; padding:4px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:#ffffff;">
+            <canvas id="arcade-paint-canvas" width="540" height="960" style="width:100%; height:100%; border-radius:12px; background:#ffffff; object-fit:contain; display:block; touch-action:none; cursor:none;"></canvas>
+          </div>
+          <div id="arcade-paint-floating-pencil">${buildPencilSvg(curColor.hex)}</div>
+        </div>
+
+        <!-- BARRA ÚNICA DE EDIÇÃO EMBAIXO (6 Ferramentas + 20 Cores no mesmo bloco roxo com margem colorida!) -->
+        <div id="arcade-paint-unified-dock" class="arc-v161-rainbow-card" style="z-index:12; width:calc(100% - 12px); max-width:520px; margin:0 6px max(6px, env(safe-area-inset-bottom, 6px)) 6px; padding:7px 8px 8px 8px; border-radius:18px; display:flex; flex-direction:column; gap:6px;">
+          <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:4px; width:100%;">
+            <button type="button" id="arc-ptool-bucket" class="arc-paint-tool-btn active">TOQUE</button>
+            <button type="button" id="arc-ptool-brush" class="arc-paint-tool-btn">LÁPIS</button>
+            <button type="button" id="arc-ptool-undo" class="arc-paint-tool-btn">VOLTAR</button>
+            <button type="button" id="arc-ptool-auto" class="arc-paint-tool-btn">PINTAR</button>
+            <button type="button" id="arc-ptool-clear" class="arc-paint-tool-btn">LIMPAR</button>
+            <button type="button" id="arc-ptool-save" class="arc-paint-tool-btn" style="border-color:#38bdf8;">BAIXAR</button>
+          </div>
+          <div id="arcade-paint-swatches-grid" style="display:grid; grid-template-columns:repeat(10, 1fr); gap:5px; width:100%; align-items:center;">
+            ${palette.map((c, i) => `
+              <div class="arc-paint-swatch ${i === 0 ? "active" : ""}" data-swatch-idx="${i}" title="${c.name}" style="background:${c.hex};"></div>
+            `).join("")}
+          </div>
+        </div>
+      </div>
+    `;
+
+    const stageWrap = container.querySelector("#arcade-paint-stage-wrap");
+    const paintCanvas = container.querySelector("#arcade-paint-canvas");
+    const pCtx = paintCanvas.getContext("2d", { willReadFrequently: true });
+    const pencilEl = container.querySelector("#arcade-paint-floating-pencil");
+    const btnBucket = container.querySelector("#arc-ptool-bucket");
+    const btnBrush = container.querySelector("#arc-ptool-brush");
+    const btnUndo = container.querySelector("#arc-ptool-undo");
+    const btnAuto = container.querySelector("#arc-ptool-auto");
+    const btnClear = container.querySelector("#arc-ptool-clear");
+    const btnSave = container.querySelector("#arc-ptool-save");
+    const btnFinish = container.querySelector("#arcade-btn-paint-finish");
+
+    function refreshPencilColor() {
+      if (pencilEl) {
+        pencilEl.innerHTML = buildPencilSvg(curColor.hex);
+      }
+    }
+
+    function pushUndo() {
+      if (undoStack.length >= 25) undoStack.shift();
+      undoStack.push(pCtx.getImageData(0, 0, paintCanvas.width, paintCanvas.height));
+    }
+
+    function doUndo() {
+      if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      TronoAudio.play("click");
+      if (undoStack.length === 0) return;
+      const prev = undoStack.pop();
+      pCtx.putImageData(prev, 0, 0);
+    }
+
+    function restoreCrispOutlines() {
+      if (!localOutlineMask) return;
+      const imgData = pCtx.getImageData(0, 0, paintCanvas.width, paintCanvas.height);
+      const d = imgData.data;
+      for (let p = 0, i = 0; p < localOutlineMask.length; p++, i += 4) {
+        if (localOutlineMask[p] === 1) {
+          d[i] = 18; d[i + 1] = 24; d[i + 2] = 38; d[i + 3] = 255;
+        }
+      }
+      pCtx.putImageData(imgData, 0, 0);
+    }
+
+    function resetDrawing(recordHistory) {
+      if (recordHistory) {
+        TronoAudio.play("click");
+        pushUndo();
+      }
+      pCtx.fillStyle = "#ffffff";
+      pCtx.fillRect(0, 0, paintCanvas.width, paintCanvas.height);
+      if (!baseImg.complete || !baseImg.naturalWidth) return;
+      pCtx.drawImage(baseImg, 0, 0, paintCanvas.width, paintCanvas.height);
+
+      const imgData = pCtx.getImageData(0, 0, paintCanvas.width, paintCanvas.height);
+      const d = imgData.data;
+      localOutlineMask = new Uint8Array(paintCanvas.width * paintCanvas.height);
+      for (let i = 0, p = 0; i < d.length; i += 4, p++) {
+        const lum = d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114;
+        if (lum < 128) {
+          localOutlineMask[p] = 1;
+          d[i] = 18; d[i + 1] = 24; d[i + 2] = 38; d[i + 3] = 255;
+        } else {
+          localOutlineMask[p] = 0;
+          d[i] = 255; d[i + 1] = 255; d[i + 2] = 255; d[i + 3] = 255;
+        }
+      }
+      pCtx.putImageData(imgData, 0, 0);
+
+      // Posiciona o lapizinho visível logo no centro da folha para a criança já enxergar a ferramenta!
+      setTimeout(() => {
+        if (!paintCanvas.isConnected || !pencilEl) return;
+        const r = paintCanvas.getBoundingClientRect();
+        if (r.width > 20 && r.height > 20) {
+          pencilEl.style.left = `${r.left + r.width * 0.52}px`;
+          pencilEl.style.top = `${r.top + r.height * 0.48}px`;
+          pencilEl.classList.add("pencil-visible");
+        }
+      }, 60);
+    }
+
+    // Calcula a coordenada exata da PONTINHA DO LÁPIS (34px acima do dedinho no touch para NUNCA cobrir detalhes!)
+    function computePencilTipCoords(ev) {
+      const rect = paintCanvas.getBoundingClientRect();
+      const cw = paintCanvas.width, ch = paintCanvas.height;
+      const scale = Math.min(rect.width / cw, rect.height / ch) || 1;
+      const paperW = cw * scale;
+      const paperH = ch * scale;
+      const paperLeft = rect.left + (rect.width - paperW) / 2;
+      const paperTop = rect.top + (rect.height - paperH) / 2;
+
+      const isTouchLike = ev.pointerType !== "mouse";
+      const rawTipX = ev.clientX - (isTouchLike ? 6 : 0);
+      const rawTipY = ev.clientY - (isTouchLike ? 34 : 0);
+
+      const tipClientX = Math.max(paperLeft + 1, Math.min(paperLeft + paperW - 2, rawTipX));
+      const tipClientY = Math.max(paperTop + 1, Math.min(paperTop + paperH - 2, rawTipY));
+
+      if (pencilEl) {
+        pencilEl.style.left = `${tipClientX}px`;
+        pencilEl.style.top = `${tipClientY}px`;
+        pencilEl.classList.add("pencil-visible");
+      }
+
+      const cx = Math.max(0, Math.min(cw - 1, Math.floor((tipClientX - paperLeft) / scale)));
+      const cy = Math.max(0, Math.min(ch - 1, Math.floor((tipClientY - paperTop) / scale)));
+      return { x: cx, y: cy };
+    }
+
+    function findExactTipSeed(tx, ty, w, h) {
+      const directPos = ty * w + tx;
+      if (!localOutlineMask || localOutlineMask[directPos] === 0) {
+        return directPos;
+      }
+      let bestPos = directPos;
+      let bestDist = 99;
+      for (let dy = -4; dy <= 4; dy++) {
+        for (let dx = -4; dx <= 4; dx++) {
+          const nx = tx + dx, ny = ty + dy;
+          if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue;
+          const np = ny * w + nx;
+          if (localOutlineMask[np] === 1) continue;
+          const d = Math.hypot(dx, dy);
+          if (d < bestDist) {
+            bestDist = d;
+            bestPos = np;
+          }
+        }
+      }
+      return bestPos;
+    }
+
+    function floodFillAtTip(tx, ty, fillRgb) {
+      const w = paintCanvas.width, h = paintCanvas.height;
+      const startPos = findExactTipSeed(tx, ty, w, h);
+      if (localOutlineMask && localOutlineMask[startPos] === 1) return;
+
+      const imgData = pCtx.getImageData(0, 0, w, h);
+      const d = imgData.data;
+      const sIdx = startPos * 4;
+      const tr = d[sIdx], tg = d[sIdx + 1], tb = d[sIdx + 2];
+      if (tr === fillRgb[0] && tg === fillRgb[1] && tb === fillRgb[2]) return;
+
+      pushUndo();
+      const visited = new Uint8Array(w * h);
+      const stack = [startPos];
+      visited[startPos] = 1;
+
+      while (stack.length > 0) {
+        const p = stack.pop();
+        const idx = p * 4;
+        d[idx] = fillRgb[0];
+        d[idx + 1] = fillRgb[1];
+        d[idx + 2] = fillRgb[2];
+        d[idx + 3] = 255;
+
+        const x = p % w, y = (p - x) / w;
+        if (x > 0) {
+          const np = p - 1;
+          if (!visited[np] && (!localOutlineMask || localOutlineMask[np] === 0)) {
+            const ni = np * 4;
+            if (Math.abs(d[ni] - tr) <= 28 && Math.abs(d[ni + 1] - tg) <= 28 && Math.abs(d[ni + 2] - tb) <= 28) {
+              visited[np] = 1; stack.push(np);
+            }
+          }
+        }
+        if (x < w - 1) {
+          const np = p + 1;
+          if (!visited[np] && (!localOutlineMask || localOutlineMask[np] === 0)) {
+            const ni = np * 4;
+            if (Math.abs(d[ni] - tr) <= 28 && Math.abs(d[ni + 1] - tg) <= 28 && Math.abs(d[ni + 2] - tb) <= 28) {
+              visited[np] = 1; stack.push(np);
+            }
+          }
+        }
+        if (y > 0) {
+          const np = p - w;
+          if (!visited[np] && (!localOutlineMask || localOutlineMask[np] === 0)) {
+            const ni = np * 4;
+            if (Math.abs(d[ni] - tr) <= 28 && Math.abs(d[ni + 1] - tg) <= 28 && Math.abs(d[ni + 2] - tb) <= 28) {
+              visited[np] = 1; stack.push(np);
+            }
+          }
+        }
+        if (y < h - 1) {
+          const np = p + w;
+          if (!visited[np] && (!localOutlineMask || localOutlineMask[np] === 0)) {
+            const ni = np * 4;
+            if (Math.abs(d[ni] - tr) <= 28 && Math.abs(d[ni + 1] - tg) <= 28 && Math.abs(d[ni + 2] - tb) <= 28) {
+              visited[np] = 1; stack.push(np);
+            }
+          }
+        }
+      }
+      pCtx.putImageData(imgData, 0, 0);
+    }
+
+    function drawPencilStroke(p1, p2) {
+      pCtx.strokeStyle = curColor.hex;
+      pCtx.lineWidth = 4.5;
+      pCtx.lineCap = "round";
+      pCtx.lineJoin = "round";
+      pCtx.beginPath();
+      pCtx.moveTo(p1.x, p1.y);
+      pCtx.lineTo(p2.x, p2.y);
+      pCtx.stroke();
+    }
+
+    function autoPaintDrawing() {
+      if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      TronoAudio.play("success");
+      pushUndo();
+      const w = paintCanvas.width, h = paintCanvas.height;
+      if (!localOutlineMask) resetDrawing(false);
+      const imgData = pCtx.getImageData(0, 0, w, h);
+      const d = imgData.data;
+      const visited = new Uint8Array(w * h);
+      const flowerPalettes = [
+        [244, 114, 182],
+        [251, 113, 133],
+        [56, 189, 248],
+        [192, 132, 252],
+        [250, 204, 21]
+      ];
+      const seqPaint = st ? String(st.seqPaint || "19") : "19";
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const startP = y * w + x;
+          if (visited[startP] || localOutlineMask[startP] === 1) continue;
+          const reg = [];
+          const stack = [startP];
+          visited[startP] = 1;
+          let minX = x, maxX = x, minY = y, maxY = y;
+          while (stack.length > 0) {
+            const p = stack.pop();
+            reg.push(p);
+            const px = p % w, py = (p - px) / w;
+            if (px < minX) minX = px;
+            if (px > maxX) maxX = px;
+            if (py < minY) minY = py;
+            if (py > maxY) maxY = py;
+            if (px > 0 && !visited[p - 1] && localOutlineMask[p - 1] === 0) { visited[p - 1] = 1; stack.push(p - 1); }
+            if (px < w - 1 && !visited[p + 1] && localOutlineMask[p + 1] === 0) { visited[p + 1] = 1; stack.push(p + 1); }
+            if (py > 0 && !visited[p - w] && localOutlineMask[p - w] === 0) { visited[p - w] = 1; stack.push(p - w); }
+            if (py < h - 1 && !visited[p + w] && localOutlineMask[p + w] === 0) { visited[p + w] = 1; stack.push(p + w); }
+          }
+          const area = reg.length;
+          const nx = ((minX + maxX) / 2) / w;
+          const ny = ((minY + maxY) / 2) / h;
+          const nrw = (maxX - minX) / w;
+          const nrh = (maxY - minY) / h;
+          const nMinY = minY / h;
+          const nMaxY = maxY / h;
+          let rgb;
+
+          if (area < 55) {
+            rgb = [255, 255, 255];
+          } else if (nMinY < 0.03 && area > 12000) {
+            rgb = [186, 230, 253];
+          } else if (ny < 0.30 && area >= 70 && area < 14000 && ((seqPaint === "20" && nx < 0.46) || nx > 0.56)) {
+            rgb = [253, 224, 71];
+          } else if (ny < 0.36 && nrw > nrh * 1.15 && area > 650 && area < 18000 && nx < 0.75) {
+            rgb = [248, 250, 252];
+          } else if (nMaxY > 0.95 && area > 8000) {
+            rgb = (seqPaint === "21" || seqPaint === "23") ? [56, 189, 248] : [134, 239, 172];
+          } else if (ny > 0.80 && area < 900) {
+            const cId = Math.floor(nx * 9) + Math.floor(ny * 9) * 3;
+            rgb = flowerPalettes[Math.abs(cId) % flowerPalettes.length];
+          } else if (ny > 0.22 && ny < 0.54 && nrw > nrh * 0.8 && area > 800 && area < 5500) {
+            rgb = [120, 53, 15];
+          } else if (ny > 0.25 && ny < 0.78 && area >= 95 && area < 4800 && Math.abs(nrw - nrh) < 0.09) {
+            rgb = [255, 204, 153];
+          } else {
+            const tunicCols = [[56, 189, 248], [244, 114, 182], [250, 204, 21], [52, 211, 153], [192, 132, 252], [217, 155, 82]];
+            const tIdx = Math.abs(Math.floor(nx * 5) + Math.floor(ny * 4)) % tunicCols.length;
+            rgb = tunicCols[tIdx];
+          }
+
+          for (let i = 0; i < reg.length; i++) {
+            const idx = reg[i] * 4;
+            d[idx] = rgb[0]; d[idx + 1] = rgb[1]; d[idx + 2] = rgb[2]; d[idx + 3] = 255;
+          }
+        }
+      }
+      pCtx.putImageData(imgData, 0, 0);
+    }
+
+    stageWrap.addEventListener("touchstart", (ev) => {
+      if (!window._arcadeStageLockedForVovo) ev.preventDefault();
+    }, { passive: false });
+    stageWrap.addEventListener("touchmove", (ev) => {
+      if (isPointerDown) ev.preventDefault();
+    }, { passive: false });
+
+    stageWrap.addEventListener("pointerdown", (ev) => {
+      if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      if (isPointerDown && activePaintPointerId !== null && ev.pointerId !== activePaintPointerId) return;
+      ev.preventDefault();
+      isPointerDown = true;
+      activePaintPointerId = ev.pointerId;
+      try { stageWrap.setPointerCapture(ev.pointerId); } catch (e) {}
+
+      const pt = computePencilTipCoords(ev);
+      lastTipCanvasPt = pt;
+
+      if (curTool === "brush") {
+        pushUndo();
+        drawPencilStroke(pt, pt);
+      } else if (ev.pointerType === "mouse") {
+        // No mouse desktop, o clique já pinta direto onde a ponta do lápis está!
+        TronoAudio.play("click");
+        floodFillAtTip(pt.x, pt.y, curColor.rgb);
+        if (pencilEl) {
+          pencilEl.classList.remove("pencil-tap-pop");
+          void pencilEl.offsetWidth;
+          pencilEl.classList.add("pencil-tap-pop");
+        }
+      }
+    });
+
+    stageWrap.addEventListener("pointermove", (ev) => {
+      if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      if (ev.pointerType === "mouse" && !isPointerDown) {
+        computePencilTipCoords(ev);
+        return;
+      }
+      if (!isPointerDown) return;
+      if (activePaintPointerId !== null && ev.pointerId !== activePaintPointerId) return;
+      ev.preventDefault();
+
+      const pt = computePencilTipCoords(ev);
+      if (curTool === "brush") {
+        drawPencilStroke(lastTipCanvasPt || pt, pt);
+      }
+      lastTipCanvasPt = pt;
+    });
+
+    function finishPaintPointer(ev, cancelled) {
+      if (!isPointerDown) return;
+      if (ev && activePaintPointerId !== null && typeof ev.pointerId === "number" && ev.pointerId !== activePaintPointerId) return;
+      isPointerDown = false;
+      activePaintPointerId = null;
+      if (ev && typeof ev.pointerId === "number") {
+        try { stageWrap.releasePointerCapture(ev.pointerId); } catch (e) {}
+      }
+
+      if (curTool === "brush") {
+        lastTipCanvasPt = null;
+        restoreCrispOutlines();
+      } else if (!cancelled && ev && ev.pointerType !== "mouse" && lastTipCanvasPt) {
+        // No celular/tablet (modo TOQUE): a criança mira com a pontinha visível do lápis e, ao soltar o dedinho, pinta exatamente na pontinha!
+        TronoAudio.play("click");
+        floodFillAtTip(lastTipCanvasPt.x, lastTipCanvasPt.y, curColor.rgb);
+        if (pencilEl) {
+          pencilEl.classList.remove("pencil-tap-pop");
+          void pencilEl.offsetWidth;
+          pencilEl.classList.add("pencil-tap-pop");
+        }
+        lastTipCanvasPt = null;
+      }
+    }
+
+    stageWrap.addEventListener("pointerup", (ev) => finishPaintPointer(ev, false));
+    stageWrap.addEventListener("pointercancel", (ev) => finishPaintPointer(ev, true));
+
+    btnBucket.addEventListener("click", () => {
+      if (window._arcadeStageLockedForVovo) return;
+      TronoAudio.play("click");
+      curTool = "bucket";
+      btnBucket.classList.add("active");
+      btnBrush.classList.remove("active");
+    });
+
+    btnBrush.addEventListener("click", () => {
+      if (window._arcadeStageLockedForVovo) return;
+      TronoAudio.play("click");
+      curTool = "brush";
+      btnBrush.classList.add("active");
+      btnBucket.classList.remove("active");
+    });
+
+    btnUndo.addEventListener("click", doUndo);
+    btnAuto.addEventListener("click", autoPaintDrawing);
+    btnClear.addEventListener("click", () => {
+      if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      resetDrawing(true);
+    });
+    btnSave.addEventListener("click", () => {
+      if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      if (typeof window.onPaintDownloadOrPrintClick === "function") {
+        window.onPaintDownloadOrPrintClick();
+      }
+    });
+
+    btnFinish.addEventListener("click", () => {
+      if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      if (_arcadeCustomBackScreen === "screen-gallery" && st && st.id && typeof completedPaints !== "undefined") {
+        try {
+          completedPaints.add(st.id);
+          if (typeof saveGameProgressSets === "function") saveGameProgressSets();
+        } catch (e) {}
+      }
+      triggerArcadeVictory();
+    });
+
+    const swatchEls = container.querySelectorAll(".arc-paint-swatch");
+    swatchEls.forEach(sw => {
+      sw.addEventListener("click", () => {
+        if (window._arcadeStageLockedForVovo) return;
+        const idx = Number(sw.getAttribute("data-swatch-idx")) || 0;
+        curColor = palette[idx] || palette[0];
+        TronoAudio.play("click");
+        swatchEls.forEach(el => el.classList.toggle("active", el === sw));
+        refreshPencilColor();
+      });
+    });
+
+    if (window._arcadePaintKeyHandler) {
+      window.removeEventListener("keydown", window._arcadePaintKeyHandler);
+    }
+    window._arcadePaintKeyHandler = (ev) => {
+      if ((ev.ctrlKey || ev.metaKey) && (ev.key === "z" || ev.key === "Z")) {
+        ev.preventDefault();
+        doUndo();
+      }
+    };
+    window.addEventListener("keydown", window._arcadePaintKeyHandler);
+
+    baseImg.onload = () => {
+      undoStack = [];
+      resetDrawing(false);
+    };
+    if (window.PINTURAS_B64 && window.PINTURAS_B64[st.seqPaint]) {
+      baseImg.src = window.PINTURAS_B64[st.seqPaint];
+    } else {
+      baseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=161`;
+    }
+  }
+
+  // --- GERADOR 8x8 DIVERSIFICADO DO CAÇA-PALAVRAS (HORIZONTAL + VERTICAL EM TODAS AS 8 LINHAS 0..7!) ---
+  function buildDiversifiedWordSearch8x8(rawWords) {
+    const size = 8;
+    const cleaned = [];
+    (rawWords || []).forEach(w => {
+      const s = String(w || "")
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^A-Za-z]/g, "")
+        .toUpperCase()
+        .slice(0, size);
+      if (s.length >= 2 && !cleaned.includes(s)) cleaned.push(s);
+    });
+    const words = cleaned.length > 0 ? cleaned.slice(0, 6) : ["CRIACAO", "LUZ", "TERRA", "EDEN", "ADAO"];
+    const byLen = [...words].sort((a, b) => b.length - a.length);
+
+    function shuffleArr(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+      }
+      return arr;
+    }
+
+    let bestResult = null;
+    let bestScore = -1;
+
+    for (let attempt = 0; attempt < 90; attempt++) {
+      const grid = Array.from({ length: size }, () => Array(size).fill(""));
+      const placements = {};
+      const dirsMap = {};
+      let okAll = true;
+
+      // Garante mistura equilibrada de palavras Horizontais e Verticais!
+      const dirPlan = byLen.map((_, idx) => ((idx + (attempt % 2)) % 2 === 0 ? "H" : "V"));
+      shuffleArr(dirPlan);
+
+      for (let wi = 0; wi < byLen.length; wi++) {
+        const w = byLen[wi];
+        const prefDir = dirPlan[wi];
+        const tryDirs = prefDir === "H" ? ["H", "V"] : ["V", "H"];
+        let placed = false;
+
+        for (let di = 0; di < tryDirs.length && !placed; di++) {
+          const dir = tryDirs[di];
+          const candidates = [];
+          if (dir === "H") {
+            for (let r = 0; r < size; r++) {
+              for (let c = 0; c <= size - w.length; c++) {
+                candidates.push({ r, c, boost: r >= 5 ? 2 : 0 });
+              }
+            }
+          } else {
+            for (let r = 0; r <= size - w.length; r++) {
+              for (let c = 0; c < size; c++) {
+                const reachesBottom = (r + w.length - 1) >= 5;
+                candidates.push({ r, c, boost: reachesBottom ? 2 : 0 });
+              }
+            }
+          }
+          shuffleArr(candidates);
+          // Prioriza ocupar também as linhas inferiores (5, 6 e 7) para nunca ficar vazio embaixo!
+          if (wi <= 1) {
+            candidates.sort((a, b) => b.boost - a.boost);
+          }
+
+          for (let ci = 0; ci < candidates.length; ci++) {
+            const { r, c } = candidates[ci];
+            const dr = dir === "V" ? 1 : 0;
+            const dc = dir === "H" ? 1 : 0;
+            let fits = true;
+            let newCells = 0;
+            for (let k = 0; k < w.length; k++) {
+              const nr = r + k * dr;
+              const nc = c + k * dc;
+              const ch = grid[nr][nc];
+              if (ch !== "" && ch !== w[k]) {
+                fits = false;
+                break;
+              }
+              if (ch === "") newCells++;
+            }
+            if (fits && newCells >= Math.min(2, w.length)) {
+              const coords = [];
+              for (let k = 0; k < w.length; k++) {
+                const nr = r + k * dr;
+                const nc = c + k * dc;
+                grid[nr][nc] = w[k];
+                coords.push(`${nr}-${nc}`);
+              }
+              placements[w] = coords;
+              dirsMap[w] = dir;
+              placed = true;
+              break;
+            }
+          }
+        }
+
+        if (!placed) {
+          okAll = false;
+          break;
+        }
+      }
+
+      if (okAll) {
+        let hCount = 0, vCount = 0;
+        const rowsUsed = new Set();
+        const colsUsed = new Set();
+        const bottomRowsUsed = new Set();
+        Object.keys(placements).forEach(w => {
+          if (dirsMap[w] === "H") hCount++; else vCount++;
+          placements[w].forEach(cid => {
+            const [rr, cc] = cid.split("-").map(Number);
+            rowsUsed.add(rr);
+            colsUsed.add(cc);
+            if (rr >= 5) bottomRowsUsed.add(rr);
+          });
+        });
+        const mixedBonus = (hCount >= 1 && vCount >= 1) ? 50 : 0;
+        const extraMix = (hCount >= 2 && vCount >= 2) ? 30 : 0;
+        const score = mixedBonus + extraMix + (bottomRowsUsed.size * 18) + (rowsUsed.size * 4) + (colsUsed.size * 3);
+        if (score > bestScore) {
+          bestScore = score;
+          bestResult = { grid, placements, dirsMap, words };
+          if (hCount >= 2 && vCount >= 2 && bottomRowsUsed.size >= 2 && rowsUsed.size >= 6) {
+            break;
+          }
+        }
+      }
+    }
+
+    if (!bestResult) {
+      const grid = Array.from({ length: size }, () => Array(size).fill(""));
+      const placements = {};
+      const dirsMap = {};
+      const rowOrder = [0, 7, 2, 5, 4, 6];
+      words.forEach((w, idx) => {
+        const r = rowOrder[idx % rowOrder.length];
+        const startCol = Math.max(0, Math.min(size - w.length, (idx * 2) % Math.max(1, size - w.length + 1)));
+        placements[w] = [];
+        dirsMap[w] = "H";
+        for (let k = 0; k < w.length; k++) {
+          grid[r][startCol + k] = w[k];
+          placements[w].push(`${r}-${startCol + k}`);
+        }
+      });
+      bestResult = { grid, placements, dirsMap, words };
+    }
+
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (!bestResult.grid[r][c]) {
+          bestResult.grid[r][c] = letters[Math.floor(Math.random() * letters.length)];
+        }
+      }
+    }
+    return bestResult;
+  }
+  window._buildDiversifiedWordSearch8x8 = buildDiversifiedWordSearch8x8;
+
+  // --- JOGO 19: CAÇA-PALAVRAS BÍBLICO EM TELA CHEIA (22 LIÇÕES • HORIZONTAL + VERTICAL • LINHAS 0 A 7) ---
+  function runCacaPalavrasArcade(container, phase) {
+    injectLessonArcadeV161Styles();
+    const wk = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 22) + 1;
+    const bank = window.WORD_SEARCH_LEVELS || [];
+    const pack = bank.find(it => Number(it.lessonWeek) === wk) || bank[(wk - 1) % Math.max(1, bank.length)] || {
+      words: ["CRIACAO", "LUZ", "TERRA", "EDEN", "ADAO"]
+    };
+
+    const puzzle = buildDiversifiedWordSearch8x8(pack.words);
+    const { grid, placements, words } = puzzle;
+    const foundWords = new Set();
+    const tappedLitCells = new Set();
+
+    let cellsHtml = "";
+    for (let r = 0; r < 8; r++) {
+      for (let c = 0; c < 8; c++) {
+        const cid = `${r}-${c}`;
+        cellsHtml += `<div class="arc-ws-cell" data-ws-cid="${cid}">${grid[r][c]}</div>`;
+      }
+    }
+
+    container.innerHTML = `
+      <div class="arc-v161-stage" style="padding:44px 10px 14px 10px; justify-content:space-evenly;">
+        <img src="./2_ASSETS_UI_BOTOES/bg_jogo_19_cacapalavras_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
+        <div class="arc-v161-vignette"></div>
+
+        <!-- Grade 8x8 limpa solta no topo -->
+        <div id="arcade-ws-board" class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:400px; padding:8px; border-radius:20px; display:grid; grid-template-columns:repeat(8, 1fr); gap:5px; touch-action:none;">
+          ${cellsHtml}
+        </div>
+
+        <!-- Palavras soltas embaixo (pílulas 3D sem bloco externo) -->
+        <div id="arcade-ws-pills" style="position:relative; z-index:5; width:100%; max-width:420px; display:flex; flex-wrap:wrap; justify-content:center; gap:8px; padding:4px 2px;"></div>
+      </div>
+    `;
+
+    const boardEl = container.querySelector("#arcade-ws-board");
+    const pillsEl = container.querySelector("#arcade-ws-pills");
+    const cellMap = {};
+    boardEl.querySelectorAll(".arc-ws-cell").forEach(el => {
+      cellMap[el.getAttribute("data-ws-cid")] = el;
+    });
+
+    function renderWordPills() {
+      pillsEl.innerHTML = words.map(w => {
+        const isFound = foundWords.has(w);
+        return `
+          <div class="arc-v161-rainbow-card" style="padding:7px 15px; border-radius:999px; ${isFound ? "background:linear-gradient(180deg, #00e676 0%, #00c853 100%);" : ""} display:inline-flex; align-items:center; gap:6px;">
+            ${isFound ? `<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>` : ""}
+            <span style="font-family:'Fredoka',sans-serif; font-size:clamp(14px, 3.8vw, 17px); font-weight:900; color:#ffffff; letter-spacing:0.6px; text-shadow:0 2px 4px rgba(0,0,0,0.75);">${w}</span>
+          </div>
+        `;
+      }).join("");
+    }
+    renderWordPills();
+
+    function markWordFound(w, customCoords) {
+      if (foundWords.has(w)) return;
+      foundWords.add(w);
+      TronoAudio.play("coin");
+      const coords = customCoords || placements[w] || [];
+      coords.forEach(cid => {
+        const el = cellMap[cid];
+        if (el) {
+          el.classList.remove("ws-tap-lit", "ws-swipe-preview");
+          el.classList.add("ws-found");
+        }
+      });
+      renderWordPills();
+
+      if (foundWords.size >= words.length) {
+        TronoAudio.play("success");
+        if (window._arcadeWordSearchWinTimer) clearTimeout(window._arcadeWordSearchWinTimer);
+        window._arcadeWordSearchWinTimer = setTimeout(() => {
+          window._arcadeWordSearchWinTimer = null;
+          triggerArcadeVictory();
+        }, 780);
+      }
+    }
+
+    function clearSwipePreview() {
+      Object.values(cellMap).forEach(el => el.classList.remove("ws-swipe-preview"));
+    }
+
+    function checkLineMatch(lineCoords) {
+      if (!lineCoords || lineCoords.length < 2) return false;
+      const forwardStr = lineCoords.map(cid => {
+        const [r, c] = cid.split("-").map(Number);
+        return grid[r][c];
+      }).join("");
+      const reverseStr = forwardStr.split("").reverse().join("");
+
+      for (let i = 0; i < words.length; i++) {
+        const w = words[i];
+        if (foundWords.has(w)) continue;
+        if (forwardStr === w || reverseStr === w) {
+          markWordFound(w, lineCoords);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function cellFromClientXY(clientX, clientY) {
+      const rect = boardEl.getBoundingClientRect();
+      if (clientX < rect.left - 8 || clientX > rect.right + 8 || clientY < rect.top - 8 || clientY > rect.bottom + 8) {
+        return null;
+      }
+      const c = Math.max(0, Math.min(7, Math.floor(((clientX - rect.left) / rect.width) * 8)));
+      const r = Math.max(0, Math.min(7, Math.floor(((clientY - rect.top) / rect.height) * 8)));
+      return { r, c };
+    }
+
+    let swipeStart = null;
+    let swipePointerId = null;
+    let currentLineCoords = [];
+    let maxLineSeen = 0;
+
+    boardEl.addEventListener("pointerdown", (ev) => {
+      if (window._arcadeStageLockedForVovo || _isVictoryActive || foundWords.size >= words.length) return;
+      if (swipeStart && swipePointerId !== null && ev.pointerId !== swipePointerId) return;
+      const cell = cellFromClientXY(ev.clientX, ev.clientY);
+      if (!cell) return;
+      ev.preventDefault();
+      swipeStart = cell;
+      swipePointerId = ev.pointerId;
+      currentLineCoords = [`${cell.r}-${cell.c}`];
+      maxLineSeen = 1;
+      clearSwipePreview();
+      const startEl = cellMap[`${cell.r}-${cell.c}`];
+      if (startEl) startEl.classList.add("ws-swipe-preview");
+      try { boardEl.setPointerCapture(ev.pointerId); } catch (e) {}
+    });
+
+    boardEl.addEventListener("pointermove", (ev) => {
+      if (!swipeStart) return;
+      if (swipePointerId !== null && ev.pointerId !== swipePointerId) return;
+      ev.preventDefault();
+      const cur = cellFromClientXY(ev.clientX, ev.clientY);
+      if (!cur) return;
+
+      const dr = cur.r - swipeStart.r;
+      const dc = cur.c - swipeStart.c;
+      const line = [];
+      if (Math.abs(dc) >= Math.abs(dr)) {
+        const step = dc >= 0 ? 1 : -1;
+        const steps = Math.abs(dc);
+        for (let k = 0; k <= steps; k++) line.push(`${swipeStart.r}-${swipeStart.c + k * step}`);
+      } else {
+        const step = dr >= 0 ? 1 : -1;
+        const steps = Math.abs(dr);
+        for (let k = 0; k <= steps; k++) line.push(`${swipeStart.r + k * step}-${swipeStart.c}`);
+      }
+      currentLineCoords = line;
+      if (line.length > maxLineSeen) maxLineSeen = line.length;
+      clearSwipePreview();
+      line.forEach(cid => {
+        if (cellMap[cid]) cellMap[cid].classList.add("ws-swipe-preview");
+      });
+
+      if (checkLineMatch(line)) {
+        clearSwipePreview();
+        swipeStart = null;
+        swipePointerId = null;
+      }
+    });
+
+    function finishSwipeOrTap(ev) {
+      if (!swipeStart) return;
+      if (ev && swipePointerId !== null && typeof ev.pointerId === "number" && ev.pointerId !== swipePointerId) return;
+      const startCid = `${swipeStart.r}-${swipeStart.c}`;
+      const line = [...currentLineCoords];
+      const wasSingleTap = maxLineSeen <= 1;
+      swipeStart = null;
+      swipePointerId = null;
+      currentLineCoords = [];
+      clearSwipePreview();
+
+      if (!wasSingleTap && checkLineMatch(line)) return;
+
+      if (wasSingleTap) {
+        let belongsToUnfound = false;
+        words.forEach(w => {
+          if (foundWords.has(w)) return;
+          const coords = placements[w] || [];
+          if (coords.includes(startCid)) belongsToUnfound = true;
+        });
+
+        const tappedEl = cellMap[startCid];
+        if (belongsToUnfound) {
+          tappedLitCells.add(startCid);
+          if (tappedEl && !tappedEl.classList.contains("ws-found")) {
+            tappedEl.classList.add("ws-tap-lit");
+          }
+          TronoAudio.play("click");
+
+          words.forEach(w => {
+            if (foundWords.has(w)) return;
+            const coords = placements[w] || [];
+            if (coords.length > 0 && coords.every(cid => tappedLitCells.has(cid) || (cellMap[cid] && cellMap[cid].classList.contains("ws-found")))) {
+              markWordFound(w, coords);
+            }
+          });
+        } else if (tappedEl && !tappedEl.classList.contains("ws-found")) {
+          TronoAudio.play("error");
+          tappedEl.classList.remove("arc-shake-err");
+          void tappedEl.offsetWidth;
+          tappedEl.classList.add("arc-shake-err");
+        }
+      }
+    }
+
+    boardEl.addEventListener("pointerup", finishSwipeOrTap);
+    boardEl.addEventListener("pointercancel", finishSwipeOrTap);
+  }
+
+  // --- JOGO 20: PALAVRA SECRETA EM TELA CHEIA (22 LIÇÕES • PISTA ROXA + LETRINHAS 3D SOLTAS) ---
+  function runPalavraSecretaArcade(container, phase) {
+    injectLessonArcadeV161Styles();
+    const wk = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 22) + 1;
+    const bank = window.SECRET_WORD_BANK || [];
+    const item = bank.find(it => Number(it.lessonWeek) === wk) || bank[(wk - 1) % Math.max(1, bank.length)] || {
+      word: "CRIACAO",
+      hint: "Tudo o que Deus fez no princípio: a luz, o céu, a terra, os animais e o ser humano!"
+    };
+
+    const cleanWord = String(item.word || "CRIACAO")
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^A-Za-z]/g, "")
+      .toUpperCase();
+    const cleanHint = stripLessonPrefixText(item.hint || "");
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+    const guessed = new Set();
+    let errors = 0;
+    const maxErrors = 6;
+    let solved = false;
+
+    container.innerHTML = `
+      <div class="arc-v161-stage" style="padding:44px 10px 14px 10px; justify-content:space-evenly;">
+        <img src="./2_ASSETS_UI_BOTOES/bg_jogo_20_palavrasecreta_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
+        <div class="arc-v161-vignette"></div>
+
+        <!-- Card Roxo Superior com Margem Colorida e Pista Bíblica -->
+        <div id="arcade-sw-hint-card" class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:430px; padding:14px 15px; text-align:center;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px;">
+            <span style="background:rgba(15,23,42,0.88); color:#fde047; font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; padding:3px 10px; border-radius:999px; border:1.5px solid #fde047;">PISTA DA BÍBLIA</span>
+            <span id="arcade-sw-chances" style="background:linear-gradient(180deg, #0284c7 0%, #0369a1 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; padding:3px 10px; border-radius:999px; border:1.5px solid #ffffff;">CHANCES: 6 / 6</span>
+          </div>
+          <div id="arcade-sw-hint-text" style="font-family:'Fredoka',sans-serif; font-size:clamp(15px, 4vw, 18.5px); font-weight:800; color:#ffffff; line-height:1.32; text-shadow:0 2px 5px rgba(0,0,0,0.8);">
+            ${cleanHint}
+          </div>
+        </div>
+
+        <!-- Caixinhas 3D da Palavra Escondida -->
+        <div id="arcade-sw-slots" style="position:relative; z-index:5; width:100%; max-width:440px; display:flex; flex-wrap:wrap; justify-content:center; gap:6px; padding:4px 2px;"></div>
+
+        <!-- Teclado A-Z Solto 3D (mesma estética do Caça-Palavras) -->
+        <div id="arcade-sw-keyboard" style="position:relative; z-index:5; width:100%; max-width:416px; display:grid; grid-template-columns:repeat(7, 1fr); gap:6px;"></div>
+      </div>
+    `;
+
+    const chancesEl = container.querySelector("#arcade-sw-chances");
+    const hintTextEl = container.querySelector("#arcade-sw-hint-text");
+    const slotsEl = container.querySelector("#arcade-sw-slots");
+    const kbEl = container.querySelector("#arcade-sw-keyboard");
+
+    function updateSlotsAndHud() {
+      const left = Math.max(0, maxErrors - errors);
+      if (chancesEl) {
+        chancesEl.textContent = `CHANCES: ${left} / ${maxErrors}`;
+        chancesEl.style.background = left <= 2
+          ? "linear-gradient(180deg, #ef4444 0%, #b91c1c 100%)"
+          : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
+      }
+
+      const slotW = cleanWord.length >= 10 ? "clamp(28px, 7.6vw, 36px)" : "clamp(34px, 9.2vw, 44px)";
+      const slotH = cleanWord.length >= 10 ? "40px" : "46px";
+      slotsEl.innerHTML = cleanWord.split("").map(ch => {
+        const open = guessed.has(ch) || solved;
+        return `
+          <div style="width:${slotW}; height:${slotH}; border-radius:12px; background:${open ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)" : "linear-gradient(180deg, rgba(88,28,135,0.95) 0%, rgba(30,27,75,0.98) 100%)"}; border:2.5px solid ${open ? "#ffffff" : "#fde047"}; box-shadow:${open ? "0 0 14px rgba(0,230,118,0.8), 0 4px 10px rgba(0,0,0,0.6)" : "0 4px 10px rgba(0,0,0,0.65)"}; display:inline-flex; align-items:center; justify-content:center; font-family:'Fredoka',sans-serif; font-size:21px; font-weight:900; color:#ffffff; transition:transform 0.16s ease;">
+            ${open ? ch : "_"}
+          </div>
+        `;
+      }).join("");
+
+      kbEl.innerHTML = alphabet.map(ch => {
+        const isUsed = guessed.has(ch);
+        const isHit = isUsed && cleanWord.includes(ch);
+        const bg = !isUsed
+          ? "linear-gradient(180deg, rgba(107, 33, 168, 0.94) 0%, rgba(59, 7, 100, 0.97) 100%)"
+          : (isHit ? "linear-gradient(180deg, #00e676 0%, #00c853 100%)" : "rgba(30, 41, 59, 0.68)");
+        const bCol = !isUsed ? "rgba(56, 189, 248, 0.88)" : (isHit ? "#ffffff" : "rgba(248, 113, 113, 0.55)");
+        return `
+          <button type="button" data-sw-ch="${ch}" ${isUsed || solved ? "disabled" : ""} style="height:40px; border-radius:11px; border:2px solid ${bCol}; background:${bg}; color:#ffffff; font-family:'Fredoka',sans-serif; font-size:16px; font-weight:900; opacity:${isUsed && !isHit ? "0.42" : "1"}; box-shadow:0 4px 9px rgba(0,0,0,0.55); cursor:pointer;">
+            ${ch}
+          </button>
+        `;
+      }).join("");
+
+      kbEl.querySelectorAll("button[data-sw-ch]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          if (window._arcadeStageLockedForVovo || solved || _isVictoryActive) return;
+          const ch = btn.getAttribute("data-sw-ch");
+          if (!ch || guessed.has(ch)) return;
+          guessed.add(ch);
+
+          if (cleanWord.includes(ch)) {
+            TronoAudio.play("coin");
+            const allDone = cleanWord.split("").every(c => guessed.has(c));
+            if (allDone) {
+              solved = true;
+              if (hintTextEl) hintTextEl.textContent = `MUITO BEM! A PALAVRA É ${cleanWord}!`;
+              TronoAudio.play("success");
+              updateSlotsAndHud();
+              if (window._arcadeSecretWordWinTimer) clearTimeout(window._arcadeSecretWordWinTimer);
+              window._arcadeSecretWordWinTimer = setTimeout(() => {
+                window._arcadeSecretWordWinTimer = null;
+                triggerArcadeVictory();
+              }, 850);
+              return;
+            }
+          } else {
+            errors++;
+            TronoAudio.play("error");
+            if (errors >= maxErrors) {
+              // Reinício amigável infantil sem travar a criança: dá uma letrinha de ajuda e renova as chances!
+              errors = 0;
+              const missing = cleanWord.split("").find(c => !guessed.has(c));
+              Array.from(guessed).forEach(g => {
+                if (!cleanWord.includes(g)) guessed.delete(g);
+              });
+              if (missing && cleanWord.split("").filter(c => !guessed.has(c)).length > 1) {
+                guessed.add(missing);
+              }
+            }
+          }
+          updateSlotsAndHud();
+        });
+      });
+    }
+
+    updateSlotsAndHud();
+  }
+
+  // --- JOGO 21: QUEM SOU EU NA BÍBLIA? EM TELA CHEIA (22 LIÇÕES • 3 PISTAS SOLTAS + 4 ALTERNATIVAS) ---
+  function runQuemSouEuArcade(container, phase) {
+    injectLessonArcadeV161Styles();
+    const wk = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 22) + 1;
+    const bank = window.WHO_AM_I_BANK || [];
+    const item = bank.find(it => Number(it.lessonWeek) === wk) || bank[(wk - 1) % Math.max(1, bank.length)] || {
+      answer: "Noé",
+      clues: [
+        "Eu amava e obedecia a Deus quando quase ninguém mais obedecia.",
+        "Construí um grande barco de madeira chamado Arca.",
+        "Deus colocou um lindo Arco-Íris no céu como sinal de aliança comigo!"
+      ],
+      options: ["Abraão", "Moisés", "Noé", "Pedro"]
+    };
+
+    const clues = (item.clues || []).slice(0, 3).map(stripLessonPrefixText);
+    const options = [...(item.options || ["Abraão", "Moisés", "Noé", "Pedro"])].sort(() => Math.random() - 0.5);
+    const openedClues = [true, false, false];
+    let solved = false;
+
+    container.innerHTML = `
+      <div class="arc-v161-stage" style="padding:44px 12px 14px 12px; justify-content:space-evenly;">
+        <img src="./2_ASSETS_UI_BOTOES/bg_jogo_21_quemsoueu_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
+        <div class="arc-v161-vignette"></div>
+
+        <!-- 3 Cartões de Pistas Soltos em Cima -->
+        <div id="arcade-wai-clues" style="position:relative; z-index:5; width:100%; max-width:430px; display:flex; flex-direction:column; gap:8px;"></div>
+
+        <!-- Grade 2x2 de Alternativas Soltas embaixo com Margem Colorida -->
+        <div id="arcade-wai-opts" style="position:relative; z-index:5; width:100%; max-width:430px; display:grid; grid-template-columns:repeat(2, 1fr); gap:10px;">
+          ${options.map((opt, idx) => `
+            <button type="button" data-wai-idx="${idx}" class="arc-v161-rainbow-card" style="min-height:64px; padding:12px 10px; border:none; color:#ffffff; font-family:'Fredoka',sans-serif; font-size:clamp(15.5px, 4.1vw, 18.5px); font-weight:900; text-shadow:0 2px 5px rgba(0,0,0,0.8); cursor:pointer; display:flex; align-items:center; justify-content:center; text-align:center; transition:transform 0.16s ease, opacity 0.18s ease;">
+              ${opt}
+            </button>
+          `).join("")}
+        </div>
+      </div>
+    `;
+
+    const cluesBox = container.querySelector("#arcade-wai-clues");
+    const optBtns = container.querySelectorAll("button[data-wai-idx]");
+
+    function renderClues() {
+      cluesBox.innerHTML = clues.map((txt, idx) => {
+        const isOpen = openedClues[idx];
+        if (isOpen) {
+          return `
+            <div class="arc-v161-rainbow-card" style="padding:11px 14px; text-align:left;">
+              <div style="font-family:'Fredoka',sans-serif; font-size:11px; font-weight:900; color:#fde047; letter-spacing:0.5px; margin-bottom:3px;">PISTA ${idx + 1}</div>
+              <div style="font-family:'Fredoka',sans-serif; font-size:clamp(14px, 3.7vw, 16.5px); font-weight:800; color:#ffffff; line-height:1.28; text-shadow:0 1px 4px rgba(0,0,0,0.8);">${txt}</div>
+            </div>
+          `;
+        }
+        return `
+          <button type="button" data-open-clue="${idx}" class="arc-v161-rainbow-card" style="padding:12px 14px; border:none; background:linear-gradient(180deg, rgba(30, 58, 138, 0.90) 0%, rgba(15, 23, 42, 0.95) 100%); color:#fde047; font-family:'Fredoka',sans-serif; font-size:14px; font-weight:900; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#fde047" stroke-width="2.6"/><path d="M20 20L16.2 16.2" stroke="#fde047" stroke-width="2.6" stroke-linecap="round"/></svg>
+            <span>TOQUE PARA ABRIR A PISTA ${idx + 1}</span>
+          </button>
+        `;
+      }).join("");
+
+      cluesBox.querySelectorAll("button[data-open-clue]").forEach(b => {
+        b.addEventListener("click", () => {
+          if (window._arcadeStageLockedForVovo || solved || _isVictoryActive) return;
+          const ci = Number(b.getAttribute("data-open-clue")) || 0;
+          openedClues[ci] = true;
+          TronoAudio.play("click");
+          renderClues();
+        });
+      });
+    }
+    renderClues();
+
+    optBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (window._arcadeStageLockedForVovo || solved || _isVictoryActive) return;
+        const idx = Number(btn.getAttribute("data-wai-idx")) || 0;
+        const chosen = options[idx];
+
+        if (chosen === item.answer) {
+          solved = true;
+          TronoAudio.play("success");
+          btn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
+          btn.style.boxShadow = "0 0 24px rgba(0, 230, 118, 0.95), 0 6px 14px rgba(0, 0, 0, 0.75)";
+          btn.style.transform = "scale(1.05)";
+          optBtns.forEach((other, oi) => {
+            if (oi !== idx) {
+              other.style.opacity = "0.42";
+              other.style.pointerEvents = "none";
+            }
+          });
+          if (window._arcadeWhoAmIWinTimer) clearTimeout(window._arcadeWhoAmIWinTimer);
+          window._arcadeWhoAmIWinTimer = setTimeout(() => {
+            window._arcadeWhoAmIWinTimer = null;
+            triggerArcadeVictory();
+          }, 850);
+        } else {
+          TronoAudio.play("error");
+          const prevBg = btn.style.background;
+          btn.style.background = "linear-gradient(180deg, #ef4444 0%, #b91c1c 100%)";
+          btn.classList.remove("arc-shake-err");
+          void btn.offsetWidth;
+          btn.classList.add("arc-shake-err");
+          // Revela automaticamente a próxima pista fechada para ajudar a criança!
+          const nextClueIdx = openedClues.findIndex(v => !v);
+          if (nextClueIdx >= 0) {
+            openedClues[nextClueIdx] = true;
+            renderClues();
+          }
+          setTimeout(() => {
+            if (!solved && btn) btn.style.background = prevBg;
+          }, 480);
+        }
+      });
+    });
+  }
+
+  // --- JOGO 22: VERDADEIRO OU MITO EM TELA CHEIA (22 LIÇÕES • AFIRMAÇÃO ROXA + 2 BOTÕES 3D) ---
+  function runVerdadeiroOuMitoArcade(container, phase) {
+    injectLessonArcadeV161Styles();
+    const wk = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 22) + 1;
+    const bank = window.TRUE_OR_MYTH_BANK || [];
+    const item = bank.find(it => Number(it.lessonWeek) === wk) || bank[(wk - 1) % Math.max(1, bank.length)] || {
+      statement: "No 1º Dia da Criação, Deus disse 'Haja luz!', e no 7º Dia descansou e abençoou toda a Sua obra.",
+      isTrue: true,
+      explanation: "VERDADEIRO! Em Gênesis 1 e 2, Deus criou tudo em 6 dias com perfeição e descansou no 7º dia!"
+    };
+
+    const cleanStmt = stripLessonPrefixText(item.statement || "");
+    let solved = false;
+
+    container.innerHTML = `
+      <div class="arc-v161-stage" style="padding:44px 14px 18px 14px; justify-content:space-evenly;">
+        <img src="./2_ASSETS_UI_BOTOES/bg_jogo_22_verdadeiromito_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
+        <div class="arc-v161-vignette"></div>
+
+        <!-- Card Roxo da Frase Bíblica com Margem Colorida -->
+        <div class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:430px; padding:20px 18px; text-align:center;">
+          <div style="display:inline-block; background:rgba(15,23,42,0.88); color:#fde047; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; padding:4px 12px; border-radius:999px; border:1.5px solid #fde047; margin-bottom:12px; letter-spacing:0.5px;">
+            VERDADEIRO OU MITO?
+          </div>
+          <div style="font-family:'Fredoka',sans-serif; font-size:clamp(17px, 4.4vw, 21.5px); font-weight:900; color:#ffffff; line-height:1.36; text-shadow:0 2px 6px rgba(0,0,0,0.85);">
+            "${cleanStmt}"
+          </div>
+        </div>
+
+        <!-- Feedback Bíblico Curto Solto -->
+        <div id="arcade-tm-feedback" class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:430px; padding:12px 15px; text-align:center; background:linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(30,27,75,0.96) 100%); font-family:'Fredoka',sans-serif; font-size:clamp(13.5px, 3.6vw, 15.5px); font-weight:800; color:#fde047; line-height:1.32;">
+          Toque em VERDADEIRO ou em MITO abaixo!
+        </div>
+
+        <!-- Dois Botões Gigantes 3D Soltos -->
+        <div style="position:relative; z-index:5; width:100%; max-width:430px; display:grid; grid-template-columns:repeat(2, 1fr); gap:12px;">
+          <button type="button" id="arcade-tm-btn-true" style="height:74px; border-radius:22px; border:3px solid #ffffff; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:clamp(16px, 4.3vw, 19.5px); font-weight:900; box-shadow:0 8px 20px rgba(0,0,0,0.65), inset 0 2px 4px rgba(255,255,255,0.35); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:7px; transition:transform 0.16s ease, opacity 0.18s ease;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>VERDADEIRO</span>
+          </button>
+          <button type="button" id="arcade-tm-btn-false" style="height:74px; border-radius:22px; border:3px solid #ffffff; background:linear-gradient(180deg, #ff1744 0%, #b71c1c 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:clamp(16px, 4.3vw, 19.5px); font-weight:900; box-shadow:0 8px 20px rgba(0,0,0,0.65), inset 0 2px 4px rgba(255,255,255,0.35); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:7px; transition:transform 0.16s ease, opacity 0.18s ease;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/></svg>
+            <span>MITO</span>
+          </button>
+        </div>
+      </div>
+    `;
+
+    const fbEl = container.querySelector("#arcade-tm-feedback");
+    const btnTrue = container.querySelector("#arcade-tm-btn-true");
+    const btnFalse = container.querySelector("#arcade-tm-btn-false");
+
+    function handleAnswer(choice) {
+      if (window._arcadeStageLockedForVovo || solved || _isVictoryActive) return;
+      const clicked = choice ? btnTrue : btnFalse;
+      const other = choice ? btnFalse : btnTrue;
+
+      if (choice === !!item.isTrue) {
+        solved = true;
+        TronoAudio.play("success");
+        clicked.style.transform = "scale(1.05)";
+        clicked.style.boxShadow = "0 0 24px rgba(253, 224, 71, 0.95), 0 8px 20px rgba(0,0,0,0.75)";
+        other.style.opacity = "0.38";
+        other.style.pointerEvents = "none";
+        if (fbEl) {
+          fbEl.style.color = "#86efac";
+          fbEl.textContent = item.explanation || "Muito bem! Você acertou!";
+        }
+        if (window._arcadeTrueMythWinTimer) clearTimeout(window._arcadeTrueMythWinTimer);
+        window._arcadeTrueMythWinTimer = setTimeout(() => {
+          window._arcadeTrueMythWinTimer = null;
+          triggerArcadeVictory();
+        }, 1150);
+      } else {
+        TronoAudio.play("error");
+        clicked.classList.remove("arc-shake-err");
+        void clicked.offsetWidth;
+        clicked.classList.add("arc-shake-err");
+        if (fbEl) {
+          fbEl.style.color = "#fde047";
+          fbEl.textContent = `Pense um pouquinho na história: ${item.explanation || "Tente a outra resposta!"}`;
+        }
+      }
+    }
+
+    btnTrue.addEventListener("click", () => handleAnswer(true));
+    btnFalse.addEventListener("click", () => handleAnswer(false));
   }
 
   // ==========================================================================
