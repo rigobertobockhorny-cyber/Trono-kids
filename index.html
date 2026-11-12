@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v157.0';
+        const CURRENT_VER = 'v158.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=157.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=158.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -1904,6 +1904,21 @@
       pointer-events: none;
       z-index: 3;
     }
+
+    /* === UPGRADE V158: SUB-TELAS DA LIÇÃO (CRONOLOGIA, SEMENTINHA, FÉ EM AÇÃO, DEVOCIONAL) SEM LOGO NO TOPO, CONTEÚDO MAIS ALTO E SEM POLUIÇÃO === */
+    #app-shell.lesson-subscreen-no-logo .topbar .brand-logo-wrap {
+      display: none !important;
+    }
+    #app-shell.lesson-subscreen-no-logo .topbar {
+      padding: max(6px, env(safe-area-inset-top, 6px)) 12px 2px 12px !important;
+      gap: 0 !important;
+    }
+    #app-shell.lesson-subscreen-no-logo .topbar-controls-row {
+      margin-bottom: 2px !important;
+    }
+    #app-shell.lesson-subscreen-no-logo #screen-lesson-module .module-header {
+      margin-bottom: 4px !important;
+    }
   </style>
   <link rel="apple-touch-icon" href="./2_ASSETS_UI_BOTOES/icon_512_oficial.png">
   <link rel="icon" type="image/png" sizes="192x192" href="./2_ASSETS_UI_BOTOES/icon_192_oficial.png">
@@ -2787,8 +2802,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=157.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=157.0"></script>
+<script src="ebd_modulos_educativos.js?v=158.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=158.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -3383,9 +3398,17 @@ function showScreen(screenId) {
   if (toastEl) toastEl.classList.remove('active');
   stopCelebrationConfetti();
 
-  if (screenId !== 'screen-lesson-module' || !(window.EBD_STATE && window.EBD_STATE.activeLessonModuleType === 'vovo')) {
-    const sh = document.getElementById('app-shell');
-    if (sh) sh.classList.remove('vovo-player-fullscreen-mode');
+  const activeModType = (window.EBD_STATE && window.EBD_STATE.activeLessonModuleType) || '';
+  const shTop = document.getElementById('app-shell');
+  if (shTop) {
+    if (screenId !== 'screen-lesson-module' || activeModType !== 'vovo') {
+      shTop.classList.remove('vovo-player-fullscreen-mode');
+    }
+    if (screenId === 'screen-lesson-module' && ['texto', 'sementinha', 'fe_acao', 'devocional'].indexOf(activeModType) !== -1) {
+      shTop.classList.add('lesson-subscreen-no-logo');
+    } else {
+      shTop.classList.remove('lesson-subscreen-no-logo');
+    }
   }
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(screenId).classList.add('active');

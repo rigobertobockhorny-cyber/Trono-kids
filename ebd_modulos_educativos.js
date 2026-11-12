@@ -6349,7 +6349,10 @@ window.openLessonHubScreen = function() {
   window.EBD_STATE.fromLessonGames = false;
   window.EBD_STATE.fromChronologyHub = false;
   const sh = document.getElementById("app-shell");
-  if (sh) sh.classList.remove("vovo-player-fullscreen-mode");
+  if (sh) {
+    sh.classList.remove("vovo-player-fullscreen-mode");
+    sh.classList.remove("lesson-subscreen-no-logo");
+  }
   // Restaura visibilidade dos botões da direita nos jogos quando sai dos Jogos da Lição
   ["btn-edu-header-right", "btn-puzzle-next", "btn-paint-next"].forEach(id => {
     const el = document.getElementById(id);
@@ -6659,6 +6662,11 @@ window.openLessonModule = function(modType) {
     } else {
       appShellEl.classList.remove("vovo-player-fullscreen-mode");
     }
+    if (["texto", "sementinha", "fe_acao", "devocional"].includes(modType)) {
+      appShellEl.classList.add("lesson-subscreen-no-logo");
+    } else {
+      appShellEl.classList.remove("lesson-subscreen-no-logo");
+    }
   }
   if (!["3-5", "6-8"].includes(window.EBD_STATE.ageBracket)) {
     window.EBD_STATE.ageBracket = "6-8";
@@ -6667,14 +6675,17 @@ window.openLessonModule = function(modType) {
   const ageBracket = window.EBD_STATE.ageBracket;
   const ageData = (lesson.byAge && lesson.byAge[ageBracket]) || lesson.byAge["6-8"];
   const box = document.getElementById("lesson-module-content");
+  const modScreenEl = document.getElementById("screen-lesson-module");
   const headerBar = document.querySelector("#screen-lesson-module .puzzle-diff-bar");
   if (!box) return;
 
-  // Para História do Vovô (modType === 'vovo'), trava o scroll para ser Card Único estilo Player de Vídeo!
-  if (modType === "vovo" || modType === "sementinha" || modType === "fe_acao") {
+  // Tela única sem scroll para História do Vovô, Sementinha, Fé em Ação e Devocional!
+  if (modType === "vovo" || modType === "sementinha" || modType === "fe_acao" || modType === "devocional") {
     box.style.overflowY = "hidden";
+    if (modScreenEl) modScreenEl.style.overflowY = "hidden";
   } else {
     box.style.overflowY = "auto";
+    if (modScreenEl) modScreenEl.style.overflowY = "hidden";
   }
 
   if (headerBar) {
@@ -6787,7 +6798,7 @@ window.openLessonModule = function(modType) {
     }).join("");
 
     box.innerHTML = `
-      <div class="ebd-glass-card" style="margin-bottom:4px; padding:8px 9px;">
+      <div style="display:flex; flex-direction:column; padding:2px 4px 10px 4px;">
         <div style="display:flex; flex-direction:column; padding:2px 0 6px 0;">
           ${trailRowsHtml}
         </div>
@@ -6884,59 +6895,47 @@ window.openLessonModule = function(modType) {
     `;
     setTimeout(() => { window.ensureVovoAudioElement(lesson); }, 30);
   }
-  // 3) SEMENTINHA (VERSÍCULO PARA DECORAR — Marca tiquezinho verde ao entrar!)
+  // 3) SEMENTINHA (TELA ÚNICA SEM BLOCO ROXO EXTERNO • APENAS VERSÍCULO + REFERÊNCIA ÚNICA!)
   else if (modType === "sementinha") {
     window.markLessonModuleDone(lesson.week, "sementinha");
     const savedSeeds = JSON.parse(localStorage.getItem("trono_ebd_seeds_done") || "[]");
     const isMemorized = savedSeeds.includes(lesson.week);
+    const parsedSeedVerse = window.parseDevotionalVerse(ageData.verse || "", lesson.bibleRef || "");
     box.innerHTML = `
-      <div class="ebd-glass-card" style="flex:1; display:flex; flex-direction:column; justify-content:space-between; margin-bottom:0; padding:14px 12px;">
-        <h3 style="color:#fde047; font-size:16px; margin-bottom:4px; line-height:1.2;">GUARDANDO A PALAVRA NO CORAÇÃO</h3>
+      <div style="flex:1; height:100%; min-height:0; display:flex; flex-direction:column; justify-content:space-evenly; align-items:center; gap:10px; padding:4px 6px 8px 6px; overflow:hidden; box-sizing:border-box;">
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" alt="Sementinha" style="width:clamp(84px, 15vh, 118px); height:clamp(84px, 15vh, 118px); object-fit:contain; filter:drop-shadow(0 6px 14px rgba(0,0,0,0.88)); flex-shrink:0;">
 
-        <div class="frame-3d-alive" style="width:88px; height:88px; margin:2px auto 6px auto; border-radius:50%; flex-shrink:0;">
-          <img src="./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" alt="Sementinha" style="width:100%; height:100%; object-fit:contain;">
-        </div>
-
-        <div style="background:linear-gradient(180deg, #aa00ff 0%, #4c1d95 100%); border:3px solid #fde047; border-radius:20px; padding:18px 14px; margin-bottom:8px; box-shadow:0 8px 20px rgba(0,0,0,0.85);">
-          <div style="font-size:11.5px; font-weight:900; color:#fde047; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:6px;">Versículo Bíblico para Decorar</div>
-          <div style="font-size:18.5px; font-weight:900; color:#ffffff; line-height:1.38; margin-bottom:8px; text-shadow:0 2px 6px rgba(0,0,0,0.85);">
-            "${ageData.verse}"
+        <div style="width:100%; background:linear-gradient(180deg, rgba(147,51,234,0.92) 0%, rgba(76,29,149,0.96) 100%); border:3px solid #fde047; border-radius:20px; padding:16px 14px; box-shadow:0 8px 22px rgba(0,0,0,0.88); text-align:center;">
+          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:800; color:#fde047; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:8px;">Versículo para Decorar</div>
+          <div style="font-size:clamp(17px, 2.5vh, 21px); font-weight:900; color:#ffffff; line-height:1.36; margin-bottom:10px; text-shadow:0 2px 6px rgba(0,0,0,0.88);">
+            "${parsedSeedVerse.quote}"
           </div>
-          <div style="font-size:13px; font-weight:900; color:#86efac;">${lesson.bibleRef}</div>
+          ${parsedSeedVerse.ref ? `<div style="font-size:14px; font-weight:900; color:#86efac;">${parsedSeedVerse.ref}</div>` : ""}
         </div>
 
-        <p style="font-size:13px; color:#e2e8f0; font-weight:700; line-height:1.35; margin-bottom:8px;">Repita este versículo 3 vezes em voz alta para guardar a Palavra de Deus no seu coração!
-        </p>
-
-        <button type="button" class="btn-gold" style="width:100%; padding:12px; font-size:15px; flex-shrink:0;" onclick="markLessonSeedMemorized(${lesson.week})">
+        <button type="button" class="btn-gold" style="width:100%; padding:13px; font-size:15px; border-radius:999px; flex-shrink:0; ${isMemorized ? "background:linear-gradient(180deg,#00e676,#00c853); color:#ffffff;" : ""}" onclick="markLessonSeedMemorized(${lesson.week})">
           ${isMemorized ? "Versículo Guardado no Coração!" : "Já Memorizei este Versículo!"}
         </button>
       </div>
     `;
   }
-  // 4) FÉ EM AÇÃO (Marca tiquezinho verde ao entrar!)
+  // 4) FÉ EM AÇÃO (TELA ÚNICA SEM BLOCO ROXO EXTERNO • INFORMAÇÕES SOLTAS SOBRE O FUNDO!)
   else if (modType === "fe_acao") {
     window.markLessonModuleDone(lesson.week, "fe_acao");
     const savedActions = JSON.parse(localStorage.getItem("trono_ebd_actions_done") || "[]");
     const isActionDone = savedActions.includes(lesson.week);
     box.innerHTML = `
-      <div class="ebd-glass-card" style="flex:1; display:flex; flex-direction:column; justify-content:space-between; margin-bottom:0; padding:14px 12px;">
-        <div>
-          <h3 style="color:#fde047; font-size:16.5px; margin-bottom:4px; line-height:1.2;">${ageData.actionTitle}</h3>
-        </div>
+      <div style="flex:1; height:100%; min-height:0; display:flex; flex-direction:column; justify-content:space-evenly; align-items:center; gap:10px; padding:4px 6px 8px 6px; overflow:hidden; box-sizing:border-box;">
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png" alt="Fé em Ação" style="width:clamp(84px, 15vh, 118px); height:clamp(84px, 15vh, 118px); object-fit:contain; filter:drop-shadow(0 6px 14px rgba(0,0,0,0.88)); flex-shrink:0;">
 
-        <div class="frame-3d-alive" style="width:88px; height:88px; margin:2px auto 6px auto; border-radius:50%; flex-shrink:0;">
-          <img src="./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png" alt="Fé em Ação" style="width:100%; height:100%; object-fit:contain;">
-        </div>
-
-        <div style="background:rgba(15,23,42,0.9); border:2.5px solid #00e676; border-radius:18px; padding:14px 12px; margin-bottom:8px; text-align:left;">
-          <div style="font-size:12.5px; font-weight:900; color:#86efac; margin-bottom:5px;">Missão Prática da Semana:</div>
-          <div style="font-size:15px; font-weight:800; color:#ffffff; line-height:1.42;">
+        <div style="width:100%; background:linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(4,47,46,0.95) 100%); border:3px solid #00e676; border-radius:20px; padding:16px 14px; box-shadow:0 8px 22px rgba(0,0,0,0.88); text-align:center;">
+          <div style="font-family:'Fredoka',sans-serif; font-size:clamp(15px, 2.2vh, 18px); font-weight:800; color:#fde047; text-transform:uppercase; line-height:1.22; margin-bottom:8px; text-shadow:0 2px 6px rgba(0,0,0,0.9);">${ageData.actionTitle}</div>
+          <div style="font-size:clamp(14.5px, 2.1vh, 17px); font-weight:800; color:#ffffff; line-height:1.4;">
             ${ageData.actionDesc}
           </div>
         </div>
 
-        <button type="button" class="btn-gold" style="width:100%; padding:12px; font-size:15px; flex-shrink:0;" onclick="markLessonActionCompleted(${lesson.week})">
+        <button type="button" class="btn-gold" style="width:100%; padding:13px; font-size:15px; border-radius:999px; flex-shrink:0; ${isActionDone ? "background:linear-gradient(180deg,#00e676,#00c853); color:#ffffff;" : ""}" onclick="markLessonActionCompleted(${lesson.week})">
           ${isActionDone ? "Missão da Lição Concluída!" : "Marcar Missão como Concluída!"}
         </button>
       </div>
@@ -7025,44 +7024,44 @@ window.openLessonModule = function(modType) {
     const familyTipText = window.buildDevotionalFamilyTip(lesson, d, activeIdx, cleanSubTitle);
 
     box.innerHTML = `
-      <div style="display:flex; flex-direction:column; gap:11px; padding:4px 4px 20px 4px; text-align:left;">
-        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:8px;">
-          <div style="min-width:0;">
-            <div style="font-size:11.5px; font-weight:900; color:#38bdf8; text-transform:uppercase; letter-spacing:0.3px; text-shadow:0 2px 4px rgba(0,0,0,0.85);">Lição ${lesson.week}: ${lesson.title}</div>
-            <div style="font-family:'Fredoka',sans-serif; color:#fde047; font-size:16px; font-weight:800; line-height:1.22; text-transform:uppercase; text-shadow:0 2px 6px rgba(0,0,0,0.92); margin-top:1px;">${fullDayTitle}</div>
-          </div>
-          <span style="background:${done ? "linear-gradient(180deg,#00e676,#00c853)" : "linear-gradient(180deg,#7e22ce,#4c1d95)"}; color:#ffffff; font-size:11px; font-weight:900; padding:4px 10px; border-radius:999px; border:1.5px solid ${done ? "#ffffff" : "#fde047"}; flex-shrink:0; box-shadow:0 3px 8px rgba(0,0,0,0.72); text-transform:uppercase;">
-            ${doneDaysCount}/7 Dias
+      <div style="flex:1; height:100%; min-height:0; display:flex; flex-direction:column; justify-content:space-between; gap:clamp(4px, 0.72vh, 7px); padding:1px 4px 4px 4px; text-align:left; overflow:hidden; box-sizing:border-box;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; flex-shrink:0;">
+          <div style="font-family:'Fredoka',sans-serif; font-size:clamp(12px, 1.75vh, 14.5px); font-weight:800; color:#fde047; line-height:1.15; text-shadow:0 2px 6px rgba(0,0,0,0.92); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;">Lição ${lesson.week}: ${lesson.title}</div>
+          <span style="background:${done ? "linear-gradient(180deg,#00e676,#00c853)" : "linear-gradient(180deg,#7e22ce,#4c1d95)"}; color:#ffffff; font-size:10px; font-weight:900; padding:2.5px 8px; border-radius:999px; border:1.5px solid ${done ? "#ffffff" : "#fde047"}; flex-shrink:0; box-shadow:0 2px 6px rgba(0,0,0,0.72); text-transform:uppercase;">
+            ${doneDaysCount}/7
           </span>
         </div>
 
-        <div style="width:100%; aspect-ratio:16/9; border-radius:16px; overflow:hidden; border:2.5px solid #fde047; background:#050b1a; position:relative; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,0.85);" onclick="openLessonImageFullModal('${dayImg}', '${safeDayTitle}')">
-          <img src="${dayImg}" alt="${safeDayTitle}" style="width:100%; height:100%; object-fit:cover; display:block;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:3px; flex-shrink:1; min-height:0;">
+          <div style="height:clamp(80px, 15.5vh, 138px); width:auto; max-width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:2px solid #fde047; background:#050b1a; position:relative; cursor:pointer; box-shadow:0 5px 14px rgba(0,0,0,0.85);" onclick="openLessonImageFullModal('${dayImg}', 'Lição ${lesson.week} • ${safeDayTitle}')">
+            <img src="${dayImg}" alt="${safeDayTitle}" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <button type="button" class="btn-tool-3d" style="padding:3px 14px; font-size:clamp(10px, 1.35vh, 11.5px); font-weight:900; border-radius:999px; flex-shrink:0;" onclick="downloadLesson16x9Image('${dayImg}', 'Lição ${lesson.week} - ${safeDayTitle}')">
+            Baixar Imagem (16:9)
+          </button>
         </div>
 
-        <button type="button" class="btn-tool-3d" style="width:100%; padding:8px 14px; font-size:12.5px; font-weight:900; border-radius:999px;" onclick="downloadLesson16x9Image('${dayImg}', '${safeDayTitle}')">
-          Baixar Imagem (16:9)
-        </button>
-
         ${parsedVerse.quote ? `
-          <div style="background:linear-gradient(180deg, rgba(147,51,234,0.90) 0%, rgba(76,29,149,0.96) 100%); border:2.5px solid #fde047; border-radius:18px; padding:14px 14px; box-shadow:0 6px 18px rgba(0,0,0,0.82);">
-            <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:800; color:#fde047; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:6px;">Versículo Bíblico</div>
-            <div style="font-size:16.5px; font-weight:900; color:#ffffff; line-height:1.38; text-shadow:0 2px 5px rgba(0,0,0,0.85); margin-bottom:${parsedVerse.ref ? "7px" : "0"};">"${parsedVerse.quote}"</div>
-            ${parsedVerse.ref ? `<div style="font-size:13px; font-weight:900; color:#86efac; text-align:right;">${parsedVerse.ref}</div>` : ""}
+          <div style="background:linear-gradient(180deg, rgba(147,51,234,0.90) 0%, rgba(76,29,149,0.96) 100%); border:2px solid #fde047; border-radius:13px; padding:clamp(6px, 0.95vh, 9px) 10px; box-shadow:0 4px 12px rgba(0,0,0,0.82); flex-shrink:0;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:2px;">
+              <span style="font-family:'Fredoka',sans-serif; font-size:clamp(9.5px, 1.3vh, 11px); font-weight:800; color:#fde047; text-transform:uppercase; letter-spacing:0.4px;">Versículo Bíblico</span>
+              ${parsedVerse.ref ? `<span style="font-size:clamp(10px, 1.35vh, 11.5px); font-weight:900; color:#86efac; white-space:nowrap;">${parsedVerse.ref}</span>` : ""}
+            </div>
+            <div style="font-size:clamp(11.3px, 1.62vh, 13.6px); font-weight:900; color:#ffffff; line-height:1.25; text-shadow:0 1px 4px rgba(0,0,0,0.85);">"${parsedVerse.quote}"</div>
           </div>
         ` : ""}
 
-        <div style="background:linear-gradient(180deg, rgba(30,41,59,0.92) 0%, rgba(15,23,42,0.96) 100%); border:2px solid #38bdf8; border-radius:16px; padding:12px 14px; box-shadow:0 5px 14px rgba(0,0,0,0.75);">
-          <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:5px;">Conversando sobre a Palavra</div>
-          <div style="font-size:14px; color:#f8fafc; font-weight:700; line-height:1.45;">${d.text}</div>
+        <div style="background:linear-gradient(180deg, rgba(30,41,59,0.92) 0%, rgba(15,23,42,0.96) 100%); border:1.8px solid #38bdf8; border-radius:13px; padding:clamp(6px, 0.95vh, 9px) 10px; box-shadow:0 4px 12px rgba(0,0,0,0.75); flex-shrink:0;">
+          <div style="font-family:'Fredoka',sans-serif; font-size:clamp(9.5px, 1.3vh, 11px); font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:2px;">Conversando sobre a Palavra</div>
+          <div style="font-size:clamp(10.8px, 1.5vh, 12.6px); color:#f8fafc; font-weight:700; line-height:1.25;">${d.text}</div>
         </div>
 
-        <div style="background:linear-gradient(180deg, rgba(6,78,59,0.86) 0%, rgba(4,47,46,0.95) 100%); border:2px solid #00e676; border-radius:16px; padding:12px 14px; box-shadow:0 5px 14px rgba(0,0,0,0.75);">
-          <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:800; color:#86efac; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:5px;">Dica em Família</div>
-          <div style="font-size:13.5px; color:#ffffff; font-weight:800; line-height:1.44;">${familyTipText}</div>
+        <div style="background:linear-gradient(180deg, rgba(6,78,59,0.88) 0%, rgba(4,47,46,0.95) 100%); border:1.8px solid #00e676; border-radius:13px; padding:clamp(6px, 0.95vh, 9px) 10px; box-shadow:0 4px 12px rgba(0,0,0,0.75); flex-shrink:0;">
+          <div style="font-family:'Fredoka',sans-serif; font-size:clamp(9.5px, 1.3vh, 11px); font-weight:800; color:#86efac; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:2px;">Dica em Família</div>
+          <div style="font-size:clamp(10.8px, 1.5vh, 12.5px); color:#ffffff; font-weight:800; line-height:1.25;">${familyTipText}</div>
         </div>
 
-        <button type="button" class="btn-gold" style="width:100%; padding:13px; font-size:15px; border-radius:999px; ${done ? "background:linear-gradient(180deg,#00e676,#00c853); color:#ffffff;" : ""}" onclick="completeLessonDevotionalDay(${activeW.dayNum})">
+        <button type="button" class="btn-gold" style="width:100%; padding:clamp(8px, 1.3vh, 11px) 12px; font-size:clamp(12.2px, 1.68vh, 14px); border-radius:999px; flex-shrink:0; ${done ? "background:linear-gradient(180deg,#00e676,#00c853); color:#ffffff;" : ""}" onclick="completeLessonDevotionalDay(${activeW.dayNum})">
           ${done ? `${activeW.full} Concluído! (Próximo Dia)` : `Concluir Devocional de ${activeW.full}`}
         </button>
       </div>
@@ -7385,7 +7384,10 @@ window.getChronologyVisualMapForWeek = function(weekNum) {
 window.backFromLessonModule = function() {
   window.stopVovoStoryNarration();
   const sh = document.getElementById("app-shell");
-  if (sh) sh.classList.remove("vovo-player-fullscreen-mode");
+  if (sh) {
+    sh.classList.remove("vovo-player-fullscreen-mode");
+    sh.classList.remove("lesson-subscreen-no-logo");
+  }
   if (window.EBD_STATE.fromChronologyHub) {
     window.EBD_STATE.fromChronologyHub = false;
     window.openChronologyScreen();
