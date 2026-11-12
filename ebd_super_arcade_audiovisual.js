@@ -272,7 +272,22 @@
       "vovo_jogo_15.mp3": 6040,
       "vovo_jogo_16.mp3": 6460,
       "vovo_jogo_17.mp3": 6410,
-      "vovo_vitoria.mp3": 4640
+      "vovo_vitoria.mp3": 4640,
+      "quiz_vovo_q01.mp3": 10180,
+      "quiz_vovo_q02.mp3": 11600,
+      "quiz_vovo_q03.mp3": 11600,
+      "quiz_vovo_q04.mp3": 9720,
+      "quiz_vovo_q05.mp3": 8370,
+      "quiz_vovo_q06.mp3": 7870,
+      "quiz_vovo_q07.mp3": 8640,
+      "quiz_vovo_q08.mp3": 7660,
+      "quiz_vovo_q09.mp3": 7110,
+      "quiz_vovo_q10.mp3": 8880,
+      "quiz_vovo_q11.mp3": 13490,
+      "quiz_vovo_q12.mp3": 12320,
+      "quiz_vovo_q13.mp3": 9650,
+      "quiz_vovo_q14.mp3": 10190,
+      "quiz_vovo_q15.mp3": 14360
     },
 
     falarVovo(audioFile, onFinish) {
@@ -313,18 +328,23 @@
       }
       try {
         const isVictory = audioFile === "vovo_vitoria.mp3";
+        const rawPath = String(audioFile);
+        const resolvedUrl = rawPath.startsWith("./")
+          ? `${rawPath}${rawPath.includes("?") ? "" : "?v=154"}`
+          : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=126`;
+        const durKey = rawPath.split("/").pop().split("?")[0];
         // Usa instância limpa por chamada nos áudios de jogo para NUNCA disparar abort/stalled de troca de src!
-        const player = (isVictory && this.vovoVictoryPlayer) ? this.vovoVictoryPlayer : new Audio(`./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=126`);
+        const player = (isVictory && this.vovoVictoryPlayer) ? this.vovoVictoryPlayer : new Audio(resolvedUrl);
         if (!isVictory) {
           this.vovoPlayer = player;
         } else if (!player.src) {
-          player.src = `./6_ASSETS_AUDIO/jogos_vovo/${audioFile}?v=126`;
+          player.src = resolvedUrl;
         }
         player.muted = false;
         player.volume = 1.0;
         try { player.currentTime = 0; } catch (e) {}
 
-        const exactDurationMs = this._vovoExactDurationsMs[audioFile] || (isVictory ? 4640 : 8000);
+        const exactDurationMs = this._vovoExactDurationsMs[durKey] || (isVictory ? 4640 : 8000);
         let finished = false;
 
         const doFinish = (forceNow) => {
@@ -1945,6 +1965,16 @@
         window._arcadeUnlockGameAction();
       }
     };
+
+    // REGRA ESPECIAL DO QUIZ DA BÍBLIA: EM TODAS AS 15 FASES O VOVÔ FAZ A PERGUNTA E DIZ AS 3 ALTERNATIVAS
+    // ENQUANTO A CRIANÇA OLHA AS IMAGENS E JÁ PODE RESPONDER OU REPETIR O ÁUDIO!
+    if (currentActiveGame && currentActiveGame.id === "quiz_visual") {
+      _vovoAlreadySpokeInSession = true;
+      unlockStageAfterVovo();
+      const qAudio = `./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q${String(phase).padStart(2, "0")}.mp3?v=154`;
+      TronoAudio.falarVovo(qAudio);
+      return;
+    }
 
     // REGRA DE SESSÃO INTELIGENTE (RIGOBERTO UX):
     // 1) Na primeira fase da sessão (quando entra no jogo), o Vovô explica tudo e a trava aguarda 100% da fala!
@@ -5553,126 +5583,141 @@
     };
   }
 
-  // --- JOGO 9: QUIZ DA BÍBLIA / QUIZ DO VOVÔ (15 FASES VISUAIS COM CENAS 3D PIXAR • ZERO EMOJIS) ---
+  // --- JOGO 9: QUIZ DA BÍBLIA / QUIZ DO VOVÔ (15 FASES VISUAIS COM OBJETOS/ANIMAIS 3D LIMPOS + VOZ DO VOVÔ • ZERO EMOJIS) ---
   const QUIZ_VISUAL_15_PHASES = [
     {
-      q: "O QUE DEUS CRIOU PRIMEIRO QUANDO DISSE: HAJA LUZ?",
+      q: "O QUE DEUS PEDIU PARA NOÉ CONSTRUIR PARA SALVAR OS ANIMAIS?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q01.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg", label: "A LUZ DA CRIAÇÃO", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg", label: "AS MURALHAS DE JERICÓ", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg", label: "OS PALÁCIOS DO EGITO", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f01_opt1_arca.jpg?v=154", label: "ARCA DE MADEIRA", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f01_opt2_tenda.jpg?v=154", label: "TENDA NO DESERTO", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f01_opt3_carroca.jpg?v=154", label: "CARROÇA DE MADEIRA", ok: false }
       ]
     },
     {
-      q: "ONDE ADÃO E EVA MORAVAM E CUIDAVAM DOS ANIMAIS?",
+      q: "DEUS PROMETEU A ABRAÃO QUE A SUA DESCENDÊNCIA SERIA TÃO NUMEROSA COMO AS ESTRELAS DO CÉU, COMO OS PEIXES DO MAR OU COMO AS ÁRVORES DAS FLORESTAS?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q02.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg", label: "NO JARDIM DO ÉDEN", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg", label: "NO MEIO DO MAR", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg", label: "NA COVA DOS LEÕES", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f02_opt1_estrelas.jpg?v=154", label: "ESTRELAS DO CÉU", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f02_opt2_peixes.jpg?v=154", label: "PEIXES DO MAR", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f02_opt3_arvores.jpg?v=154", label: "ÁRVORES DAS FLORESTAS", ok: false }
       ]
     },
     {
-      q: "O QUE NOÉ CONSTRUIU PARA SALVAR SUA FAMÍLIA E OS BICHINHOS?",
+      q: "QUAL PRESENTE ESPECIAL JACÓ DEU PARA SEU FILHO JOSÉ?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q03.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg", label: "A GRANDE ARCA DE MADEIRA", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg", label: "O TRONO DO REI SALOMÃO", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_35.jpg", label: "UMA CARRUAGEM DE FOGO", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f03_opt1_tunica.jpg?v=154", label: "TÚNICA COLORIDA", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f03_opt2_coroa.jpg?v=154", label: "COROA DE OURO", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f03_opt3_armadura.jpg?v=154", label: "ARMADURA DE SOLDADO", ok: false }
       ]
     },
     {
-      q: "PARA ONDE DEUS MANDOU ABRAÃO OLHAR AO FAZER SUA PROMESSA?",
+      q: "ONDE A MAMÃE DE MOISÉS COLOCOU O BEBÊ LÁ NO RIO PARA PROTEGÊ-LO?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q04.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg", label: "PARA AS ESTRELAS DO CÉU", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg", label: "PARA O GRANDE PEIXE", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg", label: "PARA O CESTINHO NO RIO", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f04_opt1_cestinho.jpg?v=154", label: "CESTINHO DE PALHA", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f04_opt2_caverna.jpg?v=154", label: "CAVERNA", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f04_opt3_casinha.jpg?v=154", label: "CASINHA", ok: false }
       ]
     },
     {
-      q: "O QUE JACÓ VIU EM SEU SONHO LIGANDO A TERRA ATÉ O CÉU?",
+      q: "O QUE MOISÉS LEVANTOU NA MÃO PARA ABRIR O MAR VERMELHO?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q05.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg", label: "UMA ESCADA ILUMINADA", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg", label: "UM BARQUINHO DE PESCA", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg", label: "O GIGANTE GOLIAS", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f05_opt1_cajado.jpg?v=154", label: "CAJADO", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f05_opt2_vassoura.jpg?v=154", label: "VASSOURA", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f05_opt3_guardasol.jpg?v=154", label: "GUARDA-SOL", ok: false }
       ]
     },
     {
-      q: "QUAL PRESENTE ESPECIAL JOSÉ GANHOU DE SEU PAI JACÓ?",
+      q: "O QUE OS SACERDOTES TOCARAM PARA DERRUBAR AS MURALHAS DE JERICÓ?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q06.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg", label: "UMA TÚNICA COLORIDA", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg", label: "UMA HARPA DOURADA", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg", label: "AS TÁBUAS DE PEDRA", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f06_opt1_trombetas.jpg?v=154", label: "TROMBETAS", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f06_opt2_violao.jpg?v=154", label: "VIOLÃO", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f06_opt3_piano.jpg?v=154", label: "PIANO", ok: false }
       ]
     },
     {
-      q: "ONDE A MAMÃE DE MOISÉS COLOCOU O BEBÊ PARA PROTEGÊ-LO?",
+      q: "O QUE DAVI USOU NA SUA FUNDA PARA DERRUBAR O GIGANTE GOLIAS?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q07.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg", label: "NUM CESTINHO NO RIO NILO", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg", label: "NA COVA DOS LEÕES", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_119.jpg", label: "NOS MUROS DE JERUSALÉM", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f07_opt1_pedrinhas.jpg?v=154", label: "PEDRINHAS LISAS", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f07_opt2_diamantes.jpg?v=154", label: "DIAMANTES", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f07_opt3_bolinhas_gude.jpg?v=154", label: "BOLINHAS DE GUDE", ok: false }
       ]
     },
     {
-      q: "O QUE ACONTECEU QUANDO MOISÉS ESTENDEU O CAJADO DIANTE DO MAR?",
+      q: "DEUS PROTEGEU DANIEL FECHANDO A BOCA DE QUAIS ANIMAIS LÁ NA COVA?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q08.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg", label: "O MAR VERMELHO SE ABRIU", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg", label: "A GRANDE ARCA DE NOÉ", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_34.jpg", label: "O PALÁCIO DA RAINHA ESTER", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f08_opt1_leoes.jpg?v=154", label: "LEÕES", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f08_opt2_ursos.jpg?v=154", label: "URSOS", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f08_opt3_jacares.jpg?v=154", label: "JACARÉS", ok: false }
       ]
     },
     {
-      q: "O QUE ACONTECEU EM JERICÓ QUANDO JOSUÉ E O POVO MARCHARAM COM FÉ?",
+      q: "QUAL ANIMAL DO MAR ENGOLIU O PROFETA JONAS?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q09.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg", label: "AS MURALHAS CAÍRAM", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg", label: "O JARDIM DO ÉDEN", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg", label: "A ESTRELA DE BELÉM", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f09_opt1_grande_peixe.jpg?v=154", label: "GRANDE PEIXE", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f09_opt2_polvo.jpg?v=154", label: "POLVO", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f09_opt3_tartaruga.jpg?v=154", label: "TARTARUGA", ok: false }
       ]
     },
     {
-      q: "QUAL INSTRUMENTO O PASTORZINHO DAVI TOCAVA CUIDANDO DAS OVELHAS?",
+      q: "ONDE MARIA DEITOU O MENINO JESUS QUANDO ELE NASCEU EM BELÉM?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q10.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg", label: "A HARPA DOURADA DE DAVI", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_38.jpg", label: "O NAVIO DE PAULO", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_108.jpg", label: "O MONTE SINAI", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f10_opt1_manjedoura.jpg?v=154", label: "MANJEDOURA", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f10_opt2_berco.jpg?v=154", label: "BERÇO", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f10_opt3_rede.jpg?v=154", label: "REDE", ok: false }
       ]
     },
     {
-      q: "QUEM O PEQUENO DAVI VENCEU CONFIANDO NO PODER DE DEUS?",
+      q: "QUANDO JESUS FOI BATIZADO NO RIO JORDÃO, O ESPÍRITO SANTO DESCEU DO CÉU PARECIDO COM QUAL AVE?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q11.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg", label: "O GIGANTE GOLIAS", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg", label: "O GRANDE PEIXE NO MAR", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_33.jpg", label: "O REI SALOMÃO", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f11_opt1_pomba.jpg?v=154", label: "POMBA BRANCA", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f11_opt2_aguia.jpg?v=154", label: "ÁGUIA", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f11_opt3_papagaio.jpg?v=154", label: "PAPAGAIO", ok: false }
       ]
     },
     {
-      q: "QUAL ANIMAL DO MAR ENGOLIU E DEPOIS DEIXOU JONAS NA PRAIA?",
+      q: "O QUE O MENINO ENTREGOU PARA JESUS MULTIPLICAR E ALIMENTAR A MULTIDÃO?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q12.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_14.jpg", label: "UM GRANDE PEIXE NO MAR", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg", label: "OS LEÕES NA COVA", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg", label: "OS CAMELOS NO DESERTO", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f12_opt1_paes_peixinhos.jpg?v=154", label: "CINCO PÃES E DOIS PEIXINHOS", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f12_opt2_bolo_salgadinhos.jpg?v=154", label: "BOLO E SALGADINHOS", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f12_opt3_bananas_uvas.jpg?v=154", label: "BANANAS E UVAS", ok: false }
       ]
     },
     {
-      q: "QUEM DEUS PROTEGEU FECHANDO A BOCA DOS LEÕES FAMINTOS?",
+      q: "QUAL ANIMALZINHO SE PERDEU E O BOM PASTOR FOI PROCURAR NA HISTÓRIA DE JESUS?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q13.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg", label: "O FIEL PROFETA DANIEL", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_107.jpg", label: "O BEBÊ NO CESTINHO", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_37.jpg", label: "PEDRO NO BARQUINHO", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f13_opt1_ovelhinha.jpg?v=154", label: "OVELHINHA", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f13_opt2_gatinho.jpg?v=154", label: "GATINHO", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f13_opt3_coelhinho.jpg?v=154", label: "COELHINHO", ok: false }
       ]
     },
     {
-      q: "ONDE NASCEU O MENINO JESUS SOB A ESTRELA BRILHANTE?",
+      q: "EM QUAL ANIMAL MANSINHO JESUS MONTOU PARA ENTRAR NA CIDADE DE JERUSALÉM?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q14.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_36.jpg", label: "EM BELÉM NA MANJEDOURA", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg", label: "NO MAR VERMELHO", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_121.jpg", label: "NA BABILÔNIA", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f14_opt1_jumentinho.jpg?v=154", label: "JUMENTINHO", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f14_opt2_elefante.jpg?v=154", label: "ELEFANTE", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f14_opt3_girafa.jpg?v=154", label: "GIRAFA", ok: false }
       ]
     },
     {
-      q: "QUEM RECEBIA E ABENÇOAVA AS CRIANCINHAS COM TANTO AMOR?",
+      q: "O QUE JESUS CARREGOU POR AMOR A TODOS NÓS ANTES DE RESSUSCITAR AO TERCEIRO DIA?",
+      audio: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q15.mp3?v=154",
       opts: [
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_13.jpg", label: "JESUS COM AS CRIANCINHAS", ok: true },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_11.jpg", label: "O GIGANTE GOLIAS", ok: false },
-        { img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_111.jpg", label: "AS MURALHAS DE JERICÓ", ok: false }
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f15_opt1_cruz.jpg?v=154", label: "CRUZ DE MADEIRA", ok: true },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f15_opt2_escada.jpg?v=154", label: "ESCADA DE MADEIRA", ok: false },
+        { img: "./3_ASSETS_QUIZ_ARCADE/quiz_f15_opt3_cadeira.jpg?v=154", label: "CADEIRA DE MADEIRA", ok: false }
       ]
     }
   ];
@@ -5681,25 +5726,38 @@
     const pIdx = Math.max(0, Math.min(QUIZ_VISUAL_15_PHASES.length - 1, (Number(phase) || 1) - 1));
     const qData = QUIZ_VISUAL_15_PHASES[pIdx];
     const shuffled = qData.opts.map(o => Object.assign({}, o)).sort(() => Math.random() - 0.5);
+    const qFontSize = qData.q.length > 95 ? "14.2px" : (qData.q.length > 72 ? "15.2px" : "16.2px");
     let answered = false;
 
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:11px; background:linear-gradient(180deg, rgba(10,18,42,0.22) 0%, rgba(10,18,42,0.38) 100%), url('./2_ASSETS_UI_BOTOES/fundo_ovelha_fujona_pampa_v138.jpg') center/cover no-repeat; padding:70px 16px 18px 16px; box-sizing:border-box;">
-        <div style="width:100%; max-width:356px; background:linear-gradient(180deg, rgba(15,23,42,0.90) 0%, rgba(30,41,59,0.95) 100%); border:2.5px solid #fde047; border-radius:20px; padding:11px 14px; box-shadow:0 8px 20px rgba(0,0,0,0.72); text-align:center;">
-          <div style="font-family:'Fredoka',sans-serif; color:#fde047; font-size:16.5px; font-weight:800; line-height:1.24; text-shadow:0 2px 5px rgba(0,0,0,0.92);">
+      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:linear-gradient(180deg, rgba(10,18,42,0.18) 0%, rgba(10,18,42,0.34) 100%), url('./3_ASSETS_QUIZ_ARCADE/quiz_bg_monte_sinai_v154.jpg?v=154') center/cover no-repeat; padding:66px 14px 14px 14px; box-sizing:border-box;">
+        <div style="width:100%; max-width:362px; display:flex; align-items:center; gap:9px; background:linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(30,41,59,0.96) 100%); border:2.5px solid #fde047; border-radius:20px; padding:10px 13px; box-shadow:0 8px 20px rgba(0,0,0,0.72); box-sizing:border-box;">
+          <div style="flex:1; font-family:'Fredoka',sans-serif; color:#fde047; font-size:${qFontSize}; font-weight:800; line-height:1.22; text-align:center; text-shadow:0 2px 5px rgba(0,0,0,0.92);">
             ${qData.q}
           </div>
+          <button type="button" onclick="window._quizReplayVovo()" title="Ouvir pergunta novamente" aria-label="Ouvir pergunta novamente" style="flex-shrink:0; width:38px; height:38px; border-radius:50%; border:2px solid #ffffff; background:linear-gradient(180deg,#facc15 0%,#ca8a04 100%); box-shadow:0 4px 10px rgba(0,0,0,0.55); display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="pointer-events:none;">
+              <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#1e1b4b" stroke="#1e1b4b" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M15.54 8.46C16.47 9.4 17 10.66 17 12C17 13.34 16.47 14.6 15.54 15.54M19.07 4.93C20.94 6.8 22 9.33 22 12C22 14.67 20.94 17.2 19.07 19.07" stroke="#1e1b4b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
         </div>
 
-        <div style="width:100%; display:flex; flex-direction:column; align-items:center; gap:10px;">
+        <div style="width:100%; display:flex; flex-direction:column; align-items:center; gap:9px;">
           ${shuffled.map((opt, idx) => `
-            <button type="button" id="quiz-vis-opt-${idx}" onclick="window._quizVisualTap(${idx})" aria-label="Alternativa ${idx + 1}" style="width:min(64vw, 228px); aspect-ratio:16/9; padding:0; border-radius:16px; background:#050b1a; border:3px solid #ffffff; box-shadow:0 7px 18px rgba(0,0,0,0.72); overflow:hidden; cursor:pointer; display:block; transition:transform 0.14s ease, border-color 0.18s ease, box-shadow 0.18s ease;">
+            <button type="button" id="quiz-vis-opt-${idx}" onclick="window._quizVisualTap(${idx})" aria-label="Alternativa ${idx + 1}" style="width:min(64vw, 228px); aspect-ratio:16/9; padding:0; border-radius:16px; background:#f8f1df; border:3.5px solid #ffffff; box-shadow:0 7px 18px rgba(0,0,0,0.68); overflow:hidden; cursor:pointer; display:block; transition:transform 0.14s ease, border-color 0.18s ease, box-shadow 0.18s ease;">
               <img src="${opt.img}" alt="" decoding="async" style="width:100%; height:100%; object-fit:cover; display:block; pointer-events:none;">
             </button>
           `).join("")}
         </div>
       </div>
     `;
+
+    window._quizReplayVovo = function() {
+      if (answered) return;
+      TronoAudio.unlockGestureAudio();
+      TronoAudio.falarVovo(qData.audio);
+    };
 
     window._quizVisualTap = function(idx) {
       if (answered) return;
@@ -5709,6 +5767,7 @@
 
       if (chosen.ok) {
         answered = true;
+        TronoAudio.falarVovo(null);
         btn.style.borderColor = "#00e676";
         btn.style.boxShadow = "0 0 22px rgba(0,230,118,0.95), 0 8px 20px rgba(0,0,0,0.8)";
         btn.style.transform = "scale(1.05)";
