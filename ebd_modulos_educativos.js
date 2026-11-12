@@ -5135,6 +5135,7 @@ window.ensureVovoAudioElement = function(lesson) {
 
   const audio = new Audio(audioSrc);
   audio.preload = "auto";
+  audio.volume = 1.0;
   window.EBD_STATE.vovoAudioEl = audio;
   window.EBD_STATE.vovoAudioWeek = lesson.week;
   window.EBD_STATE.vovoAudioPlaying = false;
@@ -5169,6 +5170,7 @@ window.ensureVovoAudioElement = function(lesson) {
 
   audio.onended = function() {
     window.EBD_STATE.vovoAudioPlaying = false;
+    if (typeof window.setVovoVoiceDucking === "function") window.setVovoVoiceDucking(false);
     window.clearVovoSavedResume(lesson.week);
     try { audio.currentTime = 0; } catch (e) {}
     const imgEl = document.getElementById("vovo-story-scene-img");
@@ -5208,6 +5210,7 @@ window.toggleVovoStoryNarration = function() {
       window.EBD_STATE.vovoAudioEl.pause();
     } catch (e) {}
     window.EBD_STATE.vovoAudioPlaying = false;
+    if (typeof window.setVovoVoiceDucking === "function") window.setVovoVoiceDucking(false);
     window.saveVovoResumeState(
       lesson.week,
       window.EBD_STATE.vovoAudioEl.currentTime,
@@ -5235,6 +5238,7 @@ window.toggleVovoStoryNarration = function() {
   }
 
   window.EBD_STATE.vovoAudioPlaying = true;
+  if (typeof window.setVovoVoiceDucking === "function") window.setVovoVoiceDucking(true);
   window.setVovoPlayBtnState(true);
   if (imgEl) imgEl.classList.add("vovo-video-playing-img");
 
@@ -5313,6 +5317,7 @@ window.stopVovoStoryNarration = function(forceReset) {
     }
   }
   window.EBD_STATE.vovoAudioPlaying = false;
+  if (typeof window.setVovoVoiceDucking === "function") window.setVovoVoiceDucking(false);
   const imgEl = document.getElementById("vovo-story-scene-img");
   if (imgEl) imgEl.classList.remove("vovo-video-playing-img");
   window.setVovoPlayBtnState(false);
@@ -7593,6 +7598,7 @@ window.LESSON_GAMES_CATALOG_META = [
 
 window.closeLessonGameVictoryModal = function(goBackToLessonGames) {
   window._lessonVicActive = false;
+  if (typeof window.setVovoVoiceDucking === "function") window.setVovoVoiceDucking(false);
   if (window._lessonVicVoiceTimer) { clearTimeout(window._lessonVicVoiceTimer); window._lessonVicVoiceTimer = null; }
   if (window._lessonVicSafetyTimer) { clearTimeout(window._lessonVicSafetyTimer); window._lessonVicSafetyTimer = null; }
   if (window._lessonVicVoicePlayer) {
@@ -7754,8 +7760,9 @@ window.showLessonGameVictoryModal = function(gameKey) {
   window._lessonVicVoiceTimer = setTimeout(() => {
     if (!window._lessonVicActive) return;
     if (typeof celebrationAudioPlayer !== "undefined" && celebrationAudioPlayer) {
-      try { celebrationAudioPlayer.volume = 0.22; } catch (e) {}
+      try { celebrationAudioPlayer.volume = 0.12; } catch (e) {}
     }
+    if (typeof window.setVovoVoiceDucking === "function") window.setVovoVoiceDucking(true);
     try {
       if (!window._lessonVicVoicePlayer) {
         window._lessonVicVoicePlayer = new Audio("./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3");
@@ -7765,9 +7772,11 @@ window.showLessonGameVictoryModal = function(gameKey) {
       }
       window._lessonVicVoicePlayer.volume = 1.0;
       window._lessonVicVoicePlayer.onended = () => {
+        if (typeof window.setVovoVoiceDucking === "function") window.setVovoVoiceDucking(false);
         if (window._lessonVicActive) unlockReturnBtn();
       };
       window._lessonVicVoicePlayer.onerror = () => {
+        if (typeof window.setVovoVoiceDucking === "function") window.setVovoVoiceDucking(false);
         if (window._lessonVicActive) unlockReturnBtn();
       };
       const playPromise = window._lessonVicVoicePlayer.play();

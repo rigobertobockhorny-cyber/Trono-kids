@@ -320,8 +320,35 @@
       "versiculo_vovo_22.mp3": 11220
     },
 
+    attachVoicePresenceBoost(player) {
+      try {
+        if (!player || player._voiceBoostAttached) return;
+        const proto = String((window.location && window.location.protocol) || "");
+        if (proto !== "http:" && proto !== "https:") return;
+        if (!this.ctx) this.init();
+        if (!this.ctx || this.ctx.state !== "running") return;
+        if (!this._voiceBoostChain) {
+          const comp = this.ctx.createDynamicsCompressor();
+          comp.threshold.setValueAtTime(-20, this.ctx.currentTime);
+          comp.knee.setValueAtTime(16, this.ctx.currentTime);
+          comp.ratio.setValueAtTime(3.2, this.ctx.currentTime);
+          comp.attack.setValueAtTime(0.005, this.ctx.currentTime);
+          comp.release.setValueAtTime(0.18, this.ctx.currentTime);
+          const vGain = this.ctx.createGain();
+          vGain.gain.setValueAtTime(1.42, this.ctx.currentTime);
+          comp.connect(vGain);
+          vGain.connect(this.ctx.destination);
+          this._voiceBoostChain = comp;
+        }
+        const srcNode = this.ctx.createMediaElementSource(player);
+        srcNode.connect(this._voiceBoostChain);
+        player._voiceBoostAttached = true;
+      } catch (e) {}
+    },
+
     falarVovo(audioFile, onFinish) {
       if (window._arcadeAudioMuted) {
+        if (typeof window.setVovoVoiceDucking === "function") window.setVovoVoiceDucking(false);
         if (typeof onFinish === 'function') onFinish();
         return;
       }
@@ -375,6 +402,10 @@
         player.muted = false;
         player.volume = 1.0;
         try { player.currentTime = 0; } catch (e) {}
+        this.attachVoicePresenceBoost(player);
+        if (typeof window.setVovoVoiceDucking === "function") {
+          window.setVovoVoiceDucking(true);
+        }
 
         const exactDurationMs = this._vovoExactDurationsMs[durKey] || (isVictory ? 4640 : 8000);
         let finished = false;
@@ -396,6 +427,9 @@
           this._pendingFinish = null;
           if (this._vovoTimer) clearTimeout(this._vovoTimer);
           this._vovoTimer = null;
+          if (typeof window.setVovoVoiceDucking === "function") {
+            window.setVovoVoiceDucking(false);
+          }
           const rbDone = document.getElementById("arcade-btn-replay-vovo");
           if (rbDone) rbDone.classList.remove("vovo-speaking");
           player.onended = null;
@@ -432,6 +466,9 @@
         }
       } catch (e) {
         console.warn("TronoAudio error:", e);
+        if (typeof window.setVovoVoiceDucking === "function") {
+          window.setVovoVoiceDucking(false);
+        }
         if (typeof onFinish === 'function') onFinish();
       }
     },
@@ -2369,6 +2406,9 @@
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
     if (TronoAudio.vovoPlayer) { try { TronoAudio.vovoPlayer.pause(); } catch(e){} }
     if (TronoAudio.vovoVictoryPlayer) { try { TronoAudio.vovoVictoryPlayer.pause(); } catch(e){} }
+    if (typeof window.setVovoVoiceDucking === "function") {
+      window.setVovoVoiceDucking(false);
+    }
     if (celebrationClapAudio) { try { celebrationClapAudio.pause(); } catch(e){} }
     if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
     if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
@@ -2674,7 +2714,7 @@
           celebrationClapAudio.preload = "auto";
         }
         celebrationClapAudio.currentTime = 0;
-        celebrationClapAudio.volume = 0.55;
+        celebrationClapAudio.volume = 0.36;
         celebrationClapAudio.play().catch(() => {});
       }
     } catch(e) {
@@ -2696,7 +2736,7 @@
     window._arcadeVictoryVoiceTimer = setTimeout(() => {
       if (!_isVictoryActive) return;
       if (celebrationClapAudio) {
-        try { celebrationClapAudio.volume = 0.22; } catch(e) {}
+        try { celebrationClapAudio.volume = 0.12; } catch(e) {}
       }
       TronoAudio.falarVovo("vovo_vitoria.mp3", () => {
         if (_isVictoryActive) unlockVictoryContinueButton();
@@ -5821,6 +5861,7 @@
         player.muted = false;
         player.volume = 1.0;
         try { player.currentTime = 0; } catch (e) {}
+        TronoAudio.attachVoicePresenceBoost(player);
         const p = player.play();
         if (p && typeof p.catch === "function") p.catch(() => {});
       } catch (e) {}
