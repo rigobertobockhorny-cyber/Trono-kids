@@ -351,7 +351,29 @@
       "quiz_licao_18.mp3": 21364,
       "quiz_licao_19.mp3": 20621,
       "quiz_licao_20.mp3": 23546,
-      "quiz_licao_22.mp3": 23645
+      "quiz_licao_22.mp3": 23645,
+      "verdadeiro_mito_vovo_01.mp3": 18259,
+      "verdadeiro_mito_vovo_02.mp3": 16925,
+      "verdadeiro_mito_vovo_03.mp3": 15300,
+      "verdadeiro_mito_vovo_04.mp3": 15207,
+      "verdadeiro_mito_vovo_05.mp3": 16925,
+      "verdadeiro_mito_vovo_06.mp3": 17715,
+      "verdadeiro_mito_vovo_07.mp3": 13257,
+      "verdadeiro_mito_vovo_08.mp3": 15811,
+      "verdadeiro_mito_vovo_09.mp3": 16182,
+      "verdadeiro_mito_vovo_10.mp3": 16693,
+      "verdadeiro_mito_vovo_11.mp3": 15486,
+      "verdadeiro_mito_vovo_12.mp3": 15347,
+      "verdadeiro_mito_vovo_13.mp3": 16879,
+      "verdadeiro_mito_vovo_14.mp3": 17065,
+      "verdadeiro_mito_vovo_15.mp3": 17669,
+      "verdadeiro_mito_vovo_16.mp3": 18737,
+      "verdadeiro_mito_vovo_17.mp3": 17947,
+      "verdadeiro_mito_vovo_18.mp3": 16043,
+      "verdadeiro_mito_vovo_19.mp3": 17669,
+      "verdadeiro_mito_vovo_20.mp3": 15254,
+      "verdadeiro_mito_vovo_21.mp3": 16925,
+      "verdadeiro_mito_vovo_22.mp3": 17752
     },
 
     attachVoicePresenceBoost(player) {
@@ -711,7 +733,7 @@
       sub: "",
       icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png?v=161",
       audioFile: "vovo_jogo_22_v161.mp3",
-      vovoFala: "Verdadeiro ou mito? Leia a frase da Bíblia no cartão roxo aqui em cima e toque em verdadeiro ou em mito lá embaixo!",
+      vovoFala: "Ouça com atenção a frase da história que o Vovô vai falar e responda lá embaixo se é verdadeiro ou se é mito!",
       run: (container, phase) => runVerdadeiroOuMitoArcade(container, phase)
     }
   ];
@@ -2455,6 +2477,18 @@
         return;
       }
 
+      // VERDADEIRO OU MITO: Em cada uma das 22 fases o Vovô fala a frase/mito da lição e pergunta "É verdadeiro ou é mito?" (com trava até terminar!)
+      if (currentActiveGame && currentActiveGame.id === "verdadeiro_mito") {
+        _vovoAlreadySpokeInSession = true;
+        const tmBankLen = (window.TRUE_OR_MYTH_BANK && window.TRUE_OR_MYTH_BANK.length) ? window.TRUE_OR_MYTH_BANK.length : 22;
+        const tmNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % tmBankLen) + 1;
+        const tmAudio = `./6_ASSETS_AUDIO/verdadeiro_mito_vovo/verdadeiro_mito_vovo_${String(tmNum).padStart(2, "0")}.mp3?v=167`;
+        TronoAudio.falarVovo(tmAudio, () => {
+          unlockStageAfterVovo();
+        });
+        return;
+      }
+
       // REGRA DE SESSÃO INTELIGENTE (TRAVA UNIVERSAL RIGOBERTO UX):
       // 1) Na primeira fase da sessão (quando entra no jogo, incluindo Ordem Cronológica!), o Vovô explica tudo e a trava aguarda 100% da fala!
       // 2) Nas fases seguintes da mesma jogada contínua, o jogo entra direto e ágil sem cansar a criança!
@@ -2703,6 +2737,10 @@
       const swBankLen = (window.SECRET_WORD_BANK && window.SECRET_WORD_BANK.length) ? window.SECRET_WORD_BANK.length : 22;
       const swNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % swBankLen) + 1;
       audioTarget = `./6_ASSETS_AUDIO/palavra_secreta_vovo/palavra_secreta_vovo_${String(swNum).padStart(2, "0")}.mp3?v=165`;
+    } else if (currentActiveGame.id === "verdadeiro_mito") {
+      const tmBankLen = (window.TRUE_OR_MYTH_BANK && window.TRUE_OR_MYTH_BANK.length) ? window.TRUE_OR_MYTH_BANK.length : 22;
+      const tmNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % tmBankLen) + 1;
+      audioTarget = `./6_ASSETS_AUDIO/verdadeiro_mito_vovo/verdadeiro_mito_vovo_${String(tmNum).padStart(2, "0")}.mp3?v=167`;
     }
     if (!audioTarget) return;
     TronoAudio.play("click");
@@ -7983,6 +8021,8 @@
         const wkNum = ((Math.max(1, Math.floor(Number(phaseOrStory) || 1)) - 1) % 22) + 1;
         window.preloadArcadeImageUrl("./2_ASSETS_UI_BOTOES/bg_jogo_20_palavrasecreta_v161.jpg?v=161");
         window.preloadArcadeAudioUrl(`./6_ASSETS_AUDIO/palavra_secreta_vovo/palavra_secreta_vovo_${String(wkNum).padStart(2, "0")}.mp3?v=165`);
+        window.preloadArcadeImageUrl("./2_ASSETS_UI_BOTOES/bg_jogo_22_verdadeiromito_v161.jpg?v=161");
+        window.preloadArcadeAudioUrl(`./6_ASSETS_AUDIO/verdadeiro_mito_vovo/verdadeiro_mito_vovo_${String(wkNum).padStart(2, "0")}.mp3?v=167`);
         window.preloadArcadeImageUrl("./3_ASSETS_QUIZ_ARCADE/quiz_bg_monte_sinai_v154.jpg?v=154");
         const qDataPre = getQuizVisualPhaseObj(wkNum);
         if (qDataPre) {
@@ -9859,15 +9899,16 @@
     });
   }
 
-  // --- JOGO 22: VERDADEIRO OU MITO EM TELA CHEIA (22 LIÇÕES • AFIRMAÇÃO ROXA + 2 BOTÕES 3D) ---
+  // --- JOGO 22: VERDADEIRO OU MITO EM TELA CHEIA (22 LIÇÕES • 100% NARRADO PELO VOVÔ + AFIRMAÇÃO ROXA + 2 BOTÕES 3D) ---
   function runVerdadeiroOuMitoArcade(container, phase) {
+    window._arcadeWaitVisualBeforeVovo = true;
     injectLessonArcadeV161Styles();
     const wk = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 22) + 1;
     const bank = window.TRUE_OR_MYTH_BANK || [];
     const item = bank.find(it => Number(it.lessonWeek) === wk) || bank[(wk - 1) % Math.max(1, bank.length)] || {
-      statement: "No 1º Dia da Criação, Deus disse 'Haja luz!', e no 7º Dia descansou e abençoou toda a Sua obra.",
+      statement: "No primeiro dia da Criação, Deus disse 'Haja luz!', e no sétimo dia descansou e abençoou toda a Sua obra.",
       isTrue: true,
-      explanation: "VERDADEIRO! Em Gênesis 1 e 2, Deus criou tudo em 6 dias com perfeição e descansou no 7º dia!"
+      explanation: "VERDADEIRO! Em Gênesis 1 e 2, Deus criou tudo em seis dias com perfeição e descansou no sétimo dia!"
     };
 
     const cleanStmt = stripLessonPrefixText(item.statement || "");
@@ -9875,13 +9916,14 @@
 
     container.innerHTML = `
       <div class="arc-v161-stage" style="padding:44px 14px 18px 14px; justify-content:space-evenly;">
-        <img src="./2_ASSETS_UI_BOTOES/bg_jogo_22_verdadeiromito_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
+        <img id="arcade-tm-bg-img" src="./2_ASSETS_UI_BOTOES/bg_jogo_22_verdadeiromito_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
-        <!-- Card Roxo da Frase Bíblica com Margem Colorida -->
-        <div class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:430px; padding:20px 18px; text-align:center;">
-          <div style="display:inline-block; background:rgba(15,23,42,0.88); color:#fde047; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; padding:4px 12px; border-radius:999px; border:1.5px solid #fde047; margin-bottom:12px; letter-spacing:0.5px;">
-            VERDADEIRO OU MITO?
+        <!-- Card Roxo da Frase Bíblica com Margem Colorida (Toque para Ouvir o Vovô Novamente) -->
+        <div id="arcade-tm-stmt-card" class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:430px; padding:18px 18px; text-align:center; cursor:pointer;" title="Ouvir o Vovô Nésio novamente">
+          <div style="display:inline-flex; align-items:center; justify-content:center; gap:6px; background:rgba(15,23,42,0.88); color:#fde047; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; padding:4px 12px; border-radius:999px; border:1.5px solid #fde047; margin-bottom:11px; letter-spacing:0.5px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#fde047"/><path d="M15.54 8.46C16.47 9.4 17 10.66 17 12C17 13.34 16.47 14.6 15.54 15.54" stroke="#fde047" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <span>VERDADEIRO OU MITO?</span>
           </div>
           <div style="font-family:'Fredoka',sans-serif; font-size:clamp(17px, 4.4vw, 21.5px); font-weight:900; color:#ffffff; line-height:1.36; text-shadow:0 2px 6px rgba(0,0,0,0.85);">
             "${cleanStmt}"
@@ -9890,16 +9932,16 @@
 
         <!-- Feedback Bíblico Curto Solto -->
         <div id="arcade-tm-feedback" class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:430px; padding:12px 15px; text-align:center; background:linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(30,27,75,0.96) 100%); font-family:'Fredoka',sans-serif; font-size:clamp(13.5px, 3.6vw, 15.5px); font-weight:800; color:#fde047; line-height:1.32;">
-          Toque em VERDADEIRO ou em MITO abaixo!
+          Ouça o Vovô Nésio com atenção...
         </div>
 
         <!-- Dois Botões Gigantes 3D Soltos -->
         <div style="position:relative; z-index:5; width:100%; max-width:430px; display:grid; grid-template-columns:repeat(2, 1fr); gap:12px;">
-          <button type="button" id="arcade-tm-btn-true" style="height:74px; border-radius:22px; border:3px solid #ffffff; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:clamp(16px, 4.3vw, 19.5px); font-weight:900; box-shadow:0 8px 20px rgba(0,0,0,0.65), inset 0 2px 4px rgba(255,255,255,0.35); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:7px; transition:transform 0.16s ease, opacity 0.18s ease;">
+          <button type="button" id="arcade-tm-btn-true" style="height:74px; border-radius:22px; border:3px solid #ffffff; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:clamp(16px, 4.3vw, 19.5px); font-weight:900; box-shadow:0 8px 20px rgba(0,0,0,0.65), inset 0 2px 4px rgba(255,255,255,0.35); cursor:pointer; opacity:0.55; display:flex; align-items:center; justify-content:center; gap:7px; transition:transform 0.16s ease, opacity 0.22s ease;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span>VERDADEIRO</span>
           </button>
-          <button type="button" id="arcade-tm-btn-false" style="height:74px; border-radius:22px; border:3px solid #ffffff; background:linear-gradient(180deg, #ff1744 0%, #b71c1c 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:clamp(16px, 4.3vw, 19.5px); font-weight:900; box-shadow:0 8px 20px rgba(0,0,0,0.65), inset 0 2px 4px rgba(255,255,255,0.35); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:7px; transition:transform 0.16s ease, opacity 0.18s ease;">
+          <button type="button" id="arcade-tm-btn-false" style="height:74px; border-radius:22px; border:3px solid #ffffff; background:linear-gradient(180deg, #ff1744 0%, #b71c1c 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:clamp(16px, 4.3vw, 19.5px); font-weight:900; box-shadow:0 8px 20px rgba(0,0,0,0.65), inset 0 2px 4px rgba(255,255,255,0.35); cursor:pointer; opacity:0.55; display:flex; align-items:center; justify-content:center; gap:7px; transition:transform 0.16s ease, opacity 0.22s ease;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/></svg>
             <span>MITO</span>
           </button>
@@ -9907,9 +9949,50 @@
       </div>
     `;
 
+    const bgImgEl = container.querySelector("#arcade-tm-bg-img");
+    const stmtCardEl = container.querySelector("#arcade-tm-stmt-card");
     const fbEl = container.querySelector("#arcade-tm-feedback");
     const btnTrue = container.querySelector("#arcade-tm-btn-true");
     const btnFalse = container.querySelector("#arcade-tm-btn-false");
+
+    const markTmVisualReady = () => {
+      if (typeof window._notifyArcadeVisualReady === "function") {
+        window._notifyArcadeVisualReady();
+      }
+    };
+    if (bgImgEl && bgImgEl.complete && bgImgEl.naturalWidth > 0) {
+      setTimeout(markTmVisualReady, 30);
+    } else if (bgImgEl) {
+      bgImgEl.addEventListener("load", markTmVisualReady, { once: true });
+      bgImgEl.addEventListener("error", markTmVisualReady, { once: true });
+      setTimeout(markTmVisualReady, 950);
+    } else {
+      markTmVisualReady();
+    }
+
+    window._arcadeUnlockGameAction = function() {
+      if (solved || _isVictoryActive) return;
+      if (btnTrue) btnTrue.style.opacity = "1";
+      if (btnFalse) btnFalse.style.opacity = "1";
+      if (fbEl) {
+        fbEl.style.color = "#fde047";
+        fbEl.textContent = "Toque em VERDADEIRO ou em MITO abaixo!";
+      }
+    };
+
+    if (stmtCardEl) {
+      stmtCardEl.addEventListener("click", () => {
+        if (window._arcadeStageLockedForVovo || solved || _isVictoryActive) return;
+        if (typeof window.repeatVovoInstruction === "function") {
+          window.repeatVovoInstruction();
+        }
+      });
+    }
+
+    setTimeout(() => {
+      const nextWk = (wk % 22) + 1;
+      window.preloadArcadeAudioUrl(`./6_ASSETS_AUDIO/verdadeiro_mito_vovo/verdadeiro_mito_vovo_${String(nextWk).padStart(2, "0")}.mp3?v=167`);
+    }, 900);
 
     function handleAnswer(choice) {
       if (window._arcadeStageLockedForVovo || solved || _isVictoryActive) return;
