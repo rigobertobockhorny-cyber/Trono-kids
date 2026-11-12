@@ -275,6 +275,7 @@
       "vovo_jogo_16_v161.mp3": 10280,
       "vovo_jogo_17.mp3": 6410,
       "vovo_jogo_17_v161.mp3": 16000,
+      "vovo_jogo_17_v162.mp3": 17324,
       "vovo_jogo_19_v161.mp3": 11020,
       "vovo_jogo_20_v161.mp3": 11910,
       "vovo_jogo_21_v161.mp3": 9000,
@@ -359,8 +360,8 @@
         const isVictory = audioFile === "vovo_vitoria.mp3";
         const rawPath = String(audioFile);
         const resolvedUrl = rawPath.startsWith("./")
-          ? `${rawPath}${rawPath.includes("?") ? "" : "?v=161"}`
-          : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=161`;
+          ? `${rawPath}${rawPath.includes("?") ? "" : "?v=162"}`
+          : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=162`;
         const durKey = rawPath.split("/").pop().split("?")[0];
         const replayBtnEl = document.getElementById("arcade-btn-replay-vovo");
         if (replayBtnEl && !isVictory) replayBtnEl.classList.add("vovo-speaking");
@@ -602,8 +603,8 @@
       title: "PINTURA MÁGICA",
       sub: "",
       icon: "./2_ASSETS_UI_BOTOES/ico_jogo_17_pintura_v130.png?v=130",
-      audioFile: "vovo_jogo_17_v161.mp3",
-      vovoFala: "Vamos colorir esse desenho lindo! Escolha uma cor na barra lá embaixo e use a pontinha do lápis na tela para pintar cada cantinho com precisão! Quando terminar, aperte em pronto!",
+      audioFile: "vovo_jogo_17_v162.mp3",
+      vovoFala: "Vamos colorir esse desenho lindo! Escolha uma cor lá embaixo, leve a pontinha do lápis até o lugar certinho e depois aperte com o dedinho na tela para pintar! Quando terminar, aperte em pronto!",
       run: (container, phase) => runPinturaMagicaArcade(container, phase)
     },
     {
@@ -2036,6 +2037,10 @@
     if (window._arcadePaintKeyHandler) {
       window.removeEventListener("keydown", window._arcadePaintKeyHandler);
       window._arcadePaintKeyHandler = null;
+    }
+    if (window._arcadePaintResizeHandler) {
+      window.removeEventListener("resize", window._arcadePaintResizeHandler);
+      window._arcadePaintResizeHandler = null;
     }
   }
 
@@ -7378,15 +7383,19 @@
       .arc-v161-diff-btn:active {
         transform: scale(0.93);
       }
-      /* LAPIZINHO MÁGICO FLUTUANTE 3D NA PINTURA MÁGICA */
+      /* LAPIZINHO MÁGICO FLUTUANTE 3D NA PINTURA MÁGICA (POSICIONAR + CLICAR PARA PINTAR!) */
       #arcade-paint-floating-pencil {
         position: fixed;
         left: 0;
         top: 0;
-        width: 52px;
-        height: 52px;
+        width: 56px;
+        height: 56px;
         transform: translate(-5px, -47px);
-        pointer-events: none;
+        pointer-events: auto;
+        cursor: pointer;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
         z-index: 10000120;
         opacity: 0;
         transition: opacity 0.14s ease;
@@ -8052,6 +8061,14 @@
     let activePaintPointerId = null;
     let isPointerDown = false;
     let lastTipCanvasPt = null;
+    let pencilNormX = 0.52;
+    let pencilNormY = 0.48;
+    let downClientX = 0;
+    let downClientY = 0;
+    let prevMoveClientX = 0;
+    let prevMoveClientY = 0;
+    let didMovePencil = false;
+    let activeDragGain = 1.0;
     const baseImg = new Image();
 
     function buildPencilSvg(hex) {
@@ -8177,20 +8194,14 @@
       }
       pCtx.putImageData(imgData, 0, 0);
 
-      // Posiciona o lapizinho visível logo no centro da folha para a criança já enxergar a ferramenta!
+      // Posiciona o lapizinho visível estacionado no centro da folha (só pinta quando a criança der o cliquezinho/aperto!)
       setTimeout(() => {
         if (!paintCanvas.isConnected || !pencilEl) return;
-        const r = paintCanvas.getBoundingClientRect();
-        if (r.width > 20 && r.height > 20) {
-          pencilEl.style.left = `${r.left + r.width * 0.52}px`;
-          pencilEl.style.top = `${r.top + r.height * 0.48}px`;
-          pencilEl.classList.add("pencil-visible");
-        }
+        syncParkedPencilTip();
       }, 60);
     }
 
-    // Calcula a coordenada exata da PONTINHA DO LÁPIS (34px acima do dedinho no touch para NUNCA cobrir detalhes!)
-    function computePencilTipCoords(ev) {
+    function getPaperMetrics() {
       const rect = paintCanvas.getBoundingClientRect();
       const cw = paintCanvas.width, ch = paintCanvas.height;
       const scale = Math.min(rect.width / cw, rect.height / ch) || 1;
@@ -8198,13 +8209,25 @@
       const paperH = ch * scale;
       const paperLeft = rect.left + (rect.width - paperW) / 2;
       const paperTop = rect.top + (rect.height - paperH) / 2;
+      return { cw, ch, scale, paperW, paperH, paperLeft, paperTop };
+    }
 
-      const isTouchLike = ev.pointerType !== "mouse";
-      const rawTipX = ev.clientX - (isTouchLike ? 6 : 0);
-      const rawTipY = ev.clientY - (isTouchLike ? 34 : 0);
-
-      const tipClientX = Math.max(paperLeft + 1, Math.min(paperLeft + paperW - 2, rawTipX));
-      const tipClientY = Math.max(paperTop + 1, Math.min(paperTop + paperH - 2, rawTipY));
+    function syncParkedPencilTip() {
+      const m = getPaperMetrics();
+      if (m.paperW <= 4 || m.paperH <= 4) {
+        return {
+          x: Math.max(0, Math.min(m.cw - 1, Math.floor(pencilNormX * m.cw))),
+          y: Math.max(0, Math.min(m.ch - 1, Math.floor(pencilNormY * m.ch))),
+          tipClientX: 0,
+          tipClientY: 0,
+          paperW: m.paperW,
+          paperH: m.paperH
+        };
+      }
+      pencilNormX = Math.max(0.004, Math.min(0.996, pencilNormX));
+      pencilNormY = Math.max(0.004, Math.min(0.996, pencilNormY));
+      const tipClientX = m.paperLeft + pencilNormX * m.paperW;
+      const tipClientY = m.paperTop + pencilNormY * m.paperH;
 
       if (pencilEl) {
         pencilEl.style.left = `${tipClientX}px`;
@@ -8212,8 +8235,34 @@
         pencilEl.classList.add("pencil-visible");
       }
 
-      const cx = Math.max(0, Math.min(cw - 1, Math.floor((tipClientX - paperLeft) / scale)));
-      const cy = Math.max(0, Math.min(ch - 1, Math.floor((tipClientY - paperTop) / scale)));
+      const cx = Math.max(0, Math.min(m.cw - 1, Math.floor(pencilNormX * m.cw)));
+      const cy = Math.max(0, Math.min(m.ch - 1, Math.floor(pencilNormY * m.ch)));
+      return { x: cx, y: cy, tipClientX, tipClientY, paperW: m.paperW, paperH: m.paperH };
+    }
+
+    // Calcula a coordenada exata da PONTINHA DO LÁPIS no modo LÁPIS livre ou hover de mouse desktop
+    function computePencilTipCoords(ev) {
+      const m = getPaperMetrics();
+      const isTouchLike = ev.pointerType !== "mouse";
+      const rawTipX = ev.clientX - (isTouchLike ? 6 : 0);
+      const rawTipY = ev.clientY - (isTouchLike ? 34 : 0);
+
+      const tipClientX = Math.max(m.paperLeft + 1, Math.min(m.paperLeft + m.paperW - 2, rawTipX));
+      const tipClientY = Math.max(m.paperTop + 1, Math.min(m.paperTop + m.paperH - 2, rawTipY));
+
+      if (m.paperW > 4 && m.paperH > 4) {
+        pencilNormX = Math.max(0.004, Math.min(0.996, (tipClientX - m.paperLeft) / m.paperW));
+        pencilNormY = Math.max(0.004, Math.min(0.996, (tipClientY - m.paperTop) / m.paperH));
+      }
+
+      if (pencilEl) {
+        pencilEl.style.left = `${tipClientX}px`;
+        pencilEl.style.top = `${tipClientY}px`;
+        pencilEl.classList.add("pencil-visible");
+      }
+
+      const cx = Math.max(0, Math.min(m.cw - 1, Math.floor((tipClientX - m.paperLeft) / m.scale)));
+      const cy = Math.max(0, Math.min(m.ch - 1, Math.floor((tipClientY - m.paperTop) / m.scale)));
       return { x: cx, y: cy };
     }
 
@@ -8409,22 +8458,28 @@
       ev.preventDefault();
       isPointerDown = true;
       activePaintPointerId = ev.pointerId;
+      downClientX = ev.clientX;
+      downClientY = ev.clientY;
+      prevMoveClientX = ev.clientX;
+      prevMoveClientY = ev.clientY;
+      didMovePencil = false;
       try { stageWrap.setPointerCapture(ev.pointerId); } catch (e) {}
 
-      const pt = computePencilTipCoords(ev);
-      lastTipCanvasPt = pt;
-
       if (curTool === "brush") {
+        const pt = computePencilTipCoords(ev);
+        lastTipCanvasPt = pt;
         pushUndo();
         drawPencilStroke(pt, pt);
-      } else if (ev.pointerType === "mouse") {
-        // No mouse desktop, o clique já pinta direto onde a ponta do lápis está!
-        TronoAudio.play("click");
-        floodFillAtTip(pt.x, pt.y, curColor.rgb);
-        if (pencilEl) {
-          pencilEl.classList.remove("pencil-tap-pop");
-          void pencilEl.offsetWidth;
-          pencilEl.classList.add("pencil-tap-pop");
+      } else {
+        // Modo TOQUE com Trava Pedagógica:
+        // Se for mouse desktop, sincroniza onde o ponteiro está; no touch/tablet, NÃO move o lápis nem pinta no pointerdown!
+        if (ev.pointerType === "mouse") {
+          computePencilTipCoords(ev);
+          activeDragGain = 1.0;
+        } else {
+          const cur = syncParkedPencilTip();
+          const distToPencilBody = Math.hypot(ev.clientX - (cur.tipClientX + 18), ev.clientY - (cur.tipClientY - 20));
+          activeDragGain = distToPencilBody <= 76 ? 1.0 : 1.22;
         }
       }
     });
@@ -8439,11 +8494,35 @@
       if (activePaintPointerId !== null && ev.pointerId !== activePaintPointerId) return;
       ev.preventDefault();
 
-      const pt = computePencilTipCoords(ev);
       if (curTool === "brush") {
+        const pt = computePencilTipCoords(ev);
         drawPencilStroke(lastTipCanvasPt || pt, pt);
+        lastTipCanvasPt = pt;
+        return;
       }
-      lastTipCanvasPt = pt;
+
+      // Modo TOQUE: arrastar (>= 7px) APENAS posiciona a pontinha do lápis sem pintar!
+      const totalDist = Math.hypot(ev.clientX - downClientX, ev.clientY - downClientY);
+      if (!didMovePencil) {
+        if (totalDist < 7) {
+          // Zona morta de aperto/cliquezinho: mantém a pontinha 100% parada no alvo!
+          return;
+        }
+        didMovePencil = true;
+        prevMoveClientX = ev.clientX;
+        prevMoveClientY = ev.clientY;
+      }
+
+      const m = getPaperMetrics();
+      if (m.paperW > 4 && m.paperH > 4) {
+        const dx = (ev.clientX - prevMoveClientX) * activeDragGain;
+        const dy = (ev.clientY - prevMoveClientY) * activeDragGain;
+        prevMoveClientX = ev.clientX;
+        prevMoveClientY = ev.clientY;
+        pencilNormX = Math.max(0.004, Math.min(0.996, pencilNormX + dx / m.paperW));
+        pencilNormY = Math.max(0.004, Math.min(0.996, pencilNormY + dy / m.paperH));
+        syncParkedPencilTip();
+      }
     });
 
     function finishPaintPointer(ev, cancelled) {
@@ -8458,17 +8537,23 @@
       if (curTool === "brush") {
         lastTipCanvasPt = null;
         restoreCrispOutlines();
-      } else if (!cancelled && ev && ev.pointerType !== "mouse" && lastTipCanvasPt) {
-        // No celular/tablet (modo TOQUE): a criança mira com a pontinha visível do lápis e, ao soltar o dedinho, pinta exatamente na pontinha!
+        return;
+      }
+
+      // TRAVA SUPREMA DO LÁPIS NO MODO TOQUE:
+      // 1) Se a criança ARRASTOU (didMovePencil === true), ela só posicionou o lápis -> NÃO PINTA AO PARAR!
+      // 2) Só pinta quando a criança der um CLIQUEZINHO / APERTO (didMovePencil === false) em cima do lápis ou na tela!
+      if (!cancelled && !didMovePencil) {
+        const tipPt = syncParkedPencilTip();
         TronoAudio.play("click");
-        floodFillAtTip(lastTipCanvasPt.x, lastTipCanvasPt.y, curColor.rgb);
+        floodFillAtTip(tipPt.x, tipPt.y, curColor.rgb);
         if (pencilEl) {
           pencilEl.classList.remove("pencil-tap-pop");
           void pencilEl.offsetWidth;
           pencilEl.classList.add("pencil-tap-pop");
         }
-        lastTipCanvasPt = null;
       }
+      didMovePencil = false;
     }
 
     stageWrap.addEventListener("pointerup", (ev) => finishPaintPointer(ev, false));
@@ -8536,6 +8621,16 @@
       }
     };
     window.addEventListener("keydown", window._arcadePaintKeyHandler);
+
+    if (window._arcadePaintResizeHandler) {
+      window.removeEventListener("resize", window._arcadePaintResizeHandler);
+    }
+    window._arcadePaintResizeHandler = () => {
+      if (paintCanvas && paintCanvas.isConnected) {
+        syncParkedPencilTip();
+      }
+    };
+    window.addEventListener("resize", window._arcadePaintResizeHandler);
 
     baseImg.onload = () => {
       undoStack = [];
