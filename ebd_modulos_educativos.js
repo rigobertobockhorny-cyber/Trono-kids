@@ -7798,6 +7798,10 @@ window.openGameFromLesson = function(gameKey) {
     window.openLessonArcadeGame("criacao_ordem", lesson.week, "chronology");
     return;
   }
+  if (gameKey === "verse_builder" && typeof window.openLessonArcadeGame === "function") {
+    window.openLessonArcadeGame("versiculo_secreto", lesson.week, "verse_builder");
+    return;
+  }
   if (gameKey === "lesson_puzzle" && st && typeof startPuzzleWithStory === "function") {
     if (typeof currentStory !== "undefined") currentStory = st;
     startPuzzleWithStory(st);
@@ -7912,6 +7916,14 @@ window.openEduGame = function(gameKey, fromLesson) {
     }
     window.renderStageChronology();
   } else if (gameKey === "verse_builder") {
+    if (fromLesson && typeof window.openLessonArcadeGame === "function") {
+      window.openLessonArcadeGame("versiculo_secreto", wk, "verse_builder");
+      return;
+    }
+    if (!fromLesson && typeof window.openTronoArcadeGame === "function") {
+      window.openTronoArcadeGame("versiculo_secreto");
+      return;
+    }
     if (fromLesson) {
       const ageData = (lesson.byAge && lesson.byAge[window.EBD_STATE.ageBracket]) || lesson.byAge["6-8"];
       window.EBD_STATE.customLessonVerse = {

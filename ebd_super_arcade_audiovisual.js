@@ -288,7 +288,29 @@
       "quiz_vovo_q12.mp3": 12320,
       "quiz_vovo_q13.mp3": 9650,
       "quiz_vovo_q14.mp3": 10190,
-      "quiz_vovo_q15.mp3": 14360
+      "quiz_vovo_q15.mp3": 14360,
+      "versiculo_vovo_01.mp3": 13050,
+      "versiculo_vovo_02.mp3": 12820,
+      "versiculo_vovo_03.mp3": 10900,
+      "versiculo_vovo_04.mp3": 12320,
+      "versiculo_vovo_05.mp3": 13020,
+      "versiculo_vovo_06.mp3": 11210,
+      "versiculo_vovo_07.mp3": 11620,
+      "versiculo_vovo_08.mp3": 11620,
+      "versiculo_vovo_09.mp3": 13290,
+      "versiculo_vovo_10.mp3": 11160,
+      "versiculo_vovo_11.mp3": 13390,
+      "versiculo_vovo_12.mp3": 13530,
+      "versiculo_vovo_13.mp3": 12970,
+      "versiculo_vovo_14.mp3": 11860,
+      "versiculo_vovo_15.mp3": 12370,
+      "versiculo_vovo_16.mp3": 12510,
+      "versiculo_vovo_17.mp3": 12090,
+      "versiculo_vovo_18.mp3": 12320,
+      "versiculo_vovo_19.mp3": 13250,
+      "versiculo_vovo_20.mp3": 13020,
+      "versiculo_vovo_21.mp3": 11620,
+      "versiculo_vovo_22.mp3": 11220
     },
 
     falarVovo(audioFile, onFinish) {
@@ -331,9 +353,11 @@
         const isVictory = audioFile === "vovo_vitoria.mp3";
         const rawPath = String(audioFile);
         const resolvedUrl = rawPath.startsWith("./")
-          ? `${rawPath}${rawPath.includes("?") ? "" : "?v=159"}`
-          : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=159`;
+          ? `${rawPath}${rawPath.includes("?") ? "" : "?v=160"}`
+          : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=160`;
         const durKey = rawPath.split("/").pop().split("?")[0];
+        const replayBtnEl = document.getElementById("arcade-btn-replay-vovo");
+        if (replayBtnEl && !isVictory) replayBtnEl.classList.add("vovo-speaking");
         // Usa instância limpa por chamada nos áudios de jogo para NUNCA disparar abort/stalled de troca de src!
         const player = (isVictory && this.vovoVictoryPlayer) ? this.vovoVictoryPlayer : new Audio(resolvedUrl);
         if (!isVictory) {
@@ -365,6 +389,8 @@
           this._pendingFinish = null;
           if (this._vovoTimer) clearTimeout(this._vovoTimer);
           this._vovoTimer = null;
+          const rbDone = document.getElementById("arcade-btn-replay-vovo");
+          if (rbDone) rbDone.classList.remove("vovo-speaking");
           player.onended = null;
           player.onerror = null;
           player.onloadedmetadata = null;
@@ -519,6 +545,15 @@
       audioFile: "vovo_jogo_12_v159.mp3",
       vovoFala: "Vamos colocar a história da Bíblia na ordem certa! Pegue as imagens lá embaixo com o dedinho e coloque na ordem correta nos quadradinhos aqui em cima!",
       run: (container, phase) => runCriacaoOrdem(container, phase)
+    },
+    {
+      id: "versiculo_secreto",
+      title: "VERSÍCULO SECRETO",
+      sub: "",
+      icon: "./2_ASSETS_UI_BOTOES/ui_icon_06.png?v=160",
+      audioFile: "./6_ASSETS_AUDIO/versiculo_vovo/versiculo_vovo_01.mp3?v=160",
+      vovoFala: "Escute o versículo e coloque as palavras na ordem certa aqui em cima!",
+      run: (container, phase) => runVersiculoSecretoArcade(container, phase)
     },
     {
       id: "memoria_sonoro",
@@ -947,6 +982,63 @@
       }
       .arcade-phase-badge:active {
         transform: scale(0.95);
+      }
+      @keyframes vovoReplayBorderFlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      @keyframes vovoReplaySpeakingPulse {
+        0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,0.6), 0 0 10px rgba(253,224,71,0.55); }
+        50% { transform: scale(1.06); box-shadow: 0 6px 16px rgba(0,0,0,0.72), 0 0 22px rgba(253,224,71,0.95); }
+      }
+      .arcade-btn-replay-vovo {
+        position: absolute;
+        top: 64px;
+        right: 10px;
+        z-index: 155;
+        height: 34px;
+        padding: 0 11px 0 9px;
+        border-radius: 999px;
+        border: none;
+        background: linear-gradient(180deg, rgba(126, 34, 206, 0.92) 0%, rgba(76, 29, 149, 0.96) 100%);
+        color: #ffffff;
+        font-family: 'Fredoka', sans-serif;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.65);
+        pointer-events: auto;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        transition: transform 0.14s ease, filter 0.14s ease;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .arcade-btn-replay-vovo::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 2.5px;
+        background: linear-gradient(125deg, #38bdf8, #a855f7, #fde047, #34d399, #ec4899, #38bdf8);
+        background-size: 250% 250%;
+        animation: vovoReplayBorderFlow 4s ease infinite;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+      .arcade-btn-replay-vovo:active {
+        transform: scale(0.93);
+      }
+      .arcade-btn-replay-vovo.vovo-speaking {
+        animation: vovoReplaySpeakingPulse 1.15s ease-in-out infinite;
+        color: #fde047;
       }
       .arcade-vovo-bubble {
         position: absolute;
@@ -1616,6 +1708,9 @@
     if (gameId === "criacao_ordem") {
       return (window.CHRONOLOGY_LEVELS && window.CHRONOLOGY_LEVELS.length) ? window.CHRONOLOGY_LEVELS.length : 22;
     }
+    if (gameId === "versiculo_secreto") {
+      return (window.VERSE_BUILDER_BANK && window.VERSE_BUILDER_BANK.length) ? window.VERSE_BUILDER_BANK.length : 22;
+    }
     return TOTAL_PHASES;
   }
 
@@ -1761,6 +1856,15 @@
           </button>
         </div>
 
+        <!-- Botão Universal "OUVIR" Dentro da Imagem de Todos os Jogos (Repete a Fala do Vovô!) -->
+        <button class="arcade-btn-replay-vovo" id="arcade-btn-replay-vovo" type="button" title="Ouvir o Vovô novamente">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="pointer-events:none; flex-shrink:0;">
+            <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#fde047"/>
+            <path d="M15.5 8.5C16.5 9.5 17 10.7 17 12C17 13.3 16.5 14.5 15.5 15.5M18.8 5.4C20.6 7.1 21.6 9.5 21.6 12C21.6 14.5 20.6 16.9 18.8 18.6" stroke="#fde047" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+          <span style="pointer-events:none;">OUVIR</span>
+        </button>
+
         <!-- Área de Jogo Limpa em Tela Cheia (Sem balões de texto bloqueando a tela) -->
         <div class="arcade-game-canvas-area" id="arcade-game-stage-container"></div>
 
@@ -1803,6 +1907,14 @@
           window.toggleArcadeSound();
         });
       }
+
+      const replayVovoBtn = document.getElementById("arcade-btn-replay-vovo");
+      if (replayVovoBtn) {
+        replayVovoBtn.addEventListener("click", (e) => {
+          if (e) { e.preventDefault(); e.stopPropagation(); }
+          window.repeatVovoInstruction();
+        });
+      }
     }
   }
 
@@ -1828,6 +1940,14 @@
     if (window._chronoWinTimer) {
       clearTimeout(window._chronoWinTimer);
       window._chronoWinTimer = null;
+    }
+    if (window._verseDragGhostEl && window._verseDragGhostEl.parentNode) {
+      try { window._verseDragGhostEl.parentNode.removeChild(window._verseDragGhostEl); } catch (e) {}
+    }
+    window._verseDragGhostEl = null;
+    if (window._verseWinTimer) {
+      clearTimeout(window._verseWinTimer);
+      window._verseWinTimer = null;
     }
   }
 
@@ -1999,6 +2119,11 @@
       modal.style.display = "none";
       modal.innerHTML = "";
     }
+    const replayBtnEl = document.getElementById("arcade-btn-replay-vovo");
+    if (replayBtnEl) {
+      replayBtnEl.style.display = "inline-flex";
+      replayBtnEl.classList.remove("vovo-speaking");
+    }
     stopArcadeCelebrationConfetti();
     if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
     if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
@@ -2017,8 +2142,9 @@
     if (window._dracmaCheckInterval) { clearInterval(window._dracmaCheckInterval); window._dracmaCheckInterval = null; }
 
     const container = document.getElementById("arcade-game-stage-container");
-    // TRAVA UNIVERSAL DOS 16 JOGOS ENQUANTO O VOVÔ EXPLICA:
+    // TRAVA UNIVERSAL EM TODOS OS JOGOS ENQUANTO O VOVÔ EXPLICA:
     // Bloqueia 100% qualquer clique/arraste no palco até o Vovô terminar a fala!
+    window._arcadeStageLockedForVovo = true;
     if (container) {
       container.style.visibility = "visible";
       container.style.opacity = "1";
@@ -2026,10 +2152,11 @@
     }
     if (container && currentActiveGame) {
       container.innerHTML = "";
-      currentActiveGame.run(container, phase);
+      currentActiveGame.run(container, currentPhase);
     }
 
     const unlockStageAfterVovo = () => {
+      window._arcadeStageLockedForVovo = false;
       if (container) {
         container.style.pointerEvents = "auto";
       }
@@ -2037,29 +2164,33 @@
         window._arcadeUnlockGameAction();
       }
     };
+    window._currentUnlockStageAfterVovo = unlockStageAfterVovo;
 
-    // REGRA ESPECIAL DO QUIZ DA BÍBLIA: EM TODAS AS 15 FASES O VOVÔ FAZ A PERGUNTA E DIZ AS 3 ALTERNATIVAS
-    // ENQUANTO A CRIANÇA OLHA AS IMAGENS E JÁ PODE RESPONDER OU REPETIR O ÁUDIO!
+    // QUIZ DA BÍBLIA: Em todas as 15 fases o Vovô faz a pergunta e diz as 3 alternativas (com trava até terminar de falar!)
     if (currentActiveGame && currentActiveGame.id === "quiz_visual") {
       _vovoAlreadySpokeInSession = true;
-      unlockStageAfterVovo();
-      const qAudio = `./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q${String(phase).padStart(2, "0")}.mp3?v=154`;
-      TronoAudio.falarVovo(qAudio);
+      const qNum = Math.max(1, Math.min(15, Math.floor(Number(currentPhase) || 1)));
+      const qAudio = `./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q${String(qNum).padStart(2, "0")}.mp3?v=154`;
+      TronoAudio.falarVovo(qAudio, () => {
+        unlockStageAfterVovo();
+      });
       return;
     }
 
-    // ORDEM CRONOLÓGICA: o Vovô explica na entrada e o dedinho já pode arrastar os cards imediatamente sem travar!
-    if (currentActiveGame && currentActiveGame.id === "criacao_ordem") {
-      unlockStageAfterVovo();
-      if (!_vovoAlreadySpokeInSession && currentActiveGame.audioFile) {
-        _vovoAlreadySpokeInSession = true;
-        TronoAudio.falarVovo(currentActiveGame.audioFile);
-      }
+    // VERSÍCULO SECRETO: Em cada uma das 22 fases o Vovô LÊ o versículo da lição e pede para montar (com trava até terminar!)
+    if (currentActiveGame && currentActiveGame.id === "versiculo_secreto") {
+      _vovoAlreadySpokeInSession = true;
+      const vBankLen = (window.VERSE_BUILDER_BANK && window.VERSE_BUILDER_BANK.length) ? window.VERSE_BUILDER_BANK.length : 22;
+      const vNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % vBankLen) + 1;
+      const vAudio = `./6_ASSETS_AUDIO/versiculo_vovo/versiculo_vovo_${String(vNum).padStart(2, "0")}.mp3?v=160`;
+      TronoAudio.falarVovo(vAudio, () => {
+        unlockStageAfterVovo();
+      });
       return;
     }
 
-    // REGRA DE SESSÃO INTELIGENTE (RIGOBERTO UX):
-    // 1) Na primeira fase da sessão (quando entra no jogo), o Vovô explica tudo e a trava aguarda 100% da fala!
+    // REGRA DE SESSÃO INTELIGENTE (TRAVA UNIVERSAL RIGOBERTO UX):
+    // 1) Na primeira fase da sessão (quando entra no jogo, incluindo Ordem Cronológica!), o Vovô explica tudo e a trava aguarda 100% da fala!
     // 2) Nas fases seguintes da mesma jogada contínua, o jogo entra direto e ágil sem cansar a criança!
     const shouldSpeak = !_vovoAlreadySpokeInSession && currentActiveGame && currentActiveGame.audioFile;
 
@@ -2258,9 +2389,25 @@
   };
 
   window.repeatVovoInstruction = function() {
-    if (currentActiveGame && currentActiveGame.audioFile && !window._arcadeAudioMuted) {
-      TronoAudio.falarVovo(currentActiveGame.audioFile);
+    if (_isVictoryActive || !currentActiveGame) return;
+    if (window._arcadeAudioMuted && typeof window.toggleArcadeSound === "function") {
+      window.toggleArcadeSound();
     }
+    let audioTarget = currentActiveGame.audioFile;
+    if (currentActiveGame.id === "quiz_visual") {
+      const qNum = Math.max(1, Math.min(15, Math.floor(Number(currentPhase) || 1)));
+      audioTarget = `./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q${String(qNum).padStart(2, "0")}.mp3?v=154`;
+    } else if (currentActiveGame.id === "versiculo_secreto") {
+      const vBankLen = (window.VERSE_BUILDER_BANK && window.VERSE_BUILDER_BANK.length) ? window.VERSE_BUILDER_BANK.length : 22;
+      const vNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % vBankLen) + 1;
+      audioTarget = `./6_ASSETS_AUDIO/versiculo_vovo/versiculo_vovo_${String(vNum).padStart(2, "0")}.mp3?v=160`;
+    }
+    if (!audioTarget) return;
+    TronoAudio.play("click");
+    const keepUnlockCb = (window._arcadeStageLockedForVovo && typeof window._currentUnlockStageAfterVovo === "function")
+      ? window._currentUnlockStageAfterVovo
+      : undefined;
+    TronoAudio.falarVovo(audioTarget, keepUnlockCb);
   };
 
   function unlockVictoryContinueButton() {
@@ -2420,6 +2567,11 @@
       stageContainer.style.visibility = "hidden";
       stageContainer.style.opacity = "0";
       stageContainer.innerHTML = "";
+    }
+    const replayBtnEl = document.getElementById("arcade-btn-replay-vovo");
+    if (replayBtnEl) {
+      replayBtnEl.style.display = "none";
+      replayBtnEl.classList.remove("vovo-speaking");
     }
 
     try {
@@ -6030,7 +6182,13 @@
     };
   }
 
-  // --- JOGO 12: ORDEM CRONOLÓGICA DA BÍBLIA (22 FASES = 22 LIÇÕES • ARRASTAR COM O DEDINHO PARA OS 4 QUADRADINHOS BRANCOS 1-2-3-4!) ---
+  // --- JOGO 12: ORDEM CRONOLÓGICA DA BÍBLIA (22 FASES = 22 LIÇÕES • LINHA DO TEMPO TRACEJADA 1º ➔ 2º ➔ 3º ➔ 4º + LEGENDAS NAS FIGURINHAS!) ---
+  function cleanChronoCaptionText(raw) {
+    return String(raw || "")
+      .replace(/\s*\(Dias?\s*[^)]*\)/gi, "")
+      .trim();
+  }
+
   function runCriacaoOrdem(container, phase) {
     cleanupChronoDragArtifacts();
 
@@ -6040,10 +6198,10 @@
           {
             level: 1, lessonWeek: 1,
             cards: [
-              { id: "c1", order: 1, img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=78" },
-              { id: "c2", order: 2, img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_103.jpg?v=78" },
-              { id: "c3", order: 3, img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_101.jpg?v=78" },
-              { id: "c4", order: 4, img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=78" }
+              { id: "c1", order: 1, title: "Haja Luz e Céu Iluminado!", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=78" },
+              { id: "c2", order: 2, title: "Terra Seca, Árvores e Flores", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_103.jpg?v=78" },
+              { id: "c3", order: 3, title: "Grandes Baleias no Mar e Aves", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_101.jpg?v=78" },
+              { id: "c4", order: 4, title: "Animais Terrestres, Adão e Eva", img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=78" }
             ]
           }
         ];
@@ -6058,7 +6216,7 @@
     }
 
     container.innerHTML = `
-      <style id="chrono-arcade-v159-styles">
+      <style id="chrono-arcade-v160-styles">
         @keyframes chronoBorderFlow {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
@@ -6083,7 +6241,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: space-between;
-          padding: clamp(14px, 3vh, 28px) 10px clamp(18px, 4vh, 36px) 10px;
+          padding: 48px 8px clamp(12px, 2.5vh, 22px) 8px;
           box-sizing: border-box;
           touch-action: none;
           user-select: none;
@@ -6093,20 +6251,28 @@
           position: relative;
           z-index: 5;
           width: 100%;
-          max-width: 560px;
+          max-width: 590px;
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: clamp(6px, 1.8vw, 12px);
+          grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+          gap: clamp(2px, 0.8vw, 6px);
           align-items: center;
+        }
+        .chrono-timeline-arrow {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fde047;
+          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.85));
+          pointer-events: none;
         }
         .chrono-white-slot {
           position: relative;
           width: 100%;
-          aspect-ratio: 4 / 3;
-          border-radius: 14px;
-          background: rgba(255, 255, 255, 0.96);
-          border: 3px solid #fde047;
-          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.42), inset 0 2px 4px rgba(255, 255, 255, 0.9);
+          aspect-ratio: 16 / 10;
+          border-radius: 13px;
+          background: linear-gradient(180deg, rgba(88, 28, 135, 0.84) 0%, rgba(46, 16, 101, 0.90) 100%);
+          border: 2.5px dashed #fde047;
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.52), inset 0 1px 4px rgba(255, 255, 255, 0.22);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -6116,28 +6282,28 @@
         }
         .chrono-white-slot-num {
           font-family: 'Fredoka', sans-serif;
-          font-size: clamp(26px, 6.4vw, 38px);
+          font-size: clamp(20px, 5.2vw, 30px);
           font-weight: 900;
-          color: #6d28d9;
+          color: #fde047;
           line-height: 1;
-          text-shadow: 0 2px 0 rgba(253, 224, 71, 0.55);
+          text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
           pointer-events: none;
         }
         .chrono-white-slot.drag-hover {
           transform: scale(1.08);
-          border-color: #38bdf8 !important;
-          background: #f0f9ff !important;
-          box-shadow: 0 0 22px rgba(56, 189, 248, 0.95), 0 8px 18px rgba(0, 0, 0, 0.5) !important;
+          border: 2.5px solid #38bdf8 !important;
+          background: rgba(14, 116, 144, 0.88) !important;
+          box-shadow: 0 0 22px rgba(56, 189, 248, 0.95), 0 8px 18px rgba(0, 0, 0, 0.55) !important;
         }
         .chrono-white-slot.slot-filled {
-          border-color: #00e676 !important;
+          border: 2.5px solid #00e676 !important;
           background: #052e16 !important;
-          box-shadow: 0 0 18px rgba(0, 230, 118, 0.9), 0 6px 16px rgba(0, 0, 0, 0.6) !important;
+          box-shadow: 0 0 18px rgba(0, 230, 118, 0.9), 0 6px 16px rgba(0, 0, 0, 0.65) !important;
           animation: chronoSlotPop 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .chrono-white-slot.slot-wrong {
-          border-color: #ef4444 !important;
-          background: #fef2f2 !important;
+          border: 2.5px solid #ef4444 !important;
+          background: rgba(127, 29, 29, 0.90) !important;
           animation: chronoSlotShake 0.32s ease;
         }
         .chrono-bottom-cards-grid {
@@ -6147,32 +6313,57 @@
           max-width: 560px;
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: clamp(10px, 2.8vw, 18px);
+          gap: clamp(8px, 2.2vw, 14px);
         }
         .chrono-drag-source {
           position: relative;
           width: 100%;
-          aspect-ratio: 16 / 9;
           border-radius: 16px;
-          padding: 4px;
+          padding: 3.5px;
           background: linear-gradient(125deg, #38bdf8, #a855f7, #fde047, #34d399, #ec4899, #38bdf8);
           background-size: 260% 260%;
           animation: chronoBorderFlow 4s ease infinite;
-          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.68);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.72);
           cursor: grab;
           touch-action: none;
           box-sizing: border-box;
           transition: opacity 0.2s ease, transform 0.15s ease;
+          display: flex;
+          flex-direction: column;
         }
-        .chrono-drag-source img {
+        .chrono-drag-source-inner {
           width: 100%;
-          height: 100%;
+          border-radius: 12.5px;
+          overflow: hidden;
+          background: linear-gradient(180deg, #4c1d95 0%, #2e1065 100%);
+          display: flex;
+          flex-direction: column;
+          pointer-events: none;
+        }
+        .chrono-drag-source-photo {
+          width: 100%;
+          aspect-ratio: 16 / 9;
           object-fit: cover;
-          border-radius: 12px;
           display: block;
           pointer-events: none;
           user-select: none;
           -webkit-user-drag: none;
+        }
+        .chrono-drag-source-caption {
+          min-height: 32px;
+          padding: 4px 6px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          font-family: 'Fredoka', sans-serif;
+          font-size: clamp(10.5px, 2.7vw, 12.5px);
+          font-weight: 800;
+          color: #ffffff;
+          line-height: 1.14;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+          border-top: 1.5px solid rgba(253, 224, 71, 0.45);
+          pointer-events: none;
         }
         .chrono-drag-source.placed-done {
           opacity: 0.14 !important;
@@ -6184,22 +6375,36 @@
       <div class="chrono-stage-root" id="chrono-stage-arena">
         <img src="./2_ASSETS_UI_BOTOES/bg_jogo_12_cronologia_v159.jpg?v=159" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; z-index:0;">
 
-        <!-- 4 QUADRADINHOS BRANCOS LADO A LADO NO TOPO (1 • 2 • 3 • 4) -->
+        <!-- 4 MOLDURAS TRACEJADAS EM LINHA DO TEMPO COM SETINHAS (1º ➔ 2º ➔ 3º ➔ 4º) -->
         <div class="chrono-top-slots-row" id="chrono-top-slots-row">
-          ${[1, 2, 3, 4].map(num => `
+          ${[1, 2, 3, 4].map((num, idxSlot) => `
             <div class="chrono-white-slot" id="chrono-drop-slot-${num}" data-slot-num="${num}">
-              <span class="chrono-white-slot-num">${num}</span>
+              <span class="chrono-white-slot-num">${num}º</span>
             </div>
+            ${idxSlot < 3 ? `
+              <div class="chrono-timeline-arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#fde047" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            ` : ""}
           `).join("")}
         </div>
 
-        <!-- 4 IMAGENS GRANDES EMBARALHADAS EMBAIXO (2 COLUNAS DE 2) -->
+        <!-- 4 FIGURINHAS EMBARALHADAS EMBAIXO (2×2 COM LEGENDA CURTINHA NA BASE) -->
         <div class="chrono-bottom-cards-grid" id="chrono-bottom-cards-grid">
-          ${shuffled.map((card, i) => `
-            <div class="chrono-drag-source" id="chrono-src-card-${i}" data-card-order="${card.order}" data-card-img="${card.img}">
-              <img src="${card.img}" alt="" decoding="async">
-            </div>
-          `).join("")}
+          ${shuffled.map((card, i) => {
+            const cap = cleanChronoCaptionText(card.title || "");
+            const safeCapAttr = cap.replace(/"/g, "&quot;");
+            return `
+              <div class="chrono-drag-source" id="chrono-src-card-${i}" data-card-order="${card.order}" data-card-img="${card.img}" data-card-cap="${safeCapAttr}">
+                <div class="chrono-drag-source-inner">
+                  <img class="chrono-drag-source-photo" src="${card.img}" alt="" decoding="async">
+                  <div class="chrono-drag-source-caption">${cap}</div>
+                </div>
+              </div>
+            `;
+          }).join("")}
         </div>
       </div>
     `;
@@ -6215,7 +6420,7 @@
     function getHoveredSlotNum(cx, cy) {
       let bestNum = 0;
       let bestDist = Infinity;
-      const pad = 20;
+      const pad = 22;
       for (let n = 1; n <= 4; n++) {
         if (filledSlots[n]) continue;
         const el = document.getElementById(`chrono-drop-slot-${n}`);
@@ -6244,7 +6449,7 @@
     const sourceEls = arena.querySelectorAll(".chrono-drag-source");
     sourceEls.forEach((srcEl) => {
       srcEl.addEventListener("pointerdown", (e) => {
-        if (activeDrag || _isVictoryActive) return;
+        if (window._arcadeStageLockedForVovo || activeDrag || _isVictoryActive) return;
         if (srcEl.classList.contains("placed-done")) return;
         e.preventDefault();
         e.stopPropagation();
@@ -6256,6 +6461,7 @@
 
         const rect = srcEl.getBoundingClientRect();
         const imgUrl = srcEl.getAttribute("data-card-img") || "";
+        const cardCap = srcEl.getAttribute("data-card-cap") || "";
         const cardOrder = Number(srcEl.getAttribute("data-card-order") || 0);
 
         const ghost = document.createElement("div");
@@ -6266,16 +6472,23 @@
           width: ${rect.width}px;
           height: ${rect.height}px;
           border-radius: 16px;
-          padding: 4px;
+          padding: 3.5px;
           background: linear-gradient(125deg, #fde047, #38bdf8, #00e676);
           box-shadow: 0 16px 36px rgba(0, 0, 0, 0.85), 0 0 22px rgba(253, 224, 71, 0.75);
           pointer-events: none;
           z-index: 10000050;
           box-sizing: border-box;
-          transform: scale(1.06);
+          transform: scale(1.05);
           transition: transform 0.1s ease;
+          display: flex;
+          flex-direction: column;
         `;
-        ghost.innerHTML = `<img src="${imgUrl}" alt="" style="width:100%; height:100%; object-fit:cover; border-radius:12px; display:block;">`;
+        ghost.innerHTML = `
+          <div style="width:100%; height:100%; border-radius:12.5px; overflow:hidden; background:linear-gradient(180deg, #4c1d95 0%, #2e1065 100%); display:flex; flex-direction:column;">
+            <img src="${imgUrl}" alt="" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block;">
+            <div style="flex:1; padding:3px 5px; display:flex; align-items:center; justify-content:center; text-align:center; font-family:'Fredoka',sans-serif; font-size:11px; font-weight:800; color:#ffffff; line-height:1.12;">${cardCap}</div>
+          </div>
+        `;
         document.body.appendChild(ghost);
         window._chronoDragGhostEl = ghost;
 
@@ -6335,7 +6548,6 @@
       const targetSlotNum = getHoveredSlotNum(clientX, clientY) || getHoveredSlotNum(centerX, centerY);
 
       if (targetSlotNum > 0 && targetSlotNum === drag.cardOrder && !filledSlots[targetSlotNum]) {
-        // ACERTOU O QUADRADINHO!
         filledSlots[targetSlotNum] = true;
         filledCount++;
         TronoAudio.play("star");
@@ -6352,8 +6564,8 @@
           slotEl.classList.add("slot-filled");
           slotEl.innerHTML = `
             <img src="${drag.imgUrl}" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
-            <div style="position:absolute; top:4px; left:4px; width:21px; height:21px; border-radius:50%; background:linear-gradient(180deg, #00e676, #00c853); border:1.8px solid #ffffff; color:#ffffff; font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.75);">
-              ${targetSlotNum}
+            <div style="position:absolute; top:3px; left:3px; padding:1px 6px; border-radius:999px; background:linear-gradient(180deg, #00e676, #00c853); border:1.8px solid #ffffff; color:#ffffff; font-family:'Fredoka',sans-serif; font-size:10.5px; font-weight:900; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.75);">
+              ${targetSlotNum}º
             </div>
           `;
         }
@@ -6367,7 +6579,6 @@
         return;
       }
 
-      // Se soltou em um quadradinho errado, avisa suavemente e desliza de volta para baixo
       if (targetSlotNum > 0 && targetSlotNum !== drag.cardOrder) {
         TronoAudio.play("error");
         const wrongSlotEl = document.getElementById(`chrono-drop-slot-${targetSlotNum}`);
@@ -6400,6 +6611,422 @@
 
     arena.addEventListener("pointerup", endChronoDrag);
     arena.addEventListener("pointercancel", endChronoDrag);
+  }
+
+  // --- JOGO NOVO UNIFICADO: VERSÍCULO SECRETO (22 FASES = 22 LIÇÕES • O VOVÔ LÊ O VERSÍCULO E A CRIANÇA MONTA NAS MOLDURAS TRACEJADAS!) ---
+  function runVersiculoSecretoArcade(container, phase) {
+    cleanupChronoDragArtifacts();
+
+    const bank = (Array.isArray(window.VERSE_BUILDER_BANK) && window.VERSE_BUILDER_BANK.length > 0)
+      ? window.VERSE_BUILDER_BANK
+      : [
+          { level: 1, lessonWeek: 1, ref: "Gênesis 1:1 (Lição 1)", words: ["No", "princípio", "criou", "Deus", "os", "céus", "e", "a", "terra."] }
+        ];
+
+    const idx = Math.max(0, ((Math.floor(Number(phase) || 1) - 1) % bank.length));
+    const verseObj = bank[idx] || bank[0];
+    const words = Array.isArray(verseObj.words) ? verseObj.words.slice() : ["Deus", "é", "amor."];
+    const cleanRef = String(verseObj.ref || "")
+      .replace(/\s*\(Lição\s*\d+\)/gi, "")
+      .trim()
+      .toUpperCase();
+
+    const shuffled = words.map((w, origIdx) => ({ word: w, origIdx })).sort(() => Math.random() - 0.5);
+    if (shuffled.length > 2 && shuffled.every((item, i) => item.word === words[i])) {
+      const t = shuffled[0];
+      shuffled[0] = shuffled[shuffled.length - 1];
+      shuffled[shuffled.length - 1] = t;
+    }
+
+    container.innerHTML = `
+      <style id="verse-arcade-v160-styles">
+        @keyframes verseMagicFlow {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes verseWordPop {
+          0% { transform: scale(0.82); }
+          60% { transform: scale(1.1); }
+          100% { transform: scale(1); }
+        }
+        @keyframes verseSlotShake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-6px); }
+          75% { transform: translateX(6px); }
+        }
+        .verse-stage-root {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          padding: 50px 12px clamp(20px, 4.5vh, 38px) 12px;
+          box-sizing: border-box;
+          touch-action: none;
+          user-select: none;
+          -webkit-user-select: none;
+        }
+        .verse-top-board {
+          position: relative;
+          z-index: 5;
+          width: 100%;
+          max-width: 520px;
+          background: linear-gradient(180deg, rgba(126, 34, 206, 0.88) 0%, rgba(59, 7, 100, 0.94) 100%);
+          border-radius: 22px;
+          padding: 14px 12px 16px 12px;
+          box-shadow: 0 10px 26px rgba(0, 0, 0, 0.72);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          transition: transform 0.16s ease, box-shadow 0.16s ease;
+        }
+        .verse-top-board::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          padding: 3.5px;
+          background: linear-gradient(125deg, #38bdf8, #a855f7, #fde047, #34d399, #ec4899, #38bdf8);
+          background-size: 250% 250%;
+          animation: verseMagicFlow 4s ease infinite;
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
+        }
+        .verse-top-board.drop-ready {
+          transform: scale(1.02);
+          box-shadow: 0 0 26px rgba(56, 189, 248, 0.92), 0 10px 26px rgba(0, 0, 0, 0.75);
+        }
+        .verse-ref-pill {
+          background: linear-gradient(180deg, #fde047 0%, #f59e0b 100%);
+          color: #1e1b4b;
+          font-family: 'Fredoka', sans-serif;
+          font-size: 12.5px;
+          font-weight: 900;
+          letter-spacing: 0.5px;
+          padding: 3px 14px;
+          border-radius: 999px;
+          border: 2px solid #ffffff;
+          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+        }
+        .verse-slots-wrap {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          gap: 7px;
+        }
+        .verse-dashed-slot {
+          min-width: 56px;
+          min-height: 38px;
+          padding: 5px 11px;
+          border-radius: 13px;
+          border: 2px dashed rgba(253, 224, 71, 0.72);
+          background: rgba(15, 23, 42, 0.42);
+          color: rgba(253, 224, 71, 0.82);
+          font-family: 'Fredoka', sans-serif;
+          font-size: 13px;
+          font-weight: 900;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          box-sizing: border-box;
+          transition: all 0.16s ease;
+        }
+        .verse-dashed-slot.next-active {
+          border: 2.5px dashed #38bdf8;
+          background: rgba(56, 189, 248, 0.20);
+          color: #fde047;
+          box-shadow: 0 0 14px rgba(56, 189, 248, 0.65);
+        }
+        .verse-dashed-slot.slot-filled {
+          border: 2px solid #ffffff !important;
+          background: linear-gradient(180deg, #00e676 0%, #00c853 100%) !important;
+          color: #ffffff !important;
+          font-size: clamp(14px, 3.8vw, 17px);
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45), 0 0 12px rgba(0, 230, 118, 0.65) !important;
+          animation: verseWordPop 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .verse-dashed-slot.slot-wrong {
+          border: 2.5px solid #ef4444 !important;
+          background: rgba(239, 68, 68, 0.32) !important;
+          animation: verseSlotShake 0.32s ease;
+        }
+        .verse-bottom-words-pool {
+          position: relative;
+          z-index: 5;
+          width: 100%;
+          max-width: 520px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          gap: clamp(9px, 2.4vw, 13px);
+          padding: 6px 2px;
+        }
+        .verse-word-pill {
+          position: relative;
+          border-radius: 999px;
+          padding: 3px;
+          background: linear-gradient(125deg, #38bdf8, #a855f7, #fde047, #34d399, #ec4899, #38bdf8);
+          background-size: 250% 250%;
+          animation: verseMagicFlow 4s ease infinite;
+          box-shadow: 0 7px 18px rgba(0, 0, 0, 0.72);
+          cursor: grab;
+          touch-action: none;
+          box-sizing: border-box;
+          transition: transform 0.14s ease, opacity 0.2s ease;
+        }
+        .verse-word-pill-inner {
+          border-radius: 999px;
+          padding: 9px 17px;
+          background: linear-gradient(180deg, #581c87 0%, #3b0764 100%);
+          color: #ffffff;
+          font-family: 'Fredoka', sans-serif;
+          font-size: clamp(15.5px, 4.3vw, 19px);
+          font-weight: 900;
+          line-height: 1.1;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85);
+          pointer-events: none;
+          white-space: nowrap;
+        }
+        .verse-word-pill.used-word {
+          opacity: 0.14 !important;
+          pointer-events: none !important;
+          transform: scale(0.92);
+        }
+        .verse-word-pill.wrong-tap {
+          animation: verseSlotShake 0.32s ease !important;
+        }
+      </style>
+
+      <div class="verse-stage-root" id="verse-stage-arena">
+        <img src="./2_ASSETS_UI_BOTOES/bg_jogo_18_versiculo_v160.jpg?v=160" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; z-index:0;">
+
+        <!-- QUADRO SUPERIOR ROXO COM MOLDURAS TRACEJADAS DAS PALAVRAS DO VERSÍCULO -->
+        <div class="verse-top-board" id="verse-top-board">
+          <div class="verse-ref-pill">${cleanRef}</div>
+          <div class="verse-slots-wrap" id="verse-slots-wrap">
+            ${words.map((_, sIdx) => `
+              <div class="verse-dashed-slot ${sIdx === 0 ? "next-active" : ""}" id="verse-slot-${sIdx}" data-slot-idx="${sIdx}">
+                ${sIdx + 1}º
+              </div>
+            `).join("")}
+          </div>
+        </div>
+
+        <!-- PALAVRAS SOLTAS EMBARALHADAS EMBAIXO (ARRASTAR COM O DEDINHO OU TOCAR!) -->
+        <div class="verse-bottom-words-pool" id="verse-bottom-words-pool">
+          ${shuffled.map((item, pIdx) => `
+            <div class="verse-word-pill" id="verse-pill-${pIdx}" data-word-val="${item.word.replace(/"/g, "&quot;")}">
+              <div class="verse-word-pill-inner">${item.word}</div>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    `;
+
+    const arena = document.getElementById("verse-stage-arena");
+    const topBoard = document.getElementById("verse-top-board");
+    if (!arena || !topBoard) return;
+
+    let currentWordStep = 0;
+    let activeDrag = null;
+    let activePointerId = null;
+
+    function highlightNextSlot() {
+      for (let i = 0; i < words.length; i++) {
+        const el = document.getElementById(`verse-slot-${i}`);
+        if (!el) continue;
+        if (i === currentWordStep) el.classList.add("next-active");
+        else el.classList.remove("next-active");
+      }
+    }
+
+    function commitWordPlacement(pillEl, wordVal) {
+      if (currentWordStep >= words.length) return;
+      const expected = words[currentWordStep];
+      const nextSlotEl = document.getElementById(`verse-slot-${currentWordStep}`);
+
+      if (wordVal === expected) {
+        TronoAudio.play("star");
+        pillEl.classList.add("used-word");
+        pillEl.style.opacity = "";
+        if (nextSlotEl) {
+          nextSlotEl.classList.remove("next-active", "slot-wrong");
+          nextSlotEl.classList.add("slot-filled");
+          nextSlotEl.textContent = wordVal;
+        }
+        currentWordStep++;
+        highlightNextSlot();
+
+        if (currentWordStep >= words.length) {
+          TronoAudio.play("success");
+          window._verseWinTimer = setTimeout(() => {
+            triggerArcadeVictory();
+          }, 680);
+        }
+        return true;
+      } else {
+        TronoAudio.play("error");
+        if (nextSlotEl) {
+          nextSlotEl.classList.remove("slot-wrong");
+          void nextSlotEl.offsetWidth;
+          nextSlotEl.classList.add("slot-wrong");
+          setTimeout(() => { if (nextSlotEl) nextSlotEl.classList.remove("slot-wrong"); }, 350);
+        }
+        pillEl.classList.remove("wrong-tap");
+        void pillEl.offsetWidth;
+        pillEl.classList.add("wrong-tap");
+        setTimeout(() => { if (pillEl) pillEl.classList.remove("wrong-tap"); }, 350);
+        return false;
+      }
+    }
+
+    function isOverTopBoard(cx, cy) {
+      const r = topBoard.getBoundingClientRect();
+      const pad = 28;
+      return cx >= r.left - pad && cx <= r.right + pad && cy >= r.top - pad && cy <= r.bottom + pad;
+    }
+
+    const pillEls = arena.querySelectorAll(".verse-word-pill");
+    pillEls.forEach((pillEl) => {
+      pillEl.addEventListener("pointerdown", (e) => {
+        if (window._arcadeStageLockedForVovo || activeDrag || _isVictoryActive) return;
+        if (pillEl.classList.contains("used-word") || currentWordStep >= words.length) return;
+        e.preventDefault();
+        e.stopPropagation();
+
+        activePointerId = e.pointerId !== undefined ? e.pointerId : null;
+        try { arena.setPointerCapture(e.pointerId); } catch (err) {}
+
+        const rect = pillEl.getBoundingClientRect();
+        const wordVal = pillEl.getAttribute("data-word-val") || "";
+
+        const ghost = document.createElement("div");
+        ghost.style.cssText = `
+          position: fixed;
+          left: ${rect.left}px;
+          top: ${rect.top}px;
+          width: ${rect.width}px;
+          height: ${rect.height}px;
+          border-radius: 999px;
+          padding: 3px;
+          background: linear-gradient(125deg, #fde047, #38bdf8, #00e676);
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.85), 0 0 18px rgba(253, 224, 71, 0.8);
+          pointer-events: none;
+          z-index: 10000050;
+          box-sizing: border-box;
+          transform: scale(1.08);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        `;
+        ghost.innerHTML = `<div style="width:100%; height:100%; border-radius:999px; background:linear-gradient(180deg, #581c87 0%, #3b0764 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:17px; font-weight:900; display:flex; align-items:center; justify-content:center;">${wordVal}</div>`;
+        document.body.appendChild(ghost);
+        window._verseDragGhostEl = ghost;
+
+        pillEl.style.opacity = "0.28";
+
+        activeDrag = {
+          pillEl,
+          ghost,
+          wordVal,
+          startX: e.clientX,
+          startY: e.clientY,
+          movedDist: 0,
+          width: rect.width,
+          height: rect.height,
+          grabOffsetX: e.clientX - rect.left,
+          grabOffsetY: e.clientY - rect.top
+        };
+      });
+    });
+
+    arena.addEventListener("pointermove", (e) => {
+      if (!activeDrag) return;
+      if (activePointerId !== null && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
+      e.preventDefault();
+
+      const dx = e.clientX - activeDrag.startX;
+      const dy = e.clientY - activeDrag.startY;
+      activeDrag.movedDist = Math.max(activeDrag.movedDist, Math.hypot(dx, dy));
+
+      const nextLeft = e.clientX - activeDrag.grabOffsetX;
+      const nextTop = e.clientY - activeDrag.grabOffsetY;
+      activeDrag.ghost.style.left = `${nextLeft}px`;
+      activeDrag.ghost.style.top = `${nextTop}px`;
+
+      const cx = nextLeft + activeDrag.width / 2;
+      const cy = nextTop + activeDrag.height / 2;
+      if (isOverTopBoard(e.clientX, e.clientY) || isOverTopBoard(cx, cy)) {
+        topBoard.classList.add("drop-ready");
+      } else {
+        topBoard.classList.remove("drop-ready");
+      }
+    });
+
+    function endVerseDrag(e) {
+      if (!activeDrag) return;
+      if (activePointerId !== null && e && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
+
+      const drag = activeDrag;
+      activeDrag = null;
+      activePointerId = null;
+      topBoard.classList.remove("drop-ready");
+
+      const ghostRect = drag.ghost.getBoundingClientRect();
+      const cx = ghostRect.left + ghostRect.width / 2;
+      const cy = ghostRect.top + ghostRect.height / 2;
+      const clientX = (e && typeof e.clientX === "number") ? e.clientX : cx;
+      const clientY = (e && typeof e.clientY === "number") ? e.clientY : cy;
+
+      const wasQuickTap = drag.movedDist < 12;
+      const droppedOnBoard = isOverTopBoard(clientX, clientY) || isOverTopBoard(cx, cy);
+
+      if (wasQuickTap || droppedOnBoard) {
+        const ok = commitWordPlacement(drag.pillEl, drag.wordVal);
+        if (ok) {
+          if (drag.ghost && drag.ghost.parentNode) {
+            drag.ghost.parentNode.removeChild(drag.ghost);
+          }
+          window._verseDragGhostEl = null;
+          return;
+        }
+      }
+
+      const homeRect = drag.pillEl.getBoundingClientRect();
+      drag.ghost.style.transition = "left 0.2s cubic-bezier(0.2, 0.9, 0.3, 1), top 0.2s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.2s ease";
+      drag.ghost.style.left = `${homeRect.left}px`;
+      drag.ghost.style.top = `${homeRect.top}px`;
+      drag.ghost.style.transform = "scale(1)";
+
+      setTimeout(() => {
+        if (drag.ghost && drag.ghost.parentNode) {
+          drag.ghost.parentNode.removeChild(drag.ghost);
+        }
+        if (window._verseDragGhostEl === drag.ghost) {
+          window._verseDragGhostEl = null;
+        }
+        if (!drag.pillEl.classList.contains("used-word")) {
+          drag.pillEl.style.opacity = "1";
+        }
+      }, 210);
+    }
+
+    arena.addEventListener("pointerup", endVerseDrag);
+    arena.addEventListener("pointercancel", endVerseDrag);
   }
 
   // --- JOGO 13: JOGO DA MEMÓRIA DOS BICHOS ---
