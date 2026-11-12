@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v163.0';
+        const CURRENT_VER = 'v164.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=163.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=164.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -2810,8 +2810,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=163.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=163.0"></script>
+<script src="ebd_modulos_educativos.js?v=164.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=164.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -2894,7 +2894,7 @@ const SLEEP_TRACKS = [
   { id: 10, title: 'Chuvinha de Paz para Dormir', file: './6_ASSETS_AUDIO/10_chuva_suave_dormir.mp3' }
 ];
 
-// Hierarquia Oficial de Volume (v163.0):
+// Hierarquia Oficial de Volume (v164.0):
 // Música ambiente sempre macia e baixinha (22%) para a voz do Vovô Nésio (100% + presença vocal) SEMPRE se sobressair!
 // Quando o Vovô fala, o fundo cai automaticamente para 5% (ducking) e volta suavemente depois que ele termina!
 window.BG_AMBIENT_BASE_VOL = 0.22;
@@ -4023,8 +4023,11 @@ function renderGalleryPage() {
     const locked = !st.free && !isVipUnlocked;
     const isDone = doneSet.has(st.id);
     const imgSrc = mode === 'puzzle'
-      ? `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg`
-      : `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg`;
+      ? `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=161`
+      : `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=164`;
+    if (!locked && typeof window.preloadArcadeLessonVisualAssets === 'function') {
+      window.preloadArcadeLessonVisualAssets(st);
+    }
 
     const doneBadgeHtml = (!locked && isDone)
       ? `<div style="position:absolute; top:8px; right:8px; z-index:5; width:30px; height:30px; border-radius:50%; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2px solid #ffffff; box-shadow:0 0 12px rgba(0,230,118,0.9), 0 3px 8px rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center;">

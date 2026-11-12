@@ -6574,6 +6574,11 @@ window.renderLessonHubScreen = function() {
   if (curTitleEl) {
     curTitleEl.textContent = `LIÇÃO ${lesson.week}: ${lesson.title.toUpperCase()}`;
   }
+  setTimeout(() => {
+    if (typeof window.preloadArcadeLessonVisualAssets === "function") {
+      window.preloadArcadeLessonVisualAssets(lesson.week);
+    }
+  }, 80);
 
   // Atualiza os 6 Tiquezinhos Verdes nos 6 botões da Lição da Semana (#screen-lesson-hub)
   const prog = window.getLessonProgress(lesson.week);
@@ -6949,6 +6954,9 @@ window.openLessonModule = function(modType) {
   // 5) JOGOS DA LIÇÃO (8 Jogos soltos na tela igual à Sala de Jogos • Zero bloco dentro de bloco • Tiquezinho verde ao concluir!)
   else if (modType === "jogos_licao") {
     window.EBD_STATE.fromLessonGames = true;
+    if (typeof window.preloadArcadeLessonVisualAssets === "function") {
+      window.preloadArcadeLessonVisualAssets(lesson.week);
+    }
     const prog = window.getLessonProgress(lesson.week);
     const gamesMap = prog.games || {};
     const lessonGames = [

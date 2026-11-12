@@ -2079,6 +2079,14 @@
       window.removeEventListener("resize", window._arcadePaintResizeHandler);
       window._arcadePaintResizeHandler = null;
     }
+    window._arcadePhaseLoadToken = (window._arcadePhaseLoadToken || 0) + 1;
+    if (window._arcadeVisualReadySafetyTimer) {
+      clearTimeout(window._arcadeVisualReadySafetyTimer);
+      window._arcadeVisualReadySafetyTimer = null;
+    }
+    window._onArcadeVisualReady = null;
+    window._arcadeWaitVisualBeforeVovo = false;
+    window._arcadeVisualAlreadyReady = false;
   }
 
   window.openTronoArcadeGame = function(gameId) {
@@ -2322,6 +2330,29 @@
     // TRAVA UNIVERSAL EM TODOS OS JOGOS ENQUANTO O VOVÔ EXPLICA:
     // Bloqueia 100% qualquer clique/arraste no palco até o Vovô terminar a fala!
     window._arcadeStageLockedForVovo = true;
+    const phaseLoadToken = (window._arcadePhaseLoadToken = (window._arcadePhaseLoadToken || 0) + 1);
+    if (window._arcadeVisualReadySafetyTimer) {
+      clearTimeout(window._arcadeVisualReadySafetyTimer);
+      window._arcadeVisualReadySafetyTimer = null;
+    }
+    window._arcadeWaitVisualBeforeVovo = false;
+    window._arcadeVisualAlreadyReady = false;
+    window._onArcadeVisualReady = null;
+    window._notifyArcadeVisualReady = function() {
+      if (window._arcadePhaseLoadToken !== phaseLoadToken) return;
+      if (window._arcadeVisualAlreadyReady) return;
+      window._arcadeVisualAlreadyReady = true;
+      if (window._arcadeVisualReadySafetyTimer) {
+        clearTimeout(window._arcadeVisualReadySafetyTimer);
+        window._arcadeVisualReadySafetyTimer = null;
+      }
+      if (typeof window._onArcadeVisualReady === "function") {
+        const readyCb = window._onArcadeVisualReady;
+        window._onArcadeVisualReady = null;
+        readyCb();
+      }
+    };
+
     if (container) {
       container.style.visibility = "visible";
       container.style.opacity = "1";
@@ -2333,6 +2364,7 @@
     }
 
     const unlockStageAfterVovo = () => {
+      if (window._arcadePhaseLoadToken !== phaseLoadToken) return;
       window._arcadeStageLockedForVovo = false;
       if (container) {
         container.style.pointerEvents = "auto";
@@ -2343,44 +2375,63 @@
     };
     window._currentUnlockStageAfterVovo = unlockStageAfterVovo;
 
-    // QUIZ DA BÍBLIA: Em todas as 15 fases o Vovô faz a pergunta e diz as 3 alternativas (com trava até terminar de falar!)
-    if (currentActiveGame && currentActiveGame.id === "quiz_visual") {
-      _vovoAlreadySpokeInSession = true;
-      const qNum = Math.max(1, Math.min(15, Math.floor(Number(currentPhase) || 1)));
-      const qAudio = `./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q${String(qNum).padStart(2, "0")}.mp3?v=154`;
-      TronoAudio.falarVovo(qAudio, () => {
-        unlockStageAfterVovo();
-      });
-      return;
-    }
+    const startPhaseVovoOrUnlock = () => {
+      if (window._arcadePhaseLoadToken !== phaseLoadToken) return;
+      const stgEl = document.getElementById("screen-trono-arcade-stage");
+      if (!stgEl || !stgEl.classList.contains("active")) return;
 
-    // VERSÍCULO SECRETO: Em cada uma das 22 fases o Vovô LÊ o versículo da lição e pede para montar (com trava até terminar!)
-    if (currentActiveGame && currentActiveGame.id === "versiculo_secreto") {
-      _vovoAlreadySpokeInSession = true;
-      const vBankLen = (window.VERSE_BUILDER_BANK && window.VERSE_BUILDER_BANK.length) ? window.VERSE_BUILDER_BANK.length : 22;
-      const vNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % vBankLen) + 1;
-      const vAudio = `./6_ASSETS_AUDIO/versiculo_vovo/versiculo_vovo_${String(vNum).padStart(2, "0")}.mp3?v=160`;
-      TronoAudio.falarVovo(vAudio, () => {
-        unlockStageAfterVovo();
-      });
-      return;
-    }
+      // QUIZ DA BÍBLIA: Em todas as 15 fases o Vovô faz a pergunta e diz as 3 alternativas (com trava até terminar de falar!)
+      if (currentActiveGame && currentActiveGame.id === "quiz_visual") {
+        _vovoAlreadySpokeInSession = true;
+        const qNum = Math.max(1, Math.min(15, Math.floor(Number(currentPhase) || 1)));
+        const qAudio = `./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q${String(qNum).padStart(2, "0")}.mp3?v=154`;
+        TronoAudio.falarVovo(qAudio, () => {
+          unlockStageAfterVovo();
+        });
+        return;
+      }
 
-    // REGRA DE SESSÃO INTELIGENTE (TRAVA UNIVERSAL RIGOBERTO UX):
-    // 1) Na primeira fase da sessão (quando entra no jogo, incluindo Ordem Cronológica!), o Vovô explica tudo e a trava aguarda 100% da fala!
-    // 2) Nas fases seguintes da mesma jogada contínua, o jogo entra direto e ágil sem cansar a criança!
-    const shouldSpeak = !_vovoAlreadySpokeInSession && currentActiveGame && currentActiveGame.audioFile;
+      // VERSÍCULO SECRETO: Em cada uma das 22 fases o Vovô LÊ o versículo da lição e pede para montar (com trava até terminar!)
+      if (currentActiveGame && currentActiveGame.id === "versiculo_secreto") {
+        _vovoAlreadySpokeInSession = true;
+        const vBankLen = (window.VERSE_BUILDER_BANK && window.VERSE_BUILDER_BANK.length) ? window.VERSE_BUILDER_BANK.length : 22;
+        const vNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % vBankLen) + 1;
+        const vAudio = `./6_ASSETS_AUDIO/versiculo_vovo/versiculo_vovo_${String(vNum).padStart(2, "0")}.mp3?v=160`;
+        TronoAudio.falarVovo(vAudio, () => {
+          unlockStageAfterVovo();
+        });
+        return;
+      }
 
-    if (shouldSpeak) {
-      _vovoAlreadySpokeInSession = true;
-      TronoAudio.falarVovo(currentActiveGame.audioFile, () => {
-        unlockStageAfterVovo();
-      });
+      // REGRA DE SESSÃO INTELIGENTE (TRAVA UNIVERSAL RIGOBERTO UX):
+      // 1) Na primeira fase da sessão (quando entra no jogo, incluindo Ordem Cronológica!), o Vovô explica tudo e a trava aguarda 100% da fala!
+      // 2) Nas fases seguintes da mesma jogada contínua, o jogo entra direto e ágil sem cansar a criança!
+      const shouldSpeak = !_vovoAlreadySpokeInSession && currentActiveGame && currentActiveGame.audioFile;
+
+      if (shouldSpeak) {
+        _vovoAlreadySpokeInSession = true;
+        TronoAudio.falarVovo(currentActiveGame.audioFile, () => {
+          unlockStageAfterVovo();
+        });
+      } else {
+        // Avanço dinâmico nas fases seguintes da mesma sessão: delay suave de 280ms e já acende/libera a ação!
+        setTimeout(() => {
+          unlockStageAfterVovo();
+        }, 280);
+      }
+    };
+
+    // SINCRONIA VISUAL v164: Em jogos com desenho/imagem pesada (Pintura Mágica e Quebra-Cabeça),
+    // aguarda a imagem terminar de carregar e aparecer na tela ANTES do Vovô começar a falar!
+    if (window._arcadeWaitVisualBeforeVovo && !window._arcadeVisualAlreadyReady) {
+      window._onArcadeVisualReady = startPhaseVovoOrUnlock;
+      window._arcadeVisualReadySafetyTimer = setTimeout(() => {
+        if (typeof window._notifyArcadeVisualReady === "function") {
+          window._notifyArcadeVisualReady();
+        }
+      }, 6500);
     } else {
-      // Avanço dinâmico nas fases seguintes da mesma sessão: delay suave de 280ms e já acende/libera a ação!
-      setTimeout(() => {
-        unlockStageAfterVovo();
-      }, 280);
+      startPhaseVovoOrUnlock();
     }
   }
 
@@ -7565,11 +7616,58 @@
     if (stories.length > 0) {
       return stories[(wk - 1) % stories.length];
     }
-    return { id: 11, seqColor: "11", seqPaint: "29", title: "A Criação Maravilhosa de Deus" };
+    return { id: 11, seqColor: "29", seqPaint: "39", title: "Adão e Eva no Jardim do Éden" };
   }
+
+  window._arcadePreloadedImages = window._arcadePreloadedImages || {};
+  window._arcadePreloadedAudios = window._arcadePreloadedAudios || {};
+
+  window.preloadArcadeImageUrl = function(url) {
+    if (!url || typeof url !== "string" || url.indexOf("data:") === 0) return null;
+    const existing = window._arcadePreloadedImages[url];
+    if (existing) return existing;
+    try {
+      const im = new Image();
+      im.decoding = "async";
+      im.src = url;
+      window._arcadePreloadedImages[url] = im;
+      return im;
+    } catch (e) {
+      return null;
+    }
+  };
+
+  window.preloadArcadeAudioUrl = function(url) {
+    if (!url || typeof url !== "string") return;
+    if (window._arcadePreloadedAudios[url]) return;
+    try {
+      const au = new Audio();
+      au.preload = "auto";
+      au.src = url;
+      window._arcadePreloadedAudios[url] = au;
+    } catch (e) {}
+  };
+
+  window.preloadArcadeLessonVisualAssets = function(phaseOrStory) {
+    try {
+      const st = (phaseOrStory && typeof phaseOrStory === "object" && (phaseOrStory.seqPaint || phaseOrStory.seqColor))
+        ? phaseOrStory
+        : getLessonStoryForPhase(phaseOrStory || 1);
+      window.preloadArcadeImageUrl("./2_ASSETS_UI_BOTOES/bg_jogo_17_pintura_v161.jpg?v=161");
+      window.preloadArcadeImageUrl("./2_ASSETS_UI_BOTOES/bg_jogo_16_puzzle_v161.jpg?v=161");
+      if (st && st.seqPaint) {
+        window.preloadArcadeImageUrl(`./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=164`);
+      }
+      if (st && st.seqColor) {
+        window.preloadArcadeImageUrl(`./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=161`);
+      }
+      window.preloadArcadeAudioUrl("./6_ASSETS_AUDIO/jogos_vovo/vovo_jogo_17_v162.mp3?v=162");
+    } catch (e) {}
+  };
 
   // --- JOGO 16: QUEBRA-CABEÇA 3D ARCADE (22 LIÇÕES + PRECISÃO TABLET v156 + VOZ DO VOVÔ) ---
   function runQuebraCabecaArcade(container, phase) {
+    window._arcadeWaitVisualBeforeVovo = true;
     injectLessonArcadeV161Styles();
     const st = getLessonStoryForPhase(phase);
     let cols = 2, rows = 3;
@@ -7602,7 +7700,9 @@
 
     const canvas = container.querySelector("#arcade-puzzle-canvas");
     const ctx = canvas.getContext("2d");
-    const img = new Image();
+    let img = new Image();
+    img.decoding = "async";
+    img.fetchPriority = "high";
 
     function drawEdge(c2d, x1, y1, x2, y2, tabSign) {
       if (tabSign === 0) {
@@ -7780,7 +7880,17 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawFrame3D(BOARD.x - 2, BOARD.y - 2, BOARD.w + 4, BOARD.h + 4, 14, "purple");
       drawFrame3D(TRAY.x, TRAY.y, TRAY.w, TRAY.h, 16, "blue");
-      if (!img.complete || !img.naturalWidth) return;
+      if (!img.complete || !img.naturalWidth) {
+        ctx.save();
+        ctx.font = "800 22px Fredoka, sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#fde047";
+        ctx.shadowColor = "rgba(0,0,0,0.85)";
+        ctx.shadowBlur = 8;
+        ctx.fillText("Preparando o quebra-cabeça...", canvas.width / 2, BOARD.y + BOARD.h / 2);
+        ctx.restore();
+        return;
+      }
 
       const imgW = img.naturalWidth, imgH = img.naturalHeight;
       if (puzSolved) {
@@ -8056,15 +8166,49 @@
       });
     });
 
-    img.onload = () => {
+    drawScene();
+    const puzUrl = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=161`;
+    const cachedPuz = window._arcadePreloadedImages && window._arcadePreloadedImages[puzUrl];
+    if (cachedPuz && cachedPuz.complete && cachedPuz.naturalWidth > 0) {
+      img = cachedPuz;
       buildPieces();
       startLoop();
-    };
-    img.src = `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=161`;
+      if (typeof window._notifyArcadeVisualReady === "function") {
+        window._notifyArcadeVisualReady();
+      }
+      setTimeout(() => {
+        if (typeof window.preloadArcadeLessonVisualAssets === "function") {
+          window.preloadArcadeLessonVisualAssets(Number(phase || 1) + 1);
+        }
+      }, 600);
+    } else {
+      img.onload = () => {
+        window._arcadePreloadedImages = window._arcadePreloadedImages || {};
+        window._arcadePreloadedImages[puzUrl] = img;
+        buildPieces();
+        startLoop();
+        if (typeof window._notifyArcadeVisualReady === "function") {
+          window._notifyArcadeVisualReady();
+        }
+        setTimeout(() => {
+          if (typeof window.preloadArcadeLessonVisualAssets === "function") {
+            window.preloadArcadeLessonVisualAssets(Number(phase || 1) + 1);
+          }
+        }, 600);
+      };
+      img.onerror = () => {
+        startLoop();
+        if (typeof window._notifyArcadeVisualReady === "function") {
+          window._notifyArcadeVisualReady();
+        }
+      };
+      img.src = puzUrl;
+    }
   }
 
   // --- JOGO 17: PINTURA MÁGICA ARCADE (LAPIZINHO 3D FLUTUANTE VISÍVEL + BARRA ÚNICA EMBAIXO) ---
   function runPinturaMagicaArcade(container, phase) {
+    window._arcadeWaitVisualBeforeVovo = true;
     injectLessonArcadeV161Styles();
     const st = getLessonStoryForPhase(phase);
     window._arcadeActivePaintStory = st;
@@ -8110,7 +8254,9 @@
     let prevMoveClientY = 0;
     let didMovePencil = false;
     let activeDragGain = 1.0;
-    const baseImg = new Image();
+    let baseImg = new Image();
+    baseImg.decoding = "async";
+    baseImg.fetchPriority = "high";
 
     function buildPencilSvg(hex) {
       return `
@@ -8673,14 +8819,73 @@
     };
     window.addEventListener("resize", window._arcadePaintResizeHandler);
 
-    baseImg.onload = () => {
+    function drawPaintingLoadingPlaceholder() {
+      if (pencilEl) {
+        pencilEl.classList.remove("pencil-visible");
+      }
+      pCtx.fillStyle = "#ffffff";
+      pCtx.fillRect(0, 0, paintCanvas.width, paintCanvas.height);
+      pCtx.save();
+      pCtx.fillStyle = "rgba(88, 28, 135, 0.92)";
+      pCtx.strokeStyle = "#fde047";
+      pCtx.lineWidth = 4;
+      pCtx.beginPath();
+      pCtx.roundRect(70, 420, 400, 120, 24);
+      pCtx.fill();
+      pCtx.stroke();
+      pCtx.font = "900 24px Fredoka, sans-serif";
+      pCtx.textAlign = "center";
+      pCtx.fillStyle = "#fde047";
+      pCtx.fillText("Preparando o desenho...", paintCanvas.width / 2, 474);
+      pCtx.font = "800 18px Fredoka, sans-serif";
+      pCtx.fillStyle = "#ffffff";
+      pCtx.fillText(st && st.title ? st.title : "Só um instante!", paintCanvas.width / 2, 512, 368);
+      pCtx.restore();
+    }
+
+    const paintUrl = (window.PINTURAS_B64 && window.PINTURAS_B64[st.seqPaint])
+      ? window.PINTURAS_B64[st.seqPaint]
+      : `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=164`;
+    const cachedPaint = (!paintUrl.startsWith("data:") && window._arcadePreloadedImages)
+      ? window._arcadePreloadedImages[paintUrl]
+      : null;
+
+    if (cachedPaint && cachedPaint.complete && cachedPaint.naturalWidth > 0) {
+      baseImg = cachedPaint;
       undoStack = [];
       resetDrawing(false);
-    };
-    if (window.PINTURAS_B64 && window.PINTURAS_B64[st.seqPaint]) {
-      baseImg.src = window.PINTURAS_B64[st.seqPaint];
+      if (typeof window._notifyArcadeVisualReady === "function") {
+        window._notifyArcadeVisualReady();
+      }
+      setTimeout(() => {
+        if (typeof window.preloadArcadeLessonVisualAssets === "function") {
+          window.preloadArcadeLessonVisualAssets(Number(phase || 1) + 1);
+        }
+      }, 600);
     } else {
-      baseImg.src = `./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=161`;
+      drawPaintingLoadingPlaceholder();
+      baseImg.onload = () => {
+        if (!paintUrl.startsWith("data:")) {
+          window._arcadePreloadedImages = window._arcadePreloadedImages || {};
+          window._arcadePreloadedImages[paintUrl] = baseImg;
+        }
+        undoStack = [];
+        resetDrawing(false);
+        if (typeof window._notifyArcadeVisualReady === "function") {
+          window._notifyArcadeVisualReady();
+        }
+        setTimeout(() => {
+          if (typeof window.preloadArcadeLessonVisualAssets === "function") {
+            window.preloadArcadeLessonVisualAssets(Number(phase || 1) + 1);
+          }
+        }, 600);
+      };
+      baseImg.onerror = () => {
+        if (typeof window._notifyArcadeVisualReady === "function") {
+          window._notifyArcadeVisualReady();
+        }
+      };
+      baseImg.src = paintUrl;
     }
   }
 
@@ -9471,6 +9676,17 @@
         `).join("")}
       </div>
     `;
+
+    setTimeout(() => {
+      if (typeof window.preloadArcadeLessonVisualAssets === "function") {
+        const pPaint = window.getArcadeGameProgress("pintura_magica");
+        const pPuz = window.getArcadeGameProgress("puzzle_3d");
+        window.preloadArcadeLessonVisualAssets((pPaint && pPaint.lastPhase) || 1);
+        if (pPuz && pPuz.lastPhase && pPuz.lastPhase !== ((pPaint && pPaint.lastPhase) || 1)) {
+          window.preloadArcadeLessonVisualAssets(pPuz.lastPhase);
+        }
+      }
+    }, 120);
   };
 
   // Sobrescreve a abertura do Hub de Jogos para carregar os 16 jogos oficiais com fundo Jardim Real
