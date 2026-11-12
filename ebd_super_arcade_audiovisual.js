@@ -267,6 +267,7 @@
       "vovo_jogo_10.mp3": 6460,
       "vovo_jogo_11.mp3": 5530,
       "vovo_jogo_12.mp3": 7060,
+      "vovo_jogo_12_v159.mp3": 13450,
       "vovo_jogo_13.mp3": 4780,
       "vovo_jogo_14.mp3": 5900,
       "vovo_jogo_15.mp3": 6040,
@@ -330,8 +331,8 @@
         const isVictory = audioFile === "vovo_vitoria.mp3";
         const rawPath = String(audioFile);
         const resolvedUrl = rawPath.startsWith("./")
-          ? `${rawPath}${rawPath.includes("?") ? "" : "?v=154"}`
-          : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=126`;
+          ? `${rawPath}${rawPath.includes("?") ? "" : "?v=159"}`
+          : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=159`;
         const durKey = rawPath.split("/").pop().split("?")[0];
         // Usa instância limpa por chamada nos áudios de jogo para NUNCA disparar abort/stalled de troca de src!
         const player = (isVictory && this.vovoVictoryPlayer) ? this.vovoVictoryPlayer : new Audio(resolvedUrl);
@@ -512,11 +513,11 @@
     },
     {
       id: "criacao_ordem",
-      title: "CRIAÇÃO DO MUNDO",
+      title: "ORDEM CRONOLÓGICA",
       sub: "",
       icon: "./2_ASSETS_UI_BOTOES/ico_jogo_12_criacao_v130.png?v=130",
-      audioFile: "vovo_jogo_12.mp3",
-      vovoFala: "Coloque os quadros da Criação na ordem dos dias da semana!",
+      audioFile: "vovo_jogo_12_v159.mp3",
+      vovoFala: "Vamos colocar a história da Bíblia na ordem certa! Pegue as imagens lá embaixo com o dedinho e coloque na ordem correta nos quadradinhos aqui em cima!",
       run: (container, phase) => runCriacaoOrdem(container, phase)
     },
     {
@@ -656,7 +657,7 @@
     },
     criacao_ordem: {
       gameNum: 11,
-      gameTitle: "CRIAÇÃO DO MUNDO",
+      gameTitle: "ORDEM CRONOLÓGICA",
       milestones: {
         5:  { code: "CARD_21_F05", num: 21, phase: 5,  tier: "GRÁTIS",   title: "O Sol, a Lua e as Estrelinhas",    img: "./5_ASSETS_CARDS_JOGOS/card_21_criacao_f05.jpg?v=147" },
         15: { code: "CARD_22_F15", num: 22, phase: 15, tier: "CAMPEÃO",  title: "A Grande Festa da Criação",        img: "./5_ASSETS_CARDS_JOGOS/card_22_criacao_f15.jpg?v=147" }
@@ -1611,6 +1612,13 @@
   const FREE_PHASES = 5;
   const ARCADE_PROGRESS_STORAGE_KEY = "trono_arcade_progress_v1";
 
+  function getGameTotalPhases(gameId) {
+    if (gameId === "criacao_ordem") {
+      return (window.CHRONOLOGY_LEVELS && window.CHRONOLOGY_LEVELS.length) ? window.CHRONOLOGY_LEVELS.length : 22;
+    }
+    return TOTAL_PHASES;
+  }
+
   function isArcadeVipActive() {
     return (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';
   }
@@ -1633,11 +1641,12 @@
   }
 
   window.getArcadeGameProgress = function(gameId) {
+    const totPh = getGameTotalPhases(gameId);
     const map = readAllArcadeProgressMap();
     const saved = map[gameId];
     if (saved && typeof saved === "object") {
-      const mc = Math.max(0, Math.min(TOTAL_PHASES, Math.floor(Number(saved.maxCompleted) || 0)));
-      const lp = Math.max(1, Math.min(TOTAL_PHASES, Math.floor(Number(saved.lastPhase) || 1)));
+      const mc = Math.max(0, Math.min(totPh, Math.floor(Number(saved.maxCompleted) || 0)));
+      const lp = Math.max(1, Math.min(totPh, Math.floor(Number(saved.lastPhase) || 1)));
       return { maxCompleted: mc, lastPhase: lp };
     }
     // Migração automática caso o jogador já tenha conquistado Super Cards (Fase 5 ou Fase 15) antes do motor de save
@@ -1651,19 +1660,20 @@
       }
     } catch (e) {}
     const isVip = isArcadeVipActive();
-    const cap = isVip ? TOTAL_PHASES : FREE_PHASES;
+    const cap = isVip ? totPh : FREE_PHASES;
     const migratedLast = migratedMax > 0 ? Math.min(cap, migratedMax + 1) : 1;
     return { maxCompleted: migratedMax, lastPhase: Math.max(1, migratedLast) };
   };
 
   // REGRA OFICIAL DE DESBLOQUEIO:
   // Fases 1 a 5 são 100% GRATUITAS e SEMPRE ABERTAS sem cadeado em todos os 16 jogos!
-  // Cadeados começam ESTRITAMENTE a partir da Fase 6 (6 a 15 para Assinantes, liberando 6 -> 7 -> 8... conforme vence)!
+  // Cadeados começam ESTRITAMENTE a partir da Fase 6 (6 a 15/22 para Assinantes, liberando 6 -> 7 -> 8... conforme vence)!
   window.getArcadeGameMaxUnlocked = function(gameId) {
     if (!isArcadeVipActive()) return FREE_PHASES;
+    const totPh = getGameTotalPhases(gameId);
     const prog = window.getArcadeGameProgress(gameId);
     if (prog.maxCompleted < FREE_PHASES) return FREE_PHASES;
-    return Math.min(TOTAL_PHASES, prog.maxCompleted + 1);
+    return Math.min(totPh, prog.maxCompleted + 1);
   };
 
   window.saveArcadeLastPhase = function(gameId, phase) {
@@ -1681,14 +1691,15 @@
 
   window.recordArcadePhaseVictory = function(gameId, phaseWon) {
     if (!gameId) return;
+    const totPh = getGameTotalPhases(gameId);
     const map = readAllArcadeProgressMap();
     const prog = window.getArcadeGameProgress(gameId);
-    const pWon = Math.max(1, Math.min(TOTAL_PHASES, Math.floor(Number(phaseWon) || 1)));
+    const pWon = Math.max(1, Math.min(totPh, Math.floor(Number(phaseWon) || 1)));
     const newMaxCompleted = Math.max(prog.maxCompleted, pWon);
     const isVip = isArcadeVipActive();
     const newMaxUnlocked = !isVip
       ? FREE_PHASES
-      : (newMaxCompleted < FREE_PHASES ? FREE_PHASES : Math.min(TOTAL_PHASES, newMaxCompleted + 1));
+      : (newMaxCompleted < FREE_PHASES ? FREE_PHASES : Math.min(totPh, newMaxCompleted + 1));
     const nextResumePhase = (pWon < newMaxUnlocked) ? (pWon + 1) : pWon;
     map[gameId] = {
       maxCompleted: newMaxCompleted,
@@ -1803,8 +1814,22 @@
   let _vovoAlreadySpokeInSession = false;
   let _isVictoryActive = false;
   let _advancingPhaseLock = false;
+  let _arcadeLessonSingleMode = false;
+  let _arcadeLessonWeekNum = 1;
+  let _arcadeLessonGameKey = "";
   window._arcadeVictoryStartedAt = 0;
   window._arcadeClosingUntil = 0;
+
+  function cleanupChronoDragArtifacts() {
+    if (window._chronoDragGhostEl && window._chronoDragGhostEl.parentNode) {
+      try { window._chronoDragGhostEl.parentNode.removeChild(window._chronoDragGhostEl); } catch (e) {}
+    }
+    window._chronoDragGhostEl = null;
+    if (window._chronoWinTimer) {
+      clearTimeout(window._chronoWinTimer);
+      window._chronoWinTimer = null;
+    }
+  }
 
   window.openTronoArcadeGame = function(gameId) {
     if (gameId === "animais_eden") gameId = "quem_entrou_arca";
@@ -1812,6 +1837,8 @@
     if (window._arcadeClosingUntil && Date.now() < window._arcadeClosingUntil) {
       return;
     }
+    _arcadeLessonSingleMode = false;
+    _arcadeLessonGameKey = "";
     window._userEnteredModule = true;
     try { history.pushState({ screen: "arcade-stage", gameId: gameId }, ""); } catch(e){}
     TronoAudio.init();
@@ -1837,23 +1864,65 @@
     loadPhase(currentPhase);
   };
 
+  // Abre o mesmo palco de jogo em tela cheia para "Jogos da Lição" (1 única fase correspondente à lição atual!)
+  window.openLessonArcadeGame = function(gameId, lessonWeek, lessonGameKey) {
+    if (window._arcadeClosingUntil && Date.now() < window._arcadeClosingUntil) {
+      return;
+    }
+    const wk = Math.max(1, Math.floor(Number(lessonWeek) || 1));
+    _arcadeLessonSingleMode = true;
+    _arcadeLessonWeekNum = wk;
+    _arcadeLessonGameKey = lessonGameKey || "chronology";
+    window._userEnteredModule = true;
+    TronoAudio.init();
+    TronoAudio.play("click");
+    ensureArcadeStageInDOM();
+
+    const game = SUPER_ARCADE_GAMES.find(g => g.id === gameId);
+    if (!game) return;
+
+    currentActiveGame = game;
+    currentPhase = wk;
+    _vovoAlreadySpokeInSession = false;
+
+    const stage = document.getElementById("screen-trono-arcade-stage");
+    if (stage) {
+      stage.classList.add("active");
+      stage.style.display = "flex";
+    }
+
+    loadPhase(currentPhase);
+  };
+
   function updateArcadeTopPhaseNavState() {
     if (!currentActiveGame) return;
-    const isVip = isArcadeVipActive();
-    const maxUnl = window.getArcadeGameMaxUnlocked(currentActiveGame.id);
-    const phaseNumEl = document.getElementById("arcade-phase-num");
-    if (phaseNumEl) phaseNumEl.textContent = currentPhase;
-    const phaseTotalEl = document.getElementById("arcade-phase-total");
-    if (phaseTotalEl) phaseTotalEl.textContent = isVip ? "15" : "5";
-
     const prevBtn = document.getElementById("arcade-phase-prev");
+    const nextBtn = document.getElementById("arcade-phase-next");
+    const displayEl = document.getElementById("arcade-phase-display");
+
+    if (_arcadeLessonSingleMode) {
+      if (prevBtn) prevBtn.style.display = "none";
+      if (nextBtn) nextBtn.style.display = "none";
+      if (displayEl) {
+        displayEl.innerHTML = `LIÇÃO <span>${_arcadeLessonWeekNum}</span>`;
+      }
+      return;
+    }
+
+    const isVip = isArcadeVipActive();
+    const totPh = getGameTotalPhases(currentActiveGame.id);
+    const maxUnl = window.getArcadeGameMaxUnlocked(currentActiveGame.id);
+    if (displayEl) {
+      displayEl.innerHTML = `FASE <span id="arcade-phase-num">${currentPhase}</span> / <span id="arcade-phase-total">${isVip ? totPh : 5}</span>`;
+    }
     if (prevBtn) {
+      prevBtn.style.display = "flex";
       const canPrev = currentPhase > 1;
       prevBtn.style.opacity = canPrev ? "1" : "0.35";
       prevBtn.style.borderColor = canPrev ? "#fde047" : "#64748b";
     }
-    const nextBtn = document.getElementById("arcade-phase-next");
     if (nextBtn) {
+      nextBtn.style.display = "flex";
       const canNext = currentPhase < maxUnl;
       nextBtn.style.opacity = canNext ? "1" : "0.42";
       nextBtn.style.borderColor = canNext ? "#fde047" : "#64748b";
@@ -1913,8 +1982,11 @@
     _isVictoryActive = false;
     _advancingPhaseLock = false;
     window._arcadeVictoryStartedAt = 0;
+    cleanupChronoDragArtifacts();
 
-    if (currentActiveGame && currentActiveGame.id) {
+    if (_arcadeLessonSingleMode) {
+      currentPhase = Math.max(1, Math.floor(Number(phase) || _arcadeLessonWeekNum || 1));
+    } else if (currentActiveGame && currentActiveGame.id) {
       const maxUnl = window.getArcadeGameMaxUnlocked(currentActiveGame.id);
       phase = Math.max(1, Math.min(maxUnl, Math.floor(Number(phase) || 1)));
       currentPhase = phase;
@@ -1976,6 +2048,16 @@
       return;
     }
 
+    // ORDEM CRONOLÓGICA: o Vovô explica na entrada e o dedinho já pode arrastar os cards imediatamente sem travar!
+    if (currentActiveGame && currentActiveGame.id === "criacao_ordem") {
+      unlockStageAfterVovo();
+      if (!_vovoAlreadySpokeInSession && currentActiveGame.audioFile) {
+        _vovoAlreadySpokeInSession = true;
+        TronoAudio.falarVovo(currentActiveGame.audioFile);
+      }
+      return;
+    }
+
     // REGRA DE SESSÃO INTELIGENTE (RIGOBERTO UX):
     // 1) Na primeira fase da sessão (quando entra no jogo), o Vovô explica tudo e a trava aguarda 100% da fala!
     // 2) Nas fases seguintes da mesma jogada contínua, o jogo entra direto e ágil sem cansar a criança!
@@ -1994,12 +2076,14 @@
     }
   }
 
-  window.closeTronoArcadeStage = function() {
-    // Se a criança saiu no meio da partida (sem estar na tela de vitória, onde a próxima fase já foi gravada),
-    // salva imediatamente a fase atual para retomar exatamente nela quando voltar!
-    if (!_isVictoryActive && currentActiveGame && currentActiveGame.id) {
+  window.closeTronoArcadeStage = function(skipHubRedirect) {
+    const wasLessonSingleMode = _arcadeLessonSingleMode;
+    // Se a criança saiu no meio da partida na Sala de Jogos (sem estar na tela de vitória), salva imediatamente a fase atual!
+    if (!wasLessonSingleMode && !_isVictoryActive && currentActiveGame && currentActiveGame.id) {
       window.saveArcadeLastPhase(currentActiveGame.id, currentPhase);
     }
+    _arcadeLessonSingleMode = false;
+    cleanupChronoDragArtifacts();
     window._arcadeClosingUntil = Date.now() + 550;
     _vovoAlreadySpokeInSession = false;
     _isVictoryActive = false;
@@ -2042,7 +2126,11 @@
     const container = document.getElementById("arcade-game-stage-container");
     if (container) container.innerHTML = "";
 
-    if (typeof openGamesHubScreen === "function") {
+    if (skipHubRedirect) return;
+
+    if (wasLessonSingleMode && typeof window.openLessonModule === "function") {
+      window.openLessonModule("jogos_licao");
+    } else if (typeof openGamesHubScreen === "function") {
       openGamesHubScreen();
     } else if (typeof navigateTo === "function") {
       navigateTo("screen-home");
@@ -2087,6 +2175,7 @@
     stopArcadeCelebrationConfetti();
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
     const isVip = isArcadeVipActive();
+    const totPh = currentActiveGame ? getGameTotalPhases(currentActiveGame.id) : TOTAL_PHASES;
 
     if (currentPhase < FREE_PHASES) {
       currentPhase++;
@@ -2098,7 +2187,7 @@
       } else {
         window.closeTronoArcadeStage();
       }
-    } else if (currentPhase < TOTAL_PHASES) {
+    } else if (currentPhase < totPh) {
       currentPhase++;
       loadPhase(currentPhase);
     } else {
@@ -2217,6 +2306,26 @@
   function triggerArcadeVictory() {
     // Blindagem contra disparo duplo na mesma fase
     if (_isVictoryActive) return;
+    cleanupChronoDragArtifacts();
+
+    // Quando jogado a partir de "Jogos da Lição" (1 única fase da lição):
+    // fecha o palco do jogo e abre o Card Roxo Oficial dos Jogos da Lição ("VOLTAR AOS JOGOS DA LIÇÃO")!
+    if (_arcadeLessonSingleMode) {
+      const wonGameKey = _arcadeLessonGameKey || "chronology";
+      const wonWeek = _arcadeLessonWeekNum || 1;
+      if (typeof window.markLessonGameCompleted === "function") {
+        window.markLessonGameCompleted(wonWeek, wonGameKey);
+      }
+      window.closeTronoArcadeStage(true);
+      if (typeof window.openLessonModule === "function") {
+        window.openLessonModule("jogos_licao");
+      }
+      if (typeof window.showLessonGameVictoryModal === "function") {
+        window.showLessonGameVictoryModal(wonGameKey);
+      }
+      return;
+    }
+
     _isVictoryActive = true;
     _advancingPhaseLock = false;
     window._arcadeVictoryStartedAt = Date.now();
@@ -2339,6 +2448,7 @@
       const dotFontPx = milestoneCard ? 15.5 : 17;
 
       let dotsHtml = "";
+      const totGamePhases = getGameTotalPhases(game.id);
       if (!isVip) {
         // 5 Bolinhas Gratuitas SEMPRE ABERTAS (1 a 5 sem cadeado!) + 6ª Bolinha com Cadeadinho Oficial VIP
         for (let i = 1; i <= 5; i++) {
@@ -2372,7 +2482,7 @@
       } else {
         // Jogador VIP: mostra o bloco de 5 fases correspondente à fase atual (1..5 abertas; 6..15 com cadeado progressivo)
         const batchStart = Math.floor((current - 1) / 5) * 5 + 1;
-        for (let i = batchStart; i < batchStart + 5 && i <= TOTAL_PHASES; i++) {
+        for (let i = batchStart; i < batchStart + 5 && i <= totGamePhases; i++) {
           const isJustWon = i === current;
           const isDone = i <= prog.maxCompleted;
           const isUnl = i <= maxUnl;
@@ -2483,7 +2593,7 @@
         mainBtn.addEventListener("click", (ev) => {
           if (mainBtn.dataset.unlocked !== "1") return;
           if (ev) { ev.preventDefault(); ev.stopPropagation(); }
-          if ((!isVip && current >= FREE_PHASES) || (isVip && current >= TOTAL_PHASES)) {
+          if ((!isVip && current >= FREE_PHASES) || (isVip && current >= totGamePhases)) {
             window.closeTronoArcadeStage();
           } else {
             window.advanceArcadePhase();
@@ -5920,31 +6030,376 @@
     };
   }
 
-  // --- JOGO 12: A CRIAÇÃO DO MUNDO (CRONOLOGIA) ---
+  // --- JOGO 12: ORDEM CRONOLÓGICA DA BÍBLIA (22 FASES = 22 LIÇÕES • ARRASTAR COM O DEDINHO PARA OS 4 QUADRADINHOS BRANCOS 1-2-3-4!) ---
   function runCriacaoOrdem(container, phase) {
+    cleanupChronoDragArtifacts();
+
+    const bank = (Array.isArray(window.CHRONOLOGY_LEVELS) && window.CHRONOLOGY_LEVELS.length > 0)
+      ? window.CHRONOLOGY_LEVELS
+      : [
+          {
+            level: 1, lessonWeek: 1,
+            cards: [
+              { id: "c1", order: 1, img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=78" },
+              { id: "c2", order: 2, img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_103.jpg?v=78" },
+              { id: "c3", order: 3, img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_101.jpg?v=78" },
+              { id: "c4", order: 4, img: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_29.jpg?v=78" }
+            ]
+          }
+        ];
+
+    const idx = Math.max(0, ((Math.floor(Number(phase) || 1) - 1) % bank.length));
+    const levelObj = bank[idx] || bank[0];
+    const shuffled = [...levelObj.cards].sort(() => Math.random() - 0.5);
+    if (shuffled.length === 4 && shuffled.every((c, i) => Number(c.order) === i + 1)) {
+      const tmp = shuffled[0];
+      shuffled[0] = shuffled[2];
+      shuffled[2] = tmp;
+    }
+
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#1e1b4b; padding:15px;">
-        <div style="display:flex; gap:10px;">
-          <div onclick="window._ordemCheck(1)" style="background:#ffffff; border-radius:16px; padding:12px; font-size:36px; cursor:pointer;">☀️ Dia 1</div>
-          <div onclick="window._ordemCheck(2)" style="background:#ffffff; border-radius:16px; padding:12px; font-size:36px; cursor:pointer;">🌊 Dia 2</div>
-          <div onclick="window._ordemCheck(3)" style="background:#ffffff; border-radius:16px; padding:12px; font-size:36px; cursor:pointer;">🌱 Dia 3</div>
+      <style id="chrono-arcade-v159-styles">
+        @keyframes chronoBorderFlow {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes chronoSlotPop {
+          0% { transform: scale(0.86); }
+          60% { transform: scale(1.08); }
+          100% { transform: scale(1); }
+        }
+        @keyframes chronoSlotShake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-6px); }
+          75% { transform: translateX(6px); }
+        }
+        .chrono-stage-root {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          padding: clamp(14px, 3vh, 28px) 10px clamp(18px, 4vh, 36px) 10px;
+          box-sizing: border-box;
+          touch-action: none;
+          user-select: none;
+          -webkit-user-select: none;
+        }
+        .chrono-top-slots-row {
+          position: relative;
+          z-index: 5;
+          width: 100%;
+          max-width: 560px;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: clamp(6px, 1.8vw, 12px);
+          align-items: center;
+        }
+        .chrono-white-slot {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 4 / 3;
+          border-radius: 14px;
+          background: rgba(255, 255, 255, 0.96);
+          border: 3px solid #fde047;
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.42), inset 0 2px 4px rgba(255, 255, 255, 0.9);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+          box-sizing: border-box;
+        }
+        .chrono-white-slot-num {
+          font-family: 'Fredoka', sans-serif;
+          font-size: clamp(26px, 6.4vw, 38px);
+          font-weight: 900;
+          color: #6d28d9;
+          line-height: 1;
+          text-shadow: 0 2px 0 rgba(253, 224, 71, 0.55);
+          pointer-events: none;
+        }
+        .chrono-white-slot.drag-hover {
+          transform: scale(1.08);
+          border-color: #38bdf8 !important;
+          background: #f0f9ff !important;
+          box-shadow: 0 0 22px rgba(56, 189, 248, 0.95), 0 8px 18px rgba(0, 0, 0, 0.5) !important;
+        }
+        .chrono-white-slot.slot-filled {
+          border-color: #00e676 !important;
+          background: #052e16 !important;
+          box-shadow: 0 0 18px rgba(0, 230, 118, 0.9), 0 6px 16px rgba(0, 0, 0, 0.6) !important;
+          animation: chronoSlotPop 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .chrono-white-slot.slot-wrong {
+          border-color: #ef4444 !important;
+          background: #fef2f2 !important;
+          animation: chronoSlotShake 0.32s ease;
+        }
+        .chrono-bottom-cards-grid {
+          position: relative;
+          z-index: 5;
+          width: 100%;
+          max-width: 560px;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: clamp(10px, 2.8vw, 18px);
+        }
+        .chrono-drag-source {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          border-radius: 16px;
+          padding: 4px;
+          background: linear-gradient(125deg, #38bdf8, #a855f7, #fde047, #34d399, #ec4899, #38bdf8);
+          background-size: 260% 260%;
+          animation: chronoBorderFlow 4s ease infinite;
+          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.68);
+          cursor: grab;
+          touch-action: none;
+          box-sizing: border-box;
+          transition: opacity 0.2s ease, transform 0.15s ease;
+        }
+        .chrono-drag-source img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 12px;
+          display: block;
+          pointer-events: none;
+          user-select: none;
+          -webkit-user-drag: none;
+        }
+        .chrono-drag-source.placed-done {
+          opacity: 0.14 !important;
+          pointer-events: none !important;
+          filter: grayscale(40%);
+        }
+      </style>
+
+      <div class="chrono-stage-root" id="chrono-stage-arena">
+        <img src="./2_ASSETS_UI_BOTOES/bg_jogo_12_cronologia_v159.jpg?v=159" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; z-index:0;">
+
+        <!-- 4 QUADRADINHOS BRANCOS LADO A LADO NO TOPO (1 • 2 • 3 • 4) -->
+        <div class="chrono-top-slots-row" id="chrono-top-slots-row">
+          ${[1, 2, 3, 4].map(num => `
+            <div class="chrono-white-slot" id="chrono-drop-slot-${num}" data-slot-num="${num}">
+              <span class="chrono-white-slot-num">${num}</span>
+            </div>
+          `).join("")}
+        </div>
+
+        <!-- 4 IMAGENS GRANDES EMBARALHADAS EMBAIXO (2 COLUNAS DE 2) -->
+        <div class="chrono-bottom-cards-grid" id="chrono-bottom-cards-grid">
+          ${shuffled.map((card, i) => `
+            <div class="chrono-drag-source" id="chrono-src-card-${i}" data-card-order="${card.order}" data-card-img="${card.img}">
+              <img src="${card.img}" alt="" decoding="async">
+            </div>
+          `).join("")}
         </div>
       </div>
     `;
 
-    let step = 1;
-    window._ordemCheck = function(val) {
-      if (val === step) {
-        TronoAudio.play("star");
-        step++;
-        if (step > 3) {
-          TronoAudio.play("success");
-          setTimeout(triggerArcadeVictory, 700);
+    const arena = document.getElementById("chrono-stage-arena");
+    if (!arena) return;
+
+    const filledSlots = { 1: false, 2: false, 3: false, 4: false };
+    let filledCount = 0;
+    let activeDrag = null;
+    let activePointerId = null;
+
+    function getHoveredSlotNum(cx, cy) {
+      let bestNum = 0;
+      let bestDist = Infinity;
+      const pad = 20;
+      for (let n = 1; n <= 4; n++) {
+        if (filledSlots[n]) continue;
+        const el = document.getElementById(`chrono-drop-slot-${n}`);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (cx >= r.left - pad && cx <= r.right + pad && cy >= r.top - pad && cy <= r.bottom + pad) {
+          const midX = (r.left + r.right) / 2;
+          const midY = (r.top + r.bottom) / 2;
+          const dist = Math.hypot(cx - midX, cy - midY);
+          if (dist < bestDist) {
+            bestDist = dist;
+            bestNum = n;
+          }
         }
-      } else {
-        TronoAudio.play("error");
       }
-    };
+      return bestNum;
+    }
+
+    function clearSlotHoverHighlights() {
+      for (let n = 1; n <= 4; n++) {
+        const el = document.getElementById(`chrono-drop-slot-${n}`);
+        if (el) el.classList.remove("drag-hover");
+      }
+    }
+
+    const sourceEls = arena.querySelectorAll(".chrono-drag-source");
+    sourceEls.forEach((srcEl) => {
+      srcEl.addEventListener("pointerdown", (e) => {
+        if (activeDrag || _isVictoryActive) return;
+        if (srcEl.classList.contains("placed-done")) return;
+        e.preventDefault();
+        e.stopPropagation();
+
+        activePointerId = e.pointerId !== undefined ? e.pointerId : null;
+        try { arena.setPointerCapture(e.pointerId); } catch (err) {}
+
+        TronoAudio.play("click");
+
+        const rect = srcEl.getBoundingClientRect();
+        const imgUrl = srcEl.getAttribute("data-card-img") || "";
+        const cardOrder = Number(srcEl.getAttribute("data-card-order") || 0);
+
+        const ghost = document.createElement("div");
+        ghost.style.cssText = `
+          position: fixed;
+          left: ${rect.left}px;
+          top: ${rect.top}px;
+          width: ${rect.width}px;
+          height: ${rect.height}px;
+          border-radius: 16px;
+          padding: 4px;
+          background: linear-gradient(125deg, #fde047, #38bdf8, #00e676);
+          box-shadow: 0 16px 36px rgba(0, 0, 0, 0.85), 0 0 22px rgba(253, 224, 71, 0.75);
+          pointer-events: none;
+          z-index: 10000050;
+          box-sizing: border-box;
+          transform: scale(1.06);
+          transition: transform 0.1s ease;
+        `;
+        ghost.innerHTML = `<img src="${imgUrl}" alt="" style="width:100%; height:100%; object-fit:cover; border-radius:12px; display:block;">`;
+        document.body.appendChild(ghost);
+        window._chronoDragGhostEl = ghost;
+
+        srcEl.style.opacity = "0.28";
+
+        activeDrag = {
+          srcEl,
+          ghost,
+          imgUrl,
+          cardOrder,
+          homeLeft: rect.left,
+          homeTop: rect.top,
+          width: rect.width,
+          height: rect.height,
+          grabOffsetX: e.clientX - rect.left,
+          grabOffsetY: e.clientY - rect.top
+        };
+      });
+    });
+
+    arena.addEventListener("pointermove", (e) => {
+      if (!activeDrag) return;
+      if (activePointerId !== null && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
+      e.preventDefault();
+
+      const nextLeft = e.clientX - activeDrag.grabOffsetX;
+      const nextTop = e.clientY - activeDrag.grabOffsetY;
+      activeDrag.ghost.style.left = `${nextLeft}px`;
+      activeDrag.ghost.style.top = `${nextTop}px`;
+
+      const centerX = nextLeft + activeDrag.width / 2;
+      const centerY = nextTop + activeDrag.height / 2;
+      const hov = getHoveredSlotNum(e.clientX, e.clientY) || getHoveredSlotNum(centerX, centerY);
+
+      clearSlotHoverHighlights();
+      if (hov > 0) {
+        const slotEl = document.getElementById(`chrono-drop-slot-${hov}`);
+        if (slotEl) slotEl.classList.add("drag-hover");
+      }
+    });
+
+    function endChronoDrag(e) {
+      if (!activeDrag) return;
+      if (activePointerId !== null && e && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
+
+      const drag = activeDrag;
+      activeDrag = null;
+      activePointerId = null;
+      clearSlotHoverHighlights();
+
+      const ghostRect = drag.ghost.getBoundingClientRect();
+      const centerX = ghostRect.left + ghostRect.width / 2;
+      const centerY = ghostRect.top + ghostRect.height / 2;
+      const clientX = (e && typeof e.clientX === "number") ? e.clientX : centerX;
+      const clientY = (e && typeof e.clientY === "number") ? e.clientY : centerY;
+
+      const targetSlotNum = getHoveredSlotNum(clientX, clientY) || getHoveredSlotNum(centerX, centerY);
+
+      if (targetSlotNum > 0 && targetSlotNum === drag.cardOrder && !filledSlots[targetSlotNum]) {
+        // ACERTOU O QUADRADINHO!
+        filledSlots[targetSlotNum] = true;
+        filledCount++;
+        TronoAudio.play("star");
+
+        if (drag.ghost && drag.ghost.parentNode) {
+          drag.ghost.parentNode.removeChild(drag.ghost);
+        }
+        window._chronoDragGhostEl = null;
+
+        drag.srcEl.classList.add("placed-done");
+
+        const slotEl = document.getElementById(`chrono-drop-slot-${targetSlotNum}`);
+        if (slotEl) {
+          slotEl.classList.add("slot-filled");
+          slotEl.innerHTML = `
+            <img src="${drag.imgUrl}" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <div style="position:absolute; top:4px; left:4px; width:21px; height:21px; border-radius:50%; background:linear-gradient(180deg, #00e676, #00c853); border:1.8px solid #ffffff; color:#ffffff; font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.75);">
+              ${targetSlotNum}
+            </div>
+          `;
+        }
+
+        if (filledCount >= 4) {
+          TronoAudio.play("success");
+          window._chronoWinTimer = setTimeout(() => {
+            triggerArcadeVictory();
+          }, 620);
+        }
+        return;
+      }
+
+      // Se soltou em um quadradinho errado, avisa suavemente e desliza de volta para baixo
+      if (targetSlotNum > 0 && targetSlotNum !== drag.cardOrder) {
+        TronoAudio.play("error");
+        const wrongSlotEl = document.getElementById(`chrono-drop-slot-${targetSlotNum}`);
+        if (wrongSlotEl) {
+          wrongSlotEl.classList.remove("slot-wrong");
+          void wrongSlotEl.offsetWidth;
+          wrongSlotEl.classList.add("slot-wrong");
+          setTimeout(() => { if (wrongSlotEl) wrongSlotEl.classList.remove("slot-wrong"); }, 360);
+        }
+      }
+
+      const homeRect = drag.srcEl.getBoundingClientRect();
+      drag.ghost.style.transition = "left 0.22s cubic-bezier(0.2, 0.9, 0.3, 1), top 0.22s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.22s ease";
+      drag.ghost.style.left = `${homeRect.left}px`;
+      drag.ghost.style.top = `${homeRect.top}px`;
+      drag.ghost.style.transform = "scale(1)";
+
+      setTimeout(() => {
+        if (drag.ghost && drag.ghost.parentNode) {
+          drag.ghost.parentNode.removeChild(drag.ghost);
+        }
+        if (window._chronoDragGhostEl === drag.ghost) {
+          window._chronoDragGhostEl = null;
+        }
+        if (!drag.srcEl.classList.contains("placed-done")) {
+          drag.srcEl.style.opacity = "1";
+        }
+      }, 230);
+    }
+
+    arena.addEventListener("pointerup", endChronoDrag);
+    arena.addEventListener("pointercancel", endChronoDrag);
   }
 
   // --- JOGO 13: JOGO DA MEMÓRIA DOS BICHOS ---

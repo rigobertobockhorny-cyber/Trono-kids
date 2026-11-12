@@ -7794,6 +7794,10 @@ window.openGameFromLesson = function(gameKey) {
   const lesson = window.getCurrentLessonObj();
   const st = (typeof STORIES !== "undefined" && STORIES.find(s => s.id === lesson.storyIdUnlock)) || (typeof STORIES !== "undefined" ? STORIES[0] : null);
 
+  if (gameKey === "chronology" && typeof window.openLessonArcadeGame === "function") {
+    window.openLessonArcadeGame("criacao_ordem", lesson.week, "chronology");
+    return;
+  }
   if (gameKey === "lesson_puzzle" && st && typeof startPuzzleWithStory === "function") {
     if (typeof currentStory !== "undefined") currentStory = st;
     startPuzzleWithStory(st);
@@ -7892,6 +7896,14 @@ window.openEduGame = function(gameKey, fromLesson) {
   const wk = lesson.week;
 
   if (gameKey === "chronology") {
+    if (fromLesson && typeof window.openLessonArcadeGame === "function") {
+      window.openLessonArcadeGame("criacao_ordem", wk, "chronology");
+      return;
+    }
+    if (!fromLesson && typeof window.openTronoArcadeGame === "function") {
+      window.openTronoArcadeGame("criacao_ordem");
+      return;
+    }
     if (fromLesson) {
       const idx = window.CHRONOLOGY_LEVELS.findIndex(l =>l.lessonWeek === wk);
       window.EBD_STATE.chronologyIdx = idx >= 0 ? idx : 0;
