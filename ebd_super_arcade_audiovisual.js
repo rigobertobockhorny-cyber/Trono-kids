@@ -272,6 +272,7 @@
       "vovo_jogo_08_v142.mp3": 11102,
       "vovo_jogo_09.mp3": 5277,
       "vovo_jogo_10.mp3": 8229,
+      "vovo_jogo_10_v176.mp3": 15975,
       "vovo_jogo_11.mp3": 7837,
       "vovo_jogo_12.mp3": 13453,
       "vovo_jogo_12_v159.mp3": 13453,
@@ -644,8 +645,8 @@
       title: "LIGUE OS PONTOS",
       sub: "",
       icon: "./2_ASSETS_UI_BOTOES/ico_jogo_10_pontos_v130.png?v=130",
-      audioFile: "vovo_jogo_10.mp3",
-      vovoFala: "Ligue os pontinhos brilhantes na ordem dos números para revelar o desenho!",
+      audioFile: "vovo_jogo_10_v176.mp3",
+      vovoFala: "Olhe só essa figura! Falta completar uma parte dela! Leve a bolinha brilhante com o seu dedinho, de pontinho em pontinho, até fechar todo o desenho e ver tudo ganhar cor!",
       run: (container, phase) => runLiguePontos(container, phase)
     },
     {
@@ -2150,6 +2151,18 @@
     if (window._arcadeTrueMythWinTimer) {
       clearTimeout(window._arcadeTrueMythWinTimer);
       window._arcadeTrueMythWinTimer = null;
+    }
+    if (typeof window._liguePontosCleanup === "function") {
+      try { window._liguePontosCleanup(); } catch (e) {}
+      window._liguePontosCleanup = null;
+    }
+    if (window._liguePontosRaf) {
+      cancelAnimationFrame(window._liguePontosRaf);
+      window._liguePontosRaf = null;
+    }
+    if (window._liguePontosWinTimer) {
+      clearTimeout(window._liguePontosWinTimer);
+      window._liguePontosWinTimer = null;
     }
     if (window._arcadePaintKeyHandler) {
       window.removeEventListener("keydown", window._arcadePaintKeyHandler);
@@ -6680,32 +6693,824 @@
     };
   }
 
-  // --- JOGO 10: LIGUE OS PONTOS ---
+  // --- JOGO 10: LIGUE OS PONTOS 3D (SILHUETA PONTILHADA + ZOOM DE CÂMERA + REVELAÇÃO EM CORES v176) ---
+  const LIGUE_PONTOS_15_PHASES = [
+    {
+      phase: 1,
+      title: "Peixinho da Galileia",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_01_peixinho_v176.png?v=176",
+      splitX: 0.4507,
+      dots: [[0.4524,0.102],[0.5639,0.1796],[0.7078,0.2811],[0.8543,0.298],[0.8666,0.4679],[0.875,0.6675],[0.7135,0.6984],[0.5771,0.818],[0.4527,0.8751]]
+    },
+    {
+      phase: 2,
+      title: "Arca de Noé",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_02_arca_v176.png?v=176",
+      splitX: 0.4495,
+      dots: [[0.45,0.1414],[0.6208,0.1186],[0.7512,0.2073],[0.8901,0.2879],[0.8968,0.4526],[0.8618,0.6207],[0.821,0.7738],[0.76,0.8761],[0.6208,0.8015],[0.45,0.8214]]
+    },
+    {
+      phase: 3,
+      title: "Leãozinho de Judá",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_03_leaozinho_v176.png?v=176",
+      splitX: 0.4499,
+      dots: [[0.45,0.1353],[0.6335,0.1527],[0.5663,0.3249],[0.6393,0.4669],[0.765,0.6278],[0.8187,0.4827],[0.8792,0.6282],[0.7476,0.7553],[0.6373,0.8714],[0.45,0.9071]]
+    },
+    {
+      phase: 4,
+      title: "Harpa de Davi",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_04_harpa_v176.png?v=176",
+      splitX: 0.461,
+      dots: [[0.4619,0.1348],[0.5681,0.2221],[0.6979,0.1891],[0.8014,0.2533],[0.7729,0.3843],[0.7284,0.515],[0.6847,0.6459],[0.6425,0.7772],[0.598,0.886],[0.4619,0.9084]]
+    },
+    {
+      phase: 5,
+      title: "Grande Baleia",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_05_baleia_v176.png?v=176",
+      splitX: 0.4482,
+      dots: [[0.45,0.2174],[0.5634,0.2737],[0.6545,0.3588],[0.7752,0.3775],[0.9001,0.373],[0.8495,0.4761],[0.7717,0.5709],[0.7196,0.6861],[0.6981,0.781],[0.5746,0.7619],[0.45,0.7881]]
+    },
+    {
+      phase: 6,
+      title: "Túnica Colorida de José",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_06_tunica_v176.png?v=176",
+      splitX: 0.4485,
+      dots: [[0.45,0.169],[0.5901,0.1547],[0.7211,0.1955],[0.834,0.2835],[0.8913,0.3906],[0.7917,0.488],[0.7368,0.5778],[0.7638,0.7184],[0.7161,0.8281],[0.5746,0.8463],[0.4485,0.8222]]
+    },
+    {
+      phase: 7,
+      title: "Pastorzinho Davi",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_07_davi_v176.png?v=176",
+      splitX: 0.4549,
+      dots: [[0.4571,0.0916],[0.5742,0.0988],[0.6506,0.1794],[0.6499,0.2961],[0.5922,0.3994],[0.6124,0.5138],[0.658,0.6222],[0.6749,0.737],[0.6512,0.8361],[0.5713,0.8967],[0.4571,0.9027]]
+    },
+    {
+      phase: 8,
+      title: "Estrela Guia",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_08_estrela_v176.png?v=176",
+      splitX: 0.4534,
+      dots: [[0.4538,0.1167],[0.5531,0.1332],[0.6066,0.2547],[0.7368,0.2553],[0.7295,0.3828],[0.8368,0.4523],[0.8511,0.5461],[0.7337,0.6066],[0.7455,0.7373],[0.6245,0.7484],[0.5543,0.8502],[0.4548,0.8903]]
+    },
+    {
+      phase: 9,
+      title: "Ovelhinha do Pastor",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_09_carneirinho_v176.png?v=176",
+      splitX: 0.4485,
+      dots: [[0.45,0.1244],[0.5799,0.1071],[0.7096,0.119],[0.8286,0.1556],[0.8619,0.2824],[0.9005,0.3931],[0.8044,0.4732],[0.7848,0.6033],[0.7339,0.7205],[0.6555,0.821],[0.5701,0.8722],[0.4495,0.8647]]
+    },
+    {
+      phase: 10,
+      title: "Elefantinho da Arca",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_10_elefante_v176.png?v=176",
+      splitX: 0.4486,
+      dots: [[0.45,0.1379],[0.572,0.1155],[0.7062,0.1512],[0.8298,0.1814],[0.8885,0.308],[0.8412,0.4339],[0.8742,0.5483],[0.7597,0.6167],[0.6814,0.6944],[0.6743,0.833],[0.5876,0.8929],[0.45,0.9095]]
+    },
+    {
+      phase: 11,
+      title: "Rainha Ester",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_11_ester_v176.png?v=176",
+      splitX: 0.4534,
+      dots: [[0.4548,0.0989],[0.5509,0.1036],[0.6287,0.1602],[0.6595,0.2526],[0.6404,0.3482],[0.6157,0.4419],[0.6304,0.5389],[0.6555,0.6335],[0.6515,0.7308],[0.6761,0.826],[0.646,0.8915],[0.5523,0.9061],[0.4548,0.9]]
+    },
+    {
+      phase: 12,
+      title: "Coroa Real",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_12_coroa_v176.png?v=176",
+      splitX: 0.4488,
+      dots: [[0.4498,0.1451],[0.5449,0.1399],[0.5655,0.2552],[0.6817,0.2689],[0.7994,0.2947],[0.8912,0.3718],[0.9024,0.4933],[0.8661,0.6119],[0.8343,0.7292],[0.8175,0.8501],[0.6994,0.8854],[0.5749,0.8937],[0.45,0.8951]]
+    },
+    {
+      phase: 13,
+      title: "Girafinha da Criação",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_13_girafa_v176.png?v=176",
+      splitX: 0.4432,
+      dots: [[0.4436,0.1381],[0.5204,0.1293],[0.6138,0.0931],[0.6932,0.1454],[0.7308,0.2208],[0.714,0.3324],[0.6785,0.4328],[0.615,0.5137],[0.628,0.6282],[0.6232,0.7422],[0.6372,0.8558],[0.5442,0.9013],[0.4452,0.8659]]
+    },
+    {
+      phase: 14,
+      title: "Patriarca Noé",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_14_noe_v176.png?v=176",
+      splitX: 0.4346,
+      dots: [[0.4361,0.1275],[0.5311,0.087],[0.6273,0.1272],[0.6956,0.2054],[0.7116,0.3057],[0.6983,0.4099],[0.7588,0.4966],[0.7739,0.5982],[0.7259,0.6873],[0.7306,0.793],[0.6909,0.8855],[0.5955,0.8985],[0.5276,0.8591],[0.4357,0.8973]]
+    },
+    {
+      phase: 15,
+      title: "Anjinho de Deus",
+      img: "./2_ASSETS_UI_BOTOES/ligue_fig_15_anjinho_v176.png?v=176",
+      splitX: 0.4612,
+      dots: [[0.4619,0.104],[0.5609,0.0945],[0.6513,0.1417],[0.6913,0.2351],[0.7248,0.3207],[0.8114,0.3207],[0.7911,0.4201],[0.7372,0.5054],[0.7,0.5964],[0.7003,0.6931],[0.6667,0.7764],[0.6389,0.8685],[0.5631,0.8947],[0.4619,0.9064]]
+    }
+  ];
+
   function runLiguePontos(container, phase) {
+    window._arcadeWaitVisualBeforeVovo = true;
+    const pIdx = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % LIGUE_PONTOS_15_PHASES.length);
+    const pData = LIGUE_PONTOS_15_PHASES[pIdx];
+    const dots = pData.dots;
+    const totalSegments = dots.length - 1;
+    const bgUrl = "./2_ASSETS_UI_BOTOES/bg_jogo_10_ligue_pontos_v176.jpg?v=176";
+
+    if (!document.getElementById("ligue-pontos-v176-styles")) {
+      const st = document.createElement("style");
+      st.id = "ligue-pontos-v176-styles";
+      st.textContent = `
+        @keyframes liguePuckHaloPulse {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.85; }
+          50% { transform: translate(-50%, -50%) scale(1.42); opacity: 0.22; }
+        }
+        @keyframes liguePuckBodyPulse {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 14px rgba(59,130,246,0.95), 0 4px 10px rgba(15,23,42,0.55); }
+          50% { transform: translate(-50%, -50%) scale(1.10); box-shadow: 0 0 22px rgba(139,92,246,1), 0 5px 12px rgba(15,23,42,0.6); }
+        }
+        @keyframes ligueFigureCelebratePop {
+          0% { transform: translate3d(0px, 0px, 0px) scale(1); }
+          35% { transform: translate3d(0px, -6px, 0px) scale(1.07); }
+          70% { transform: translate3d(0px, 2px, 0px) scale(0.99); }
+          100% { transform: translate3d(0px, 0px, 0px) scale(1.03); }
+        }
+        @keyframes ligueTitlePopIn {
+          0% { transform: translateX(-50%) scale(0.65); opacity: 0; }
+          65% { transform: translateX(-50%) scale(1.06); opacity: 1; }
+          100% { transform: translateX(-50%) scale(1); opacity: 1; }
+        }
+      `;
+      document.head.appendChild(st);
+    }
+
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; background:radial-gradient(circle,#1e1b4b,#020617); display:flex; align-items:center; justify-content:center;">
-        <div style="position:relative; width:300px; height:300px; border:2px dashed rgba(253,224,71,0.3); border-radius:20px;">
-          <div class="dot-btn" onclick="window._hitDot(1)" style="position:absolute; left:40px; top:40px; width:44px; height:44px; background:#fde047; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; color:#000; cursor:pointer;">1</div>
-          <div class="dot-btn" onclick="window._hitDot(2)" style="position:absolute; right:40px; top:40px; width:44px; height:44px; background:#fde047; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; color:#000; cursor:pointer;">2</div>
-          <div class="dot-btn" onclick="window._hitDot(3)" style="position:absolute; right:40px; bottom:40px; width:44px; height:44px; background:#fde047; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; color:#000; cursor:pointer;">3</div>
-          <div class="dot-btn" onclick="window._hitDot(4)" style="position:absolute; left:40px; bottom:40px; width:44px; height:44px; background:#fde047; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; color:#000; cursor:pointer;">4</div>
+      <div id="ligue-stage-root" style="position:relative; width:100%; height:100%; overflow:hidden; user-select:none; -webkit-user-select:none; touch-action:none; background:linear-gradient(180deg,#38bdf8 0%,#bae6fd 58%,#4ade80 100%); display:flex; align-items:center; justify-content:center;">
+        <img id="ligue-bg-img" src="${bgUrl}" alt="" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; pointer-events:none; z-index:1;">
+        <div style="position:absolute; inset:0; background:radial-gradient(circle at 50% 48%, rgba(255,255,255,0.16) 0%, rgba(15,23,42,0.08) 72%, rgba(15,23,42,0.26) 100%); pointer-events:none; z-index:2;"></div>
+
+        <!-- Viewport de Câmera com Zoom Automático -->
+        <div id="ligue-camera-rig" style="position:relative; z-index:5; width:min(86vw, 62vh, 390px); height:min(86vw, 62vh, 390px); transform-origin:50% 50%; transform:translate3d(0px, 0px, 0px) scale(1); transition:transform 0.72s cubic-bezier(0.22, 1, 0.36, 1); will-change:transform;">
+          <canvas id="ligue-art-canvas" width="640" height="640" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;"></canvas>
+
+          <!-- Bolinha Azul/Roxa Pulsante com Seta Direcional -->
+          <div id="ligue-puck-halo" style="position:absolute; left:${(dots[0][0] * 100).toFixed(2)}%; top:${(dots[0][1] * 100).toFixed(2)}%; width:38px; height:38px; border-radius:50%; background:radial-gradient(circle, rgba(96,165,250,0.72) 0%, rgba(124,58,237,0.38) 58%, rgba(124,58,237,0) 100%); border:2px solid rgba(191,219,254,0.9); transform:translate(-50%, -50%); pointer-events:none; animation:liguePuckHaloPulse 1.35s ease-in-out infinite;"></div>
+          <div id="ligue-active-puck" style="position:absolute; left:${(dots[0][0] * 100).toFixed(2)}%; top:${(dots[0][1] * 100).toFixed(2)}%; width:27px; height:27px; border-radius:50%; background:radial-gradient(circle at 30% 28%, #93c5fd 0%, #2563eb 48%, #6d28d9 100%); border:2.4px solid #ffffff; transform:translate(-50%, -50%); display:flex; align-items:center; justify-content:center; cursor:grab; pointer-events:auto; animation:liguePuckBodyPulse 1.35s ease-in-out infinite;">
+            <svg id="ligue-puck-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" style="pointer-events:none; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.55)); transition:transform 0.2s ease-out;">
+              <path d="M4 12H19M19 12L12.5 5.5M19 12L12.5 18.5" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </div>
+
+        <!-- Placar Discreto de Pontinhos na Base -->
+        <div id="ligue-bottom-pill" style="position:absolute; bottom:max(18px, env(safe-area-inset-bottom, 14px)); left:50%; transform:translateX(-50%); z-index:8; background:linear-gradient(180deg, rgba(30,58,138,0.88) 0%, rgba(49,46,129,0.92) 100%); border:2px solid rgba(255,255,255,0.85); border-radius:999px; padding:6px 18px; color:#ffffff; font-weight:900; font-size:14px; letter-spacing:0.5px; box-shadow:0 6px 16px rgba(0,0,0,0.35); pointer-events:none; white-space:nowrap; transition:opacity 0.35s ease;">
+          PONTINHOS: <span id="ligue-step-count" style="color:#fde047;">0</span> / ${totalSegments}
+        </div>
+
+        <!-- Selo de Revelação Colorida da Figura -->
+        <div id="ligue-reveal-badge" style="display:none; position:absolute; bottom:max(24px, env(safe-area-inset-bottom, 18px)); left:50%; transform:translateX(-50%); z-index:12; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2.8px solid #ffffff; border-radius:999px; padding:9px 24px; color:#ffffff; font-weight:900; font-size:17px; letter-spacing:0.6px; text-shadow:0 2px 5px rgba(0,0,0,0.5); box-shadow:0 0 24px rgba(253,224,71,0.9), 0 8px 18px rgba(0,0,0,0.45); pointer-events:none; white-space:nowrap;">
+          ⭐ ${pData.title.toUpperCase()} ⭐
+        </div>
+
+        <!-- Chuva de Confetes na Própria Figura Revelada (Antes da Tela Roxa de Vitória) -->
+        <canvas id="ligue-stage-confetti" style="display:none; position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:11;"></canvas>
       </div>
     `;
 
-    let nextDot = 1;
-    window._hitDot = function(num) {
-      if (num === nextDot) {
-        TronoAudio.play("star");
-        nextDot++;
-        if (nextDot > 4) {
-          TronoAudio.play("success");
-          setTimeout(triggerArcadeVictory, 600);
-        }
-      } else {
-        TronoAudio.play("error");
+    const stageRoot = document.getElementById("ligue-stage-root");
+    const bgImgEl = document.getElementById("ligue-bg-img");
+    const cameraRig = document.getElementById("ligue-camera-rig");
+    const artCanvas = document.getElementById("ligue-art-canvas");
+    const puckEl = document.getElementById("ligue-active-puck");
+    const puckHaloEl = document.getElementById("ligue-puck-halo");
+    const puckArrowEl = document.getElementById("ligue-puck-arrow");
+    const stepCountEl = document.getElementById("ligue-step-count");
+    const bottomPillEl = document.getElementById("ligue-bottom-pill");
+    const revealBadgeEl = document.getElementById("ligue-reveal-badge");
+    const stageConfettiCvs = document.getElementById("ligue-stage-confetti");
+    if (!stageRoot || !cameraRig || !artCanvas || !puckEl) return;
+
+    const CW = 640;
+    const CH = 640;
+    artCanvas.width = CW;
+    artCanvas.height = CH;
+    const ctx = artCanvas.getContext("2d");
+
+    const fullColorCvs = document.createElement("canvas");
+    fullColorCvs.width = 420;
+    fullColorCvs.height = 420;
+    const halfWhiteCvs = document.createElement("canvas");
+    halfWhiteCvs.width = 420;
+    halfWhiteCvs.height = 420;
+    const silShadowCvs = document.createElement("canvas");
+    silShadowCvs.width = 420;
+    silShadowCvs.height = 420;
+
+    let artReady = false;
+    let bgLoaded = false;
+    let figLoaded = false;
+    let currentIdx = 0;
+    let puckX = dots[0][0];
+    let puckY = dots[0][1];
+    let isDragging = false;
+    let activePointerId = null;
+    let isCompleted = false;
+    let isZoomedIn = false;
+    let revealProgress = 0;
+    let guideAlpha = 1;
+    let pulseTick = 0;
+    const sparkles = [];
+    const stageConfetti = [];
+    const stageFireworks = [];
+    let confettiActive = false;
+
+    const ZOOM_SCALE = 1.68;
+
+    function updateArrowAngle() {
+      if (!puckArrowEl || currentIdx >= dots.length - 1) return;
+      const target = dots[currentIdx + 1];
+      const dx = target[0] - puckX;
+      const dy = target[1] - puckY;
+      const deg = (Math.atan2(dy, dx) * 180) / Math.PI;
+      puckArrowEl.style.transform = `rotate(${deg.toFixed(1)}deg)`;
+    }
+
+    function updatePuckDomPosition() {
+      if (!puckEl || !puckHaloEl) return;
+      if (isCompleted) {
+        puckEl.style.display = "none";
+        puckHaloEl.style.display = "none";
+        return;
       }
+      const leftPct = `${(puckX * 100).toFixed(2)}%`;
+      const topPct = `${(puckY * 100).toFixed(2)}%`;
+      puckEl.style.left = leftPct;
+      puckEl.style.top = topPct;
+      puckHaloEl.style.left = leftPct;
+      puckHaloEl.style.top = topPct;
+      updateArrowAngle();
+    }
+
+    function updateCameraTransform(durationSec) {
+      if (!cameraRig || !stageRoot) return;
+      if (!isZoomedIn || isCompleted) {
+        cameraRig.style.transition = `transform ${(durationSec || 0.68).toFixed(2)}s cubic-bezier(0.22, 1, 0.36, 1)`;
+        cameraRig.style.transform = "translate3d(0px, 0px, 0px) scale(1)";
+        return;
+      }
+      const nextPt = dots[Math.min(dots.length - 1, currentIdx + 1)];
+      const curPt = dots[currentIdx];
+      const focusX = curPt[0] * 0.58 + nextPt[0] * 0.42;
+      const focusY = curPt[1] * 0.58 + nextPt[1] * 0.42;
+
+      const baseSize = cameraRig.offsetWidth || 330;
+      const stgW = stageRoot.clientWidth || 380;
+      const stgH = stageRoot.clientHeight || 680;
+      const maxPanX = Math.max(70, Math.min(185, stgW * 0.36));
+      const maxPanY = Math.max(85, Math.min(220, stgH * 0.28));
+
+      let tx = -(focusX - 0.5) * baseSize * ZOOM_SCALE;
+      let ty = -(focusY - 0.5) * baseSize * ZOOM_SCALE + 16;
+      tx = Math.max(-maxPanX, Math.min(maxPanX, tx));
+      ty = Math.max(-maxPanY, Math.min(maxPanY, ty));
+
+      cameraRig.style.transition = `transform ${(durationSec || 0.42).toFixed(2)}s cubic-bezier(0.22, 1, 0.36, 1)`;
+      cameraRig.style.transform = `translate3d(${tx.toFixed(1)}px, ${ty.toFixed(1)}px, 0px) scale(${ZOOM_SCALE})`;
+    }
+
+    function spawnDotSparkles(nx, ny, count) {
+      const colors = ["#fde047", "#ffffff", "#60a5fa", "#c084fc", "#34d399"];
+      for (let i = 0; i < (count || 12); i++) {
+        const ang = (Math.PI * 2 * i) / (count || 12) + (Math.random() - 0.5) * 0.35;
+        const spd = 0.004 + Math.random() * 0.009;
+        sparkles.push({
+          x: nx,
+          y: ny,
+          vx: Math.cos(ang) * spd,
+          vy: Math.sin(ang) * spd - 0.002,
+          r: 3.5 + Math.random() * 4.5,
+          alpha: 1,
+          color: colors[i % colors.length]
+        });
+      }
+    }
+
+    function startStageConfettiShow() {
+      if (!stageConfettiCvs || !stageRoot) return;
+      stageConfettiCvs.style.display = "block";
+      const W = (stageConfettiCvs.width = Math.max(320, stageRoot.clientWidth || 390));
+      const H = (stageConfettiCvs.height = Math.max(520, stageRoot.clientHeight || 720));
+      const palette = ["#fde047", "#00e676", "#38bdf8", "#ff4081", "#a855f7", "#fb923c", "#ffffff"];
+      stageConfetti.length = 0;
+      stageFireworks.length = 0;
+
+      for (let i = 0; i < 64; i++) {
+        stageConfetti.push({
+          x: Math.random() * W,
+          y: -15 - Math.random() * H * 0.55,
+          vx: (Math.random() - 0.5) * 3.2,
+          vy: 2.6 + Math.random() * 3.8,
+          w: 7 + Math.random() * 6,
+          h: 11 + Math.random() * 8,
+          rot: Math.random() * Math.PI * 2,
+          vRot: (Math.random() - 0.5) * 0.18,
+          color: palette[i % palette.length]
+        });
+      }
+
+      const burstCenters = [
+        [W * 0.26, H * 0.28],
+        [W * 0.74, H * 0.28],
+        [W * 0.50, H * 0.22]
+      ];
+      burstCenters.forEach(([bx, by]) => {
+        for (let k = 0; k < 16; k++) {
+          const a = (Math.PI * 2 * k) / 16;
+          const sp = 2.2 + Math.random() * 3.6;
+          stageFireworks.push({
+            x: bx,
+            y: by,
+            vx: Math.cos(a) * sp,
+            vy: Math.sin(a) * sp - 0.6,
+            r: 3 + Math.random() * 3.2,
+            alpha: 1,
+            color: palette[(k * 2) % palette.length]
+          });
+        }
+      });
+      confettiActive = true;
+    }
+
+    function renderStageConfettiFrame() {
+      if (!confettiActive || !stageConfettiCvs) return;
+      const cctx = stageConfettiCvs.getContext("2d");
+      const W = stageConfettiCvs.width;
+      const H = stageConfettiCvs.height;
+      cctx.clearRect(0, 0, W, H);
+
+      for (let i = stageFireworks.length - 1; i >= 0; i--) {
+        const fw = stageFireworks[i];
+        fw.x += fw.vx;
+        fw.y += fw.vy;
+        fw.vy += 0.07;
+        fw.alpha -= 0.022;
+        if (fw.alpha <= 0) {
+          stageFireworks.splice(i, 1);
+          continue;
+        }
+        cctx.globalAlpha = Math.max(0, fw.alpha);
+        cctx.fillStyle = fw.color;
+        cctx.beginPath();
+        cctx.arc(fw.x, fw.y, fw.r, 0, Math.PI * 2);
+        cctx.fill();
+      }
+
+      for (let i = 0; i < stageConfetti.length; i++) {
+        const p = stageConfetti[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.vRot;
+        if (p.y > H + 20) {
+          p.y = -16;
+          p.x = Math.random() * W;
+        }
+        cctx.save();
+        cctx.globalAlpha = 0.96;
+        cctx.translate(p.x, p.y);
+        cctx.rotate(p.rot);
+        cctx.fillStyle = p.color;
+        cctx.fillRect(-p.w * 0.5, -p.h * 0.5, p.w, p.h);
+        cctx.restore();
+      }
+      cctx.globalAlpha = 1;
+    }
+
+    function buildCompositeLayers(figImg) {
+      const fctx = fullColorCvs.getContext("2d");
+      fctx.clearRect(0, 0, 420, 420);
+      fctx.drawImage(figImg, 0, 0, 420, 420);
+
+      const hctx = halfWhiteCvs.getContext("2d");
+      hctx.clearRect(0, 0, 420, 420);
+      hctx.drawImage(figImg, 0, 0, 420, 420);
+
+      const sctx = silShadowCvs.getContext("2d");
+      sctx.clearRect(0, 0, 420, 420);
+
+      try {
+        const imgData = hctx.getImageData(0, 0, 420, 420);
+        const d = imgData.data;
+        const shadowData = sctx.createImageData(420, 420);
+        const sd = shadowData.data;
+
+        const gradStart = pData.splitX - 0.068;
+        const gradEnd = pData.splitX + 0.072;
+        const gradSpan = Math.max(0.02, gradEnd - gradStart);
+
+        for (let y = 0; y < 420; y++) {
+          const rowOff = y * 420 * 4;
+          for (let x = 0; x < 420; x++) {
+            const idx = rowOff + x * 4;
+            const a = d[idx + 3];
+            if (a === 0) continue;
+
+            // Sombra suave da silhueta para destacar 100% a parte branca sobre o céu e nuvens
+            sd[idx] = 15;
+            sd[idx + 1] = 23;
+            sd[idx + 2] = 42;
+            sd[idx + 3] = Math.min(115, Math.round(a * 0.42));
+
+            const xn = x / 419;
+            if (xn > gradStart) {
+              const u = Math.min(1, (xn - gradStart) / gradSpan);
+              const smooth = u * u * (3 - 2 * u);
+              const r = d[idx];
+              const g = d[idx + 1];
+              const b = d[idx + 2];
+              // Preserva um levíssimo relevo perolado na transição e branco puro na metade direita
+              const lum = 0.299 * r + 0.587 * g + 0.114 * b;
+              const whiteTone = Math.min(255, Math.round(246 + (lum / 255) * 9));
+              d[idx] = Math.round(r + (whiteTone - r) * smooth);
+              d[idx + 1] = Math.round(g + (whiteTone - g) * smooth);
+              d[idx + 2] = Math.round(b + (255 - b) * smooth);
+            }
+          }
+        }
+        hctx.putImageData(imgData, 0, 0);
+        sctx.putImageData(shadowData, 0, 0);
+      } catch (err) {
+        console.warn("LiguePontos composite fallback:", err);
+      }
+      artReady = true;
+    }
+
+    function drawArtFrame() {
+      ctx.clearRect(0, 0, CW, CH);
+      if (!artReady) return;
+
+      // 1. Sombra suave de recorte sob toda a figura isolada
+      ctx.save();
+      ctx.filter = "blur(9px)";
+      ctx.drawImage(silShadowCvs, 0, 8, CW, CH);
+      ctx.restore();
+
+      // 2. Figura base (metade esquerda colorida 3D + degradê suave -> silhueta branca à direita)
+      if (revealProgress < 1) {
+        ctx.drawImage(halfWhiteCvs, 0, 0, CW, CH);
+      }
+
+      // 3. Onda mágica de revelação 100% colorida ao fechar o último pontinho
+      if (revealProgress > 0) {
+        const startX = Math.max(0, (pData.splitX - 0.08) * CW);
+        const revealX = startX + (CW - startX + 24) * revealProgress;
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(0, 0, revealX, CH);
+        ctx.clip();
+        ctx.drawImage(fullColorCvs, 0, 0, CW, CH);
+        ctx.restore();
+
+        if (revealProgress < 0.99) {
+          const grad = ctx.createLinearGradient(revealX - 26, 0, revealX + 12, 0);
+          grad.addColorStop(0, "rgba(253,224,71,0)");
+          grad.addColorStop(0.6, "rgba(253,224,71,0.85)");
+          grad.addColorStop(1, "rgba(255,255,255,0)");
+          ctx.fillStyle = grad;
+          ctx.fillRect(revealX - 26, CW * 0.06, 38, CH * 0.88);
+        }
+      }
+
+      // 4. Pontilhado da silhueta, linhas conectadas e pontinhos brancos
+      if (guideAlpha > 0.01) {
+        ctx.save();
+        ctx.globalAlpha = guideAlpha;
+
+        // 4a. Tracejado suave nos trechos ainda não ligados
+        if (currentIdx < dots.length - 1) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(dots[currentIdx][0] * CW, dots[currentIdx][1] * CH);
+          for (let i = currentIdx + 1; i < dots.length; i++) {
+            ctx.lineTo(dots[i][0] * CW, dots[i][1] * CH);
+          }
+          ctx.lineCap = "round";
+          ctx.lineJoin = "round";
+          ctx.setLineDash([9, 11]);
+          ctx.lineWidth = 6.5;
+          ctx.strokeStyle = "rgba(30, 64, 175, 0.42)";
+          ctx.stroke();
+
+          ctx.lineWidth = 3.2;
+          ctx.strokeStyle = "rgba(255, 255, 255, 0.95)";
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        // 4b. Linha brilhante já conectada pela criança (0 .. currentIdx)
+        if (currentIdx > 0 || isDragging) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(dots[0][0] * CW, dots[0][1] * CH);
+          for (let i = 1; i <= currentIdx; i++) {
+            ctx.lineTo(dots[i][0] * CW, dots[i][1] * CH);
+          }
+          if (!isCompleted && (isDragging || Math.hypot(puckX - dots[currentIdx][0], puckY - dots[currentIdx][1]) > 0.004)) {
+            ctx.lineTo(puckX * CW, puckY * CH);
+          }
+          ctx.lineCap = "round";
+          ctx.lineJoin = "round";
+          ctx.lineWidth = 12;
+          ctx.strokeStyle = "rgba(37, 99, 235, 0.55)";
+          ctx.stroke();
+
+          ctx.lineWidth = 7.5;
+          ctx.strokeStyle = "#60a5fa";
+          ctx.stroke();
+
+          ctx.lineWidth = 3.4;
+          ctx.strokeStyle = "#ffffff";
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        // 4c. Halo sutil de destino no próximo pontinho branco quando destravado
+        if (isZoomedIn && !isCompleted && currentIdx < dots.length - 1) {
+          const nxt = dots[currentIdx + 1];
+          const haloR = 14 + Math.sin(pulseTick * 0.11) * 3.5;
+          ctx.beginPath();
+          ctx.arc(nxt[0] * CW, nxt[1] * CH, haloR, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(96, 165, 250, 0.32)";
+          ctx.fill();
+          ctx.lineWidth = 2.2;
+          ctx.strokeStyle = "rgba(253, 224, 71, 0.88)";
+          ctx.stroke();
+        }
+
+        // 4d. Pontinhos brancos 3D do contorno (e pontinhos já ligados)
+        for (let i = 0; i < dots.length; i++) {
+          if (!isCompleted && i === currentIdx) continue;
+          const dx = dots[i][0] * CW;
+          const dy = dots[i][1] * CH;
+          const visited = i < currentIdx;
+
+          ctx.beginPath();
+          ctx.arc(dx, dy + 2, visited ? 7.5 : 9.2, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(15, 23, 42, 0.36)";
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(dx, dy, visited ? 7.2 : 9.0, 0, Math.PI * 2);
+          ctx.fillStyle = visited ? "#93c5fd" : "#ffffff";
+          ctx.fill();
+          ctx.lineWidth = visited ? 2.4 : 2.8;
+          ctx.strokeStyle = visited ? "#1d4ed8" : "rgba(37, 99, 235, 0.78)";
+          ctx.stroke();
+        }
+
+        ctx.restore();
+      }
+
+      // 5. Estrelinhas mágicas ao conectar cada pontinho
+      for (let i = sparkles.length - 1; i >= 0; i--) {
+        const sp = sparkles[i];
+        sp.x += sp.vx;
+        sp.y += sp.vy;
+        sp.alpha -= 0.032;
+        if (sp.alpha <= 0) {
+          sparkles.splice(i, 1);
+          continue;
+        }
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, sp.alpha);
+        ctx.fillStyle = sp.color;
+        ctx.beginPath();
+        ctx.arc(sp.x * CW, sp.y * CH, sp.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function completePhaseWithColorReveal() {
+      if (isCompleted) return;
+      isCompleted = true;
+      isDragging = false;
+      activePointerId = null;
+      updatePuckDomPosition();
+      if (bottomPillEl) bottomPillEl.style.opacity = "0";
+
+      // 1) Zoom out suave mostrando a figura inteira
+      updateCameraTransform(0.68);
+
+      // 2) Anima o preenchimento mágico 100% colorido + desaparecimento dos pontinhos
+      const revealStart = performance.now();
+      const revealDuration = 720;
+
+      function stepReveal(now) {
+        const elapsed = now - revealStart;
+        const t = Math.min(1, elapsed / revealDuration);
+        revealProgress = t * t * (3 - 2 * t);
+        guideAlpha = Math.max(0, 1 - t * 1.6);
+        if (t < 1 && !confettiActive) {
+          const waveX = pData.splitX + (0.90 - pData.splitX) * revealProgress;
+          if (Math.random() < 0.55) {
+            spawnDotSparkles(waveX, 0.22 + Math.random() * 0.56, 3);
+          }
+        }
+      }
+      window._ligueStepRevealFn = stepReveal;
+
+      // 3) Assim que a câmera abre e a cor preenche (~650ms): solta confetes e pausa de contemplação (~2.2s) antes da tela de vitória!
+      window._liguePontosWinTimer = setTimeout(() => {
+        revealProgress = 1;
+        guideAlpha = 0;
+        TronoAudio.play("success");
+        if (cameraRig) {
+          cameraRig.style.animation = "ligueFigureCelebratePop 0.65s ease-out forwards";
+        }
+        if (revealBadgeEl) {
+          revealBadgeEl.style.display = "block";
+          revealBadgeEl.style.animation = "ligueTitlePopIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards";
+        }
+        startStageConfettiShow();
+
+        window._liguePontosWinTimer = setTimeout(() => {
+          confettiActive = false;
+          triggerArcadeVictory();
+        }, 2200);
+      }, 680);
+    }
+
+    function advanceToNextDot() {
+      if (isCompleted || currentIdx >= dots.length - 1) return;
+      currentIdx++;
+      puckX = dots[currentIdx][0];
+      puckY = dots[currentIdx][1];
+      if (stepCountEl) stepCountEl.textContent = String(currentIdx);
+      spawnDotSparkles(puckX, puckY, 12);
+      TronoAudio.play("star");
+      updatePuckDomPosition();
+
+      if (currentIdx >= dots.length - 1) {
+        completePhaseWithColorReveal();
+      } else {
+        updateCameraTransform(0.38);
+      }
+    }
+
+    function clientToBoardNorm(clientX, clientY) {
+      const rect = cameraRig.getBoundingClientRect();
+      if (!rect || rect.width < 10 || rect.height < 10) return { x: puckX, y: puckY, rectW: 320 };
+      return {
+        x: Math.max(0.02, Math.min(0.98, (clientX - rect.left) / rect.width)),
+        y: Math.max(0.02, Math.min(0.98, (clientY - rect.top) / rect.height)),
+        rectW: rect.width
+      };
+    }
+
+    function handleDragAtNorm(nx, ny) {
+      if (isCompleted || window._arcadeStageLockedForVovo || currentIdx >= dots.length - 1) return;
+      const A = dots[currentIdx];
+      const B = dots[currentIdx + 1];
+      const abx = B[0] - A[0];
+      const aby = B[1] - A[1];
+      const abLenSq = Math.max(0.0001, abx * abx + aby * aby);
+      const abLen = Math.sqrt(abLenSq);
+
+      const apx = nx - A[0];
+      const apy = ny - A[1];
+      const rawT = (apx * abx + apy * aby) / abLenSq;
+      const clampedT = Math.max(0, Math.min(1.04, rawT));
+
+      const projX = A[0] + abx * Math.min(1, clampedT);
+      const projY = A[1] + aby * Math.min(1, clampedT);
+      const perpDist = Math.hypot(nx - projX, ny - projY);
+
+      // Atração magnética gentil na trilha para dedinhos pequenos sem travar o movimento
+      const offX = nx - projX;
+      const offY = ny - projY;
+      const maxOff = 0.045;
+      const offScale = perpDist > maxOff ? (maxOff / perpDist) : 1;
+      puckX = projX + offX * offScale * 0.35;
+      puckY = projY + offY * offScale * 0.35;
+      updatePuckDomPosition();
+
+      const distToB = Math.hypot(nx - B[0], ny - B[1]);
+      if (distToB <= 0.082 || (clampedT >= 0.80 && perpDist <= Math.max(0.095, abLen * 0.65))) {
+        advanceToNextDot();
+      }
+    }
+
+    function onPointerDown(ev) {
+      if (isCompleted || window._arcadeStageLockedForVovo) return;
+      const pt = ev.touches && ev.touches[0] ? ev.touches[0] : ev;
+      if (!pt || typeof pt.clientX !== "number") return;
+
+      const norm = clientToBoardNorm(pt.clientX, pt.clientY);
+      const distPuck = Math.hypot(norm.x - puckX, norm.y - puckY);
+      const nextDot = dots[Math.min(dots.length - 1, currentIdx + 1)];
+      const distNext = Math.hypot(norm.x - nextDot[0], norm.y - nextDot[1]);
+
+      // Permite pegar a bolinha pulsante com folga generosa OU tocar direto no próximo pontinho branco
+      if (distPuck <= 0.135) {
+        if (ev.cancelable) ev.preventDefault();
+        isDragging = true;
+        activePointerId = ev.pointerId !== undefined ? ev.pointerId : "touch";
+        puckEl.style.cursor = "grabbing";
+        handleDragAtNorm(norm.x, norm.y);
+      } else if (distNext <= 0.095) {
+        if (ev.cancelable) ev.preventDefault();
+        advanceToNextDot();
+      }
+    }
+
+    function onPointerMove(ev) {
+      if (!isDragging || isCompleted || window._arcadeStageLockedForVovo) return;
+      if (ev.pointerId !== undefined && activePointerId !== "touch" && ev.pointerId !== activePointerId) return;
+      const pt = ev.touches && ev.touches[0] ? ev.touches[0] : ev;
+      if (!pt || typeof pt.clientX !== "number") return;
+      if (ev.cancelable) ev.preventDefault();
+      const norm = clientToBoardNorm(pt.clientX, pt.clientY);
+      handleDragAtNorm(norm.x, norm.y);
+    }
+
+    function onPointerUp(ev) {
+      if (!isDragging) return;
+      if (ev && ev.pointerId !== undefined && activePointerId !== "touch" && ev.pointerId !== activePointerId) return;
+      isDragging = false;
+      activePointerId = null;
+      if (!isCompleted && currentIdx < dots.length) {
+        puckX = dots[currentIdx][0];
+        puckY = dots[currentIdx][1];
+        puckEl.style.cursor = "grab";
+        updatePuckDomPosition();
+      }
+    }
+
+    stageRoot.addEventListener("pointerdown", onPointerDown, { passive: false });
+    window.addEventListener("pointermove", onPointerMove, { passive: false });
+    window.addEventListener("pointerup", onPointerUp, { passive: true });
+    window.addEventListener("pointercancel", onPointerUp, { passive: true });
+
+    const onResize = () => {
+      if (!isCompleted && isZoomedIn) updateCameraTransform(0.25);
     };
+    window.addEventListener("resize", onResize);
+
+    window._liguePontosCleanup = function() {
+      confettiActive = false;
+      window._ligueStepRevealFn = null;
+      try { stageRoot.removeEventListener("pointerdown", onPointerDown); } catch (e) {}
+      try { window.removeEventListener("pointermove", onPointerMove); } catch (e) {}
+      try { window.removeEventListener("pointerup", onPointerUp); } catch (e) {}
+      try { window.removeEventListener("pointercancel", onPointerUp); } catch (e) {}
+      try { window.removeEventListener("resize", onResize); } catch (e) {}
+    };
+
+    // Ao término da fala do Vovô (ou de imediato nas fases 2+ da mesma sessão): dá o ZOOM suave no 1º pontinho!
+    window._arcadeUnlockGameAction = function() {
+      if (isCompleted) return;
+      isZoomedIn = true;
+      updatePuckDomPosition();
+      updateCameraTransform(0.72);
+    };
+
+    function animLoop(now) {
+      pulseTick++;
+      if (typeof window._ligueStepRevealFn === "function" && isCompleted && revealProgress < 1) {
+        window._ligueStepRevealFn(now);
+      }
+      drawArtFrame();
+      if (confettiActive) {
+        renderStageConfettiFrame();
+      }
+      window._liguePontosRaf = requestAnimationFrame(animLoop);
+    }
+
+    updatePuckDomPosition();
+
+    function checkBothVisualsReady() {
+      if (bgLoaded && figLoaded) {
+        drawArtFrame();
+        if (typeof window._notifyArcadeVisualReady === "function") {
+          window._notifyArcadeVisualReady();
+        }
+      }
+    }
+
+    if (bgImgEl.complete && bgImgEl.naturalWidth > 0) {
+      bgLoaded = true;
+    } else {
+      bgImgEl.onload = () => { bgLoaded = true; checkBothVisualsReady(); };
+      bgImgEl.onerror = () => { bgLoaded = true; checkBothVisualsReady(); };
+    }
+
+    const figImg = new Image();
+    figImg.onload = () => {
+      buildCompositeLayers(figImg);
+      figLoaded = true;
+      checkBothVisualsReady();
+    };
+    figImg.onerror = () => {
+      figLoaded = true;
+      checkBothVisualsReady();
+    };
+    figImg.src = pData.img;
+
+    checkBothVisualsReady();
+    window._liguePontosRaf = requestAnimationFrame(animLoop);
   }
 
   // --- JOGO 11: OS 6 ERROS DO ÉDEN ---
