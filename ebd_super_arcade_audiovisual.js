@@ -272,6 +272,7 @@
       "vovo_jogo_13_v171.mp3": 10960,
       "vovo_jogo_14.mp3": 8699,
       "vovo_jogo_14_v172.mp3": 14582,
+      "vovo_jogo_14_v173.mp3": 12632,
       "vovo_jogo_15.mp3": 8176,
       "par_arca_01.mp3": 14814,
       "par_arca_02.mp3": 9009,
@@ -679,8 +680,8 @@
       title: "ACHE A FIGURA!",
       sub: "",
       icon: "./2_ASSETS_UI_BOTOES/ico_jogo_14_ache_figura_v172.png?v=172",
-      audioFile: "vovo_jogo_14_v172.mp3",
-      vovoFala: "Olhe o desenho sem cor lá em cima! Procure essa mesma figura no meio da bagunça aqui embaixo e leve ela lá para cima para ela ganhar cor!",
+      audioFile: "vovo_jogo_14_v173.mp3",
+      vovoFala: "Olhe aqui em cima o que está faltando colorir! Procure cada figura igual no meio da bagunça aqui embaixo e leve lá para cima para ganhar cor!",
       run: (container, phase) => runManaDeserto(container, phase)
     },
     {
@@ -8207,12 +8208,12 @@
     };
   }
 
-  // --- JOGO 14: ACHE A FIGURA! 3D PIXAR (15 FASES • 30 FIGURAS EMBARALHADAS NA MESA + ALVO P&B QUE GANHA COR E BRILHO VERDE!) ---
+  // --- JOGO 14: ACHE A FIGURA! 3D PIXAR (15 FASES PROGRESSIVAS: 1 ATÉ 8 FIGURAS P&B PARA ACHAR NA BAGUNÇA DE 30 ITENS!) ---
   function runManaDeserto(container, phase) {
-    const pIdx = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 15);
+    const pNum = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 15) + 1;
     window._arcadeWaitVisualBeforeVovo = true;
 
-    // 15 Alvos das 15 Fases (objetos bíblicos, personagens e animais variados!)
+    // 15 Alvos principais + 15 Figurantes (Total = 30 figuras 3D únicas misturadas na mesa!)
     const ACHE_TARGETS_15 = [
       { id: "harpa",     img: "./2_ASSETS_UI_BOTOES/ache_item_01_harpa_v172.png?v=172" },
       { id: "leao",      img: "./2_ASSETS_UI_BOTOES/arca_bicho_01_leao_v142.png?v=142" },
@@ -8231,7 +8232,6 @@
       { id: "trombeta",  img: "./2_ASSETS_UI_BOTOES/ache_item_04_trombeta_v172.png?v=172" }
     ];
 
-    // + 15 Figurantes Distratores exclusivos (Total = 30 figuras 3D misturadas na bagunça!)
     const ACHE_DISTRACTORS_15 = [
       { id: "cajado",      img: "./2_ASSETS_UI_BOTOES/ache_item_03_cajado_v172.png?v=172" },
       { id: "pergaminho",  img: "./2_ASSETS_UI_BOTOES/ache_item_07_pergaminho_v172.png?v=172" },
@@ -8251,8 +8251,24 @@
     ];
 
     const ALL_30_ITEMS = ACHE_TARGETS_15.concat(ACHE_DISTRACTORS_15);
-    const targetDef = ACHE_TARGETS_15[pIdx];
-    const BG_SRC = "./2_ASSETS_UI_BOTOES/bg_jogo_14_ache_figura_v172.jpg?v=172";
+
+    // DIFICULDADE PROGRESSIVA NAS 15 FASES (de 1 até 8 figuras P&B para encontrar na bagunça!)
+    // F1:1 | F2-3:2 | F4-5:3 | F6-7:4 | F8-9:5 | F10-11:6 | F12-13:7 | F14-15:8
+    const PHASE_TARGET_COUNTS = [1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
+    const targetCount = PHASE_TARGET_COUNTS[pNum - 1] || 1;
+
+    // Distribuição simétrica em 1 ou 2 fileiras na área clara superior (sem cards quadrados!)
+    const TOP_ROW_SPLITS = {
+      1: [1],
+      2: [2],
+      3: [3],
+      4: [2, 2],
+      5: [3, 2],
+      6: [3, 3],
+      7: [4, 3],
+      8: [4, 4]
+    };
+    const rowPattern = TOP_ROW_SPLITS[targetCount] || [targetCount];
 
     function shuffleList(arr) {
       const a = arr.slice();
@@ -8265,30 +8281,51 @@
       return a;
     }
 
+    // Seleciona N alvos distintos girando por todo o banco de 30 figuras ao longo das 15 fases
+    const startOffset = ((pNum - 1) * 5) % ALL_30_ITEMS.length;
+    const phaseTargets = [];
+    for (let k = 0; k < targetCount; k++) {
+      const idx = (startOffset + k * 7) % ALL_30_ITEMS.length;
+      phaseTargets.push(ALL_30_ITEMS[idx]);
+    }
+    const targetIdSet = new Set(phaseTargets.map(t => t.id));
+    const BG_SRC = "./2_ASSETS_UI_BOTOES/bg_jogo_14_ache_figura_v172.jpg?v=172";
+
     container.innerHTML = `
       <style id="ache-figura-v172-styles">
         @keyframes acheTargetFloat {
           0%, 100% { transform: translate(-50%, -50%) scale(1); }
-          50% { transform: translate(-50%, -53%) scale(1.04); }
+          50% { transform: translate(-50%, -54%) scale(1.04); }
         }
         @keyframes acheTargetWinPop {
-          0% { transform: translate(-50%, -50%) scale(0.92); }
-          55% { transform: translate(-50%, -52%) scale(1.24); }
-          100% { transform: translate(-50%, -50%) scale(1.14); }
+          0% { transform: translate(-50%, -50%) scale(0.90); }
+          55% { transform: translate(-50%, -53%) scale(1.22); }
+          100% { transform: translate(-50%, -50%) scale(1.08); }
         }
         @keyframes acheTargetWrongShake {
           0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
-          25% { transform: translate(-50%, -50%) translateX(-7px) rotate(-5deg); }
-          75% { transform: translate(-50%, -50%) translateX(7px) rotate(5deg); }
+          25% { transform: translate(-50%, -50%) translateX(-6px) rotate(-5deg); }
+          75% { transform: translate(-50%, -50%) translateX(6px) rotate(5deg); }
         }
         @keyframes acheStarBurst {
           0% { transform: translate(-50%, -50%) scale(0.35); opacity: 1; }
           100% { transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, -60px))) scale(1.3); opacity: 0; }
         }
-        #ache-top-target-wrap {
+        .ache-top-slot-halo {
           position: absolute;
-          left: 50%;
-          top: 26.5%;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(255,253,240,0.76) 0%, rgba(254,240,138,0.30) 48%, rgba(255,255,255,0) 74%);
+          pointer-events: none;
+          z-index: 8;
+          transition: all 0.36s ease;
+        }
+        .ache-top-slot-halo.colored-win {
+          background: radial-gradient(circle, rgba(0,230,118,0.58) 0%, rgba(253,224,71,0.34) 48%, rgba(0,230,118,0) 74%);
+          transform: translate(-50%, -50%) scale(1.18);
+        }
+        .ache-top-slot-wrap {
+          position: absolute;
           transform: translate(-50%, -50%);
           z-index: 15;
           cursor: pointer;
@@ -8297,30 +8334,30 @@
           animation: acheTargetFloat 2.8s ease-in-out infinite;
           transition: transform 0.2s ease, filter 0.25s ease;
         }
-        #ache-top-target-wrap.hover-ready {
+        .ache-top-slot-wrap.hover-ready {
           animation: none !important;
-          transform: translate(-50%, -50%) scale(1.15) !important;
+          transform: translate(-50%, -50%) scale(1.16) !important;
         }
-        #ache-top-target-wrap.wrong-shake {
+        .ache-top-slot-wrap.wrong-shake {
           animation: acheTargetWrongShake 0.34s ease !important;
         }
-        #ache-top-target-wrap.colored-win {
-          animation: acheTargetWinPop 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+        .ache-top-slot-wrap.colored-win {
+          animation: acheTargetWinPop 0.50s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
         }
-        #ache-top-target-img {
+        .ache-top-slot-img {
           width: 100%;
           height: 100%;
           object-fit: contain;
           display: block;
           pointer-events: none;
-          filter: grayscale(1) contrast(1.12) brightness(1.06) drop-shadow(0 6px 12px rgba(0,0,0,0.34)) drop-shadow(0 0 14px rgba(255,255,255,0.78));
-          transition: filter 0.36s ease, transform 0.36s ease;
+          filter: grayscale(1) contrast(1.12) brightness(1.06) drop-shadow(0 5px 10px rgba(0,0,0,0.34)) drop-shadow(0 0 12px rgba(255,255,255,0.78));
+          transition: filter 0.34s ease, transform 0.34s ease;
         }
-        #ache-top-target-wrap.hover-ready #ache-top-target-img {
-          filter: grayscale(0.55) contrast(1.10) brightness(1.10) drop-shadow(0 0 18px #fde047) drop-shadow(0 8px 14px rgba(0,0,0,0.38));
+        .ache-top-slot-wrap.hover-ready .ache-top-slot-img {
+          filter: grayscale(0.48) contrast(1.10) brightness(1.10) drop-shadow(0 0 16px #fde047) drop-shadow(0 6px 12px rgba(0,0,0,0.38));
         }
-        #ache-top-target-wrap.colored-win #ache-top-target-img {
-          filter: grayscale(0) saturate(1.22) brightness(1.05) drop-shadow(0 0 18px #00e676) drop-shadow(0 0 34px rgba(0, 230, 118, 0.95)) drop-shadow(0 8px 16px rgba(0,0,0,0.42));
+        .ache-top-slot-wrap.colored-win .ache-top-slot-img {
+          filter: grayscale(0) saturate(1.22) brightness(1.05) drop-shadow(0 0 15px #00e676) drop-shadow(0 0 28px rgba(0, 230, 118, 0.94)) drop-shadow(0 6px 12px rgba(0,0,0,0.42));
         }
         .ache-pile-item {
           position: absolute;
@@ -8336,7 +8373,7 @@
           transition: left 0.30s cubic-bezier(0.22, 1, 0.36, 1), top 0.30s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s ease;
         }
         .ache-pile-item.flying-win {
-          transition: left 0.34s cubic-bezier(0.22, 1, 0.36, 1), top 0.34s cubic-bezier(0.22, 1, 0.36, 1), transform 0.34s ease, opacity 0.28s ease !important;
+          transition: left 0.32s cubic-bezier(0.22, 1, 0.36, 1), top 0.32s cubic-bezier(0.22, 1, 0.36, 1), transform 0.32s ease, opacity 0.26s ease !important;
           z-index: 98 !important;
           pointer-events: none !important;
         }
@@ -8344,17 +8381,13 @@
           transition: none !important;
           z-index: 96 !important;
           cursor: grabbing;
-          transform: translate(-50%, -50%) scale(1.28) rotate(0deg) !important;
+          transform: translate(-50%, -50%) scale(1.26) rotate(0deg) !important;
           filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.52)) drop-shadow(0 0 12px rgba(253, 224, 71, 0.90)) !important;
         }
       </style>
       <div id="ache-figura-arena" style="position:relative; width:100%; height:100%; overflow:hidden; touch-action:none; user-select:none; -webkit-user-select:none; background:#6b4423;">
         <img id="ache-bg-img" src="${BG_SRC}" alt="" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; z-index:1;">
-        <!-- Halo suave redondo (sem card quadrado!) atrás da figura P&B superior -->
-        <div id="ache-top-halo" style="position:absolute; left:50%; top:26.5%; transform:translate(-50%, -50%); width:176px; height:176px; border-radius:50%; background:radial-gradient(circle, rgba(255,253,240,0.78) 0%, rgba(254,240,138,0.34) 48%, rgba(255,255,255,0) 74%); pointer-events:none; z-index:8; transition:all 0.38s ease;"></div>
-        <div id="ache-top-target-wrap" title="Toque para ouvir o Vovô novamente">
-          <img id="ache-top-target-img" src="${targetDef.img}" alt="" draggable="false">
-        </div>
+        <div id="ache-top-targets-layer" style="position:absolute; inset:0; z-index:12; pointer-events:auto;"></div>
         <div id="ache-fx-layer" style="position:absolute; inset:0; z-index:92; pointer-events:none;"></div>
         <div id="ache-pile-layer" style="position:absolute; inset:0; z-index:25; pointer-events:auto;"></div>
       </div>
@@ -8362,22 +8395,70 @@
 
     const arena = container.querySelector("#ache-figura-arena");
     const bgImg = container.querySelector("#ache-bg-img");
-    const topWrap = container.querySelector("#ache-top-target-wrap");
-    const topImg = container.querySelector("#ache-top-target-img");
-    const topHalo = container.querySelector("#ache-top-halo");
+    const topLayer = container.querySelector("#ache-top-targets-layer");
     const fxLayer = container.querySelector("#ache-fx-layer");
     const pileLayer = container.querySelector("#ache-pile-layer");
-    if (!arena || !topWrap || !topImg || !pileLayer) return;
+    if (!arena || !topLayer || !pileLayer) return;
 
-    // Aguarda fundo + figura alvo decodificarem antes da voz do Vovô iniciar
+    let solved = false;
+    let foundCount = 0;
+
+    // Monta os N alvos em P&B flutuando na área superior (sem caixinhas quadradas!)
+    const topSlots = [];
+    const topSlotById = {};
+    const preloadImgs = [bgImg];
+
+    phaseTargets.forEach((tDef, idx) => {
+      const haloEl = document.createElement("div");
+      haloEl.className = "ache-slot-halo ache-top-slot-halo";
+      topLayer.appendChild(haloEl);
+
+      const wrapEl = document.createElement("div");
+      wrapEl.className = "ache-top-slot-wrap";
+      wrapEl.style.animationDelay = `${(idx * 0.24).toFixed(2)}s`;
+      wrapEl.title = "Toque para ouvir o Vovô novamente";
+
+      const imgEl = document.createElement("img");
+      imgEl.className = "ache-top-slot-img";
+      imgEl.src = tDef.img;
+      imgEl.alt = "";
+      imgEl.draggable = false;
+      wrapEl.appendChild(imgEl);
+      topLayer.appendChild(wrapEl);
+
+      if (idx === 0) preloadImgs.push(imgEl);
+
+      wrapEl.addEventListener("click", () => {
+        if (window._arcadeStageLockedForVovo || solved || _isVictoryActive) return;
+        if (typeof window.repeatVovoInstruction === "function") {
+          window.repeatVovoInstruction();
+        }
+      });
+
+      const slotObj = {
+        id: tDef.id,
+        idx,
+        haloEl,
+        wrapEl,
+        imgEl,
+        filled: false,
+        cx: 180,
+        cy: 160,
+        size: 92
+      };
+      topSlots.push(slotObj);
+      topSlotById[tDef.id] = slotObj;
+    });
+
+    // Aguarda fundo + primeiro alvo decodificarem antes da voz do Vovô iniciar
     let readyCount = 0;
     const checkVisReady = () => {
       readyCount++;
-      if (readyCount >= 2 && typeof window._notifyArcadeVisualReady === "function") {
+      if (readyCount >= preloadImgs.length && typeof window._notifyArcadeVisualReady === "function") {
         window._notifyArcadeVisualReady();
       }
     };
-    [bgImg, topImg].forEach(im => {
+    preloadImgs.forEach(im => {
       if (!im) { checkVisReady(); return; }
       if (im.complete && im.naturalWidth > 0) {
         checkVisReady();
@@ -8387,35 +8468,28 @@
       }
     });
 
-    let solved = false;
-
-    // Toque na figura P&B superior repete a instrução do Vovô
-    topWrap.addEventListener("click", () => {
-      if (window._arcadeStageLockedForVovo || solved || _isVictoryActive) return;
-      if (typeof window.repeatVovoInstruction === "function") {
-        window.repeatVovoInstruction();
-      }
-    });
-
     // Cria as 30 peças na mesa (6 colunas x 5 fileiras orgânicas embaralhadas!)
-    // Garante que o item-alvo fique numa célula interna acessível e em camada superior visível (z-index 58)!
-    const cellIndices = [];
-    const safeTargetSlots = [];
+    // Garante que TODOS os N alvos fiquem em células bem visíveis e em camada superior (z-index 56+)!
+    const allCells = [];
+    const innerSafeCells = [];
     for (let r = 0; r < 5; r++) {
       for (let c = 0; c < 6; c++) {
         const idx = r * 6 + c;
-        cellIndices.push(idx);
-        if (r >= 0 && r <= 3 && c >= 1 && c <= 4) {
-          safeTargetSlots.push(idx);
+        allCells.push(idx);
+        // Evita cantos extremos/borda inferior para os alvos nunca ficarem apertados
+        if (r <= 3 && (c >= 1 && c <= 4)) {
+          innerSafeCells.push(idx);
         }
       }
     }
-    const chosenTargetSlot = safeTargetSlots[Math.floor(Math.random() * safeTargetSlots.length)];
-    const otherSlots = shuffleList(cellIndices.filter(idx => idx !== chosenTargetSlot));
-    const otherItems = shuffleList(ALL_30_ITEMS.filter(it => it.id !== targetDef.id));
+    const shuffledSafe = shuffleList(innerSafeCells);
+    const chosenTargetCells = shuffledSafe.slice(0, targetCount);
+    const chosenSet = new Set(chosenTargetCells);
+    const remainingCells = shuffleList(allCells.filter(idx => !chosenSet.has(idx)));
 
+    const distractorDefs = shuffleList(ALL_30_ITEMS.filter(it => !targetIdSet.has(it.id)));
     const pieces = [];
-    let targetPiece = null;
+    const targetPieces = [];
 
     function createPilePiece(itemDef, slotIdx, isTarget, zOrder) {
       const el = document.createElement("div");
@@ -8435,12 +8509,13 @@
       el.appendChild(im);
       pileLayer.appendChild(el);
 
-      const jitterX = (Math.random() * 0.44) - 0.22;
-      const jitterY = (Math.random() * 0.42) - 0.21;
+      const jitterX = (Math.random() * 0.42) - 0.21;
+      const jitterY = (Math.random() * 0.40) - 0.20;
 
       const pieceObj = {
         id: itemDef.id,
         isTarget,
+        found: false,
         slotIdx,
         rotDeg,
         zOrder,
@@ -8454,45 +8529,85 @@
         size: 64
       };
       pieces.push(pieceObj);
-      if (isTarget) targetPiece = pieceObj;
+      if (isTarget) targetPieces.push(pieceObj);
     }
 
-    const distractorZ = shuffleList(Array.from({ length: 29 }, (_, k) => 20 + k));
-    otherItems.forEach((it, idx) => {
-      createPilePiece(it, otherSlots[idx], false, distractorZ[idx]);
+    const distractorZ = shuffleList(Array.from({ length: distractorDefs.length }, (_, k) => 20 + k));
+    distractorDefs.forEach((it, idx) => {
+      createPilePiece(it, remainingCells[idx], false, distractorZ[idx]);
     });
-    // Alvo sempre em z-index 58 (nunca enterrado embaixo das outras figuras!)
-    createPilePiece(targetDef, chosenTargetSlot, true, 58);
+    // Todos os alvos da fase ficam em z-index 56..64 (sempre visíveis acima dos distratores!)
+    shuffleList(phaseTargets).forEach((tDef, idx) => {
+      createPilePiece(tDef, chosenTargetCells[idx], true, 56 + idx);
+    });
 
-    let topCenterX = 180;
-    let topCenterY = 160;
-    let topSize = 126;
+    let topZoneBottomY = 290;
 
     function layoutArena() {
       const rect = arena.getBoundingClientRect();
       const W = rect.width || window.innerWidth || 360;
       const H = rect.height || window.innerHeight || 640;
 
-      topSize = Math.max(106, Math.min(142, Math.min(W * 0.33, H * 0.21)));
-      topCenterX = W * 0.5;
-      topCenterY = Math.max(88 + topSize * 0.42, H * 0.265);
+      // 1. Posiciona os N alvos P&B na área superior (abaixo da barra de topo e acima da mesa)
+      const topSafeMinY = Math.max(66, H * 0.115);
+      const topSafeMaxY = H * 0.465;
+      const availTopH = Math.max(120, topSafeMaxY - topSafeMinY);
+      const availTopW = Math.max(250, W - 24);
+      const numRows = rowPattern.length;
+      const maxCols = Math.max.apply(null, rowPattern);
 
-      topWrap.style.width = `${topSize.toFixed(1)}px`;
-      topWrap.style.height = `${topSize.toFixed(1)}px`;
-      topWrap.style.top = `${topCenterY.toFixed(1)}px`;
-      if (topHalo) {
-        const haloSz = topSize * 1.48;
-        topHalo.style.width = `${haloSz.toFixed(1)}px`;
-        topHalo.style.height = `${haloSz.toFixed(1)}px`;
-        topHalo.style.top = `${topCenterY.toFixed(1)}px`;
+      let slotSz;
+      if (numRows === 1) {
+        if (maxCols === 1) {
+          slotSz = Math.max(102, Math.min(136, Math.min(availTopW * 0.36, availTopH * 0.64)));
+        } else if (maxCols === 2) {
+          slotSz = Math.max(88, Math.min(116, Math.min(availTopW * 0.34, availTopH * 0.58)));
+        } else {
+          slotSz = Math.max(76, Math.min(100, Math.min(availTopW / 3.35, availTopH * 0.54)));
+        }
+      } else {
+        slotSz = Math.max(58, Math.min(90, Math.min(availTopW / (maxCols + 0.42), availTopH / 2.22)));
       }
 
-      // Área da mesa de madeira na metade inferior (54% a 91% da altura)
-      const padX = Math.max(30, W * 0.10);
-      const pileTop = Math.max(topCenterY + topSize * 0.72 + 22, H * 0.53);
+      let cursor = 0;
+      for (let r = 0; r < numRows; r++) {
+        const colsInRow = rowPattern[r];
+        const cy = numRows === 1
+          ? (topSafeMinY + availTopH * 0.48)
+          : (topSafeMinY + availTopH * (r === 0 ? 0.27 : 0.76));
+        const colStep = colsInRow === 1
+          ? 0
+          : Math.min((availTopW - slotSz) / (colsInRow - 1), slotSz * 1.30);
+        const startX = W * 0.5 - (colStep * (colsInRow - 1)) * 0.5;
+
+        for (let c = 0; c < colsInRow; c++) {
+          const sl = topSlots[cursor++];
+          if (!sl) continue;
+          sl.size = slotSz;
+          sl.cx = startX + c * colStep;
+          sl.cy = cy;
+
+          sl.wrapEl.style.width = `${slotSz.toFixed(1)}px`;
+          sl.wrapEl.style.height = `${slotSz.toFixed(1)}px`;
+          sl.wrapEl.style.left = `${sl.cx.toFixed(1)}px`;
+          sl.wrapEl.style.top = `${sl.cy.toFixed(1)}px`;
+
+          const haloSz = slotSz * 1.42;
+          sl.haloEl.style.width = `${haloSz.toFixed(1)}px`;
+          sl.haloEl.style.height = `${haloSz.toFixed(1)}px`;
+          sl.haloEl.style.left = `${sl.cx.toFixed(1)}px`;
+          sl.haloEl.style.top = `${sl.cy.toFixed(1)}px`;
+        }
+      }
+
+      topZoneBottomY = topSafeMaxY + 14;
+
+      // 2. Posiciona as 30 figuras embaralhadas na mesa de madeira (53.5% a 91.5% da altura)
+      const padX = Math.max(28, W * 0.10);
+      const pileTop = Math.max(topSafeMaxY + 26, H * 0.54);
       const pileBot = H - Math.max(28, H * 0.085);
       const stepX = (W - padX * 2) / 5;
-      const stepY = Math.max(34, (pileBot - pileTop) / 4);
+      const stepY = Math.max(32, (pileBot - pileTop) / 4);
       const itemSz = Math.max(52, Math.min(76, Math.min(W * 0.168, (pileBot - pileTop) * 0.30)));
 
       pieces.forEach(p => {
@@ -8505,7 +8620,7 @@
         p.homeY = hy;
         p.el.style.width = `${itemSz.toFixed(1)}px`;
         p.el.style.height = `${itemSz.toFixed(1)}px`;
-        if (activeDrag !== p && !solved) {
+        if (!p.found && activeDrag !== p) {
           p.curX = hx;
           p.curY = hy;
           p.el.style.left = `${hx.toFixed(1)}px`;
@@ -8527,54 +8642,84 @@
     window._acheResizeHandler = () => layoutArena();
     window.addEventListener("resize", window._acheResizeHandler);
 
-    function spawnVictoryStars(cx, cy) {
+    function clearHoverSlots() {
+      topSlots.forEach(sl => sl.wrapEl.classList.remove("hover-ready"));
+    }
+
+    function spawnSlotStars(cx, cy, count) {
       if (!fxLayer) return;
-      for (let i = 0; i < 8; i++) {
-        const ang = (Math.PI * 2 * i) / 8;
-        const dist = 58 + (i % 2) * 20;
+      const n = count || 6;
+      for (let i = 0; i < n; i++) {
+        const ang = (Math.PI * 2 * i) / n;
+        const dist = 46 + (i % 2) * 18;
         const dx = Math.cos(ang) * dist;
-        const dy = Math.sin(ang) * dist - 12;
+        const dy = Math.sin(ang) * dist - 10;
         const sp = document.createElement("div");
-        sp.innerHTML = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 0 8px rgba(0,230,118,0.9));"><path d="M12 2L14.8 8.5L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.2 8.5L12 2Z" fill="#fde047" stroke="#00e676" stroke-width="1.4"/></svg>`;
-        sp.style.cssText = `position:absolute; left:${cx.toFixed(1)}px; top:${cy.toFixed(1)}px; --dx:${dx.toFixed(1)}px; --dy:${dy.toFixed(1)}px; animation: acheStarBurst 0.72s ease-out forwards;`;
+        sp.innerHTML = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 0 8px rgba(0,230,118,0.9));"><path d="M12 2L14.8 8.5L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.2 8.5L12 2Z" fill="#fde047" stroke="#00e676" stroke-width="1.4"/></svg>`;
+        sp.style.cssText = `position:absolute; left:${cx.toFixed(1)}px; top:${cy.toFixed(1)}px; --dx:${dx.toFixed(1)}px; --dy:${dy.toFixed(1)}px; animation: acheStarBurst 0.70s ease-out forwards;`;
         fxLayer.appendChild(sp);
-        setTimeout(() => { if (sp.parentNode) sp.parentNode.removeChild(sp); }, 780);
+        setTimeout(() => { if (sp.parentNode) sp.parentNode.removeChild(sp); }, 760);
       }
     }
 
-    function completeAcheWin(piece) {
-      if (solved) return;
-      solved = true;
-      topWrap.classList.remove("hover-ready", "wrong-shake");
+    function matchTargetPiece(piece) {
+      if (solved || piece.found) return;
+      const slot = topSlotById[piece.id];
+      if (!slot || slot.filled) return;
+
+      piece.found = true;
+      slot.filled = true;
+      foundCount++;
+      const isFinalMatch = foundCount >= targetCount;
+      if (isFinalMatch) solved = true;
+
+      clearHoverSlots();
+      slot.wrapEl.classList.remove("wrong-shake");
       piece.el.classList.remove("dragging", "returning");
       piece.el.classList.add("flying-win");
-      piece.el.style.left = `${topCenterX.toFixed(1)}px`;
-      piece.el.style.top = `${topCenterY.toFixed(1)}px`;
-      piece.el.style.transform = "translate(-50%, -50%) scale(1.06) rotate(0deg)";
+      piece.el.style.left = `${slot.cx.toFixed(1)}px`;
+      piece.el.style.top = `${slot.cy.toFixed(1)}px`;
+      piece.el.style.width = `${slot.size.toFixed(1)}px`;
+      piece.el.style.height = `${slot.size.toFixed(1)}px`;
+      piece.el.style.transform = "translate(-50%, -50%) scale(1.04) rotate(0deg)";
 
       setTimeout(() => {
         piece.el.style.opacity = "0";
-        topWrap.classList.add("colored-win");
-        if (topHalo) {
-          topHalo.style.background = "radial-gradient(circle, rgba(0,230,118,0.58) 0%, rgba(253,224,71,0.36) 48%, rgba(0,230,118,0) 74%)";
-          topHalo.style.transform = "translate(-50%, -50%) scale(1.22)";
-        }
-        spawnVictoryStars(topCenterX, topCenterY);
-        TronoAudio.play("success");
-      }, 180);
+        slot.wrapEl.classList.add("colored-win");
+        slot.haloEl.classList.add("colored-win");
+        spawnSlotStars(slot.cx, slot.cy, isFinalMatch ? 8 : 6);
+        TronoAudio.play(isFinalMatch ? "success" : "coin");
+      }, 175);
 
-      if (window._acheFiguraWinTimer) clearTimeout(window._acheFiguraWinTimer);
-      window._acheFiguraWinTimer = setTimeout(() => {
-        window._acheFiguraWinTimer = null;
-        triggerArcadeVictory();
-      }, 1050);
+      if (isFinalMatch) {
+        if (window._acheFiguraWinTimer) clearTimeout(window._acheFiguraWinTimer);
+        window._acheFiguraWinTimer = setTimeout(() => {
+          window._acheFiguraWinTimer = null;
+          triggerArcadeVictory();
+        }, 1050);
+      }
     }
 
-    function bounceWrongPiece(piece) {
+    function bounceWrongPiece(piece, dropX, dropY) {
       TronoAudio.play("error");
-      topWrap.classList.remove("hover-ready", "wrong-shake");
-      void topWrap.offsetWidth;
-      topWrap.classList.add("wrong-shake");
+      clearHoverSlots();
+      // Balança suavemente o alvo P&B ainda aberto mais próximo
+      let nearestOpen = null;
+      let bestD = Infinity;
+      topSlots.forEach(sl => {
+        if (sl.filled) return;
+        const d = Math.hypot(dropX - sl.cx, dropY - sl.cy);
+        if (d < bestD) {
+          bestD = d;
+          nearestOpen = sl;
+        }
+      });
+      if (nearestOpen) {
+        nearestOpen.wrapEl.classList.remove("wrong-shake");
+        void nearestOpen.wrapEl.offsetWidth;
+        nearestOpen.wrapEl.classList.add("wrong-shake");
+      }
+
       piece.el.classList.remove("dragging");
       piece.el.classList.add("returning");
       piece.curX = piece.homeX;
@@ -8583,21 +8728,28 @@
       piece.el.style.top = `${piece.homeY.toFixed(1)}px`;
     }
 
-    // PRIORIDADE INTELIGENTE DE TOQUE (IGUAL ARCA DE NOÉ):
-    // Checa PRIMEIRO se o dedinho tocou perto da figura-alvo (raio generoso de 48px)
-    // para que a criança consiga puxar a figura certa com zero frustração no meio das 30!
+    // PRIORIDADE INTELIGENTE DE TOQUE (MULTI-ALVOS):
+    // Checa PRIMEIRO se o dedinho tocou perto de qualquer figura-alvo ainda não encontrada (raio 48px)!
     function pickPieceAt(px, py) {
-      if (targetPiece) {
-        const dTarget = Math.hypot(px - targetPiece.curX, py - targetPiece.curY);
-        const prioRadius = Math.max(48, targetPiece.size * 0.72);
-        if (dTarget <= prioRadius) {
-          return targetPiece;
+      let bestTarget = null;
+      let bestTargetD = Infinity;
+      for (let i = 0; i < targetPieces.length; i++) {
+        const tp = targetPieces[i];
+        if (tp.found) continue;
+        const d = Math.hypot(px - tp.curX, py - tp.curY);
+        const prioRadius = Math.max(46, tp.size * 0.70);
+        if (d <= prioRadius && d < bestTargetD) {
+          bestTargetD = d;
+          bestTarget = tp;
         }
       }
+      if (bestTarget) return bestTarget;
+
       let best = null;
       let bestScore = Infinity;
       for (let i = 0; i < pieces.length; i++) {
         const p = pieces[i];
+        if (p.found) continue;
         const d = Math.hypot(px - p.curX, py - p.curY);
         const maxR = Math.max(38, p.size * 0.58);
         if (d <= maxR) {
@@ -8611,13 +8763,25 @@
       return best;
     }
 
+    function isNearAnyOpenSlot(nx, ny) {
+      if (ny <= topZoneBottomY) return true;
+      for (let i = 0; i < topSlots.length; i++) {
+        const sl = topSlots[i];
+        if (sl.filled) continue;
+        if (Math.hypot(nx - sl.cx, ny - sl.cy) <= Math.max(92, sl.size * 0.90)) {
+          return true;
+        }
+      }
+      return false;
+    }
+
     pileLayer.addEventListener("pointerdown", e => {
       if (window._arcadeStageLockedForVovo || solved || _isVictoryActive || activeDrag) return;
       const rect = arena.getBoundingClientRect();
       const px = e.clientX - rect.left;
       const py = e.clientY - rect.top;
       const picked = pickPieceAt(px, py);
-      if (!picked) return;
+      if (!picked || picked.found) return;
 
       e.preventDefault();
       TronoAudio.unlockGestureAudio();
@@ -8654,8 +8818,21 @@
       activeDrag.el.style.left = `${nx.toFixed(1)}px`;
       activeDrag.el.style.top = `${ny.toFixed(1)}px`;
 
-      const nearTop = Math.hypot(nx - topCenterX, ny - topCenterY) <= Math.max(105, topSize * 0.88) || ny <= H * 0.44;
-      topWrap.classList.toggle("hover-ready", nearTop);
+      clearHoverSlots();
+      if (isNearAnyOpenSlot(nx, ny)) {
+        if (activeDrag.isTarget && topSlotById[activeDrag.id] && !topSlotById[activeDrag.id].filled) {
+          topSlotById[activeDrag.id].wrapEl.classList.add("hover-ready");
+        } else {
+          let nearest = null;
+          let bestD = Infinity;
+          topSlots.forEach(sl => {
+            if (sl.filled) return;
+            const d = Math.hypot(nx - sl.cx, ny - sl.cy);
+            if (d < bestD) { bestD = d; nearest = sl; }
+          });
+          if (nearest && bestD <= 115) nearest.wrapEl.classList.add("hover-ready");
+        }
+      }
     });
 
     function endAchePointer(e) {
@@ -8663,20 +8840,18 @@
       const p = activeDrag;
       activeDrag = null;
       activePtrId = null;
-      topWrap.classList.remove("hover-ready");
+      clearHoverSlots();
 
-      if (solved) return;
-      const rect = arena.getBoundingClientRect();
-      const H = rect.height || 640;
+      if (solved || p.found) return;
       const movedDist = Math.hypot(p.curX - downX, (p.curY + dragLiftY) - downY);
       const isQuickTap = movedDist < 14 && (Date.now() - downTime) < 480;
-      const droppedAtTop = Math.hypot(p.curX - topCenterX, p.curY - topCenterY) <= Math.max(110, topSize * 0.92) || p.curY <= H * 0.45;
+      const droppedAtTop = isNearAnyOpenSlot(p.curX, p.curY);
 
       if (droppedAtTop || isQuickTap) {
         if (p.isTarget) {
-          completeAcheWin(p);
+          matchTargetPiece(p);
         } else {
-          bounceWrongPiece(p);
+          bounceWrongPiece(p, p.curX, p.curY);
         }
       } else {
         p.el.classList.remove("dragging");
