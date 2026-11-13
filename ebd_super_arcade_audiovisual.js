@@ -2083,6 +2083,10 @@
   window._arcadeClosingUntil = 0;
 
   function cleanupChronoDragArtifacts() {
+    if (typeof window._chronoCleanupListeners === "function") {
+      try { window._chronoCleanupListeners(); } catch (e) {}
+      window._chronoCleanupListeners = null;
+    }
     if (window._chronoDragGhostEl && window._chronoDragGhostEl.parentNode) {
       try { window._chronoDragGhostEl.parentNode.removeChild(window._chronoDragGhostEl); } catch (e) {}
     }
@@ -6786,6 +6790,7 @@
 
   function runCriacaoOrdem(container, phase) {
     cleanupChronoDragArtifacts();
+    window._arcadeWaitVisualBeforeVovo = true;
 
     const bank = (Array.isArray(window.CHRONOLOGY_LEVELS) && window.CHRONOLOGY_LEVELS.length > 0)
       ? window.CHRONOLOGY_LEVELS
@@ -6826,6 +6831,10 @@
           0%, 100% { transform: translateX(0); }
           25% { transform: translateX(-6px); }
           75% { transform: translateX(6px); }
+        }
+        @keyframes chronoNextPulse {
+          0%, 100% { box-shadow: 0 0 12px rgba(253, 224, 71, 0.55), 0 6px 16px rgba(0, 0, 0, 0.52); }
+          50% { box-shadow: 0 0 22px rgba(56, 189, 248, 0.92), 0 6px 16px rgba(0, 0, 0, 0.52); }
         }
         .chrono-stage-root {
           position: relative;
@@ -6875,6 +6884,10 @@
           transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
           box-sizing: border-box;
         }
+        .chrono-white-slot.next-active {
+          border-color: #38bdf8;
+          animation: chronoNextPulse 1.5s ease-in-out infinite;
+        }
         .chrono-white-slot-num {
           font-family: 'Fredoka', sans-serif;
           font-size: clamp(20px, 5.2vw, 30px);
@@ -6909,6 +6922,8 @@
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: clamp(8px, 2.2vw, 14px);
+          touch-action: none;
+          transition: opacity 0.22s ease;
         }
         .chrono-drag-source {
           position: relative;
@@ -6921,10 +6936,16 @@
           box-shadow: 0 8px 20px rgba(0, 0, 0, 0.72);
           cursor: grab;
           touch-action: none;
+          user-select: none;
+          -webkit-user-select: none;
+          -webkit-user-drag: none;
           box-sizing: border-box;
           transition: opacity 0.2s ease, transform 0.15s ease;
           display: flex;
           flex-direction: column;
+        }
+        .chrono-drag-source:active {
+          cursor: grabbing;
         }
         .chrono-drag-source-inner {
           width: 100%;
@@ -6934,6 +6955,8 @@
           display: flex;
           flex-direction: column;
           pointer-events: none;
+          user-select: none;
+          -webkit-user-select: none;
         }
         .chrono-drag-source-photo {
           width: 100%;
@@ -6942,6 +6965,7 @@
           display: block;
           pointer-events: none;
           user-select: none;
+          -webkit-user-select: none;
           -webkit-user-drag: none;
         }
         .chrono-drag-source-caption {
@@ -6959,21 +6983,26 @@
           text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
           border-top: 1.5px solid rgba(253, 224, 71, 0.45);
           pointer-events: none;
+          user-select: none;
+          -webkit-user-select: none;
         }
         .chrono-drag-source.placed-done {
           opacity: 0.14 !important;
           pointer-events: none !important;
           filter: grayscale(40%);
         }
+        .chrono-drag-source.wrong-tap {
+          animation: chronoSlotShake 0.32s ease !important;
+        }
       </style>
 
       <div class="chrono-stage-root" id="chrono-stage-arena">
-        <img src="./2_ASSETS_UI_BOTOES/bg_jogo_12_cronologia_v159.jpg?v=159" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; z-index:0;">
+        <img id="chrono-bg-img" src="./2_ASSETS_UI_BOTOES/bg_jogo_12_cronologia_v159.jpg?v=159" alt="" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; z-index:0;">
 
         <!-- 4 MOLDURAS TRACEJADAS EM LINHA DO TEMPO COM SETINHAS (1º ➔ 2º ➔ 3º ➔ 4º) -->
         <div class="chrono-top-slots-row" id="chrono-top-slots-row">
           ${[1, 2, 3, 4].map((num, idxSlot) => `
-            <div class="chrono-white-slot" id="chrono-drop-slot-${num}" data-slot-num="${num}">
+            <div class="chrono-white-slot ${num === 1 ? "next-active" : ""}" id="chrono-drop-slot-${num}" data-slot-num="${num}">
               <span class="chrono-white-slot-num">${num}º</span>
             </div>
             ${idxSlot < 3 ? `
@@ -6987,14 +7016,14 @@
         </div>
 
         <!-- 4 FIGURINHAS EMBARALHADAS EMBAIXO (2×2 COM LEGENDA CURTINHA NA BASE) -->
-        <div class="chrono-bottom-cards-grid" id="chrono-bottom-cards-grid">
+        <div class="chrono-bottom-cards-grid" id="chrono-bottom-cards-grid" style="opacity:0.58;">
           ${shuffled.map((card, i) => {
             const cap = cleanChronoCaptionText(card.title || "");
             const safeCapAttr = cap.replace(/"/g, "&quot;");
             return `
               <div class="chrono-drag-source" id="chrono-src-card-${i}" data-card-order="${card.order}" data-card-img="${card.img}" data-card-cap="${safeCapAttr}">
                 <div class="chrono-drag-source-inner">
-                  <img class="chrono-drag-source-photo" src="${card.img}" alt="" decoding="async">
+                  <img class="chrono-drag-source-photo" src="${card.img}" alt="" draggable="false" decoding="async">
                   <div class="chrono-drag-source-caption">${cap}</div>
                 </div>
               </div>
@@ -7005,17 +7034,72 @@
     `;
 
     const arena = document.getElementById("chrono-stage-arena");
+    const topSlotsRow = document.getElementById("chrono-top-slots-row");
+    const bottomGrid = document.getElementById("chrono-bottom-cards-grid");
     if (!arena) return;
+
+    // Aguarda as imagens da fase aparecerem na tela antes do Vovô começar a falar
+    const allStageImgs = Array.from(arena.querySelectorAll("img"));
+    let chronoVisReadyCalled = false;
+    const markChronoVisualReady = () => {
+      if (chronoVisReadyCalled) return;
+      chronoVisReadyCalled = true;
+      if (typeof window._notifyArcadeVisualReady === "function") {
+        window._notifyArcadeVisualReady();
+      }
+    };
+    let pendingImgs = 0;
+    allStageImgs.forEach((im) => {
+      if (!im.complete || !im.naturalWidth) {
+        pendingImgs++;
+        const onImDone = () => {
+          pendingImgs--;
+          if (pendingImgs <= 0) setTimeout(markChronoVisualReady, 25);
+        };
+        im.addEventListener("load", onImDone, { once: true });
+        im.addEventListener("error", onImDone, { once: true });
+      }
+    });
+    if (pendingImgs <= 0) {
+      setTimeout(markChronoVisualReady, 25);
+    } else {
+      setTimeout(markChronoVisualReady, 950);
+    }
 
     const filledSlots = { 1: false, 2: false, 3: false, 4: false };
     let filledCount = 0;
     let activeDrag = null;
     let activePointerId = null;
 
+    function getNextSequentialSlotNum() {
+      for (let n = 1; n <= 4; n++) {
+        if (!filledSlots[n]) return n;
+      }
+      return 0;
+    }
+
+    function updateNextSlotHighlight() {
+      const nextNum = getNextSequentialSlotNum();
+      for (let n = 1; n <= 4; n++) {
+        const el = document.getElementById(`chrono-drop-slot-${n}`);
+        if (!el) continue;
+        if (n === nextNum && !filledSlots[n]) el.classList.add("next-active");
+        else el.classList.remove("next-active");
+      }
+    }
+
+    window._arcadeUnlockGameAction = function() {
+      if (bottomGrid) bottomGrid.style.opacity = "1";
+      updateNextSlotHighlight();
+    };
+    if (!window._arcadeStageLockedForVovo && bottomGrid) {
+      bottomGrid.style.opacity = "1";
+    }
+
     function getHoveredSlotNum(cx, cy) {
       let bestNum = 0;
       let bestDist = Infinity;
-      const pad = 22;
+      const pad = 38;
       for (let n = 1; n <= 4; n++) {
         if (filledSlots[n]) continue;
         const el = document.getElementById(`chrono-drop-slot-${n}`);
@@ -7031,6 +7115,22 @@
           }
         }
       }
+      if (!bestNum && topSlotsRow) {
+        const rr = topSlotsRow.getBoundingClientRect();
+        if (cx >= rr.left - 24 && cx <= rr.right + 24 && cy >= rr.top - 32 && cy <= rr.bottom + 36) {
+          for (let n = 1; n <= 4; n++) {
+            if (filledSlots[n]) continue;
+            const el = document.getElementById(`chrono-drop-slot-${n}`);
+            if (!el) continue;
+            const sr = el.getBoundingClientRect();
+            const dist = Math.hypot(cx - (sr.left + sr.right) / 2, cy - (sr.top + sr.bottom) / 2);
+            if (dist < bestDist) {
+              bestDist = dist;
+              bestNum = n;
+            }
+          }
+        }
+      }
       return bestNum;
     }
 
@@ -7041,94 +7141,160 @@
       }
     }
 
-    const sourceEls = arena.querySelectorAll(".chrono-drag-source");
-    sourceEls.forEach((srcEl) => {
-      srcEl.addEventListener("pointerdown", (e) => {
-        if (window._arcadeStageLockedForVovo || activeDrag || _isVictoryActive) return;
-        if (srcEl.classList.contains("placed-done")) return;
-        e.preventDefault();
-        e.stopPropagation();
+    function abortAnyStaleChronoDrag() {
+      if (!activeDrag && !window._chronoDragGhostEl) return;
+      if (activeDrag && activeDrag.srcEl && !activeDrag.srcEl.classList.contains("placed-done")) {
+        activeDrag.srcEl.style.opacity = "1";
+      }
+      if (activeDrag && activeDrag.ghost && activeDrag.ghost.parentNode) {
+        try { activeDrag.ghost.parentNode.removeChild(activeDrag.ghost); } catch (err) {}
+      }
+      if (window._chronoDragGhostEl && window._chronoDragGhostEl.parentNode) {
+        try { window._chronoDragGhostEl.parentNode.removeChild(window._chronoDragGhostEl); } catch (err) {}
+      }
+      window._chronoDragGhostEl = null;
+      activeDrag = null;
+      activePointerId = null;
+      clearSlotHoverHighlights();
+    }
 
-        activePointerId = e.pointerId !== undefined ? e.pointerId : null;
-        try { arena.setPointerCapture(e.pointerId); } catch (err) {}
+    function commitCardToSlot(srcEl, imgUrl, cardOrder, targetSlotNum) {
+      if (targetSlotNum <= 0 || filledSlots[targetSlotNum]) return false;
+      if (targetSlotNum === cardOrder) {
+        filledSlots[targetSlotNum] = true;
+        filledCount++;
+        TronoAudio.play("star");
+        srcEl.classList.add("placed-done");
+        srcEl.style.opacity = "";
 
-        TronoAudio.play("click");
+        const slotEl = document.getElementById(`chrono-drop-slot-${targetSlotNum}`);
+        if (slotEl) {
+          slotEl.classList.remove("next-active", "slot-wrong", "drag-hover");
+          slotEl.classList.add("slot-filled");
+          slotEl.innerHTML = `
+            <img src="${imgUrl}" alt="" draggable="false" style="width:100%; height:100%; object-fit:cover; display:block; pointer-events:none;">
+            <div style="position:absolute; top:3px; left:3px; padding:1px 6px; border-radius:999px; background:linear-gradient(180deg, #00e676, #00c853); border:1.8px solid #ffffff; color:#ffffff; font-family:'Fredoka',sans-serif; font-size:10.5px; font-weight:900; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.75); pointer-events:none;">
+              ${targetSlotNum}º
+            </div>
+          `;
+        }
+        updateNextSlotHighlight();
 
-        const rect = srcEl.getBoundingClientRect();
-        const imgUrl = srcEl.getAttribute("data-card-img") || "";
-        const cardCap = srcEl.getAttribute("data-card-cap") || "";
-        const cardOrder = Number(srcEl.getAttribute("data-card-order") || 0);
+        if (filledCount >= 4) {
+          TronoAudio.play("success");
+          window._chronoWinTimer = setTimeout(() => {
+            triggerArcadeVictory();
+          }, 620);
+        }
+        return true;
+      }
 
-        const ghost = document.createElement("div");
-        ghost.style.cssText = `
-          position: fixed;
-          left: ${rect.left}px;
-          top: ${rect.top}px;
-          width: ${rect.width}px;
-          height: ${rect.height}px;
-          border-radius: 16px;
-          padding: 3.5px;
-          background: linear-gradient(125deg, #fde047, #38bdf8, #00e676);
-          box-shadow: 0 16px 36px rgba(0, 0, 0, 0.85), 0 0 22px rgba(253, 224, 71, 0.75);
-          pointer-events: none;
-          z-index: 10000050;
-          box-sizing: border-box;
-          transform: scale(1.05);
-          transition: transform 0.1s ease;
-          display: flex;
-          flex-direction: column;
-        `;
-        ghost.innerHTML = `
-          <div style="width:100%; height:100%; border-radius:12.5px; overflow:hidden; background:linear-gradient(180deg, #4c1d95 0%, #2e1065 100%); display:flex; flex-direction:column;">
-            <img src="${imgUrl}" alt="" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block;">
-            <div style="flex:1; padding:3px 5px; display:flex; align-items:center; justify-content:center; text-align:center; font-family:'Fredoka',sans-serif; font-size:11px; font-weight:800; color:#ffffff; line-height:1.12;">${cardCap}</div>
-          </div>
-        `;
-        document.body.appendChild(ghost);
-        window._chronoDragGhostEl = ghost;
+      TronoAudio.play("error");
+      const wrongSlotEl = document.getElementById(`chrono-drop-slot-${targetSlotNum}`);
+      if (wrongSlotEl) {
+        wrongSlotEl.classList.remove("slot-wrong");
+        void wrongSlotEl.offsetWidth;
+        wrongSlotEl.classList.add("slot-wrong");
+        setTimeout(() => { if (wrongSlotEl) wrongSlotEl.classList.remove("slot-wrong"); }, 360);
+      }
+      srcEl.classList.remove("wrong-tap");
+      void srcEl.offsetWidth;
+      srcEl.classList.add("wrong-tap");
+      setTimeout(() => { if (srcEl) srcEl.classList.remove("wrong-tap"); }, 360);
+      return false;
+    }
 
-        srcEl.style.opacity = "0.28";
+    function beginChronoDragFromPoint(srcEl, clientX, clientY, isTouch, pointerId) {
+      if (window._arcadeStageLockedForVovo || _isVictoryActive || filledCount >= 4) return;
+      if (!srcEl || srcEl.classList.contains("placed-done")) return;
 
-        activeDrag = {
-          srcEl,
-          ghost,
-          imgUrl,
-          cardOrder,
-          homeLeft: rect.left,
-          homeTop: rect.top,
-          width: rect.width,
-          height: rect.height,
-          grabOffsetX: e.clientX - rect.left,
-          grabOffsetY: e.clientY - rect.top
-        };
-      });
-    });
+      if (activeDrag) {
+        abortAnyStaleChronoDrag();
+      }
 
-    arena.addEventListener("pointermove", (e) => {
+      activePointerId = pointerId !== undefined ? pointerId : null;
+      TronoAudio.play("click");
+
+      const rect = srcEl.getBoundingClientRect();
+      const imgUrl = srcEl.getAttribute("data-card-img") || "";
+      const cardCap = srcEl.getAttribute("data-card-cap") || "";
+      const cardOrder = Number(srcEl.getAttribute("data-card-order") || 0);
+      const liftY = isTouch ? 16 : 0;
+
+      const ghost = document.createElement("div");
+      ghost.style.cssText = `
+        position: fixed;
+        left: ${rect.left}px;
+        top: ${rect.top - liftY}px;
+        width: ${rect.width}px;
+        height: ${rect.height}px;
+        border-radius: 16px;
+        padding: 3.5px;
+        background: linear-gradient(125deg, #fde047, #38bdf8, #00e676);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.85), 0 0 22px rgba(253, 224, 71, 0.75);
+        pointer-events: none;
+        z-index: 10000050;
+        box-sizing: border-box;
+        transform: scale(1.05);
+        will-change: left, top, transform;
+        display: flex;
+        flex-direction: column;
+      `;
+      ghost.innerHTML = `
+        <div style="width:100%; height:100%; border-radius:12.5px; overflow:hidden; background:linear-gradient(180deg, #4c1d95 0%, #2e1065 100%); display:flex; flex-direction:column; pointer-events:none;">
+          <img src="${imgUrl}" alt="" draggable="false" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block; pointer-events:none;">
+          <div style="flex:1; padding:3px 5px; display:flex; align-items:center; justify-content:center; text-align:center; font-family:'Fredoka',sans-serif; font-size:11px; font-weight:800; color:#ffffff; line-height:1.12; pointer-events:none;">${cardCap}</div>
+        </div>
+      `;
+      document.body.appendChild(ghost);
+      window._chronoDragGhostEl = ghost;
+
+      srcEl.style.opacity = "0.28";
+
+      activeDrag = {
+        srcEl,
+        ghost,
+        imgUrl,
+        cardOrder,
+        startX: clientX,
+        startY: clientY,
+        lastX: clientX,
+        lastY: clientY,
+        movedDist: 0,
+        liftY,
+        width: rect.width,
+        height: rect.height,
+        grabOffsetX: clientX - rect.left,
+        grabOffsetY: clientY - rect.top
+      };
+    }
+
+    function moveChronoDragToPoint(clientX, clientY) {
       if (!activeDrag) return;
-      if (activePointerId !== null && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
-      e.preventDefault();
+      activeDrag.lastX = clientX;
+      activeDrag.lastY = clientY;
+      const dx = clientX - activeDrag.startX;
+      const dy = clientY - activeDrag.startY;
+      activeDrag.movedDist = Math.max(activeDrag.movedDist, Math.hypot(dx, dy));
 
-      const nextLeft = e.clientX - activeDrag.grabOffsetX;
-      const nextTop = e.clientY - activeDrag.grabOffsetY;
+      const nextLeft = clientX - activeDrag.grabOffsetX;
+      const nextTop = clientY - activeDrag.grabOffsetY - activeDrag.liftY;
       activeDrag.ghost.style.left = `${nextLeft}px`;
       activeDrag.ghost.style.top = `${nextTop}px`;
 
       const centerX = nextLeft + activeDrag.width / 2;
       const centerY = nextTop + activeDrag.height / 2;
-      const hov = getHoveredSlotNum(e.clientX, e.clientY) || getHoveredSlotNum(centerX, centerY);
+      const hov = getHoveredSlotNum(clientX, clientY - activeDrag.liftY * 0.5) || getHoveredSlotNum(centerX, centerY);
 
       clearSlotHoverHighlights();
       if (hov > 0) {
         const slotEl = document.getElementById(`chrono-drop-slot-${hov}`);
         if (slotEl) slotEl.classList.add("drag-hover");
       }
-    });
+    }
 
-    function endChronoDrag(e) {
+    function finishChronoDragAtPoint(clientX, clientY) {
       if (!activeDrag) return;
-      if (activePointerId !== null && e && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
-
       const drag = activeDrag;
       activeDrag = null;
       activePointerId = null;
@@ -7137,56 +7303,30 @@
       const ghostRect = drag.ghost.getBoundingClientRect();
       const centerX = ghostRect.left + ghostRect.width / 2;
       const centerY = ghostRect.top + ghostRect.height / 2;
-      const clientX = (e && typeof e.clientX === "number") ? e.clientX : centerX;
-      const clientY = (e && typeof e.clientY === "number") ? e.clientY : centerY;
+      const cx = typeof clientX === "number" ? clientX : (typeof drag.lastX === "number" ? drag.lastX : centerX);
+      const cy = typeof clientY === "number" ? clientY : (typeof drag.lastY === "number" ? drag.lastY : centerY);
 
-      const targetSlotNum = getHoveredSlotNum(clientX, clientY) || getHoveredSlotNum(centerX, centerY);
-
-      if (targetSlotNum > 0 && targetSlotNum === drag.cardOrder && !filledSlots[targetSlotNum]) {
-        filledSlots[targetSlotNum] = true;
-        filledCount++;
-        TronoAudio.play("star");
-
-        if (drag.ghost && drag.ghost.parentNode) {
-          drag.ghost.parentNode.removeChild(drag.ghost);
-        }
-        window._chronoDragGhostEl = null;
-
-        drag.srcEl.classList.add("placed-done");
-
-        const slotEl = document.getElementById(`chrono-drop-slot-${targetSlotNum}`);
-        if (slotEl) {
-          slotEl.classList.add("slot-filled");
-          slotEl.innerHTML = `
-            <img src="${drag.imgUrl}" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
-            <div style="position:absolute; top:3px; left:3px; padding:1px 6px; border-radius:999px; background:linear-gradient(180deg, #00e676, #00c853); border:1.8px solid #ffffff; color:#ffffff; font-family:'Fredoka',sans-serif; font-size:10.5px; font-weight:900; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.75);">
-              ${targetSlotNum}º
-            </div>
-          `;
-        }
-
-        if (filledCount >= 4) {
-          TronoAudio.play("success");
-          window._chronoWinTimer = setTimeout(() => {
-            triggerArcadeVictory();
-          }, 620);
-        }
-        return;
+      const wasQuickTap = drag.movedDist < 10;
+      let targetSlotNum = getHoveredSlotNum(cx, cy - drag.liftY * 0.5) || getHoveredSlotNum(centerX, centerY);
+      if (!targetSlotNum && wasQuickTap) {
+        targetSlotNum = getNextSequentialSlotNum();
       }
 
-      if (targetSlotNum > 0 && targetSlotNum !== drag.cardOrder) {
-        TronoAudio.play("error");
-        const wrongSlotEl = document.getElementById(`chrono-drop-slot-${targetSlotNum}`);
-        if (wrongSlotEl) {
-          wrongSlotEl.classList.remove("slot-wrong");
-          void wrongSlotEl.offsetWidth;
-          wrongSlotEl.classList.add("slot-wrong");
-          setTimeout(() => { if (wrongSlotEl) wrongSlotEl.classList.remove("slot-wrong"); }, 360);
+      if (targetSlotNum > 0) {
+        const ok = commitCardToSlot(drag.srcEl, drag.imgUrl, drag.cardOrder, targetSlotNum);
+        if (ok) {
+          if (drag.ghost && drag.ghost.parentNode) {
+            drag.ghost.parentNode.removeChild(drag.ghost);
+          }
+          if (window._chronoDragGhostEl === drag.ghost) {
+            window._chronoDragGhostEl = null;
+          }
+          return;
         }
       }
 
       const homeRect = drag.srcEl.getBoundingClientRect();
-      drag.ghost.style.transition = "left 0.22s cubic-bezier(0.2, 0.9, 0.3, 1), top 0.22s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.22s ease";
+      drag.ghost.style.transition = "left 0.2s cubic-bezier(0.2, 0.9, 0.3, 1), top 0.2s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.2s ease";
       drag.ghost.style.left = `${homeRect.left}px`;
       drag.ghost.style.top = `${homeRect.top}px`;
       drag.ghost.style.transform = "scale(1)";
@@ -7201,11 +7341,111 @@
         if (!drag.srcEl.classList.contains("placed-done")) {
           drag.srcEl.style.opacity = "1";
         }
-      }, 230);
+      }, 210);
     }
 
-    arena.addEventListener("pointerup", endChronoDrag);
-    arena.addEventListener("pointercancel", endChronoDrag);
+    arena.addEventListener("dragstart", (ev) => {
+      ev.preventDefault();
+    });
+
+    arena.addEventListener("touchstart", (ev) => {
+      if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      const t = ev.target && ev.target.closest ? ev.target.closest(".chrono-drag-source") : null;
+      if (t && !t.classList.contains("placed-done")) {
+        if (ev.cancelable) ev.preventDefault();
+        if (!activeDrag && ev.touches && ev.touches.length > 0) {
+          beginChronoDragFromPoint(t, ev.touches[0].clientX, ev.touches[0].clientY, true, "touch");
+        }
+      }
+    }, { passive: false });
+
+    arena.addEventListener("touchmove", (ev) => {
+      if (!activeDrag) return;
+      if (ev.cancelable) ev.preventDefault();
+      if (ev.touches && ev.touches.length > 0) {
+        moveChronoDragToPoint(ev.touches[0].clientX, ev.touches[0].clientY);
+      }
+    }, { passive: false });
+
+    arena.addEventListener("pointerdown", (e) => {
+      if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      if (typeof e.button === "number" && e.button !== 0) return;
+      const srcEl = e.target && e.target.closest ? e.target.closest(".chrono-drag-source") : null;
+      if (!srcEl || srcEl.classList.contains("placed-done")) return;
+      if (e.cancelable) e.preventDefault();
+      try { arena.setPointerCapture(e.pointerId); } catch (err) {}
+      if (!activeDrag) {
+        beginChronoDragFromPoint(srcEl, e.clientX, e.clientY, e.pointerType === "touch", e.pointerId);
+      } else {
+        activePointerId = e.pointerId;
+      }
+    });
+
+    arena.addEventListener("mousedown", (e) => {
+      if (window.PointerEvent || activeDrag) return;
+      if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      if (typeof e.button === "number" && e.button !== 0) return;
+      const srcEl = e.target && e.target.closest ? e.target.closest(".chrono-drag-source") : null;
+      if (!srcEl || srcEl.classList.contains("placed-done")) return;
+      if (e.cancelable) e.preventDefault();
+      beginChronoDragFromPoint(srcEl, e.clientX, e.clientY, false, "mouse");
+    });
+
+    const onWinPointerMove = (e) => {
+      if (!activeDrag) return;
+      if (activePointerId !== null && activePointerId !== "touch" && activePointerId !== "mouse" && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
+      if (e.cancelable) e.preventDefault();
+      moveChronoDragToPoint(e.clientX, e.clientY);
+    };
+
+    const onWinMouseMove = (e) => {
+      if (!activeDrag || window.PointerEvent) return;
+      moveChronoDragToPoint(e.clientX, e.clientY);
+    };
+
+    const onWinPointerEnd = (e) => {
+      if (!activeDrag) return;
+      if (activePointerId !== null && activePointerId !== "touch" && activePointerId !== "mouse" && e && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
+      if (e && typeof e.pointerId === "number") {
+        try { arena.releasePointerCapture(e.pointerId); } catch (err) {}
+      }
+      finishChronoDragAtPoint(e ? e.clientX : undefined, e ? e.clientY : undefined);
+    };
+
+    const onWinMouseUp = (e) => {
+      if (!activeDrag || window.PointerEvent) return;
+      finishChronoDragAtPoint(e ? e.clientX : undefined, e ? e.clientY : undefined);
+    };
+
+    const onWinTouchEnd = (ev) => {
+      if (!activeDrag) return;
+      const t = (ev.changedTouches && ev.changedTouches[0]) || null;
+      finishChronoDragAtPoint(t ? t.clientX : undefined, t ? t.clientY : undefined);
+    };
+
+    const onWinBlur = () => {
+      if (activeDrag) abortAnyStaleChronoDrag();
+    };
+
+    window.addEventListener("pointermove", onWinPointerMove, { passive: false });
+    window.addEventListener("pointerup", onWinPointerEnd);
+    window.addEventListener("pointercancel", onWinPointerEnd);
+    window.addEventListener("mousemove", onWinMouseMove);
+    window.addEventListener("mouseup", onWinMouseUp);
+    window.addEventListener("touchend", onWinTouchEnd);
+    window.addEventListener("touchcancel", onWinTouchEnd);
+    window.addEventListener("blur", onWinBlur);
+
+    window._chronoCleanupListeners = function() {
+      window.removeEventListener("pointermove", onWinPointerMove);
+      window.removeEventListener("pointerup", onWinPointerEnd);
+      window.removeEventListener("pointercancel", onWinPointerEnd);
+      window.removeEventListener("mousemove", onWinMouseMove);
+      window.removeEventListener("mouseup", onWinMouseUp);
+      window.removeEventListener("touchend", onWinTouchEnd);
+      window.removeEventListener("touchcancel", onWinTouchEnd);
+      window.removeEventListener("blur", onWinBlur);
+    };
   }
 
   // --- JOGO NOVO UNIFICADO: VERSÍCULO SECRETO (22 FASES = 22 LIÇÕES • O VOVÔ LÊ O VERSÍCULO E A CRIANÇA MONTA NAS MOLDURAS TRACEJADAS!) ---
@@ -9648,8 +9888,6 @@
     const cleanHint = stripLessonPrefixText(item.hint || "");
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     const guessed = new Set();
-    let errors = 0;
-    const maxErrors = 6;
     let solved = false;
 
     container.innerHTML = `
@@ -9657,13 +9895,9 @@
         <img src="./2_ASSETS_UI_BOTOES/bg_jogo_20_palavrasecreta_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
-        <!-- Card Roxo Superior com Margem Colorida e Pista Bíblica (Toque para ouvir a pista do Vovô novamente!) -->
-        <div id="arcade-sw-hint-card" class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:430px; padding:14px 15px; text-align:center; cursor:pointer;" title="Toque para ouvir a pista do Vovô">
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px;">
-            <span style="background:rgba(15,23,42,0.88); color:#fde047; font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; padding:3px 10px; border-radius:999px; border:1.5px solid #fde047;">PISTA DA BÍBLIA</span>
-            <span id="arcade-sw-chances" style="background:linear-gradient(180deg, #0284c7 0%, #0369a1 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; padding:3px 10px; border-radius:999px; border:1.5px solid #ffffff;">CHANCES: 6 / 6</span>
-          </div>
-          <div id="arcade-sw-hint-text" style="font-family:'Fredoka',sans-serif; font-size:clamp(15px, 4vw, 18.5px); font-weight:800; color:#ffffff; line-height:1.32; text-shadow:0 2px 5px rgba(0,0,0,0.8);">
+        <!-- Card Roxo Superior Limpo (Sem pílulas internas • Toque para ouvir a pista do Vovô novamente!) -->
+        <div id="arcade-sw-hint-card" class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:430px; padding:18px 16px; text-align:center; cursor:pointer;" title="Toque para ouvir a pista do Vovô">
+          <div id="arcade-sw-hint-text" style="font-family:'Fredoka',sans-serif; font-size:clamp(15.5px, 4.1vw, 19px); font-weight:800; color:#ffffff; line-height:1.34; text-shadow:0 2px 5px rgba(0,0,0,0.8);">
             ${cleanHint}
           </div>
         </div>
@@ -9671,13 +9905,12 @@
         <!-- Caixinhas 3D da Palavra Escondida -->
         <div id="arcade-sw-slots" style="position:relative; z-index:5; width:100%; max-width:440px; display:flex; flex-wrap:wrap; justify-content:center; gap:6px; padding:4px 2px;"></div>
 
-        <!-- Teclado A-Z Solto 3D (mesma estética do Caça-Palavras) -->
+        <!-- Teclado A-Z Solto 3D Livre (Tentativa e erro livre para aprendizado do alfabeto!) -->
         <div id="arcade-sw-keyboard" style="position:relative; z-index:5; width:100%; max-width:416px; display:grid; grid-template-columns:repeat(7, 1fr); gap:6px;"></div>
       </div>
     `;
 
     const hintCardEl = container.querySelector("#arcade-sw-hint-card");
-    const chancesEl = container.querySelector("#arcade-sw-chances");
     const hintTextEl = container.querySelector("#arcade-sw-hint-text");
     const slotsEl = container.querySelector("#arcade-sw-slots");
     const kbEl = container.querySelector("#arcade-sw-keyboard");
@@ -9697,14 +9930,6 @@
     }, 900);
 
     function updateSlotsAndHud() {
-      const left = Math.max(0, maxErrors - errors);
-      if (chancesEl) {
-        chancesEl.textContent = `CHANCES: ${left} / ${maxErrors}`;
-        chancesEl.style.background = left <= 2
-          ? "linear-gradient(180deg, #ef4444 0%, #b91c1c 100%)"
-          : "linear-gradient(180deg, #0284c7 0%, #0369a1 100%)";
-      }
-
       const slotW = cleanWord.length >= 10 ? "clamp(28px, 7.6vw, 36px)" : "clamp(34px, 9.2vw, 44px)";
       const slotH = cleanWord.length >= 10 ? "40px" : "46px";
       slotsEl.innerHTML = cleanWord.split("").map(ch => {
@@ -9753,19 +9978,7 @@
               return;
             }
           } else {
-            errors++;
             TronoAudio.play("error");
-            if (errors >= maxErrors) {
-              // Reinício amigável infantil sem travar a criança: dá uma letrinha de ajuda e renova as chances!
-              errors = 0;
-              const missing = cleanWord.split("").find(c => !guessed.has(c));
-              Array.from(guessed).forEach(g => {
-                if (!cleanWord.includes(g)) guessed.delete(g);
-              });
-              if (missing && cleanWord.split("").filter(c => !guessed.has(c)).length > 1) {
-                guessed.add(missing);
-              }
-            }
           }
           updateSlotsAndHud();
         });
@@ -9892,7 +10105,7 @@
     });
   }
 
-  // --- JOGO 22: VERDADEIRO OU MITO EM TELA CHEIA (22 LIÇÕES • 100% NARRADO PELO VOVÔ + AFIRMAÇÃO ROXA + 2 BOTÕES 3D) ---
+  // --- JOGO 22: VERDADEIRO OU MITO EM TELA CHEIA (22 LIÇÕES • 100% NARRADO PELO VOVÔ + CARD ROXO LIMPO + 2 BOTÕES 3D) ---
   function runVerdadeiroOuMitoArcade(container, phase) {
     window._arcadeWaitVisualBeforeVovo = true;
     injectLessonArcadeV161Styles();
@@ -9908,24 +10121,15 @@
     let solved = false;
 
     container.innerHTML = `
-      <div class="arc-v161-stage" style="padding:44px 14px 18px 14px; justify-content:space-evenly;">
+      <div class="arc-v161-stage" style="padding:48px 14px 24px 14px; justify-content:space-evenly;">
         <img id="arcade-tm-bg-img" src="./2_ASSETS_UI_BOTOES/bg_jogo_22_verdadeiromito_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
-        <!-- Card Roxo da Frase Bíblica com Margem Colorida (Toque para Ouvir o Vovô Novamente) -->
-        <div id="arcade-tm-stmt-card" class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:430px; padding:18px 18px; text-align:center; cursor:pointer;" title="Ouvir o Vovô Nésio novamente">
-          <div style="display:inline-flex; align-items:center; justify-content:center; gap:6px; background:rgba(15,23,42,0.88); color:#fde047; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; padding:4px 12px; border-radius:999px; border:1.5px solid #fde047; margin-bottom:11px; letter-spacing:0.5px;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#fde047"/><path d="M15.54 8.46C16.47 9.4 17 10.66 17 12C17 13.34 16.47 14.6 15.54 15.54" stroke="#fde047" stroke-width="2.4" stroke-linecap="round"/></svg>
-            <span>VERDADEIRO OU MITO?</span>
-          </div>
-          <div style="font-family:'Fredoka',sans-serif; font-size:clamp(17px, 4.4vw, 21.5px); font-weight:900; color:#ffffff; line-height:1.36; text-shadow:0 2px 6px rgba(0,0,0,0.85);">
+        <!-- Card Roxo Limpo da Frase Bíblica com Margem Colorida (Sem pílulas extras • Toque para Ouvir o Vovô Novamente) -->
+        <div id="arcade-tm-stmt-card" class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:430px; padding:24px 18px; text-align:center; cursor:pointer;" title="Ouvir o Vovô Nésio novamente">
+          <div style="font-family:'Fredoka',sans-serif; font-size:clamp(17.5px, 4.5vw, 22px); font-weight:900; color:#ffffff; line-height:1.38; text-shadow:0 2px 6px rgba(0,0,0,0.85);">
             "${cleanStmt}"
           </div>
-        </div>
-
-        <!-- Feedback Bíblico Curto Solto -->
-        <div id="arcade-tm-feedback" class="arc-v161-rainbow-card" style="z-index:5; width:100%; max-width:430px; padding:12px 15px; text-align:center; background:linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(30,27,75,0.96) 100%); font-family:'Fredoka',sans-serif; font-size:clamp(13.5px, 3.6vw, 15.5px); font-weight:800; color:#fde047; line-height:1.32;">
-          Ouça o Vovô Nésio com atenção...
         </div>
 
         <!-- Dois Botões Gigantes 3D Soltos -->
@@ -9944,7 +10148,6 @@
 
     const bgImgEl = container.querySelector("#arcade-tm-bg-img");
     const stmtCardEl = container.querySelector("#arcade-tm-stmt-card");
-    const fbEl = container.querySelector("#arcade-tm-feedback");
     const btnTrue = container.querySelector("#arcade-tm-btn-true");
     const btnFalse = container.querySelector("#arcade-tm-btn-false");
 
@@ -9967,10 +10170,6 @@
       if (solved || _isVictoryActive) return;
       if (btnTrue) btnTrue.style.opacity = "1";
       if (btnFalse) btnFalse.style.opacity = "1";
-      if (fbEl) {
-        fbEl.style.color = "#fde047";
-        fbEl.textContent = "Toque em VERDADEIRO ou em MITO abaixo!";
-      }
     };
 
     if (stmtCardEl) {
@@ -9999,24 +10198,16 @@
         clicked.style.boxShadow = "0 0 24px rgba(253, 224, 71, 0.95), 0 8px 20px rgba(0,0,0,0.75)";
         other.style.opacity = "0.38";
         other.style.pointerEvents = "none";
-        if (fbEl) {
-          fbEl.style.color = "#86efac";
-          fbEl.textContent = item.explanation || "Muito bem! Você acertou!";
-        }
         if (window._arcadeTrueMythWinTimer) clearTimeout(window._arcadeTrueMythWinTimer);
         window._arcadeTrueMythWinTimer = setTimeout(() => {
           window._arcadeTrueMythWinTimer = null;
           triggerArcadeVictory();
-        }, 1150);
+        }, 900);
       } else {
         TronoAudio.play("error");
         clicked.classList.remove("arc-shake-err");
         void clicked.offsetWidth;
         clicked.classList.add("arc-shake-err");
-        if (fbEl) {
-          fbEl.style.color = "#fde047";
-          fbEl.textContent = `Pense um pouquinho na história: ${item.explanation || "Tente a outra resposta!"}`;
-        }
       }
     }
 
