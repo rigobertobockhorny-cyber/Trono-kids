@@ -68,7 +68,7 @@
       }
       if (!this.vovoVictoryPlayer) {
         try {
-          this.vovoVictoryPlayer = new Audio('./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=168');
+          this.vovoVictoryPlayer = new Audio('./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=168&cb=174');
           this.vovoVictoryPlayer.preload = "auto";
         } catch(e) {}
       }
@@ -256,6 +256,7 @@
       "vovo_jogo_02.mp3": 10136,
       "vovo_jogo_03.mp3": 5982,
       "vovo_jogo_04.mp3": 11807,
+      "vovo_jogo_04_v174.mp3": 11064,
       "vovo_jogo_05.mp3": 11180,
       "vovo_jogo_05_v135.mp3": 11180,
       "vovo_jogo_06.mp3": 5799,
@@ -298,7 +299,7 @@
       "vovo_jogo_20_v161.mp3": 12095,
       "vovo_jogo_21_v161.mp3": 9195,
       "vovo_jogo_22_v161.mp3": 11363,
-      "vovo_vitoria.mp3": 4493,
+      "vovo_vitoria.mp3": 5155,
       "quiz_vovo_q01.mp3": 10214,
       "quiz_vovo_q02.mp3": 11651,
       "quiz_vovo_q03.mp3": 11651,
@@ -453,9 +454,11 @@
       try {
         const isVictory = audioFile === "vovo_vitoria.mp3";
         const rawPath = String(audioFile);
-        const resolvedUrl = rawPath.startsWith("./")
-          ? `${rawPath}${rawPath.includes("?") ? "&cb=168" : "?v=168"}`
-          : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=168`;
+        const resolvedUrl = isVictory
+          ? "./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=168&cb=174"
+          : (rawPath.startsWith("./")
+            ? `${rawPath}${rawPath.includes("?") ? "&cb=168" : "?v=168"}`
+            : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=168`);
         const durKey = rawPath.split("/").pop().split("?")[0];
         const replayBtnEl = document.getElementById("arcade-btn-replay-vovo");
         if (replayBtnEl && !isVictory) replayBtnEl.classList.add("vovo-speaking");
@@ -474,7 +477,7 @@
           window.setVovoVoiceDucking(true);
         }
 
-        const exactDurationMs = this._vovoExactDurationsMs[durKey] || (isVictory ? 4493 : 8000);
+        const exactDurationMs = this._vovoExactDurationsMs[durKey] || (isVictory ? 5155 : 8000);
         let finished = false;
 
         const doFinish = (forceNow) => {
@@ -590,8 +593,8 @@
       title: "DESVIE DA LANÇA",
       sub: "",
       icon: "./2_ASSETS_UI_BOTOES/ico_jogo_04_lanca_v130.png?v=130",
-      audioFile: "vovo_jogo_04.mp3",
-      vovoFala: "O rei Saul atirou a lança, mas Deus protegeu Davi! Use o controle para pular, abaixar, avançar e recuar!",
+      audioFile: "vovo_jogo_04_v174.mp3",
+      vovoFala: "O rei Saul atirou a lança, mas Deus protegeu Davi! Aperte nos botões para a esquerda e para a direita para desviar das lanças!",
       run: (container, phase) => runJonatasAlvo(container, phase)
     },
     {
@@ -1623,10 +1626,10 @@
         background: radial-gradient(circle, rgba(0,0,0,0.68) 0%, transparent 75%);
         z-index: -1;
       }
-      /* BARRA DE CONTROLES COMPACTA FLUTUANTE NO RODAPÉ (SEM COBRIR DAVI) */
+      /* BARRA DE CONTROLES HORIZONTAL (SOMENTE ESQUERDA E DIREITA — SEM COBRIR DAVI) */
       .davi-controls-bar {
         position: absolute;
-        bottom: 8px;
+        bottom: 14px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 25;
@@ -1642,29 +1645,25 @@
       }
       .davi-dpad-disc {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        gap: 2px;
-        background: rgba(15, 23, 42, 0.56);
+        justify-content: center;
+        gap: 14px;
+        background: rgba(15, 23, 42, 0.64);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        border: 2px solid rgba(253, 224, 71, 0.5);
-        border-radius: 24px;
-        padding: 5px 8px;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45), inset 0 1px 3px rgba(255, 255, 255, 0.15);
-      }
-      .davi-mid-row {
-        display: flex;
-        align-items: center;
-        gap: 2px;
+        border: 2.5px solid rgba(253, 224, 71, 0.62);
+        border-radius: 999px;
+        padding: 7px 14px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), inset 0 1px 3px rgba(255, 255, 255, 0.16);
       }
       .davi-dpad-btn {
-        width: 40px;
-        height: 36px;
-        background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
-        border: 1.5px solid #475569;
-        border-radius: 10px;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+        width: 72px;
+        height: 50px;
+        background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+        border: 2px solid #93c5fd;
+        border-radius: 999px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45), inset 0 1px 3px rgba(255, 255, 255, 0.35);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1678,20 +1677,20 @@
       }
       .davi-dpad-btn:active {
         transform: scale(0.92);
-        background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-        border-color: #38bdf8;
+        background: linear-gradient(180deg, #2563eb 0%, #1e3a8a 100%);
+        border-color: #fde047;
       }
       .davi-dpad-btn .dpad-arrow-sym {
-        color: #f8fafc;
-        font-size: 19px;
+        color: #ffffff;
+        font-size: 24px;
         font-weight: 900;
         line-height: 1;
-        text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        text-shadow: 0 2px 4px rgba(0,0,0,0.65);
         pointer-events: none;
       }
       .davi-center-core {
-        width: 26px;
-        height: 26px;
+        width: 22px;
+        height: 22px;
         background: radial-gradient(circle, #334155 30%, #0f172a 100%);
         border-radius: 50%;
         display: flex;
@@ -2930,11 +2929,11 @@
       });
     }, 650);
 
-    // 5. Fallback de segurança SOMENTE APÓS o tempo total da fala completa (~6.0s)
+    // 5. Fallback de segurança SOMENTE APÓS o tempo total da fala completa (~6.5s)
     // Nunca atropela a fala do Vovô, mas garante que nunca trave se o navegador falhar o evento onended!
     window._arcadeVictorySafetyTimer = setTimeout(() => {
       if (_isVictoryActive) unlockVictoryContinueButton();
-    }, 6000);
+    }, 6500);
   }
 
   function renderCanonicalVictoryModal() {
@@ -4313,10 +4312,8 @@
     const betweenSpearsMs = preset.gap;
     const smartAimProb = preset.smartAim;
 
-    // Posições de Davi no Primeiro Plano: "left", "center", "right"
+    // Posições de Davi no Primeiro Plano: "left", "center", "right" (SOMENTE ESQUERDA E DIREITA)
     let daviPosition = "center";
-    let isJumping = false;
-    let isCrouching = false;
 
     // Sorteia as 3 direções da rodada (sempre inclui Centro, Esquerda e Direita embaralhados!)
     function buildRoundLanes() {
@@ -4379,25 +4376,17 @@
           </div>
         </div>
 
-        <!-- CONSOLE D-PAD FLUTUANTE SOBREPOSTO NO RODAPÉ (TRAVADO ENQUANTO O VOVÔ FALA!) -->
+        <!-- BARRA HORIZONTAL DE 2 BOTÕES (SOMENTE ESQUERDA E DIREITA — TRAVADA ENQUANTO O VOVÔ FALA!) -->
         <div class="davi-controls-bar" id="davi-controls-bar" style="opacity:0.45; pointer-events:none; filter:grayscale(0.4); transition:opacity 0.25s ease, filter 0.25s ease;">
           <div class="davi-dpad-disc">
-            <button class="davi-dpad-btn" id="btn-davi-up" aria-label="Pular">
-              <span class="dpad-arrow-sym">▲</span>
+            <button class="davi-dpad-btn" id="btn-davi-left" aria-label="Esquerda">
+              <span class="dpad-arrow-sym">◀</span>
             </button>
-            <div class="davi-mid-row">
-              <button class="davi-dpad-btn" id="btn-davi-left" aria-label="Esquerda">
-                <span class="dpad-arrow-sym">◀</span>
-              </button>
-              <div class="davi-center-core">
-                <div class="dpad-hub-dot"></div>
-              </div>
-              <button class="davi-dpad-btn" id="btn-davi-right" aria-label="Direita">
-                <span class="dpad-arrow-sym">▶</span>
-              </button>
+            <div class="davi-center-core">
+              <div class="dpad-hub-dot"></div>
             </div>
-            <button class="davi-dpad-btn" id="btn-davi-down" aria-label="Abaixar">
-              <span class="dpad-arrow-sym">▼</span>
+            <button class="davi-dpad-btn" id="btn-davi-right" aria-label="Direita">
+              <span class="dpad-arrow-sym">▶</span>
             </button>
           </div>
         </div>
@@ -4439,41 +4428,12 @@
     function syncHeroClasses() {
       if (!heroBox) return;
       const laneClass = daviPosition === "left" ? "dodge-left" : (daviPosition === "right" ? "dodge-right" : "center-pos");
-      heroBox.className = "davi-hero-box " + laneClass + (isJumping ? " jumping" : "") + (isCrouching ? " crouching" : "");
+      heroBox.className = "davi-hero-box " + laneClass;
     }
 
     // =========================================================================
-    // MOVIMENTOS NATURAIS DE DAVI PELAS 3 FAIXAS (ESQUERDA <-> CENTRO <-> DIREITA)
+    // MOVIMENTOS NATURAIS DE DAVI PELAS 3 FAIXAS (SOMENTE ESQUERDA <-> DIREITA)
     // =========================================================================
-    let jumpTimer = null;
-    function doHeroJump() {
-      if (!isControlsUnlocked || isGameWon || isJumping) return;
-      isJumping = true;
-      isCrouching = false;
-      syncHeroClasses();
-      TronoAudio.play("click");
-
-      clearTimeout(jumpTimer);
-      jumpTimer = setTimeout(() => {
-        isJumping = false;
-        syncHeroClasses();
-      }, 820);
-    }
-
-    let crouchTimer = null;
-    function doHeroCrouch() {
-      if (!isControlsUnlocked || isGameWon || isJumping) return;
-      isCrouching = true;
-      syncHeroClasses();
-      TronoAudio.play("click");
-
-      clearTimeout(crouchTimer);
-      crouchTimer = setTimeout(() => {
-        isCrouching = false;
-        syncHeroClasses();
-      }, 820);
-    }
-
     // Passo para a Esquerda: Direita -> Centro -> Esquerda
     function doHeroLeft() {
       if (!isControlsUnlocked || isGameWon) return;
@@ -4498,22 +4458,16 @@
       TronoAudio.play("click");
     }
 
-    // BINDINGS TOUCH POINTERDOWN
-    document.getElementById("btn-davi-up").addEventListener("pointerdown", (e) => { e.preventDefault(); doHeroJump(); });
-    document.getElementById("btn-davi-down").addEventListener("pointerdown", (e) => { e.preventDefault(); doHeroCrouch(); });
+    // BINDINGS TOUCH POINTERDOWN (APENAS ESQUERDA E DIREITA)
     document.getElementById("btn-davi-left").addEventListener("pointerdown", (e) => { e.preventDefault(); doHeroLeft(); });
     document.getElementById("btn-davi-right").addEventListener("pointerdown", (e) => { e.preventDefault(); doHeroRight(); });
 
-    // SUPORTE AO TECLADO
+    // SUPORTE AO TECLADO (APENAS ESQUERDA E DIREITA)
     function handleKeyDown(e) {
       if (!isControlsUnlocked || isGameWon) return;
-      if (e.key === "ArrowUp" || e.key === "w" || e.key === " ") {
-        e.preventDefault(); doHeroJump();
-      } else if (e.key === "ArrowDown" || e.key === "s") {
-        e.preventDefault(); doHeroCrouch();
-      } else if (e.key === "ArrowLeft" || e.key === "a") {
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
         e.preventDefault(); doHeroLeft();
-      } else if (e.key === "ArrowRight" || e.key === "d") {
+      } else if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
         e.preventDefault(); doHeroRight();
       }
     }
@@ -4652,8 +4606,8 @@
         window._daviImpactTimer = setTimeout(() => {
           if (isGameWon) return;
 
-          // Atinge Davi se ele estiver na mesma faixa da lança sem pular nem agachar
-          const hitDavi = (daviPosition === lane) && !isJumping && !isCrouching;
+          // Atinge Davi se ele estiver na mesma faixa da lança
+          const hitDavi = (daviPosition === lane);
 
           // REGRA RIGOBERTO: A lança SEMPRE some limpa assim que passa por Davi (zero lança parada no chão!)
           spearProjectile.style.transition = "none";
@@ -4697,38 +4651,32 @@
     }
   }
 
-  // --- JOGO 5: CADÊ A OVELHA? (APRISCO 3D EM 3 CAMADAS • CURVA HÍBRIDA FASES 1 A 15 + "BÉÉÉ!" REAL v136.0) ---
+  // --- JOGO 5: CADÊ A OVELHA? (APRISCO 3D • 8 PEDRAS CALIBRADAS NO CHÃO PELO RIGOBERTO + OVELHAS APOIADAS NO SOLO v174.0) ---
   function runOvelhaPerdida(container, phase) {
     const pNum = Math.max(1, Math.min(15, phase || 1));
 
-    // CURVA HÍBRIDA DE 15 FASES (MESCLA QUANTIDADE DE OVELHAS + NÍVEL DE ESCONDERIJO ATRÁS DA PEDRA):
-    // - Fase 1: 2 ovelhas quase com o corpinho todo visível ao lado da pedra (hide: 0.00)
-    // - Fase 2: 3 ovelhas meio escondidinhas na pedra (hide: 0.24)
-    // - Fase 3: 3 ovelhas aparecendo um pedacinho menor (hide: 0.44)
-    // - Fase 4: 4 ovelhas escondendo o rostinho (hide: 0.60)
-    // - Fase 5: 5 ovelhas bem escondidinhas atrás da rocha (hide: 0.72)
-    // - Fases 6 a 14 (VIP): sobe de 5 até 9 ovelhas entrando cada vez mais fundo atrás das pedras!
-    // - Fase 15 (VIP Mestre): 10 ovelhas nas 10 rochas mostrando SÓ uma pontinha de orelhinha, rabinho ou patinha (hide: 1.00)!
+    // CURVA HÍBRIDA DE 15 FASES NAS 8 PEDRAS CALIBRADAS:
+    // Todas as 8 pedras calibradas permanecem firmes em suas posições exatas no chão;
+    // a dificuldade avança subindo de 2 até 8 ovelhinhas e escondendo-as cada vez mais atrás das rochas!
     const PHASE_CURVE = {
-      1:  { sheep: 2,  rocks: 5,  hide: 0.00, hitPx: 78 },
-      2:  { sheep: 3,  rocks: 6,  hide: 0.24, hitPx: 70 },
-      3:  { sheep: 3,  rocks: 7,  hide: 0.44, hitPx: 64 },
-      4:  { sheep: 4,  rocks: 7,  hide: 0.60, hitPx: 58 },
-      5:  { sheep: 5,  rocks: 8,  hide: 0.72, hitPx: 54 },
-      6:  { sheep: 5,  rocks: 8,  hide: 0.78, hitPx: 52 },
-      7:  { sheep: 6,  rocks: 8,  hide: 0.82, hitPx: 50 },
-      8:  { sheep: 6,  rocks: 9,  hide: 0.86, hitPx: 50 },
-      9:  { sheep: 7,  rocks: 9,  hide: 0.89, hitPx: 48 },
-      10: { sheep: 7,  rocks: 9,  hide: 0.92, hitPx: 48 },
-      11: { sheep: 8,  rocks: 10, hide: 0.94, hitPx: 47 },
-      12: { sheep: 8,  rocks: 10, hide: 0.96, hitPx: 46 },
-      13: { sheep: 9,  rocks: 10, hide: 0.98, hitPx: 45 },
-      14: { sheep: 9,  rocks: 10, hide: 0.99, hitPx: 45 },
-      15: { sheep: 10, rocks: 10, hide: 1.00, hitPx: 44 }
+      1:  { sheep: 2, rocks: 8, hide: 0.00, hitPx: 74 },
+      2:  { sheep: 3, rocks: 8, hide: 0.16, hitPx: 70 },
+      3:  { sheep: 3, rocks: 8, hide: 0.30, hitPx: 66 },
+      4:  { sheep: 4, rocks: 8, hide: 0.42, hitPx: 62 },
+      5:  { sheep: 4, rocks: 8, hide: 0.52, hitPx: 58 },
+      6:  { sheep: 5, rocks: 8, hide: 0.60, hitPx: 56 },
+      7:  { sheep: 5, rocks: 8, hide: 0.66, hitPx: 54 },
+      8:  { sheep: 6, rocks: 8, hide: 0.71, hitPx: 52 },
+      9:  { sheep: 6, rocks: 8, hide: 0.75, hitPx: 50 },
+      10: { sheep: 7, rocks: 8, hide: 0.79, hitPx: 48 },
+      11: { sheep: 7, rocks: 8, hide: 0.82, hitPx: 48 },
+      12: { sheep: 7, rocks: 8, hide: 0.84, hitPx: 46 },
+      13: { sheep: 8, rocks: 8, hide: 0.86, hitPx: 46 },
+      14: { sheep: 8, rocks: 8, hide: 0.87, hitPx: 45 },
+      15: { sheep: 8, rocks: 8, hide: 0.88, hitPx: 44 }
     };
     const cfg = PHASE_CURVE[pNum] || PHASE_CURVE[15];
     const totalOvelhas = cfg.sheep;
-    const totalRochasCena = cfg.rocks;
     const hideProgress = cfg.hide;
     const hitSizePx = cfg.hitPx;
 
@@ -4736,85 +4684,20 @@
     let isGameUnlocked = false;
     let isVictoryTriggered = false;
 
-    // 10 Esconderijos Naturais em 3 Camadas no Aprisco de Pedras (9:16):
-    // openDx/openDy = Fase 1 (ovelhinha quase toda visível ao lado da rocha)
-    // deepDx/deepDy = Fase 15 (ovelhinha super escondida mostrando só orelhinha, rabinho ou patinha!)
-    // deepPeekDx/deepPeekDy = centro exato da pontinha que fica de fora na Fase 15
-    const ALL_APRISCO_SPOTS = [
-      // 0: Terraço médio-esquerdo — na Fase 15 mostra só a patinha dianteira esquerda!
-      {
-        id: 0, x: 24, y: 67,
-        back:  { img: "pedra_aprisco_02_v135.png", w: 86,  dx: -14, dy: -14, flip: false },
-        sheep: { img: "ovelha_3d_01_v135.png",     w: 68,  flip: false, openDx: -58, openDy: -10, deepDx: -29, deepDy: 5,  deepPeekDx: -56, deepPeekDy: 2 },
-        front: { img: "pedra_aprisco_01_v135.png", w: 118, dx: 8,   dy: 2,   flip: false }
-      },
-      // 1: Pedras inferiores à direita — na Fase 15 mostra só patinhas traseiras + pontinha do rabinho!
-      {
-        id: 1, x: 75, y: 85,
-        back:  { img: "pedra_aprisco_03_v135.png", w: 96,  dx: 12,  dy: -14, flip: true },
-        sheep: { img: "ovelha_3d_05_v135.png",     w: 84,  flip: false, openDx: 58,  openDy: 8,   deepDx: 22,  deepDy: 13, deepPeekDx: 52,  deepPeekDy: 14 },
-        front: { img: "pedra_aprisco_04_v135.png", w: 116, dx: -12, dy: 0,   flip: false }
-      },
-      // 2: Entrada da gruta à direita — na Fase 15 mostra só o rabinho fofinho de algodão!
-      {
-        id: 2, x: 76, y: 49,
-        back:  { img: "pedra_aprisco_05_v135.png", w: 86,  dx: -12, dy: -12, flip: false },
-        sheep: { img: "ovelha_3d_02_v135.png",     w: 68,  flip: false, openDx: -56, openDy: -8,  deepDx: -27, deepDy: 3,  deepPeekDx: -53, deepPeekDy: 0 },
-        front: { img: "pedra_aprisco_04_v135.png", w: 116, dx: 6,   dy: 2,   flip: true }
-      },
-      // 3: Degraus médio-superiores à esquerda — na Fase 15 mostra só o casquinho da patinha direita!
-      {
-        id: 3, x: 22, y: 45,
-        back:  { img: "pedra_aprisco_03_v135.png", w: 88,  dx: 12,  dy: -12, flip: false },
-        sheep: { img: "ovelha_3d_04_v135.png",     w: 68,  flip: false, openDx: 56,  openDy: -8,  deepDx: 24,  deepDy: 7,  deepPeekDx: 48,  deepPeekDy: 4 },
-        front: { img: "pedra_aprisco_05_v135.png", w: 118, dx: -8,  dy: -2,  flip: true }
-      },
-      // 4: Rochas inferiores à esquerda — na Fase 15 mostra só a pontinha rosada da orelhinha!
-      {
-        id: 4, x: 24, y: 85,
-        back:  { img: "pedra_aprisco_02_v135.png", w: 88,  dx: 6,   dy: -16, flip: false },
-        sheep: { img: "ovelha_3d_03_v135.png",     w: 72,  flip: false, openDx: 42,  openDy: -28, deepDx: 19,  deepDy: -4, deepPeekDx: 42,  deepPeekDy: -18 },
-        front: { img: "pedra_aprisco_03_v135.png", w: 124, dx: -6,  dy: 6,   flip: false }
-      },
-      // 5: Borda superior direita junto ao curral — na Fase 15 mostra só pontinha de orelha + lã!
-      {
-        id: 5, x: 77, y: 25,
-        back:  { img: "pedra_aprisco_04_v135.png", w: 82,  dx: 8,   dy: -10, flip: true },
-        sheep: { img: "ovelha_3d_06_v135.png",     w: 64,  flip: false, openDx: 44,  openDy: -28, deepDx: 18,  deepDy: -4, deepPeekDx: 36,  deepPeekDy: -30 },
-        front: { img: "pedra_aprisco_01_v135.png", w: 114, dx: -4,  dy: 4,   flip: true }
-      },
-      // 6: Borda superior esquerda junto à cerca — na Fase 15 mostra só rabinho + patinha traseira!
-      {
-        id: 6, x: 22, y: 25,
-        back:  { img: "pedra_aprisco_01_v135.png", w: 84,  dx: -10, dy: -10, flip: false },
-        sheep: { img: "ovelha_3d_05_v135.png",     w: 80,  flip: true,  openDx: -54, openDy: 6,   deepDx: -21, deepDy: 14, deepPeekDx: -48, deepPeekDy: 12 },
-        front: { img: "pedra_aprisco_02_v135.png", w: 110, dx: 10,  dy: 0,   flip: false }
-      },
-      // 7: Degraus médios à direita — na Fase 15 mostra só o rabinho fofinho à direita!
-      {
-        id: 7, x: 77, y: 67,
-        back:  { img: "pedra_aprisco_01_v135.png", w: 86,  dx: 12,  dy: -12, flip: false },
-        sheep: { img: "ovelha_3d_02_v135.png",     w: 68,  flip: true,  openDx: 54,  openDy: -6,  deepDx: 25,  deepDy: 5,  deepPeekDx: 49,  deepPeekDy: 2 },
-        front: { img: "pedra_aprisco_05_v135.png", w: 116, dx: -8,  dy: 0,   flip: true }
-      },
-      // 8: Centro superior diante da porteira — na Fase 15 mostra só uma orelhinha rosada à esquerda!
-      {
-        id: 8, x: 50, y: 33,
-        back:  { img: "pedra_aprisco_04_v135.png", w: 82,  dx: -8,  dy: -12, flip: false },
-        sheep: { img: "ovelha_3d_03_v135.png",     w: 68,  flip: true,  openDx: -40, openDy: -26, deepDx: -18, deepDy: -3, deepPeekDx: -40, deepPeekDy: -16 },
-        front: { img: "pedra_aprisco_03_v135.png", w: 116, dx: 6,   dy: 5,   flip: true }
-      },
-      // 9: Trilha central de pedra — na Fase 15 mostra só uma orelhinha no topo esquerdo da rocha!
-      {
-        id: 9, x: 50, y: 58,
-        back:  { img: "pedra_aprisco_05_v135.png", w: 84,  dx: -10, dy: -12, flip: true },
-        sheep: { img: "ovelha_3d_06_v135.png",     w: 64,  flip: true,  openDx: -44, openDy: -26, deepDx: -18, deepDy: -4, deepPeekDx: -36, deepPeekDy: -28 },
-        front: { img: "pedra_aprisco_01_v135.png", w: 114, dx: 4,   dy: 4,   flip: false }
-      }
+    // 8 Pedras Oficiais Calibradas e Salvas pelo Rigoberto (calibracao_pedras_ovelha.json • palco base 390x750):
+    const CALIBRATED_APRISCO_ROCKS = [
+      { id: 0, x: 32.33, y: 27.90, img: "pedra_aprisco_01_v135.png", w: 96,  flip: false, peekSide: "right" },
+      { id: 1, x: 46.41, y: 13.18, img: "pedra_aprisco_04_v135.png", w: 96,  flip: true,  peekSide: "left"  },
+      { id: 2, x: 55.42, y: 48.40, img: "pedra_aprisco_05_v135.png", w: 80,  flip: false, peekSide: "right" },
+      { id: 3, x: 81.24, y: 77.54, img: "pedra_aprisco_01_v135.png", w: 104, flip: false, peekSide: "left"  },
+      { id: 4, x: 26.17, y: 55.01, img: "pedra_aprisco_04_v135.png", w: 106, flip: true,  peekSide: "left"  },
+      { id: 5, x: 34.69, y: 69.83, img: "pedra_aprisco_01_v135.png", w: 112, flip: true,  peekSide: "right" },
+      { id: 6, x: 17.12, y: 79.82, img: "pedra_aprisco_04_v135.png", w: 118, flip: false, peekSide: "right" },
+      { id: 7, x: 83.27, y: 18.90, img: "pedra_aprisco_05_v135.png", w: 122, flip: true,  peekSide: "left"  }
     ];
 
-    // Embaralha os esconderijos a cada partida para nunca repetir os mesmos lugares!
-    const allIds = pNum === 1 ? [0, 1, 2, 3, 4, 7] : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    // Embaralha quais pedras escondem ovelhinhas a cada partida para nunca repetir os mesmos esconderijos!
+    const allIds = [0, 1, 2, 3, 4, 5, 6, 7];
     for (let i = allIds.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       const tmp = allIds[i];
@@ -4823,63 +4706,52 @@
     }
 
     const activeSheepSet = new Set(allIds.slice(0, totalOvelhas));
-    // Seleciona também pedras vazias da cena até completar totalRochasCena
-    const visibleRockSet = new Set(allIds.slice(0, Math.min(allIds.length, Math.max(totalOvelhas, totalRochasCena))));
-    if (visibleRockSet.size < totalRochasCena) {
-      for (let k = 0; k < 10 && visibleRockSet.size < totalRochasCena; k++) {
-        visibleRockSet.add(k);
-      }
-    }
 
-    // Escala responsiva proporcional para manter o encaixe milimétrico pedra-ovelha em qualquer celular
+    // Escala proporcional fiel ao palco base 390px do calibrador
     const stgW = container.clientWidth || Math.min(window.innerWidth, 450);
-    const stgH = container.clientHeight || (window.innerHeight - 60);
-    const spotScale = Math.min(1.05, Math.max(0.76, Math.min(stgW / 390, stgH / 750))).toFixed(3);
+    const spotScale = Math.min(1.08, Math.max(0.78, stgW / 390)).toFixed(3);
 
-    // Ordena de cima para baixo (menor Y primeiro) para perspectiva natural de profundidade
-    const orderedSpots = ALL_APRISCO_SPOTS
-      .filter(sp => visibleRockSet.has(sp.id))
-      .sort((a, b) => a.y - b.y);
+    // Ordena de cima para baixo (menor Y primeiro) para perspectiva natural de profundidade no chão
+    const orderedSpots = CALIBRATED_APRISCO_ROCKS.slice().sort((a, b) => a.y - b.y);
 
     const spotsHtml = orderedSpots.map((spot, depthOrder) => {
       const hasSheep = activeSheepSet.has(spot.id);
-      const baseZ = 4 + depthOrder * 2;
-      const bFlip = spot.back.flip ? "scaleX(-1)" : "scaleX(1)";
-      const fFlip = spot.front.flip ? "scaleX(-1)" : "scaleX(1)";
-      const sh = spot.sheep;
-      const sFlip = sh.flip ? -1 : 1;
+      const baseZ = 6 + depthOrder * 2;
+      const rFlip = spot.flip ? "scaleX(-1)" : "scaleX(1)";
+      const sign = spot.peekSide === "right" ? 1 : -1;
+      const sFlip = spot.peekSide === "right" ? -1 : 1;
+      const sheepW = Math.round(spot.w * 0.62);
 
-      // Interpola suavemente a posição da ovelhinha desde Fase 1 (corpinho aberto) até Fase 15 (só orelhinha/rabinho/patinha!)
-      const sdx = Math.round(sh.openDx + (sh.deepDx - sh.openDx) * hideProgress);
-      const sdy = Math.round(sh.openDy + (sh.deepDy - sh.openDy) * hideProgress);
+      // Patinhas alinhadas na linha do chão da pedra (bottom: 4px + dy = 0.04*w — zero ovelha voando!)
+      const openDx = sign * Math.round(spot.w * 0.48);
+      const deepDx = sign * Math.round(spot.w * 0.25);
+      const sdx = Math.round(openDx + (deepDx - openDx) * hideProgress);
+      const sdy = Math.round(spot.w * 0.04);
 
-      // Centro de toque acompanha exatamente a parte visível da ovelhinha (corpo aberto na Fase 1 -> pontinha na Fase 15)
-      const pkx = Math.round(sh.openDx + (sh.deepPeekDx - sh.openDx) * hideProgress);
-      const pky = Math.round(sh.openDy + (sh.deepPeekDy - sh.openDy) * hideProgress);
+      // Zona de toque exatamente sobre a parte visível da ovelhinha espiando ao lado da pedra
+      const pkx = sign * Math.round(spot.w * (0.58 - 0.08 * hideProgress));
+      const pkBottom = Math.max(8, Math.round(sheepW * 0.44));
 
       const sheepLayerHtml = hasSheep ? `
-        <!-- CAMADA DO MEIO: OVELHINHA 3D ENTRE A PEDRA DE TRÁS E A PEDRA DA FRENTE -->
-        <div id="aprisco-sheep-wrap-${spot.id}" class="aprisco-sheep-wrap" data-flip="${sFlip}" style="position:absolute; left:50%; top:50%; width:${sh.w}px; transform:translate(-50%, -50%) translate(${sdx}px, ${sdy}px) scaleX(${sFlip}); z-index:3; pointer-events:none; transition:transform 0.46s cubic-bezier(0.22, 1.35, 0.36, 1);">
-          <img src="./2_ASSETS_UI_BOTOES/${sh.img}?v=135" class="aprisco-sheep-img" style="width:100%; height:auto; display:block;" alt="Ovelhinha 3D" draggable="false">
+        <!-- OVELHINHA 3D APOIADA NO CHÃO ATRÁS DA PEDRA CALIBRADA -->
+        <div id="aprisco-sheep-wrap-${spot.id}" class="aprisco-sheep-wrap" data-flip="${sFlip}" style="position:absolute; left:50%; bottom:4px; width:${sheepW}px; transform:translateX(-50%) translate(${sdx}px, ${sdy}px) scaleX(${sFlip}); z-index:3; pointer-events:none; filter:drop-shadow(0 4px 6px rgba(0,0,0,0.48)); transition:transform 0.46s cubic-bezier(0.22, 1.35, 0.36, 1);">
+          <img src="./2_ASSETS_UI_BOTOES/ovelha_3d_01_v135.png?v=135" class="aprisco-sheep-img" style="width:100%; height:auto; display:block;" alt="Ovelhinha 3D" draggable="false">
         </div>
-        <!-- ZONA DE TOQUE NA PARTE VISÍVEL DA OVELHINHA (CORPINHO / ORELHINHA / RABINHO / PATINHA) -->
-        <div class="aprisco-peek-hit" data-spot="${spot.id}" style="position:absolute; left:50%; top:50%; width:${hitSizePx}px; height:${hitSizePx}px; transform:translate(-50%, -50%) translate(${pkx}px, ${pky}px); z-index:9; cursor:pointer; border-radius:50%;"></div>
+        <!-- ZONA DE TOQUE NA PARTE VISÍVEL DA OVELHINHA -->
+        <div class="aprisco-peek-hit" data-spot="${spot.id}" style="position:absolute; left:50%; bottom:${pkBottom}px; width:${hitSizePx}px; height:${hitSizePx}px; transform:translate(-50%, 50%) translate(${pkx}px, 0px); z-index:9; cursor:pointer; border-radius:50%;"></div>
       ` : "";
 
       return `
-        <div id="aprisco-spot-${spot.id}" class="aprisco-spot-group" data-spot="${spot.id}" style="position:absolute; left:${spot.x}%; top:${spot.y}%; width:146px; height:126px; transform:translate(-50%, -50%) scale(${spotScale}); z-index:${baseZ};">
-          <!-- 1. PEDRA TRASEIRA (ATRÁS DA OVELHA — CRIA FENDA ROCHOSA) -->
-          <img src="./2_ASSETS_UI_BOTOES/${spot.back.img}?v=135" style="position:absolute; left:50%; top:50%; width:${spot.back.w}px; height:auto; transform:translate(-50%, -50%) translate(${spot.back.dx}px, ${spot.back.dy}px) ${bFlip}; z-index:2; pointer-events:none;" alt="" draggable="false">
-
+        <div id="aprisco-spot-${spot.id}" class="aprisco-spot-group" data-spot="${spot.id}" style="position:absolute; left:${spot.x.toFixed(2)}%; top:${spot.y.toFixed(2)}%; transform:translate(-50%, -50%) scale(${spotScale}); z-index:${baseZ};">
           ${sheepLayerHtml}
 
-          <!-- 3. PEDRA FRONTAL MAIOR (NA FRENTE DA OVELHA — ESCONDE O CORPINHO!) -->
-          <div id="aprisco-front-rock-${spot.id}" style="position:absolute; left:50%; top:50%; width:${spot.front.w}px; transform:translate(-50%, -50%) translate(${spot.front.dx}px, ${spot.front.dy}px) ${fFlip}; z-index:5; pointer-events:none; transition:transform 0.35s ease;">
-            <img src="./2_ASSETS_UI_BOTOES/${spot.front.img}?v=135" style="width:100%; height:auto; display:block;" alt="" draggable="false">
+          <!-- PEDRA CALIBRADA NO CHÃO (NA FRENTE DA OVELHA) -->
+          <div id="aprisco-front-rock-${spot.id}" style="position:relative; z-index:5; pointer-events:none; filter:drop-shadow(0 6px 8px rgba(0,0,0,0.52)); transition:transform 0.35s ease;">
+            <img src="./2_ASSETS_UI_BOTOES/${spot.img}?v=135" style="width:${spot.w}px; height:auto; display:block; transform:${rFlip};" alt="" draggable="false">
           </div>
 
           <!-- TOQUE NA PEDRA SÓLIDA (BALANÇA A PEDRA SE NÃO TOCOU NA OVELHINHA ESPIANDO!) -->
-          <div class="aprisco-rock-hit" data-spot="${spot.id}" style="position:absolute; left:50%; top:50%; width:${Math.max(96, spot.front.w - 14)}px; height:84px; transform:translate(-50%, -50%) translate(${spot.front.dx}px, ${spot.front.dy}px); z-index:6; cursor:pointer; border-radius:26px;"></div>
+          <div class="aprisco-rock-hit" data-spot="${spot.id}" style="position:absolute; inset:4px 8px; z-index:6; cursor:pointer; border-radius:22px;"></div>
         </div>
       `;
     }).join("");
@@ -4909,7 +4781,7 @@
         <!-- CAMADA 1 (FUNDO): CENÁRIO 3D PIXAR DO APRISCO MONTANHOSO COM GRUTA (9:16) -->
         <img src="./2_ASSETS_UI_BOTOES/fundo_ovelha_aprisco_v135.jpg?v=135" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; z-index:1;" alt="Aprisco nas Rochas 3D" loading="eager" decoding="async" draggable="false">
 
-        <!-- CAMADAS 2 E 3: PEDRAS DE TRÁS + OVELHINHAS NO MEIO + PEDRAS GRANDES NA FRENTE -->
+        <!-- CAMADA 2: AS 8 PEDRAS CALIBRADAS NO SOLO + OVELHINHAS ESCONDIDAS ATRÁS -->
         <div id="aprisco-spots-layer" style="position:absolute; inset:0; z-index:3;">
           ${spotsHtml}
         </div>
@@ -4960,12 +4832,12 @@
         sheepWrap.classList.add("rescued");
         // Fica 100% visível pulando alegre para a frente/topo da pedra!
         sheepWrap.style.zIndex = "18";
-        sheepWrap.style.transform = `translate(-50%, -50%) translate(0px, -40px) scaleX(${flipDir * 1.2}) scaleY(1.2)`;
+        sheepWrap.style.transform = `translateX(-50%) translate(0px, -44px) scaleX(${flipDir * 1.18}) scaleY(1.18)`;
         groupEl.style.zIndex = "32";
 
         const burst = document.createElement("div");
         burst.innerHTML = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 2px 6px rgba(250,204,21,0.75));"><path d="M12 2L14.8 8.5L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.2 8.5L12 2Z" fill="#fde047" stroke="#f59e0b" stroke-width="1.5"/></svg>`;
-        burst.style.cssText = "position:absolute; left:50%; top:10%; pointer-events:none; z-index:25; animation:ovelhaHeartFloat 0.85s ease-out forwards;";
+        burst.style.cssText = "position:absolute; left:50%; top:0%; pointer-events:none; z-index:25; animation:ovelhaHeartFloat 0.85s ease-out forwards;";
         groupEl.appendChild(burst);
         setTimeout(() => { try { burst.remove(); } catch(e){} }, 900);
       }

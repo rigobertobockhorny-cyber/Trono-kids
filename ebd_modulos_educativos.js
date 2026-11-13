@@ -7780,7 +7780,7 @@ window.showLessonGameVictoryModal = function(gameKey) {
     if (typeof window.setVovoVoiceDucking === "function") window.setVovoVoiceDucking(true);
     try {
       if (!window._lessonVicVoicePlayer) {
-        window._lessonVicVoicePlayer = new Audio("./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=168");
+        window._lessonVicVoicePlayer = new Audio("./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=168&cb=174");
       } else {
         window._lessonVicVoicePlayer.pause();
         window._lessonVicVoicePlayer.currentTime = 0;
@@ -7807,7 +7807,7 @@ window.showLessonGameVictoryModal = function(gameKey) {
 
   window._lessonVicSafetyTimer = setTimeout(() => {
     if (window._lessonVicActive) unlockReturnBtn();
-  }, 5800);
+  }, 6500);
 };
 
 // Abre um jogo a partir de "Jogos da Lição" (escondendo qualquer botão de mudar de lição ou jogo no topo!)
