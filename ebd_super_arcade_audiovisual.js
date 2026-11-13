@@ -10498,29 +10498,29 @@
     const pNum = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 15) + 1;
     window._arcadeWaitVisualBeforeVovo = true;
 
+    // 15 Pares 100% ADULTOS (Macho Adulto + Fêmea Adulta em proporção natural, olhando um para o outro — zero filhotes!)
     const PARES_ARCA_15 = [
-      { id: "pomba",     topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_11_pomba_v142.png?v=142",      mateImg: "./2_ASSETS_UI_BOTOES/par_arca_01_pombinha_v172.png?v=172" },
-      { id: "leao",      topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_01_leao_v142.png?v=142",       mateImg: "./2_ASSETS_UI_BOTOES/par_arca_02_leoa_v172.png?v=172" },
-      { id: "ovelha",    topImg: "./2_ASSETS_UI_BOTOES/par_arca_03_carneiro_v172.png?v=172",     mateImg: "./2_ASSETS_UI_BOTOES/arca_bicho_04_ovelha_v142.png?v=142" },
-      { id: "galinha",   topImg: "./2_ASSETS_UI_BOTOES/par_arca_04_galo_v172.png?v=172",         mateImg: "./2_ASSETS_UI_BOTOES/par_arca_04_galinha_v172.png?v=172" },
-      { id: "vaca",      topImg: "./2_ASSETS_UI_BOTOES/par_arca_05_tourinho_v172.png?v=172",     mateImg: "./2_ASSETS_UI_BOTOES/par_arca_05_vaquinha_v172.png?v=172" },
-      { id: "elefante",  topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_02_elefante_v142.png?v=142",   mateImg: "./2_ASSETS_UI_BOTOES/par_arca_06_elefantinha_v172.png?v=172" },
-      { id: "girafa",    topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_03_girafa_v142.png?v=142",     mateImg: "./2_ASSETS_UI_BOTOES/par_arca_07_girafinha_v172.png?v=172" },
-      { id: "pato",      topImg: "./2_ASSETS_UI_BOTOES/par_arca_08_pato_v172.png?v=172",         mateImg: "./2_ASSETS_UI_BOTOES/par_arca_08_patinha_v172.png?v=172" },
-      { id: "cervo",     topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_13_cervo_v142.png?v=142",      mateImg: "./2_ASSETS_UI_BOTOES/par_arca_09_corca_v172.png?v=172" },
-      { id: "cavalo",    topImg: "./2_ASSETS_UI_BOTOES/par_arca_10_cavalo_v172.png?v=172",       mateImg: "./2_ASSETS_UI_BOTOES/par_arca_10_eguinha_v172.png?v=172" },
-      { id: "coelho",    topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_07_coelho_v142.png?v=142",     mateImg: "./2_ASSETS_UI_BOTOES/par_arca_11_coelhinha_v172.png?v=172" },
-      { id: "urso",      topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_09_urso_v142.png?v=142",       mateImg: "./2_ASSETS_UI_BOTOES/par_arca_12_ursinha_v172.png?v=172" },
-      { id: "macaco",    topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_05_macaco_v142.png?v=142",     mateImg: "./2_ASSETS_UI_BOTOES/par_arca_13_macaquinha_v172.png?v=172" },
-      { id: "camelo",    topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_10_camelo_v142.png?v=142",     mateImg: "./2_ASSETS_UI_BOTOES/par_arca_14_camelinha_v172.png?v=172" },
-      { id: "tartaruga", topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_08_tartaruga_v142.png?v=142",  mateImg: "./2_ASSETS_UI_BOTOES/par_arca_15_tartaruguinha_v172.png?v=172" }
+      { id: "pomba",     topImg: "./2_ASSETS_UI_BOTOES/par_adulto_01_pombo_m_v178.png?v=178",     mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_01_pomba_f_v178.png?v=178" },
+      { id: "leao",      topImg: "./2_ASSETS_UI_BOTOES/par_adulto_02_leao_m_v178.png?v=178",      mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_02_leoa_f_v178.png?v=178" },
+      { id: "ovelha",    topImg: "./2_ASSETS_UI_BOTOES/par_adulto_03_carneiro_m_v178.png?v=178",  mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_03_ovelha_f_v178.png?v=178" },
+      { id: "galinha",   topImg: "./2_ASSETS_UI_BOTOES/par_adulto_04_galo_m_v178.png?v=178",      mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_04_galinha_f_v178.png?v=178" },
+      { id: "vaca",      topImg: "./2_ASSETS_UI_BOTOES/par_adulto_05_touro_m_v178.png?v=178",     mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_05_vaca_f_v178.png?v=178" },
+      { id: "elefante",  topImg: "./2_ASSETS_UI_BOTOES/par_adulto_06_elefante_m_v178.png?v=178",  mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_06_elefanta_f_v178.png?v=178" },
+      { id: "girafa",    topImg: "./2_ASSETS_UI_BOTOES/par_adulto_07_girafa_m_v178.png?v=178",    mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_07_girafa_f_v178.png?v=178" },
+      { id: "pato",      topImg: "./2_ASSETS_UI_BOTOES/par_adulto_08_pato_m_v178.png?v=178",      mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_08_pata_f_v178.png?v=178" },
+      { id: "cervo",     topImg: "./2_ASSETS_UI_BOTOES/par_adulto_09_cervo_m_v178.png?v=178",     mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_09_corca_f_v178.png?v=178" },
+      { id: "cavalo",    topImg: "./2_ASSETS_UI_BOTOES/par_adulto_10_cavalo_m_v178.png?v=178",    mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_10_egua_f_v178.png?v=178" },
+      { id: "coelho",    topImg: "./2_ASSETS_UI_BOTOES/par_adulto_11_coelho_m_v178.png?v=178",    mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_11_coelha_f_v178.png?v=178" },
+      { id: "urso",      topImg: "./2_ASSETS_UI_BOTOES/par_adulto_12_urso_m_v178.png?v=178",      mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_12_ursa_f_v178.png?v=178" },
+      { id: "macaco",    topImg: "./2_ASSETS_UI_BOTOES/par_adulto_13_macaco_m_v178.png?v=178",    mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_13_macaca_f_v178.png?v=178" },
+      { id: "camelo",    topImg: "./2_ASSETS_UI_BOTOES/par_adulto_14_camelo_m_v178.png?v=178",    mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_14_camela_f_v178.png?v=178" },
+      { id: "tartaruga", topImg: "./2_ASSETS_UI_BOTOES/par_adulto_15_tartaruga_m_v178.png?v=178", mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_15_tartaruga_f_v178.png?v=178" }
     ];
 
     const EXTRA_DISTRACTOR_ANIMALS = [
-      { id: "zebra",   img: "./2_ASSETS_UI_BOTOES/arca_bicho_06_zebra_v142.png?v=142" },
-      { id: "canguru", img: "./2_ASSETS_UI_BOTOES/arca_bicho_12_canguru_v142.png?v=142" },
-      { id: "tucano",  img: "./2_ASSETS_UI_BOTOES/arca_bicho_14_tucano_v142.png?v=142" },
-      { id: "coruja",  img: "./2_ASSETS_UI_BOTOES/arca_bicho_15_coruja_v142.png?v=142" }
+      { id: "zebra",   img: "./2_ASSETS_UI_BOTOES/par_adulto_dist_zebra_v178.png?v=178" },
+      { id: "canguru", img: "./2_ASSETS_UI_BOTOES/par_adulto_dist_canguru_v178.png?v=178" },
+      { id: "tucano",  img: "./2_ASSETS_UI_BOTOES/arca_bicho_14_tucano_v142.png?v=142" }
     ];
 
     const curPair = PARES_ARCA_15[pNum - 1];
@@ -10742,8 +10742,8 @@
       const W = rect.width || window.innerWidth || 360;
       const H = rect.height || window.innerHeight || 640;
 
-      topAnimalSize = Math.max(96, Math.min(132, Math.min(W * 0.28, H * 0.19)));
-      const pairGap = Math.max(topAnimalSize * 0.96, Math.min(W * 0.26, 128));
+      topAnimalSize = Math.max(106, Math.min(138, Math.min(W * 0.30, H * 0.20)));
+      const pairGap = Math.max(topAnimalSize * 0.98, Math.min(W * 0.28, 136));
       waitX = W * 0.5 - pairGap * 0.5;
       spotX = W * 0.5 + pairGap * 0.5;
       waitY = H * 0.535;
@@ -10760,9 +10760,10 @@
       mateSpot.style.left = `${spotX.toFixed(1)}px`;
       mateSpot.style.top = `${spotY.toFixed(1)}px`;
 
-      const choiceSz = Math.max(88, Math.min(118, Math.min(W * 0.255, H * 0.175)));
-      const xPositions = [W * 0.20, W * 0.50, W * 0.80];
-      const yPositions = [H * 0.815, H * 0.835, H * 0.815];
+      // Animais de baixo em escala adulta equivalente ao animal do topo (zero efeito de filhote/miniatura!)
+      const choiceSz = Math.min(Math.floor(W * 0.295), Math.round(topAnimalSize * 0.97));
+      const xPositions = [W * 0.185, W * 0.50, W * 0.815];
+      const yPositions = [H * 0.815, H * 0.832, H * 0.815];
 
       choiceItems.forEach((it, idx) => {
         it.size = choiceSz;
