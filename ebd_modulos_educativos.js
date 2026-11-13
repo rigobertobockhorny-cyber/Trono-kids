@@ -7780,7 +7780,7 @@ window.showLessonGameVictoryModal = function(gameKey) {
     if (typeof window.setVovoVoiceDucking === "function") window.setVovoVoiceDucking(true);
     try {
       if (!window._lessonVicVoicePlayer) {
-        window._lessonVicVoicePlayer = new Audio("./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3");
+        window._lessonVicVoicePlayer = new Audio("./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=168");
       } else {
         window._lessonVicVoicePlayer.pause();
         window._lessonVicVoicePlayer.currentTime = 0;

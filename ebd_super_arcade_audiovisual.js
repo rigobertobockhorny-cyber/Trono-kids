@@ -68,7 +68,7 @@
       }
       if (!this.vovoVictoryPlayer) {
         try {
-          this.vovoVictoryPlayer = new Audio('./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=126');
+          this.vovoVictoryPlayer = new Audio('./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=168');
           this.vovoVictoryPlayer.preload = "auto";
         } catch(e) {}
       }
@@ -252,152 +252,145 @@
 
     _vovoCallId: 0,
     _vovoExactDurationsMs: {
-      "vovo_jogo_01.mp3": 5940,
-      "vovo_jogo_02.mp3": 7290,
-      "vovo_jogo_03.mp3": 5940,
-      "vovo_jogo_04.mp3": 12590,
-      "vovo_jogo_05.mp3": 11150,
-      "vovo_jogo_05_v135.mp3": 11150,
-      "vovo_jogo_06.mp3": 5760,
-      "vovo_jogo_07.mp3": 10550,
-      "vovo_jogo_07_v140.mp3": 10550,
-      "vovo_jogo_08.mp3": 10820,
-      "vovo_jogo_08_v142.mp3": 10820,
-      "vovo_jogo_09.mp3": 5250,
-      "vovo_jogo_10.mp3": 6460,
-      "vovo_jogo_11.mp3": 5530,
-      "vovo_jogo_12.mp3": 7060,
-      "vovo_jogo_12_v159.mp3": 13450,
-      "vovo_jogo_13.mp3": 4780,
-      "vovo_jogo_14.mp3": 5900,
-      "vovo_jogo_15.mp3": 6040,
-      "vovo_jogo_16.mp3": 6460,
-      "vovo_jogo_16_v161.mp3": 10280,
-      "vovo_jogo_17.mp3": 6410,
-      "vovo_jogo_17_v161.mp3": 16000,
-      "vovo_jogo_17_v162.mp3": 17324,
-      "vovo_jogo_19_v161.mp3": 11020,
-      "vovo_jogo_20_v161.mp3": 11910,
-      "vovo_jogo_21_v161.mp3": 9000,
-      "vovo_jogo_22_v161.mp3": 11401,
-      "vovo_vitoria.mp3": 4640,
-      "quiz_vovo_q01.mp3": 10180,
-      "quiz_vovo_q02.mp3": 11600,
-      "quiz_vovo_q03.mp3": 11600,
-      "quiz_vovo_q04.mp3": 9720,
-      "quiz_vovo_q05.mp3": 8370,
-      "quiz_vovo_q06.mp3": 7870,
-      "quiz_vovo_q07.mp3": 8640,
-      "quiz_vovo_q08.mp3": 7660,
-      "quiz_vovo_q09.mp3": 7110,
-      "quiz_vovo_q10.mp3": 8880,
-      "quiz_vovo_q11.mp3": 13490,
-      "quiz_vovo_q12.mp3": 12320,
-      "quiz_vovo_q13.mp3": 9650,
-      "quiz_vovo_q14.mp3": 10190,
-      "quiz_vovo_q15.mp3": 14360,
-      "versiculo_vovo_01.mp3": 13050,
-      "versiculo_vovo_02.mp3": 12820,
-      "versiculo_vovo_03.mp3": 10900,
-      "versiculo_vovo_04.mp3": 12320,
-      "versiculo_vovo_05.mp3": 13020,
-      "versiculo_vovo_06.mp3": 11210,
-      "versiculo_vovo_07.mp3": 11620,
-      "versiculo_vovo_08.mp3": 11620,
-      "versiculo_vovo_09.mp3": 13290,
-      "versiculo_vovo_10.mp3": 11160,
-      "versiculo_vovo_11.mp3": 13390,
-      "versiculo_vovo_12.mp3": 13530,
-      "versiculo_vovo_13.mp3": 12970,
-      "versiculo_vovo_14.mp3": 11860,
-      "versiculo_vovo_15.mp3": 12370,
-      "versiculo_vovo_16.mp3": 12510,
-      "versiculo_vovo_17.mp3": 12090,
-      "versiculo_vovo_18.mp3": 12320,
-      "versiculo_vovo_19.mp3": 13250,
-      "versiculo_vovo_20.mp3": 13020,
-      "versiculo_vovo_21.mp3": 11620,
-      "versiculo_vovo_22.mp3": 11220,
-      "palavra_secreta_vovo_01.mp3": 22478,
-      "palavra_secreta_vovo_02.mp3": 21039,
-      "palavra_secreta_vovo_03.mp3": 21318,
-      "palavra_secreta_vovo_04.mp3": 21272,
-      "palavra_secreta_vovo_05.mp3": 20854,
-      "palavra_secreta_vovo_06.mp3": 19739,
-      "palavra_secreta_vovo_07.mp3": 19228,
-      "palavra_secreta_vovo_08.mp3": 19878,
-      "palavra_secreta_vovo_09.mp3": 20621,
-      "palavra_secreta_vovo_10.mp3": 20482,
-      "palavra_secreta_vovo_11.mp3": 18717,
-      "palavra_secreta_vovo_12.mp3": 20157,
-      "palavra_secreta_vovo_13.mp3": 19646,
-      "palavra_secreta_vovo_14.mp3": 19460,
-      "palavra_secreta_vovo_15.mp3": 19739,
-      "palavra_secreta_vovo_16.mp3": 20807,
-      "palavra_secreta_vovo_17.mp3": 19739,
-      "palavra_secreta_vovo_18.mp3": 24104,
-      "palavra_secreta_vovo_19.mp3": 20018,
-      "palavra_secreta_vovo_20.mp3": 19414,
-      "palavra_secreta_vovo_21.mp3": 20807,
-      "palavra_secreta_vovo_22.mp3": 20811,
-      "quiz_licao_01.mp3": 17821,
-      "quiz_licao_04.mp3": 19320,
-      "quiz_licao_11.mp3": 20203,
-      "quiz_licao_13.mp3": 21689,
-      "quiz_licao_14.mp3": 20946,
-      "quiz_licao_15.mp3": 19599,
-      "quiz_licao_16.mp3": 20017,
-      "quiz_licao_17.mp3": 20667,
-      "quiz_licao_18.mp3": 21364,
-      "quiz_licao_19.mp3": 20621,
-      "quiz_licao_20.mp3": 23546,
-      "quiz_licao_22.mp3": 23645,
-      "verdadeiro_mito_vovo_01.mp3": 18259,
-      "verdadeiro_mito_vovo_02.mp3": 16925,
-      "verdadeiro_mito_vovo_03.mp3": 15300,
-      "verdadeiro_mito_vovo_04.mp3": 15207,
-      "verdadeiro_mito_vovo_05.mp3": 16925,
-      "verdadeiro_mito_vovo_06.mp3": 17715,
-      "verdadeiro_mito_vovo_07.mp3": 13257,
-      "verdadeiro_mito_vovo_08.mp3": 15811,
-      "verdadeiro_mito_vovo_09.mp3": 16182,
-      "verdadeiro_mito_vovo_10.mp3": 16693,
-      "verdadeiro_mito_vovo_11.mp3": 15486,
-      "verdadeiro_mito_vovo_12.mp3": 15347,
-      "verdadeiro_mito_vovo_13.mp3": 16879,
-      "verdadeiro_mito_vovo_14.mp3": 17065,
-      "verdadeiro_mito_vovo_15.mp3": 17669,
-      "verdadeiro_mito_vovo_16.mp3": 18737,
-      "verdadeiro_mito_vovo_17.mp3": 17947,
-      "verdadeiro_mito_vovo_18.mp3": 16043,
-      "verdadeiro_mito_vovo_19.mp3": 17669,
-      "verdadeiro_mito_vovo_20.mp3": 15254,
-      "verdadeiro_mito_vovo_21.mp3": 16925,
-      "verdadeiro_mito_vovo_22.mp3": 17752
+      "vovo_jogo_01.mp3": 7210,
+      "vovo_jogo_02.mp3": 10136,
+      "vovo_jogo_03.mp3": 5982,
+      "vovo_jogo_04.mp3": 11807,
+      "vovo_jogo_05.mp3": 11180,
+      "vovo_jogo_05_v135.mp3": 11180,
+      "vovo_jogo_06.mp3": 5799,
+      "vovo_jogo_07.mp3": 10527,
+      "vovo_jogo_07_v140.mp3": 10527,
+      "vovo_jogo_08.mp3": 11102,
+      "vovo_jogo_08_v142.mp3": 11102,
+      "vovo_jogo_09.mp3": 5277,
+      "vovo_jogo_10.mp3": 8229,
+      "vovo_jogo_11.mp3": 7837,
+      "vovo_jogo_12.mp3": 13453,
+      "vovo_jogo_12_v159.mp3": 13453,
+      "vovo_jogo_13.mp3": 6740,
+      "vovo_jogo_14.mp3": 8699,
+      "vovo_jogo_15.mp3": 8176,
+      "vovo_jogo_16.mp3": 9535,
+      "vovo_jogo_16_v161.mp3": 9535,
+      "vovo_jogo_17.mp3": 18991,
+      "vovo_jogo_17_v161.mp3": 18991,
+      "vovo_jogo_17_v162.mp3": 18991,
+      "vovo_jogo_19_v161.mp3": 11520,
+      "vovo_jogo_20_v161.mp3": 12095,
+      "vovo_jogo_21_v161.mp3": 9195,
+      "vovo_jogo_22_v161.mp3": 11363,
+      "vovo_vitoria.mp3": 4493,
+      "quiz_vovo_q01.mp3": 10214,
+      "quiz_vovo_q02.mp3": 11651,
+      "quiz_vovo_q03.mp3": 11651,
+      "quiz_vovo_q04.mp3": 9770,
+      "quiz_vovo_q05.mp3": 8411,
+      "quiz_vovo_q06.mp3": 7915,
+      "quiz_vovo_q07.mp3": 8673,
+      "quiz_vovo_q08.mp3": 7706,
+      "quiz_vovo_q09.mp3": 7158,
+      "quiz_vovo_q10.mp3": 8908,
+      "quiz_vovo_q11.mp3": 13531,
+      "quiz_vovo_q12.mp3": 12356,
+      "quiz_vovo_q13.mp3": 9691,
+      "quiz_vovo_q14.mp3": 10240,
+      "quiz_vovo_q15.mp3": 14263,
+      "versiculo_vovo_01.mp3": 13087,
+      "versiculo_vovo_02.mp3": 12852,
+      "versiculo_vovo_03.mp3": 13113,
+      "versiculo_vovo_04.mp3": 12173,
+      "versiculo_vovo_05.mp3": 12852,
+      "versiculo_vovo_06.mp3": 11050,
+      "versiculo_vovo_07.mp3": 14341,
+      "versiculo_vovo_08.mp3": 11468,
+      "versiculo_vovo_09.mp3": 13113,
+      "versiculo_vovo_10.mp3": 10971,
+      "versiculo_vovo_11.mp3": 13218,
+      "versiculo_vovo_12.mp3": 13375,
+      "versiculo_vovo_13.mp3": 12774,
+      "versiculo_vovo_14.mp3": 14184,
+      "versiculo_vovo_15.mp3": 12225,
+      "versiculo_vovo_16.mp3": 12356,
+      "versiculo_vovo_17.mp3": 11912,
+      "versiculo_vovo_18.mp3": 12147,
+      "versiculo_vovo_19.mp3": 13087,
+      "versiculo_vovo_20.mp3": 12852,
+      "versiculo_vovo_21.mp3": 11468,
+      "versiculo_vovo_22.mp3": 11180,
+      "palavra_secreta_vovo_01.mp3": 22361,
+      "palavra_secreta_vovo_02.mp3": 20846,
+      "palavra_secreta_vovo_03.mp3": 21107,
+      "palavra_secreta_vovo_04.mp3": 21107,
+      "palavra_secreta_vovo_05.mp3": 20637,
+      "palavra_secreta_vovo_06.mp3": 19566,
+      "palavra_secreta_vovo_07.mp3": 19017,
+      "palavra_secreta_vovo_08.mp3": 19670,
+      "palavra_secreta_vovo_09.mp3": 20402,
+      "palavra_secreta_vovo_10.mp3": 20297,
+      "palavra_secreta_vovo_11.mp3": 18495,
+      "palavra_secreta_vovo_12.mp3": 19958,
+      "palavra_secreta_vovo_13.mp3": 19461,
+      "palavra_secreta_vovo_14.mp3": 19252,
+      "palavra_secreta_vovo_15.mp3": 19513,
+      "palavra_secreta_vovo_16.mp3": 20611,
+      "palavra_secreta_vovo_17.mp3": 19540,
+      "palavra_secreta_vovo_18.mp3": 23876,
+      "palavra_secreta_vovo_19.mp3": 19853,
+      "palavra_secreta_vovo_20.mp3": 19226,
+      "palavra_secreta_vovo_21.mp3": 20637,
+      "palavra_secreta_vovo_22.mp3": 20741,
+      "quiz_licao_01.mp3": 17789,
+      "quiz_licao_02.mp3": 12016,
+      "quiz_licao_03.mp3": 12878,
+      "quiz_licao_04.mp3": 19252,
+      "quiz_licao_05.mp3": 14002,
+      "quiz_licao_06.mp3": 10397,
+      "quiz_licao_07.mp3": 10136,
+      "quiz_licao_08.mp3": 13349,
+      "quiz_licao_09.mp3": 10919,
+      "quiz_licao_10.mp3": 13296,
+      "quiz_licao_11.mp3": 20140,
+      "quiz_licao_12.mp3": 11833,
+      "quiz_licao_13.mp3": 21185,
+      "quiz_licao_14.mp3": 20872,
+      "quiz_licao_15.mp3": 19540,
+      "quiz_licao_16.mp3": 19931,
+      "quiz_licao_17.mp3": 20584,
+      "quiz_licao_18.mp3": 21290,
+      "quiz_licao_19.mp3": 20558,
+      "quiz_licao_20.mp3": 23484,
+      "quiz_licao_21.mp3": 11259,
+      "quiz_licao_22.mp3": 23667,
+      "verdadeiro_mito_vovo_01.mp3": 18181,
+      "verdadeiro_mito_vovo_02.mp3": 16849,
+      "verdadeiro_mito_vovo_03.mp3": 15203,
+      "verdadeiro_mito_vovo_04.mp3": 15125,
+      "verdadeiro_mito_vovo_05.mp3": 18181,
+      "verdadeiro_mito_vovo_06.mp3": 17659,
+      "verdadeiro_mito_vovo_07.mp3": 13166,
+      "verdadeiro_mito_vovo_08.mp3": 15726,
+      "verdadeiro_mito_vovo_09.mp3": 16091,
+      "verdadeiro_mito_vovo_10.mp3": 16614,
+      "verdadeiro_mito_vovo_11.mp3": 15386,
+      "verdadeiro_mito_vovo_12.mp3": 15256,
+      "verdadeiro_mito_vovo_13.mp3": 16797,
+      "verdadeiro_mito_vovo_14.mp3": 17006,
+      "verdadeiro_mito_vovo_15.mp3": 17580,
+      "verdadeiro_mito_vovo_16.mp3": 18651,
+      "verdadeiro_mito_vovo_17.mp3": 17868,
+      "verdadeiro_mito_vovo_18.mp3": 15961,
+      "verdadeiro_mito_vovo_19.mp3": 17580,
+      "verdadeiro_mito_vovo_20.mp3": 15177,
+      "verdadeiro_mito_vovo_21.mp3": 16849,
+      "verdadeiro_mito_vovo_22.mp3": 17789
     },
 
     attachVoicePresenceBoost(player) {
       try {
-        if (!player || player._voiceBoostAttached) return;
-        const proto = String((window.location && window.location.protocol) || "");
-        if (proto !== "http:" && proto !== "https:") return;
-        if (!this.ctx) this.init();
-        if (!this.ctx || this.ctx.state !== "running") return;
-        if (!this._voiceBoostChain) {
-          const comp = this.ctx.createDynamicsCompressor();
-          comp.threshold.setValueAtTime(-20, this.ctx.currentTime);
-          comp.knee.setValueAtTime(16, this.ctx.currentTime);
-          comp.ratio.setValueAtTime(3.2, this.ctx.currentTime);
-          comp.attack.setValueAtTime(0.005, this.ctx.currentTime);
-          comp.release.setValueAtTime(0.18, this.ctx.currentTime);
-          const vGain = this.ctx.createGain();
-          vGain.gain.setValueAtTime(1.42, this.ctx.currentTime);
-          comp.connect(vGain);
-          vGain.connect(this.ctx.destination);
-          this._voiceBoostChain = comp;
-        }
-        const srcNode = this.ctx.createMediaElementSource(player);
-        srcNode.connect(this._voiceBoostChain);
+        if (!player) return;
+        player.muted = false;
+        player.volume = 1.0;
         player._voiceBoostAttached = true;
       } catch (e) {}
     },
@@ -443,8 +436,8 @@
         const isVictory = audioFile === "vovo_vitoria.mp3";
         const rawPath = String(audioFile);
         const resolvedUrl = rawPath.startsWith("./")
-          ? `${rawPath}${rawPath.includes("?") ? "" : "?v=162"}`
-          : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=162`;
+          ? `${rawPath}${rawPath.includes("?") ? "&cb=168" : "?v=168"}`
+          : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=168`;
         const durKey = rawPath.split("/").pop().split("?")[0];
         const replayBtnEl = document.getElementById("arcade-btn-replay-vovo");
         if (replayBtnEl && !isVictory) replayBtnEl.classList.add("vovo-speaking");
@@ -463,7 +456,7 @@
           window.setVovoVoiceDucking(true);
         }
 
-        const exactDurationMs = this._vovoExactDurationsMs[durKey] || (isVictory ? 4640 : 8000);
+        const exactDurationMs = this._vovoExactDurationsMs[durKey] || (isVictory ? 4493 : 8000);
         let finished = false;
 
         const doFinish = (forceNow) => {
@@ -5732,7 +5725,7 @@
     const audioCache = {};
     phaseAnimals.forEach(anim => {
       try {
-        const a = new Audio(anim.audio);
+        const a = new Audio(anim.audio + (anim.audio.includes("?") ? "&cb=168" : "?v=168"));
         a.preload = "auto";
         audioCache[anim.id] = a;
       } catch (e) {}
@@ -6001,7 +5994,7 @@
         if (window._arcaBichoPlayer) {
           try { window._arcaBichoPlayer.pause(); } catch (e) {}
         }
-        const player = audioCache[animObj.id] || new Audio(animObj.audio);
+        const player = audioCache[animObj.id] || new Audio(animObj.audio + (animObj.audio.includes("?") ? "&cb=168" : "?v=168"));
         window._arcaBichoPlayer = player;
         player.muted = false;
         player.volume = 1.0;
@@ -6330,7 +6323,7 @@
     {
       lessonWeek: 1,
       q: "NO PRIMEIRO DIA DA CRIAÇÃO, TUDO ESTAVA ESCURO E DEUS DISSE: HAJA LUZ! O QUE BRILHOU SOBRE AS ÁGUAS?",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_01.mp3?v=166",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_01.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_102.jpg?v=78", label: "LUZ DOURADA DE DEUS", ok: true },
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f01_opt3_carroca.jpg?v=154", label: "CARROÇA DE MADEIRA", ok: false },
@@ -6340,7 +6333,7 @@
     {
       lessonWeek: 2,
       q: "O QUE DEUS PEDIU PARA NOÉ CONSTRUIR PARA SALVAR OS ANIMAIS?",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q01.mp3?v=154",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_02.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f01_opt1_arca.jpg?v=154", label: "ARCA DE MADEIRA", ok: true },
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f01_opt2_tenda.jpg?v=154", label: "TENDA NO DESERTO", ok: false },
@@ -6350,7 +6343,7 @@
     {
       lessonWeek: 3,
       q: "DEUS PROMETEU A ABRAÃO QUE A SUA DESCENDÊNCIA SERIA TÃO NUMEROSA COMO AS ESTRELAS DO CÉU, COMO OS PEIXES DO MAR OU COMO AS ÁRVORES DAS FLORESTAS?",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q02.mp3?v=154",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_03.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f02_opt1_estrelas.jpg?v=154", label: "ESTRELAS DO CÉU", ok: true },
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f02_opt2_peixes.jpg?v=154", label: "PEIXES DO MAR", ok: false },
@@ -6360,7 +6353,7 @@
     {
       lessonWeek: 4,
       q: "QUEM SOU EU? USEI UMA PEDRA DE TRAVESSEIRO E SONHEI COM UMA ESCADA BRILHANTE CHEIA DE ANJOS ATÉ O CÉU!",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_04.mp3?v=166",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_04.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=78", label: "JACÓ E A ESCADA COM ANJOS", ok: true },
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_12.jpg?v=78", label: "NOÉ E A GRANDE ARCA", ok: false },
@@ -6370,7 +6363,7 @@
     {
       lessonWeek: 5,
       q: "QUAL PRESENTE ESPECIAL JACÓ DEU PARA SEU FILHO JOSÉ?",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q03.mp3?v=154",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_05.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f03_opt1_tunica.jpg?v=154", label: "TÚNICA COLORIDA", ok: true },
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f03_opt2_coroa.jpg?v=154", label: "COROA DE OURO", ok: false },
@@ -6380,7 +6373,7 @@
     {
       lessonWeek: 6,
       q: "O QUE MOISÉS LEVANTOU NA MÃO PARA ABRIR O MAR VERMELHO?",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q05.mp3?v=154",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_06.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f05_opt1_cajado.jpg?v=154", label: "CAJADO", ok: true },
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f05_opt2_vassoura.jpg?v=154", label: "VASSOURA", ok: false },
@@ -6390,7 +6383,7 @@
     {
       lessonWeek: 7,
       q: "O QUE OS SACERDOTES TOCARAM PARA DERRUBAR AS MURALHAS DE JERICÓ?",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q06.mp3?v=154",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_07.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f06_opt1_trombetas.jpg?v=154", label: "TROMBETAS", ok: true },
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f06_opt2_violao.jpg?v=154", label: "VIOLÃO", ok: false },
@@ -6400,7 +6393,7 @@
     {
       lessonWeek: 8,
       q: "O QUE DAVI USOU NA SUA FUNDA PARA DERRUBAR O GIGANTE GOLIAS?",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q07.mp3?v=154",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_08.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f07_opt1_pedrinhas.jpg?v=154", label: "PEDRINHAS LISAS", ok: true },
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f07_opt2_diamantes.jpg?v=154", label: "DIAMANTES", ok: false },
@@ -6410,7 +6403,7 @@
     {
       lessonWeek: 9,
       q: "QUAL ANIMAL DO MAR ENGOLIU O PROFETA JONAS?",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q09.mp3?v=154",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_09.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f09_opt1_grande_peixe.jpg?v=154", label: "GRANDE PEIXE", ok: true },
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f09_opt2_polvo.jpg?v=154", label: "POLVO", ok: false },
@@ -6420,7 +6413,7 @@
     {
       lessonWeek: 10,
       q: "DEUS PROTEGEU DANIEL FECHANDO A BOCA DE QUAIS ANIMAIS LÁ NA COVA?",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q08.mp3?v=154",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_10.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f08_opt1_leoes.jpg?v=154", label: "LEÕES", ok: true },
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f08_opt2_ursos.jpg?v=154", label: "URSOS", ok: false },
@@ -6430,7 +6423,7 @@
     {
       lessonWeek: 11,
       q: "QUEM SOU EU? MOREI NO LINDO JARDIM DO ÉDEN E DEI NOME A TODOS OS ANIMAIS QUE DEUS CRIOU!",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_11.mp3?v=166",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_11.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_213.jpg?v=78", label: "ADÃO COM OS ANIMAIS NO JARDIM", ok: true },
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=78", label: "MOISÉS ABRINDO O MAR VERMELHO", ok: false },
@@ -6440,7 +6433,7 @@
     {
       lessonWeek: 12,
       q: "ONDE A MAMÃE DE MOISÉS COLOCOU O BEBÊ LÁ NO RIO PARA PROTEGÊ-LO?",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q04.mp3?v=154",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_12.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f04_opt1_cestinho.jpg?v=154", label: "CESTINHO DE PALHA", ok: true },
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f04_opt2_caverna.jpg?v=154", label: "CAVERNA", ok: false },
@@ -6450,7 +6443,7 @@
     {
       lessonWeek: 13,
       q: "QUEM SOU EU? SUBI AO ALTO DO MONTE SINAI E RECEBI DE DEUS AS DUAS TÁBUAS DOS DEZ MANDAMENTOS!",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_13.mp3?v=166",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_13.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_221.jpg?v=78", label: "MOISÉS COM AS TÁBUAS DE PEDRA", ok: true },
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_31.jpg?v=78", label: "JOSÉ COM A TÚNICA COLORIDA", ok: false },
@@ -6460,7 +6453,7 @@
     {
       lessonWeek: 14,
       q: "QUEM SOU EU? CUIDEI COM CARINHO DA MINHA SOGRA NOEMI E COLHI ESPIGAS DOURADAS NOS CAMPOS DE BELÉM!",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_14.mp3?v=166",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_14.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_225.jpg?v=78", label: "RUTE COLHENDO ESPIGAS", ok: true },
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_18.jpg?v=78", label: "ABRAÃO OLHANDO AS ESTRELAS", ok: false },
@@ -6470,7 +6463,7 @@
     {
       lessonWeek: 15,
       q: "QUEM SOU EU? DESDE MENINO AJUDAVA O SACERDOTE ELI CUIDANDO DA LÂMPADA DOURADA NO TEMPLO DO SENHOR!",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_15.mp3?v=166",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_15.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_229.jpg?v=78", label: "SAMUEL COM ELI NO TEMPLO", ok: true },
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_15.jpg?v=78", label: "DANIEL NA COVA DOS LEÕES", ok: false },
@@ -6480,7 +6473,7 @@
     {
       lessonWeek: 16,
       q: "QUEM SOU EU? FUI UM JOVEM REI DE COROA DOURADA QUE PEDIU A DEUS UM CORAÇÃO CHEIO DE SABEDORIA!",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_16.mp3?v=166",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_16.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_232.jpg?v=78", label: "REI SALOMÃO ORANDO A DEUS", ok: true },
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_224.jpg?v=78", label: "GIDEÃO COM TOCHAS À NOITE", ok: false },
@@ -6490,7 +6483,7 @@
     {
       lessonWeek: 17,
       q: "QUAL MILAGRE DEUS FEZ PELA FÉ DO PROFETA ELISEU PARA AJUDAR A VIÚVA E SEUS DOIS FILHINHOS?",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_17.mp3?v=166",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_17.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_236.jpg?v=78", label: "MULTIPLICOU O AZEITE NAS VASILHAS", ok: true },
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_16.jpg?v=78", label: "ABRIU O MAR VERMELHO", ok: false },
@@ -6500,7 +6493,7 @@
     {
       lessonWeek: 18,
       q: "QUEM SOMOS NÓS? SOMOS OS TRÊS AMIGOS FIÉIS QUE CONFIARAM EM DEUS E UM ANJO BRILHANTE NOS PROTEGEU NO FOGO!",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_18.mp3?v=166",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_18.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_240.jpg?v=78", label: "OS TRÊS JOVENS COM O ANJO NO FOGO", ok: true },
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f09_opt1_grande_peixe.jpg?v=154", label: "GRANDE PEIXE NO MAR", ok: false },
@@ -6510,7 +6503,7 @@
     {
       lessonWeek: 19,
       q: "QUEM SOU EU? FUI A RAINHA CORAJOSA QUE OROU PELO POVO E VIU O REI ESTENDER O CETRO DE OURO PARA ME OUVIR!",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_19.mp3?v=166",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_19.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_244.jpg?v=78", label: "RAINHA ESTER DIANTE DO REI", ok: true },
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_10.jpg?v=78", label: "DAVI COM SUA HARPA", ok: false },
@@ -6520,7 +6513,7 @@
     {
       lessonWeek: 20,
       q: "QUEM SOU EU? REUNI TODAS AS FAMÍLIAS COM ALEGRIA PARA TRABALHAREM JUNTAS RECONSTRUINDO OS MUROS DE JERUSALÉM!",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_20.mp3?v=166",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_20.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_247.jpg?v=78", label: "NEEMIAS E AS FAMÍLIAS NOS MUROS", ok: true },
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_30.jpg?v=78", label: "JACÓ E A ESCADA NO CÉU", ok: false },
@@ -6530,7 +6523,7 @@
     {
       lessonWeek: 21,
       q: "ONDE MARIA DEITOU O MENINO JESUS QUANDO ELE NASCEU EM BELÉM?",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_vovo_q10.mp3?v=154",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_21.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f10_opt1_manjedoura.jpg?v=154", label: "MANJEDOURA", ok: true },
         { optImg: "./3_ASSETS_QUIZ_ARCADE/quiz_f10_opt2_berco.jpg?v=154", label: "BERÇO", ok: false },
@@ -6540,7 +6533,7 @@
     {
       lessonWeek: 22,
       q: "QUEM SOU EU? VIAJEI DE NAVIO POR MUITAS CIDADES ANUNCIANDO O AMOR DE JESUS E ESCREVENDO CARTAS PARA AS IGREJAS!",
-      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_22.mp3?v=166",
+      voiceMp3: "./6_ASSETS_AUDIO/quiz_vovo/quiz_licao_22.mp3?v=168",
       opts: [
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_253.jpg?v=78", label: "PAULO NO NAVIO COM OS PERGAMINHOS", ok: true },
         { optImg: "./3_ASSETS_QUEBRA_CABECA/crono_16x9_220.jpg?v=78", label: "MOISÉS TIRANDO ÁGUA DA ROCHA", ok: false },
