@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v174.0';
+        const CURRENT_VER = 'v175.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=174.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=175.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -2810,8 +2810,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=174.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=174.0"></script>
+<script src="ebd_modulos_educativos.js?v=175.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=175.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -2891,10 +2891,11 @@ const SLEEP_TRACKS = [
   { id: 6,  title: 'O Sonho de Jacó', file: './6_ASSETS_AUDIO/06_melodia_criacao_01.mp3' },
   { id: 7,  title: 'Daniel na Cova dos Leões', file: './6_ASSETS_AUDIO/07_melodia_criacao_02.mp3' },
   { id: 8,  title: 'Paz no Barquinho com Jesus', file: './6_ASSETS_AUDIO/08_melodia_criacao_03.mp3' },
+  { id: 9,  title: 'Caminhando na Luz de Deus', file: './6_ASSETS_AUDIO/09_melodia_criacao_04.mp3' },
   { id: 10, title: 'Chuvinha de Paz para Dormir', file: './6_ASSETS_AUDIO/10_chuva_suave_dormir.mp3' }
 ];
 
-// Hierarquia Oficial de Volume (v174.0):
+// Hierarquia Oficial de Volume (v175.0):
 // Música ambiente sempre macia e baixinha (22%) para a voz do Vovô Nésio (100% + presença vocal) SEMPRE se sobressair!
 // Quando o Vovô fala, o fundo cai automaticamente para 5% (ducking) e volta suavemente depois que ele termina!
 window.BG_AMBIENT_BASE_VOL = 0.22;
@@ -2960,20 +2961,71 @@ let audioCtx = null;
 bgAudioPlayer.src = SLEEP_TRACKS[0].file;
 bgAudioPlayer.volume = window.BG_AMBIENT_BASE_VOL;
 
-// Quando uma melodia termina, avança apenas entre as melodias suaves (2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 10 -> 2), SEM tocar a vinheta!
-bgAudioPlayer.addEventListener('ended', () => {
-  if (!ambientPlaying) return;
-  const currentIndex = SLEEP_TRACKS.findIndex(t => t.id === activeTrackId);
-  const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % SLEEP_TRACKS.length;
-  const nextTrack = SLEEP_TRACKS[nextIndex];
+// Loop Contínuo Infinito (1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> volta para 1ª melodia!):
+// Fora do Cantinho de Dormir gira exclusivamente pelas melodias musicais (sem cair na chuva silenciosa);
+// Dentro do Cantinho de Dormir gira por toda a lista e volta para a primeira ao terminar a última!
+window.advanceBgAmbientTrack = function() {
+  if (!ambientPlaying || window._arcadeAudioMuted) return;
+  const sleepScreenEl = document.getElementById('screen-sleep');
+  const inSleepCorner = !!(sleepScreenEl && sleepScreenEl.classList.contains('active'));
+  const loopPool = inSleepCorner ? SLEEP_TRACKS : SLEEP_TRACKS.filter(t => t.id !== 10);
+  if (!loopPool.length) return;
+  const currentIndex = loopPool.findIndex(t => t.id === activeTrackId);
+  const nextIndex = currentIndex >= 0 ? ((currentIndex + 1) % loopPool.length) : 0;
+  const nextTrack = loopPool[nextIndex] || loopPool[0];
   activeTrackId = nextTrack.id;
   bgAudioPlayer.src = nextTrack.file;
+  bgAudioPlayer.currentTime = 0;
   window.syncBgAmbientVolume(false);
-  bgAudioPlayer.play().catch(() => {});
-  if (document.getElementById('screen-sleep').classList.contains('active')) {
+  const p = bgAudioPlayer.play();
+  if (p && typeof p.catch === 'function') p.catch(() => {});
+  if (inSleepCorner && typeof renderSleepCorner === 'function') {
     renderSleepCorner();
   }
+};
+
+window.ensureBgAmbientLoopAlive = function() {
+  if (!window._introDismissed || !ambientPlaying || window._arcadeAudioMuted) return;
+  const vovoStoryActive = !!(window.EBD_STATE && window.EBD_STATE.vovoAudioPlaying);
+  if (vovoStoryActive || !bgAudioPlayer) return;
+  const sleepScreenEl = document.getElementById('screen-sleep');
+  const inSleepCorner = !!(sleepScreenEl && sleepScreenEl.classList.contains('active'));
+  if (!inSleepCorner && activeTrackId === 10) {
+    window.advanceBgAmbientTrack();
+    return;
+  }
+  if (bgAudioPlayer.ended) {
+    window.advanceBgAmbientTrack();
+    return;
+  }
+  if (bgAudioPlayer.paused) {
+    if (!bgAudioPlayer.src) {
+      const tr = SLEEP_TRACKS.find(t => t.id === activeTrackId) || SLEEP_TRACKS[0];
+      activeTrackId = tr.id;
+      bgAudioPlayer.src = tr.file;
+    }
+    window.syncBgAmbientVolume(false);
+    const p = bgAudioPlayer.play();
+    if (p && typeof p.then === 'function') {
+      p.then(() => { updateSoundButtonIcon(); }).catch(() => {});
+    }
+  }
+};
+
+bgAudioPlayer.addEventListener('ended', () => {
+  window.advanceBgAmbientTrack();
 });
+
+bgAudioPlayer.addEventListener('error', () => {
+  if (!ambientPlaying || window._arcadeAudioMuted) return;
+  setTimeout(() => { window.advanceBgAmbientTrack(); }, 350);
+});
+
+if (!window._bgAmbientWatchdogId) {
+  window._bgAmbientWatchdogId = setInterval(() => {
+    try { window.ensureBgAmbientLoopAlive(); } catch (e) {}
+  }, 2500);
+}
 
 // Garante que a música tema comece a tocar ao abrir o app (e destrava ao mover o mouse ou tocar se o navegador exigir)
 function startInitialThemeMusic() {

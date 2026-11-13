@@ -5171,6 +5171,7 @@ window.ensureVovoAudioElement = function(lesson) {
   audio.onended = function() {
     window.EBD_STATE.vovoAudioPlaying = false;
     if (typeof window.setVovoVoiceDucking === "function") window.setVovoVoiceDucking(false);
+    if (typeof window.ensureBgAmbientLoopAlive === "function") window.ensureBgAmbientLoopAlive();
     window.clearVovoSavedResume(lesson.week);
     try { audio.currentTime = 0; } catch (e) {}
     const imgEl = document.getElementById("vovo-story-scene-img");
@@ -5318,6 +5319,7 @@ window.stopVovoStoryNarration = function(forceReset) {
   }
   window.EBD_STATE.vovoAudioPlaying = false;
   if (typeof window.setVovoVoiceDucking === "function") window.setVovoVoiceDucking(false);
+  if (typeof window.ensureBgAmbientLoopAlive === "function") window.ensureBgAmbientLoopAlive();
   const imgEl = document.getElementById("vovo-story-scene-img");
   if (imgEl) imgEl.classList.remove("vovo-video-playing-img");
   window.setVovoPlayBtnState(false);

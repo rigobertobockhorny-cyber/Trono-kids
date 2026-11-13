@@ -104,9 +104,15 @@
           this._victoryAudioPrimed = false;
         }
       }
+      if (typeof window.ensureBgAmbientLoopAlive === "function") {
+        try { window.ensureBgAmbientLoopAlive(); } catch (e) {}
+      }
     },
 
     play(type) {
+      if (typeof window.ensureBgAmbientLoopAlive === "function") {
+        try { window.ensureBgAmbientLoopAlive(); } catch (e) {}
+      }
       if (window._arcadeAudioMuted) return;
       try {
         this.init();
@@ -2781,8 +2787,20 @@
     }
     if (!audioTarget) return;
     TronoAudio.play("click");
-    const keepUnlockCb = (window._arcadeStageLockedForVovo && typeof window._currentUnlockStageAfterVovo === "function")
-      ? window._currentUnlockStageAfterVovo
+    const keepUnlockCb = window._arcadeStageLockedForVovo
+      ? function() {
+          if (typeof window._currentUnlockStageAfterVovo === "function") {
+            window._currentUnlockStageAfterVovo();
+          }
+          if (window._arcadeStageLockedForVovo) {
+            window._arcadeStageLockedForVovo = false;
+            const stgC = document.getElementById("arcade-game-stage-container");
+            if (stgC) stgC.style.pointerEvents = "auto";
+            if (typeof window._arcadeUnlockGameAction === "function") {
+              try { window._arcadeUnlockGameAction(); } catch (err) {}
+            }
+          }
+        }
       : undefined;
     TronoAudio.falarVovo(audioTarget, keepUnlockCb);
   };
@@ -6723,7 +6741,9 @@
   }
 
   function runCriacaoOrdem(container, phase) {
-    cleanupChronoDragArtifacts();
+    // IMPORTANTE: NÃO chamar cleanupChronoDragArtifacts() aqui dentro de run(),
+    // pois loadPhase() já limpou antes de gerar phaseLoadToken! Incrementar o token aqui
+    // abortava a fala inicial do Vovô e impedia o desbloqueio automático do palco.
     window._arcadeWaitVisualBeforeVovo = true;
 
     const bank = (Array.isArray(window.CHRONOLOGY_LEVELS) && window.CHRONOLOGY_LEVELS.length > 0)
@@ -6815,6 +6835,7 @@
           align-items: center;
           justify-content: center;
           overflow: hidden;
+          cursor: pointer;
           transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
           box-sizing: border-box;
         }
@@ -6874,12 +6895,16 @@
           -webkit-user-select: none;
           -webkit-user-drag: none;
           box-sizing: border-box;
-          transition: opacity 0.2s ease, transform 0.15s ease;
+          transition: opacity 0.2s ease, transform 0.15s ease, box-shadow 0.18s ease;
           display: flex;
           flex-direction: column;
         }
         .chrono-drag-source:active {
           cursor: grabbing;
+        }
+        .chrono-drag-source.card-selected {
+          transform: translateY(-4px) scale(1.03);
+          box-shadow: 0 0 24px rgba(253, 224, 71, 0.95), 0 0 14px rgba(56, 189, 248, 0.9), 0 10px 22px rgba(0, 0, 0, 0.78);
         }
         .chrono-drag-source-inner {
           width: 100%;
@@ -7004,6 +7029,17 @@
     let filledCount = 0;
     let activeDrag = null;
     let activePointerId = null;
+    let selectedCardEl = null;
+
+    function setSelectedChronoCard(nextEl) {
+      if (selectedCardEl && selectedCardEl !== nextEl) {
+        selectedCardEl.classList.remove("card-selected");
+      }
+      selectedCardEl = (nextEl && !nextEl.classList.contains("placed-done")) ? nextEl : null;
+      if (selectedCardEl) {
+        selectedCardEl.classList.add("card-selected");
+      }
+    }
 
     function getNextSequentialSlotNum() {
       for (let n = 1; n <= 4; n++) {
@@ -7030,10 +7066,28 @@
       bottomGrid.style.opacity = "1";
     }
 
-    function getHoveredSlotNum(cx, cy) {
+    function getHoveredSlotNum(cx, cy, cardOrder) {
+      if (topSlotsRow) {
+        const rr = topSlotsRow.getBoundingClientRect();
+        // Imã inteligente na faixa superior: se a criança arrastar a carta certa perto da linha do tempo,
+        // encaixa suavemente sem exigir pontaria milimétrica entre slots vizinhos pequenos!
+        if (cx >= rr.left - 44 && cx <= rr.right + 44 && cy >= rr.top - 64 && cy <= rr.bottom + 98) {
+          if (cardOrder && !filledSlots[cardOrder]) {
+            const ownEl = document.getElementById(`chrono-drop-slot-${cardOrder}`);
+            if (ownEl) {
+              const or = ownEl.getBoundingClientRect();
+              const ownMidX = (or.left + or.right) / 2;
+              if (Math.abs(cx - ownMidX) <= 95 || cardOrder === getNextSequentialSlotNum()) {
+                return cardOrder;
+              }
+            }
+          }
+        }
+      }
+
       let bestNum = 0;
       let bestDist = Infinity;
-      const pad = 38;
+      const pad = 54;
       for (let n = 1; n <= 4; n++) {
         if (filledSlots[n]) continue;
         const el = document.getElementById(`chrono-drop-slot-${n}`);
@@ -7051,7 +7105,7 @@
       }
       if (!bestNum && topSlotsRow) {
         const rr = topSlotsRow.getBoundingClientRect();
-        if (cx >= rr.left - 24 && cx <= rr.right + 24 && cy >= rr.top - 32 && cy <= rr.bottom + 36) {
+        if (cx >= rr.left - 36 && cx <= rr.right + 36 && cy >= rr.top - 52 && cy <= rr.bottom + 84) {
           for (let n = 1; n <= 4; n++) {
             if (filledSlots[n]) continue;
             const el = document.getElementById(`chrono-drop-slot-${n}`);
@@ -7098,6 +7152,8 @@
         filledSlots[targetSlotNum] = true;
         filledCount++;
         TronoAudio.play("star");
+        if (selectedCardEl === srcEl) setSelectedChronoCard(null);
+        srcEl.classList.remove("card-selected");
         srcEl.classList.add("placed-done");
         srcEl.style.opacity = "";
 
@@ -7153,31 +7209,33 @@
       const imgUrl = srcEl.getAttribute("data-card-img") || "";
       const cardCap = srcEl.getAttribute("data-card-cap") || "";
       const cardOrder = Number(srcEl.getAttribute("data-card-order") || 0);
-      const liftY = isTouch ? 16 : 0;
+      const liftY = isTouch ? 20 : 4;
+      const gw = Math.round(Math.min(132, Math.max(98, rect.width * 0.78)));
+      const gh = Math.round(gw * 0.80);
 
       const ghost = document.createElement("div");
       ghost.style.cssText = `
         position: fixed;
-        left: ${rect.left}px;
-        top: ${rect.top - liftY}px;
-        width: ${rect.width}px;
-        height: ${rect.height}px;
-        border-radius: 16px;
-        padding: 3.5px;
+        left: ${clientX - gw / 2}px;
+        top: ${clientY - gh / 2 - liftY}px;
+        width: ${gw}px;
+        height: ${gh}px;
+        border-radius: 15px;
+        padding: 3px;
         background: linear-gradient(125deg, #fde047, #38bdf8, #00e676);
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.85), 0 0 22px rgba(253, 224, 71, 0.75);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.85), 0 0 22px rgba(253, 224, 71, 0.82);
         pointer-events: none;
         z-index: 10000050;
         box-sizing: border-box;
-        transform: scale(1.05);
+        transform: scale(1.04);
         will-change: left, top, transform;
         display: flex;
         flex-direction: column;
       `;
       ghost.innerHTML = `
-        <div style="width:100%; height:100%; border-radius:12.5px; overflow:hidden; background:linear-gradient(180deg, #4c1d95 0%, #2e1065 100%); display:flex; flex-direction:column; pointer-events:none;">
+        <div style="width:100%; height:100%; border-radius:12px; overflow:hidden; background:linear-gradient(180deg, #4c1d95 0%, #2e1065 100%); display:flex; flex-direction:column; pointer-events:none;">
           <img src="${imgUrl}" alt="" draggable="false" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block; pointer-events:none;">
-          <div style="flex:1; padding:3px 5px; display:flex; align-items:center; justify-content:center; text-align:center; font-family:'Fredoka',sans-serif; font-size:11px; font-weight:800; color:#ffffff; line-height:1.12; pointer-events:none;">${cardCap}</div>
+          <div style="flex:1; padding:2px 4px; display:flex; align-items:center; justify-content:center; text-align:center; font-family:'Fredoka',sans-serif; font-size:9.8px; font-weight:800; color:#ffffff; line-height:1.1; pointer-events:none;">${cardCap}</div>
         </div>
       `;
       document.body.appendChild(ghost);
@@ -7196,10 +7254,8 @@
         lastY: clientY,
         movedDist: 0,
         liftY,
-        width: rect.width,
-        height: rect.height,
-        grabOffsetX: clientX - rect.left,
-        grabOffsetY: clientY - rect.top
+        width: gw,
+        height: gh
       };
     }
 
@@ -7211,14 +7267,14 @@
       const dy = clientY - activeDrag.startY;
       activeDrag.movedDist = Math.max(activeDrag.movedDist, Math.hypot(dx, dy));
 
-      const nextLeft = clientX - activeDrag.grabOffsetX;
-      const nextTop = clientY - activeDrag.grabOffsetY - activeDrag.liftY;
+      const nextLeft = clientX - activeDrag.width / 2;
+      const nextTop = clientY - activeDrag.height / 2 - activeDrag.liftY;
       activeDrag.ghost.style.left = `${nextLeft}px`;
       activeDrag.ghost.style.top = `${nextTop}px`;
 
       const centerX = nextLeft + activeDrag.width / 2;
       const centerY = nextTop + activeDrag.height / 2;
-      const hov = getHoveredSlotNum(clientX, clientY - activeDrag.liftY * 0.5) || getHoveredSlotNum(centerX, centerY);
+      const hov = getHoveredSlotNum(centerX, centerY, activeDrag.cardOrder) || getHoveredSlotNum(clientX, clientY, activeDrag.cardOrder);
 
       clearSlotHoverHighlights();
       if (hov > 0) {
@@ -7240,10 +7296,35 @@
       const cx = typeof clientX === "number" ? clientX : (typeof drag.lastX === "number" ? drag.lastX : centerX);
       const cy = typeof clientY === "number" ? clientY : (typeof drag.lastY === "number" ? drag.lastY : centerY);
 
-      const wasQuickTap = drag.movedDist < 10;
-      let targetSlotNum = getHoveredSlotNum(cx, cy - drag.liftY * 0.5) || getHoveredSlotNum(centerX, centerY);
+      const wasQuickTap = drag.movedDist < 16;
+      const draggedUpwardEnough = (drag.startY - cy) > 42 && drag.movedDist >= 16;
+      let targetSlotNum = getHoveredSlotNum(centerX, centerY, drag.cardOrder) || getHoveredSlotNum(cx, cy - drag.liftY * 0.5, drag.cardOrder);
+
+      if (!targetSlotNum && draggedUpwardEnough && !filledSlots[drag.cardOrder] && drag.cardOrder === getNextSequentialSlotNum()) {
+        targetSlotNum = drag.cardOrder;
+      }
+
       if (!targetSlotNum && wasQuickTap) {
-        targetSlotNum = getNextSequentialSlotNum();
+        const nextSeq = getNextSequentialSlotNum();
+        if (drag.cardOrder === nextSeq) {
+          targetSlotNum = nextSeq;
+        } else if (selectedCardEl === drag.srcEl) {
+          targetSlotNum = nextSeq;
+          setSelectedChronoCard(null);
+        } else {
+          // Seleciona a carta com brilho dourado para permitir tocar direto no quadradinho correspondente (1º, 2º, 3º ou 4º)!
+          setSelectedChronoCard(drag.srcEl);
+          if (drag.ghost && drag.ghost.parentNode) {
+            drag.ghost.parentNode.removeChild(drag.ghost);
+          }
+          if (window._chronoDragGhostEl === drag.ghost) {
+            window._chronoDragGhostEl = null;
+          }
+          if (!drag.srcEl.classList.contains("placed-done")) {
+            drag.srcEl.style.opacity = "1";
+          }
+          return;
+        }
       }
 
       if (targetSlotNum > 0) {
@@ -7260,10 +7341,10 @@
       }
 
       const homeRect = drag.srcEl.getBoundingClientRect();
-      drag.ghost.style.transition = "left 0.2s cubic-bezier(0.2, 0.9, 0.3, 1), top 0.2s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.2s ease";
-      drag.ghost.style.left = `${homeRect.left}px`;
-      drag.ghost.style.top = `${homeRect.top}px`;
-      drag.ghost.style.transform = "scale(1)";
+      drag.ghost.style.transition = "left 0.18s cubic-bezier(0.2, 0.9, 0.3, 1), top 0.18s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.18s ease";
+      drag.ghost.style.left = `${homeRect.left + (homeRect.width - drag.width) / 2}px`;
+      drag.ghost.style.top = `${homeRect.top + (homeRect.height - drag.height) / 2}px`;
+      drag.ghost.style.transform = "scale(0.96)";
 
       setTimeout(() => {
         if (drag.ghost && drag.ghost.parentNode) {
@@ -7275,7 +7356,17 @@
         if (!drag.srcEl.classList.contains("placed-done")) {
           drag.srcEl.style.opacity = "1";
         }
-      }, 210);
+      }, 190);
+    }
+
+    function tryPlaceSelectedIntoSlot(slotEl) {
+      if (!slotEl || !selectedCardEl || selectedCardEl.classList.contains("placed-done")) return false;
+      const targetNum = Number(slotEl.getAttribute("data-slot-num") || 0);
+      if (targetNum <= 0 || filledSlots[targetNum]) return false;
+      const imgUrl = selectedCardEl.getAttribute("data-card-img") || "";
+      const cardOrder = Number(selectedCardEl.getAttribute("data-card-order") || 0);
+      commitCardToSlot(selectedCardEl, imgUrl, cardOrder, targetNum);
+      return true;
     }
 
     arena.addEventListener("dragstart", (ev) => {
@@ -7283,7 +7374,14 @@
     });
 
     arena.addEventListener("touchstart", (ev) => {
+      if (window.PointerEvent) return;
       if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      const slotTap = ev.target && ev.target.closest ? ev.target.closest(".chrono-white-slot") : null;
+      if (slotTap && selectedCardEl) {
+        if (ev.cancelable) ev.preventDefault();
+        tryPlaceSelectedIntoSlot(slotTap);
+        return;
+      }
       const t = ev.target && ev.target.closest ? ev.target.closest(".chrono-drag-source") : null;
       if (t && !t.classList.contains("placed-done")) {
         if (ev.cancelable) ev.preventDefault();
@@ -7294,7 +7392,7 @@
     }, { passive: false });
 
     arena.addEventListener("touchmove", (ev) => {
-      if (!activeDrag) return;
+      if (window.PointerEvent || !activeDrag) return;
       if (ev.cancelable) ev.preventDefault();
       if (ev.touches && ev.touches.length > 0) {
         moveChronoDragToPoint(ev.touches[0].clientX, ev.touches[0].clientY);
@@ -7304,10 +7402,15 @@
     arena.addEventListener("pointerdown", (e) => {
       if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
       if (typeof e.button === "number" && e.button !== 0) return;
+      const slotTap = e.target && e.target.closest ? e.target.closest(".chrono-white-slot") : null;
+      if (slotTap && selectedCardEl) {
+        if (e.cancelable) e.preventDefault();
+        tryPlaceSelectedIntoSlot(slotTap);
+        return;
+      }
       const srcEl = e.target && e.target.closest ? e.target.closest(".chrono-drag-source") : null;
       if (!srcEl || srcEl.classList.contains("placed-done")) return;
       if (e.cancelable) e.preventDefault();
-      try { arena.setPointerCapture(e.pointerId); } catch (err) {}
       if (!activeDrag) {
         beginChronoDragFromPoint(srcEl, e.clientX, e.clientY, e.pointerType === "touch", e.pointerId);
       } else {
@@ -7319,6 +7422,12 @@
       if (window.PointerEvent || activeDrag) return;
       if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
       if (typeof e.button === "number" && e.button !== 0) return;
+      const slotTap = e.target && e.target.closest ? e.target.closest(".chrono-white-slot") : null;
+      if (slotTap && selectedCardEl) {
+        if (e.cancelable) e.preventDefault();
+        tryPlaceSelectedIntoSlot(slotTap);
+        return;
+      }
       const srcEl = e.target && e.target.closest ? e.target.closest(".chrono-drag-source") : null;
       if (!srcEl || srcEl.classList.contains("placed-done")) return;
       if (e.cancelable) e.preventDefault();
@@ -7340,9 +7449,6 @@
     const onWinPointerEnd = (e) => {
       if (!activeDrag) return;
       if (activePointerId !== null && activePointerId !== "touch" && activePointerId !== "mouse" && e && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
-      if (e && typeof e.pointerId === "number") {
-        try { arena.releasePointerCapture(e.pointerId); } catch (err) {}
-      }
       finishChronoDragAtPoint(e ? e.clientX : undefined, e ? e.clientY : undefined);
     };
 
@@ -7352,7 +7458,7 @@
     };
 
     const onWinTouchEnd = (ev) => {
-      if (!activeDrag) return;
+      if (window.PointerEvent || !activeDrag) return;
       const t = (ev.changedTouches && ev.changedTouches[0]) || null;
       finishChronoDragAtPoint(t ? t.clientX : undefined, t ? t.clientY : undefined);
     };
@@ -7363,28 +7469,26 @@
 
     window.addEventListener("pointermove", onWinPointerMove, { passive: false });
     window.addEventListener("pointerup", onWinPointerEnd);
-    window.addEventListener("pointercancel", onWinPointerEnd);
     window.addEventListener("mousemove", onWinMouseMove);
     window.addEventListener("mouseup", onWinMouseUp);
     window.addEventListener("touchend", onWinTouchEnd);
-    window.addEventListener("touchcancel", onWinTouchEnd);
     window.addEventListener("blur", onWinBlur);
 
     window._chronoCleanupListeners = function() {
       window.removeEventListener("pointermove", onWinPointerMove);
       window.removeEventListener("pointerup", onWinPointerEnd);
-      window.removeEventListener("pointercancel", onWinPointerEnd);
       window.removeEventListener("mousemove", onWinMouseMove);
       window.removeEventListener("mouseup", onWinMouseUp);
       window.removeEventListener("touchend", onWinTouchEnd);
-      window.removeEventListener("touchcancel", onWinTouchEnd);
       window.removeEventListener("blur", onWinBlur);
     };
   }
 
   // --- JOGO NOVO UNIFICADO: VERSÍCULO SECRETO (22 FASES = 22 LIÇÕES • O VOVÔ LÊ O VERSÍCULO E A CRIANÇA MONTA NAS MOLDURAS TRACEJADAS!) ---
   function runVersiculoSecretoArcade(container, phase) {
-    cleanupChronoDragArtifacts();
+    // IMPORTANTE: NÃO chamar cleanupChronoDragArtifacts() aqui dentro de run(),
+    // pois loadPhase() já limpou antes de gerar phaseLoadToken!
+    window._arcadeWaitVisualBeforeVovo = true;
 
     const bank = (Array.isArray(window.VERSE_BUILDER_BANK) && window.VERSE_BUILDER_BANK.length > 0)
       ? window.VERSE_BUILDER_BANK
@@ -7543,6 +7647,7 @@
           align-items: center;
           gap: clamp(9px, 2.4vw, 13px);
           padding: 6px 2px;
+          transition: opacity 0.22s ease;
         }
         .verse-word-pill {
           position: relative;
@@ -7554,8 +7659,14 @@
           box-shadow: 0 7px 18px rgba(0, 0, 0, 0.72);
           cursor: grab;
           touch-action: none;
+          user-select: none;
+          -webkit-user-select: none;
+          -webkit-user-drag: none;
           box-sizing: border-box;
           transition: transform 0.14s ease, opacity 0.2s ease;
+        }
+        .verse-word-pill:active {
+          cursor: grabbing;
         }
         .verse-word-pill-inner {
           border-radius: 999px;
@@ -7581,7 +7692,7 @@
       </style>
 
       <div class="verse-stage-root" id="verse-stage-arena">
-        <img src="./2_ASSETS_UI_BOTOES/bg_jogo_18_versiculo_v160.jpg?v=160" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; z-index:0;">
+        <img id="verse-bg-img" src="./2_ASSETS_UI_BOTOES/bg_jogo_18_versiculo_v160.jpg?v=160" alt="" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; z-index:0;">
 
         <!-- QUADRO SUPERIOR ROXO COM MOLDURAS TRACEJADAS DAS PALAVRAS DO VERSÍCULO -->
         <div class="verse-top-board" id="verse-top-board">
@@ -7596,7 +7707,7 @@
         </div>
 
         <!-- PALAVRAS SOLTAS EMBARALHADAS EMBAIXO (ARRASTAR COM O DEDINHO OU TOCAR!) -->
-        <div class="verse-bottom-words-pool" id="verse-bottom-words-pool">
+        <div class="verse-bottom-words-pool" id="verse-bottom-words-pool" style="opacity:0.58;">
           ${shuffled.map((item, pIdx) => `
             <div class="verse-word-pill" id="verse-pill-${pIdx}" data-word-val="${item.word.replace(/"/g, "&quot;")}">
               <div class="verse-word-pill-inner">${item.word}</div>
@@ -7608,7 +7719,26 @@
 
     const arena = document.getElementById("verse-stage-arena");
     const topBoard = document.getElementById("verse-top-board");
+    const wordsPool = document.getElementById("verse-bottom-words-pool");
     if (!arena || !topBoard) return;
+
+    // Aguarda o fundo carregar antes do Vovô começar a ler o versículo
+    const bgImg = document.getElementById("verse-bg-img");
+    let verseVisReady = false;
+    const markVerseVisualReady = () => {
+      if (verseVisReady) return;
+      verseVisReady = true;
+      if (typeof window._notifyArcadeVisualReady === "function") {
+        window._notifyArcadeVisualReady();
+      }
+    };
+    if (!bgImg || (bgImg.complete && bgImg.naturalWidth)) {
+      setTimeout(markVerseVisualReady, 25);
+    } else {
+      bgImg.addEventListener("load", () => setTimeout(markVerseVisualReady, 25), { once: true });
+      bgImg.addEventListener("error", () => setTimeout(markVerseVisualReady, 25), { once: true });
+      setTimeout(markVerseVisualReady, 850);
+    }
 
     let currentWordStep = 0;
     let activeDrag = null;
@@ -7623,8 +7753,33 @@
       }
     }
 
+    window._arcadeUnlockGameAction = function() {
+      if (wordsPool) wordsPool.style.opacity = "1";
+      highlightNextSlot();
+    };
+    if (!window._arcadeStageLockedForVovo && wordsPool) {
+      wordsPool.style.opacity = "1";
+    }
+
+    function abortStaleVerseDrag() {
+      if (!activeDrag && !window._verseDragGhostEl) return;
+      if (activeDrag && activeDrag.pillEl && !activeDrag.pillEl.classList.contains("used-word")) {
+        activeDrag.pillEl.style.opacity = "1";
+      }
+      if (activeDrag && activeDrag.ghost && activeDrag.ghost.parentNode) {
+        try { activeDrag.ghost.parentNode.removeChild(activeDrag.ghost); } catch (err) {}
+      }
+      if (window._verseDragGhostEl && window._verseDragGhostEl.parentNode) {
+        try { window._verseDragGhostEl.parentNode.removeChild(window._verseDragGhostEl); } catch (err) {}
+      }
+      window._verseDragGhostEl = null;
+      activeDrag = null;
+      activePointerId = null;
+      topBoard.classList.remove("drop-ready");
+    }
+
     function commitWordPlacement(pillEl, wordVal) {
-      if (currentWordStep >= words.length) return;
+      if (currentWordStep >= words.length) return false;
       const expected = words[currentWordStep];
       const nextSlotEl = document.getElementById(`verse-slot-${currentWordStep}`);
 
@@ -7665,91 +7820,87 @@
 
     function isOverTopBoard(cx, cy) {
       const r = topBoard.getBoundingClientRect();
-      const pad = 28;
+      const pad = 64;
       return cx >= r.left - pad && cx <= r.right + pad && cy >= r.top - pad && cy <= r.bottom + pad;
     }
 
-    const pillEls = arena.querySelectorAll(".verse-word-pill");
-    pillEls.forEach((pillEl) => {
-      pillEl.addEventListener("pointerdown", (e) => {
-        if (window._arcadeStageLockedForVovo || activeDrag || _isVictoryActive) return;
-        if (pillEl.classList.contains("used-word") || currentWordStep >= words.length) return;
-        e.preventDefault();
-        e.stopPropagation();
+    function beginVerseDragFromPoint(pillEl, clientX, clientY, isTouch, pointerId) {
+      if (window._arcadeStageLockedForVovo || _isVictoryActive || currentWordStep >= words.length) return;
+      if (!pillEl || pillEl.classList.contains("used-word")) return;
 
-        activePointerId = e.pointerId !== undefined ? e.pointerId : null;
-        try { arena.setPointerCapture(e.pointerId); } catch (err) {}
+      if (activeDrag) abortStaleVerseDrag();
+      activePointerId = pointerId !== undefined ? pointerId : null;
+      TronoAudio.play("click");
 
-        const rect = pillEl.getBoundingClientRect();
-        const wordVal = pillEl.getAttribute("data-word-val") || "";
+      const rect = pillEl.getBoundingClientRect();
+      const wordVal = pillEl.getAttribute("data-word-val") || "";
+      const liftY = isTouch ? 18 : 0;
 
-        const ghost = document.createElement("div");
-        ghost.style.cssText = `
-          position: fixed;
-          left: ${rect.left}px;
-          top: ${rect.top}px;
-          width: ${rect.width}px;
-          height: ${rect.height}px;
-          border-radius: 999px;
-          padding: 3px;
-          background: linear-gradient(125deg, #fde047, #38bdf8, #00e676);
-          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.85), 0 0 18px rgba(253, 224, 71, 0.8);
-          pointer-events: none;
-          z-index: 10000050;
-          box-sizing: border-box;
-          transform: scale(1.08);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        `;
-        ghost.innerHTML = `<div style="width:100%; height:100%; border-radius:999px; background:linear-gradient(180deg, #581c87 0%, #3b0764 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:17px; font-weight:900; display:flex; align-items:center; justify-content:center;">${wordVal}</div>`;
-        document.body.appendChild(ghost);
-        window._verseDragGhostEl = ghost;
+      const ghost = document.createElement("div");
+      ghost.style.cssText = `
+        position: fixed;
+        left: ${clientX - rect.width / 2}px;
+        top: ${clientY - rect.height / 2 - liftY}px;
+        width: ${rect.width}px;
+        height: ${rect.height}px;
+        border-radius: 999px;
+        padding: 3px;
+        background: linear-gradient(125deg, #fde047, #38bdf8, #00e676);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.85), 0 0 18px rgba(253, 224, 71, 0.8);
+        pointer-events: none;
+        z-index: 10000050;
+        box-sizing: border-box;
+        transform: scale(1.08);
+        will-change: left, top, transform;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      `;
+      ghost.innerHTML = `<div style="width:100%; height:100%; border-radius:999px; background:linear-gradient(180deg, #581c87 0%, #3b0764 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:17px; font-weight:900; display:flex; align-items:center; justify-content:center;">${wordVal}</div>`;
+      document.body.appendChild(ghost);
+      window._verseDragGhostEl = ghost;
 
-        pillEl.style.opacity = "0.28";
+      pillEl.style.opacity = "0.28";
 
-        activeDrag = {
-          pillEl,
-          ghost,
-          wordVal,
-          startX: e.clientX,
-          startY: e.clientY,
-          movedDist: 0,
-          width: rect.width,
-          height: rect.height,
-          grabOffsetX: e.clientX - rect.left,
-          grabOffsetY: e.clientY - rect.top
-        };
-      });
-    });
+      activeDrag = {
+        pillEl,
+        ghost,
+        wordVal,
+        startX: clientX,
+        startY: clientY,
+        lastX: clientX,
+        lastY: clientY,
+        movedDist: 0,
+        liftY,
+        width: rect.width,
+        height: rect.height
+      };
+    }
 
-    arena.addEventListener("pointermove", (e) => {
+    function moveVerseDragToPoint(clientX, clientY) {
       if (!activeDrag) return;
-      if (activePointerId !== null && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
-      e.preventDefault();
-
-      const dx = e.clientX - activeDrag.startX;
-      const dy = e.clientY - activeDrag.startY;
+      activeDrag.lastX = clientX;
+      activeDrag.lastY = clientY;
+      const dx = clientX - activeDrag.startX;
+      const dy = clientY - activeDrag.startY;
       activeDrag.movedDist = Math.max(activeDrag.movedDist, Math.hypot(dx, dy));
 
-      const nextLeft = e.clientX - activeDrag.grabOffsetX;
-      const nextTop = e.clientY - activeDrag.grabOffsetY;
+      const nextLeft = clientX - activeDrag.width / 2;
+      const nextTop = clientY - activeDrag.height / 2 - activeDrag.liftY;
       activeDrag.ghost.style.left = `${nextLeft}px`;
       activeDrag.ghost.style.top = `${nextTop}px`;
 
       const cx = nextLeft + activeDrag.width / 2;
       const cy = nextTop + activeDrag.height / 2;
-      if (isOverTopBoard(e.clientX, e.clientY) || isOverTopBoard(cx, cy)) {
+      if (isOverTopBoard(clientX, clientY) || isOverTopBoard(cx, cy) || (activeDrag.startY - clientY) > 36) {
         topBoard.classList.add("drop-ready");
       } else {
         topBoard.classList.remove("drop-ready");
       }
-    });
+    }
 
-    function endVerseDrag(e) {
+    function finishVerseDragAtPoint(clientX, clientY) {
       if (!activeDrag) return;
-      if (activePointerId !== null && e && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
-
       const drag = activeDrag;
       activeDrag = null;
       activePointerId = null;
@@ -7758,11 +7909,12 @@
       const ghostRect = drag.ghost.getBoundingClientRect();
       const cx = ghostRect.left + ghostRect.width / 2;
       const cy = ghostRect.top + ghostRect.height / 2;
-      const clientX = (e && typeof e.clientX === "number") ? e.clientX : cx;
-      const clientY = (e && typeof e.clientY === "number") ? e.clientY : cy;
+      const px = typeof clientX === "number" ? clientX : (typeof drag.lastX === "number" ? drag.lastX : cx);
+      const py = typeof clientY === "number" ? clientY : (typeof drag.lastY === "number" ? drag.lastY : cy);
 
-      const wasQuickTap = drag.movedDist < 12;
-      const droppedOnBoard = isOverTopBoard(clientX, clientY) || isOverTopBoard(cx, cy);
+      const wasQuickTap = drag.movedDist < 18;
+      const draggedUpEnough = (drag.startY - py) > 32;
+      const droppedOnBoard = isOverTopBoard(px, py) || isOverTopBoard(cx, cy) || draggedUpEnough;
 
       if (wasQuickTap || droppedOnBoard) {
         const ok = commitWordPlacement(drag.pillEl, drag.wordVal);
@@ -7776,7 +7928,7 @@
       }
 
       const homeRect = drag.pillEl.getBoundingClientRect();
-      drag.ghost.style.transition = "left 0.2s cubic-bezier(0.2, 0.9, 0.3, 1), top 0.2s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.2s ease";
+      drag.ghost.style.transition = "left 0.18s cubic-bezier(0.2, 0.9, 0.3, 1), top 0.18s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.18s ease";
       drag.ghost.style.left = `${homeRect.left}px`;
       drag.ghost.style.top = `${homeRect.top}px`;
       drag.ghost.style.transform = "scale(1)";
@@ -7791,11 +7943,102 @@
         if (!drag.pillEl.classList.contains("used-word")) {
           drag.pillEl.style.opacity = "1";
         }
-      }, 210);
+      }, 190);
     }
 
-    arena.addEventListener("pointerup", endVerseDrag);
-    arena.addEventListener("pointercancel", endVerseDrag);
+    arena.addEventListener("dragstart", (ev) => ev.preventDefault());
+
+    arena.addEventListener("touchstart", (ev) => {
+      if (window.PointerEvent) return;
+      if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      const pillEl = ev.target && ev.target.closest ? ev.target.closest(".verse-word-pill") : null;
+      if (pillEl && !pillEl.classList.contains("used-word")) {
+        if (ev.cancelable) ev.preventDefault();
+        if (!activeDrag && ev.touches && ev.touches.length > 0) {
+          beginVerseDragFromPoint(pillEl, ev.touches[0].clientX, ev.touches[0].clientY, true, "touch");
+        }
+      }
+    }, { passive: false });
+
+    arena.addEventListener("touchmove", (ev) => {
+      if (window.PointerEvent || !activeDrag) return;
+      if (ev.cancelable) ev.preventDefault();
+      if (ev.touches && ev.touches.length > 0) {
+        moveVerseDragToPoint(ev.touches[0].clientX, ev.touches[0].clientY);
+      }
+    }, { passive: false });
+
+    arena.addEventListener("pointerdown", (e) => {
+      if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      if (typeof e.button === "number" && e.button !== 0) return;
+      const pillEl = e.target && e.target.closest ? e.target.closest(".verse-word-pill") : null;
+      if (!pillEl || pillEl.classList.contains("used-word")) return;
+      if (e.cancelable) e.preventDefault();
+      if (!activeDrag) {
+        beginVerseDragFromPoint(pillEl, e.clientX, e.clientY, e.pointerType === "touch", e.pointerId);
+      } else {
+        activePointerId = e.pointerId;
+      }
+    });
+
+    arena.addEventListener("mousedown", (e) => {
+      if (window.PointerEvent || activeDrag) return;
+      if (window._arcadeStageLockedForVovo || _isVictoryActive) return;
+      if (typeof e.button === "number" && e.button !== 0) return;
+      const pillEl = e.target && e.target.closest ? e.target.closest(".verse-word-pill") : null;
+      if (!pillEl || pillEl.classList.contains("used-word")) return;
+      if (e.cancelable) e.preventDefault();
+      beginVerseDragFromPoint(pillEl, e.clientX, e.clientY, false, "mouse");
+    });
+
+    const onWinPointerMove = (e) => {
+      if (!activeDrag) return;
+      if (activePointerId !== null && activePointerId !== "touch" && activePointerId !== "mouse" && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
+      if (e.cancelable) e.preventDefault();
+      moveVerseDragToPoint(e.clientX, e.clientY);
+    };
+
+    const onWinMouseMove = (e) => {
+      if (!activeDrag || window.PointerEvent) return;
+      moveVerseDragToPoint(e.clientX, e.clientY);
+    };
+
+    const onWinPointerEnd = (e) => {
+      if (!activeDrag) return;
+      if (activePointerId !== null && activePointerId !== "touch" && activePointerId !== "mouse" && e && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
+      finishVerseDragAtPoint(e ? e.clientX : undefined, e ? e.clientY : undefined);
+    };
+
+    const onWinMouseUp = (e) => {
+      if (!activeDrag || window.PointerEvent) return;
+      finishVerseDragAtPoint(e ? e.clientX : undefined, e ? e.clientY : undefined);
+    };
+
+    const onWinTouchEnd = (ev) => {
+      if (window.PointerEvent || !activeDrag) return;
+      const t = (ev.changedTouches && ev.changedTouches[0]) || null;
+      finishVerseDragAtPoint(t ? t.clientX : undefined, t ? t.clientY : undefined);
+    };
+
+    const onWinBlur = () => {
+      if (activeDrag) abortStaleVerseDrag();
+    };
+
+    window.addEventListener("pointermove", onWinPointerMove, { passive: false });
+    window.addEventListener("pointerup", onWinPointerEnd);
+    window.addEventListener("mousemove", onWinMouseMove);
+    window.addEventListener("mouseup", onWinMouseUp);
+    window.addEventListener("touchend", onWinTouchEnd);
+    window.addEventListener("blur", onWinBlur);
+
+    window._chronoCleanupListeners = function() {
+      window.removeEventListener("pointermove", onWinPointerMove);
+      window.removeEventListener("pointerup", onWinPointerEnd);
+      window.removeEventListener("mousemove", onWinMouseMove);
+      window.removeEventListener("mouseup", onWinMouseUp);
+      window.removeEventListener("touchend", onWinTouchEnd);
+      window.removeEventListener("blur", onWinBlur);
+    };
   }
 
   // --- JOGO 13: JOGO DA MEMÓRIA 3D OFICIAL RECUPERADO (CARTAS 3D ROXAS DO VOVÔ + MARGEM ARCO-ÍRIS ANIMADA + HISTÓRIAS BÍBLICAS) ---
