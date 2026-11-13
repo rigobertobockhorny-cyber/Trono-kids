@@ -68,7 +68,7 @@
       }
       if (!this.vovoVictoryPlayer) {
         try {
-          this.vovoVictoryPlayer = new Audio('./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=168&cb=174');
+          this.vovoVictoryPlayer = new Audio('./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=168&cb=174&r=177');
           this.vovoVictoryPlayer.preload = "auto";
         } catch(e) {}
       }
@@ -274,6 +274,7 @@
       "vovo_jogo_10.mp3": 8229,
       "vovo_jogo_10_v176.mp3": 15975,
       "vovo_jogo_11.mp3": 7837,
+      "vovo_jogo_11_v177.mp3": 16811,
       "vovo_jogo_12.mp3": 13453,
       "vovo_jogo_12_v159.mp3": 13453,
       "vovo_jogo_13.mp3": 6740,
@@ -306,7 +307,7 @@
       "vovo_jogo_20_v161.mp3": 12095,
       "vovo_jogo_21_v161.mp3": 9195,
       "vovo_jogo_22_v161.mp3": 11363,
-      "vovo_vitoria.mp3": 5155,
+      "vovo_vitoria.mp3": 4644,
       "quiz_vovo_q01.mp3": 10214,
       "quiz_vovo_q02.mp3": 11651,
       "quiz_vovo_q03.mp3": 11651,
@@ -462,7 +463,7 @@
         const isVictory = audioFile === "vovo_vitoria.mp3";
         const rawPath = String(audioFile);
         const resolvedUrl = isVictory
-          ? "./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=168&cb=174"
+          ? "./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=168&cb=174&r=177"
           : (rawPath.startsWith("./")
             ? `${rawPath}${rawPath.includes("?") ? "&cb=168" : "?v=168"}`
             : `./6_ASSETS_AUDIO/jogos_vovo/${rawPath}?v=168`);
@@ -484,7 +485,7 @@
           window.setVovoVoiceDucking(true);
         }
 
-        const exactDurationMs = this._vovoExactDurationsMs[durKey] || (isVictory ? 5155 : 8000);
+        const exactDurationMs = this._vovoExactDurationsMs[durKey] || (isVictory ? 4644 : 8000);
         let finished = false;
 
         const doFinish = (forceNow) => {
@@ -654,8 +655,8 @@
       title: "JOGO DOS ERROS",
       sub: "",
       icon: "./2_ASSETS_UI_BOTOES/ico_jogo_11_erros_v130.png?v=130",
-      audioFile: "vovo_jogo_11.mp3",
-      vovoFala: "Compare as duas imagens e toque nos detalhes que estão diferentes!",
+      audioFile: "vovo_jogo_11_v177.mp3",
+      vovoFala: "Olhe bem para essas duas figuras! Elas parecem iguaizinhas, mas escondem cinco diferenças! Toque onde estiver diferente! E se precisar de uma ajudinha, é só apertar na lupinha dourada!",
       run: (container, phase) => runSeisErros(container, phase)
     },
     {
@@ -2163,6 +2164,26 @@
     if (window._liguePontosWinTimer) {
       clearTimeout(window._liguePontosWinTimer);
       window._liguePontosWinTimer = null;
+    }
+    if (typeof window._seisErrosCleanup === "function") {
+      try { window._seisErrosCleanup(); } catch (e) {}
+      window._seisErrosCleanup = null;
+    }
+    if (window._seisErrosRaf) {
+      cancelAnimationFrame(window._seisErrosRaf);
+      window._seisErrosRaf = null;
+    }
+    if (window._seisErrosWinTimer) {
+      clearTimeout(window._seisErrosWinTimer);
+      window._seisErrosWinTimer = null;
+    }
+    if (window._seisErrosIdleTimer) {
+      clearTimeout(window._seisErrosIdleTimer);
+      window._seisErrosIdleTimer = null;
+    }
+    if (window._seisErrosAutoHintTimer) {
+      clearTimeout(window._seisErrosAutoHintTimer);
+      window._seisErrosAutoHintTimer = null;
     }
     if (window._arcadePaintKeyHandler) {
       window.removeEventListener("keydown", window._arcadePaintKeyHandler);
@@ -4759,17 +4780,18 @@
       const sdx = Math.round(openDx + (deepDx - openDx) * hideProgress);
       const sdy = Math.round(spot.w * 0.04);
 
-      // Zona de toque exatamente sobre a parte visível da ovelhinha espiando ao lado da pedra
-      const pkx = sign * Math.round(spot.w * (0.58 - 0.08 * hideProgress));
-      const pkBottom = Math.max(8, Math.round(sheepW * 0.44));
+      // Zona de toque ampla e generosa cobrindo 100% da ovelhinha (cabeça, orelhas, corpo, patinhas) + pedra
+      const hitW = Math.max(98, Math.round(spot.w * 1.18), hitSizePx + 36);
+      const hitH = Math.max(108, Math.round(spot.w * 1.15), hitSizePx + 44);
+      const hitShiftX = Math.round(sdx * 0.55);
 
       const sheepLayerHtml = hasSheep ? `
         <!-- OVELHINHA 3D APOIADA NO CHÃO ATRÁS DA PEDRA CALIBRADA -->
         <div id="aprisco-sheep-wrap-${spot.id}" class="aprisco-sheep-wrap" data-flip="${sFlip}" style="position:absolute; left:50%; bottom:4px; width:${sheepW}px; transform:translateX(-50%) translate(${sdx}px, ${sdy}px) scaleX(${sFlip}); z-index:3; pointer-events:none; filter:drop-shadow(0 4px 6px rgba(0,0,0,0.48)); transition:transform 0.46s cubic-bezier(0.22, 1.35, 0.36, 1);">
           <img src="./2_ASSETS_UI_BOTOES/ovelha_3d_01_v135.png?v=135" class="aprisco-sheep-img" style="width:100%; height:auto; display:block;" alt="Ovelhinha 3D" draggable="false">
         </div>
-        <!-- ZONA DE TOQUE NA PARTE VISÍVEL DA OVELHINHA -->
-        <div class="aprisco-peek-hit" data-spot="${spot.id}" style="position:absolute; left:50%; bottom:${pkBottom}px; width:${hitSizePx}px; height:${hitSizePx}px; transform:translate(-50%, 50%) translate(${pkx}px, 0px); z-index:9; cursor:pointer; border-radius:50%;"></div>
+        <!-- ZONA DE TOQUE AMPLA E ACOLHEDORA SOBRE TODA A OVELHINHA + PEDRA -->
+        <div class="aprisco-peek-hit" data-spot="${spot.id}" style="position:absolute; left:50%; bottom:-10px; width:${hitW}px; height:${hitH}px; transform:translateX(-50%) translate(${hitShiftX}px, 0px); z-index:12; cursor:pointer; border-radius:36px;"></div>
       ` : "";
 
       return `
@@ -4781,8 +4803,8 @@
             <img src="./2_ASSETS_UI_BOTOES/${spot.img}?v=135" style="width:${spot.w}px; height:auto; display:block; transform:${rFlip};" alt="" draggable="false">
           </div>
 
-          <!-- TOQUE NA PEDRA SÓLIDA (BALANÇA A PEDRA SE NÃO TOCOU NA OVELHINHA ESPIANDO!) -->
-          <div class="aprisco-rock-hit" data-spot="${spot.id}" style="position:absolute; inset:4px 8px; z-index:6; cursor:pointer; border-radius:22px;"></div>
+          <!-- TOQUE NA PEDRA SÓLIDA (RESGATA SE TIVER OVELHA OU BALANÇA SE VAZIA!) -->
+          <div class="aprisco-rock-hit" data-spot="${spot.id}" style="position:absolute; inset:-4px 0px; z-index:6; cursor:pointer; border-radius:26px;"></div>
         </div>
       `;
     }).join("");
@@ -4807,6 +4829,40 @@
         .aprisco-unlocked .aprisco-sheep-wrap:not(.rescued) .aprisco-sheep-img {
           animation: ovelhaPeekTwitch 3.4s ease-in-out infinite;
         }
+        .aprisco-counter-pill {
+          position: absolute;
+          top: 4px;
+          left: 10px;
+          z-index: 45;
+          height: 34px;
+          padding: 0 12px 0 8px;
+          border-radius: 999px;
+          background: linear-gradient(180deg, rgba(126, 34, 206, 0.92) 0%, rgba(76, 29, 149, 0.96) 100%);
+          color: #ffffff;
+          font-family: 'Fredoka', sans-serif;
+          font-size: 14px;
+          font-weight: 900;
+          letter-spacing: 0.4px;
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.65);
+          pointer-events: none;
+        }
+        .aprisco-counter-pill::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          padding: 2.5px;
+          background: linear-gradient(125deg, #38bdf8, #a855f7, #fde047, #34d399, #ec4899, #38bdf8);
+          background-size: 250% 250%;
+          animation: vovoReplayBorderFlow 4s ease infinite;
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
+        }
       </style>
       <div id="ovelha-aprisco-stage" style="position:relative; width:100%; height:100%; overflow:hidden; user-select:none; -webkit-user-select:none; touch-action:manipulation; background:#1c140d;">
         <!-- CAMADA 1 (FUNDO): CENÁRIO 3D PIXAR DO APRISCO MONTANHOSO COM GRUTA (9:16) -->
@@ -4817,11 +4873,11 @@
           ${spotsHtml}
         </div>
 
-        <!-- PLACAR VISUAL 3D DE OVELHINHAS ENCONTRADAS (ZERO TEXTO DE LEITURA) -->
-        <div style="position:absolute; top:12px; left:50%; transform:translateX(-50%); background:rgba(24, 15, 9, 0.84); border:2.5px solid #fde047; padding:5px 18px 5px 10px; border-radius:999px; color:#fde047; font-weight:900; font-size:20px; z-index:40; box-shadow:0 6px 18px rgba(0,0,0,0.65); display:flex; align-items:center; gap:8px; pointer-events:none;">
-          <img src="./2_ASSETS_UI_BOTOES/ovelha_3d_06_v135.png?v=135" style="width:34px; height:34px; object-fit:contain;" alt="Ovelhinha">
-          <span id="ovelha-aprisco-count" style="color:#ffffff; transition:transform 0.22s ease;">0</span>
-          <span style="color:#fde047; opacity:0.85;">/</span>
+        <!-- PLACAR VISUAL 3D NO CANTO SUPERIOR ESQUERDO (SIMÉTRICO AO BOTÃO OUVIR COM CORPO ROXO + BORDA COLORIDA ANIMADA) -->
+        <div class="aprisco-counter-pill">
+          <img src="./2_ASSETS_UI_BOTOES/ovelha_3d_06_v135.png?v=135" style="width:23px; height:23px; object-fit:contain; filter:drop-shadow(0 1px 3px rgba(0,0,0,0.45));" alt="Ovelhinha">
+          <span id="ovelha-aprisco-count" style="color:#ffffff; display:inline-block; transition:transform 0.22s ease;">0</span>
+          <span style="color:#fde047; opacity:0.9;">/</span>
           <span style="color:#fde047;">${totalOvelhas}</span>
         </div>
       </div>
@@ -4907,7 +4963,12 @@
     container.querySelectorAll(".aprisco-rock-hit").forEach((rockEl) => {
       rockEl.addEventListener("click", (e) => {
         e.stopPropagation();
-        wobbleRockOnly(Number(rockEl.dataset.spot));
+        const spotId = Number(rockEl.dataset.spot);
+        if (activeSheepSet.has(spotId)) {
+          rescueSheep(spotId);
+        } else {
+          wobbleRockOnly(spotId);
+        }
       });
     });
   }
@@ -7513,28 +7574,674 @@
     window._liguePontosRaf = requestAnimationFrame(animLoop);
   }
 
-  // --- JOGO 11: OS 6 ERROS DO ÉDEN ---
+  // --- JOGO 11: JOGO DOS ERROS 3D (15 FASES • 2 IMAGENS 16:9 EMPILHADAS + MOLDURAS COLORIDAS 3D + LUPINHA DOURADA DICA v177.0) ---
   function runSeisErros(container, phase) {
-    let errosAchados = 0;
+    // A limpeza de timers anteriores já é feita por loadPhase() antes de iniciar a fase:
+    window._arcadeWaitVisualBeforeVovo = true;
+
+    const JOGO_ERROS_15_PHASES = [
+      {
+        phase: 1, title: "A Luz da Criação",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_21_criacao_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_01_v177.jpg?v=177",
+        spots: [[0.49, 0.22], [0.86, 0.48], [0.15, 0.52], [0.21, 0.83], [0.78, 0.84]]
+      },
+      {
+        phase: 2, title: "A Arca de Noé",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_13_arca_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_02_v177.jpg?v=177",
+        spots: [[0.20, 0.16], [0.88, 0.18], [0.16, 0.82], [0.48, 0.86], [0.74, 0.84]]
+      },
+      {
+        phase: 3, title: "A Pombinha da Paz",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_05_pombo_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_03_v177.jpg?v=177",
+        spots: [[0.262, 0.582], [0.18, 0.22], [0.50, 0.20], [0.22, 0.84], [0.84, 0.83]]
+      },
+      {
+        phase: 4, title: "Bebê Moisés no Rio",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_27_moises_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_04_v177.jpg?v=177",
+        spots: [[0.85, 0.79], [0.13, 0.21], [0.36, 0.36], [0.13, 0.79], [0.58, 0.84]]
+      },
+      {
+        phase: 5, title: "O Pãozinho do Céu",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_25_mana_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_05_v177.jpg?v=177",
+        spots: [[0.20, 0.16], [0.82, 0.17], [0.50, 0.25], [0.13, 0.82], [0.88, 0.56]]
+      },
+      {
+        phase: 6, title: "Davi e Jônatas",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_07_davi_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_06_v177.jpg?v=177",
+        spots: [[0.17, 0.19], [0.48, 0.17], [0.14, 0.78], [0.50, 0.82], [0.89, 0.77]]
+      },
+      {
+        phase: 7, title: "O Bom Pastor",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_09_ovelha1_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_07_v177.jpg?v=177",
+        spots: [[0.20, 0.19], [0.82, 0.18], [0.13, 0.83], [0.48, 0.84], [0.87, 0.80]]
+      },
+      {
+        phase: 8, title: "Alegria no Campo",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_11_ovelha2_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_08_v177.jpg?v=177",
+        spots: [[0.135, 0.59], [0.22, 0.16], [0.74, 0.16], [0.34, 0.85], [0.83, 0.54]]
+      },
+      {
+        phase: 9, title: "A Pesca Maravilhosa",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_01_pesca_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_09_v177.jpg?v=177",
+        spots: [[0.20, 0.18], [0.58, 0.17], [0.14, 0.55], [0.44, 0.83], [0.84, 0.82]]
+      },
+      {
+        phase: 10, title: "A Moeda Encontrada",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_03_moeda_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_10_v177.jpg?v=177",
+        spots: [[0.18, 0.25], [0.82, 0.21], [0.15, 0.72], [0.52, 0.85], [0.84, 0.78]]
+      },
+      {
+        phase: 11, title: "O Jardim do Éden",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_19_erros_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_11_v177.jpg?v=177",
+        spots: [[0.48, 0.18], [0.84, 0.18], [0.48, 0.63], [0.15, 0.83], [0.83, 0.82]]
+      },
+      {
+        phase: 12, title: "Amigos da Criação",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_23_memoria_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_12_v177.jpg?v=177",
+        spots: [[0.86, 0.78], [0.14, 0.21], [0.48, 0.18], [0.15, 0.83], [0.58, 0.85]]
+      },
+      {
+        phase: 13, title: "Os Pães e Peixinhos",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_29_puzzle_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_13_v177.jpg?v=177",
+        spots: [[0.18, 0.18], [0.84, 0.18], [0.16, 0.50], [0.46, 0.85], [0.85, 0.82]]
+      },
+      {
+        phase: 14, title: "A Túnica de José",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_31_pintura_f05.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_14_v177.jpg?v=177",
+        spots: [[0.20, 0.17], [0.82, 0.17], [0.15, 0.78], [0.58, 0.85], [0.88, 0.80]]
+      },
+      {
+        phase: 15, title: "O Arco-Íris de Deus",
+        orig: "./5_ASSETS_CARDS_JOGOS/card_14_arca_f15.jpg?v=177",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_15_v177.jpg?v=177",
+        spots: [[0.18, 0.20], [0.55, 0.16], [0.86, 0.20], [0.16, 0.84], [0.48, 0.85]]
+      }
+    ];
+
+    const pIdx = Math.max(0, Math.min(14, (phase || 1) - 1));
+    const pData = JOGO_ERROS_15_PHASES[pIdx];
+    const totalDiffs = pData.spots.length;
+    const foundFlags = new Array(totalDiffs).fill(false);
+
+    let achadosCount = 0;
+    let isGameUnlocked = false;
+    let isVictoryTriggered = false;
+    let activeHintIdx = -1;
+    let missStreak = 0;
+    let isDisposed = false;
+
+    const badgesHtml = pData.spots.map((_, i) => `
+      <div id="erros-prog-dot-${i}" class="erros-prog-dot">
+        <span>${i + 1}</span>
+      </div>
+    `).join("");
+
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:space-around; background:#064e3b; padding:10px;">
-        <div style="display:flex; gap:10px; width:100%; justify-content:center;">
-          <!-- Imagem 1 -->
-          <div style="width:45%; height:200px; background:#10b981; border:3px solid #ffffff; border-radius:16px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-            <span style="font-size:52px;">🌳🍎🕊️</span>
+      <style>
+        @keyframes errosFoundPop {
+          0% { transform: translate(-50%, -50%) scale(0.25); opacity: 0; }
+          65% { transform: translate(-50%, -50%) scale(1.22); opacity: 1; }
+          100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+        @keyframes errosHintPulse {
+          0%, 100% {
+            transform: translate(-50%, -50%) scale(0.92);
+            box-shadow: 0 0 0 3px rgba(253, 224, 71, 0.95), 0 0 18px rgba(56, 189, 248, 0.95), inset 0 0 12px rgba(253, 224, 71, 0.75);
+          }
+          50% {
+            transform: translate(-50%, -50%) scale(1.14);
+            box-shadow: 0 0 0 5px #ffffff, 0 0 28px rgba(253, 224, 71, 1), inset 0 0 18px rgba(56, 189, 248, 0.9);
+          }
+        }
+        @keyframes errosDicaBtnBreath {
+          0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,0.55), 0 0 12px rgba(250, 204, 21, 0.45); }
+          50% { transform: scale(1.05); box-shadow: 0 6px 16px rgba(0,0,0,0.68), 0 0 22px rgba(253, 224, 71, 0.92); }
+        }
+        @keyframes errosSoftRipple {
+          0% { transform: translate(-50%, -50%) scale(0.35); opacity: 0.85; }
+          100% { transform: translate(-50%, -50%) scale(1.35); opacity: 0; }
+        }
+        #seis-erros-stage {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 40px 8px 8px;
+          box-sizing: border-box;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          background: #0b291e;
+        }
+        .erros-bg-cover {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center center;
+          pointer-events: none;
+          z-index: 1;
+        }
+        .erros-bg-veil {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at 50% 50%, rgba(10, 38, 28, 0.16) 0%, rgba(6, 24, 18, 0.56) 100%);
+          pointer-events: none;
+          z-index: 2;
+        }
+        .erros-stack-wrap {
+          position: relative;
+          z-index: 5;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+        }
+        .erros-card-outer {
+          position: relative;
+          width: min(92vw, calc((100vh - 178px) * 0.88), 510px);
+          width: min(92vw, calc((100dvh - 178px) * 0.88), 510px);
+          aspect-ratio: 16 / 9;
+          padding: 5px;
+          border-radius: 20px;
+          box-sizing: border-box;
+          background: linear-gradient(125deg, #fde047, #38bdf8, #a855f7, #34d399, #fb7185, #fde047);
+          background-size: 260% 260%;
+          animation: vovoReplayBorderFlow 4.5s ease infinite;
+          box-shadow: 0 10px 24px rgba(0, 0, 0, 0.62), inset 0 2px 3px rgba(255, 255, 255, 0.72);
+          transition: transform 0.25s ease, filter 0.25s ease;
+        }
+        .erros-img-viewport {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          border-radius: 15px;
+          border: 2px solid rgba(255, 255, 255, 0.94);
+          box-sizing: border-box;
+          overflow: hidden;
+          background: #133a2c;
+          cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
+        }
+        .erros-scene-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          pointer-events: none;
+        }
+        .erros-overlay-layer {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          z-index: 8;
+        }
+        .erros-hud-bar {
+          position: relative;
+          z-index: 10;
+          width: min(92vw, calc((100vh - 178px) * 0.88), 510px);
+          width: min(92vw, calc((100dvh - 178px) * 0.88), 510px);
+          height: 38px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 6px;
+          box-sizing: border-box;
+        }
+        .erros-prog-group {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 4px 10px;
+          border-radius: 999px;
+          background: rgba(15, 23, 42, 0.82);
+          border: 2px solid rgba(253, 224, 71, 0.65);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.52);
+        }
+        .erros-prog-dot {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.14);
+          border: 2px solid rgba(255, 255, 255, 0.48);
+          color: rgba(255, 255, 255, 0.85);
+          font-family: 'Fredoka', sans-serif;
+          font-size: 12px;
+          font-weight: 900;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.24s cubic-bezier(0.22, 1.4, 0.36, 1), background 0.24s ease, border-color 0.24s ease;
+        }
+        .erros-prog-dot.found {
+          background: linear-gradient(180deg, #34d399 0%, #059669 100%);
+          border-color: #fde047;
+          color: #ffffff;
+          transform: scale(1.12);
+          box-shadow: 0 0 10px rgba(52, 211, 153, 0.85);
+        }
+        .erros-btn-dica {
+          height: 34px;
+          padding: 0 14px 0 10px;
+          border-radius: 999px;
+          border: 2.5px solid #fef08a;
+          background: linear-gradient(180deg, #facc15 0%, #ea580c 100%);
+          color: #ffffff;
+          font-family: 'Fredoka', sans-serif;
+          font-size: 13px;
+          font-weight: 900;
+          letter-spacing: 0.5px;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          cursor: pointer;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.58);
+          opacity: 0.65;
+          transition: transform 0.14s ease, opacity 0.22s ease;
+          -webkit-tap-highlight-color: transparent;
+        }
+        #seis-erros-stage.erros-unlocked .erros-btn-dica {
+          opacity: 1;
+          animation: errosDicaBtnBreath 2.4s ease-in-out infinite;
+        }
+        .erros-btn-dica:active {
+          transform: scale(0.92) !important;
+        }
+        .erros-found-ring {
+          position: absolute;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          border: 3.5px solid #fde047;
+          background: radial-gradient(circle, rgba(52, 211, 153, 0.28) 0%, rgba(16, 185, 129, 0.08) 72%, transparent 100%);
+          box-shadow: 0 0 0 2.5px #10b981, 0 0 16px rgba(253, 224, 71, 0.95);
+          animation: errosFoundPop 0.36s cubic-bezier(0.22, 1.45, 0.36, 1) forwards;
+          pointer-events: none;
+        }
+        .erros-found-badge {
+          position: absolute;
+          right: -6px;
+          top: -6px;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: linear-gradient(180deg, #34d399 0%, #059669 100%);
+          border: 2px solid #fde047;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+        }
+        .erros-hint-ring {
+          position: absolute;
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          border: 3.5px dashed #fde047;
+          background: radial-gradient(circle, rgba(253, 224, 71, 0.28) 0%, rgba(56, 189, 248, 0.18) 65%, transparent 100%);
+          animation: errosHintPulse 1.15s ease-in-out infinite;
+          pointer-events: none;
+        }
+        .erros-hint-lupa {
+          position: absolute;
+          right: -10px;
+          bottom: -10px;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background: linear-gradient(180deg, #fde047 0%, #f59e0b 100%);
+          border: 2px solid #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+        }
+        .erros-tap-ripple {
+          position: absolute;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          border: 2.5px solid rgba(255, 255, 255, 0.85);
+          animation: errosSoftRipple 0.42s ease-out forwards;
+          pointer-events: none;
+        }
+      </style>
+
+      <div id="seis-erros-stage">
+        <img id="erros-bg-img" src="./2_ASSETS_UI_BOTOES/bg_jogo_11_erros_v177.jpg?v=177" class="erros-bg-cover" alt="" draggable="false">
+        <div class="erros-bg-veil"></div>
+
+        <div class="erros-stack-wrap">
+          <!-- BLOCO 1 (IMAGEM DE CIMA 16:9 COM MOLDURA COLORIDA 3D) -->
+          <div class="erros-card-outer">
+            <div id="erros-viewport-top" class="erros-img-viewport" data-pane="top">
+              <img id="erros-img-top" src="${pData.orig}" class="erros-scene-img" alt="Figura 1" draggable="false">
+              <div id="erros-overlay-top" class="erros-overlay-layer"></div>
+            </div>
           </div>
-          <!-- Imagem 2 (com 3 erros) -->
-          <div style="width:45%; height:200px; background:#10b981; border:3px solid #ffffff; border-radius:16px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-            <span style="font-size:52px; cursor:pointer;" onclick="window._hitErro(this)">🌳⭐🕊️</span>
+
+          <!-- BARRA CENTRAL: 5 BOLINHAS DE PROGRESSO + BOTÃO DOURADO DA LUPINHA (DICA FÁCIL) -->
+          <div class="erros-hud-bar">
+            <div class="erros-prog-group">
+              ${badgesHtml}
+            </div>
+            <button type="button" id="btn-erros-dica" class="erros-btn-dica" aria-label="Dica">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.5));">
+                <circle cx="11" cy="11" r="7" fill="rgba(255,255,255,0.28)"></circle>
+                <line x1="20" y1="20" x2="16.2" y2="16.2"></line>
+              </svg>
+              <span>DICA</span>
+            </button>
+          </div>
+
+          <!-- BLOCO 2 (IMAGEM DE BAIXO 16:9 COM AS 5 DIFERENÇAS VISUAIS 3D) -->
+          <div class="erros-card-outer">
+            <div id="erros-img-bottom-wrap" class="erros-img-viewport" data-pane="bottom">
+              <img id="erros-img-bottom" src="${pData.mod}" class="erros-scene-img" alt="Figura 2" draggable="false">
+              <div id="erros-overlay-bottom" class="erros-overlay-layer"></div>
+            </div>
           </div>
         </div>
+
+        <canvas id="erros-confetti-cvs" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:30;"></canvas>
       </div>
     `;
 
-    window._hitErro = function(el) {
-      TronoAudio.play("success");
-      el.style.border = "4px solid #fde047";
-      setTimeout(triggerArcadeVictory, 600);
+    const stageEl = document.getElementById("seis-erros-stage");
+    const bgImgEl = document.getElementById("erros-bg-img");
+    const topImgEl = document.getElementById("erros-img-top");
+    const botImgEl = document.getElementById("erros-img-bottom");
+    const topViewport = document.getElementById("erros-viewport-top");
+    const botViewport = document.getElementById("erros-img-bottom-wrap");
+    const topOverlay = document.getElementById("erros-overlay-top");
+    const botOverlay = document.getElementById("erros-overlay-bottom");
+    const dicaBtn = document.getElementById("btn-erros-dica");
+    const confettiCvs = document.getElementById("erros-confetti-cvs");
+
+    // Aguarda fundo + as 2 figuras 3D carregarem antes do Vovô começar a falar!
+    let visualReadyNotified = false;
+    function notifyVisualsOnce() {
+      if (visualReadyNotified || isDisposed) return;
+      visualReadyNotified = true;
+      if (typeof window._notifyArcadeVisualReady === "function") {
+        window._notifyArcadeVisualReady();
+      }
+    }
+
+    let pendingImgs = 3;
+    function onSingleImgSettled() {
+      pendingImgs--;
+      if (pendingImgs <= 0) notifyVisualsOnce();
+    }
+    [bgImgEl, topImgEl, botImgEl].forEach((imgEl) => {
+      if (!imgEl || (imgEl.complete && imgEl.naturalWidth > 0)) {
+        onSingleImgSettled();
+      } else {
+        imgEl.addEventListener("load", onSingleImgSettled, { once: true });
+        imgEl.addEventListener("error", onSingleImgSettled, { once: true });
+      }
+    });
+    const safetyVisTimer = setTimeout(notifyVisualsOnce, 2200);
+
+    function resetIdleHintTimer() {
+      if (window._seisErrosIdleTimer) {
+        clearTimeout(window._seisErrosIdleTimer);
+        window._seisErrosIdleTimer = null;
+      }
+      if (!isGameUnlocked || isVictoryTriggered || isDisposed) return;
+      window._seisErrosIdleTimer = setTimeout(() => {
+        if (!isGameUnlocked || isVictoryTriggered || isDisposed) return;
+        if (activeHintIdx === -1) showSpotHint(true);
+      }, 9500);
+    }
+
+    function clearHintRings() {
+      activeHintIdx = -1;
+      [topOverlay, botOverlay].forEach((ov) => {
+        if (!ov) return;
+        ov.querySelectorAll(".erros-hint-ring").forEach((el) => el.remove());
+      });
+    }
+
+    function showSpotHint(isAuto) {
+      if (!isGameUnlocked || isVictoryTriggered || isDisposed) return;
+      let targetIdx = activeHintIdx;
+      if (targetIdx < 0 || foundFlags[targetIdx]) {
+        targetIdx = foundFlags.findIndex((f) => !f);
+      }
+      if (targetIdx < 0) return;
+
+      clearHintRings();
+      activeHintIdx = targetIdx;
+      const [sx, sy] = pData.spots[targetIdx];
+
+      [topOverlay, botOverlay].forEach((ov) => {
+        if (!ov) return;
+        const ring = document.createElement("div");
+        ring.className = "erros-hint-ring";
+        ring.style.left = `${(sx * 100).toFixed(2)}%`;
+        ring.style.top = `${(sy * 100).toFixed(2)}%`;
+        ring.innerHTML = `
+          <div class="erros-hint-lupa">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1e1b4b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="6.5"></circle>
+              <line x1="20" y1="20" x2="16" y2="16"></line>
+            </svg>
+          </div>
+        `;
+        ov.appendChild(ring);
+      });
+
+      TronoAudio.play(isAuto ? "pop" : "star");
+      resetIdleHintTimer();
+    }
+
+    function markSpotFound(spotIdx) {
+      if (foundFlags[spotIdx] || isVictoryTriggered || isDisposed) return;
+      foundFlags[spotIdx] = true;
+      missStreak = 0;
+
+      if (activeHintIdx === spotIdx) {
+        clearHintRings();
+      }
+
+      const [sx, sy] = pData.spots[spotIdx];
+      [topOverlay, botOverlay].forEach((ov) => {
+        if (!ov) return;
+        const ring = document.createElement("div");
+        ring.className = "erros-found-ring";
+        ring.style.left = `${(sx * 100).toFixed(2)}%`;
+        ring.style.top = `${(sy * 100).toFixed(2)}%`;
+        ring.innerHTML = `
+          <div class="erros-found-badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+        `;
+        ov.appendChild(ring);
+      });
+
+      const dotEl = document.getElementById(`erros-prog-dot-${achadosCount}`);
+      if (dotEl) {
+        dotEl.classList.add("found");
+        dotEl.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+      }
+
+      achadosCount++;
+      TronoAudio.play("coin");
+
+      if (achadosCount >= totalDiffs) {
+        isVictoryTriggered = true;
+        clearHintRings();
+        if (window._seisErrosIdleTimer) {
+          clearTimeout(window._seisErrosIdleTimer);
+          window._seisErrosIdleTimer = null;
+        }
+        setTimeout(() => {
+          if (!isDisposed) TronoAudio.play("success");
+        }, 180);
+        startErrosStageConfetti();
+        window._seisErrosWinTimer = setTimeout(() => {
+          if (!isDisposed) triggerArcadeVictory();
+        }, 1850);
+      } else {
+        resetIdleHintTimer();
+      }
+    }
+
+    function handleViewportTap(e, viewportEl) {
+      if (e && typeof e.preventDefault === "function") e.preventDefault();
+      if (!isGameUnlocked || isVictoryTriggered || isDisposed || !viewportEl) return;
+
+      const rect = viewportEl.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+      const clientY = (e.touches && e.touches[0]) ? e.touches[0].clientY : e.clientY;
+      const nx = (clientX - rect.left) / rect.width;
+      const ny = (clientY - rect.top) / rect.height;
+
+      // Raio elíptico generoso corrigido para proporção 16:9 (~46px de raio em telas de celular)
+      const RX = 0.128;
+      const RY = 0.218;
+      let bestIdx = -1;
+      let bestDist = 999;
+
+      for (let i = 0; i < totalDiffs; i++) {
+        if (foundFlags[i]) continue;
+        const [sx, sy] = pData.spots[i];
+        const normD = Math.hypot((nx - sx) / RX, (ny - sy) / RY);
+        if (normD <= 1.0 && normD < bestDist) {
+          bestDist = normD;
+          bestIdx = i;
+        }
+      }
+
+      if (bestIdx >= 0) {
+        markSpotFound(bestIdx);
+      } else {
+        missStreak++;
+        const ov = viewportEl.querySelector(".erros-overlay-layer");
+        if (ov) {
+          const rip = document.createElement("div");
+          rip.className = "erros-tap-ripple";
+          rip.style.left = `${(nx * 100).toFixed(2)}%`;
+          rip.style.top = `${(ny * 100).toFixed(2)}%`;
+          ov.appendChild(rip);
+          setTimeout(() => { try { rip.remove(); } catch (err) {} }, 450);
+        }
+        TronoAudio.play("click");
+        resetIdleHintTimer();
+        // Se a criança tocar 3 vezes fora sem achar, acende a lupinha dourada automaticamente para ajudar!
+        if (missStreak >= 3 && activeHintIdx === -1) {
+          missStreak = 0;
+          showSpotHint(true);
+        }
+      }
+    }
+
+    function startErrosStageConfetti() {
+      if (!confettiCvs) return;
+      const w = (confettiCvs.width = confettiCvs.clientWidth || 390);
+      const h = (confettiCvs.height = confettiCvs.clientHeight || 720);
+      const ctx = confettiCvs.getContext("2d");
+      if (!ctx) return;
+      const colors = ["#fde047", "#38bdf8", "#34d399", "#fb7185", "#a855f7", "#fb923c"];
+      const pieces = Array.from({ length: 56 }, () => ({
+        x: w * (0.15 + Math.random() * 0.7),
+        y: h * (0.25 + Math.random() * 0.35),
+        vx: (Math.random() - 0.5) * 7.5,
+        vy: -4.5 - Math.random() * 5.5,
+        size: 6 + Math.random() * 6,
+        rot: Math.random() * Math.PI * 2,
+        vr: (Math.random() - 0.5) * 0.25,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      }));
+
+      function stepConfetti() {
+        if (isDisposed) return;
+        ctx.clearRect(0, 0, w, h);
+        let alive = false;
+        for (const p of pieces) {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.22;
+          p.rot += p.vr;
+          if (p.y < h + 24) alive = true;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.62);
+          ctx.restore();
+        }
+        if (alive) {
+          window._seisErrosRaf = requestAnimationFrame(stepConfetti);
+        }
+      }
+      window._seisErrosRaf = requestAnimationFrame(stepConfetti);
+    }
+
+    [topViewport, botViewport].forEach((vp) => {
+      if (!vp) return;
+      vp.addEventListener("pointerdown", (e) => handleViewportTap(e, vp));
+    });
+
+    if (dicaBtn) {
+      dicaBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (!isGameUnlocked || isVictoryTriggered || isDisposed) return;
+        showSpotHint(false);
+      });
+    }
+
+    // Só libera os toques e a lupinha depois que o Vovô Nésio terminar a explicação!
+    window._arcadeUnlockGameAction = function() {
+      if (isGameUnlocked || isDisposed) return;
+      isGameUnlocked = true;
+      if (stageEl) stageEl.classList.add("erros-unlocked");
+      TronoAudio.play("pop");
+      resetIdleHintTimer();
+    };
+
+    window._seisErrosCleanup = function() {
+      isDisposed = true;
+      clearTimeout(safetyVisTimer);
+      if (window._seisErrosIdleTimer) {
+        clearTimeout(window._seisErrosIdleTimer);
+        window._seisErrosIdleTimer = null;
+      }
+      if (window._seisErrosWinTimer) {
+        clearTimeout(window._seisErrosWinTimer);
+        window._seisErrosWinTimer = null;
+      }
+      if (window._seisErrosRaf) {
+        cancelAnimationFrame(window._seisErrosRaf);
+        window._seisErrosRaf = null;
+      }
     };
   }
 
@@ -8291,8 +8998,7 @@
 
   // --- JOGO NOVO UNIFICADO: VERSÍCULO SECRETO (22 FASES = 22 LIÇÕES • O VOVÔ LÊ O VERSÍCULO E A CRIANÇA MONTA NAS MOLDURAS TRACEJADAS!) ---
   function runVersiculoSecretoArcade(container, phase) {
-    // IMPORTANTE: NÃO chamar cleanupChronoDragArtifacts() aqui dentro de run(),
-    // pois loadPhase() já limpou antes de gerar phaseLoadToken!
+    // A limpeza de timers anteriores já é feita por loadPhase() antes de iniciar a fase:
     window._arcadeWaitVisualBeforeVovo = true;
 
     const bank = (Array.isArray(window.VERSE_BUILDER_BANK) && window.VERSE_BUILDER_BANK.length > 0)
