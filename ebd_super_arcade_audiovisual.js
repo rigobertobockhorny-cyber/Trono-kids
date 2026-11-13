@@ -269,8 +269,25 @@
       "vovo_jogo_12.mp3": 13453,
       "vovo_jogo_12_v159.mp3": 13453,
       "vovo_jogo_13.mp3": 6740,
+      "vovo_jogo_13_v171.mp3": 10960,
       "vovo_jogo_14.mp3": 8699,
+      "vovo_jogo_14_v172.mp3": 14582,
       "vovo_jogo_15.mp3": 8176,
+      "par_arca_01.mp3": 14814,
+      "par_arca_02.mp3": 9009,
+      "par_arca_03.mp3": 7802,
+      "par_arca_04.mp3": 8034,
+      "par_arca_05.mp3": 7430,
+      "par_arca_06.mp3": 9149,
+      "par_arca_07.mp3": 9567,
+      "par_arca_08.mp3": 8127,
+      "par_arca_09.mp3": 7059,
+      "par_arca_10.mp3": 7895,
+      "par_arca_11.mp3": 6734,
+      "par_arca_12.mp3": 8220,
+      "par_arca_13.mp3": 7616,
+      "par_arca_14.mp3": 8684,
+      "par_arca_15.mp3": 11424,
       "vovo_jogo_16.mp3": 9535,
       "vovo_jogo_16_v161.mp3": 9535,
       "vovo_jogo_17.mp3": 18991,
@@ -659,20 +676,20 @@
     },
     {
       id: "mana_deserto",
-      title: "PÃOZINHO DO CÉU",
+      title: "ACHE A FIGURA!",
       sub: "",
-      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_14_mana_v130.png?v=130",
-      audioFile: "vovo_jogo_14.mp3",
-      vovoFala: "Procure as cestinhas de maná fresquinho caídas no acampamento!",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_14_ache_figura_v172.png?v=172",
+      audioFile: "vovo_jogo_14_v172.mp3",
+      vovoFala: "Olhe o desenho sem cor lá em cima! Procure essa mesma figura no meio da bagunça aqui embaixo e leve ela lá para cima para ela ganhar cor!",
       run: (container, phase) => runManaDeserto(container, phase)
     },
     {
       id: "tabernaculo_cesto",
-      title: "BEBÊ MOISÉS",
+      title: "PARES DA ARCA",
       sub: "",
-      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_15_moises_v130.png?v=130",
-      audioFile: "vovo_jogo_15.mp3",
-      vovoFala: "Encaixe cada pecinha para montar o cestinho de juncos de Moisés!",
+      icon: "./2_ASSETS_UI_BOTOES/ico_jogo_15_pares_arca_v172.png?v=172",
+      audioFile: "./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_01.mp3?v=172",
+      vovoFala: "Vamos ajudar cada animalzinho a encontrar o seu par para entrar na Arca de Noé! Olhe o animalzinho lá em cima e procure o par dele aqui embaixo!",
       run: (container, phase) => runTabernaculoCesto(container, phase)
     },
     {
@@ -837,7 +854,7 @@
     },
     mana_deserto: {
       gameNum: 13,
-      gameTitle: "PÃOZINHO DO CÉU",
+      gameTitle: "ACHE A FIGURA!",
       milestones: {
         5:  { code: "CARD_25_F05", num: 25, phase: 5,  tier: "GRÁTIS",   title: "Colhendo o Maná ao Amanhecer",     img: "./5_ASSETS_CARDS_JOGOS/card_25_mana_f05.jpg?v=147" },
         15: { code: "CARD_26_F15", num: 26, phase: 15, tier: "CAMPEÃO",  title: "Água Viva da Rocha de Horebe",     img: "./5_ASSETS_CARDS_JOGOS/card_26_mana_f15.jpg?v=147" }
@@ -845,7 +862,7 @@
     },
     tabernaculo_cesto: {
       gameNum: 14,
-      gameTitle: "BEBÊ MOISÉS",
+      gameTitle: "PARES DA ARCA",
       milestones: {
         5:  { code: "CARD_27_F05", num: 27, phase: 5,  tier: "GRÁTIS",   title: "O Cestinho do Bebê Moisés no Nilo",img: "./5_ASSETS_CARDS_JOGOS/card_27_moises_f05.jpg?v=147" },
         15: { code: "CARD_28_F15", num: 28, phase: 15, tier: "CAMPEÃO",  title: "A Travessia do Mar Vermelho",      img: "./5_ASSETS_CARDS_JOGOS/card_28_moises_f15.jpg?v=147" }
@@ -2383,6 +2400,10 @@
     if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
     if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
     if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
+    if (window._acheFiguraWinTimer) { clearTimeout(window._acheFiguraWinTimer); window._acheFiguraWinTimer = null; }
+    if (window._acheResizeHandler) { window.removeEventListener("resize", window._acheResizeHandler); window._acheResizeHandler = null; }
+    if (window._paresArcaWinTimer) { clearTimeout(window._paresArcaWinTimer); window._paresArcaWinTimer = null; }
+    if (window._paresResizeHandler) { window.removeEventListener("resize", window._paresResizeHandler); window._paresResizeHandler = null; }
     if (window._dracmaCheckInterval) { clearInterval(window._dracmaCheckInterval); window._dracmaCheckInterval = null; }
 
     const container = document.getElementById("arcade-game-stage-container");
@@ -2487,6 +2508,17 @@
         return;
       }
 
+      // PARES DA ARCA (15 FASES): Em cada fase o Vovô fala qual parzinho de animal procurar lá embaixo (com trava até terminar!)
+      if (currentActiveGame && currentActiveGame.id === "tabernaculo_cesto") {
+        _vovoAlreadySpokeInSession = true;
+        const paNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % 15) + 1;
+        const paAudio = `./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paNum).padStart(2, "0")}.mp3?v=172`;
+        TronoAudio.falarVovo(paAudio, () => {
+          unlockStageAfterVovo();
+        });
+        return;
+      }
+
       // REGRA DE SESSÃO INTELIGENTE (TRAVA UNIVERSAL RIGOBERTO UX):
       // 1) Na primeira fase da sessão (quando entra no jogo, incluindo Ordem Cronológica!), o Vovô explica tudo e a trava aguarda 100% da fala!
       // 2) Nas fases seguintes da mesma jogada contínua, o jogo entra direto e ágil sem cansar a criança!
@@ -2559,6 +2591,10 @@
     if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
     if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
     if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
+    if (window._acheFiguraWinTimer) { clearTimeout(window._acheFiguraWinTimer); window._acheFiguraWinTimer = null; }
+    if (window._acheResizeHandler) { window.removeEventListener("resize", window._acheResizeHandler); window._acheResizeHandler = null; }
+    if (window._paresArcaWinTimer) { clearTimeout(window._paresArcaWinTimer); window._paresArcaWinTimer = null; }
+    if (window._paresResizeHandler) { window.removeEventListener("resize", window._paresResizeHandler); window._paresResizeHandler = null; }
     if (window._dracmaCheckInterval) { clearInterval(window._dracmaCheckInterval); window._dracmaCheckInterval = null; }
     if (window._daviKeyHandler) { window.removeEventListener("keydown", window._daviKeyHandler); window._daviKeyHandler = null; }
 
@@ -2739,6 +2775,9 @@
       const tmBankLen = (window.TRUE_OR_MYTH_BANK && window.TRUE_OR_MYTH_BANK.length) ? window.TRUE_OR_MYTH_BANK.length : 22;
       const tmNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % tmBankLen) + 1;
       audioTarget = `./6_ASSETS_AUDIO/verdadeiro_mito_vovo/verdadeiro_mito_vovo_${String(tmNum).padStart(2, "0")}.mp3?v=167`;
+    } else if (currentActiveGame.id === "tabernaculo_cesto") {
+      const paNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % 15) + 1;
+      audioTarget = `./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paNum).padStart(2, "0")}.mp3?v=172`;
     }
     if (!audioTarget) return;
     TronoAudio.play("click");
@@ -2828,6 +2867,10 @@
     if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
     if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
     if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
+    if (window._acheFiguraWinTimer) { clearTimeout(window._acheFiguraWinTimer); window._acheFiguraWinTimer = null; }
+    if (window._acheResizeHandler) { window.removeEventListener("resize", window._acheResizeHandler); window._acheResizeHandler = null; }
+    if (window._paresArcaWinTimer) { clearTimeout(window._paresArcaWinTimer); window._paresArcaWinTimer = null; }
+    if (window._paresResizeHandler) { window.removeEventListener("resize", window._paresResizeHandler); window._paresResizeHandler = null; }
     if (window._dracmaCheckInterval) { clearInterval(window._dracmaCheckInterval); window._dracmaCheckInterval = null; }
     if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
     if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
@@ -4229,6 +4272,10 @@
     if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
     if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
     if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
+    if (window._acheFiguraWinTimer) { clearTimeout(window._acheFiguraWinTimer); window._acheFiguraWinTimer = null; }
+    if (window._acheResizeHandler) { window.removeEventListener("resize", window._acheResizeHandler); window._acheResizeHandler = null; }
+    if (window._paresArcaWinTimer) { clearTimeout(window._paresArcaWinTimer); window._paresArcaWinTimer = null; }
+    if (window._paresResizeHandler) { window.removeEventListener("resize", window._paresResizeHandler); window._paresResizeHandler = null; }
     if (window._dracmaCheckInterval) { clearInterval(window._dracmaCheckInterval); window._dracmaCheckInterval = null; }
     if (window._daviKeyHandler) { window.removeEventListener("keydown", window._daviKeyHandler); window._daviKeyHandler = null; }
 
@@ -4971,6 +5018,10 @@
     if (window._arcaWinTimer) { clearTimeout(window._arcaWinTimer); window._arcaWinTimer = null; }
     if (window._arcaResizeHandler) { window.removeEventListener("resize", window._arcaResizeHandler); window._arcaResizeHandler = null; }
     if (window._arcaBichoPlayer) { try { window._arcaBichoPlayer.pause(); } catch(e){} window._arcaBichoPlayer = null; }
+    if (window._acheFiguraWinTimer) { clearTimeout(window._acheFiguraWinTimer); window._acheFiguraWinTimer = null; }
+    if (window._acheResizeHandler) { window.removeEventListener("resize", window._acheResizeHandler); window._acheResizeHandler = null; }
+    if (window._paresArcaWinTimer) { clearTimeout(window._paresArcaWinTimer); window._paresArcaWinTimer = null; }
+    if (window._paresResizeHandler) { window.removeEventListener("resize", window._paresResizeHandler); window._paresResizeHandler = null; }
     if (window._dracmaCheckInterval) { clearInterval(window._dracmaCheckInterval); window._dracmaCheckInterval = null; }
 
     const pNum = Math.min(15, Math.max(1, Number(phase) || 1));
@@ -8156,57 +8207,963 @@
     };
   }
 
-  // --- JOGO 14: O MANÁ NO DESERTO ---
+  // --- JOGO 14: ACHE A FIGURA! 3D PIXAR (15 FASES • 30 FIGURAS EMBARALHADAS NA MESA + ALVO P&B QUE GANHA COR E BRILHO VERDE!) ---
   function runManaDeserto(container, phase) {
-    let achados = 0;
+    const pIdx = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 15);
+    window._arcadeWaitVisualBeforeVovo = true;
+
+    // 15 Alvos das 15 Fases (objetos bíblicos, personagens e animais variados!)
+    const ACHE_TARGETS_15 = [
+      { id: "harpa",     img: "./2_ASSETS_UI_BOTOES/ache_item_01_harpa_v172.png?v=172" },
+      { id: "leao",      img: "./2_ASSETS_UI_BOTOES/arca_bicho_01_leao_v142.png?v=142" },
+      { id: "davi",      img: "./2_ASSETS_UI_BOTOES/ache_item_13_davi_v172.png?v=172" },
+      { id: "coroa",     img: "./2_ASSETS_UI_BOTOES/ache_item_02_coroa_v172.png?v=172" },
+      { id: "baleia",    img: "./2_ASSETS_UI_BOTOES/ache_item_10_baleia_v172.png?v=172" },
+      { id: "tunica",    img: "./2_ASSETS_UI_BOTOES/ache_item_06_tunica_v172.png?v=172" },
+      { id: "anjinho",   img: "./2_ASSETS_UI_BOTOES/ache_item_15_anjinho_v172.png?v=172" },
+      { id: "mini_arca", img: "./2_ASSETS_UI_BOTOES/ache_item_08_mini_arca_v172.png?v=172" },
+      { id: "ovelha",    img: "./2_ASSETS_UI_BOTOES/arca_bicho_04_ovelha_v142.png?v=142" },
+      { id: "lampada",   img: "./2_ASSETS_UI_BOTOES/ache_item_05_lampada_v172.png?v=172" },
+      { id: "ester",     img: "./2_ASSETS_UI_BOTOES/ache_item_16_ester_v172.png?v=172" },
+      { id: "estrela",   img: "./2_ASSETS_UI_BOTOES/ache_item_09_estrela_v172.png?v=172" },
+      { id: "elefante",  img: "./2_ASSETS_UI_BOTOES/arca_bicho_02_elefante_v142.png?v=142" },
+      { id: "noe",       img: "./2_ASSETS_UI_BOTOES/ache_item_14_noe_v172.png?v=172" },
+      { id: "trombeta",  img: "./2_ASSETS_UI_BOTOES/ache_item_04_trombeta_v172.png?v=172" }
+    ];
+
+    // + 15 Figurantes Distratores exclusivos (Total = 30 figuras 3D misturadas na bagunça!)
+    const ACHE_DISTRACTORS_15 = [
+      { id: "cajado",      img: "./2_ASSETS_UI_BOTOES/ache_item_03_cajado_v172.png?v=172" },
+      { id: "pergaminho",  img: "./2_ASSETS_UI_BOTOES/ache_item_07_pergaminho_v172.png?v=172" },
+      { id: "peixinho",    img: "./2_ASSETS_UI_BOTOES/ache_item_11_peixinho_v172.png?v=172" },
+      { id: "jarro",       img: "./2_ASSETS_UI_BOTOES/ache_item_12_jarro_v172.png?v=172" },
+      { id: "ramo",        img: "./2_ASSETS_UI_BOTOES/par_item_20_ramo_oliveira_v172.png?v=172" },
+      { id: "cesta_pao",   img: "./2_ASSETS_UI_BOTOES/ico_jogo_14_mana_v130.png?v=130" },
+      { id: "cesto_junco", img: "./2_ASSETS_UI_BOTOES/ico_jogo_15_moises_v130.png?v=130" },
+      { id: "girafa",      img: "./2_ASSETS_UI_BOTOES/arca_bicho_03_girafa_v142.png?v=142" },
+      { id: "macaco",      img: "./2_ASSETS_UI_BOTOES/arca_bicho_05_macaco_v142.png?v=142" },
+      { id: "zebra",       img: "./2_ASSETS_UI_BOTOES/arca_bicho_06_zebra_v142.png?v=142" },
+      { id: "coelho",      img: "./2_ASSETS_UI_BOTOES/arca_bicho_07_coelho_v142.png?v=142" },
+      { id: "tartaruga",   img: "./2_ASSETS_UI_BOTOES/arca_bicho_08_tartaruga_v142.png?v=142" },
+      { id: "camelo",      img: "./2_ASSETS_UI_BOTOES/arca_bicho_10_camelo_v142.png?v=142" },
+      { id: "tucano",      img: "./2_ASSETS_UI_BOTOES/arca_bicho_14_tucano_v142.png?v=142" },
+      { id: "coruja",      img: "./2_ASSETS_UI_BOTOES/arca_bicho_15_coruja_v142.png?v=142" }
+    ];
+
+    const ALL_30_ITEMS = ACHE_TARGETS_15.concat(ACHE_DISTRACTORS_15);
+    const targetDef = ACHE_TARGETS_15[pIdx];
+    const BG_SRC = "./2_ASSETS_UI_BOTOES/bg_jogo_14_ache_figura_v172.jpg?v=172";
+
+    function shuffleList(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+      }
+      return a;
+    }
+
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; background:linear-gradient(180deg,#fef08a,#ca8a04); display:flex; align-items:center; justify-content:space-around; padding:20px;">
-        <span style="font-size:72px;">⛺</span>
-        <span class="cesta-mana" onclick="window._pegarMana(this)" style="font-size:48px; cursor:pointer;">🧺</span>
-        <span style="font-size:72px;">🪨</span>
-        <span class="cesta-mana" onclick="window._pegarMana(this)" style="font-size:48px; cursor:pointer;">🧺</span>
+      <style id="ache-figura-v172-styles">
+        @keyframes acheTargetFloat {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); }
+          50% { transform: translate(-50%, -53%) scale(1.04); }
+        }
+        @keyframes acheTargetWinPop {
+          0% { transform: translate(-50%, -50%) scale(0.92); }
+          55% { transform: translate(-50%, -52%) scale(1.24); }
+          100% { transform: translate(-50%, -50%) scale(1.14); }
+        }
+        @keyframes acheTargetWrongShake {
+          0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+          25% { transform: translate(-50%, -50%) translateX(-7px) rotate(-5deg); }
+          75% { transform: translate(-50%, -50%) translateX(7px) rotate(5deg); }
+        }
+        @keyframes acheStarBurst {
+          0% { transform: translate(-50%, -50%) scale(0.35); opacity: 1; }
+          100% { transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, -60px))) scale(1.3); opacity: 0; }
+        }
+        #ache-top-target-wrap {
+          position: absolute;
+          left: 50%;
+          top: 26.5%;
+          transform: translate(-50%, -50%);
+          z-index: 15;
+          cursor: pointer;
+          user-select: none;
+          -webkit-user-select: none;
+          animation: acheTargetFloat 2.8s ease-in-out infinite;
+          transition: transform 0.2s ease, filter 0.25s ease;
+        }
+        #ache-top-target-wrap.hover-ready {
+          animation: none !important;
+          transform: translate(-50%, -50%) scale(1.15) !important;
+        }
+        #ache-top-target-wrap.wrong-shake {
+          animation: acheTargetWrongShake 0.34s ease !important;
+        }
+        #ache-top-target-wrap.colored-win {
+          animation: acheTargetWinPop 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+        }
+        #ache-top-target-img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          display: block;
+          pointer-events: none;
+          filter: grayscale(1) contrast(1.12) brightness(1.06) drop-shadow(0 6px 12px rgba(0,0,0,0.34)) drop-shadow(0 0 14px rgba(255,255,255,0.78));
+          transition: filter 0.36s ease, transform 0.36s ease;
+        }
+        #ache-top-target-wrap.hover-ready #ache-top-target-img {
+          filter: grayscale(0.55) contrast(1.10) brightness(1.10) drop-shadow(0 0 18px #fde047) drop-shadow(0 8px 14px rgba(0,0,0,0.38));
+        }
+        #ache-top-target-wrap.colored-win #ache-top-target-img {
+          filter: grayscale(0) saturate(1.22) brightness(1.05) drop-shadow(0 0 18px #00e676) drop-shadow(0 0 34px rgba(0, 230, 118, 0.95)) drop-shadow(0 8px 16px rgba(0,0,0,0.42));
+        }
+        .ache-pile-item {
+          position: absolute;
+          transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+          touch-action: none;
+          user-select: none;
+          -webkit-user-select: none;
+          cursor: grab;
+          filter: drop-shadow(0 5px 7px rgba(45, 22, 4, 0.46));
+          will-change: left, top, transform;
+        }
+        .ache-pile-item.returning {
+          transition: left 0.30s cubic-bezier(0.22, 1, 0.36, 1), top 0.30s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s ease;
+        }
+        .ache-pile-item.flying-win {
+          transition: left 0.34s cubic-bezier(0.22, 1, 0.36, 1), top 0.34s cubic-bezier(0.22, 1, 0.36, 1), transform 0.34s ease, opacity 0.28s ease !important;
+          z-index: 98 !important;
+          pointer-events: none !important;
+        }
+        .ache-pile-item.dragging {
+          transition: none !important;
+          z-index: 96 !important;
+          cursor: grabbing;
+          transform: translate(-50%, -50%) scale(1.28) rotate(0deg) !important;
+          filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.52)) drop-shadow(0 0 12px rgba(253, 224, 71, 0.90)) !important;
+        }
+      </style>
+      <div id="ache-figura-arena" style="position:relative; width:100%; height:100%; overflow:hidden; touch-action:none; user-select:none; -webkit-user-select:none; background:#6b4423;">
+        <img id="ache-bg-img" src="${BG_SRC}" alt="" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; z-index:1;">
+        <!-- Halo suave redondo (sem card quadrado!) atrás da figura P&B superior -->
+        <div id="ache-top-halo" style="position:absolute; left:50%; top:26.5%; transform:translate(-50%, -50%); width:176px; height:176px; border-radius:50%; background:radial-gradient(circle, rgba(255,253,240,0.78) 0%, rgba(254,240,138,0.34) 48%, rgba(255,255,255,0) 74%); pointer-events:none; z-index:8; transition:all 0.38s ease;"></div>
+        <div id="ache-top-target-wrap" title="Toque para ouvir o Vovô novamente">
+          <img id="ache-top-target-img" src="${targetDef.img}" alt="" draggable="false">
+        </div>
+        <div id="ache-fx-layer" style="position:absolute; inset:0; z-index:92; pointer-events:none;"></div>
+        <div id="ache-pile-layer" style="position:absolute; inset:0; z-index:25; pointer-events:auto;"></div>
       </div>
     `;
 
-    window._pegarMana = function(el) {
-      if (el.dataset.got) return;
-      el.dataset.got = "true";
-      TronoAudio.play("coin");
-      el.style.transform = "scale(1.5)";
-      el.style.opacity = "0";
-      el.style.transition = "all 0.3s ease";
-      achados++;
-      if (achados >= 2) {
-        setTimeout(triggerArcadeVictory, 600);
+    const arena = container.querySelector("#ache-figura-arena");
+    const bgImg = container.querySelector("#ache-bg-img");
+    const topWrap = container.querySelector("#ache-top-target-wrap");
+    const topImg = container.querySelector("#ache-top-target-img");
+    const topHalo = container.querySelector("#ache-top-halo");
+    const fxLayer = container.querySelector("#ache-fx-layer");
+    const pileLayer = container.querySelector("#ache-pile-layer");
+    if (!arena || !topWrap || !topImg || !pileLayer) return;
+
+    // Aguarda fundo + figura alvo decodificarem antes da voz do Vovô iniciar
+    let readyCount = 0;
+    const checkVisReady = () => {
+      readyCount++;
+      if (readyCount >= 2 && typeof window._notifyArcadeVisualReady === "function") {
+        window._notifyArcadeVisualReady();
       }
     };
+    [bgImg, topImg].forEach(im => {
+      if (!im) { checkVisReady(); return; }
+      if (im.complete && im.naturalWidth > 0) {
+        checkVisReady();
+      } else {
+        im.addEventListener("load", checkVisReady, { once: true });
+        im.addEventListener("error", checkVisReady, { once: true });
+      }
+    });
+
+    let solved = false;
+
+    // Toque na figura P&B superior repete a instrução do Vovô
+    topWrap.addEventListener("click", () => {
+      if (window._arcadeStageLockedForVovo || solved || _isVictoryActive) return;
+      if (typeof window.repeatVovoInstruction === "function") {
+        window.repeatVovoInstruction();
+      }
+    });
+
+    // Cria as 30 peças na mesa (6 colunas x 5 fileiras orgânicas embaralhadas!)
+    // Garante que o item-alvo fique numa célula interna acessível e em camada superior visível (z-index 58)!
+    const cellIndices = [];
+    const safeTargetSlots = [];
+    for (let r = 0; r < 5; r++) {
+      for (let c = 0; c < 6; c++) {
+        const idx = r * 6 + c;
+        cellIndices.push(idx);
+        if (r >= 0 && r <= 3 && c >= 1 && c <= 4) {
+          safeTargetSlots.push(idx);
+        }
+      }
+    }
+    const chosenTargetSlot = safeTargetSlots[Math.floor(Math.random() * safeTargetSlots.length)];
+    const otherSlots = shuffleList(cellIndices.filter(idx => idx !== chosenTargetSlot));
+    const otherItems = shuffleList(ALL_30_ITEMS.filter(it => it.id !== targetDef.id));
+
+    const pieces = [];
+    let targetPiece = null;
+
+    function createPilePiece(itemDef, slotIdx, isTarget, zOrder) {
+      const el = document.createElement("div");
+      el.className = "ache-pile-item";
+      const rotDeg = isTarget
+        ? ((Math.random() * 14) - 7).toFixed(1)
+        : ((Math.random() * 32) - 16).toFixed(1);
+      el.style.setProperty("--rot", `${rotDeg}deg`);
+      el.style.zIndex = String(zOrder);
+
+      const im = document.createElement("img");
+      im.src = itemDef.img;
+      im.alt = "";
+      im.draggable = false;
+      im.decoding = "async";
+      im.style.cssText = "width:100%; height:100%; object-fit:contain; display:block; pointer-events:none;";
+      el.appendChild(im);
+      pileLayer.appendChild(el);
+
+      const jitterX = (Math.random() * 0.44) - 0.22;
+      const jitterY = (Math.random() * 0.42) - 0.21;
+
+      const pieceObj = {
+        id: itemDef.id,
+        isTarget,
+        slotIdx,
+        rotDeg,
+        zOrder,
+        jitterX,
+        jitterY,
+        el,
+        homeX: 0,
+        homeY: 0,
+        curX: 0,
+        curY: 0,
+        size: 64
+      };
+      pieces.push(pieceObj);
+      if (isTarget) targetPiece = pieceObj;
+    }
+
+    const distractorZ = shuffleList(Array.from({ length: 29 }, (_, k) => 20 + k));
+    otherItems.forEach((it, idx) => {
+      createPilePiece(it, otherSlots[idx], false, distractorZ[idx]);
+    });
+    // Alvo sempre em z-index 58 (nunca enterrado embaixo das outras figuras!)
+    createPilePiece(targetDef, chosenTargetSlot, true, 58);
+
+    let topCenterX = 180;
+    let topCenterY = 160;
+    let topSize = 126;
+
+    function layoutArena() {
+      const rect = arena.getBoundingClientRect();
+      const W = rect.width || window.innerWidth || 360;
+      const H = rect.height || window.innerHeight || 640;
+
+      topSize = Math.max(106, Math.min(142, Math.min(W * 0.33, H * 0.21)));
+      topCenterX = W * 0.5;
+      topCenterY = Math.max(88 + topSize * 0.42, H * 0.265);
+
+      topWrap.style.width = `${topSize.toFixed(1)}px`;
+      topWrap.style.height = `${topSize.toFixed(1)}px`;
+      topWrap.style.top = `${topCenterY.toFixed(1)}px`;
+      if (topHalo) {
+        const haloSz = topSize * 1.48;
+        topHalo.style.width = `${haloSz.toFixed(1)}px`;
+        topHalo.style.height = `${haloSz.toFixed(1)}px`;
+        topHalo.style.top = `${topCenterY.toFixed(1)}px`;
+      }
+
+      // Área da mesa de madeira na metade inferior (54% a 91% da altura)
+      const padX = Math.max(30, W * 0.10);
+      const pileTop = Math.max(topCenterY + topSize * 0.72 + 22, H * 0.53);
+      const pileBot = H - Math.max(28, H * 0.085);
+      const stepX = (W - padX * 2) / 5;
+      const stepY = Math.max(34, (pileBot - pileTop) / 4);
+      const itemSz = Math.max(52, Math.min(76, Math.min(W * 0.168, (pileBot - pileTop) * 0.30)));
+
+      pieces.forEach(p => {
+        const col = p.slotIdx % 6;
+        const row = Math.floor(p.slotIdx / 6);
+        const hx = Math.max(padX * 0.82, Math.min(W - padX * 0.82, padX + col * stepX + p.jitterX * stepX));
+        const hy = Math.max(pileTop - 6, Math.min(pileBot + 6, pileTop + row * stepY + p.jitterY * stepY));
+        p.size = itemSz;
+        p.homeX = hx;
+        p.homeY = hy;
+        p.el.style.width = `${itemSz.toFixed(1)}px`;
+        p.el.style.height = `${itemSz.toFixed(1)}px`;
+        if (activeDrag !== p && !solved) {
+          p.curX = hx;
+          p.curY = hy;
+          p.el.style.left = `${hx.toFixed(1)}px`;
+          p.el.style.top = `${hy.toFixed(1)}px`;
+        }
+      });
+    }
+
+    let activeDrag = null;
+    let activePtrId = null;
+    let downX = 0;
+    let downY = 0;
+    let downTime = 0;
+    let dragLiftY = 0;
+
+    layoutArena();
+    requestAnimationFrame(layoutArena);
+    if (window._acheResizeHandler) window.removeEventListener("resize", window._acheResizeHandler);
+    window._acheResizeHandler = () => layoutArena();
+    window.addEventListener("resize", window._acheResizeHandler);
+
+    function spawnVictoryStars(cx, cy) {
+      if (!fxLayer) return;
+      for (let i = 0; i < 8; i++) {
+        const ang = (Math.PI * 2 * i) / 8;
+        const dist = 58 + (i % 2) * 20;
+        const dx = Math.cos(ang) * dist;
+        const dy = Math.sin(ang) * dist - 12;
+        const sp = document.createElement("div");
+        sp.innerHTML = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 0 8px rgba(0,230,118,0.9));"><path d="M12 2L14.8 8.5L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.2 8.5L12 2Z" fill="#fde047" stroke="#00e676" stroke-width="1.4"/></svg>`;
+        sp.style.cssText = `position:absolute; left:${cx.toFixed(1)}px; top:${cy.toFixed(1)}px; --dx:${dx.toFixed(1)}px; --dy:${dy.toFixed(1)}px; animation: acheStarBurst 0.72s ease-out forwards;`;
+        fxLayer.appendChild(sp);
+        setTimeout(() => { if (sp.parentNode) sp.parentNode.removeChild(sp); }, 780);
+      }
+    }
+
+    function completeAcheWin(piece) {
+      if (solved) return;
+      solved = true;
+      topWrap.classList.remove("hover-ready", "wrong-shake");
+      piece.el.classList.remove("dragging", "returning");
+      piece.el.classList.add("flying-win");
+      piece.el.style.left = `${topCenterX.toFixed(1)}px`;
+      piece.el.style.top = `${topCenterY.toFixed(1)}px`;
+      piece.el.style.transform = "translate(-50%, -50%) scale(1.06) rotate(0deg)";
+
+      setTimeout(() => {
+        piece.el.style.opacity = "0";
+        topWrap.classList.add("colored-win");
+        if (topHalo) {
+          topHalo.style.background = "radial-gradient(circle, rgba(0,230,118,0.58) 0%, rgba(253,224,71,0.36) 48%, rgba(0,230,118,0) 74%)";
+          topHalo.style.transform = "translate(-50%, -50%) scale(1.22)";
+        }
+        spawnVictoryStars(topCenterX, topCenterY);
+        TronoAudio.play("success");
+      }, 180);
+
+      if (window._acheFiguraWinTimer) clearTimeout(window._acheFiguraWinTimer);
+      window._acheFiguraWinTimer = setTimeout(() => {
+        window._acheFiguraWinTimer = null;
+        triggerArcadeVictory();
+      }, 1050);
+    }
+
+    function bounceWrongPiece(piece) {
+      TronoAudio.play("error");
+      topWrap.classList.remove("hover-ready", "wrong-shake");
+      void topWrap.offsetWidth;
+      topWrap.classList.add("wrong-shake");
+      piece.el.classList.remove("dragging");
+      piece.el.classList.add("returning");
+      piece.curX = piece.homeX;
+      piece.curY = piece.homeY;
+      piece.el.style.left = `${piece.homeX.toFixed(1)}px`;
+      piece.el.style.top = `${piece.homeY.toFixed(1)}px`;
+    }
+
+    // PRIORIDADE INTELIGENTE DE TOQUE (IGUAL ARCA DE NOÉ):
+    // Checa PRIMEIRO se o dedinho tocou perto da figura-alvo (raio generoso de 48px)
+    // para que a criança consiga puxar a figura certa com zero frustração no meio das 30!
+    function pickPieceAt(px, py) {
+      if (targetPiece) {
+        const dTarget = Math.hypot(px - targetPiece.curX, py - targetPiece.curY);
+        const prioRadius = Math.max(48, targetPiece.size * 0.72);
+        if (dTarget <= prioRadius) {
+          return targetPiece;
+        }
+      }
+      let best = null;
+      let bestScore = Infinity;
+      for (let i = 0; i < pieces.length; i++) {
+        const p = pieces[i];
+        const d = Math.hypot(px - p.curX, py - p.curY);
+        const maxR = Math.max(38, p.size * 0.58);
+        if (d <= maxR) {
+          const score = d - p.zOrder * 0.25;
+          if (score < bestScore) {
+            bestScore = score;
+            best = p;
+          }
+        }
+      }
+      return best;
+    }
+
+    pileLayer.addEventListener("pointerdown", e => {
+      if (window._arcadeStageLockedForVovo || solved || _isVictoryActive || activeDrag) return;
+      const rect = arena.getBoundingClientRect();
+      const px = e.clientX - rect.left;
+      const py = e.clientY - rect.top;
+      const picked = pickPieceAt(px, py);
+      if (!picked) return;
+
+      e.preventDefault();
+      TronoAudio.unlockGestureAudio();
+      TronoAudio.play("click");
+
+      activeDrag = picked;
+      activePtrId = e.pointerId;
+      downX = px;
+      downY = py;
+      downTime = Date.now();
+      dragLiftY = e.pointerType === "touch" ? 26 : 0;
+
+      try { pileLayer.setPointerCapture(e.pointerId); } catch (err) {}
+      picked.el.classList.remove("returning");
+      picked.el.classList.add("dragging");
+
+      const ny = Math.max(24, py - dragLiftY);
+      picked.curX = px;
+      picked.curY = ny;
+      picked.el.style.left = `${px.toFixed(1)}px`;
+      picked.el.style.top = `${ny.toFixed(1)}px`;
+    });
+
+    pileLayer.addEventListener("pointermove", e => {
+      if (!activeDrag || e.pointerId !== activePtrId || solved) return;
+      e.preventDefault();
+      const rect = arena.getBoundingClientRect();
+      const W = rect.width || 360;
+      const H = rect.height || 640;
+      const nx = Math.max(20, Math.min(W - 20, e.clientX - rect.left));
+      const ny = Math.max(22, Math.min(H - 20, e.clientY - rect.top - dragLiftY));
+      activeDrag.curX = nx;
+      activeDrag.curY = ny;
+      activeDrag.el.style.left = `${nx.toFixed(1)}px`;
+      activeDrag.el.style.top = `${ny.toFixed(1)}px`;
+
+      const nearTop = Math.hypot(nx - topCenterX, ny - topCenterY) <= Math.max(105, topSize * 0.88) || ny <= H * 0.44;
+      topWrap.classList.toggle("hover-ready", nearTop);
+    });
+
+    function endAchePointer(e) {
+      if (!activeDrag || (e && e.pointerId !== undefined && e.pointerId !== activePtrId)) return;
+      const p = activeDrag;
+      activeDrag = null;
+      activePtrId = null;
+      topWrap.classList.remove("hover-ready");
+
+      if (solved) return;
+      const rect = arena.getBoundingClientRect();
+      const H = rect.height || 640;
+      const movedDist = Math.hypot(p.curX - downX, (p.curY + dragLiftY) - downY);
+      const isQuickTap = movedDist < 14 && (Date.now() - downTime) < 480;
+      const droppedAtTop = Math.hypot(p.curX - topCenterX, p.curY - topCenterY) <= Math.max(110, topSize * 0.92) || p.curY <= H * 0.45;
+
+      if (droppedAtTop || isQuickTap) {
+        if (p.isTarget) {
+          completeAcheWin(p);
+        } else {
+          bounceWrongPiece(p);
+        }
+      } else {
+        p.el.classList.remove("dragging");
+        p.el.classList.add("returning");
+        p.curX = p.homeX;
+        p.curY = p.homeY;
+        p.el.style.left = `${p.homeX.toFixed(1)}px`;
+        p.el.style.top = `${p.homeY.toFixed(1)}px`;
+      }
+    }
+
+    pileLayer.addEventListener("pointerup", endAchePointer);
+    pileLayer.addEventListener("pointercancel", endAchePointer);
   }
 
-  // --- JOGO 15: O CESTO DE MOISÉS (MONTAGEM ESTRUTURAL) ---
+  // --- JOGO 15: PARES DA ARCA 3D PIXAR (15 FASES • ENCONTRE O PAR DE CADA ANIMALZINHO COM VOZ DO VOVÔ EM TODAS AS FASES!) ---
   function runTabernaculoCesto(container, phase) {
-    let montados = 0;
+    const pNum = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 15) + 1;
+    window._arcadeWaitVisualBeforeVovo = true;
+
+    const PARES_ARCA_15 = [
+      { id: "pomba",     topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_11_pomba_v142.png?v=142",      mateImg: "./2_ASSETS_UI_BOTOES/par_arca_01_pombinha_v172.png?v=172" },
+      { id: "leao",      topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_01_leao_v142.png?v=142",       mateImg: "./2_ASSETS_UI_BOTOES/par_arca_02_leoa_v172.png?v=172" },
+      { id: "ovelha",    topImg: "./2_ASSETS_UI_BOTOES/par_arca_03_carneiro_v172.png?v=172",     mateImg: "./2_ASSETS_UI_BOTOES/arca_bicho_04_ovelha_v142.png?v=142" },
+      { id: "galinha",   topImg: "./2_ASSETS_UI_BOTOES/par_arca_04_galo_v172.png?v=172",         mateImg: "./2_ASSETS_UI_BOTOES/par_arca_04_galinha_v172.png?v=172" },
+      { id: "vaca",      topImg: "./2_ASSETS_UI_BOTOES/par_arca_05_tourinho_v172.png?v=172",     mateImg: "./2_ASSETS_UI_BOTOES/par_arca_05_vaquinha_v172.png?v=172" },
+      { id: "elefante",  topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_02_elefante_v142.png?v=142",   mateImg: "./2_ASSETS_UI_BOTOES/par_arca_06_elefantinha_v172.png?v=172" },
+      { id: "girafa",    topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_03_girafa_v142.png?v=142",     mateImg: "./2_ASSETS_UI_BOTOES/par_arca_07_girafinha_v172.png?v=172" },
+      { id: "pato",      topImg: "./2_ASSETS_UI_BOTOES/par_arca_08_pato_v172.png?v=172",         mateImg: "./2_ASSETS_UI_BOTOES/par_arca_08_patinha_v172.png?v=172" },
+      { id: "cervo",     topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_13_cervo_v142.png?v=142",      mateImg: "./2_ASSETS_UI_BOTOES/par_arca_09_corca_v172.png?v=172" },
+      { id: "cavalo",    topImg: "./2_ASSETS_UI_BOTOES/par_arca_10_cavalo_v172.png?v=172",       mateImg: "./2_ASSETS_UI_BOTOES/par_arca_10_eguinha_v172.png?v=172" },
+      { id: "coelho",    topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_07_coelho_v142.png?v=142",     mateImg: "./2_ASSETS_UI_BOTOES/par_arca_11_coelhinha_v172.png?v=172" },
+      { id: "urso",      topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_09_urso_v142.png?v=142",       mateImg: "./2_ASSETS_UI_BOTOES/par_arca_12_ursinha_v172.png?v=172" },
+      { id: "macaco",    topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_05_macaco_v142.png?v=142",     mateImg: "./2_ASSETS_UI_BOTOES/par_arca_13_macaquinha_v172.png?v=172" },
+      { id: "camelo",    topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_10_camelo_v142.png?v=142",     mateImg: "./2_ASSETS_UI_BOTOES/par_arca_14_camelinha_v172.png?v=172" },
+      { id: "tartaruga", topImg: "./2_ASSETS_UI_BOTOES/arca_bicho_08_tartaruga_v142.png?v=142",  mateImg: "./2_ASSETS_UI_BOTOES/par_arca_15_tartaruguinha_v172.png?v=172" }
+    ];
+
+    const EXTRA_DISTRACTOR_ANIMALS = [
+      { id: "zebra",   img: "./2_ASSETS_UI_BOTOES/arca_bicho_06_zebra_v142.png?v=142" },
+      { id: "canguru", img: "./2_ASSETS_UI_BOTOES/arca_bicho_12_canguru_v142.png?v=142" },
+      { id: "tucano",  img: "./2_ASSETS_UI_BOTOES/arca_bicho_14_tucano_v142.png?v=142" },
+      { id: "coruja",  img: "./2_ASSETS_UI_BOTOES/arca_bicho_15_coruja_v142.png?v=142" }
+    ];
+
+    const curPair = PARES_ARCA_15[pNum - 1];
+    const BG_SRC = "./2_ASSETS_UI_BOTOES/bg_jogo_15_pares_arca_v172.jpg?v=172";
+    const HEART_SRC = "./2_ASSETS_UI_BOTOES/coracao_3d_v138.png?v=138";
+
+    // Pré-carrega o áudio da próxima fase para transição instantânea
+    setTimeout(() => {
+      const nextNum = (pNum % 15) + 1;
+      if (typeof window.preloadArcadeAudioUrl === "function") {
+        window.preloadArcadeAudioUrl(`./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(nextNum).padStart(2, "0")}.mp3?v=172`);
+      }
+    }, 900);
+
+    function shuffleArr(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const t = a[i];
+        a[i] = a[j];
+        a[j] = t;
+      }
+      return a;
+    }
+
+    // Monta pool de distratores de espécies totalmente diferentes da espécie atual
+    const distractorPool = EXTRA_DISTRACTOR_ANIMALS.concat(
+      PARES_ARCA_15.filter(p => p.id !== curPair.id).map(p => ({ id: p.id, img: p.mateImg }))
+    );
+    const chosenDistractors = shuffleArr(distractorPool).slice(0, 2);
+
+    const choices = shuffleArr([
+      { id: curPair.id, img: curPair.mateImg, isMate: true },
+      { id: chosenDistractors[0].id, img: chosenDistractors[0].img, isMate: false },
+      { id: chosenDistractors[1].id, img: chosenDistractors[1].img, isMate: false }
+    ]);
+
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:space-around; background:#38bdf8;">
-        <div style="width:160px; height:100px; border:3px dashed #ffffff; border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:48px; background:rgba(0,0,0,0.2);">
-          🧺
+      <style id="pares-arca-v172-styles">
+        @keyframes parAnimalIdle {
+          0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+          50% { transform: translate(-50%, -54%) scale(1.035) rotate(1.5deg); }
+        }
+        @keyframes parSpotPulse {
+          0%, 100% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.82; }
+          50% { transform: translate(-50%, -50%) scale(1.06); opacity: 1; }
+        }
+        @keyframes parCoupleCelebrate {
+          0%, 100% { transform: translate(-50%, -50%) scale(1.06); }
+          45% { transform: translate(-50%, -60%) scale(1.16); }
+        }
+        @keyframes parHeartPop {
+          0% { transform: translate(-50%, -30%) scale(0.2); opacity: 0; }
+          55% { transform: translate(-50%, -65%) scale(1.26); opacity: 1; }
+          100% { transform: translate(-50%, -55%) scale(1.05); opacity: 1; }
+        }
+        @keyframes parWrongShake {
+          0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+          25% { transform: translate(-50%, -50%) translateX(-7px) rotate(-5deg); }
+          75% { transform: translate(-50%, -50%) translateX(7px) rotate(5deg); }
+        }
+        #par-waiting-animal {
+          position: absolute;
+          transform: translate(-50%, -50%);
+          z-index: 18;
+          cursor: pointer;
+          user-select: none;
+          -webkit-user-select: none;
+          filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.42));
+          animation: parAnimalIdle 2.6s ease-in-out infinite;
+        }
+        #par-waiting-animal.couple-win {
+          animation: parCoupleCelebrate 0.55s ease-in-out 2 !important;
+          filter: drop-shadow(0 0 16px #00e676) drop-shadow(0 8px 12px rgba(0, 0, 0, 0.42)) !important;
+        }
+        #par-mate-spot {
+          position: absolute;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          border: 3.5px dashed rgba(253, 224, 71, 0.92);
+          background: radial-gradient(circle, rgba(254, 240, 138, 0.44) 0%, rgba(0, 230, 118, 0.20) 58%, rgba(255, 255, 255, 0) 78%);
+          box-shadow: 0 0 20px rgba(253, 224, 71, 0.55);
+          z-index: 12;
+          pointer-events: none;
+          animation: parSpotPulse 2.1s ease-in-out infinite;
+          transition: transform 0.2s ease, opacity 0.28s ease, border-color 0.2s ease;
+        }
+        #par-mate-spot.hover-ready {
+          animation: none !important;
+          transform: translate(-50%, -50%) scale(1.16) !important;
+          border-color: #00e676 !important;
+          box-shadow: 0 0 26px rgba(0, 230, 118, 0.9) !important;
+        }
+        .par-choice-animal {
+          position: absolute;
+          transform: translate(-50%, -50%);
+          z-index: 30;
+          cursor: grab;
+          touch-action: none;
+          user-select: none;
+          -webkit-user-select: none;
+          filter: drop-shadow(0 8px 11px rgba(0, 0, 0, 0.46));
+          animation: parAnimalIdle 2.7s ease-in-out infinite;
+          will-change: left, top, transform;
+        }
+        .par-choice-animal.returning {
+          transition: left 0.30s cubic-bezier(0.22, 1, 0.36, 1), top 0.30s cubic-bezier(0.22, 1, 0.36, 1), transform 0.24s ease;
+        }
+        .par-choice-animal.wrong-shake {
+          animation: parWrongShake 0.34s ease !important;
+        }
+        .par-choice-animal.dragging {
+          animation: none !important;
+          transition: none !important;
+          z-index: 95 !important;
+          cursor: grabbing;
+          transform: translate(-50%, -50%) scale(1.22) !important;
+          filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.54)) drop-shadow(0 0 12px rgba(253, 224, 71, 0.92)) !important;
+        }
+        .par-choice-animal.matched-mate {
+          transition: left 0.38s cubic-bezier(0.22, 1, 0.36, 1), top 0.38s cubic-bezier(0.22, 1, 0.36, 1), width 0.32s ease, height 0.32s ease !important;
+          z-index: 22 !important;
+          pointer-events: none !important;
+          animation: parCoupleCelebrate 0.55s ease-in-out 2 !important;
+          filter: drop-shadow(0 0 16px #00e676) drop-shadow(0 8px 12px rgba(0, 0, 0, 0.42)) !important;
+        }
+      </style>
+      <div id="pares-arca-arena" style="position:relative; width:100%; height:100%; overflow:hidden; touch-action:none; user-select:none; -webkit-user-select:none; background:#15803d;">
+        <img id="pares-bg-img" src="${BG_SRC}" alt="" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; pointer-events:none; z-index:1;">
+        <div id="par-mate-spot"></div>
+        <div id="par-waiting-animal" title="Toque para ouvir o Vovô novamente">
+          <img id="par-waiting-img" src="${curPair.topImg}" alt="" draggable="false" style="width:100%; height:100%; object-fit:contain; display:block; pointer-events:none;">
         </div>
-        <div style="display:flex; gap:16px;">
-          <button class="arcade-btn-circle" onclick="window._colocarPecaCesto(this)" style="font-size:24px;">🌾</button>
-          <button class="arcade-btn-circle" onclick="window._colocarPecaCesto(this)" style="font-size:24px;">👶</button>
-          <button class="arcade-btn-circle" onclick="window._colocarPecaCesto(this)" style="font-size:24px;">✨</button>
+        <div id="par-heart-pop" style="position:absolute; display:none; width:64px; height:64px; z-index:92; pointer-events:none;">
+          <img src="${HEART_SRC}" alt="" draggable="false" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 4px 10px rgba(244,63,94,0.75));">
         </div>
+        <div id="par-fx-layer" style="position:absolute; inset:0; z-index:90; pointer-events:none;"></div>
+        <div id="par-choices-layer" style="position:absolute; inset:0; z-index:28; pointer-events:auto;"></div>
       </div>
     `;
 
-    window._colocarPecaCesto = function(btn) {
-      TronoAudio.play("success");
-      btn.style.opacity = "0.3";
-      btn.style.pointerEvents = "none";
-      montados++;
-      if (montados >= 3) {
-        setTimeout(triggerArcadeVictory, 600);
+    const arena = container.querySelector("#pares-arca-arena");
+    const bgImg = container.querySelector("#pares-bg-img");
+    const waitingWrap = container.querySelector("#par-waiting-animal");
+    const waitingImg = container.querySelector("#par-waiting-img");
+    const mateSpot = container.querySelector("#par-mate-spot");
+    const heartPop = container.querySelector("#par-heart-pop");
+    const fxLayer = container.querySelector("#par-fx-layer");
+    const choicesLayer = container.querySelector("#par-choices-layer");
+    if (!arena || !waitingWrap || !mateSpot || !choicesLayer) return;
+
+    let solved = false;
+
+    // Aguarda fundo + animal do topo carregarem antes da voz do Vovô iniciar
+    let readyImgs = 0;
+    const notifyImgReady = () => {
+      readyImgs++;
+      if (readyImgs >= 2 && typeof window._notifyArcadeVisualReady === "function") {
+        window._notifyArcadeVisualReady();
       }
     };
+    [bgImg, waitingImg].forEach(im => {
+      if (!im) { notifyImgReady(); return; }
+      if (im.complete && im.naturalWidth > 0) {
+        notifyImgReady();
+      } else {
+        im.addEventListener("load", notifyImgReady, { once: true });
+        im.addEventListener("error", notifyImgReady, { once: true });
+      }
+    });
+
+    waitingWrap.addEventListener("click", () => {
+      if (window._arcadeStageLockedForVovo || solved || _isVictoryActive) return;
+      if (typeof window.repeatVovoInstruction === "function") {
+        window.repeatVovoInstruction();
+      }
+    });
+
+    const choiceItems = [];
+    let mateChoiceItem = null;
+
+    choices.forEach((ch, idx) => {
+      const el = document.createElement("div");
+      el.className = "par-choice-animal";
+      el.style.animationDelay = `${(idx * 0.35).toFixed(2)}s`;
+
+      const im = document.createElement("img");
+      im.src = ch.img;
+      im.alt = "";
+      im.draggable = false;
+      im.decoding = "async";
+      im.style.cssText = "width:100%; height:100%; object-fit:contain; display:block; pointer-events:none;";
+      el.appendChild(im);
+      choicesLayer.appendChild(el);
+
+      const obj = {
+        id: ch.id,
+        isMate: ch.isMate,
+        slotIdx: idx,
+        el,
+        homeX: 0,
+        homeY: 0,
+        curX: 0,
+        curY: 0,
+        size: 104
+      };
+      choiceItems.push(obj);
+      if (ch.isMate) mateChoiceItem = obj;
+    });
+
+    let waitX = 135;
+    let waitY = 320;
+    let spotX = 225;
+    let spotY = 320;
+    let topAnimalSize = 116;
+
+    function layoutParesArena() {
+      const rect = arena.getBoundingClientRect();
+      const W = rect.width || window.innerWidth || 360;
+      const H = rect.height || window.innerHeight || 640;
+
+      topAnimalSize = Math.max(96, Math.min(132, Math.min(W * 0.28, H * 0.19)));
+      const pairGap = Math.max(topAnimalSize * 0.96, Math.min(W * 0.26, 128));
+      waitX = W * 0.5 - pairGap * 0.5;
+      spotX = W * 0.5 + pairGap * 0.5;
+      waitY = H * 0.535;
+      spotY = H * 0.535;
+
+      waitingWrap.style.width = `${topAnimalSize.toFixed(1)}px`;
+      waitingWrap.style.height = `${topAnimalSize.toFixed(1)}px`;
+      waitingWrap.style.left = `${waitX.toFixed(1)}px`;
+      waitingWrap.style.top = `${waitY.toFixed(1)}px`;
+
+      const spotSz = topAnimalSize * 0.92;
+      mateSpot.style.width = `${spotSz.toFixed(1)}px`;
+      mateSpot.style.height = `${spotSz.toFixed(1)}px`;
+      mateSpot.style.left = `${spotX.toFixed(1)}px`;
+      mateSpot.style.top = `${spotY.toFixed(1)}px`;
+
+      const choiceSz = Math.max(88, Math.min(118, Math.min(W * 0.255, H * 0.175)));
+      const xPositions = [W * 0.20, W * 0.50, W * 0.80];
+      const yPositions = [H * 0.815, H * 0.835, H * 0.815];
+
+      choiceItems.forEach((it, idx) => {
+        it.size = choiceSz;
+        it.homeX = xPositions[idx];
+        it.homeY = yPositions[idx];
+        if (solved && it.isMate) {
+          it.el.style.width = `${topAnimalSize.toFixed(1)}px`;
+          it.el.style.height = `${topAnimalSize.toFixed(1)}px`;
+          it.el.style.left = `${spotX.toFixed(1)}px`;
+          it.el.style.top = `${spotY.toFixed(1)}px`;
+        } else if (activeDrag !== it) {
+          it.el.style.width = `${choiceSz.toFixed(1)}px`;
+          it.el.style.height = `${choiceSz.toFixed(1)}px`;
+          it.curX = it.homeX;
+          it.curY = it.homeY;
+          it.el.style.left = `${it.homeX.toFixed(1)}px`;
+          it.el.style.top = `${it.homeY.toFixed(1)}px`;
+        }
+      });
+    }
+
+    let activeDrag = null;
+    let activePtrId = null;
+    let downX = 0;
+    let downY = 0;
+    let downTime = 0;
+    let dragLiftY = 0;
+
+    layoutParesArena();
+    requestAnimationFrame(layoutParesArena);
+    if (window._paresResizeHandler) window.removeEventListener("resize", window._paresResizeHandler);
+    window._paresResizeHandler = () => layoutParesArena();
+    window.addEventListener("resize", window._paresResizeHandler);
+
+    function spawnCoupleSparkles(cx, cy) {
+      if (!fxLayer) return;
+      for (let i = 0; i < 7; i++) {
+        const ang = (Math.PI * 2 * i) / 7;
+        const dist = 52 + (i % 2) * 18;
+        const dx = Math.cos(ang) * dist;
+        const dy = Math.sin(ang) * dist - 14;
+        const sp = document.createElement("div");
+        sp.innerHTML = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 0 6px rgba(253,224,71,0.9));"><path d="M12 2L14.8 8.5L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.2 8.5L12 2Z" fill="#fde047" stroke="#f59e0b" stroke-width="1.4"/></svg>`;
+        sp.style.cssText = `position:absolute; left:${cx.toFixed(1)}px; top:${cy.toFixed(1)}px; transition:all 0.65s ease-out; transform:translate(-50%, -50%) scale(0.4); opacity:1;`;
+        fxLayer.appendChild(sp);
+        requestAnimationFrame(() => {
+          sp.style.transform = `translate(calc(-50% + ${dx.toFixed(1)}px), calc(-50% + ${dy.toFixed(1)}px)) scale(1.28)`;
+          sp.style.opacity = "0";
+        });
+        setTimeout(() => { if (sp.parentNode) sp.parentNode.removeChild(sp); }, 720);
+      }
+    }
+
+    function completeParesWin(item) {
+      if (solved) return;
+      solved = true;
+      mateSpot.classList.remove("hover-ready");
+      mateSpot.style.opacity = "0";
+
+      item.el.classList.remove("dragging", "returning", "wrong-shake");
+      item.el.classList.add("matched-mate");
+      item.el.style.width = `${topAnimalSize.toFixed(1)}px`;
+      item.el.style.height = `${topAnimalSize.toFixed(1)}px`;
+      item.el.style.left = `${spotX.toFixed(1)}px`;
+      item.el.style.top = `${spotY.toFixed(1)}px`;
+
+      waitingWrap.classList.add("couple-win");
+
+      const midX = (waitX + spotX) * 0.5;
+      const midY = waitY - topAnimalSize * 0.44;
+      if (heartPop) {
+        heartPop.style.left = `${midX.toFixed(1)}px`;
+        heartPop.style.top = `${midY.toFixed(1)}px`;
+        heartPop.style.display = "block";
+        heartPop.style.animation = "parHeartPop 0.56s cubic-bezier(0.22, 1, 0.36, 1) forwards";
+      }
+      spawnCoupleSparkles(midX, waitY - 10);
+      TronoAudio.play("success");
+
+      if (window._paresArcaWinTimer) clearTimeout(window._paresArcaWinTimer);
+      window._paresArcaWinTimer = setTimeout(() => {
+        window._paresArcaWinTimer = null;
+        triggerArcadeVictory();
+      }, 1050);
+    }
+
+    function rejectWrongChoice(item) {
+      TronoAudio.play("error");
+      mateSpot.classList.remove("hover-ready");
+      item.el.classList.remove("dragging", "wrong-shake");
+      item.el.classList.add("returning");
+      item.curX = item.homeX;
+      item.curY = item.homeY;
+      item.el.style.left = `${item.homeX.toFixed(1)}px`;
+      item.el.style.top = `${item.homeY.toFixed(1)}px`;
+      setTimeout(() => {
+        if (!solved && item.el) {
+          item.el.classList.remove("wrong-shake");
+          void item.el.offsetWidth;
+          item.el.classList.add("wrong-shake");
+        }
+      }, 160);
+    }
+
+    function pickChoiceAt(px, py) {
+      if (mateChoiceItem) {
+        const dMate = Math.hypot(px - mateChoiceItem.curX, py - mateChoiceItem.curY);
+        if (dMate <= Math.max(54, mateChoiceItem.size * 0.60)) {
+          return mateChoiceItem;
+        }
+      }
+      let best = null;
+      let bestD = Infinity;
+      choiceItems.forEach(it => {
+        const d = Math.hypot(px - it.curX, py - it.curY);
+        if (d <= Math.max(48, it.size * 0.56) && d < bestD) {
+          bestD = d;
+          best = it;
+        }
+      });
+      return best;
+    }
+
+    choicesLayer.addEventListener("pointerdown", e => {
+      if (window._arcadeStageLockedForVovo || solved || _isVictoryActive || activeDrag) return;
+      const rect = arena.getBoundingClientRect();
+      const px = e.clientX - rect.left;
+      const py = e.clientY - rect.top;
+      const picked = pickChoiceAt(px, py);
+      if (!picked) return;
+
+      e.preventDefault();
+      TronoAudio.unlockGestureAudio();
+      TronoAudio.play("click");
+
+      activeDrag = picked;
+      activePtrId = e.pointerId;
+      downX = px;
+      downY = py;
+      downTime = Date.now();
+      dragLiftY = e.pointerType === "touch" ? 24 : 0;
+
+      try { choicesLayer.setPointerCapture(e.pointerId); } catch (err) {}
+      picked.el.classList.remove("returning", "wrong-shake");
+      picked.el.classList.add("dragging");
+
+      const ny = Math.max(26, py - dragLiftY);
+      picked.curX = px;
+      picked.curY = ny;
+      picked.el.style.left = `${px.toFixed(1)}px`;
+      picked.el.style.top = `${ny.toFixed(1)}px`;
+    });
+
+    choicesLayer.addEventListener("pointermove", e => {
+      if (!activeDrag || e.pointerId !== activePtrId || solved) return;
+      e.preventDefault();
+      const rect = arena.getBoundingClientRect();
+      const W = rect.width || 360;
+      const H = rect.height || 640;
+      const nx = Math.max(24, Math.min(W - 24, e.clientX - rect.left));
+      const ny = Math.max(26, Math.min(H - 24, e.clientY - rect.top - dragLiftY));
+      activeDrag.curX = nx;
+      activeDrag.curY = ny;
+      activeDrag.el.style.left = `${nx.toFixed(1)}px`;
+      activeDrag.el.style.top = `${ny.toFixed(1)}px`;
+
+      const nearSpot = Math.hypot(nx - spotX, ny - spotY) <= Math.max(115, topAnimalSize * 0.95) || ny <= H * 0.66;
+      mateSpot.classList.toggle("hover-ready", nearSpot);
+    });
+
+    function endParesPointer(e) {
+      if (!activeDrag || (e && e.pointerId !== undefined && e.pointerId !== activePtrId)) return;
+      const it = activeDrag;
+      activeDrag = null;
+      activePtrId = null;
+      mateSpot.classList.remove("hover-ready");
+
+      if (solved) return;
+      const rect = arena.getBoundingClientRect();
+      const H = rect.height || 640;
+      const movedDist = Math.hypot(it.curX - downX, (it.curY + dragLiftY) - downY);
+      const isQuickTap = movedDist < 14 && (Date.now() - downTime) < 480;
+      const droppedNearPair = Math.hypot(it.curX - spotX, it.curY - spotY) <= Math.max(120, topAnimalSize * 1.0) || it.curY <= H * 0.67;
+
+      if (droppedNearPair || isQuickTap) {
+        if (it.isMate) {
+          completeParesWin(it);
+        } else {
+          rejectWrongChoice(it);
+        }
+      } else {
+        it.el.classList.remove("dragging");
+        it.el.classList.add("returning");
+        it.curX = it.homeX;
+        it.curY = it.homeY;
+        it.el.style.left = `${it.homeX.toFixed(1)}px`;
+        it.el.style.top = `${it.homeY.toFixed(1)}px`;
+      }
+    }
+
+    choicesLayer.addEventListener("pointerup", endParesPointer);
+    choicesLayer.addEventListener("pointercancel", endParesPointer);
   }
 
   // ==========================================================================
