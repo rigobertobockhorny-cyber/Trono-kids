@@ -72,36 +72,69 @@
           this.vovoVictoryPlayer.preload = "auto";
         } catch(e) {}
       }
+      if (!this._victoryBufferLoading && !this._victoryBuffer && this.ctx && typeof fetch === "function") {
+        this._victoryBufferLoading = true;
+        fetch('./6_ASSETS_AUDIO/jogos_vovo/vovo_vitoria.mp3?v=168&cb=174&r=177')
+          .then(r => r.ok ? r.arrayBuffer() : null)
+          .then(buf => (buf && this.ctx) ? this.ctx.decodeAudioData(buf) : null)
+          .then(decoded => {
+            if (decoded) this._victoryBuffer = decoded;
+            this._victoryBufferLoading = false;
+          })
+          .catch(() => {
+            this._victoryBufferLoading = false;
+          });
+      }
+    },
+
+    stopVictoryBuffer() {
+      if (this._victoryBufferSrc) {
+        try {
+          this._victoryBufferSrc.onended = null;
+          this._victoryBufferSrc.stop(0);
+        } catch (e) {}
+        try {
+          this._victoryBufferSrc.disconnect();
+        } catch (e) {}
+        this._victoryBufferSrc = null;
+      }
     },
 
     unlockGestureAudio() {
       this.init();
-      // Destrava permanentemente o canal HTMLAudioElement do Vovô no celular (Android Chrome / iOS Safari)
-      // para que falarVovo funcione 100% mesmo dentro de setTimeout no fim das fases!
-      if (!this._victoryAudioPrimed && this.vovoVictoryPlayer) {
-        this._victoryAudioPrimed = true;
+      // Destrava permanentemente o canal HTMLAudioElement do Vovô em gestos reais (click / touchend / pointerup)
+      // sem nunca interromper uma comemoração em andamento e sem usar muted=true (que não destrava áudio audível no celular)!
+      if (!_isVictoryActive && !this._victoryAudioPrimed && !this._victoryAudioPriming && this.vovoVictoryPlayer) {
+        this._victoryAudioPriming = true;
         try {
           const v = this.vovoVictoryPlayer;
-          v.muted = true;
+          v.muted = false;
+          v.volume = 0.0001;
           const p = v.play();
           if (p && typeof p.then === "function") {
             p.then(() => {
-              v.pause();
-              v.currentTime = 0;
-              v.muted = false;
+              this._victoryAudioPriming = false;
+              this._victoryAudioPrimed = true;
+              if (!_isVictoryActive) {
+                v.pause();
+                try { v.currentTime = 0; } catch (e) {}
+              }
               v.volume = 1.0;
             }).catch(() => {
-              v.muted = false;
+              this._victoryAudioPriming = false;
               v.volume = 1.0;
-              this._victoryAudioPrimed = false;
             });
           } else {
-            v.pause();
-            v.currentTime = 0;
-            v.muted = false;
+            this._victoryAudioPriming = false;
+            this._victoryAudioPrimed = true;
+            if (!_isVictoryActive) {
+              v.pause();
+              try { v.currentTime = 0; } catch (e) {}
+            }
+            v.volume = 1.0;
           }
         } catch (e) {
-          this._victoryAudioPrimed = false;
+          this._victoryAudioPriming = false;
         }
       }
       if (typeof window.ensureBgAmbientLoopAlive === "function") {
@@ -451,6 +484,7 @@
           this.vovoVictoryPlayer.pause();
         } catch (e) {}
       }
+      this.stopVictoryBuffer();
       if (this._vovoTimer) {
         clearTimeout(this._vovoTimer);
         this._vovoTimer = null;
@@ -535,9 +569,33 @@
         player.onloadedmetadata = applyExactDurationTimer;
         this._vovoTimer = setTimeout(() => doFinish(false), exactDurationMs + 1100);
 
+        if (this.ctx && this.ctx.state === "suspended" && !window._arcadeAudioMuted) {
+          try { this.ctx.resume(); } catch (e) {}
+        }
         const playPromise = player.play();
         if (playPromise && typeof playPromise.catch === "function") {
           playPromise.catch(err => {
+            if (isVictory && !window._arcadeAudioMuted && this.ctx && this._victoryBuffer) {
+              try {
+                if (this.ctx.state === "suspended") this.ctx.resume();
+                this.stopVictoryBuffer();
+                const src = this.ctx.createBufferSource();
+                src.buffer = this._victoryBuffer;
+                const vGain = this.ctx.createGain();
+                vGain.gain.value = 1.05;
+                src.connect(vGain);
+                vGain.connect(this.ctx.destination);
+                this._victoryBufferSrc = src;
+                src.onended = () => {
+                  if (this._victoryBufferSrc === src) this._victoryBufferSrc = null;
+                  doFinish(true);
+                };
+                src.start(0);
+                return;
+              } catch (bufErr) {
+                console.warn("Victory WebAudio fallback err:", bufErr);
+              }
+            }
             console.warn("Audio play prevented:", err);
             setTimeout(() => doFinish(true), 600);
           });
@@ -559,10 +617,12 @@
     }
   };
 
-  // Destrava o áudio do Vovô no primeiro toque em qualquer lugar da tela (Android / iPhone)
-  document.addEventListener("pointerdown", () => {
-    try { TronoAudio.unlockGestureAudio(); } catch (e) {}
-  }, { passive: true });
+  // Destrava o áudio do Vovô em gestos reais em qualquer lugar da tela (Android Chrome / iPhone Safari / Desktop)
+  ["pointerdown", "pointerup", "touchend", "click"].forEach((evtName) => {
+    document.addEventListener(evtName, () => {
+      try { TronoAudio.unlockGestureAudio(); } catch (e) {}
+    }, { passive: true });
+  });
 
   // ==========================================================================
   // 2. CATÁLOGO DOS 16 JOGOS OFICIAIS DO TRONO KIDS (GRADE PAR 8x2)
@@ -2429,6 +2489,7 @@
     if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
     if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
     if (TronoAudio.vovoVictoryPlayer) { try { TronoAudio.vovoVictoryPlayer.pause(); } catch(e){} }
+    TronoAudio.stopVictoryBuffer();
 
     // Reseta trava de liberação
     window._arcadeUnlockGameAction = null;
@@ -2613,6 +2674,7 @@
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
     if (TronoAudio.vovoPlayer) { try { TronoAudio.vovoPlayer.pause(); } catch(e){} }
     if (TronoAudio.vovoVictoryPlayer) { try { TronoAudio.vovoVictoryPlayer.pause(); } catch(e){} }
+    TronoAudio.stopVictoryBuffer();
     if (typeof window.setVovoVoiceDucking === "function") {
       window.setVovoVoiceDucking(false);
     }
@@ -2743,6 +2805,12 @@
       // 2. Pausa voz do Vovô (e se estava na introdução travada, já destrava o jogo na hora!)
       if (TronoAudio && TronoAudio.vovoPlayer) {
         try { TronoAudio.vovoPlayer.pause(); } catch(e){}
+      }
+      if (TronoAudio && TronoAudio.vovoVictoryPlayer) {
+        try { TronoAudio.vovoVictoryPlayer.pause(); } catch(e){}
+      }
+      if (TronoAudio && typeof TronoAudio.stopVictoryBuffer === "function") {
+        TronoAudio.stopVictoryBuffer();
       }
       if (TronoAudio && typeof TronoAudio._pendingFinish === "function") {
         try { TronoAudio._pendingFinish(); } catch(e){}
@@ -2938,6 +3006,7 @@
         TronoAudio.vovoVictoryPlayer.onended = null;
       } catch(e) {}
     }
+    TronoAudio.stopVictoryBuffer();
     if (TronoAudio._vovoTimer) {
       clearTimeout(TronoAudio._vovoTimer);
       TronoAudio._vovoTimer = null;
@@ -7574,7 +7643,7 @@
     window._liguePontosRaf = requestAnimationFrame(animLoop);
   }
 
-  // --- JOGO 11: JOGO DOS ERROS 3D (15 FASES • 2 IMAGENS 16:9 EMPILHADAS + MOLDURAS COLORIDAS 3D + LUPINHA DOURADA DICA v177.0) ---
+  // --- JOGO 11: JOGO DOS ERROS 3D (15 FASES • 100% EDIÇÕES NATIVAS NAS CENAS 3D + PULSO NOS ACERTOS + LUPINHA DICA v179.0) ---
   function runSeisErros(container, phase) {
     // A limpeza de timers anteriores já é feita por loadPhase() antes de iniciar a fase:
     window._arcadeWaitVisualBeforeVovo = true;
@@ -7582,93 +7651,93 @@
     const JOGO_ERROS_15_PHASES = [
       {
         phase: 1, title: "A Luz da Criação",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_21_criacao_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_01_v177.jpg?v=177",
-        spots: [[0.49, 0.22], [0.86, 0.48], [0.15, 0.52], [0.21, 0.83], [0.78, 0.84]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_21_criacao_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_01_v177.jpg?v=179",
+        spots: [[0.782, 0.295], [0.485, 0.231], [0.598, 0.5], [0.056, 0.156], [0.762, 0.919]]
       },
       {
         phase: 2, title: "A Arca de Noé",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_13_arca_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_02_v177.jpg?v=177",
-        spots: [[0.20, 0.16], [0.88, 0.18], [0.16, 0.82], [0.48, 0.86], [0.74, 0.84]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_13_arca_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_02_v177.jpg?v=179",
+        spots: [[0.275, 0.398], [0.798, 0.115], [0.447, 0.756], [0.704, 0.404], [0.809, 0.743]]
       },
       {
         phase: 3, title: "A Pombinha da Paz",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_05_pombo_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_03_v177.jpg?v=177",
-        spots: [[0.262, 0.582], [0.18, 0.22], [0.50, 0.20], [0.22, 0.84], [0.84, 0.83]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_05_pombo_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_03_v177.jpg?v=179",
+        spots: [[0.263, 0.575], [0.534, 0.505], [0.693, 0.702], [0.113, 0.065], [0.832, 0.074]]
       },
       {
         phase: 4, title: "Bebê Moisés no Rio",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_27_moises_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_04_v177.jpg?v=177",
-        spots: [[0.85, 0.79], [0.13, 0.21], [0.36, 0.36], [0.13, 0.79], [0.58, 0.84]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_27_moises_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_04_v177.jpg?v=179",
+        spots: [[0.844, 0.799], [0.279, 0.911], [0.12, 0.626], [0.514, 0.518], [0.753, 0.47]]
       },
       {
         phase: 5, title: "O Pãozinho do Céu",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_25_mana_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_05_v177.jpg?v=177",
-        spots: [[0.20, 0.16], [0.82, 0.17], [0.50, 0.25], [0.13, 0.82], [0.88, 0.56]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_25_mana_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_05_v177.jpg?v=179",
+        spots: [[0.11, 0.288], [0.906, 0.322], [0.715, 0.573], [0.301, 0.572], [0.481, 0.904]]
       },
       {
         phase: 6, title: "Davi e Jônatas",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_07_davi_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_06_v177.jpg?v=177",
-        spots: [[0.17, 0.19], [0.48, 0.17], [0.14, 0.78], [0.50, 0.82], [0.89, 0.77]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_07_davi_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_06_v177.jpg?v=179",
+        spots: [[0.485, 0.819], [0.699, 0.641], [0.295, 0.763], [0.076, 0.465], [0.626, 0.171]]
       },
       {
         phase: 7, title: "O Bom Pastor",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_09_ovelha1_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_07_v177.jpg?v=177",
-        spots: [[0.20, 0.19], [0.82, 0.18], [0.13, 0.83], [0.48, 0.84], [0.87, 0.80]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_09_ovelha1_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_07_v177.jpg?v=179",
+        spots: [[0.648, 0.675], [0.937, 0.414], [0.107, 0.4], [0.179, 0.85], [0.929, 0.831]]
       },
       {
         phase: 8, title: "Alegria no Campo",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_11_ovelha2_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_08_v177.jpg?v=177",
-        spots: [[0.135, 0.59], [0.22, 0.16], [0.74, 0.16], [0.34, 0.85], [0.83, 0.54]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_11_ovelha2_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_08_v177.jpg?v=179",
+        spots: [[0.135, 0.586], [0.895, 0.829], [0.865, 0.531], [0.233, 0.218], [0.631, 0.483]]
       },
       {
         phase: 9, title: "A Pesca Maravilhosa",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_01_pesca_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_09_v177.jpg?v=177",
-        spots: [[0.20, 0.18], [0.58, 0.17], [0.14, 0.55], [0.44, 0.83], [0.84, 0.82]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_01_pesca_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_09_v177.jpg?v=179",
+        spots: [[0.433, 0.5], [0.771, 0.377], [0.207, 0.663], [0.969, 0.252], [0.768, 0.797]]
       },
       {
         phase: 10, title: "A Moeda Encontrada",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_03_moeda_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_10_v177.jpg?v=177",
-        spots: [[0.18, 0.25], [0.82, 0.21], [0.15, 0.72], [0.52, 0.85], [0.84, 0.78]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_03_moeda_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_10_v177.jpg?v=179",
+        spots: [[0.462, 0.14], [0.3, 0.803], [0.321, 0.547], [0.627, 0.365], [0.891, 0.815]]
       },
       {
         phase: 11, title: "O Jardim do Éden",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_19_erros_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_11_v177.jpg?v=177",
-        spots: [[0.48, 0.18], [0.84, 0.18], [0.48, 0.63], [0.15, 0.83], [0.83, 0.82]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_19_erros_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_11_v177.jpg?v=179",
+        spots: [[0.2, 0.209], [0.808, 0.222], [0.61, 0.792], [0.087, 0.793], [0.94, 0.371]]
       },
       {
         phase: 12, title: "Amigos da Criação",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_23_memoria_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_12_v177.jpg?v=177",
-        spots: [[0.86, 0.78], [0.14, 0.21], [0.48, 0.18], [0.15, 0.83], [0.58, 0.85]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_23_memoria_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_12_v177.jpg?v=179",
+        spots: [[0.273, 0.178], [0.912, 0.289], [0.414, 0.558], [0.158, 0.873], [0.868, 0.811]]
       },
       {
         phase: 13, title: "Os Pães e Peixinhos",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_29_puzzle_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_13_v177.jpg?v=177",
-        spots: [[0.18, 0.18], [0.84, 0.18], [0.16, 0.50], [0.46, 0.85], [0.85, 0.82]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_29_puzzle_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_13_v177.jpg?v=179",
+        spots: [[0.535, 0.531], [0.312, 0.786], [0.776, 0.853], [0.052, 0.73], [0.875, 0.522]]
       },
       {
         phase: 14, title: "A Túnica de José",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_31_pintura_f05.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_14_v177.jpg?v=177",
-        spots: [[0.20, 0.17], [0.82, 0.17], [0.15, 0.78], [0.58, 0.85], [0.88, 0.80]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_31_pintura_f05.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_14_v177.jpg?v=179",
+        spots: [[0.137, 0.485], [0.915, 0.513], [0.775, 0.659], [0.175, 0.79], [0.392, 0.785]]
       },
       {
         phase: 15, title: "O Arco-Íris de Deus",
-        orig: "./5_ASSETS_CARDS_JOGOS/card_14_arca_f15.jpg?v=177",
-        mod: "./2_ASSETS_UI_BOTOES/erros_mod_15_v177.jpg?v=177",
-        spots: [[0.18, 0.20], [0.55, 0.16], [0.86, 0.20], [0.16, 0.84], [0.48, 0.85]]
+        orig: "./5_ASSETS_CARDS_JOGOS/card_14_arca_f15.jpg?v=179",
+        mod: "./2_ASSETS_UI_BOTOES/erros_mod_15_v177.jpg?v=179",
+        spots: [[0.626, 0.813], [0.184, 0.791], [0.295, 0.415], [0.817, 0.307], [0.857, 0.7]]
       }
     ];
 
@@ -7696,6 +7765,16 @@
           0% { transform: translate(-50%, -50%) scale(0.25); opacity: 0; }
           65% { transform: translate(-50%, -50%) scale(1.22); opacity: 1; }
           100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+        @keyframes errosAllFoundPulse {
+          0%, 100% {
+            transform: translate(-50%, -50%) scale(1);
+            box-shadow: 0 0 0 2.5px #10b981, 0 0 16px rgba(253, 224, 71, 0.95);
+          }
+          50% {
+            transform: translate(-50%, -50%) scale(1.26);
+            box-shadow: 0 0 0 5px #ffffff, 0 0 32px rgba(253, 224, 71, 1), 0 0 18px rgba(52, 211, 153, 1);
+          }
         }
         @keyframes errosHintPulse {
           0%, 100% {
@@ -7842,6 +7921,9 @@
           transform: scale(1.12);
           box-shadow: 0 0 10px rgba(52, 211, 153, 0.85);
         }
+        #seis-erros-stage.erros-celebrate-all .erros-prog-dot.found {
+          animation: errosDicaBtnBreath 0.36s ease-in-out infinite !important;
+        }
         .erros-btn-dica {
           height: 34px;
           padding: 0 14px 0 10px;
@@ -7880,6 +7962,9 @@
           box-shadow: 0 0 0 2.5px #10b981, 0 0 16px rgba(253, 224, 71, 0.95);
           animation: errosFoundPop 0.36s cubic-bezier(0.22, 1.45, 0.36, 1) forwards;
           pointer-events: none;
+        }
+        #seis-erros-stage.erros-celebrate-all .erros-found-ring {
+          animation: errosAllFoundPulse 0.36s ease-in-out infinite !important;
         }
         .erros-found-badge {
           position: absolute;
@@ -7931,7 +8016,7 @@
       </style>
 
       <div id="seis-erros-stage">
-        <img id="erros-bg-img" src="./2_ASSETS_UI_BOTOES/bg_jogo_11_erros_v177.jpg?v=177" class="erros-bg-cover" alt="" draggable="false">
+        <img id="erros-bg-img" src="./2_ASSETS_UI_BOTOES/bg_jogo_11_erros_v177.jpg?v=179" class="erros-bg-cover" alt="" draggable="false">
         <div class="erros-bg-veil"></div>
 
         <div class="erros-stack-wrap">
@@ -7957,7 +8042,7 @@
             </button>
           </div>
 
-          <!-- BLOCO 2 (IMAGEM DE BAIXO 16:9 COM AS 5 DIFERENÇAS VISUAIS 3D) -->
+          <!-- BLOCO 2 (IMAGEM DE BAIXO 16:9 COM AS 5 DIFERENÇAS NATIVAS 3D) -->
           <div class="erros-card-outer">
             <div id="erros-img-bottom-wrap" class="erros-img-viewport" data-pane="bottom">
               <img id="erros-img-bottom" src="${pData.mod}" class="erros-scene-img" alt="Figura 2" draggable="false">
@@ -7965,8 +8050,6 @@
             </div>
           </div>
         </div>
-
-        <canvas id="erros-confetti-cvs" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:30;"></canvas>
       </div>
     `;
 
@@ -7979,7 +8062,6 @@
     const topOverlay = document.getElementById("erros-overlay-top");
     const botOverlay = document.getElementById("erros-overlay-bottom");
     const dicaBtn = document.getElementById("btn-erros-dica");
-    const confettiCvs = document.getElementById("erros-confetti-cvs");
 
     // Aguarda fundo + as 2 figuras 3D carregarem antes do Vovô começar a falar!
     let visualReadyNotified = false;
@@ -8101,26 +8183,30 @@
           clearTimeout(window._seisErrosIdleTimer);
           window._seisErrosIdleTimer = null;
         }
+        // Sem confete na tela do jogo: todos os erros encontrados dão uma pulsadinha juntos (~1.15s)
+        // e aí abre a tela de comemoração com confetes + aplausos + Vovô dando os parabéns!
+        if (stageEl) {
+          stageEl.classList.add("erros-celebrate-all");
+        }
         setTimeout(() => {
           if (!isDisposed) TronoAudio.play("success");
-        }, 180);
-        startErrosStageConfetti();
+        }, 160);
         window._seisErrosWinTimer = setTimeout(() => {
           if (!isDisposed) triggerArcadeVictory();
-        }, 1850);
+        }, 1150);
       } else {
         resetIdleHintTimer();
       }
     }
 
     function handleViewportTap(e, viewportEl) {
-      if (e && typeof e.preventDefault === "function") e.preventDefault();
+      try { TronoAudio.unlockGestureAudio(); } catch (err) {}
       if (!isGameUnlocked || isVictoryTriggered || isDisposed || !viewportEl) return;
 
       const rect = viewportEl.getBoundingClientRect();
       if (!rect.width || !rect.height) return;
-      const clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
-      const clientY = (e.touches && e.touches[0]) ? e.touches[0].clientY : e.clientY;
+      const clientX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : e.clientX;
+      const clientY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : e.clientY;
       const nx = (clientX - rect.left) / rect.width;
       const ny = (clientY - rect.top) / rect.height;
 
@@ -8163,56 +8249,15 @@
       }
     }
 
-    function startErrosStageConfetti() {
-      if (!confettiCvs) return;
-      const w = (confettiCvs.width = confettiCvs.clientWidth || 390);
-      const h = (confettiCvs.height = confettiCvs.clientHeight || 720);
-      const ctx = confettiCvs.getContext("2d");
-      if (!ctx) return;
-      const colors = ["#fde047", "#38bdf8", "#34d399", "#fb7185", "#a855f7", "#fb923c"];
-      const pieces = Array.from({ length: 56 }, () => ({
-        x: w * (0.15 + Math.random() * 0.7),
-        y: h * (0.25 + Math.random() * 0.35),
-        vx: (Math.random() - 0.5) * 7.5,
-        vy: -4.5 - Math.random() * 5.5,
-        size: 6 + Math.random() * 6,
-        rot: Math.random() * Math.PI * 2,
-        vr: (Math.random() - 0.5) * 0.25,
-        color: colors[Math.floor(Math.random() * colors.length)]
-      }));
-
-      function stepConfetti() {
-        if (isDisposed) return;
-        ctx.clearRect(0, 0, w, h);
-        let alive = false;
-        for (const p of pieces) {
-          p.x += p.vx;
-          p.y += p.vy;
-          p.vy += 0.22;
-          p.rot += p.vr;
-          if (p.y < h + 24) alive = true;
-          ctx.save();
-          ctx.translate(p.x, p.y);
-          ctx.rotate(p.rot);
-          ctx.fillStyle = p.color;
-          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.62);
-          ctx.restore();
-        }
-        if (alive) {
-          window._seisErrosRaf = requestAnimationFrame(stepConfetti);
-        }
-      }
-      window._seisErrosRaf = requestAnimationFrame(stepConfetti);
-    }
-
     [topViewport, botViewport].forEach((vp) => {
       if (!vp) return;
-      vp.addEventListener("pointerdown", (e) => handleViewportTap(e, vp));
+      vp.addEventListener("click", (e) => handleViewportTap(e, vp));
     });
 
     if (dicaBtn) {
       dicaBtn.addEventListener("click", (e) => {
         e.stopPropagation();
+        try { TronoAudio.unlockGestureAudio(); } catch (err) {}
         if (!isGameUnlocked || isVictoryTriggered || isDisposed) return;
         showSpotHint(false);
       });
@@ -8237,10 +8282,6 @@
       if (window._seisErrosWinTimer) {
         clearTimeout(window._seisErrosWinTimer);
         window._seisErrosWinTimer = null;
-      }
-      if (window._seisErrosRaf) {
-        cancelAnimationFrame(window._seisErrosRaf);
-        window._seisErrosRaf = null;
       }
     };
   }
