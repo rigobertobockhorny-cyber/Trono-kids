@@ -653,8 +653,8 @@
       title: "JOGO DA MEMÓRIA",
       sub: "",
       icon: "./2_ASSETS_UI_BOTOES/ico_jogo_13_memoria_v130.png?v=130",
-      audioFile: "vovo_jogo_13.mp3",
-      vovoFala: "Vire as cartas e descubra os pares dos animais criados por Deus!",
+      audioFile: "vovo_jogo_13_v171.mp3",
+      vovoFala: "Vamos brincar de jogo da memória! Toque nas cartinhas para virar e encontre todos os pares iguais das histórias da Bíblia!",
       run: (container, phase) => runMemoriaSonoro(container, phase)
     },
     {
@@ -7874,50 +7874,283 @@
     arena.addEventListener("pointercancel", endVerseDrag);
   }
 
-  // --- JOGO 13: JOGO DA MEMÓRIA DOS BICHOS ---
+  // --- JOGO 13: JOGO DA MEMÓRIA 3D OFICIAL RECUPERADO (CARTAS 3D ROXAS DO VOVÔ + MARGEM ARCO-ÍRIS ANIMADA + HISTÓRIAS BÍBLICAS) ---
+  const MEMORIA_3D_STORY_CODES = [
+    "09", "10", "11", "12", "13", "14", "15", "16", "17", "18",
+    "29", "30", "31", "32", "33", "34", "35", "36", "37", "38",
+    "49", "50", "51", "52", "53"
+  ];
+
+  function injectMemoria3DOriginalStyles() {
+    if (document.getElementById("arcade-memoria-3d-v171-styles")) return;
+    const st = document.createElement("style");
+    st.id = "arcade-memoria-3d-v171-styles";
+    st.textContent = `
+      @keyframes magicFlowMem171 {
+        0%   { background-position: 0% 50%; }
+        50%  { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      @keyframes aliveMemFloat171 {
+        0%, 100% { transform: translateY(0px); }
+        50%      { transform: translateY(-3px); }
+      }
+      @keyframes floatVovoMemEmblem171 {
+        0%, 100% { transform: translateY(0px) scale(1); }
+        50%      { transform: translateY(-3px) scale(1.03); }
+      }
+      @keyframes memMatchPop171 {
+        0%   { transform: rotateY(180deg) scale(1); }
+        45%  { transform: rotateY(180deg) scale(1.07); }
+        100% { transform: rotateY(180deg) scale(1); }
+      }
+      .arc-mem171-stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 76px 12px 16px 12px;
+        box-sizing: border-box;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .arc-mem171-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .arc-mem171-vignette {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(18, 10, 42, 0.34) 0%, rgba(18, 10, 42, 0.16) 50%, rgba(18, 10, 42, 0.38) 100%);
+        pointer-events: none;
+        z-index: 1;
+      }
+      .arc-mem171-grid {
+        position: relative;
+        z-index: 5;
+        width: 100%;
+        max-width: 430px;
+        flex: 1;
+        min-height: 0;
+        display: grid;
+        gap: 8px;
+        padding: 2px;
+        box-sizing: border-box;
+      }
+      .arc-mem171-card {
+        perspective: 800px;
+        cursor: pointer;
+        min-width: 0;
+        min-height: 0;
+        animation: aliveMemFloat171 2.8s ease-in-out infinite;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .arc-mem171-card:nth-child(2n) { animation-delay: 0.4s; }
+      .arc-mem171-card:nth-child(3n) { animation-delay: 0.8s; }
+      .arc-mem171-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .arc-mem171-card.flipped .arc-mem171-inner,
+      .arc-mem171-card.matched .arc-mem171-inner {
+        transform: rotateY(180deg);
+      }
+      .arc-mem171-card.matched .arc-mem171-inner {
+        animation: memMatchPop171 0.42s ease;
+      }
+      .arc-mem171-face {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.84);
+        box-sizing: border-box;
+      }
+      .arc-mem171-back {
+        background: linear-gradient(180deg, rgba(147, 51, 234, 0.72) 0%, rgba(88, 28, 135, 0.88) 100%);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .arc-mem171-back img {
+        width: 78%;
+        height: 78%;
+        object-fit: contain;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.85));
+        animation: floatVovoMemEmblem171 3s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .arc-mem171-front {
+        transform: rotateY(180deg);
+        background: #1e0a3c;
+        padding: 3px;
+      }
+      .arc-mem171-front img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 13px;
+        display: block;
+        pointer-events: none;
+      }
+      .arc-mem171-back::before,
+      .arc-mem171-front::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 3px;
+        background: linear-gradient(125deg, #38bdf8, #a855f7, #facc15, #34d399, #ec4899, #38bdf8);
+        background-size: 250% 250%;
+        animation: magicFlowMem171 4s ease infinite;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 3;
+      }
+      .arc-mem171-card.matched .arc-mem171-front {
+        box-shadow: 0 0 18px rgba(0, 230, 118, 0.92), 0 5px 14px rgba(0, 0, 0, 0.84);
+      }
+      .arc-mem171-card.matched .arc-mem171-front::before {
+        background: linear-gradient(180deg, #00e676 0%, #34d399 100%);
+        animation: none;
+      }
+    `;
+    document.head.appendChild(st);
+  }
+
   function runMemoriaSonoro(container, phase) {
-    const cards = ["🦁", "🦁", "🐑", "🐑", "🕊️", "🕊️"];
-    cards.sort(() => Math.random() - 0.5);
+    injectMemoria3DOriginalStyles();
+    window._arcadeWaitVisualBeforeVovo = true;
+    if (window._memoriaWinTimer) {
+      clearTimeout(window._memoriaWinTimer);
+      window._memoriaWinTimer = null;
+    }
+
+    const p = Math.max(1, Number(phase) || 1);
+    let cols = 3;
+    let rows = 4;
+    let gapPx = 8;
+    if (p >= 12) {
+      cols = 4;
+      rows = 5;
+      gapPx = 6;
+    } else if (p >= 7) {
+      cols = 4;
+      rows = 4;
+      gapPx = 7;
+    }
+    const totalPairs = Math.floor((cols * rows) / 2);
+
+    const startOffset = ((p - 1) * 3) % MEMORIA_3D_STORY_CODES.length;
+    const chosenCodes = [];
+    for (let i = 0; i < totalPairs; i++) {
+      const code = MEMORIA_3D_STORY_CODES[(startOffset + i) % MEMORIA_3D_STORY_CODES.length];
+      chosenCodes.push(code);
+    }
+
+    const deck = [...chosenCodes, ...chosenCodes];
+    for (let i = deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = deck[i];
+      deck[i] = deck[j];
+      deck[j] = tmp;
+    }
 
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#475569;">
-        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px;">
-          ${cards.map((c, i) => `
-            <div id="card-mem-${i}" onclick="window._flipMemCard(${i}, '${c}')" style="width:75px; height:85px; border-radius:16px; background:linear-gradient(180deg,#fde047,#ca8a04); border:3px solid #ffffff; display:flex; align-items:center; justify-content:center; font-size:36px; cursor:pointer; box-shadow:0 6px 14px rgba(0,0,0,0.4);">
-              ❓
+      <div class="arc-mem171-stage">
+        <img id="arc-mem171-bg-img" class="arc-mem171-bg" src="./2_ASSETS_UI_BOTOES/bg_ebd_02_jardim.jpg?v=171" alt="">
+        <div class="arc-mem171-vignette"></div>
+        <div id="arc-mem171-grid" class="arc-mem171-grid" style="grid-template-columns:repeat(${cols}, 1fr); grid-template-rows:repeat(${rows}, 1fr); gap:${gapPx}px;">
+          ${deck.map((code, idx) => `
+            <div id="arc-mem171-card-${idx}" class="arc-mem171-card" data-code="${code}" onclick="window._flipMemCard171(${idx})">
+              <div class="arc-mem171-inner">
+                <div class="arc-mem171-face arc-mem171-back">
+                  <img src="./2_ASSETS_UI_BOTOES/ui_icon_04.png?v=171" alt="">
+                </div>
+                <div class="arc-mem171-face arc-mem171-front">
+                  <img src="./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${code}.jpg?v=171" alt="">
+                </div>
+              </div>
             </div>
           `).join("")}
         </div>
       </div>
     `;
 
+    (function waitMemVisualReady() {
+      const bgImg = document.getElementById("arc-mem171-bg-img");
+      const notify = () => {
+        if (typeof window._notifyArcadeVisualReady === "function") window._notifyArcadeVisualReady();
+      };
+      if (bgImg && bgImg.complete && bgImg.naturalWidth > 0) {
+        notify();
+      } else if (bgImg) {
+        bgImg.addEventListener("load", notify, { once: true });
+        bgImg.addEventListener("error", notify, { once: true });
+      } else {
+        notify();
+      }
+    })();
+
     let flipped = [];
-    let matches = 0;
-    window._flipMemCard = function(idx, char) {
-      const el = document.getElementById(`card-mem-${idx}`);
-      if (el.dataset.open || flipped.length >= 2) return;
+    let matchedPairs = 0;
+    let lockFlip = false;
+
+    window._flipMemCard171 = function(idx) {
+      if (window._arcadeStageLockedForVovo || lockFlip || _isVictoryActive) return;
+      const cardEl = document.getElementById(`arc-mem171-card-${idx}`);
+      if (!cardEl) return;
+      if (cardEl.classList.contains("flipped") || cardEl.classList.contains("matched")) return;
+      if (flipped.length >= 2) return;
+
       TronoAudio.play("click");
-      el.innerHTML = char;
-      el.dataset.open = "true";
-      flipped.push({ idx, char });
+      cardEl.classList.add("flipped");
+      flipped.push({ idx, code: cardEl.getAttribute("data-code"), el: cardEl });
 
       if (flipped.length === 2) {
-        if (flipped[0].char === flipped[1].char) {
-          TronoAudio.play("success");
-          matches++;
+        lockFlip = true;
+        const [a, b] = flipped;
+        if (a.code === b.code) {
+          a.el.classList.add("matched");
+          b.el.classList.add("matched");
           flipped = [];
-          if (matches >= 3) {
-            setTimeout(triggerArcadeVictory, 700);
+          lockFlip = false;
+          matchedPairs++;
+          TronoAudio.play("star");
+
+          if (matchedPairs >= totalPairs) {
+            TronoAudio.play("success");
+            window._memoriaWinTimer = setTimeout(() => {
+              triggerArcadeVictory();
+            }, 900);
           }
         } else {
           TronoAudio.play("error");
           setTimeout(() => {
-            document.getElementById(`card-mem-${flipped[0].idx}`).innerHTML = "❓";
-            document.getElementById(`card-mem-${flipped[0].idx}`).dataset.open = "";
-            document.getElementById(`card-mem-${flipped[1].idx}`).innerHTML = "❓";
-            document.getElementById(`card-mem-${flipped[1].idx}`).dataset.open = "";
+            if (a.el) a.el.classList.remove("flipped");
+            if (b.el) b.el.classList.remove("flipped");
             flipped = [];
-          }, 800);
+            lockFlip = false;
+          }, 780);
         }
       }
     };
