@@ -5594,43 +5594,13 @@ window.completeCurrentWeekLesson = function() {
 };
 
 // ============================================================================
-// 6. PORTAL DO PROFESSOR E FAMÍLIA (COM PIN E PLANO DE AULA IMPRIMÍVEL)
+// 6. REVISTA DIGITAL • TRONO DA PROMESSA EBD (ENCAMINHAMENTO OFICIAL)
 // ============================================================================
 window.openTeacherPortalScreen = function() {
-  if (typeof playClick === "function") playClick();
-  const lesson = window.getCurrentLessonObj();
-  const titleEl = document.getElementById("teacher-lesson-title");
-  const objEl = document.getElementById("teacher-guide-objective");
-  const matEl = document.getElementById("teacher-guide-materials");
-  const dynEl = document.getElementById("teacher-guide-dynamic");
-  const wlChurchEl = document.getElementById("wl-church-input");
-  const wlQuarterEl = document.getElementById("wl-quarter-input");
-
-  if (titleEl) titleEl.textContent = `Guia Pedagógico • Lição ${lesson.week}: ${lesson.title}`;
-  if (objEl) objEl.textContent = lesson.teacherGuide.objective;
-  if (matEl) matEl.textContent = lesson.teacherGuide.materials;
-  if (dynEl) dynEl.textContent = lesson.teacherGuide.classroomDynamic;
-  if (wlChurchEl) wlChurchEl.value = localStorage.getItem("trono_ebd_church_name") || window.EBD_WHITE_LABEL_CONFIG.churchName;
-  if (wlQuarterEl) wlQuarterEl.value = localStorage.getItem("trono_ebd_quarter_title") || window.EBD_WHITE_LABEL_CONFIG.quarterTitle;
-
+  if (typeof window.renderTeacherPortalContent === "function") {
+    window.renderTeacherPortalContent();
+  }
   if (typeof showScreen === "function") showScreen("screen-teacher-portal");
-};
-
-window.saveWhiteLabelConfig = function() {
-  if (typeof playClick === "function") playClick();
-  const wlChurchEl = document.getElementById("wl-church-input");
-  const wlQuarterEl = document.getElementById("wl-quarter-input");
-  if (wlChurchEl && wlChurchEl.value.trim()) {
-    localStorage.setItem("trono_ebd_church_name", wlChurchEl.value.trim());
-  }
-  if (wlQuarterEl && wlQuarterEl.value.trim()) {
-    localStorage.setItem("trono_ebd_quarter_title", wlQuarterEl.value.trim());
-  }
-  const feedbackEl = document.getElementById("wl-save-feedback");
-  if (feedbackEl) {
-    feedbackEl.textContent = " Identidade da Igreja/Escola Bíblica salva com sucesso!";
-    setTimeout(() => { feedbackEl.textContent = ""; }, 3500);
-  }
 };
 
 // ============================================================================
@@ -8823,8 +8793,784 @@ window.advanceStageSWPhase = function() {
 };
 
 // ============================================================================
-// 12. PORTAL DO PROFESSOR EBD & FAMÍLIA (#screen-teacher-portal)
+// 12. REVISTA DIGITAL • TRONO DA PROMESSA EBD (#screen-teacher-portal)
+// 100% Fundo Branco Editorial (#ffffff) para Impressão Econômica e Nítida!
+// 7 Blocos Pedagógicos + Folha A4 de Colorir (PNG/WhatsApp/PDF) + Modo Slides TV!
 // ============================================================================
+
+window.EBD_MAGAZINE_STATE = {
+  activeTab: "magazine", // "magazine" | "slides"
+  slideIndex: 0,
+  slideAnswerRevealed: false,
+  fullscreenActive: false
+};
+
+window.EBD_SEMENTINHA_MEMO_TIPS = [
+  "Brincadeira do Eco e Gestos: o professor fala metade do versículo abrindo bem os braços em 'céus' e apontando para o chão em 'terra', e a turma repete batendo uma palma por palavra!",
+  "Arco da Promessa: faça um grande arco no ar com os braços enquanto a turma repete o versículo primeiro bem baixinho (sussurrando) e depois com voz alegre e firme!",
+  "Contando as Estrelinhas: a cada palavra do versículo, as crianças levantam e abrem as mãozinhas no alto como estrelinhas piscando no céu!",
+  "Degraus da Escada: comece agachadinho na primeira palavra e vá subindo um 'degrau' imaginário a cada trecho do versículo até ficar em pé no final!",
+  "Roda do Abraço: forme um círculo; cada criança fala uma palavra seguinte do versículo em sequência até completar toda a frase com um sorriso!",
+  "Caminho Aberto no Mar: divida a sala em dois lados; o lado direito fala a primeira metade do versículo e o lado esquerdo responde a segunda metade!",
+  "Sete Passos de Coragem: dê um passinho firme no lugar para cada palavra do versículo e termine com as mãos na cintura como Josué!",
+  "Ritmo da Harpa de Davi: bata palmas leves nas coxas marcando um ritmo suave enquanto toda a turma recita o versículo duas vezes seguidas!",
+  "Megafone das Mãos: faça uma conchinha com as mãos ao redor da boca como um megafone de boas notícias e fale o versículo com clareza e alegria!",
+  "Mãos de Oração de Daniel: una as mãos em atitude de respeito e repita o versículo devagar, guardando cada palavra no coração!",
+  "Sementinha que Cresce: comece encolhidinho como uma semente e vá 'brotando' e abrindo os braços como uma árvore frutífera enquanto recita o versículo!",
+  "Balanço do Cestinho no Rio: balance os braços suavemente como quem embala o cestinho de Moisés enquanto repete cada palavra do versículo!",
+  "Duas Tábuas com as Mãos: abra as duas palmas das mãos à frente como um livro aberto e leia 'imaginariamente' o versículo junto com o professor!",
+  "Tocha Brilhante de Gideão: levante uma mão fechada como se segurasse uma lanterninha acesa e repita o versículo iluminando a sala!",
+  "Ouvidos Atentos de Samuel: coloque a mão atrás da orelhinha na primeira frase e no coração na segunda frase, repetindo com atenção!",
+  "Desafio da Palavra Escondida: escreva ou fale o versículo omitindo uma palavra por vez para a turma descobrir e completar de memória!",
+  "Príncipe da Paz: coloque as duas mãos sobre o coração, respire fundo e recite o versículo em tom calmo, doce e cheio de paz!",
+  "Trio de Amigos Fiéis: junte as crianças de três em três; cada trio recita o versículo unido em uma só voz!",
+  "Coroa de Coragem de Ester: faça uma coroa imaginária sobre a cabeça e diga o versículo com postura firme e confiante!",
+  "Tijolinho por Tijolinho: empilhe uma mão sobre a outra a cada palavra falada, construindo juntos o 'muro' completo do versículo!",
+  "Brilho da Estrela de Belém: aponte para o alto como a estrela guia e termine abrindo os braços para acolher os colegas ao repetir o versículo!",
+  "Barquinho calmo na Palavra: balance o corpo como um barquinho e, na última frase do versículo, fique paradinho em total tranquilidade!"
+];
+
+window.escapeEbdHtml = function(str) {
+  return String(str == null ? "" : str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+};
+
+window.getLessonColoringOutlineInfo = function(lesson) {
+  const storiesArr = (typeof STORIES !== "undefined" && Array.isArray(STORIES))
+    ? STORIES
+    : (Array.isArray(window.STORIES) ? window.STORIES : []);
+  let found = null;
+  if (lesson && lesson.storyIdUnlock) {
+    found = storiesArr.find(s => Number(s.id) === Number(lesson.storyIdUnlock));
+  }
+  if (!found && storiesArr.length > 0 && lesson) {
+    found = storiesArr[(Math.max(1, Number(lesson.week) || 1) - 1) % storiesArr.length];
+  }
+  const seqPaint = (found && found.seqPaint) ? found.seqPaint : "39";
+  const seqColor = (found && found.seqColor) ? found.seqColor : "29";
+  const artTitle = (found && found.title) ? found.title : (lesson ? lesson.title : "Atividade Bíblica");
+  return {
+    outlineUrl: `./4_ASSETS_PINTURA/pintura_contorno_${seqPaint}.jpg`,
+    colorUrl: `./3_ASSETS_QUEBRA_CABECA/cena_colorida_${seqColor}.jpg`,
+    artTitle: artTitle,
+    seqPaint: seqPaint
+  };
+};
+
+window.splitStoryIntoEditorialMoments = function(rawScript) {
+  const clean = String(rawScript || "").trim();
+  if (!clean) return [];
+  const sentences = clean.match(/[^.!?]+[.!?]+/g) || [clean];
+  if (sentences.length <= 4) {
+    return sentences.map((s, idx) => ({
+      label: `Momento ${idx + 1}`,
+      text: s.trim()
+    }));
+  }
+  const labels = [
+    "1. Abertura e Curiosidade",
+    "2. O Cenário Bíblico",
+    "3. O Agir Poderoso de Deus",
+    "4. Desfecho e Princípio no Coração"
+  ];
+  const groups = [[], [], [], []];
+  sentences.forEach((s, idx) => {
+    const bucket = Math.min(3, Math.floor((idx * 4) / sentences.length));
+    groups[bucket].push(s.trim());
+  });
+  return groups
+    .map((arr, idx) => ({ label: labels[idx], text: arr.join(" ") }))
+    .filter(g => g.text.length > 0);
+};
+
+window.getLessonPedagogicalExtras = function(weekNum) {
+  const wk = Math.max(1, Math.min(22, Number(weekNum) || 1));
+  const whoAmI = (window.WHO_AM_I_BANK || []).find(x => Number(x.lessonWeek) === wk) || (window.WHO_AM_I_BANK || [])[wk - 1] || null;
+  const trueMyth = (window.TRUE_OR_MYTH_BANK || []).find(x => Number(x.lessonWeek) === wk) || (window.TRUE_OR_MYTH_BANK || [])[wk - 1] || null;
+  const secretWord = (window.SECRET_WORD_BANK || []).find(x => Number(x.lessonWeek) === wk) || (window.SECRET_WORD_BANK || [])[wk - 1] || null;
+  const wordSearch = (window.WORD_SEARCH_LEVELS || []).find(x => Number(x.lessonWeek) === wk) || (window.WORD_SEARCH_LEVELS || [])[wk - 1] || null;
+  const mimica = (window.MIMICA_CARDS || []).find(x => Number(x.lessonWeek) === wk) || (window.MIMICA_CARDS || [])[wk - 1] || null;
+  const memoTip = window.EBD_SEMENTINHA_MEMO_TIPS[(wk - 1) % window.EBD_SEMENTINHA_MEMO_TIPS.length];
+  return { whoAmI, trueMyth, secretWord, wordSearch, mimica, memoTip };
+};
+
+window.ensureEbdMagazineStyles = function() {
+  if (document.getElementById("ebd-magazine-white-styles")) return;
+  const st = document.createElement("style");
+  st.id = "ebd-magazine-white-styles";
+  st.textContent = `
+    .ebd-mag-toolbar {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .ebd-mag-tabs-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .ebd-mag-tab-btn {
+      padding: 9px 8px;
+      border-radius: 12px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 12.5px;
+      font-weight: 900;
+      cursor: pointer;
+      border: 2px solid #cbd5e1;
+      background: #ffffff;
+      color: #334155;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.30);
+      transition: transform 0.12s ease;
+      text-align: center;
+      line-height: 1.15;
+    }
+    .ebd-mag-tab-btn.active-tab {
+      background: #ffffff;
+      border: 2.5px solid #fde047;
+      color: #581c87;
+      box-shadow: 0 0 0 2px #6d28d9, 0 4px 12px rgba(0,0,0,0.45);
+    }
+    .ebd-mag-actions-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+    }
+    .ebd-mag-act-btn {
+      padding: 8px 5px;
+      border-radius: 10px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 10.8px;
+      font-weight: 900;
+      cursor: pointer;
+      background: #ffffff;
+      color: #0f172a;
+      border: 2px solid #0284c7;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.28);
+      line-height: 1.12;
+      text-align: center;
+    }
+    .ebd-mag-act-btn:active, .ebd-mag-tab-btn:active {
+      transform: scale(0.96);
+    }
+    .ebd-mag-sheet {
+      background: #ffffff !important;
+      color: #1e293b !important;
+      border-radius: 14px;
+      border: 2px solid #cbd5e1;
+      padding: 14px 12px 18px 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.38);
+      font-family: 'Nunito', 'Segoe UI', Arial, sans-serif;
+      text-align: left;
+    }
+    .ebd-mag-header {
+      background: #ffffff !important;
+      border-top: 5px solid #6d28d9;
+      border-bottom: 2px solid #e2e8f0;
+      padding: 10px 4px 10px 4px;
+      margin-bottom: 12px;
+    }
+    .ebd-mag-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 4px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      color: #6d28d9;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .ebd-mag-pill-outline {
+      display: inline-block;
+      background: #ffffff !important;
+      border: 1.5px solid #059669;
+      color: #047857;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 900;
+    }
+    .ebd-mag-main-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 19px;
+      font-weight: 900;
+      color: #4c1d95;
+      line-height: 1.18;
+      margin: 2px 0 4px 0;
+    }
+    .ebd-mag-ref-line {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #0369a1;
+      line-height: 1.3;
+    }
+    .ebd-mag-block {
+      background: #ffffff !important;
+      border: 1.5px solid #cbd5e1;
+      border-left-width: 5px;
+      border-radius: 10px;
+      padding: 10px 11px;
+      margin-bottom: 11px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .ebd-mag-block-head {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 5px;
+    }
+    .ebd-mag-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 24px;
+      height: 24px;
+      padding: 0 5px;
+      border-radius: 6px;
+      background: #ffffff !important;
+      border: 2px solid currentColor;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 11.5px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .ebd-mag-block-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 13.8px;
+      font-weight: 900;
+      line-height: 1.18;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+    }
+    .ebd-mag-sub {
+      font-size: 12.2px;
+      font-weight: 900;
+      margin: 7px 0 3px 0;
+    }
+    .ebd-mag-p {
+      font-size: 12.8px;
+      line-height: 1.46;
+      color: #1e293b;
+      margin: 0 0 5px 0;
+      font-weight: 600;
+    }
+    .ebd-mag-list {
+      margin: 4px 0 4px 17px;
+      padding: 0;
+      font-size: 12.5px;
+      line-height: 1.44;
+      color: #1e293b;
+      font-weight: 600;
+    }
+    .ebd-mag-list li {
+      margin-bottom: 4px;
+    }
+    .ebd-mag-verse-box {
+      background: #ffffff !important;
+      border: 2px dashed #d97706;
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin: 5px 0 7px 0;
+    }
+    .ebd-mag-word-tag {
+      display: inline-block;
+      background: #ffffff !important;
+      border: 1.5px solid #be123c;
+      color: #9f1239;
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-size: 11px;
+      font-weight: 900;
+      margin: 2px 4px 2px 0;
+    }
+    .ebd-coloring-preview-card {
+      background: #ffffff !important;
+      border: 2px solid #334155;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      margin-top: 6px;
+    }
+    .ebd-coloring-img-clean {
+      width: 100%;
+      max-height: 360px;
+      object-fit: contain;
+      background: #ffffff !important;
+      mix-blend-mode: multiply;
+      filter: contrast(1.14) brightness(1.04);
+      display: block;
+      margin: 6px auto;
+    }
+    #ebd-print-mount {
+      display: none;
+    }
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 11mm;
+      }
+      html, body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      #app-shell,
+      #trono-arcade-overlay,
+      #trono-parental-gate-modal,
+      #ebd-fullscreen-slide-modal,
+      #ebd-print-toast {
+        display: none !important;
+      }
+      #ebd-print-mount {
+        display: block !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+      .ebd-print-page {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        width: 100%;
+        box-sizing: border-box;
+        page-break-after: always;
+        break-after: page;
+      }
+      .ebd-print-page:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+      .ebd-print-no-break {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+    }
+  `;
+  document.head.appendChild(st);
+};
+
+window.buildColoringPageA4Html = function(lesson) {
+  const esc = window.escapeEbdHtml;
+  const col = window.getLessonColoringOutlineInfo(lesson);
+  const age68 = (lesson.byAge && lesson.byAge["6-8"]) || {};
+  const verseTxt = age68.verse || ((lesson.byAge && lesson.byAge["3-5"] && lesson.byAge["3-5"].verse) || "");
+  return `
+    <div class="ebd-print-page" style="background:#ffffff !important; border:2px solid #334155; border-radius:10px; padding:14px 16px; font-family:'Nunito','Segoe UI',Arial,sans-serif; color:#0f172a;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #6d28d9; padding-bottom:6px; margin-bottom:8px;">
+        <div style="font-family:'Fredoka',sans-serif; font-size:12.5px; font-weight:900; color:#6d28d9; text-transform:uppercase;">REVISTA DIGITAL • TRONO DA PROMESSA EBD</div>
+        <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; color:#0369a1;">ATIVIDADE PARA COLORIR • LIÇÃO ${lesson.week}</div>
+      </div>
+      <div style="font-family:'Fredoka',sans-serif; font-size:18px; font-weight:900; color:#4c1d95; text-align:center; margin-bottom:2px;">
+        Lição ${lesson.week}: ${esc(lesson.title)}
+      </div>
+      <div style="font-size:12px; font-weight:800; color:#0369a1; text-align:center; margin-bottom:10px;">
+        Base Bíblica: ${esc(lesson.bibleRef)} • Ilustração: ${esc(col.artTitle)}
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:14px; font-size:12.5px; font-weight:800; color:#1e293b; border:1.5px solid #94a3b8; border-radius:8px; padding:9px 12px; margin-bottom:10px; background:#ffffff !important;">
+        <div style="flex:1; display:flex; align-items:flex-end; gap:6px;"><span>ALUNO(A):</span><span style="flex:1; border-bottom:1.5px solid #334155; height:14px;"></span></div>
+        <div style="white-space:nowrap;">DATA: &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      </div>
+      <div style="background:#ffffff !important; border:1.5px solid #cbd5e1; border-radius:10px; padding:10px; text-align:center; min-height:520px; display:flex; align-items:center; justify-content:center;">
+        <img src="${col.outlineUrl}" alt="${esc(col.artTitle)}" style="max-width:100%; max-height:560px; width:auto; height:auto; object-fit:contain; background:#ffffff !important; mix-blend-mode:multiply; filter:contrast(1.15) brightness(1.04);">
+      </div>
+      <div style="margin-top:10px; border:2px dashed #059669; border-radius:8px; padding:8px 12px; text-align:center; background:#ffffff !important;">
+        <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; color:#047857; text-transform:uppercase; margin-bottom:2px;">Sementinha no Coração (Versículo para Memorizar)</div>
+        <div style="font-size:13px; font-weight:800; color:#0f172a;">${esc(verseTxt)}</div>
+      </div>
+    </div>
+  `;
+};
+
+window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
+  const esc = window.escapeEbdHtml;
+  const age35 = (lesson.byAge && lesson.byAge["3-5"]) || {};
+  const age68 = (lesson.byAge && lesson.byAge["6-8"]) || {};
+  const ch = lesson.chronoSimple || {};
+  const tg = lesson.teacherGuide || {};
+  const extras = window.getLessonPedagogicalExtras(lesson.week);
+  const col = window.getLessonColoringOutlineInfo(lesson);
+  const moments = window.splitStoryIntoEditorialMoments(lesson.vovoStoryScript);
+  const devDays = (lesson.devotional5Days || []).slice(0, 5);
+  const words = (extras.wordSearch && extras.wordSearch.words) ? extras.wordSearch.words : (lesson.wordSearchWords || []);
+
+  const block7InteractiveButtons = forPrintMode ? "" : `
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:10px;">
+      <button type="button" onclick="window.downloadColoringSheetWhiteA4(${lesson.week}, false)" style="padding:10px 8px; border-radius:10px; border:2px solid #047857; background:#ffffff; color:#047857; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; cursor:pointer;">
+        BAIXAR FOLHA A4 BRANCA (PNG)
+      </button>
+      <button type="button" onclick="window.downloadColoringSheetWhiteA4(${lesson.week}, true)" style="padding:10px 8px; border-radius:10px; border:2px solid #0284c7; background:#ffffff; color:#0369a1; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; cursor:pointer;">
+        ENVIAR P/ WHATSAPP / CELULAR
+      </button>
+      <button type="button" onclick="window.printOnlyColoringSheetA4(${lesson.week})" style="grid-column:1 / -1; padding:10px 8px; border-radius:10px; border:2px solid #6d28d9; background:#ffffff; color:#581c87; font-family:'Fredoka',sans-serif; font-size:12.2px; font-weight:900; cursor:pointer;">
+        IMPRIMIR SOMENTE ESTA FOLHA DE COLORIR (A4)
+      </button>
+    </div>
+  `;
+
+  const inlineBlock7 = forPrintMode ? "" : `
+    <div class="ebd-mag-block" style="border-left-color:#334155;">
+      <div class="ebd-mag-block-head" style="color:#334155;">
+        <span class="ebd-mag-num">07</span>
+        <div class="ebd-mag-block-title">Folha de Atividade para Colorir (Fundo Branco A4)</div>
+      </div>
+      <p class="ebd-mag-p">Folha oficial em <strong>fundo 100% branco</strong> pronta para baixar no celular, enviar no WhatsApp ou imprimir direto na igreja:</p>
+      <div class="ebd-coloring-preview-card">
+        <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; color:#6d28d9; text-transform:uppercase;">TRONO DA PROMESSA EBD • LIÇÃO ${lesson.week}</div>
+        <div style="font-family:'Fredoka',sans-serif; font-size:14px; font-weight:900; color:#1e293b; margin-bottom:4px;">${esc(col.artTitle)}</div>
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:10px; font-size:11px; font-weight:800; color:#475569; border-bottom:1px solid #cbd5e1; padding-bottom:5px; margin-bottom:4px; text-align:left;">
+          <span style="flex:1; display:flex; align-items:flex-end; gap:5px;"><span>ALUNO(A):</span><span style="flex:1; border-bottom:1.2px solid #64748b; height:11px;"></span></span>
+          <span style="white-space:nowrap;">DATA: &nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </div>
+        <img src="${col.outlineUrl}" alt="${esc(col.artTitle)}" class="ebd-coloring-img-clean" loading="lazy">
+        <div style="font-size:11.5px; font-weight:800; color:#047857; border-top:1px dashed #059669; padding-top:5px;">${esc(age68.verse || age35.verse || "")}</div>
+      </div>
+      ${block7InteractiveButtons}
+    </div>
+  `;
+
+  const openSlidesShortcut = forPrintMode ? "" : `
+    <div style="margin-top:7px;">
+      <button type="button" onclick="window.switchEbdMagazineTab('slides')" style="padding:7px 12px; border-radius:8px; border:1.8px solid #6d28d9; background:#ffffff; color:#6d28d9; font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; cursor:pointer;">
+        ABRIR ${(lesson.storyScenes || []).length} SLIDES VISUAIS DESTA HISTÓRIA (TV / PROJETOR)
+      </button>
+    </div>
+  `;
+
+  return `
+    <div class="${forPrintMode ? "ebd-print-page" : "ebd-mag-sheet"}">
+      <div class="ebd-mag-header">
+        <div class="ebd-mag-kicker">
+          <span>REVISTA DIGITAL • TRONO DA PROMESSA EBD</span>
+          <span class="ebd-mag-pill-outline">LIÇÃO ${lesson.week} DE 22 • GUIA DO PROFESSOR E FAMÍLIA</span>
+        </div>
+        <div class="ebd-mag-main-title">Lição ${lesson.week}: ${esc(lesson.title)}</div>
+        <div class="ebd-mag-ref-line">
+          Base Bíblica: ${esc(lesson.bibleRef)} &nbsp;•&nbsp; ${esc(lesson.eraName || "")} ${ch.testament ? `(${esc(ch.testament)})` : ""}
+        </div>
+      </div>
+
+      <!-- BLOCO 01: OBJETIVO & LINHA DO TEMPO -->
+      <div class="ebd-mag-block" style="border-left-color:#0284c7;">
+        <div class="ebd-mag-block-head" style="color:#0284c7;">
+          <span class="ebd-mag-num">01</span>
+          <div class="ebd-mag-block-title">Objetivo Pedagógico &amp; Linha do Tempo da Promessa</div>
+        </div>
+        <div class="ebd-mag-sub" style="color:#0369a1;">Objetivo Central da Aula:</div>
+        <p class="ebd-mag-p">${esc(tg.objective || "")}</p>
+        <div class="ebd-mag-sub" style="color:#0369a1;">Conexão Cronológica na Bíblia:</div>
+        <ul class="ebd-mag-list">
+          ${ch.before ? `<li><strong style="color:#0369a1;">O que veio antes:</strong> ${esc(ch.before.replace(/^Antes desta história:\s*/i, ""))}</li>` : ""}
+          ${ch.now ? `<li><strong style="color:#0369a1;">Nesta Lição:</strong> ${esc(ch.now.replace(/^Nesta Lição[^:]*:\s*/i, ""))}</li>` : ""}
+          ${ch.after ? `<li><strong style="color:#0369a1;">Próximo passo da Promessa:</strong> ${esc(ch.after.replace(/^O que vem depois:\s*/i, ""))}</li>` : ""}
+          ${lesson.chronologyConnection ? `<li><strong style="color:#4c1d95;">Elo da Promessa:</strong> ${esc(lesson.chronologyConnection)}</li>` : ""}
+        </ul>
+      </div>
+
+      <!-- BLOCO 02: PONTE CASA <-> IGREJA -->
+      <div class="ebd-mag-block" style="border-left-color:#059669;">
+        <div class="ebd-mag-block-head" style="color:#047857;">
+          <span class="ebd-mag-num">02</span>
+          <div class="ebd-mag-block-title">Ponte Casa ↔ Igreja (Acolhimento Inicial • 5 min)</div>
+        </div>
+        <p class="ebd-mag-p">Durante a semana, os pais trabalharam esta lição em casa com a criança. Comece a aula conectando o lar à sala da EBD:</p>
+        <div class="ebd-mag-sub" style="color:#047857;">Missões enviadas para a Família nesta semana (Fé em Ação):</div>
+        <ul class="ebd-mag-list">
+          <li><strong style="color:#047857;">3 a 5 anos (${esc(age35.actionTitle || "Pequenininhos")}):</strong> ${esc(age35.actionDesc || "")}</li>
+          <li><strong style="color:#047857;">6 a 8 anos (${esc(age68.actionTitle || "Exploradores")}):</strong> ${esc(age68.actionDesc || "")}</li>
+        </ul>
+        <div class="ebd-mag-sub" style="color:#047857;">Temas do Devocional Familiar da Semana:</div>
+        <p class="ebd-mag-p">${devDays.map(d => esc(String(d.title || "").replace(/^Dia\s*\d+\s*•\s*/i, `${d.day}º Dia: `))).join(" &nbsp;|&nbsp; ")}</p>
+        <div class="ebd-mag-sub" style="color:#047857;">Perguntas Prontas de Check-in para o Professor:</div>
+        <ul class="ebd-mag-list">
+          <li><em>"Quem ouviu ou estudou a história desta semana em casa com a família?"</em></li>
+          <li><em>"Quem conseguiu cumprir a Missão da Semana em casa? Conte para a turma como foi!"</em></li>
+          <li><em>"Pelo que a sua família agradeceu a Deus durante esta semana?"</em></li>
+        </ul>
+      </div>
+
+      <!-- BLOCO 03: ROTEIRO DA HISTÓRIA BÍBLICA -->
+      <div class="ebd-mag-block" style="border-left-color:#6d28d9;">
+        <div class="ebd-mag-block-head" style="color:#6d28d9;">
+          <span class="ebd-mag-num">03</span>
+          <div class="ebd-mag-block-title">Roteiro da História Bíblica para Contar (15 min)</div>
+        </div>
+        <p class="ebd-mag-p"><strong style="color:#581c87;">Resumo Rápido (3 a 5 anos):</strong> ${esc(age35.text || "")}</p>
+        <p class="ebd-mag-p"><strong style="color:#581c87;">Síntese Didática (6 a 8 anos):</strong> ${esc(age68.text || "")}</p>
+        <div class="ebd-mag-sub" style="color:#6d28d9;">Narrativa Completa Dividida por Momentos (Guia de Ministração):</div>
+        ${moments.map(m => `
+          <p class="ebd-mag-p"><strong style="color:#581c87;">${esc(m.label)}:</strong> ${esc(m.text)}</p>
+        `).join("")}
+        ${openSlidesShortcut}
+      </div>
+
+      <!-- BLOCO 04: SEMENTINHA NO CORAÇÃO -->
+      <div class="ebd-mag-block" style="border-left-color:#d97706;">
+        <div class="ebd-mag-block-head" style="color:#b45309;">
+          <span class="ebd-mag-num">04</span>
+          <div class="ebd-mag-block-title">Sementinha no Coração &amp; Memorização (5 min)</div>
+        </div>
+        <div class="ebd-mag-verse-box">
+          <div style="font-size:11.5px; font-weight:900; color:#b45309; text-transform:uppercase; margin-bottom:2px;">Versículo Chave (3 a 5 anos):</div>
+          <div style="font-size:13.2px; font-weight:800; color:#0f172a; margin-bottom:6px;">${esc(age35.verse || "")}</div>
+          <div style="font-size:11.5px; font-weight:900; color:#b45309; text-transform:uppercase; margin-bottom:2px;">Versículo Completo (6 a 8 anos):</div>
+          <div style="font-size:13.2px; font-weight:800; color:#0f172a;">${esc(age68.verse || "")}</div>
+        </div>
+        <div class="ebd-mag-sub" style="color:#b45309;">Dinâmica Lúdica de Memorização em Sala:</div>
+        <p class="ebd-mag-p">${esc(extras.memoTip)}</p>
+      </div>
+
+      <!-- BLOCO 05: DINÂMICA PRÁTICA & MATERIAIS -->
+      <div class="ebd-mag-block" style="border-left-color:#ea580c;">
+        <div class="ebd-mag-block-head" style="color:#c2410c;">
+          <span class="ebd-mag-num">05</span>
+          <div class="ebd-mag-block-title">Dinâmica Prática de Sala &amp; Materiais de Apoio (10 min)</div>
+        </div>
+        <div class="ebd-mag-sub" style="color:#c2410c;">Materiais Visuais Simples:</div>
+        <p class="ebd-mag-p">${esc(tg.materials || "")}</p>
+        <div class="ebd-mag-sub" style="color:#c2410c;">Passo a Passo da Dinâmica de Aula:</div>
+        <p class="ebd-mag-p">${esc(tg.classroomDynamic || "")}</p>
+        ${extras.mimica ? `
+          <div class="ebd-mag-sub" style="color:#c2410c;">Brincadeira Rápida de Expressão Corporal (Opcional):</div>
+          <p class="ebd-mag-p"><strong>Tema:</strong> ${esc(extras.mimica.target)} — ${esc(extras.mimica.tip)}</p>
+        ` : ""}
+      </div>
+
+      <!-- BLOCO 06: RODA DE PERGUNTAS & GABARITO -->
+      <div class="ebd-mag-block" style="border-left-color:#be123c;">
+        <div class="ebd-mag-block-head" style="color:#be123c;">
+          <span class="ebd-mag-num">06</span>
+          <div class="ebd-mag-block-title">Roda de Perguntas, Fixação &amp; Gabarito (5 min)</div>
+        </div>
+        ${extras.whoAmI ? `
+          <div class="ebd-mag-sub" style="color:#be123c;">1. Desafio das 3 Pistas ("Quem Sou Eu na Bíblia?"):</div>
+          <ul class="ebd-mag-list">
+            ${(extras.whoAmI.clues || []).map(c => `<li>${esc(c)}</li>`).join("")}
+            <li><strong style="color:#047857;">Gabarito do Professor:</strong> <strong>${esc(extras.whoAmI.answer)}</strong></li>
+          </ul>
+        ` : ""}
+        ${extras.trueMyth ? `
+          <div class="ebd-mag-sub" style="color:#be123c;">2. Pergunta "Verdadeiro ou Mito?" para a Turma:</div>
+          <p class="ebd-mag-p"><em>"${esc(String(extras.trueMyth.statement || "").replace(/^Lição\s*\d+:\s*/i, ""))}"</em></p>
+          <p class="ebd-mag-p"><strong style="color:#047857;">Resposta Oficial:</strong> ${esc(extras.trueMyth.explanation)}</p>
+        ` : ""}
+        ${extras.secretWord ? `
+          <div class="ebd-mag-sub" style="color:#be123c;">3. Palavra-Chave da Lição:</div>
+          <p class="ebd-mag-p">${esc(String(extras.secretWord.hint || "").replace(/^Lição\s*\d+:\s*/i, ""))} → <strong style="color:#4c1d95;">${esc(extras.secretWord.word)}</strong></p>
+        ` : ""}
+        ${words.length ? `
+          <div class="ebd-mag-sub" style="color:#be123c;">Palavras Bíblicas Trabalhadas na Semana:</div>
+          <div>${words.map(w => `<span class="ebd-mag-word-tag">${esc(w)}</span>`).join("")}</div>
+        ` : ""}
+      </div>
+
+      ${inlineBlock7}
+    </div>
+    ${forPrintMode ? window.buildColoringPageA4Html(lesson) : ""}
+  `;
+};
+
+window.buildLessonSlidesArray = function(lesson) {
+  const age68 = (lesson.byAge && lesson.byAge["6-8"]) || {};
+  const age35 = (lesson.byAge && lesson.byAge["3-5"]) || {};
+  const ch = lesson.chronoSimple || {};
+  const extras = window.getLessonPedagogicalExtras(lesson.week);
+  const scenes = lesson.storyScenes || [];
+  const slides = [];
+
+  slides.push({
+    type: "cover",
+    badge: `TRONO DA PROMESSA EBD • LIÇÃO ${lesson.week}`,
+    title: lesson.title,
+    subtitle: `Base Bíblica: ${lesson.bibleRef} • ${lesson.eraName || ""}`,
+    img: lesson.thumbImg || (scenes[1] && scenes[1].img) || (scenes[0] && scenes[0].img) || "",
+    note: (lesson.teacherGuide && lesson.teacherGuide.objective) || ""
+  });
+
+  slides.push({
+    type: "timeline",
+    badge: `LINHA DO TEMPO DA PROMESSA • LIÇÃO ${lesson.week}`,
+    title: lesson.chronologyDate || lesson.eraName || "Onde Estamos na Bíblia?",
+    before: (ch.before || "").replace(/^Antes desta história:\s*/i, ""),
+    now: (ch.now || "").replace(/^Nesta Lição[^:]*:\s*/i, ""),
+    after: (ch.after || "").replace(/^O que vem depois:\s*/i, ""),
+    connection: lesson.chronologyConnection || ""
+  });
+
+  scenes.forEach((sc, idx) => {
+    slides.push({
+      type: "scene",
+      badge: `HISTÓRIA BÍBLICA • QUADRO ${idx + 1} DE ${scenes.length}`,
+      title: `Lição ${lesson.week}: ${lesson.title}`,
+      img: sc.img,
+      caption: String(sc.caption || "").replace(/^Cena\s*\d+\/\d+\s*•\s*/i, "")
+    });
+  });
+
+  slides.push({
+    type: "verse",
+    badge: `SEMENTINHA NO CORAÇÃO • LIÇÃO ${lesson.week}`,
+    title: "Versículo para Memorizar",
+    verse: age68.verse || age35.verse || "",
+    tip: extras.memoTip
+  });
+
+  slides.push({
+    type: "quiz_action",
+    badge: `REVISÃO & MISSÃO DA SEMANA • LIÇÃO ${lesson.week}`,
+    title: "Desafio da Turma & Fé em Ação",
+    statement: extras.trueMyth ? String(extras.trueMyth.statement || "").replace(/^Lição\s*\d+:\s*/i, "") : "",
+    explanation: extras.trueMyth ? extras.trueMyth.explanation : "",
+    whoClue: (extras.whoAmI && extras.whoAmI.clues) ? extras.whoAmI.clues.join(" ") : "",
+    whoAnswer: extras.whoAmI ? extras.whoAmI.answer : "",
+    missionTitle: age68.actionTitle || age35.actionTitle || "Missão em Família",
+    missionDesc: age68.actionDesc || age35.actionDesc || ""
+  });
+
+  return slides;
+};
+
+window.renderSingleSlideCardHtml = function(slide, idx, total, isFullscreen) {
+  const esc = window.escapeEbdHtml;
+  const revealed = !!window.EBD_MAGAZINE_STATE.slideAnswerRevealed;
+  const titleSize = isFullscreen ? "24px" : "17px";
+  const bodySize = isFullscreen ? "18px" : "13.5px";
+  const imgMaxH = isFullscreen ? "54vh" : "220px";
+
+  let inner = "";
+  if (slide.type === "cover") {
+    inner = `
+      ${slide.img ? `<img src="${slide.img}" alt="${esc(slide.title)}" style="width:100%; max-height:${imgMaxH}; object-fit:cover; border-radius:10px; border:2px solid #cbd5e1; margin-bottom:8px;">` : ""}
+      <div style="font-family:'Fredoka',sans-serif; font-size:${titleSize}; font-weight:900; color:#4c1d95; line-height:1.15; margin-bottom:4px;">${esc(slide.title)}</div>
+      <div style="font-size:${bodySize}; font-weight:800; color:#0369a1; margin-bottom:6px;">${esc(slide.subtitle)}</div>
+      <div style="font-size:${isFullscreen ? "15px" : "12.2px"}; font-weight:700; color:#334155;">${esc(slide.note)}</div>
+    `;
+  } else if (slide.type === "timeline") {
+    inner = `
+      <div style="font-family:'Fredoka',sans-serif; font-size:${titleSize}; font-weight:900; color:#0369a1; margin-bottom:8px;">${esc(slide.title)}</div>
+      <div style="display:flex; flex-direction:column; gap:7px; text-align:left;">
+        <div style="border:1.5px solid #cbd5e1; border-left:5px solid #64748b; border-radius:8px; padding:8px 10px; background:#ffffff;">
+          <strong style="color:#475569;">1. ANTES:</strong> <span style="color:#1e293b; font-size:${bodySize}; font-weight:700;">${esc(slide.before)}</span>
+        </div>
+        <div style="border:1.5px solid #0284c7; border-left:5px solid #0284c7; border-radius:8px; padding:8px 10px; background:#ffffff;">
+          <strong style="color:#0369a1;">2. NESTA LIÇÃO:</strong> <span style="color:#0f172a; font-size:${bodySize}; font-weight:800;">${esc(slide.now)}</span>
+        </div>
+        <div style="border:1.5px solid #059669; border-left:5px solid #059669; border-radius:8px; padding:8px 10px; background:#ffffff;">
+          <strong style="color:#047857;">3. RUMO À PROMESSA:</strong> <span style="color:#1e293b; font-size:${bodySize}; font-weight:700;">${esc(slide.after || slide.connection)}</span>
+        </div>
+      </div>
+    `;
+  } else if (slide.type === "scene") {
+    inner = `
+      <img src="${slide.img}" alt="${esc(slide.title)}" style="width:100%; max-height:${imgMaxH}; object-fit:contain; border-radius:10px; border:1.5px solid #cbd5e1; background:#ffffff; margin-bottom:8px;">
+      <div style="font-size:${isFullscreen ? "19px" : "14px"}; font-weight:800; color:#0f172a; line-height:1.38; padding:4px 2px;">${esc(slide.caption)}</div>
+    `;
+  } else if (slide.type === "verse") {
+    inner = `
+      <div style="font-family:'Fredoka',sans-serif; font-size:${titleSize}; font-weight:900; color:#b45309; margin-bottom:8px;">${esc(slide.title)}</div>
+      <div style="border:2.5px dashed #d97706; border-radius:12px; padding:14px 12px; background:#ffffff; margin-bottom:10px;">
+        <div style="font-family:'Fredoka',sans-serif; font-size:${isFullscreen ? "24px" : "16.5px"}; font-weight:900; color:#0f172a; line-height:1.3;">${esc(slide.verse)}</div>
+      </div>
+      <div style="text-align:left; border-left:4px solid #059669; padding-left:9px; font-size:${isFullscreen ? "15.5px" : "12.5px"}; font-weight:700; color:#334155;">
+        <strong style="color:#047857;">Dinâmica com a Turma:</strong> ${esc(slide.tip)}
+      </div>
+    `;
+  } else if (slide.type === "quiz_action") {
+    inner = `
+      <div style="text-align:left; display:flex; flex-direction:column; gap:8px;">
+        <div style="border:1.5px solid #be123c; border-left:5px solid #be123c; border-radius:8px; padding:8px 10px; background:#ffffff;">
+          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; color:#be123c;">VERDADEIRO OU MITO?</div>
+          <div style="font-size:${bodySize}; font-weight:800; color:#0f172a; margin-top:2px;">"${esc(slide.statement)}"</div>
+          ${revealed ? `<div style="margin-top:5px; font-size:12.5px; font-weight:900; color:#047857;">✔ ${esc(slide.explanation)}</div>` : ""}
+        </div>
+        <div style="border:1.5px solid #6d28d9; border-left:5px solid #6d28d9; border-radius:8px; padding:8px 10px; background:#ffffff;">
+          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; color:#6d28d9;">QUEM SOU EU NA BÍBLIA?</div>
+          <div style="font-size:12.5px; font-weight:700; color:#1e293b; margin-top:2px;">${esc(slide.whoClue)}</div>
+          ${revealed ? `<div style="margin-top:5px; font-size:13px; font-weight:900; color:#047857;">✔ Resposta: ${esc(slide.whoAnswer)}</div>` : ""}
+        </div>
+        <button type="button" onclick="window.toggleSlideAnswerReveal()" style="padding:8px 12px; border-radius:8px; border:2px solid #047857; background:#ffffff; color:#047857; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; cursor:pointer;">
+          ${revealed ? "OCULTAR GABARITO" : "REVELAR RESPOSTAS PARA A TURMA"}
+        </button>
+        <div style="border:1.5px solid #0284c7; border-left:5px solid #0284c7; border-radius:8px; padding:8px 10px; background:#ffffff;">
+          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; color:#0369a1;">MISSÃO EM CASA (${esc(slide.missionTitle)}):</div>
+          <div style="font-size:12.5px; font-weight:700; color:#1e293b;">${esc(slide.missionDesc)}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div style="background:#ffffff !important; color:#0f172a; border:2px solid #cbd5e1; border-top:5px solid #6d28d9; border-radius:14px; padding:${isFullscreen ? "18px 22px" : "12px"}; text-align:center; width:100%; max-width:${isFullscreen ? "920px" : "100%"}; box-sizing:border-box; box-shadow:0 6px 20px rgba(0,0,0,0.28);">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; border-bottom:1.5px solid #e2e8f0; padding-bottom:6px; margin-bottom:10px;">
+        <span style="font-family:'Fredoka',sans-serif; font-size:${isFullscreen ? "13px" : "10.8px"}; font-weight:900; color:#6d28d9; text-transform:uppercase;">${esc(slide.badge)}</span>
+        <span style="font-family:'Fredoka',sans-serif; font-size:${isFullscreen ? "13px" : "11px"}; font-weight:900; color:#0369a1;">SLIDE ${idx + 1} / ${total}</span>
+      </div>
+      ${inner}
+    </div>
+  `;
+};
+
+window.renderTeacherSlidesSectionHtml = function(lesson) {
+  const slides = window.buildLessonSlidesArray(lesson);
+  if (window.EBD_MAGAZINE_STATE.slideIndex < 0 || window.EBD_MAGAZINE_STATE.slideIndex >= slides.length) {
+    window.EBD_MAGAZINE_STATE.slideIndex = 0;
+  }
+  const curIdx = window.EBD_MAGAZINE_STATE.slideIndex;
+  const curSlide = slides[curIdx];
+
+  return `
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      ${window.renderSingleSlideCardHtml(curSlide, curIdx, slides.length, false)}
+
+      <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:6px; align-items:center;">
+        <button type="button" onclick="window.stepEbdLessonSlide(-1)" style="padding:10px 8px; border-radius:10px; border:2px solid #cbd5e1; background:#ffffff; color:#1e293b; font-family:'Fredoka',sans-serif; font-size:12.5px; font-weight:900; cursor:pointer;">
+          ◀ ANTERIOR
+        </button>
+        <div style="background:#ffffff; border:2px solid #6d28d9; color:#581c87; border-radius:999px; padding:7px 12px; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900;">
+          ${curIdx + 1} DE ${slides.length}
+        </div>
+        <button type="button" onclick="window.stepEbdLessonSlide(1)" style="padding:10px 8px; border-radius:10px; border:2px solid #047857; background:#ffffff; color:#047857; font-family:'Fredoka',sans-serif; font-size:12.5px; font-weight:900; cursor:pointer;">
+          PRÓXIMO ▶
+        </button>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+        <button type="button" onclick="window.openFullscreenLessonSlides()" style="padding:10px 8px; border-radius:10px; border:2px solid #6d28d9; background:#ffffff; color:#581c87; font-family:'Fredoka',sans-serif; font-size:11.8px; font-weight:900; cursor:pointer;">
+          TELA CHEIA (TV / PROJETOR)
+        </button>
+        <button type="button" onclick="window.printLessonSlidesHandoutWhite(${lesson.week})" style="padding:10px 8px; border-radius:10px; border:2px solid #0284c7; background:#ffffff; color:#0369a1; font-family:'Fredoka',sans-serif; font-size:11.8px; font-weight:900; cursor:pointer;">
+          IMPRIMIR SLIDES (FUNDO BRANCO)
+        </button>
+      </div>
+
+      <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:10px; padding:8px;">
+        <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; color:#475569; margin-bottom:6px;">IR DIRETO PARA O SLIDE:</div>
+        <div style="display:flex; flex-wrap:wrap; gap:5px;">
+          ${slides.map((s, i) => `
+            <button type="button" onclick="window.jumpToEbdLessonSlide(${i})" style="min-width:32px; height:30px; border-radius:7px; border:${i === curIdx ? "2px solid #6d28d9" : "1.5px solid #cbd5e1"}; background:#ffffff; color:${i === curIdx ? "#581c87" : "#334155"}; font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; cursor:pointer;">
+              ${i + 1}
+            </button>
+          `).join("")}
+        </div>
+      </div>
+    </div>
+  `;
+};
+
 window.openTeacherAndFamilyPortal = function() {
   window.ebdClick();
   window.renderTeacherPortalContent();
@@ -8832,59 +9578,520 @@ window.openTeacherAndFamilyPortal = function() {
 };
 
 window.renderTeacherPortalContent = function() {
+  window.ensureEbdMagazineStyles();
+  const lesson = window.getCurrentLessonObj();
+  if (!lesson) return;
+
+  // Renderiza a esteira superior deslizante LIÇÃO 1 .. LIÇÃO 22
+  const trailEl = document.getElementById("teacher-weeks-trail");
+  if (trailEl) {
+    let pillsHtml = "";
+    (window.EBD_LESSONS_CURRICULUM || []).forEach(item => {
+      const unlocked = window.isLessonWeekUnlocked(item.week);
+      const isCur = item.week === lesson.week;
+      pillsHtml += `<button type="button" id="teacher-pill-${item.week}" class="lesson-scroll-pill ${unlocked ? "" : "locked-week"} ${isCur ? "current" : ""}" onclick="selectTeacherPortalWeek(${item.week})" title="Lição ${item.week}: ${window.escapeEbdHtml(item.title)}">LIÇÃO ${item.week}</button>`;
+    });
+    trailEl.innerHTML = pillsHtml;
+    if (typeof window.enableHorizontalDragScroll === "function") {
+      window.enableHorizontalDragScroll(trailEl);
+    }
+    setTimeout(() => {
+      const curBtn = document.getElementById(`teacher-pill-${lesson.week}`);
+      if (curBtn && typeof curBtn.scrollIntoView === "function") {
+        curBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
+    }, 50);
+  }
+
   const box = document.getElementById("teacher-portal-content");
   if (!box) return;
-  const lesson = window.getCurrentLessonObj();
-  const churchName = localStorage.getItem("trono_ebd_church_name") || window.EBD_WHITE_LABEL_CONFIG.churchName;
-  const quarterTitle = localStorage.getItem("trono_ebd_quarter_title") || window.EBD_WHITE_LABEL_CONFIG.quarterTitle;
+
+  const activeTab = window.EBD_MAGAZINE_STATE.activeTab || "magazine";
+  const unlockedLessonsCount = (window.EBD_LESSONS_CURRICULUM || []).filter(l => window.isLessonWeekUnlocked(l.week)).length;
 
   box.innerHTML = `
-    <div class="ebd-glass-card" style="text-align:left;">
-      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:6px;"><div class="ebd-badge-era">GUIA DO PROFESSOR E FAMÍLIA</div><span style="background:linear-gradient(180deg,#00e676,#00c853); color:#052e16; font-size:11px; font-weight:900; padding:3px 10px; border-radius:999px; border:1.5px solid #ffffff; text-transform:uppercase;">FAIXA ETÁRIA: 5 A 8 ANOS</span></div>
-      <div style="font-size:15.5px; font-weight:900; color:#fde047; margin-bottom:4px;">Lição ${lesson.week}: ${lesson.title}</div>
-      <div style="font-size:12px; color:#38bdf8; font-weight:700; margin-bottom:8px;">Base Bíblica: ${lesson.bibleRef} • ${lesson.eraName}</div>
-
-      <div style="display:flex; gap:5px; flex-wrap:wrap; margin-bottom:10px;">
-        ${window.EBD_LESSONS_CURRICULUM.map(l => {
-          const unlocked = window.isLessonWeekUnlocked(l.week);
-          const active = l.week === lesson.week;
-          return `<button type="button" class="btn-tool-3d ${active ? "active" : ""}" style="font-size:11px; padding:4px 8px;" onclick="selectTeacherPortalWeek(${l.week})">${unlocked ? `Lição ${l.week}` : `${l.week}`}</button>`;
-        }).join("")}
+    <div class="ebd-mag-toolbar">
+      <div class="ebd-mag-tabs-row">
+        <button type="button" class="ebd-mag-tab-btn ${activeTab === "magazine" ? "active-tab" : ""}" onclick="window.switchEbdMagazineTab('magazine')">
+          REVISTA DA LIÇÃO ${lesson.week} (IMPRIMIR)
+        </button>
+        <button type="button" class="ebd-mag-tab-btn ${activeTab === "slides" ? "active-tab" : ""}" onclick="window.switchEbdMagazineTab('slides')">
+          SLIDES DE AULA (TV / PROJETOR)
+        </button>
       </div>
-
-      <div style="background:rgba(15,23,42,0.85); border:1.5px solid #38bdf8; border-radius:12px; padding:9px 10px; margin-bottom:7px;">
-        <div style="color:#fde047; font-size:12px; font-weight:800;">Objetivo Pedagógico da Aula:</div>
-        <div style="color:#ffffff; font-size:12.5px; line-height:1.38;">${lesson.teacherGuide.objective}</div>
-      </div>
-
-      <div style="background:rgba(15,23,42,0.85); border:1.5px solid #a855f7; border-radius:12px; padding:9px 10px; margin-bottom:7px;">
-        <div style="color:#fde047; font-size:12px; font-weight:800;">Materiais Visuais Sugeridos:</div>
-        <div style="color:#ffffff; font-size:12.5px; line-height:1.38;">${lesson.teacherGuide.materials}</div>
-      </div>
-
-      <div style="background:rgba(15,23,42,0.85); border:1.5px solid #00e676; border-radius:12px; padding:9px 10px; margin-bottom:10px;">
-        <div style="color:#86efac; font-size:12px; font-weight:800;">Dinâmica Prática em Sala / Casa:</div>
-        <div style="color:#ffffff; font-size:12.5px; line-height:1.38;">${lesson.teacherGuide.classroomDynamic}</div>
-      </div>
-
-      <div style="background:rgba(15,23,42,0.85); border:1.5px solid #fde047; border-radius:12px; padding:9px 10px;">
-        <div style="color:#fde047; font-size:12px; font-weight:800; margin-bottom:5px;">Personalização da Igreja / Escola Bíblica:</div>
-        <input id="wl-church-input" type="text" value="${churchName}" placeholder="Nome da Igreja ou Ministério Infantil" style="width:100%; padding:7px 9px; border-radius:8px; border:1px solid #38bdf8; background:#0f172a; color:#fff; font-size:12.5px; margin-bottom:6px;">
-        <input id="wl-quarter-input" type="text" value="${quarterTitle}" placeholder="Tema do Trimestre" style="width:100%; padding:7px 9px; border-radius:8px; border:1px solid #38bdf8; background:#0f172a; color:#fff; font-size:12.5px; margin-bottom:7px;">
-        <button type="button" class="btn-gold" style="width:100%; padding:8px; font-size:13px;" onclick="saveWhiteLabelConfig()">Salvar Identidade da EBD</button>
-        <div id="wl-save-feedback" style="font-size:11.5px; color:#86efac; font-weight:800; text-align:center; margin-top:4px;"></div>
+      <div class="ebd-mag-actions-row">
+        <button type="button" class="ebd-mag-act-btn" style="border-color:#6d28d9; color:#581c87;" onclick="window.printSingleEbdLesson(${lesson.week})">
+          IMPRIMIR / PDF<br>DESTA LIÇÃO
+        </button>
+        <button type="button" class="ebd-mag-act-btn" style="border-color:#059669; color:#047857;" onclick="window.downloadColoringSheetWhiteA4(${lesson.week}, false)">
+          BAIXAR DESENHO<br>(PNG BRANCO)
+        </button>
+        <button type="button" class="ebd-mag-act-btn" style="border-color:#0284c7; color:#0369a1;" onclick="window.printFullEbdMagazine()">
+          IMPRIMIR REVISTA<br>TODA (${unlockedLessonsCount} LIÇÕES)
+        </button>
       </div>
     </div>
+
+    ${activeTab === "slides"
+      ? window.renderTeacherSlidesSectionHtml(lesson)
+      : window.buildLessonMagazineHtml(lesson, false)}
   `;
+
+  if (window.EBD_MAGAZINE_STATE.fullscreenActive) {
+    window.renderFullscreenSlideModalContent();
+  }
+};
+
+window.renderTeacherPortalScreen = window.renderTeacherPortalContent;
+
+window.switchEbdMagazineTab = function(tabName) {
+  window.ebdClick();
+  window.EBD_MAGAZINE_STATE.activeTab = tabName === "slides" ? "slides" : "magazine";
+  window.EBD_MAGAZINE_STATE.slideIndex = 0;
+  window.EBD_MAGAZINE_STATE.slideAnswerRevealed = false;
+  window.renderTeacherPortalContent();
+};
+
+window.stepEbdLessonSlide = function(delta) {
+  window.ebdClick();
+  const lesson = window.getCurrentLessonObj();
+  const slides = window.buildLessonSlidesArray(lesson);
+  let next = (window.EBD_MAGAZINE_STATE.slideIndex || 0) + delta;
+  if (next < 0) next = slides.length - 1;
+  if (next >= slides.length) next = 0;
+  window.EBD_MAGAZINE_STATE.slideIndex = next;
+  window.EBD_MAGAZINE_STATE.slideAnswerRevealed = false;
+  window.renderTeacherPortalContent();
+};
+
+window.jumpToEbdLessonSlide = function(idx) {
+  window.ebdClick();
+  window.EBD_MAGAZINE_STATE.slideIndex = idx;
+  window.EBD_MAGAZINE_STATE.slideAnswerRevealed = false;
+  window.renderTeacherPortalContent();
+};
+
+window.toggleSlideAnswerReveal = function() {
+  window.ebdClick();
+  window.EBD_MAGAZINE_STATE.slideAnswerRevealed = !window.EBD_MAGAZINE_STATE.slideAnswerRevealed;
+  window.renderTeacherPortalContent();
+};
+
+window.openFullscreenLessonSlides = function() {
+  window.ebdClick();
+  window.EBD_MAGAZINE_STATE.fullscreenActive = true;
+  let modal = document.getElementById("ebd-fullscreen-slide-modal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "ebd-fullscreen-slide-modal";
+    document.body.appendChild(modal);
+  }
+  modal.style.cssText = "position:fixed; inset:0; z-index:10000300; background:#f8fafc; display:flex; flex-direction:column; align-items:center; justify-content:space-between; padding:12px; box-sizing:border-box; overflow-y:auto;";
+  window.renderFullscreenSlideModalContent();
+  if (!window._ebdSlideKeyBound) {
+    window._ebdSlideKeyBound = true;
+    document.addEventListener("keydown", (ev) => {
+      if (!window.EBD_MAGAZINE_STATE.fullscreenActive) return;
+      if (ev.key === "ArrowRight" || ev.key === " ") {
+        ev.preventDefault();
+        window.stepEbdLessonSlide(1);
+      } else if (ev.key === "ArrowLeft") {
+        ev.preventDefault();
+        window.stepEbdLessonSlide(-1);
+      } else if (ev.key === "Escape") {
+        ev.preventDefault();
+        window.closeFullscreenLessonSlides();
+      }
+    });
+  }
+};
+
+window.renderFullscreenSlideModalContent = function() {
+  const modal = document.getElementById("ebd-fullscreen-slide-modal");
+  if (!modal || !window.EBD_MAGAZINE_STATE.fullscreenActive) return;
+  const lesson = window.getCurrentLessonObj();
+  const slides = window.buildLessonSlidesArray(lesson);
+  const curIdx = Math.max(0, Math.min(slides.length - 1, window.EBD_MAGAZINE_STATE.slideIndex || 0));
+  modal.innerHTML = `
+    <div style="width:100%; max-width:920px; display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
+      <div style="font-family:'Fredoka',sans-serif; font-size:14px; font-weight:900; color:#4c1d95;">
+        TRONO DA PROMESSA EBD • MODO APRESENTAÇÃO EM SALA
+      </div>
+      <button type="button" onclick="window.closeFullscreenLessonSlides()" style="padding:7px 14px; border-radius:999px; border:2px solid #be123c; background:#ffffff; color:#be123c; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; cursor:pointer;">
+        FECHAR TELA CHEIA ✕
+      </button>
+    </div>
+    <div style="flex:1; width:100%; display:flex; align-items:center; justify-content:center;">
+      ${window.renderSingleSlideCardHtml(slides[curIdx], curIdx, slides.length, true)}
+    </div>
+    <div style="width:100%; max-width:920px; display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:10px;">
+      <button type="button" onclick="window.stepEbdLessonSlide(-1)" style="flex:1; max-width:220px; padding:11px; border-radius:999px; border:2px solid #334155; background:#ffffff; color:#0f172a; font-family:'Fredoka',sans-serif; font-size:14px; font-weight:900; cursor:pointer;">
+        ◀ SLIDE ANTERIOR
+      </button>
+      <div style="font-family:'Fredoka',sans-serif; font-size:14px; font-weight:900; color:#4c1d95;">
+        SLIDE ${curIdx + 1} DE ${slides.length}
+      </div>
+      <button type="button" onclick="window.stepEbdLessonSlide(1)" style="flex:1; max-width:220px; padding:11px; border-radius:999px; border:2px solid #047857; background:#ffffff; color:#047857; font-family:'Fredoka',sans-serif; font-size:14px; font-weight:900; cursor:pointer;">
+        PRÓXIMO SLIDE ▶
+      </button>
+    </div>
+  `;
+};
+
+window.closeFullscreenLessonSlides = function() {
+  window.ebdClick();
+  window.EBD_MAGAZINE_STATE.fullscreenActive = false;
+  const modal = document.getElementById("ebd-fullscreen-slide-modal");
+  if (modal) {
+    modal.style.display = "none";
+    modal.innerHTML = "";
+  }
 };
 
 window.selectTeacherPortalWeek = function(weekNum) {
   window.ebdClick();
   if (!window.isLessonWeekUnlocked(weekNum)) {
-    window.ebdAskSubscribe(`Liberar Guia do Professor da Semana ${weekNum}`);
+    window.ebdAskSubscribe(`Liberar Revista Digital Completa (Lição ${weekNum} • Série 2 da EBD)`);
     return;
   }
   window.EBD_STATE.currentWeek = weekNum;
   localStorage.setItem("trono_ebd_week", String(weekNum));
+  window.EBD_MAGAZINE_STATE.slideIndex = 0;
+  window.EBD_MAGAZINE_STATE.slideAnswerRevealed = false;
   window.renderTeacherPortalContent();
+};
+
+window.stepTeacherPortalWeek = function(delta) {
+  window.ebdClick();
+  const total = (window.EBD_LESSONS_CURRICULUM || []).length || 22;
+  let next = (window.EBD_STATE.currentWeek || 1) + delta;
+  if (next < 1) next = 1;
+  if (next > total) next = 1;
+  window.selectTeacherPortalWeek(next);
+};
+
+window.showEbdPrintToast = function(msg) {
+  let toast = document.getElementById("ebd-print-toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "ebd-print-toast";
+    document.body.appendChild(toast);
+  }
+  toast.style.cssText = "position:fixed; bottom:18px; left:50%; transform:translateX(-50%); z-index:10000400; background:#ffffff; color:#0f172a; border:2.5px solid #047857; border-radius:999px; padding:10px 18px; font-family:'Fredoka',sans-serif; font-size:13px; font-weight:900; box-shadow:0 8px 24px rgba(0,0,0,0.45); text-align:center; max-width:90vw;";
+  toast.textContent = msg;
+  toast.style.display = "block";
+  clearTimeout(window._ebdPrintToastTimer);
+  window._ebdPrintToastTimer = setTimeout(() => {
+    if (toast) toast.style.display = "none";
+  }, 3200);
+};
+
+// Motor Universal de Impressão / PDF em Fundo 100% Branco (#ebd-print-mount + @media print)
+window.triggerEbdWhitePrint = async function(pagesHtml, docTitle) {
+  window.ensureEbdMagazineStyles();
+  let mount = document.getElementById("ebd-print-mount");
+  if (!mount) {
+    mount = document.createElement("div");
+    mount.id = "ebd-print-mount";
+    document.body.appendChild(mount);
+  }
+  mount.innerHTML = pagesHtml;
+  window.showEbdPrintToast("Preparando folhas em fundo branco para impressão / PDF...");
+
+  const imgs = Array.from(mount.querySelectorAll("img"));
+  await Promise.all(imgs.map(im => {
+    if (im.complete && im.naturalWidth > 0) return Promise.resolve();
+    return new Promise(res => {
+      const t = setTimeout(res, 2600);
+      im.onload = () => { clearTimeout(t); res(); };
+      im.onerror = () => { clearTimeout(t); res(); };
+    });
+  }));
+
+  const prevTitle = document.title;
+  if (docTitle) document.title = docTitle;
+
+  const cleanup = () => {
+    document.title = prevTitle;
+  };
+  window.addEventListener("afterprint", cleanup, { once: true });
+
+  setTimeout(() => {
+    const toast = document.getElementById("ebd-print-toast");
+    if (toast) toast.style.display = "none";
+    window.print();
+    setTimeout(cleanup, 1800);
+  }, 120);
+};
+
+window.printSingleEbdLesson = function(weekNum) {
+  window.ebdClick();
+  const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getCurrentLessonObj();
+  if (!lesson) return;
+  const html = window.buildLessonMagazineHtml(lesson, true);
+  const pad = String(lesson.week).padStart(2, "0");
+  window.triggerEbdWhitePrint(html, `Revista_Trono_da_Promessa_EBD_Licao_${pad}`);
+};
+
+window.printOnlyColoringSheetA4 = function(weekNum) {
+  window.ebdClick();
+  const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getCurrentLessonObj();
+  if (!lesson) return;
+  const html = window.buildColoringPageA4Html(lesson);
+  const pad = String(lesson.week).padStart(2, "0");
+  window.triggerEbdWhitePrint(html, `Atividade_Colorir_Trono_da_Promessa_EBD_Licao_${pad}`);
+};
+
+window.printLessonSlidesHandoutWhite = function(weekNum) {
+  window.ebdClick();
+  const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getCurrentLessonObj();
+  if (!lesson) return;
+  const slides = window.buildLessonSlidesArray(lesson);
+  window.EBD_MAGAZINE_STATE.slideAnswerRevealed = true;
+  let pagesHtml = "";
+  for (let i = 0; i < slides.length; i += 2) {
+    const s1 = window.renderSingleSlideCardHtml(slides[i], i, slides.length, false);
+    const s2 = (i + 1 < slides.length)
+      ? `<div style="margin-top:14px;">${window.renderSingleSlideCardHtml(slides[i + 1], i + 1, slides.length, false)}</div>`
+      : "";
+    pagesHtml += `<div class="ebd-print-page" style="background:#ffffff !important; padding:4px 0;">${s1}${s2}</div>`;
+  }
+  const pad = String(lesson.week).padStart(2, "0");
+  window.triggerEbdWhitePrint(pagesHtml, `Slides_Trono_da_Promessa_EBD_Licao_${pad}`);
+};
+
+window.printFullEbdMagazine = function() {
+  window.ebdClick();
+  const esc = window.escapeEbdHtml;
+  const lessons = (window.EBD_LESSONS_CURRICULUM || []).filter(l => window.isLessonWeekUnlocked(l.week));
+  if (!lessons.length) return;
+
+  const coverAndTocHtml = `
+    <div class="ebd-print-page" style="background:#ffffff !important; border:3px solid #4c1d95; border-radius:12px; padding:26px 22px; font-family:'Nunito','Segoe UI',Arial,sans-serif; color:#0f172a;">
+      <div style="text-align:center; border-bottom:3px solid #6d28d9; padding-bottom:16px; margin-bottom:18px;">
+        <div style="font-family:'Fredoka',sans-serif; font-size:14px; font-weight:900; color:#0369a1; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:6px;">
+          CURRÍCULO OFICIAL DE ESCOLA BÍBLICA DOMINICAL
+        </div>
+        <div style="font-family:'Fredoka',sans-serif; font-size:30px; font-weight:900; color:#4c1d95; line-height:1.15; margin-bottom:6px;">
+          REVISTA DIGITAL<br>TRONO DA PROMESSA EBD
+        </div>
+        <div style="font-size:14px; font-weight:800; color:#047857;">
+          Guia Completo do Professor &amp; Família • Planos de Aula, Dinâmicas e Folhas A4 para Colorir
+        </div>
+      </div>
+
+      <div style="font-family:'Fredoka',sans-serif; font-size:16px; font-weight:900; color:#4c1d95; margin-bottom:8px; text-transform:uppercase;">
+        Sumário das Lições (${lessons.length} Lições em Fundo Branco para Impressão):
+      </div>
+      <table style="width:100%; border-collapse:collapse; font-size:12px; background:#ffffff !important;">
+        <thead>
+          <tr style="border-bottom:2px solid #6d28d9; text-align:left; color:#4c1d95;">
+            <th style="padding:5px 6px;">Lição</th>
+            <th style="padding:5px 6px;">Título da Aula</th>
+            <th style="padding:5px 6px;">Base Bíblica</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${lessons.map(l => `
+            <tr style="border-bottom:1px solid #e2e8f0;">
+              <td style="padding:4.5px 6px; font-weight:900; color:#0369a1; white-space:nowrap;">Lição ${l.week}</td>
+              <td style="padding:4.5px 6px; font-weight:800; color:#0f172a;">${esc(l.title)}</td>
+              <td style="padding:4.5px 6px; font-weight:700; color:#475569;">${esc(l.bibleRef)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  const allLessonsHtml = coverAndTocHtml + lessons.map(l => window.buildLessonMagazineHtml(l, true)).join("");
+  window.triggerEbdWhitePrint(allLessonsHtml, `Revista_Completa_Trono_da_Promessa_EBD_${lessons.length}_Licoes`);
+};
+
+// Exportador HiDPI (1240x1754 A4 150dpi) 100% Fundo Branco Puro (#ffffff) para Celular / WhatsApp / Impressora!
+window.wrapCanvasTextLines = function(ctx, text, maxWidth) {
+  const words = String(text || "").split(/\s+/).filter(Boolean);
+  const lines = [];
+  let cur = "";
+  words.forEach(w => {
+    const test = cur ? `${cur} ${w}` : w;
+    if (ctx.measureText(test).width <= maxWidth) {
+      cur = test;
+    } else {
+      if (cur) lines.push(cur);
+      cur = w;
+    }
+  });
+  if (cur) lines.push(cur);
+  return lines;
+};
+
+window.downloadColoringSheetWhiteA4 = async function(weekNum, shareMode) {
+  window.ebdClick();
+  const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getCurrentLessonObj();
+  if (!lesson) return;
+  const col = window.getLessonColoringOutlineInfo(lesson);
+  const age68 = (lesson.byAge && lesson.byAge["6-8"]) || {};
+  const age35 = (lesson.byAge && lesson.byAge["3-5"]) || {};
+  const verseTxt = age68.verse || age35.verse || "";
+
+  window.showEbdPrintToast("Gerando folha A4 em fundo branco puro...");
+
+  try {
+    const img = await new Promise((resolve, reject) => {
+      const im = new Image();
+      im.crossOrigin = "anonymous";
+      im.onload = () => resolve(im);
+      im.onerror = reject;
+      im.src = col.outlineUrl;
+    });
+
+    const W = 1240;
+    const H = 1754;
+    const canvas = document.createElement("canvas");
+    canvas.width = W;
+    canvas.height = H;
+    const ctx = canvas.getContext("2d");
+
+    // 1. Papel 100% Branco Puro (#ffffff)
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, W, H);
+
+    // Moldura editorial fina
+    ctx.strokeStyle = "#334155";
+    ctx.lineWidth = 4;
+    ctx.strokeRect(36, 36, W - 72, H - 72);
+
+    ctx.fillStyle = "#6d28d9";
+    ctx.fillRect(36, 36, W - 72, 12);
+
+    // Cabeçalho colorido sobre branco
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#6d28d9";
+    ctx.font = "900 24px 'Fredoka', Arial, sans-serif";
+    ctx.fillText(`REVISTA DIGITAL • TRONO DA PROMESSA EBD • ATIVIDADE DA LIÇÃO ${lesson.week}`, W / 2, 92);
+
+    ctx.fillStyle = "#4c1d95";
+    ctx.font = "900 36px 'Fredoka', Arial, sans-serif";
+    const titleLines = window.wrapCanvasTextLines(ctx, `Lição ${lesson.week}: ${lesson.title}`, W - 150);
+    let yCursor = 140;
+    titleLines.slice(0, 2).forEach(ln => {
+      ctx.fillText(ln, W / 2, yCursor);
+      yCursor += 42;
+    });
+
+    ctx.fillStyle = "#0369a1";
+    ctx.font = "800 23px 'Nunito', Arial, sans-serif";
+    ctx.fillText(`Base Bíblica: ${lesson.bibleRef}  •  ${col.artTitle}`, W / 2, yCursor + 4);
+    yCursor += 34;
+
+    // Linha Aluno / Data em fundo branco (com linha vetorial limpa!)
+    ctx.strokeStyle = "#94a3b8";
+    ctx.lineWidth = 2.5;
+    ctx.strokeRect(70, yCursor, W - 140, 56);
+    ctx.textAlign = "left";
+    ctx.fillStyle = "#1e293b";
+    ctx.font = "800 22px 'Nunito', Arial, sans-serif";
+    ctx.fillText("ALUNO(A):", 90, yCursor + 36);
+    ctx.beginPath();
+    ctx.strokeStyle = "#475569";
+    ctx.lineWidth = 2;
+    ctx.moveTo(212, yCursor + 39);
+    ctx.lineTo(W - 355, yCursor + 39);
+    ctx.stroke();
+    ctx.textAlign = "right";
+    ctx.fillText("DATA:     /     /        ", W - 90, yCursor + 36);
+    ctx.beginPath();
+    ctx.moveTo(W - 255, yCursor + 39); ctx.lineTo(W - 218, yCursor + 39);
+    ctx.moveTo(W - 202, yCursor + 39); ctx.lineTo(W - 165, yCursor + 39);
+    ctx.moveTo(W - 149, yCursor + 39); ctx.lineTo(W - 90, yCursor + 39);
+    ctx.stroke();
+    yCursor += 78;
+
+    // Limpeza pixel a pixel do desenho P&B para garantir fundo 100% branco #ffffff sem cinza!
+    const off = document.createElement("canvas");
+    off.width = img.naturalWidth || img.width;
+    off.height = img.naturalHeight || img.height;
+    const octx = off.getContext("2d");
+    octx.fillStyle = "#ffffff";
+    octx.fillRect(0, 0, off.width, off.height);
+    octx.drawImage(img, 0, 0);
+    try {
+      const idata = octx.getImageData(0, 0, off.width, off.height);
+      const d = idata.data;
+      for (let i = 0; i < d.length; i += 4) {
+        const lum = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+        if (lum >= 232) {
+          d[i] = 255; d[i + 1] = 255; d[i + 2] = 255; d[i + 3] = 255;
+        } else {
+          const dark = Math.max(0, Math.round((lum / 232) * 210));
+          d[i] = dark; d[i + 1] = dark; d[i + 2] = dark; d[i + 3] = 255;
+        }
+      }
+      octx.putImageData(idata, 0, 0);
+    } catch (e) {}
+
+    const footerReserve = 165;
+    const boxX = 70;
+    const boxY = yCursor;
+    const boxW = W - 140;
+    const boxH = H - boxY - footerReserve - 54;
+
+    const scale = Math.min((boxW - 24) / off.width, (boxH - 24) / off.height);
+    const dw = Math.round(off.width * scale);
+    const dh = Math.round(off.height * scale);
+    const dx = Math.round(boxX + (boxW - dw) / 2);
+    const dy = Math.round(boxY + (boxH - dh) / 2);
+    ctx.drawImage(off, dx, dy, dw, dh);
+
+    // Rodapé Sementinha no Coração (fundo branco + borda tracejada verde)
+    const fy = H - footerReserve - 36;
+    ctx.save();
+    ctx.setLineDash([12, 8]);
+    ctx.strokeStyle = "#059669";
+    ctx.lineWidth = 3;
+    ctx.strokeRect(70, fy, W - 140, 138);
+    ctx.restore();
+
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#047857";
+    ctx.font = "900 22px 'Fredoka', Arial, sans-serif";
+    ctx.fillText("SEMENTINHA NO CORAÇÃO (VERSÍCULO PARA MEMORIZAR)", W / 2, fy + 36);
+
+    ctx.fillStyle = "#0f172a";
+    ctx.font = "800 24px 'Nunito', Arial, sans-serif";
+    const vLines = window.wrapCanvasTextLines(ctx, verseTxt, W - 190).slice(0, 2);
+    vLines.forEach((vl, idx) => {
+      ctx.fillText(vl, W / 2, fy + 76 + idx * 32);
+    });
+
+    const pad = String(lesson.week).padStart(2, "0");
+    const fileName = `Trono_da_Promessa_EBD_Licao_${pad}_Colorir_A4.png`;
+
+    const blob = await new Promise(res => canvas.toBlob(res, "image/png"));
+    if (shareMode && navigator.canShare && blob) {
+      const file = new File([blob], fileName, { type: "image/png" });
+      if (navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          title: `Trono da Promessa EBD • Lição ${lesson.week}`,
+          text: `Folha de Atividade para Colorir (Fundo Branco A4) — Lição ${lesson.week}: ${lesson.title}`,
+          files: [file]
+        });
+        window.showEbdPrintToast("Folha enviada com sucesso!");
+        return;
+      }
+    }
+
+    const url = blob ? URL.createObjectURL(blob) : canvas.toDataURL("image/png");
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    if (blob) setTimeout(() => URL.revokeObjectURL(url), 4000);
+    window.showEbdPrintToast("Folha A4 em fundo branco salva no seu aparelho!");
+  } catch (err) {
+    window.open(col.outlineUrl, "_blank");
+  }
 };

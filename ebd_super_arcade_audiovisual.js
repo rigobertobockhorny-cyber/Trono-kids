@@ -13559,8 +13559,9 @@
     modal.innerHTML = `
       <div style="max-width:350px; width:100%; text-align:center; display:flex; flex-direction:column; align-items:center;">
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_professor.png" alt="" style="width:58px; height:58px; object-fit:contain; margin-bottom:8px;">
-        <div style="font-size:18px; font-weight:900; color:#fde047; text-shadow:0 3px 8px rgba(0,0,0,0.85); margin-bottom:6px;">PORTAL DA FAMÍLIA E PROFESSOR</div>
-        <div style="font-size:13px; font-weight:700; color:#f8fafc; text-shadow:0 2px 5px rgba(0,0,0,0.8); margin-bottom:16px;">Área exclusiva para adultos. Resolva para entrar:</div>
+        <div style="font-size:17.5px; font-weight:900; color:#fde047; text-shadow:0 3px 8px rgba(0,0,0,0.85); margin-bottom:3px;">TRONO DA PROMESSA EBD</div>
+        <div style="font-size:13.5px; font-weight:800; color:#e9d5ff; text-shadow:0 2px 5px rgba(0,0,0,0.8); margin-bottom:4px;">REVISTA DIGITAL • FAMÍLIA E PROFESSOR</div>
+        <div style="font-size:12.5px; font-weight:700; color:#f8fafc; text-shadow:0 2px 5px rgba(0,0,0,0.8); margin-bottom:16px;">Área exclusiva para adultos. Resolva para entrar:</div>
         
         <div style="width:100%; background:linear-gradient(180deg, rgba(168,85,247,0.45) 0%, rgba(88,28,135,0.75) 100%); border:2px solid #fde047; border-radius:18px; padding:13px; font-size:24px; font-weight:900; color:#ffffff; box-shadow:0 6px 16px rgba(0,0,0,0.5); margin-bottom:18px;">
           Quanto é ${n1} + ${n2}?
@@ -13598,8 +13599,12 @@
     window._userEnteredModule = true;
     TronoAudio.play("click");
     showParentalGate(() => {
+      if (typeof window.renderTeacherPortalContent === "function") {
+        window.renderTeacherPortalContent();
+      } else if (typeof renderTeacherPortalScreen === "function") {
+        renderTeacherPortalScreen();
+      }
       if (typeof showScreen === "function") showScreen("screen-teacher-portal");
-      if (typeof renderTeacherPortalScreen === "function") renderTeacherPortalScreen();
     });
   };
 
