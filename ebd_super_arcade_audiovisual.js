@@ -6975,23 +6975,15 @@
     const totalSegments = dots.length - 1;
     const bgUrl = "./2_ASSETS_UI_BOTOES/bg_jogo_10_ligue_pontos_v176.jpg?v=176";
 
-    if (!document.getElementById("ligue-pontos-v176-styles")) {
+    if (!document.getElementById("ligue-pontos-v181-styles")) {
       const st = document.createElement("style");
-      st.id = "ligue-pontos-v176-styles";
+      st.id = "ligue-pontos-v181-styles";
       st.textContent = `
-        @keyframes liguePuckHaloPulse {
-          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.85; }
-          50% { transform: translate(-50%, -50%) scale(1.42); opacity: 0.22; }
-        }
-        @keyframes liguePuckBodyPulse {
-          0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 14px rgba(59,130,246,0.95), 0 4px 10px rgba(15,23,42,0.55); }
-          50% { transform: translate(-50%, -50%) scale(1.10); box-shadow: 0 0 22px rgba(139,92,246,1), 0 5px 12px rgba(15,23,42,0.6); }
-        }
         @keyframes ligueFigureCelebratePop {
-          0% { transform: translate3d(0px, 0px, 0px) scale(1); }
-          35% { transform: translate3d(0px, -6px, 0px) scale(1.07); }
-          70% { transform: translate3d(0px, 2px, 0px) scale(0.99); }
-          100% { transform: translate3d(0px, 0px, 0px) scale(1.03); }
+          0% { transform: scale(1); }
+          35% { transform: translateY(-6px) scale(1.05); }
+          70% { transform: translateY(2px) scale(0.99); }
+          100% { transform: scale(1.02); }
         }
         @keyframes ligueTitlePopIn {
           0% { transform: translateX(-50%) scale(0.65); opacity: 0; }
@@ -7003,26 +6995,25 @@
     }
 
     container.innerHTML = `
-      <div id="ligue-stage-root" style="position:relative; width:100%; height:100%; overflow:hidden; user-select:none; -webkit-user-select:none; touch-action:none; background:linear-gradient(180deg,#38bdf8 0%,#bae6fd 58%,#4ade80 100%); display:flex; align-items:center; justify-content:center;">
+      <div id="ligue-stage-root" style="position:relative; width:100%; height:100%; overflow:hidden; user-select:none; -webkit-user-select:none; touch-action:none; background:linear-gradient(180deg,#38bdf8 0%,#bae6fd 58%,#4ade80 100%);">
         <img id="ligue-bg-img" src="${bgUrl}" alt="" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; pointer-events:none; z-index:1;">
-        <div style="position:absolute; inset:0; background:radial-gradient(circle at 50% 48%, rgba(255,255,255,0.16) 0%, rgba(15,23,42,0.08) 72%, rgba(15,23,42,0.26) 100%); pointer-events:none; z-index:2;"></div>
+        <div style="position:absolute; inset:0; background:radial-gradient(circle at 50% 48%, rgba(255,255,255,0.14) 0%, rgba(15,23,42,0.08) 72%, rgba(15,23,42,0.26) 100%); pointer-events:none; z-index:2;"></div>
 
-        <!-- Viewport de Câmera com Zoom Automático -->
-        <div id="ligue-camera-rig" style="position:relative; z-index:5; width:min(86vw, 62vh, 390px); height:min(86vw, 62vh, 390px); transform-origin:50% 50%; transform:translate3d(0px, 0px, 0px) scale(1); transition:transform 0.72s cubic-bezier(0.22, 1, 0.36, 1); will-change:transform;">
-          <canvas id="ligue-art-canvas" width="640" height="640" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;"></canvas>
+        <!-- Palco Vetorial HiDPI em Tela Cheia (Zoom Grande Close-Up nos Pinos sem Pixelizar!) -->
+        <div id="ligue-camera-rig" style="position:absolute; inset:0; width:100%; height:100%; z-index:5;">
+          <canvas id="ligue-art-canvas" style="position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:none;"></canvas>
 
-          <!-- Bolinha Azul/Roxa Pulsante com Seta Direcional -->
-          <div id="ligue-puck-halo" style="position:absolute; left:${(dots[0][0] * 100).toFixed(2)}%; top:${(dots[0][1] * 100).toFixed(2)}%; width:34px; height:34px; border-radius:50%; background:radial-gradient(circle, rgba(96,165,250,0.72) 0%, rgba(124,58,237,0.38) 58%, rgba(124,58,237,0) 100%); border:2px solid rgba(191,219,254,0.9); transform:translate(-50%, -50%); pointer-events:none; animation:liguePuckHaloPulse 1.35s ease-in-out infinite;"></div>
-          <div id="ligue-active-puck" style="position:absolute; left:${(dots[0][0] * 100).toFixed(2)}%; top:${(dots[0][1] * 100).toFixed(2)}%; width:24px; height:24px; border-radius:50%; background:radial-gradient(circle at 30% 28%, #93c5fd 0%, #2563eb 48%, #6d28d9 100%); border:2.2px solid #ffffff; transform:translate(-50%, -50%); display:flex; align-items:center; justify-content:center; cursor:grab; pointer-events:auto; animation:liguePuckBodyPulse 1.35s ease-in-out infinite;">
-            <svg id="ligue-puck-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" style="pointer-events:none; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.55)); transition:transform 0.14s ease-out;">
-              <path d="M4 12H19M19 12L12.5 5.5M19 12L12.5 18.5" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Setinha Azul Bem Pequenininha e Discreta (SEM bola grande pulsando para NUNCA tampar a linha amarela!) -->
+          <div id="ligue-active-puck" style="position:absolute; left:50%; top:50%; width:14px; height:14px; border-radius:50%; background:linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%); border:1.6px solid #ffffff; box-shadow:0 1px 4px rgba(15,23,42,0.55); transform:translate(-50%, -50%); display:flex; align-items:center; justify-content:center; pointer-events:none; z-index:7;">
+            <svg id="ligue-puck-arrow" width="9" height="9" viewBox="0 0 24 24" fill="none" style="pointer-events:none;">
+              <path d="M4 12H19M19 12L12.5 5.5M19 12L12.5 18.5" stroke="#ffffff" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
         </div>
 
-        <!-- Placar Discreto de Pontinhos na Base -->
+        <!-- Placar Discreto de Pinos na Base -->
         <div id="ligue-bottom-pill" style="position:absolute; bottom:max(18px, env(safe-area-inset-bottom, 14px)); left:50%; transform:translateX(-50%); z-index:8; background:linear-gradient(180deg, rgba(30,58,138,0.88) 0%, rgba(49,46,129,0.92) 100%); border:2px solid rgba(255,255,255,0.85); border-radius:999px; padding:6px 18px; color:#ffffff; font-weight:900; font-size:14px; letter-spacing:0.5px; box-shadow:0 6px 16px rgba(0,0,0,0.35); pointer-events:none; white-space:nowrap; transition:opacity 0.35s ease;">
-          PONTINHOS: <span id="ligue-step-count" style="color:#fde047;">0</span> / ${totalSegments}
+          PONTINHOS: <span id="ligue-step-count" style="color:#00e676;">0</span> / ${totalSegments}
         </div>
 
         <!-- Selo de Revelação Colorida da Figura -->
@@ -7030,7 +7021,7 @@
           ⭐ ${pData.title.toUpperCase()} ⭐
         </div>
 
-        <!-- Chuva de Confetes na Própria Figura Revelada (Antes da Tela Roxa de Vitória) -->
+        <!-- Chuva de Confetes na Própria Figura Revelada -->
         <canvas id="ligue-stage-confetti" style="display:none; position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:11;"></canvas>
       </div>
     `;
@@ -7040,7 +7031,6 @@
     const cameraRig = document.getElementById("ligue-camera-rig");
     const artCanvas = document.getElementById("ligue-art-canvas");
     const puckEl = document.getElementById("ligue-active-puck");
-    const puckHaloEl = document.getElementById("ligue-puck-halo");
     const puckArrowEl = document.getElementById("ligue-puck-arrow");
     const stepCountEl = document.getElementById("ligue-step-count");
     const bottomPillEl = document.getElementById("ligue-bottom-pill");
@@ -7048,107 +7038,154 @@
     const stageConfettiCvs = document.getElementById("ligue-stage-confetti");
     if (!stageRoot || !cameraRig || !artCanvas || !puckEl) return;
 
-    const CW = 640;
-    const CH = 640;
-    artCanvas.width = CW;
-    artCanvas.height = CH;
     const ctx = artCanvas.getContext("2d");
 
+    // Camadas de alta nitidez (1024x1024) para que o super zoom de 6.20x fique cristalino!
+    const COMP_RES = 1024;
     const fullColorCvs = document.createElement("canvas");
-    fullColorCvs.width = 420;
-    fullColorCvs.height = 420;
+    fullColorCvs.width = COMP_RES;
+    fullColorCvs.height = COMP_RES;
     const halfWhiteCvs = document.createElement("canvas");
-    halfWhiteCvs.width = 420;
-    halfWhiteCvs.height = 420;
+    halfWhiteCvs.width = COMP_RES;
+    halfWhiteCvs.height = COMP_RES;
     const silShadowCvs = document.createElement("canvas");
-    silShadowCvs.width = 420;
-    silShadowCvs.height = 420;
+    silShadowCvs.width = COMP_RES;
+    silShadowCvs.height = COMP_RES;
+
+    // Super Zoom Close-Up (6.20x): a criança vê APENAS os pinos sendo montados no contorno (~78px entre pinos, nunca a figura inteira!)
+    const ZOOM_SCALE = 6.20;
+
+    let stageW = 390;
+    let stageH = 680;
+    let dpr = Math.min(2, window.devicePixelRatio || 1);
+
+    function syncCanvasViewportSize() {
+      if (!stageRoot || !artCanvas) return;
+      stageW = Math.max(300, stageRoot.clientWidth || 390);
+      stageH = Math.max(420, stageRoot.clientHeight || 680);
+      dpr = Math.min(2, window.devicePixelRatio || 1);
+      const targetW = Math.round(stageW * dpr);
+      const targetH = Math.round(stageH * dpr);
+      if (artCanvas.width !== targetW || artCanvas.height !== targetH) {
+        artCanvas.width = targetW;
+        artCanvas.height = targetH;
+      }
+    }
+    syncCanvasViewportSize();
 
     let artReady = false;
     let bgLoaded = false;
     let figLoaded = false;
     let currentIdx = 0;
-    let puckX = dots[0][0];
-    let puckY = dots[0][1];
+
+    // Estado da linha elástica amarela puxada livremente (esquerda, direita, cima, baixo!)
     let isDragging = false;
     let activePointerId = null;
+    let dragScreenX = 0;
+    let dragScreenY = 0;
+    let isHoveringNextPin = false;
+
     let isCompleted = false;
-    let isZoomedIn = false;
+    let revealZoomOutStarted = false;
     let revealProgress = 0;
     let guideAlpha = 1;
     let pulseTick = 0;
-    let lastStarSfxAt = 0;
-    let lastCamPanAt = 0;
     const sparkles = [];
     const stageConfetti = [];
     const stageFireworks = [];
     let confettiActive = false;
 
-    const ZOOM_SCALE = 1.68;
+    // Câmera já começa no Super Zoom Close-Up focada exatamente no Pino #1 (Verde) e Pino #2 (Vermelho)!
+    const initNext = dots[Math.min(dots.length - 1, 1)];
+    let camCenterX = (dots[0][0] + initNext[0]) * 0.5;
+    let camCenterY = (dots[0][1] + initNext[1]) * 0.5;
+    let camScale = ZOOM_SCALE;
 
-    function updateArrowAngle() {
-      if (!puckArrowEl || currentIdx >= dots.length - 1) return;
-      const target = dots[currentIdx + 1];
-      const dx = target[0] - puckX;
-      const dy = target[1] - puckY;
-      const deg = (Math.atan2(dy, dx) * 180) / Math.PI;
-      puckArrowEl.style.transform = `rotate(${deg.toFixed(1)}deg)`;
+    let targetCamX = camCenterX;
+    let targetCamY = camCenterY;
+    let targetCamScale = ZOOM_SCALE;
+
+    function updateCameraTargetForCurrentPin() {
+      if (isCompleted && revealZoomOutStarted) {
+        targetCamX = 0.5;
+        targetCamY = 0.5;
+        targetCamScale = 1.0;
+        return;
+      }
+      const curPt = dots[Math.min(dots.length - 1, currentIdx)];
+      const nxtPt = dots[Math.min(dots.length - 1, currentIdx + 1)];
+      targetCamX = curPt[0] * 0.48 + nxtPt[0] * 0.52;
+      targetCamY = curPt[1] * 0.48 + nxtPt[1] * 0.52;
+      targetCamScale = ZOOM_SCALE;
     }
 
-    function updatePuckDomPosition() {
-      if (!puckEl || !puckHaloEl) return;
+    function getBaseFigSize() {
+      return Math.min(stageW * 0.88, stageH * 0.66, 390);
+    }
+
+    // Converte coordenada normalizada [0..1, 0..1] da figura para pixel na tela sob o zoom atual
+    function normToScreen(nx, ny) {
+      const figSpan = getBaseFigSize() * camScale;
+      return {
+        x: stageW * 0.5 + (nx - camCenterX) * figSpan,
+        y: stageH * 0.48 + (ny - camCenterY) * figSpan,
+        figSpan: figSpan
+      };
+    }
+
+    function updateMiniArrowDom() {
+      if (!puckEl || !puckArrowEl) return;
       if (isCompleted) {
         puckEl.style.display = "none";
-        puckHaloEl.style.display = "none";
         return;
       }
-      const leftPct = `${(puckX * 100).toFixed(2)}%`;
-      const topPct = `${(puckY * 100).toFixed(2)}%`;
-      puckEl.style.left = leftPct;
-      puckEl.style.top = topPct;
-      puckHaloEl.style.left = leftPct;
-      puckHaloEl.style.top = topPct;
-      updateArrowAngle();
-    }
+      puckEl.style.display = "flex";
+      const curScr = normToScreen(dots[currentIdx][0], dots[currentIdx][1]);
+      const nxtPt = dots[Math.min(dots.length - 1, currentIdx + 1)];
+      const nxtScr = normToScreen(nxtPt[0], nxtPt[1]);
 
-    function updateCameraTransform(durationSec) {
-      if (!cameraRig || !stageRoot) return;
-      if (!isZoomedIn || isCompleted) {
-        cameraRig.style.transition = `transform ${(durationSec || 0.68).toFixed(2)}s cubic-bezier(0.22, 1, 0.36, 1)`;
-        cameraRig.style.transform = "translate3d(0px, 0px, 0px) scale(1)";
-        return;
+      if (isDragging) {
+        // Durante o arraste: setinha minúscula na pontinha da linha amarela apontando para o movimento / pino vermelho!
+        puckEl.style.width = "12px";
+        puckEl.style.height = "12px";
+        puckEl.style.left = `${dragScreenX.toFixed(1)}px`;
+        puckEl.style.top = `${dragScreenY.toFixed(1)}px`;
+        const dx = nxtScr.x - dragScreenX;
+        const dy = nxtScr.y - dragScreenY;
+        const dist = Math.hypot(dx, dy);
+        const angDeg = dist > 6
+          ? (Math.atan2(dy, dx) * 180) / Math.PI
+          : (Math.atan2(dragScreenY - curScr.y, dragScreenX - curScr.x) * 180) / Math.PI;
+        puckArrowEl.style.transform = `rotate(${angDeg.toFixed(1)}deg)`;
+      } else {
+        // Parada: setinha pequenininha levemente deslocada na direção do próximo pino vermelho sem cobrir o pino verde!
+        puckEl.style.width = "14px";
+        puckEl.style.height = "14px";
+        const vx = nxtScr.x - curScr.x;
+        const vy = nxtScr.y - curScr.y;
+        const vLen = Math.max(1, Math.hypot(vx, vy));
+        const offsetPx = Math.min(15, vLen * 0.34);
+        const ax = curScr.x + (vx / vLen) * offsetPx;
+        const ay = curScr.y + (vy / vLen) * offsetPx;
+        puckEl.style.left = `${ax.toFixed(1)}px`;
+        puckEl.style.top = `${ay.toFixed(1)}px`;
+        const angDeg = (Math.atan2(vy, vx) * 180) / Math.PI;
+        puckArrowEl.style.transform = `rotate(${angDeg.toFixed(1)}deg)`;
       }
-      const nextPt = dots[Math.min(dots.length - 1, currentIdx + 1)];
-      const curPt = dots[currentIdx];
-      const focusX = curPt[0] * 0.58 + nextPt[0] * 0.42;
-      const focusY = curPt[1] * 0.58 + nextPt[1] * 0.42;
-
-      const baseSize = cameraRig.offsetWidth || 330;
-      const stgW = stageRoot.clientWidth || 380;
-      const stgH = stageRoot.clientHeight || 680;
-      const maxPanX = Math.max(70, Math.min(185, stgW * 0.36));
-      const maxPanY = Math.max(85, Math.min(220, stgH * 0.28));
-
-      let tx = -(focusX - 0.5) * baseSize * ZOOM_SCALE;
-      let ty = -(focusY - 0.5) * baseSize * ZOOM_SCALE + 16;
-      tx = Math.max(-maxPanX, Math.min(maxPanX, tx));
-      ty = Math.max(-maxPanY, Math.min(maxPanY, ty));
-
-      cameraRig.style.transition = `transform ${(durationSec || 0.42).toFixed(2)}s cubic-bezier(0.22, 1, 0.36, 1)`;
-      cameraRig.style.transform = `translate3d(${tx.toFixed(1)}px, ${ty.toFixed(1)}px, 0px) scale(${ZOOM_SCALE})`;
     }
 
     function spawnDotSparkles(nx, ny, count) {
-      const colors = ["#fde047", "#ffffff", "#60a5fa", "#c084fc", "#34d399"];
-      for (let i = 0; i < (count || 12); i++) {
-        const ang = (Math.PI * 2 * i) / (count || 12) + (Math.random() - 0.5) * 0.35;
-        const spd = 0.004 + Math.random() * 0.009;
+      const colors = ["#00e676", "#fde047", "#ffffff", "#4ade80", "#facc15"];
+      const n = count || 8;
+      for (let i = 0; i < n; i++) {
+        const ang = (Math.PI * 2 * i) / n + (Math.random() - 0.5) * 0.35;
+        const spd = 0.0018 + Math.random() * 0.0038;
         sparkles.push({
           x: nx,
           y: ny,
           vx: Math.cos(ang) * spd,
-          vy: Math.sin(ang) * spd - 0.002,
-          r: 3.5 + Math.random() * 4.5,
+          vy: Math.sin(ang) * spd - 0.0008,
+          r: 2.8 + Math.random() * 3.2,
           alpha: 1,
           color: colors[i % colors.length]
         });
@@ -7247,47 +7284,68 @@
 
     function buildCompositeLayers(figImg) {
       const fctx = fullColorCvs.getContext("2d");
-      fctx.clearRect(0, 0, 420, 420);
-      fctx.drawImage(figImg, 0, 0, 420, 420);
+      fctx.clearRect(0, 0, COMP_RES, COMP_RES);
+      fctx.imageSmoothingEnabled = true;
+      fctx.imageSmoothingQuality = "high";
+      fctx.drawImage(figImg, 0, 0, COMP_RES, COMP_RES);
 
       const hctx = halfWhiteCvs.getContext("2d");
-      hctx.clearRect(0, 0, 420, 420);
-      hctx.drawImage(figImg, 0, 0, 420, 420);
+      hctx.clearRect(0, 0, COMP_RES, COMP_RES);
+      hctx.imageSmoothingEnabled = true;
+      hctx.imageSmoothingQuality = "high";
+      hctx.drawImage(figImg, 0, 0, COMP_RES, COMP_RES);
+
+      // Máscara suave de contorno em 1024x1024 para eliminar qualquer serrilhado na borda branca em 6.2x de zoom!
+      const smoothAlphaCvs = document.createElement("canvas");
+      smoothAlphaCvs.width = COMP_RES;
+      smoothAlphaCvs.height = COMP_RES;
+      const actx = smoothAlphaCvs.getContext("2d");
+      actx.filter = "blur(2.4px)";
+      actx.drawImage(figImg, 0, 0, COMP_RES, COMP_RES);
+      actx.filter = "none";
 
       const sctx = silShadowCvs.getContext("2d");
-      sctx.clearRect(0, 0, 420, 420);
+      sctx.clearRect(0, 0, COMP_RES, COMP_RES);
 
       try {
-        const imgData = hctx.getImageData(0, 0, 420, 420);
+        const imgData = hctx.getImageData(0, 0, COMP_RES, COMP_RES);
         const d = imgData.data;
-        const shadowData = sctx.createImageData(420, 420);
+        const smAlphaData = actx.getImageData(0, 0, COMP_RES, COMP_RES).data;
+        const shadowData = sctx.createImageData(COMP_RES, COMP_RES);
         const sd = shadowData.data;
 
         const gradStart = pData.splitX - 0.068;
         const gradEnd = pData.splitX + 0.072;
         const gradSpan = Math.max(0.02, gradEnd - gradStart);
+        const maxCoord = COMP_RES - 1;
 
-        for (let y = 0; y < 420; y++) {
-          const rowOff = y * 420 * 4;
-          for (let x = 0; x < 420; x++) {
+        for (let y = 0; y < COMP_RES; y++) {
+          const rowOff = y * COMP_RES * 4;
+          for (let x = 0; x < COMP_RES; x++) {
             const idx = rowOff + x * 4;
-            const a = d[idx + 3];
-            if (a === 0) continue;
+            const xn = x / maxCoord;
+            const rawA = d[idx + 3];
+            const blurA = smAlphaData[idx + 3];
+            // Curva anti-serrilhado super limpa na silhueta branca
+            const smoothEdgeA = blurA <= 92 ? 0 : (blurA >= 148 ? 255 : Math.round(((blurA - 92) / 56) * 255));
+            const a = xn > gradStart ? smoothEdgeA : rawA;
+            if (a === 0) {
+              d[idx + 3] = 0;
+              continue;
+            }
+            d[idx + 3] = a;
 
-            // Sombra suave da silhueta para destacar 100% a parte branca sobre o céu e nuvens
             sd[idx] = 15;
             sd[idx + 1] = 23;
             sd[idx + 2] = 42;
-            sd[idx + 3] = Math.min(115, Math.round(a * 0.42));
+            sd[idx + 3] = Math.min(125, Math.round(a * 0.45));
 
-            const xn = x / 419;
             if (xn > gradStart) {
               const u = Math.min(1, (xn - gradStart) / gradSpan);
               const smooth = u * u * (3 - 2 * u);
               const r = d[idx];
               const g = d[idx + 1];
               const b = d[idx + 2];
-              // Preserva um levíssimo relevo perolado na transição e branco puro na metade direita
               const lum = 0.299 * r + 0.587 * g + 0.114 * b;
               const whiteTone = Math.min(255, Math.round(246 + (lum / 255) * 9));
               d[idx] = Math.round(r + (whiteTone - r) * smooth);
@@ -7304,147 +7362,217 @@
       artReady = true;
     }
 
-    function drawArtFrame() {
-      ctx.clearRect(0, 0, CW, CH);
-      if (!artReady) return;
+    function drawPin3D(sx, sy, radius, isGreen, isNextTarget, isHoverReady) {
+      // Sombra de apoio do pino
+      ctx.beginPath();
+      ctx.arc(sx, sy + 2.2, radius + 0.6, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(15, 23, 42, 0.42)";
+      ctx.fill();
 
-      // 1. Sombra suave de recorte sob toda a figura isolada
-      ctx.save();
-      ctx.filter = "blur(9px)";
-      ctx.drawImage(silShadowCvs, 0, 8, CW, CH);
-      ctx.restore();
-
-      // 2. Figura base (metade esquerda colorida 3D + degradê suave -> silhueta branca à direita)
-      if (revealProgress < 1) {
-        ctx.drawImage(halfWhiteCvs, 0, 0, CW, CH);
+      // Anel discreto indicando qual pino vermelho é o próximo da sequência
+      if (isNextTarget) {
+        const ringR = isHoverReady ? radius + 6.5 : radius + 4.5 + Math.sin(pulseTick * 0.12) * 1.6;
+        ctx.beginPath();
+        ctx.arc(sx, sy, ringR, 0, Math.PI * 2);
+        ctx.fillStyle = isHoverReady ? "rgba(0, 230, 118, 0.34)" : "rgba(253, 224, 71, 0.28)";
+        ctx.fill();
+        ctx.lineWidth = isHoverReady ? 2.8 : 2.0;
+        ctx.strokeStyle = isHoverReady ? "#00e676" : "#f59e0b";
+        ctx.stroke();
       }
 
-      // 3. Onda mágica de revelação 100% colorida ao fechar o último pontinho
+      // Corpo esférico 3D do Pino (VERDE quando ligado, VERMELHO quando ainda falta ligar!)
+      const grad = ctx.createRadialGradient(
+        sx - radius * 0.32,
+        sy - radius * 0.34,
+        radius * 0.12,
+        sx,
+        sy,
+        radius
+      );
+      if (isGreen) {
+        grad.addColorStop(0, "#86efac");
+        grad.addColorStop(0.45, "#00e676");
+        grad.addColorStop(1, "#15803d");
+      } else {
+        grad.addColorStop(0, "#fca5a5");
+        grad.addColorStop(0.45, "#ef4444");
+        grad.addColorStop(1, "#b91c1c");
+      }
+
+      ctx.beginPath();
+      ctx.arc(sx, sy, radius, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // Borda dupla de alto contraste (nítida tanto sobre a silhueta branca quanto sobre o céu!)
+      ctx.lineWidth = 2.6;
+      ctx.strokeStyle = isGreen ? "#064e3b" : "#7f1d1d";
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(sx, sy, Math.max(2, radius - 1.5), 0, Math.PI * 2);
+      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.82)";
+      ctx.stroke();
+    }
+
+    function drawArtFrame() {
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, stageW, stageH);
+      if (!artReady) return;
+
+      const topLeft = normToScreen(0, 0);
+      const figX = topLeft.x;
+      const figY = topLeft.y;
+      const figSpan = topLeft.figSpan;
+
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
+
+      // 1. Sombra suave sob a silhueta
+      ctx.save();
+      ctx.filter = "blur(9px)";
+      ctx.drawImage(silShadowCvs, figX, figY + 6 * (camScale * 0.45), figSpan, figSpan);
+      ctx.restore();
+
+      // 2. Figura com metade colorida + metade silhueta branca
+      if (revealProgress < 1) {
+        ctx.drawImage(halfWhiteCvs, figX, figY, figSpan, figSpan);
+      }
+
+      // 3. Onda mágica de revelação 100% colorida após fechar o último pino e abrir o zoom
       if (revealProgress > 0) {
-        const startX = Math.max(0, (pData.splitX - 0.08) * CW);
-        const revealX = startX + (CW - startX + 24) * revealProgress;
+        const startNorm = Math.max(0, pData.splitX - 0.08);
+        const startPx = figX + startNorm * figSpan;
+        const revealPx = startPx + (figSpan * (1 - startNorm) + 24) * revealProgress;
         ctx.save();
         ctx.beginPath();
-        ctx.rect(0, 0, revealX, CH);
+        ctx.rect(figX - 10, figY - 10, Math.max(0, revealPx - (figX - 10)), figSpan + 20);
         ctx.clip();
-        ctx.drawImage(fullColorCvs, 0, 0, CW, CH);
+        ctx.drawImage(fullColorCvs, figX, figY, figSpan, figSpan);
         ctx.restore();
 
         if (revealProgress < 0.99) {
-          const grad = ctx.createLinearGradient(revealX - 26, 0, revealX + 12, 0);
+          const grad = ctx.createLinearGradient(revealPx - 26, 0, revealPx + 12, 0);
           grad.addColorStop(0, "rgba(253,224,71,0)");
           grad.addColorStop(0.6, "rgba(253,224,71,0.85)");
           grad.addColorStop(1, "rgba(255,255,255,0)");
           ctx.fillStyle = grad;
-          ctx.fillRect(revealX - 26, CW * 0.06, 38, CH * 0.88);
+          ctx.fillRect(revealPx - 26, figY + figSpan * 0.06, 38, figSpan * 0.88);
         }
       }
 
-      // 4. Pontilhado da silhueta, linhas conectadas e pontinhos brancos
+      // 4. Pinos (Verdes = concluídos, Vermelhos = pendentes), Linhas Verdes Concluídas e Linha Amarela Sendo Arrastada!
       if (guideAlpha > 0.01) {
         ctx.save();
         ctx.globalAlpha = guideAlpha;
 
-        // 4a. Tracejado delicado acompanhando fielmente cada curva da silhueta calibrada
+        // Pré-calcula posição em tela de todos os pinos
+        const scrPts = new Array(dots.length);
+        for (let i = 0; i < dots.length; i++) {
+          scrPts[i] = normToScreen(dots[i][0], dots[i][1]);
+        }
+
+        // 4a. Guia pontilhada bem sutil entre os pinos vermelhos futuros para orientar curvas fechadas
         if (currentIdx < dots.length - 1) {
           ctx.save();
           ctx.beginPath();
-          ctx.moveTo(dots[currentIdx][0] * CW, dots[currentIdx][1] * CH);
+          ctx.moveTo(scrPts[currentIdx].x, scrPts[currentIdx].y);
           for (let i = currentIdx + 1; i < dots.length; i++) {
-            ctx.lineTo(dots[i][0] * CW, dots[i][1] * CH);
+            ctx.lineTo(scrPts[i].x, scrPts[i].y);
           }
           ctx.lineCap = "round";
           ctx.lineJoin = "round";
-          ctx.setLineDash([5, 6]);
-          ctx.lineWidth = 4.6;
-          ctx.strokeStyle = "rgba(30, 64, 175, 0.46)";
-          ctx.stroke();
-
-          ctx.lineWidth = 2.3;
-          ctx.strokeStyle = "rgba(255, 255, 255, 0.96)";
+          ctx.setLineDash([4, 7]);
+          ctx.lineWidth = 2.2;
+          ctx.strokeStyle = "rgba(71, 85, 105, 0.34)";
           ctx.stroke();
           ctx.restore();
         }
 
-        // 4b. Linha mágica brilhante já conectada pela criança (0 .. currentIdx)
-        if (currentIdx > 0 || isDragging) {
+        // 4b. LINHAS VERDES JÁ COMPLETADAS (0 -> 1 -> ... -> currentIdx)
+        if (currentIdx > 0) {
           ctx.save();
           ctx.beginPath();
-          ctx.moveTo(dots[0][0] * CW, dots[0][1] * CH);
+          ctx.moveTo(scrPts[0].x, scrPts[0].y);
           for (let i = 1; i <= currentIdx; i++) {
-            ctx.lineTo(dots[i][0] * CW, dots[i][1] * CH);
-          }
-          if (!isCompleted && (isDragging || Math.hypot(puckX - dots[currentIdx][0], puckY - dots[currentIdx][1]) > 0.004)) {
-            ctx.lineTo(puckX * CW, puckY * CH);
+            ctx.lineTo(scrPts[i].x, scrPts[i].y);
           }
           ctx.lineCap = "round";
           ctx.lineJoin = "round";
-          ctx.lineWidth = 9.4;
-          ctx.strokeStyle = "rgba(37, 99, 235, 0.52)";
+          ctx.lineWidth = 9.0;
+          ctx.strokeStyle = "#065f46";
           ctx.stroke();
 
-          ctx.lineWidth = 5.6;
-          ctx.strokeStyle = "#60a5fa";
-          ctx.stroke();
-
-          ctx.lineWidth = 2.5;
-          ctx.strokeStyle = "#ffffff";
+          ctx.lineWidth = 5.4;
+          ctx.strokeStyle = "#00e676";
           ctx.stroke();
           ctx.restore();
         }
 
-        // 4c. Halo sutil de destino no próximo pontinho branco quando destravado
-        if (isZoomedIn && !isCompleted && currentIdx < dots.length - 1) {
-          const nxt = dots[currentIdx + 1];
-          const haloR = 9.5 + Math.sin(pulseTick * 0.11) * 2.3;
-          ctx.beginPath();
-          ctx.arc(nxt[0] * CW, nxt[1] * CH, haloR, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(96, 165, 250, 0.34)";
-          ctx.fill();
-          ctx.lineWidth = 2.0;
-          ctx.strokeStyle = "rgba(253, 224, 71, 0.90)";
-          ctx.stroke();
+        // 4c. Desenha todos os Pinos visíveis na janela (Verdes = já ligados | Vermelhos = faltam ligar)
+        const basePinR = isCompleted ? 5.0 : 9.6;
+        for (let i = 0; i < dots.length; i++) {
+          const sp = scrPts[i];
+          if (sp.x < -40 || sp.x > stageW + 40 || sp.y < -40 || sp.y > stageH + 40) continue;
+
+          const isGreen = i <= currentIdx;
+          const isCurrentAnchor = !isCompleted && i === currentIdx;
+          const isNextTarget = !isCompleted && i === currentIdx + 1;
+          const r = isNextTarget && isHoveringNextPin
+            ? basePinR + 2.4
+            : (isCurrentAnchor || isNextTarget ? basePinR + 1.0 : basePinR);
+
+          drawPin3D(sp.x, sp.y, r, isGreen, isNextTarget, isNextTarget && isHoveringNextPin);
         }
 
-        // 4d. Pontinhos brancos 3D calibrados na silhueta (proporção delicada sem embolar nas curvas)
-        for (let i = 0; i < dots.length; i++) {
-          if (!isCompleted && i === currentIdx) continue;
-          const dx = dots[i][0] * CW;
-          const dy = dots[i][1] * CH;
-          const visited = i < currentIdx;
-
+        // 4d. LINHA AMARELA SENDO PUXADA LIVREMENTE POR CIMA (vai p/ direita, esquerda, cima e baixo sem ficar escondida!)
+        if (!isCompleted && isDragging) {
+          const fromPt = scrPts[currentIdx];
+          ctx.save();
           ctx.beginPath();
-          ctx.arc(dx, dy + 1.5, visited ? 4.4 : 5.6, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(15, 23, 42, 0.36)";
-          ctx.fill();
+          ctx.moveTo(fromPt.x, fromPt.y);
+          ctx.lineTo(dragScreenX, dragScreenY);
+          ctx.lineCap = "round";
 
-          ctx.beginPath();
-          ctx.arc(dx, dy, visited ? 4.2 : 5.4, 0, Math.PI * 2);
-          ctx.fillStyle = visited ? "#93c5fd" : "#ffffff";
-          ctx.fill();
-          ctx.lineWidth = visited ? 1.8 : 2.1;
-          ctx.strokeStyle = visited ? "#1d4ed8" : "rgba(37, 99, 235, 0.84)";
+          // Contorno escuro para destacar 100% o amarelo em cima do branco da silhueta e sobre o pino vermelho!
+          ctx.lineWidth = 9.8;
+          ctx.strokeStyle = "#854d0e";
           ctx.stroke();
+
+          ctx.lineWidth = 6.2;
+          ctx.strokeStyle = "#fde047";
+          ctx.stroke();
+
+          ctx.lineWidth = 2.0;
+          ctx.strokeStyle = "#fefce8";
+          ctx.stroke();
+          ctx.restore();
+
+          // Redesenha o pino verde de origem por cima da base da linha amarela para sair limpinho dele
+          drawPin3D(fromPt.x, fromPt.y, basePinR + 1.0, true, false, false);
         }
 
         ctx.restore();
       }
 
-      // 5. Estrelinhas mágicas ao conectar cada pontinho
+      // 5. Estrelinhas ao converter a linha amarela em verde
       for (let i = sparkles.length - 1; i >= 0; i--) {
         const sp = sparkles[i];
         sp.x += sp.vx;
         sp.y += sp.vy;
-        sp.alpha -= 0.032;
+        sp.alpha -= 0.035;
         if (sp.alpha <= 0) {
           sparkles.splice(i, 1);
           continue;
         }
+        const scr = normToScreen(sp.x, sp.y);
         ctx.save();
         ctx.globalAlpha = Math.max(0, sp.alpha);
         ctx.fillStyle = sp.color;
         ctx.beginPath();
-        ctx.arc(sp.x * CW, sp.y * CH, sp.r, 0, Math.PI * 2);
+        ctx.arc(scr.x, scr.y, sp.r, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       }
@@ -7454,126 +7582,82 @@
       if (isCompleted) return;
       isCompleted = true;
       isDragging = false;
+      isHoveringNextPin = false;
       activePointerId = null;
-      updatePuckDomPosition();
+      updateMiniArrowDom();
       if (bottomPillEl) bottomPillEl.style.opacity = "0";
 
-      // 1) Zoom out suave mostrando a figura inteira
-      updateCameraTransform(0.68);
-
-      // 2) Anima o preenchimento mágico 100% colorido + desaparecimento dos pontinhos
-      const revealStart = performance.now();
-      const revealDuration = 720;
-
-      function stepReveal(now) {
-        const elapsed = now - revealStart;
-        const t = Math.min(1, elapsed / revealDuration);
-        revealProgress = t * t * (3 - 2 * t);
-        guideAlpha = Math.max(0, 1 - t * 1.6);
-        if (t < 1 && !confettiActive) {
-          const waveX = pData.splitX + (0.90 - pData.splitX) * revealProgress;
-          if (Math.random() < 0.55) {
-            spawnDotSparkles(waveX, 0.22 + Math.random() * 0.56, 3);
-          }
-        }
-      }
-      window._ligueStepRevealFn = stepReveal;
-
-      // 3) Assim que a câmera abre e a cor preenche (~650ms): solta confetes e pausa de contemplação (~2.2s) antes da tela de vitória!
+      // Breve pausa (320ms) para a criança ver o último pino e a última linha ficarem VERDES antes de abrir o zoom!
       window._liguePontosWinTimer = setTimeout(() => {
-        revealProgress = 1;
-        guideAlpha = 0;
-        TronoAudio.play("success");
-        if (cameraRig) {
-          cameraRig.style.animation = "ligueFigureCelebratePop 0.65s ease-out forwards";
-        }
-        if (revealBadgeEl) {
-          revealBadgeEl.style.display = "block";
-          revealBadgeEl.style.animation = "ligueTitlePopIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards";
-        }
-        startStageConfettiShow();
+        revealZoomOutStarted = true;
+        updateCameraTargetForCurrentPin();
 
+        // Assim que o zoom abre (~680ms), preenche a figura inteira com cor mágica!
         window._liguePontosWinTimer = setTimeout(() => {
-          confettiActive = false;
-          triggerArcadeVictory();
-        }, 2200);
-      }, 680);
+          const revealStart = performance.now();
+          const revealDuration = 720;
+
+          function stepReveal(now) {
+            const elapsed = now - revealStart;
+            const t = Math.min(1, elapsed / revealDuration);
+            revealProgress = t * t * (3 - 2 * t);
+            guideAlpha = Math.max(0, 1 - t * 1.45);
+            if (t < 1 && !confettiActive) {
+              const waveX = pData.splitX + (0.90 - pData.splitX) * revealProgress;
+              if (Math.random() < 0.55) {
+                spawnDotSparkles(waveX, 0.22 + Math.random() * 0.56, 3);
+              }
+            }
+          }
+          window._ligueStepRevealFn = stepReveal;
+
+          window._liguePontosWinTimer = setTimeout(() => {
+            revealProgress = 1;
+            guideAlpha = 0;
+            TronoAudio.play("success");
+            if (cameraRig) {
+              cameraRig.style.animation = "ligueFigureCelebratePop 0.65s ease-out forwards";
+            }
+            if (revealBadgeEl) {
+              revealBadgeEl.style.display = "block";
+              revealBadgeEl.style.animation = "ligueTitlePopIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards";
+            }
+            startStageConfettiShow();
+
+            window._liguePontosWinTimer = setTimeout(() => {
+              confettiActive = false;
+              triggerArcadeVictory();
+            }, 2200);
+          }, 720);
+        }, 650);
+      }, 320);
     }
 
-    function advanceToNextDot() {
+    function connectNextPin() {
       if (isCompleted || currentIdx >= dots.length - 1) return;
       currentIdx++;
-      puckX = dots[currentIdx][0];
-      puckY = dots[currentIdx][1];
+      isDragging = false;
+      isHoveringNextPin = false;
+      activePointerId = null;
       if (stepCountEl) stepCountEl.textContent = String(currentIdx);
-      const isFinalDot = currentIdx >= dots.length - 1;
-      spawnDotSparkles(puckX, puckY, isFinalDot ? 14 : 6);
+      spawnDotSparkles(dots[currentIdx][0], dots[currentIdx][1], currentIdx >= dots.length - 1 ? 14 : 8);
+      TronoAudio.play("star");
 
-      const nowMs = performance.now();
-      if (isFinalDot || currentIdx === 1 || nowMs - lastStarSfxAt >= 105) {
-        lastStarSfxAt = nowMs;
-        TronoAudio.play("star");
-      }
-      updatePuckDomPosition();
-
-      if (isFinalDot) {
+      if (currentIdx >= dots.length - 1) {
         completePhaseWithColorReveal();
-      } else if (nowMs - lastCamPanAt >= 85) {
-        lastCamPanAt = nowMs;
-        updateCameraTransform(0.32);
+      } else {
+        // Move suavemente a imagem na tela para centralizar o novo pino verde e o próximo pino vermelho!
+        updateCameraTargetForCurrentPin();
       }
+      updateMiniArrowDom();
     }
 
-    function clientToBoardNorm(clientX, clientY) {
-      const rect = cameraRig.getBoundingClientRect();
-      if (!rect || rect.width < 10 || rect.height < 10) return { x: puckX, y: puckY, rectW: 320 };
+    function clientToScreenXY(clientX, clientY) {
+      const rect = stageRoot.getBoundingClientRect();
       return {
-        x: Math.max(0.02, Math.min(0.98, (clientX - rect.left) / rect.width)),
-        y: Math.max(0.02, Math.min(0.98, (clientY - rect.top) / rect.height)),
-        rectW: rect.width
+        x: clientX - rect.left,
+        y: clientY - rect.top
       };
-    }
-
-    function handleDragAtNorm(nx, ny) {
-      if (isCompleted || window._arcadeStageLockedForVovo || currentIdx >= dots.length - 1) return;
-
-      // Permite deslizar suavemente por vários pontinhos seguidos na curva da silhueta sem engasgar!
-      let stepsInFrame = 0;
-      while (stepsInFrame < 5 && !isCompleted && currentIdx < dots.length - 1) {
-        const A = dots[currentIdx];
-        const B = dots[currentIdx + 1];
-        const abx = B[0] - A[0];
-        const aby = B[1] - A[1];
-        const abLenSq = Math.max(0.00005, abx * abx + aby * aby);
-        const abLen = Math.sqrt(abLenSq);
-
-        const apx = nx - A[0];
-        const apy = ny - A[1];
-        const rawT = (apx * abx + apy * aby) / abLenSq;
-        const clampedT = Math.max(0, Math.min(1.04, rawT));
-
-        const projX = A[0] + abx * Math.min(1, clampedT);
-        const projY = A[1] + aby * Math.min(1, clampedT);
-        const perpDist = Math.hypot(nx - projX, ny - projY);
-
-        const distToB = Math.hypot(nx - B[0], ny - B[1]);
-        const snapRad = Math.max(0.034, Math.min(0.068, abLen * 1.22));
-        if (distToB <= snapRad || (clampedT >= 0.78 && perpDist <= Math.max(0.058, abLen * 0.95))) {
-          advanceToNextDot();
-          stepsInFrame++;
-          continue;
-        }
-
-        // Atração magnética gentil na trilha para dedinhos pequenos sem travar o movimento
-        const offX = nx - projX;
-        const offY = ny - projY;
-        const maxOff = 0.038;
-        const offScale = perpDist > maxOff ? (maxOff / perpDist) : 1;
-        puckX = projX + offX * offScale * 0.35;
-        puckY = projY + offY * offScale * 0.35;
-        updatePuckDomPosition();
-        break;
-      }
     }
 
     function onPointerDown(ev) {
@@ -7581,21 +7665,22 @@
       const pt = ev.touches && ev.touches[0] ? ev.touches[0] : ev;
       if (!pt || typeof pt.clientX !== "number") return;
 
-      const norm = clientToBoardNorm(pt.clientX, pt.clientY);
-      const distPuck = Math.hypot(norm.x - puckX, norm.y - puckY);
-      const nextDot = dots[Math.min(dots.length - 1, currentIdx + 1)];
-      const distNext = Math.hypot(norm.x - nextDot[0], norm.y - nextDot[1]);
+      const scr = clientToScreenXY(pt.clientX, pt.clientY);
+      const curPinScr = normToScreen(dots[currentIdx][0], dots[currentIdx][1]);
+      const distFromGreenPin = Math.hypot(scr.x - curPinScr.x, scr.y - curPinScr.y);
 
-      // Permite pegar a bolinha pulsante com folga generosa OU tocar direto no próximo pontinho branco
-      if (distPuck <= 0.135) {
+      // Pega o pino verde atual (área confortável para o dedinho) e começa a puxar a LINHA AMARELA!
+      if (distFromGreenPin <= 56) {
         if (ev.cancelable) ev.preventDefault();
         isDragging = true;
         activePointerId = ev.pointerId !== undefined ? ev.pointerId : "touch";
-        puckEl.style.cursor = "grabbing";
-        handleDragAtNorm(norm.x, norm.y);
-      } else if (distNext <= 0.095) {
-        if (ev.cancelable) ev.preventDefault();
-        advanceToNextDot();
+        dragScreenX = scr.x;
+        dragScreenY = scr.y;
+
+        const nxtPt = dots[Math.min(dots.length - 1, currentIdx + 1)];
+        const nxtScr = normToScreen(nxtPt[0], nxtPt[1]);
+        isHoveringNextPin = Math.hypot(dragScreenX - nxtScr.x, dragScreenY - nxtScr.y) <= 38;
+        updateMiniArrowDom();
       }
     }
 
@@ -7605,22 +7690,37 @@
       const pt = ev.touches && ev.touches[0] ? ev.touches[0] : ev;
       if (!pt || typeof pt.clientX !== "number") return;
       if (ev.cancelable) ev.preventDefault();
-      const norm = clientToBoardNorm(pt.clientX, pt.clientY);
-      handleDragAtNorm(norm.x, norm.y);
+
+      const scr = clientToScreenXY(pt.clientX, pt.clientY);
+      // Movimento 100% LIVRE em todas as direções (direita, esquerda, cima, baixo) — a criança vê a linha amarela esticando!
+      dragScreenX = Math.max(8, Math.min(stageW - 8, scr.x));
+      dragScreenY = Math.max(8, Math.min(stageH - 8, scr.y));
+
+      const nxtPt = dots[Math.min(dots.length - 1, currentIdx + 1)];
+      const nxtScr = normToScreen(nxtPt[0], nxtPt[1]);
+      isHoveringNextPin = Math.hypot(dragScreenX - nxtScr.x, dragScreenY - nxtScr.y) <= 38;
+      updateMiniArrowDom();
     }
 
     function onPointerUp(ev) {
       if (!isDragging) return;
       if (ev && ev.pointerId !== undefined && activePointerId !== "touch" && ev.pointerId !== activePointerId) return;
-      isDragging = false;
-      activePointerId = null;
-      if (!isCompleted && currentIdx < dots.length) {
-        puckX = dots[currentIdx][0];
-        puckY = dots[currentIdx][1];
-        puckEl.style.cursor = "grab";
-        updatePuckDomPosition();
-        if (isZoomedIn) updateCameraTransform(0.32);
+
+      // Se a criança levou a linha amarela até o pino vermelho e SOLTOU nele -> a linha e o pino ficam VERDES!
+      if (!isCompleted && !window._arcadeStageLockedForVovo && currentIdx < dots.length - 1) {
+        const nxtPt = dots[currentIdx + 1];
+        const nxtScr = normToScreen(nxtPt[0], nxtPt[1]);
+        if (Math.hypot(dragScreenX - nxtScr.x, dragScreenY - nxtScr.y) <= 40) {
+          connectNextPin();
+          return;
+        }
       }
+
+      // Soltou fora do pino vermelho: recolhe a linha amarela de volta para o pino verde atual
+      isDragging = false;
+      isHoveringNextPin = false;
+      activePointerId = null;
+      updateMiniArrowDom();
     }
 
     stageRoot.addEventListener("pointerdown", onPointerDown, { passive: false });
@@ -7629,7 +7729,8 @@
     window.addEventListener("pointercancel", onPointerUp, { passive: true });
 
     const onResize = () => {
-      if (!isCompleted && isZoomedIn) updateCameraTransform(0.25);
+      syncCanvasViewportSize();
+      updateMiniArrowDom();
     };
     window.addEventListener("resize", onResize);
 
@@ -7643,31 +7744,42 @@
       try { window.removeEventListener("resize", onResize); } catch (e) {}
     };
 
-    // Ao término da fala do Vovô (ou de imediato nas fases 2+ da mesma sessão): dá o ZOOM suave no 1º pontinho!
     window._arcadeUnlockGameAction = function() {
       if (isCompleted) return;
-      isZoomedIn = true;
-      updatePuckDomPosition();
-      updateCameraTransform(0.72);
+      updateCameraTargetForCurrentPin();
+      updateMiniArrowDom();
     };
 
     function animLoop(now) {
       pulseTick++;
+
+      // Interpolação suave da câmera (move os pinos e a imagem macio na tela a cada pino conectado, e abre o zoom no final!)
+      const lerpSpd = revealZoomOutStarted ? 0.085 : 0.14;
+      camCenterX += (targetCamX - camCenterX) * lerpSpd;
+      camCenterY += (targetCamY - camCenterY) * lerpSpd;
+      camScale += (targetCamScale - camScale) * lerpSpd;
+
       if (typeof window._ligueStepRevealFn === "function" && isCompleted && revealProgress < 1) {
         window._ligueStepRevealFn(now);
       }
+
+      syncCanvasViewportSize();
       drawArtFrame();
+      updateMiniArrowDom();
+
       if (confettiActive) {
         renderStageConfettiFrame();
       }
       window._liguePontosRaf = requestAnimationFrame(animLoop);
     }
 
-    updatePuckDomPosition();
+    updateMiniArrowDom();
 
     function checkBothVisualsReady() {
       if (bgLoaded && figLoaded) {
+        syncCanvasViewportSize();
         drawArtFrame();
+        updateMiniArrowDom();
         if (typeof window._notifyArcadeVisualReady === "function") {
           window._notifyArcadeVisualReady();
         }
