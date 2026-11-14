@@ -15,8 +15,8 @@ window.EBD_WHITE_LABEL_CONFIG = {
   totalWeeksInTrimester: 22,
   freeGamePhasesCount: 10,
   ageBrackets: [
-    { id: "3-5", label: "3 a 5 anos", sub: "Pequenininhos" },
-    { id: "6-8", label: "6 a 8 anos", sub: "Exploradores" }
+    { id: "3-5", label: "3 a 5 anos", sub: "Educação Infantil" },
+    { id: "6-8", label: "6 a 8 anos", sub: "Anos Iniciais" }
   ],
   backgroundsByScreen: {
     "screen-home":           "./2_ASSETS_UI_BOTOES/bg_ebd_01_biblioteca.jpg",
@@ -111,7 +111,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "byAge": {
       "3-5": {
         "text": "Deus fez o mundo inteiro com a Sua Palavra! Ele fez a luz brilhar, o céu azul, as florzinhas, os bichinhos e fez você com muito amor!",
-        "verse": "No princípio, Deus criou os céus e a terra. (Gênesis 1:1)",
+        "verse": "No princípio criou Deus os céus e a terra. (Gênesis 1:1)",
         "verseWords": [
           "No",
           "princípio,",
@@ -123,14 +123,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "a",
           "terra."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Cuidar da Criação",
+        "actionTitle": "Adaptação 3 a 5 anos: Cuidar da Criação",
         "actionDesc": "Regue uma plantinha em casa ou dê carinho em um bichinho de estimação agradecendo ao Papai do Céu pelo mundo lindo!",
         "vovoStoryScript": "Vocês já pararam para imaginar como era o mundo antes de existir o sol quentinho, as flores perfumadas ou as ondas do mar? Cheguem bem pertinho do vovô! No comecinho de tudo, tudo era escuro e silencioso. Não havia passarinho cantando, nem grama verdinha. Mas o carinho de Deus já preparava uma linda surpresa! No primeiro dia, Deus disse com Sua voz doce e poderosa: Haja luz! E no mesmo instante, um clarão dourado acendeu o dia e separou a noite para descansar. No segundo dia, Ele ergueu um céu azul bem alto, espalhando nuvens fofinhas como algodão. No terceiro dia, fez surgir a terra firme, com árvores cheias de maçãs, uvas docinhas e tapetes de grama. No quarto dia, Deus acendeu o sol para brilhar de dia, e a lua com milhões de estrelinhas brilhantes para iluminar a noite. No quinto dia, encheu os mares de peixinhos coloridos e os céus de araras e passarinhos alegres! No sexto dia, criou os animais: o leão, a girafa, o cachorrinho amigo, e fez o ser humano com muito amor para cuidar de tudo. No sétimo dia, Deus olhou para toda a criação e viu que tudo tinha ficado muito bom! Cuidar da natureza é retribuir o amor do nosso Criador!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_01_vovo.mp3?v=81"
       },
       "6-8": {
         "text": "Em 6 dias, Deus organizou toda a Criação em ordem perfeita: primeiro a luz e o céu, depois a terra e as plantas, o sol e as estrelas, os peixes e aves, e por fim os animais e o ser humano!",
-        "verse": "No princípio, Deus criou os céus e a terra. E viu Deus que tudo era muito bom! (Gênesis 1:1,31)",
+        "verse": "No princípio criou Deus os céus e a terra. (Gênesis 1:1)",
         "verseWords": [
           "No",
           "princípio,",
@@ -142,7 +142,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "a",
           "terra."
         ],
-        "actionTitle": "Missão Explorador: Guardião da Natureza",
+        "actionTitle": "Missão da Semana: Guardião da Natureza",
         "actionDesc": "Ajude sua família a separar o lixo reciclável e não desperdiçar água durante toda esta semana!",
         "vovoStoryScript": "Vocês já pararam para imaginar como era o mundo antes de existir o sol quentinho, as flores perfumadas ou as ondas do mar? Cheguem bem pertinho do vovô! No comecinho de tudo, tudo era escuro e silencioso. Não havia passarinho cantando, nem grama verdinha. Mas o carinho de Deus já preparava uma linda surpresa! No primeiro dia, Deus disse com Sua voz doce e poderosa: Haja luz! E no mesmo instante, um clarão dourado acendeu o dia e separou a noite para descansar. No segundo dia, Ele ergueu um céu azul bem alto, espalhando nuvens fofinhas como algodão. No terceiro dia, fez surgir a terra firme, com árvores cheias de maçãs, uvas docinhas e tapetes de grama. No quarto dia, Deus acendeu o sol para brilhar de dia, e a lua com milhões de estrelinhas brilhantes para iluminar a noite. No quinto dia, encheu os mares de peixinhos coloridos e os céus de araras e passarinhos alegres! No sexto dia, criou os animais: o leão, a girafa, o cachorrinho amigo, e fez o ser humano com muito amor para cuidar de tudo. No sétimo dia, Deus olhou para toda a criação e viu que tudo tinha ficado muito bom! Cuidar da natureza é retribuir o amor do nosso Criador!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_01_vovo.mp3?v=81"
@@ -302,7 +302,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "byAge": {
       "3-5": {
         "text": "Noé obedeceu a Deus e construiu uma grande Arca para salvar sua família e os bichinhos da grande chuva. Depois, Deus colocou um lindo arco-íris no céu!",
-        "verse": "Noé fez tudo exatamente como Deus lhe tinha ordenado. (Gênesis 6:22)",
+        "verse": "Assim fez Noé conforme tudo o que Deus mandou. (Gênesis 6:22)",
         "verseWords": [
           "Noé",
           "fez",
@@ -312,14 +312,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "lhe",
           "ordenou."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Obediência Alegre",
+        "actionTitle": "Adaptação 3 a 5 anos: Obediência Alegre",
         "actionDesc": "Quando o papai ou a mamãe pedir para guardar os brinquedos, obedeça na primeira vez com um sorriso, igual a Noé!",
         "vovoStoryScript": "Imaginem só, meus queridos netos, se alguém começasse a construir um barco gigante, do tamanho de um prédio de três andares, bem no meio de um campo seco onde não havia mar! Sentem-se aqui com o vovô! Hoje vamos descobrir a história de Noé, um homem obediente e de coração muito bom. Quando muitas pessoas se esqueceram de fazer o bem, Deus pediu a Noé que construísse uma grande arca de madeira para proteger a sua família e os animaizinhos. Noé trabalhou com serras, martelos e muita dedicação. Quando a arca ficou pronta, aconteceu algo mágico! Os animais vieram de dois em dois, caminhando em fila: elefantes marchando, girafas compridas, ovelhas macias e passarinhos cantores, todos subindo pela rampa! Quando todos entraram com comida gostosa, Deus fechou a porta por fora com carinho. Lá fora caiu uma chuva forte por quarenta dias, mas dentro da arca todos estavam quentinhos, seguros e felizes. Quando as águas baixaram, Noé soltou uma pombinha branca que voltou com uma folhinha verde no bico! Ao pisarem em terra firme, agradeceram a Deus, e no céu apareceu um lindo arco-íris colorido, lembrando que Deus sempre cuida de quem confia Nele!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_02_vovo.mp3?v=81"
       },
       "6-8": {
         "text": "Mesmo quando todos riam dele, Noé continuou construindo a Arca com fé e paciência. A obediência de Noé protegeu sua casa e todos os animais!",
-        "verse": "O meu arco tenho posto nas nuvens, como sinal da aliança. (Gênesis 9:13)",
+        "verse": "Assim fez Noé conforme tudo o que Deus mandou. (Gênesis 6:22)",
         "verseWords": [
           "O",
           "meu",
@@ -330,7 +330,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "como",
           "aliança."
         ],
-        "actionTitle": "Missão Explorador: Construtor da Paz",
+        "actionTitle": "Missão da Semana: Construtor da Paz",
         "actionDesc": "Desenhe um arco-íris das promessas de Deus e faça uma boa ação para ajudar na arrumação da sua casa.",
         "vovoStoryScript": "Imaginem só, meus queridos netos, se alguém começasse a construir um barco gigante, do tamanho de um prédio de três andares, bem no meio de um campo seco onde não havia mar! Sentem-se aqui com o vovô! Hoje vamos descobrir a história de Noé, um homem obediente e de coração muito bom. Quando muitas pessoas se esqueceram de fazer o bem, Deus pediu a Noé que construísse uma grande arca de madeira para proteger a sua família e os animaizinhos. Noé trabalhou com serras, martelos e muita dedicação. Quando a arca ficou pronta, aconteceu algo mágico! Os animais vieram de dois em dois, caminhando em fila: elefantes marchando, girafas compridas, ovelhas macias e passarinhos cantores, todos subindo pela rampa! Quando todos entraram com comida gostosa, Deus fechou a porta por fora com carinho. Lá fora caiu uma chuva forte por quarenta dias, mas dentro da arca todos estavam quentinhos, seguros e felizes. Quando as águas baixaram, Noé soltou uma pombinha branca que voltou com uma folhinha verde no bico! Ao pisarem em terra firme, agradeceram a Deus, e no céu apareceu um lindo arco-íris colorido, lembrando que Deus sempre cuida de quem confia Nele!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_02_vovo.mp3?v=81"
@@ -490,7 +490,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "byAge": {
       "3-5": {
         "text": "Deus pediu para Abraão olhar para as estrelinhas do céu e prometeu que ele teria uma família bem grande. Abraão confiou no Papai do Céu!",
-        "verse": "Em ti serão benditas todas as famílias da terra. (Gênesis 12:3)",
+        "verse": "Olha para o céu e conta as estrelas. (Gênesis 15:5)",
         "verseWords": [
           "Em",
           "ti",
@@ -500,14 +500,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "as",
           "famílias."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Abençoar a Família",
+        "actionTitle": "Adaptação 3 a 5 anos: Abençoar a Família",
         "actionDesc": "Dê um abraço apertado no papai, na mamãe e nos avós dizendo: 'Deus abençoe a nossa família!'",
         "vovoStoryScript": "Vocês já saíram no quintal à noite e tentaram contar uma por uma as estrelinhas que brilham no céu? A gente logo perde a conta de tantas que são, não é verdade? Cheguem pertinho do vovô! Há muito tempo, vivia um homem bom chamado Abraão e sua esposa Sara. Eles tinham uma casinha bonita e muitas ovelhinhas, mas tinham um grande sonho no coração: queriam muito ter um filhinho. Já eram velhinhos de cabelos brancos quando, numa noite tranquila, Deus convidou Abraão para sair da tenda e olhar para o alto. Deus disse: Olhe para as estrelas, Abraão! Se você puder contá-las, assim será a sua grande família, cheia de filhos, netos e bênçãos! Abraão sorriu e acreditou de todo o coração, porque sabia que Deus nunca falha. E não é que o milagre aconteceu? Tempos depois, o sonhado bebezinho nasceu, e eles deram o nome de Isaque, que significa sorriso e alegria! A casa se encheu de risos e festas. Quando a gente confia nas promessas do Papai do Céu, a nossa vida fica cheia de esperança e brilho, como um céu estrelado!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_03_vovo.mp3?v=81"
       },
       "6-8": {
         "text": "Abraão deixou sua cidade e viajou confiando na promessa de Deus. Sob o céu estrelado, Deus prometeu que a família de Abraão seria numerosa como as estrelas!",
-        "verse": "Olha para os céus e conta as estrelas... assim será a tua descendência. (Gênesis 15:5)",
+        "verse": "Olha para o céu e conta as estrelas. (Gênesis 15:5)",
         "verseWords": [
           "Olha",
           "para",
@@ -518,7 +518,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "as",
           "estrelas."
         ],
-        "actionTitle": "Missão Explorador: Amigo Generoso",
+        "actionTitle": "Missão da Semana: Amigo Generoso",
         "actionDesc": "Assim como Abraão repartiu a terra com seu sobrinho Ló para manter a paz, divida algo seu com um irmão ou amigo!",
         "vovoStoryScript": "Vocês já saíram no quintal à noite e tentaram contar uma por uma as estrelinhas que brilham no céu? A gente logo perde a conta de tantas que são, não é verdade? Cheguem pertinho do vovô! Há muito tempo, vivia um homem bom chamado Abraão e sua esposa Sara. Eles tinham uma casinha bonita e muitas ovelhinhas, mas tinham um grande sonho no coração: queriam muito ter um filhinho. Já eram velhinhos de cabelos brancos quando, numa noite tranquila, Deus convidou Abraão para sair da tenda e olhar para o alto. Deus disse: Olhe para as estrelas, Abraão! Se você puder contá-las, assim será a sua grande família, cheia de filhos, netos e bênçãos! Abraão sorriu e acreditou de todo o coração, porque sabia que Deus nunca falha. E não é que o milagre aconteceu? Tempos depois, o sonhado bebezinho nasceu, e eles deram o nome de Isaque, que significa sorriso e alegria! A casa se encheu de risos e festas. Quando a gente confia nas promessas do Papai do Céu, a nossa vida fica cheia de esperança e brilho, como um céu estrelado!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_03_vovo.mp3?v=81"
@@ -678,7 +678,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "byAge": {
       "3-5": {
         "text": "Jacó dormiu sob as estrelas e sonhou com uma escada brilhante que chegava até o céu! Deus prometeu cuidar de Jacó em todo lugar.",
-        "verse": "Eis que estou contigo e te guardarei por onde quer que fores. (Gênesis 28:15)",
+        "verse": "Eis que estou contigo e te guardarei sempre. (Gênesis 28:15)",
         "verseWords": [
           "Eis",
           "que",
@@ -688,14 +688,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "te",
           "guardarei."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Dormir em Paz",
+        "actionTitle": "Adaptação 3 a 5 anos: Dormir em Paz",
         "actionDesc": "Antes de dormir hoje, faça uma oração agradecendo porque o Papai do Céu guarda o seu soninho!",
         "vovoStoryScript": "Alguma vez vocês já olharam para a noite escura longe de casa e sentiram um friozinho na barriga ou saudade? Sentem-se pertinho do vovô! Hoje vamos conhecer Jacó, neto de Abraão. Em uma viagem longa, o sol se pôs e a noite ficou bem escura. Jacó não tinha uma caminha macia por perto, então ajeitou uma pedra lisa como travesseiro, puxou o cobertor e adormeceu no chão de terra. Foi aí que ele teve o sonho mais deslumbrante do mundo! Ele viu uma imensa escada dourada que começava na terra e tocava o céu azul. Por ela, anjos reluzentes subiam e desciam com vestes brilhantes! E lá no alto, Deus falou com carinho ao coração de Jacó: Eu estou com você por onde quer que você for! Nunca vou te abandonar! Quando Jacó acordou na manhã seguinte, com o sol quentinho no rosto, todo o medo tinha desaparecido. Ele pegou aquela pedra, agradeceu a Deus e continuou seu caminho com o coração em paz. Lembrem-se sempre, meus netos: até nos momentos mais difíceis, Deus coloca anjos ao nosso redor para nos guardar!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_04_vovo.mp3?v=81"
       },
       "6-8": {
         "text": "Mesmo longe de casa, Jacó descobriu em Betel que a presença de Deus estava com ele. Deus confirmou a Jacó a promessa feita ao seu avô Abraão!",
-        "verse": "Na verdade o Senhor está neste lugar! (Gênesis 28:16)",
+        "verse": "Eis que estou contigo e te guardarei sempre. (Gênesis 28:15)",
         "verseWords": [
           "Na",
           "verdade",
@@ -705,7 +705,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "neste",
           "lugar!"
         ],
-        "actionTitle": "Missão Explorador: Memorial de Gratidão",
+        "actionTitle": "Missão da Semana: Memorial de Gratidão",
         "actionDesc": "Escreva em um cartão uma bênção que sua família recebeu e coloque na geladeira para lembrar do cuidado de Deus.",
         "vovoStoryScript": "Alguma vez vocês já olharam para a noite escura longe de casa e sentiram um friozinho na barriga ou saudade? Sentem-se pertinho do vovô! Hoje vamos conhecer Jacó, neto de Abraão. Em uma viagem longa, o sol se pôs e a noite ficou bem escura. Jacó não tinha uma caminha macia por perto, então ajeitou uma pedra lisa como travesseiro, puxou o cobertor e adormeceu no chão de terra. Foi aí que ele teve o sonho mais deslumbrante do mundo! Ele viu uma imensa escada dourada que começava na terra e tocava o céu azul. Por ela, anjos reluzentes subiam e desciam com vestes brilhantes! E lá no alto, Deus falou com carinho ao coração de Jacó: Eu estou com você por onde quer que você for! Nunca vou te abandonar! Quando Jacó acordou na manhã seguinte, com o sol quentinho no rosto, todo o medo tinha desaparecido. Ele pegou aquela pedra, agradeceu a Deus e continuou seu caminho com o coração em paz. Lembrem-se sempre, meus netos: até nos momentos mais difíceis, Deus coloca anjos ao nosso redor para nos guardar!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_04_vovo.mp3?v=81"
@@ -865,7 +865,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "byAge": {
       "3-5": {
         "text": "José tinha uma linda túnica colorida e amava ao Papai do Céu. Mesmo longe de casa, ele guardou o coração limpo e perdoou seus irmãos!",
-        "verse": "O Senhor estava com José. (Gênesis 39:2)",
+        "verse": "Deus me enviou para conservar a vida. (Gênesis 45:5)",
         "verseWords": [
           "O",
           "Senhor",
@@ -874,14 +874,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "com",
           "José."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Coração que Perdoa",
+        "actionTitle": "Adaptação 3 a 5 anos: Coração que Perdoa",
         "actionDesc": "Se alguém errar com você, escolha perdoar e continuar amigo!",
         "vovoStoryScript": "Meus netos queridos, imaginem ganhar uma roupa linda, cheia de cores vibrantes como o arco-íris, feita com todo o carinho pelo papai! Foi isso que aconteceu com José, um menino bondoso. Mas os irmãos mais velhos ficaram com ciúmes e cometeram um grande erro: mandaram José para uma terra muito distante, chamada Egito. José passou por dias tristes longe da família, mas nunca perdeu a fé nem guardou rancor no peito. Deus estava com José e lhe deu sabedoria para ajudar o rei a guardar comida nos anos de colheita farta. Anos depois, quando a comida acabou em toda a região, quem veio pedir ajuda? Os próprios irmãos de José! Eles não reconheceram aquele jovem líder importante. Mas José, ao rever seus irmãos, chorou de emoção. Ele não se vingou nem guardou mágoa: deu um abraço apertado em cada um e disse: Não tenham medo! Deus me trouxe aqui para salvar a vida de vocês! Que coração nobre! Perdoar quem errou conosco e responder com amor é a coisa mais linda que podemos fazer!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_05_vovo.mp3?v=81"
       },
       "6-8": {
         "text": "José passou por momentos difíceis no Egito, mas nunca retribuiu o mal com o mal. Quando se tornou governador, ele alimentou e perdoou seus irmãos!",
-        "verse": "Deus me enviou adiante de vós para conservar a vida. (Gênesis 45:5)",
+        "verse": "Deus me enviou para conservar a vida. (Gênesis 45:5)",
         "verseWords": [
           "Deus",
           "me",
@@ -891,7 +891,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "a",
           "vida."
         ],
-        "actionTitle": "Missão Explorador: Fazer o Bem Sempre",
+        "actionTitle": "Missão da Semana: Fazer o Bem Sempre",
         "actionDesc": "Retribua uma atitude chata com uma palavra bondosa e ajude a manter a união entre irmãos e colegas.",
         "vovoStoryScript": "Meus netos queridos, imaginem ganhar uma roupa linda, cheia de cores vibrantes como o arco-íris, feita com todo o carinho pelo papai! Foi isso que aconteceu com José, um menino bondoso. Mas os irmãos mais velhos ficaram com ciúmes e cometeram um grande erro: mandaram José para uma terra muito distante, chamada Egito. José passou por dias tristes longe da família, mas nunca perdeu a fé nem guardou rancor no peito. Deus estava com José e lhe deu sabedoria para ajudar o rei a guardar comida nos anos de colheita farta. Anos depois, quando a comida acabou em toda a região, quem veio pedir ajuda? Os próprios irmãos de José! Eles não reconheceram aquele jovem líder importante. Mas José, ao rever seus irmãos, chorou de emoção. Ele não se vingou nem guardou mágoa: deu um abraço apertado em cada um e disse: Não tenham medo! Deus me trouxe aqui para salvar a vida de vocês! Que coração nobre! Perdoar quem errou conosco e responder com amor é a coisa mais linda que podemos fazer!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_05_vovo.mp3?v=81"
@@ -1051,7 +1051,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "byAge": {
       "3-5": {
         "text": "Quando o povo chegou diante do grande mar, Deus abriu um caminho sequinho no meio das águas para Moisés e todo o povo passarem em segurança!",
-        "verse": "Não temais; o Senhor pelejará por vós. (Êxodo 14:14)",
+        "verse": "O Senhor é a minha força sempre. (Êxodo 15:2)",
         "verseWords": [
           "Não",
           "temais;",
@@ -1061,14 +1061,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "de",
           "vós."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Cante de Alegria",
+        "actionTitle": "Adaptação 3 a 5 anos: Cante de Alegria",
         "actionDesc": "Cante um louvor alegre com a sua família agradecendo porque Deus sempre cuida de nós!",
         "vovoStoryScript": "Vocês conseguem imaginar um mar inteiro, cheio de ondas profundas, se abrindo bem no meio como duas paredes de água cintilante, deixando um caminho de areia sequinha para todo mundo passar? Cheguem pertinho do vovô! Moisés estava guiando o povo pelo deserto rumo à liberdade. De repente, chegaram à praia do Mar Vermelho. Na frente, só havia água funda. E atrás, vinha um exército em carruagens velozes! O povo ficou apavorado, mas Moisés disse: Fiquem calmos! Confiem em Deus! Então, Deus mandou Moisés estender seu cajado de madeira sobre as águas. Naquele momento, soprou um vento forte do oriente durante a noite inteira. As ondas se separaram à direita e à esquerda, formando um corredor de chão seco! Mães, pais, crianças e até os cordeirinhos atravessaram o mar a pé enxuto, maravilhados com os peixes nadando nas paredes de água! Quando todos chegaram ao outro lado em segurança, Míriam pegou um pandeiro e cantou louvores de alegria com todo o povo. Para Deus, nenhum obstáculo é grande demais!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_06_vovo.mp3?v=81"
       },
       "6-8": {
         "text": "Diante do Mar Vermelho, Moisés confiou em Deus. O mar se abriu como dois muros de água e todos passaram a pé enxuto!",
-        "verse": "O Senhor é a minha força e o meu cântico. (Êxodo 15:2)",
+        "verse": "O Senhor é a minha força sempre. (Êxodo 15:2)",
         "verseWords": [
           "O",
           "Senhor",
@@ -1078,7 +1078,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "força",
           "sempre."
         ],
-        "actionTitle": "Missão Explorador: Coragem nos Desafios",
+        "actionTitle": "Missão da Semana: Coragem nos Desafios",
         "actionDesc": "Quando encontrar uma tarefa difícil nesta semana, ore pedindo calma e tente até conseguir!",
         "vovoStoryScript": "Vocês conseguem imaginar um mar inteiro, cheio de ondas profundas, se abrindo bem no meio como duas paredes de água cintilante, deixando um caminho de areia sequinha para todo mundo passar? Cheguem pertinho do vovô! Moisés estava guiando o povo pelo deserto rumo à liberdade. De repente, chegaram à praia do Mar Vermelho. Na frente, só havia água funda. E atrás, vinha um exército em carruagens velozes! O povo ficou apavorado, mas Moisés disse: Fiquem calmos! Confiem em Deus! Então, Deus mandou Moisés estender seu cajado de madeira sobre as águas. Naquele momento, soprou um vento forte do oriente durante a noite inteira. As ondas se separaram à direita e à esquerda, formando um corredor de chão seco! Mães, pais, crianças e até os cordeirinhos atravessaram o mar a pé enxuto, maravilhados com os peixes nadando nas paredes de água! Quando todos chegaram ao outro lado em segurança, Míriam pegou um pandeiro e cantou louvores de alegria com todo o povo. Para Deus, nenhum obstáculo é grande demais!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_06_vovo.mp3?v=81"
@@ -1238,7 +1238,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "byAge": {
       "3-5": {
         "text": "Josué e o povo marcharam ao redor da grande muralha de Jericó obedecendo ao Papai do Céu. Quando tocaram as trombetas, a muralha caiu!",
-        "verse": "Sê forte e corajoso; o Senhor é contigo! (Josué 1:9)",
+        "verse": "Esforça-te e tem bom ânimo com Deus. (Josué 1:9)",
         "verseWords": [
           "Sê",
           "forte",
@@ -1248,14 +1248,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "é",
           "contigo!"
         ],
-        "actionTitle": "Missão dos Pequenininhos: Marcha da Coragem",
+        "actionTitle": "Adaptação 3 a 5 anos: Marcha da Coragem",
         "actionDesc": "Repita com o papai e a mamãe: 'Sou forte e corajoso porque Deus está comigo!'",
         "vovoStoryScript": "Vocês já tentaram abrir uma porta pesada apenas marchando e cantando ao redor dela? Parece impossível, não é? Mas com Deus, a obediência faz coisas extraordinárias! Sentem-se aqui com o vovô! Depois de Moisés, o corajoso Josué recebeu a missão de levar o povo à terra prometida. Na frente deles estava a cidade de Jericó, protegida por muralhas de pedra altíssimas e portões trancados. Ninguém entrava e ninguém saía. Mas Deus deu uma ordem diferente: Durante seis dias, marchem em volta da cidade uma vez por dia, sem gritar, apenas com os sacerdotes tocando trombetas de chifre. No sétimo dia, marchem sete vezes! Josué e o povo obedeceram direitinho, passo a passo. Na sétima volta do sétimo dia, os sacerdotes tocaram as trombetas bem forte, e Josué gritou: Levantem a voz! Todas as crianças e famílias deram um grande grito de alegria! E sabem o que aconteceu? O chão tremeu e as pedras das muralhas vieram abaixo! Quando confiamos e louvamos a Deus com fé, até as barreiras mais difíceis caem diante de nós!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_07_vovo.mp3?v=81"
       },
       "6-8": {
         "text": "As muralhas de Jericó eram altas demais, mas Josué seguiu as instruções de Deus passo a passo durante 7 dias, e Deus deu a vitória!",
-        "verse": "Esforça-te, e tem bom ânimo; não pasmes, nem te espantes. (Josué 1:9)",
+        "verse": "Esforça-te e tem bom ânimo com Deus. (Josué 1:9)",
         "verseWords": [
           "Esforça-te",
           "e",
@@ -1265,7 +1265,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "com",
           "Deus."
         ],
-        "actionTitle": "Missão Explorador: Perseverança até o Fim",
+        "actionTitle": "Missão da Semana: Perseverança até o Fim",
         "actionDesc": "Não desista de uma atividade na metade! Termine tudo o que começar nesta semana.",
         "vovoStoryScript": "Vocês já tentaram abrir uma porta pesada apenas marchando e cantando ao redor dela? Parece impossível, não é? Mas com Deus, a obediência faz coisas extraordinárias! Sentem-se aqui com o vovô! Depois de Moisés, o corajoso Josué recebeu a missão de levar o povo à terra prometida. Na frente deles estava a cidade de Jericó, protegida por muralhas de pedra altíssimas e portões trancados. Ninguém entrava e ninguém saía. Mas Deus deu uma ordem diferente: Durante seis dias, marchem em volta da cidade uma vez por dia, sem gritar, apenas com os sacerdotes tocando trombetas de chifre. No sétimo dia, marchem sete vezes! Josué e o povo obedeceram direitinho, passo a passo. Na sétima volta do sétimo dia, os sacerdotes tocaram as trombetas bem forte, e Josué gritou: Levantem a voz! Todas as crianças e famílias deram um grande grito de alegria! E sabem o que aconteceu? O chão tremeu e as pedras das muralhas vieram abaixo! Quando confiamos e louvamos a Deus com fé, até as barreiras mais difíceis caem diante de nós!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_07_vovo.mp3?v=81"
@@ -1425,7 +1425,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "byAge": {
       "3-5": {
         "text": "Davi era um pequeno pastorzinho que amava cantar para Deus com sua harpa. Com a ajuda do Papai do Céu, ele não teve medo do grandão Golias!",
-        "verse": "O Senhor é o meu pastor, nada me faltará. (Salmos 23:1)",
+        "verse": "O Senhor olha sempre para o coração. (1 Samuel 16:7)",
         "verseWords": [
           "O",
           "Senhor",
@@ -1435,14 +1435,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "pastor",
           "fiel."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Louvor do Pastorzinho",
+        "actionTitle": "Adaptação 3 a 5 anos: Louvor do Pastorzinho",
         "actionDesc": "Aprenda a falar 'O Senhor é o meu pastor, nada me faltará' junto com sua família!",
         "vovoStoryScript": "Meus netos queridos, alguma vez alguém disse que vocês eram muito pequenos para fazer algo importante? Pois hoje o vovô vai contar a história de Davi, um menino pastor de ovelhas que mostrou ao mundo que tamanho não é documento quando temos Deus no coração! Davi cuidava das ovelhinhas do seu pai nos campos verdejantes, tocava sua harpa com melodias suaves e sabia usar muito bem uma funda de couro. Certo dia, foi levar pão e queijo aos seus irmãos no acampamento. Lá, todos os soldados estavam com medo de um gigante enorme chamado Golias, que usava armadura de ferro e zombava de todos. Davi disse ao rei: Eu vou enfrentar esse gigante! Ele recusou a armadura pesada do rei, pegou seu cajado, desceu ao riacho e escolheu cinco pedrinhas bem lisinhas. Quando Golias riu do menino, Davi declarou com coragem: Você vem contra mim com espada e lança, mas eu vou contra você em nome do Senhor Deus! Davi colocou uma pedrinha na funda, girou no ar e lançou certeira. A pedrinha acertou o gigante e trouxe vitória para todo o povo! Quem tem Deus no coração nunca precisa ter medo de nada!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_08_vovo.mp3?v=81"
       },
       "6-8": {
         "text": "Golias tinha uma armadura pesada, mas Davi tinha a fé no Deus vivo! Com cinco pedrinhas do riacho e muita coragem, Davi venceu o gigante!",
-        "verse": "O Senhor não vê como vê o homem; o Senhor olha para o coração. (1 Samuel 16:7)",
+        "verse": "O Senhor olha sempre para o coração. (1 Samuel 16:7)",
         "verseWords": [
           "O",
           "Senhor",
@@ -1452,7 +1452,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "o",
           "coração."
         ],
-        "actionTitle": "Missão Explorador: Cuidando do Coração",
+        "actionTitle": "Missão da Semana: Cuidando do Coração",
         "actionDesc": "Pratique as 5 pedrinhas do bem nesta semana: bondade, verdade, respeito, gratidão e alegria!",
         "vovoStoryScript": "Meus netos queridos, alguma vez alguém disse que vocês eram muito pequenos para fazer algo importante? Pois hoje o vovô vai contar a história de Davi, um menino pastor de ovelhas que mostrou ao mundo que tamanho não é documento quando temos Deus no coração! Davi cuidava das ovelhinhas do seu pai nos campos verdejantes, tocava sua harpa com melodias suaves e sabia usar muito bem uma funda de couro. Certo dia, foi levar pão e queijo aos seus irmãos no acampamento. Lá, todos os soldados estavam com medo de um gigante enorme chamado Golias, que usava armadura de ferro e zombava de todos. Davi disse ao rei: Eu vou enfrentar esse gigante! Ele recusou a armadura pesada do rei, pegou seu cajado, desceu ao riacho e escolheu cinco pedrinhas bem lisinhas. Quando Golias riu do menino, Davi declarou com coragem: Você vem contra mim com espada e lança, mas eu vou contra você em nome do Senhor Deus! Davi colocou uma pedrinha na funda, girou no ar e lançou certeira. A pedrinha acertou o gigante e trouxe vitória para todo o povo! Quem tem Deus no coração nunca precisa ter medo de nada!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_08_vovo.mp3?v=81"
@@ -1612,7 +1612,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "byAge": {
       "3-5": {
         "text": "Deus enviou os profetas para ensinar o povo a amar ao Papai do Céu! Jonas aprendeu dentro do grande peixe a obedecer com alegria!",
-        "verse": "Ao Senhor nosso Deus pertencem a misericórdia e o perdão. (Daniel 9:9)",
+        "verse": "Clama a mim, e eu te responderei. (Jeremias 33:3)",
         "verseWords": [
           "Ao",
           "Senhor",
@@ -1623,14 +1623,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "o",
           "perdão."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Ouvidos Atentos",
+        "actionTitle": "Adaptação 3 a 5 anos: Ouvidos Atentos",
         "actionDesc": "Atenda prontamente com carinho quando o papai ou a mamãe chamar você!",
         "vovoStoryScript": "Vocês já brincaram de esconde-esconde e acharam um lugar bem escondidinho? Da gente é fácil se esconder, mas será que alguém consegue fugir dos olhos do Papai do Céu? Sentem-se aqui com o vovô! Deus pediu ao profeta Jonas que fosse a uma grande cidade chamada Nínive para ensinar as pessoas a abandonarem as coisas ruins. Mas Jonas ficou com medo e comprou passagem num navio que ia para o outro lado do oceano! No meio do mar, começou uma tempestade enorme, com ondas sacudindo o barco de um lado para o outro. Jonas confessou aos marinheiros: O erro foi meu, estou fugindo de Deus! Ele pediu que o jogassem nas águas para que o mar se acalmasse. E assim que caiu no mar, a tempestade parou. Mas Deus, com muito cuidado, preparou um peixe enorme que engoliu Jonas sem mastigar! Lá dentro da barriga do peixe, no quentinho do escuro, Jonas dobrou os joelhos e pediu perdão a Deus. No terceiro dia, o peixe nadou até a praia e colocou Jonas em terra firme, são e salvo! Jonas foi a Nínive, ensinou o povo, e todos se arrependeram. Deus é tão bom que sempre nos dá uma segunda chance para fazer o que é certo!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_09_vovo.mp3?v=81"
       },
       "6-8": {
         "text": "Elias subiu na carruagem de fogo, enquanto Jonas aprendeu que Deus ama perdoar e dar uma segunda chance!",
-        "verse": "Clama a mim, e responder-te-ei, e anunciar-te-ei coisas grandes. (Jeremias 33:3)",
+        "verse": "Clama a mim, e eu te responderei. (Jeremias 33:3)",
         "verseWords": [
           "Clama",
           "a",
@@ -1640,7 +1640,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "te",
           "responderei."
         ],
-        "actionTitle": "Missão Explorador: Mensageiro do Bem",
+        "actionTitle": "Missão da Semana: Mensageiro do Bem",
         "actionDesc": "Leve uma palavra de consolo ou alegria para alguém que esteja triste!",
         "vovoStoryScript": "Vocês já brincaram de esconde-esconde e acharam um lugar bem escondidinho? Da gente é fácil se esconder, mas será que alguém consegue fugir dos olhos do Papai do Céu? Sentem-se aqui com o vovô! Deus pediu ao profeta Jonas que fosse a uma grande cidade chamada Nínive para ensinar as pessoas a abandonarem as coisas ruins. Mas Jonas ficou com medo e comprou passagem num navio que ia para o outro lado do oceano! No meio do mar, começou uma tempestade enorme, com ondas sacudindo o barco de um lado para o outro. Jonas confessou aos marinheiros: O erro foi meu, estou fugindo de Deus! Ele pediu que o jogassem nas águas para que o mar se acalmasse. E assim que caiu no mar, a tempestade parou. Mas Deus, com muito cuidado, preparou um peixe enorme que engoliu Jonas sem mastigar! Lá dentro da barriga do peixe, no quentinho do escuro, Jonas dobrou os joelhos e pediu perdão a Deus. No terceiro dia, o peixe nadou até a praia e colocou Jonas em terra firme, são e salvo! Jonas foi a Nínive, ensinou o povo, e todos se arrependeram. Deus é tão bom que sempre nos dá uma segunda chance para fazer o que é certo!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_09_vovo.mp3?v=81"
@@ -1800,7 +1800,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "byAge": {
       "3-5": {
         "text": "Daniel orava ao Papai do Céu todos os dias! Quando o colocaram na cova dos leões, Deus enviou um anjo que fechou a boca dos leões!",
-        "verse": "O meu Deus enviou o seu anjo e fechou a boca dos leões. (Daniel 6:22)",
+        "verse": "O meu Deus enviou o Seu anjo. (Daniel 6:22)",
         "verseWords": [
           "O",
           "meu",
@@ -1811,14 +1811,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "anjo",
           "fiel."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Três Orações do Dia",
+        "actionTitle": "Adaptação 3 a 5 anos: Três Orações do Dia",
         "actionDesc": "Como Daniel, fale com o Papai do Céu de manhã, na hora do almoço e antes de dormir!",
         "vovoStoryScript": "Vocês têm o costume de conversar com o Papai do Céu antes de dormir ou ao acordar? Cheguem pertinho do vovô! Hoje vamos conhecer Daniel, um homem fiel que morava numa terra distante chamada Babilônia. Daniel era sábio e muito leal ao rei Dario. Três vezes ao dia, ele abria a janelinha do seu quarto, virada para a terra da promessa, e orava com gratidão no coração. Mas alguns homens invejosos convenceram o rei a fazer uma lei proibindo qualquer um de orar, sob pena de ser jogado numa cova funda com leões famintos! Daniel soube da lei, mas não parou de orar: abriu a janela e continuou conversando com Deus. Com o coração apertado, o rei teve que cumprir a lei e colocar Daniel na cova com os leões. Na manhã seguinte, o rei correu até lá e gritou aflito: Daniel, servo do Deus vivo, o seu Deus pôde te salvar? E lá de baixo veio uma voz tranquila: Ó rei, viva para sempre! O meu Deus enviou o Seu anjo e fechou a boca dos leões! Eles não me fizeram nenhum mal! Os leões estavam mansinhos ao lado de Daniel como gatinhos carinhosos! Quando somos amigos fiéis de Deus, Ele nos protege em qualquer situação!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_10_vovo.mp3?v=81"
       },
       "6-8": {
         "text": "Daniel continuou orando três vezes ao dia com fidelidade, e Deus o livrou na cova dos leões! E a rainha Ester usou sua coragem para proteger seu povo!",
-        "verse": "Ele livra e salva, e opera sinais e maravilhas no céu e na terra. (Daniel 6:27)",
+        "verse": "O meu Deus enviou o Seu anjo. (Daniel 6:22)",
         "verseWords": [
           "Ele",
           "livra",
@@ -1830,7 +1830,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "na",
           "terra."
         ],
-        "actionTitle": "Missão Explorador: Hábito Fiel de Oração",
+        "actionTitle": "Missão da Semana: Hábito Fiel de Oração",
         "actionDesc": "Ore todos os dias desta semana pela sua família e amigos.",
         "vovoStoryScript": "Vocês têm o costume de conversar com o Papai do Céu antes de dormir ou ao acordar? Cheguem pertinho do vovô! Hoje vamos conhecer Daniel, um homem fiel que morava numa terra distante chamada Babilônia. Daniel era sábio e muito leal ao rei Dario. Três vezes ao dia, ele abria a janelinha do seu quarto, virada para a terra da promessa, e orava com gratidão no coração. Mas alguns homens invejosos convenceram o rei a fazer uma lei proibindo qualquer um de orar, sob pena de ser jogado numa cova funda com leões famintos! Daniel soube da lei, mas não parou de orar: abriu a janela e continuou conversando com Deus. Com o coração apertado, o rei teve que cumprir a lei e colocar Daniel na cova com os leões. Na manhã seguinte, o rei correu até lá e gritou aflito: Daniel, servo do Deus vivo, o seu Deus pôde te salvar? E lá de baixo veio uma voz tranquila: Ó rei, viva para sempre! O meu Deus enviou o Seu anjo e fechou a boca dos leões! Eles não me fizeram nenhum mal! Os leões estavam mansinhos ao lado de Daniel como gatinhos carinhosos! Quando somos amigos fiéis de Deus, Ele nos protege em qualquer situação!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_10_vovo.mp3?v=81"
@@ -1996,7 +1996,7 @@ window.EBD_LESSONS_CURRICULUM = [
         "vovoStoryScript": "Vocês já pararam para pensar no primeiro jardim que existiu na Terra, com flores coloridas, riachinhos limpos e árvores cheias de frutas gostosas? Sentem-se aqui pertinho da poltrona do vovô! Deus preparou um lugar especial chamado Jardim do Éden. Era o lar mais lindo do mundo! Havia quatro rios de águas cristalinas regando a grama e passarinhos voando de galho em galho. Deus colocou Adão e Eva naquele jardim maravilhoso com uma tarefa muito divertida e carinhosa: cuidar da terra e proteger cada plantinha! E sabem o que mais? Deus trouxe todos os animais até Adão para ver que nome ele daria a cada um. Adão olhou para o bichinho grande de juba dourada e disse: Você vai se chamar Leão! Olhou para o pescoço comprido: Você é a Girafa! Chamou a ovelhinha macia, o cachorrinho fiel e o gatinho ronronante. Todos os animais viviam em paz com as pessoas, sem medo e sem brigas. Ao entardecer, eles agradeciam a Deus por um lar tão bonito e abençoado. Cuidar dos bichos e da natureza com amor alegra o coração do nosso Criador todos os dias!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_11_vovo.mp3?v=81",
         "text": "O Papai do Céu preparou um jardim lindo chamado Éden, cheio de flores, frutinhas e bichinhos mansinhos, e pediu para cuidarmos da natureza com carinho!",
-        "verse": "O Senhor Deus colocou o homem no jardim do Éden para cuidar dele. (Gênesis 2:15)",
+        "verse": "Deus colocou o homem no jardim do Éden. (Gênesis 2:15)",
         "verseWords": [
           "Deus",
           "colocou",
@@ -2007,14 +2007,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "para",
           "cuidar."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Amigo das Plantinhas",
+        "actionTitle": "Adaptação 3 a 5 anos: Amigo das Plantinhas",
         "actionDesc": "Ajude o papai ou a mamãe a regar uma plantinha e nunca jogue lixo no chão!"
       },
       "6-8": {
         "vovoStoryScript": "Vocês já pararam para pensar no primeiro jardim que existiu na Terra, com flores coloridas, riachinhos limpos e árvores cheias de frutas gostosas? Sentem-se aqui pertinho da poltrona do vovô! Deus preparou um lugar especial chamado Jardim do Éden. Era o lar mais lindo do mundo! Havia quatro rios de águas cristalinas regando a grama e passarinhos voando de galho em galho. Deus colocou Adão e Eva naquele jardim maravilhoso com uma tarefa muito divertida e carinhosa: cuidar da terra e proteger cada plantinha! E sabem o que mais? Deus trouxe todos os animais até Adão para ver que nome ele daria a cada um. Adão olhou para o bichinho grande de juba dourada e disse: Você vai se chamar Leão! Olhou para o pescoço comprido: Você é a Girafa! Chamou a ovelhinha macia, o cachorrinho fiel e o gatinho ronronante. Todos os animais viviam em paz com as pessoas, sem medo e sem brigas. Ao entardecer, eles agradeciam a Deus por um lar tão bonito e abençoado. Cuidar dos bichos e da natureza com amor alegra o coração do nosso Criador todos os dias!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_11_vovo.mp3?v=81",
         "text": "Em Gênesis 2, Deus plantou o Jardim do Éden e deu a Adão e Eva a missão de cultivar e guardar a Terra, além de dar nome a todos os animais!",
-        "verse": "Tomou, pois, o Senhor Deus ao homem e o pôs no jardim do Éden para o lavrar e o guardar. (Gênesis 2:15)",
+        "verse": "Deus colocou o homem no jardim do Éden. (Gênesis 2:15)",
         "verseWords": [
           "Deus",
           "pôs",
@@ -2026,7 +2026,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "o",
           "guardar."
         ],
-        "actionTitle": "Missão Explorador: Guardião do Jardim de Deus",
+        "actionTitle": "Missão da Semana: Guardião do Jardim de Deus",
         "actionDesc": "Cuide de um cantinho verde da sua casa e mantenha seu quarto sempre limpo e organizado!"
       }
     },
@@ -2186,7 +2186,7 @@ window.EBD_LESSONS_CURRICULUM = [
         "vovoStoryScript": "Vocês já viram como uma mamãe cuida do seu bebezinho com todo o carinho do mundo? Cheguem pertinho do vovô! Há muito tempo, no Egito, nasceu um bebezinho lindo e saudável. Mas um rei malvado tinha dado uma ordem injusta: nenhum menino podia viver. A mamãe Joquebede escondeu o bebê em casa enquanto pôde. Quando ele começou a crescer e rir mais alto, ela teve uma ideia cheia de fé e amor: pegou um cestinho de junco trançado, passou betume por fora para não entrar água, ajeitou um cobertorzinho macio dentro, colocou o bebê com cuidado e deixou o cestinho flutuar entre os juncos na beira do grande rio Nilo. Sua irmãzinha Míriam ficou de longe, escondidinha, vigiando com atenção. De repente, a filha do rei foi até a beira do rio tomar banho com suas amigas. Ao ver o cestinho, mandou buscar e abriu a tampa. O bebezinho começou a chorar, e a princesa se encheu de compaixão: É um bebezinho lindo! Eu vou cuidar dele como meu filho! E chamou o menino de Moisés, que significa tirado das águas! Deus transformou um cestinho flutuante no começo de um grande livramento!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_12_vovo.mp3?v=81",
         "text": "O Papai do Céu cuidou do bebê Moisés dentro do cestinho no rio Nilo e a irmãzinha Miriã ajudou a olhar o irmãozinho com muito amor!",
-        "verse": "Certamente eu serei contigo! (Êxodo 3:12)",
+        "verse": "Certamente eu serei contigo todos os dias. (Êxodo 3:12)",
         "verseWords": [
           "Certamente",
           "eu",
@@ -2194,14 +2194,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "sempre",
           "contigo!"
         ],
-        "actionTitle": "Missão dos Pequenininhos: Cuidar da Família",
+        "actionTitle": "Adaptação 3 a 5 anos: Cuidar da Família",
         "actionDesc": "Seja carinhoso e protetor com seus irmãozinhos, primos e amiguinhos, igual à irmã Miriã!"
       },
       "6-8": {
         "vovoStoryScript": "Vocês já viram como uma mamãe cuida do seu bebezinho com todo o carinho do mundo? Cheguem pertinho do vovô! Há muito tempo, no Egito, nasceu um bebezinho lindo e saudável. Mas um rei malvado tinha dado uma ordem injusta: nenhum menino podia viver. A mamãe Joquebede escondeu o bebê em casa enquanto pôde. Quando ele começou a crescer e rir mais alto, ela teve uma ideia cheia de fé e amor: pegou um cestinho de junco trançado, passou betume por fora para não entrar água, ajeitou um cobertorzinho macio dentro, colocou o bebê com cuidado e deixou o cestinho flutuar entre os juncos na beira do grande rio Nilo. Sua irmãzinha Míriam ficou de longe, escondidinha, vigiando com atenção. De repente, a filha do rei foi até a beira do rio tomar banho com suas amigas. Ao ver o cestinho, mandou buscar e abriu a tampa. O bebezinho começou a chorar, e a princesa se encheu de compaixão: É um bebezinho lindo! Eu vou cuidar dele como meu filho! E chamou o menino de Moisés, que significa tirado das águas! Deus transformou um cestinho flutuante no começo de um grande livramento!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_12_vovo.mp3?v=81",
         "text": "Deus guardou o bebê Moisés no cestinho no rio Nilo através da fé de sua mãe Joquebede e da coragem de sua irmã Miriã, e depois o chamou na sarça ardente!",
-        "verse": "Disse Deus a Moisés: Certamente eu serei contigo! (Êxodo 3:12)",
+        "verse": "Certamente eu serei contigo todos os dias. (Êxodo 3:12)",
         "verseWords": [
           "Disse",
           "Deus:",
@@ -2210,7 +2210,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "serei",
           "contigo!"
         ],
-        "actionTitle": "Missão Explorador: Ajudante Fiel em Casa",
+        "actionTitle": "Missão da Semana: Ajudante Fiel em Casa",
         "actionDesc": "Assim como Miriã ajudou sua mãe a cuidar do bebê Moisés, ajude seus pais em uma tarefa importante em casa!"
       }
     },
@@ -2370,7 +2370,7 @@ window.EBD_LESSONS_CURRICULUM = [
         "vovoStoryScript": "Meus netos queridos, vocês sabem por que os pais ensinam boas regrinhas em casa, como falar a verdade, respeitar os mais velhos e não brigar com os irmãos? Porque quem ama de verdade ensina o caminho seguro para sermos felizes! Sentem-se com o vovô! Quando o povo viajava pelo deserto seco, não havia padaria nem mercado por perto. Mas Deus cuidava de cada família com muito amor. Todas as manhãs, quando o orvalho secava, o chão aparecia coberto por flocos branquinhos e doces, parecendo um farelo de bolo saboroso feito com mel! As crianças acordavam felizes e gritavam: O que é isto? Por isso o chamaram de Maná! Cada família colhia o bastante para o seu dia e ficava satisfeita. Mais tarde, no Monte Sinai, Deus chamou Moisés e escreveu em duas pedras os Dez Mandamentos. Eram regrinhas de amor: amar a Deus em primeiro lugar, honrar o papai e a mamãe, ser amigo, não mentir e não pegar as coisas dos outros. Quando seguimos as orientações de Deus e dos nossos pais, a nossa casa se enche de paz, harmonia e alegria!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_13_vovo.mp3?v=81",
         "text": "O Papai do Céu mandava o pãozinho Maná todo dia de manhã e ensinou a regra de ouro: amar a Deus e honrar o papai e a mamãe!",
-        "verse": "Honra a teu pai e a tua mãe. (Êxodo 20:12)",
+        "verse": "Lâmpada para os meus pés é Tua Palavra. (Salmos 119:105)",
         "verseWords": [
           "Honra",
           "a",
@@ -2380,14 +2380,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "tua",
           "mãe."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Obrigado pelo Pãozinho",
+        "actionTitle": "Adaptação 3 a 5 anos: Obrigado pelo Pãozinho",
         "actionDesc": "Agradeça ao Papai do Céu antes do café da manhã e do almoço, e dê um beijo carinhoso no papai e na mamãe!"
       },
       "6-8": {
         "vovoStoryScript": "Meus netos queridos, vocês sabem por que os pais ensinam boas regrinhas em casa, como falar a verdade, respeitar os mais velhos e não brigar com os irmãos? Porque quem ama de verdade ensina o caminho seguro para sermos felizes! Sentem-se com o vovô! Quando o povo viajava pelo deserto seco, não havia padaria nem mercado por perto. Mas Deus cuidava de cada família com muito amor. Todas as manhãs, quando o orvalho secava, o chão aparecia coberto por flocos branquinhos e doces, parecendo um farelo de bolo saboroso feito com mel! As crianças acordavam felizes e gritavam: O que é isto? Por isso o chamaram de Maná! Cada família colhia o bastante para o seu dia e ficava satisfeita. Mais tarde, no Monte Sinai, Deus chamou Moisés e escreveu em duas pedras os Dez Mandamentos. Eram regrinhas de amor: amar a Deus em primeiro lugar, honrar o papai e a mamãe, ser amigo, não mentir e não pegar as coisas dos outros. Quando seguimos as orientações de Deus e dos nossos pais, a nossa casa se enche de paz, harmonia e alegria!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_13_vovo.mp3?v=81",
         "text": "No deserto, Deus cuidou do povo enviando o Maná todas as manhãs e água da rocha, e no Monte Sinai entregou os Dez Mandamentos do amor e do respeito!",
-        "verse": "Honra a teu pai e a tua mãe, para que se prolonguem os teus dias na terra. (Êxodo 20:12)",
+        "verse": "Lâmpada para os meus pés é Tua Palavra. (Salmos 119:105)",
         "verseWords": [
           "Honra",
           "a",
@@ -2398,7 +2398,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "tua",
           "mãe."
         ],
-        "actionTitle": "Missão Explorador: Honra aos Pais",
+        "actionTitle": "Missão da Semana: Honra aos Pais",
         "actionDesc": "Demonstre respeito e gratidão aos seus pais todos os dias desta semana e nunca desperdice alimentos!"
       }
     },
@@ -2558,7 +2558,7 @@ window.EBD_LESSONS_CURRICULUM = [
         "vovoStoryScript": "Imaginem se vocês precisassem vencer um exército de milhares de soldados levando apenas uma buzina em uma mão e uma tocha acesa dentro de um pote de barro na outra! Sentem-se aqui com o vovô! Gideão era um rapaz simples que se achava pequeno e sem importância. Mas um anjo de Deus apareceu e disse: O Senhor é com você, homem corajoso! Deus escolheu apenas trezentos homens fiéis para ajudar Gideão. No meio da noite, eles cercaram o acampamento inimigo. Ao sinal de Gideão, todos tocaram as trombetas bem forte e quebraram os potes de barro! O barulho foi estrondoso, e as luzes das tochas brilharam na escuridão. Os adversários ficaram tão assustados que fugiram correndo, e Deus deu a vitória ao Seu povo sem nenhuma espada! Naquela mesma época de fé, uma jovem chamada Rute mostrou que o amor e a lealdade valem ouro. Ela cuidou com carinho da sua sogra Noemi, colheu espigas nos campos para não faltar comida e foi abençoada com uma linda família. Ter coragem para fazer o bem e cuidar de quem amamos agrada muito ao nosso Deus!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_14_vovo.mp3?v=81",
         "text": "Gideão brilhou sua tocha confiando em Deus, e a jovem Rute ajudou sua família colhendo triguinho com muito carinho e bondade!",
-        "verse": "O teu povo é o meu povo, o teu Deus é o meu Deus. (Rute 1:16)",
+        "verse": "O Senhor é contigo, valente de fé. (Juízes 6:12)",
         "verseWords": [
           "O",
           "teu",
@@ -2568,14 +2568,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "meu",
           "Deus."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Ajudar com Amor",
+        "actionTitle": "Adaptação 3 a 5 anos: Ajudar com Amor",
         "actionDesc": "Ajude a vovó, o vovô ou a mamãe com um sorriso bem doce, igual à bondosa Rute!"
       },
       "6-8": {
         "vovoStoryScript": "Imaginem se vocês precisassem vencer um exército de milhares de soldados levando apenas uma buzina em uma mão e uma tocha acesa dentro de um pote de barro na outra! Sentem-se aqui com o vovô! Gideão era um rapaz simples que se achava pequeno e sem importância. Mas um anjo de Deus apareceu e disse: O Senhor é com você, homem corajoso! Deus escolheu apenas trezentos homens fiéis para ajudar Gideão. No meio da noite, eles cercaram o acampamento inimigo. Ao sinal de Gideão, todos tocaram as trombetas bem forte e quebraram os potes de barro! O barulho foi estrondoso, e as luzes das tochas brilharam na escuridão. Os adversários ficaram tão assustados que fugiram correndo, e Deus deu a vitória ao Seu povo sem nenhuma espada! Naquela mesma época de fé, uma jovem chamada Rute mostrou que o amor e a lealdade valem ouro. Ela cuidou com carinho da sua sogra Noemi, colheu espigas nos campos para não faltar comida e foi abençoada com uma linda família. Ter coragem para fazer o bem e cuidar de quem amamos agrada muito ao nosso Deus!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_14_vovo.mp3?v=81",
         "text": "Com 300 homens e tochas acesas, Gideão aprendeu que a vitória vem de Deus! E Rute mostrou lealdade e amor cuidando de Noemi nos campos de Belém!",
-        "verse": "O Senhor te retribua o teu feito, e seja cumprido o teu galardão. (Rute 2:12)",
+        "verse": "O Senhor é contigo, valente de fé. (Juízes 6:12)",
         "verseWords": [
           "O",
           "Senhor",
@@ -2585,7 +2585,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "sua",
           "bondade."
         ],
-        "actionTitle": "Missão Explorador: Lealdade em Família",
+        "actionTitle": "Missão da Semana: Lealdade em Família",
         "actionDesc": "Faça uma gentileza especial para seus avós ou pais nesta semana, demonstrando lealdade e carinho como Rute!"
       }
     },
@@ -2745,7 +2745,7 @@ window.EBD_LESSONS_CURRICULUM = [
         "vovoStoryScript": "Imaginem vocês deitadinhos na cama à noite, o quarto bem silencioso, e de repente escutam uma voz mansa e carinhosa chamando o seu nome! Cheguem pertinho do vovô! Hoje vamos conhecer Samuel, um menino obediente que cresceu ajudando na casa de Deus. Sua mãe, Ana, tinha orado com muita fé pedindo um filho, e cuidou dele com todo amor. Certa noite, quando as lamparinas estavam fraquinhas e o velho sacerdote Eli dormia no seu quarto, Samuel ouviu alguém chamar: Samuel! Samuel! O menino correu até o quarto de Eli e disse: Estou aqui, o senhor me chamou? Eli respondeu: Não te chamei, meu filho. Volte e deite-se. Isso aconteceu três vezes! Na terceira vez, Eli entendeu que era o próprio Deus falando com o menino e deu um conselho de ouro: Se Ele chamar de novo, diga: Fala, Senhor, porque o Teu servo ouve! Samuel voltou para a cama. Logo depois, a voz doce chamou novamente: Samuel! E ele respondeu com respeito e alegria: Fala, Senhor, porque o Teu servo ouve! Samuel cresceu sendo um grande amigo de Deus, porque sempre teve um coração pronto para escutar e obedecer!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_15_vovo.mp3?v=81",
         "text": "O menino Samuel ouviu o Papai do Céu chamar o nome dele de noite e respondeu com carinho: 'Fala, Senhor, que o Teu servo ouve!'",
-        "verse": "Fala, Senhor, porque o teu servo ouve. (1 Samuel 3:9)",
+        "verse": "Fala, Senhor, porque o Teu servo ouve. (1 Samuel 3:10)",
         "verseWords": [
           "Fala,",
           "Senhor,",
@@ -2754,14 +2754,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "servo",
           "ouve."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Ouvidinhos Atentos",
+        "actionTitle": "Adaptação 3 a 5 anos: Ouvidinhos Atentos",
         "actionDesc": "Quando o papai ou a mamãe chamar seu nome, responda na hora com alegria, igual ao pequeno Samuel!"
       },
       "6-8": {
         "vovoStoryScript": "Imaginem vocês deitadinhos na cama à noite, o quarto bem silencioso, e de repente escutam uma voz mansa e carinhosa chamando o seu nome! Cheguem pertinho do vovô! Hoje vamos conhecer Samuel, um menino obediente que cresceu ajudando na casa de Deus. Sua mãe, Ana, tinha orado com muita fé pedindo um filho, e cuidou dele com todo amor. Certa noite, quando as lamparinas estavam fraquinhas e o velho sacerdote Eli dormia no seu quarto, Samuel ouviu alguém chamar: Samuel! Samuel! O menino correu até o quarto de Eli e disse: Estou aqui, o senhor me chamou? Eli respondeu: Não te chamei, meu filho. Volte e deite-se. Isso aconteceu três vezes! Na terceira vez, Eli entendeu que era o próprio Deus falando com o menino e deu um conselho de ouro: Se Ele chamar de novo, diga: Fala, Senhor, porque o Teu servo ouve! Samuel voltou para a cama. Logo depois, a voz doce chamou novamente: Samuel! E ele respondeu com respeito e alegria: Fala, Senhor, porque o Teu servo ouve! Samuel cresceu sendo um grande amigo de Deus, porque sempre teve um coração pronto para escutar e obedecer!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_15_vovo.mp3?v=81",
         "text": "Fruto da oração de sua mãe Ana, o menino Samuel servia na Casa do Senhor e respondeu ao chamado de Deus: 'Fala, Senhor, porque o Teu servo ouve!'",
-        "verse": "Fala, porque o teu servo ouve. (1 Samuel 3:10)",
+        "verse": "Fala, Senhor, porque o Teu servo ouve. (1 Samuel 3:10)",
         "verseWords": [
           "Fala,",
           "Senhor,",
@@ -2771,7 +2771,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "servo",
           "ouve."
         ],
-        "actionTitle": "Missão Explorador: Coração que Escuta a Deus",
+        "actionTitle": "Missão da Semana: Coração que Escuta a Deus",
         "actionDesc": "Tire um momento silencioso antes de dormir para orar e ouvir os ensinamentos da Bíblia com sua família!"
       }
     },
@@ -2931,7 +2931,7 @@ window.EBD_LESSONS_CURRICULUM = [
         "vovoStoryScript": "Se hoje à noite Deus aparecesse para você num sonho e dissesse: Peça o que você quiser e Eu lhe darei!, o que vocês pediriam? Montanhas de brinquedos? Doces sem fim? Cheguem pertinho do vovô! Foi exatamente essa pergunta que o jovem Salomão ouviu quando se tornou rei em Jerusalém. Ele era jovem e sabia que governar tantas famílias era uma tarefa muito grande. Sabe o que Salomão pediu? Ele não pediu riquíssimos tesouros de ouro, nem vidas longas, nem palácios. Ele pediu com humildade: Senhor meu Deus, eu sou jovem e não sei como agir. Dá ao Teu servo sabedoria no coração para compreender o povo e escolher sempre o que é certo e justo! Deus ficou tão contente com o pedido de Salomão que respondeu: Já que você pediu sabedoria para fazer o bem e ajudar as pessoas, Eu lhe darei mais sabedoria do que qualquer outro rei já teve! E também lhe darei riquezas e honra! Pessoas do mundo inteiro viajavam para ouvir as palavras sábias de Salomão. A sabedoria para amar e fazer o bem vale mais do que todo o ouro do universo!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_16_vovo.mp3?v=81",
         "text": "Quando Deus perguntou o que o rei Salomão queria ganhar, ele pediu um coração sábio e obediente para fazer sempre o bem!",
-        "verse": "O Senhor dá a sabedoria! (Provérbios 2:6)",
+        "verse": "O Senhor dá a sabedoria e o entendimento. (Provérbios 2:6)",
         "verseWords": [
           "O",
           "Senhor",
@@ -2940,14 +2940,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "sabedoria",
           "sempre!"
         ],
-        "actionTitle": "Missão dos Pequenininhos: Pedido de Sabedoria",
+        "actionTitle": "Adaptação 3 a 5 anos: Pedido de Sabedoria",
         "actionDesc": "Peça ao Papai do Céu um coração sábio e estude suas lições com bastante alegria!"
       },
       "6-8": {
         "vovoStoryScript": "Se hoje à noite Deus aparecesse para você num sonho e dissesse: Peça o que você quiser e Eu lhe darei!, o que vocês pediriam? Montanhas de brinquedos? Doces sem fim? Cheguem pertinho do vovô! Foi exatamente essa pergunta que o jovem Salomão ouviu quando se tornou rei em Jerusalém. Ele era jovem e sabia que governar tantas famílias era uma tarefa muito grande. Sabe o que Salomão pediu? Ele não pediu riquíssimos tesouros de ouro, nem vidas longas, nem palácios. Ele pediu com humildade: Senhor meu Deus, eu sou jovem e não sei como agir. Dá ao Teu servo sabedoria no coração para compreender o povo e escolher sempre o que é certo e justo! Deus ficou tão contente com o pedido de Salomão que respondeu: Já que você pediu sabedoria para fazer o bem e ajudar as pessoas, Eu lhe darei mais sabedoria do que qualquer outro rei já teve! E também lhe darei riquezas e honra! Pessoas do mundo inteiro viajavam para ouvir as palavras sábias de Salomão. A sabedoria para amar e fazer o bem vale mais do que todo o ouro do universo!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_16_vovo.mp3?v=81",
         "text": "Salomão escolheu pedir a Deus um coração sábio em vez de riquezas! A verdadeira sabedoria vale mais do que o ouro e nos ensina a fazer boas escolhas.",
-        "verse": "Dá, pois, ao teu servo um coração entendido para discernir entre o bem e o mal. (1 Reis 3:9)",
+        "verse": "O Senhor dá a sabedoria e o entendimento. (Provérbios 2:6)",
         "verseWords": [
           "Dá",
           "ao",
@@ -2957,7 +2957,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "coração",
           "sábio."
         ],
-        "actionTitle": "Missão Explorador: Tesouro da Sabedoria",
+        "actionTitle": "Missão da Semana: Tesouro da Sabedoria",
         "actionDesc": "Leia um versículo do livro de Provérbios com seus pais e dedique-se com capricho às tarefas da escola!"
       }
     },
@@ -3117,7 +3117,7 @@ window.EBD_LESSONS_CURRICULUM = [
         "vovoStoryScript": "Vocês já imaginaram uma garrafinha pequenininha jorrar azeite sem parar até encher todas as panelas, potes e baldes da vizinhança inteira? Sentem-se aqui com o vovô! Certo dia, uma mãe humilde procurou o profeta Eliseu chorando. Seu marido tinha falecido e ela devia dinheiro, sem ter como alimentar seus dois filhinhos. Eliseu perguntou: O que você tem em casa? Ela respondeu: Não tenho nada, além de uma única botijinha de azeite. Eliseu disse com fé: Vá, peça emprestadas vasilhas vazias a todos os vizinhos! Não peça poucas! A mãe e os dois meninos correram pela rua e trouxeram dezenas de potes vazios. Entraram em casa e fecharam a porta. A mãe pegou a botijinha pequena e começou a despejar: o azeite dourado escorreu enchendo o primeiro jarro até a borda! Ela pegou outro, e mais outro, e o azeite continuava correndo sem secar! Quando encheram a última vasilha, o azeite parou. A família vendeu o azeite, pagou as contas e viveu feliz e em paz. Deus nunca se esquece de cuidar de uma família necessitada que confia Nele!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_17_vovo.mp3?v=81",
         "text": "O profeta Eliseu ajudou uma família multiplicando o azeite nas vasilhas, e o profeta Isaías anunciou que Jesus, o Príncipe da Paz, viria ao mundo!",
-        "verse": "O seu nome será Príncipe da Paz! (Isaías 9:6)",
+        "verse": "Ele será chamado Príncipe da Paz. (Isaías 9:6)",
         "verseWords": [
           "O",
           "seu",
@@ -3127,14 +3127,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "da",
           "Paz!"
         ],
-        "actionTitle": "Missão dos Pequenininhos: Repartir com Alegria",
+        "actionTitle": "Adaptação 3 a 5 anos: Repartir com Alegria",
         "actionDesc": "Divida um brinquedo ou lanchinho com um amiguinho, espalhando a bondade do Papai do Céu!"
       },
       "6-8": {
         "vovoStoryScript": "Vocês já imaginaram uma garrafinha pequenininha jorrar azeite sem parar até encher todas as panelas, potes e baldes da vizinhança inteira? Sentem-se aqui com o vovô! Certo dia, uma mãe humilde procurou o profeta Eliseu chorando. Seu marido tinha falecido e ela devia dinheiro, sem ter como alimentar seus dois filhinhos. Eliseu perguntou: O que você tem em casa? Ela respondeu: Não tenho nada, além de uma única botijinha de azeite. Eliseu disse com fé: Vá, peça emprestadas vasilhas vazias a todos os vizinhos! Não peça poucas! A mãe e os dois meninos correram pela rua e trouxeram dezenas de potes vazios. Entraram em casa e fecharam a porta. A mãe pegou a botijinha pequena e começou a despejar: o azeite dourado escorreu enchendo o primeiro jarro até a borda! Ela pegou outro, e mais outro, e o azeite continuava correndo sem secar! Quando encheram a última vasilha, o azeite parou. A família vendeu o azeite, pagou as contas e viveu feliz e em paz. Deus nunca se esquece de cuidar de uma família necessitada que confia Nele!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_17_vovo.mp3?v=81",
         "text": "Eliseu mostrou o cuidado de Deus pelas famílias no milagre da multiplicação do azeite, e Isaías profetizou séculos antes o nascimento do Príncipe da Paz!",
-        "verse": "Porque um menino nos nasceu... e o seu nome será Maravilhoso, Conselheiro, Príncipe da Paz. (Isaías 9:6)",
+        "verse": "Ele será chamado Príncipe da Paz. (Isaías 9:6)",
         "verseWords": [
           "Um",
           "menino",
@@ -3144,7 +3144,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "da",
           "Paz."
         ],
-        "actionTitle": "Missão Explorador: Vasilha da Generosidade",
+        "actionTitle": "Missão da Semana: Vasilha da Generosidade",
         "actionDesc": "Separe junto com seus pais um brinquedo ou roupa em ótimo estado para doar a uma família que precisa!"
       }
     },
@@ -3304,7 +3304,7 @@ window.EBD_LESSONS_CURRICULUM = [
         "vovoStoryScript": "Meus netos queridos, vocês sabem como é bom ter amigos de verdade que sempre nos ajudam a fazer o que é certo? Cheguem pertinho da poltrona do vovô! Lá na Babilônia viviam três jovens amigos inseparáveis: Sadraque, Mesaque e Abede-Nego. Um dia, o rei daquele lugar construiu uma estátua gigante de ouro e deu uma ordem: Quando a música tocar, todo mundo deve se ajoelhar diante da estátua! Quem não se curvar será jogado numa fornalha de fogo ardente! Todos se ajoelharam com medo, menos os três amigos! Eles disseram com respeito ao rei: Nós só nos ajoelhamos diante do Deus do céu! O nosso Deus pode nos livrar, mas mesmo que não livre, nunca adoraremos a estátua! O rei ficou bravo e mandou jogá-los no fogo bem quente. Mas quando o rei olhou para dentro da fornalha, levou um susto: Não jogamos três homens amarrados? Eu vejo quatro homens soltos, passeando no meio do fogo sem se queimar! E o quarto se parece com um anjo do Senhor! O rei mandou que saíssem. Eles não tinham nem cheiro de fumaça nas roupas! Ficar firme com Deus sempre vale a pena!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_18_vovo.mp3?v=81",
         "text": "Os três amigos de Daniel amavam ao Papai do Céu e comiam frutinhas e legumes saudáveis! O anjo de Deus caminhou com eles e cuidou deles!",
-        "verse": "O nosso Deus a quem nós servimos pode nos livrar! (Daniel 3:17)",
+        "verse": "Nosso Deus a quem servimos nos livrará. (Daniel 3:17)",
         "verseWords": [
           "O",
           "nosso",
@@ -3313,14 +3313,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "nos",
           "guardar!"
         ],
-        "actionTitle": "Missão dos Pequenininhos: Pratinho Saudável",
+        "actionTitle": "Adaptação 3 a 5 anos: Pratinho Saudável",
         "actionDesc": "Coma legumes e frutinhas com alegria nesta semana para crescer forte e saudável como Daniel e seus amigos!"
       },
       "6-8": {
         "vovoStoryScript": "Meus netos queridos, vocês sabem como é bom ter amigos de verdade que sempre nos ajudam a fazer o que é certo? Cheguem pertinho da poltrona do vovô! Lá na Babilônia viviam três jovens amigos inseparáveis: Sadraque, Mesaque e Abede-Nego. Um dia, o rei daquele lugar construiu uma estátua gigante de ouro e deu uma ordem: Quando a música tocar, todo mundo deve se ajoelhar diante da estátua! Quem não se curvar será jogado numa fornalha de fogo ardente! Todos se ajoelharam com medo, menos os três amigos! Eles disseram com respeito ao rei: Nós só nos ajoelhamos diante do Deus do céu! O nosso Deus pode nos livrar, mas mesmo que não livre, nunca adoraremos a estátua! O rei ficou bravo e mandou jogá-los no fogo bem quente. Mas quando o rei olhou para dentro da fornalha, levou um susto: Não jogamos três homens amarrados? Eu vejo quatro homens soltos, passeando no meio do fogo sem se queimar! E o quarto se parece com um anjo do Senhor! O rei mandou que saíssem. Eles não tinham nem cheiro de fumaça nas roupas! Ficar firme com Deus sempre vale a pena!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_18_vovo.mp3?v=81",
         "text": "Sadraque, Mesaque e Abede-Nego foram amigos fiéis que apoiavam uns aos outros na fé. Deus enviou Seu anjo para guardá-los e honrou sua coragem!",
-        "verse": "Nosso Deus, a quem nós servimos, é que nos pode livrar. (Daniel 3:17)",
+        "verse": "Nosso Deus a quem servimos nos livrará. (Daniel 3:17)",
         "verseWords": [
           "Nosso",
           "Deus,",
@@ -3330,7 +3330,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "nos",
           "livrará."
         ],
-        "actionTitle": "Missão Explorador: Amigos que Fazem o Bem",
+        "actionTitle": "Missão da Semana: Amigos que Fazem o Bem",
         "actionDesc": "Seja um amigo que incentiva os colegas a fazerem o que é certo, saudável e respeitoso!"
       }
     },
@@ -3490,7 +3490,7 @@ window.EBD_LESSONS_CURRICULUM = [
         "vovoStoryScript": "Vocês sabiam que uma menina órfã e bondosa, cuidada com muito carinho pelo seu primo Mardoqueu, se tornou rainha de um reino imenso exatamente na hora certa para salvar milhares de famílias? Sentem-se com o vovô! O nome dela era Ester. Ela era gentil, doce e tinha um coração puro. O rei gostou tanto da sua bondade que colocou uma coroa de ouro na sua cabeça. Mas um homem maldoso chamado Hamã planejou fazer mal a todo o povo de Ester. O primo Mardoqueu mandou um recado a ela: Quem sabe você se tornou rainha exatamente para um momento especial como este? Mas ninguém podia entrar na sala do rei sem ser convidado, sob risco de castigo severo. Ester não teve medo: pediu que todo o povo orasse a Deus por três dias. Depois, vestiu seus trajes reais e foi até o trono com muita calma. O rei sorriu e estendeu para ela o cetro de ouro em sinal de paz. Ester convidou o rei para um banquete e, com palavras gentis, revelou o plano maldoso e salvou a vida de todo o seu povo! Quando usamos a coragem para defender quem amamos, Deus faz maravilhas!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_19_vovo.mp3?v=81",
         "text": "A rainha Ester orou ao Papai do Céu e teve muita coragem para falar com o rei e proteger todas as famílias do seu povo!",
-        "verse": "Para os judeus houve luz e alegria! (Ester 8:16)",
+        "verse": "Deus é o nosso refúgio e fortaleza. (Salmos 46:1)",
         "verseWords": [
           "Houve",
           "muita",
@@ -3499,14 +3499,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "e",
           "alegria!"
         ],
-        "actionTitle": "Missão dos Pequenininhos: Coroa da Bondade",
+        "actionTitle": "Adaptação 3 a 5 anos: Coroa da Bondade",
         "actionDesc": "Use palavras doces como 'por favor' e 'muito obrigado' em casa, igual à educada rainha Ester!"
       },
       "6-8": {
         "vovoStoryScript": "Vocês sabiam que uma menina órfã e bondosa, cuidada com muito carinho pelo seu primo Mardoqueu, se tornou rainha de um reino imenso exatamente na hora certa para salvar milhares de famílias? Sentem-se com o vovô! O nome dela era Ester. Ela era gentil, doce e tinha um coração puro. O rei gostou tanto da sua bondade que colocou uma coroa de ouro na sua cabeça. Mas um homem maldoso chamado Hamã planejou fazer mal a todo o povo de Ester. O primo Mardoqueu mandou um recado a ela: Quem sabe você se tornou rainha exatamente para um momento especial como este? Mas ninguém podia entrar na sala do rei sem ser convidado, sob risco de castigo severo. Ester não teve medo: pediu que todo o povo orasse a Deus por três dias. Depois, vestiu seus trajes reais e foi até o trono com muita calma. O rei sorriu e estendeu para ela o cetro de ouro em sinal de paz. Ester convidou o rei para um banquete e, com palavras gentis, revelou o plano maldoso e salvou a vida de todo o seu povo! Quando usamos a coragem para defender quem amamos, Deus faz maravilhas!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_19_vovo.mp3?v=81",
         "text": "Ester entendeu que Deus a havia colocado no palácio com um propósito especial: interceder em oração e salvar o seu povo com coragem!",
-        "verse": "Quem sabe se para tal tempo como este chegaste a este reino? (Ester 4:14)",
+        "verse": "Deus é o nosso refúgio e fortaleza. (Salmos 46:1)",
         "verseWords": [
           "Para",
           "um",
@@ -3517,7 +3517,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "te",
           "chamou."
         ],
-        "actionTitle": "Missão Explorador: Propósito para Ajudar",
+        "actionTitle": "Missão da Semana: Propósito para Ajudar",
         "actionDesc": "Use seus talentos nesta semana para ajudar um colega que esteja com dificuldade na escola ou na EBD!"
       }
     },
@@ -3677,7 +3677,7 @@ window.EBD_LESSONS_CURRICULUM = [
         "vovoStoryScript": "Vocês já viram como um trabalho difícil fica fácil e gostoso quando a família inteira se une para ajudar? Sentem-se aqui com o vovô! Hoje vamos conhecer Neemias, um homem de coração generoso. Quando soube que os muros da cidade do seu povo estavam caídos e as portas de madeira queimadas, ele não ficou de braços cruzados: fez uma oração a Deus e viajou até Jerusalém para consertar tudo! Neemias reuniu os pais, as mães e os filhos e disse com esperança: Venham, vamos reconstruir juntos! E foi a coisa mais linda: cada família arrumou o pedacinho do muro bem em frente à sua casa. Uns traziam as pedras, outros ajeitavam a madeira dos portões, e as crianças ajudavam trazendo água e torcendo com alegria! Mesmo quando pessoas mal-humoradas tentaram zombar dizendo que eles não iam conseguir, Neemias animou a todos: Não tenham medo! O nosso Deus é grande e maravilhoso! E trabalhando em equipe com um sorriso no rosto, em apenas cinquenta e dois dias os muros estavam de pé, fortes e seguros! Naquele dia todos celebraram, porque a união com amor é a nossa maior força!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_20_vovo.mp3?v=81",
         "text": "Neemias chamou todas as famílias para trabalharem juntas colocando tijolinho por tijolinho, e com a alegria do Papai do Céu reconstruíram todo o muro!",
-        "verse": "A alegria do Senhor é a vossa força! (Neemias 8:10)",
+        "verse": "A alegria do Senhor é a vossa força. (Neemias 8:10)",
         "verseWords": [
           "A",
           "alegria",
@@ -3687,7 +3687,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "nossa",
           "força!"
         ],
-        "actionTitle": "Missão dos Pequenininhos: Mutirão dos Brinquedos",
+        "actionTitle": "Adaptação 3 a 5 anos: Mutirão dos Brinquedos",
         "actionDesc": "Ajude a juntar e organizar todos os brinquedos da sala junto com sua família, igual ao mutirão de Neemias!"
       },
       "6-8": {
@@ -3705,7 +3705,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "vossa",
           "força."
         ],
-        "actionTitle": "Missão Explorador: Construtor em Equipe",
+        "actionTitle": "Missão da Semana: Construtor em Equipe",
         "actionDesc": "Participe de uma arrumação em equipe na sua casa ou sala da EBD lembrando que 'a alegria do Senhor é a nossa força'!"
       }
     },
@@ -3859,7 +3859,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "byAge": {
       "3-5": {
         "text": "Jesus nasceu em Belém e cresceu fazendo o bem! Ele abraçou as criancinhas e disse que o amor de Deus está sempre aberto para você!",
-        "verse": "Deixai vir a mim os pequeninos, porque deles é o Reino de Deus. (Marcos 10:14)",
+        "verse": "Deixai vir a mim os pequeninos. (Marcos 10:14)",
         "verseWords": [
           "Deixai",
           "vir",
@@ -3868,14 +3868,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "os",
           "pequeninos."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Abraço de Jesus",
+        "actionTitle": "Adaptação 3 a 5 anos: Abraço de Jesus",
         "actionDesc": "Seja carinhoso com todas as crianças na escolinha e em casa, espalhando o amor de Jesus!",
         "vovoStoryScript": "Se o Rei mais poderoso do universo viesse visitar a Terra, onde vocês acham que Ele nasceria? Num castelo com tapetes vermelhos e coroas de diamante? Cheguem bem pertinho do vovô! Na noite mais especial da história, Jesus nasceu num lugar bem simples e acolhedor, numa cidadezinha chamada Belém. Maria e José viajaram de longe e não encontraram quarto na hospedaria. Então, foram acolhidos num estábulo quentinho. Quando o bebezinho Jesus nasceu, Maria O enrolou em panos macios e O deitou com amor numa manjedoura de palha limpa. No campo ali perto, pastores cuidavam das suas ovelhas quando, de repente, um anjo brilhante apareceu no céu iluminando a noite! O anjo disse: Não tenham medo! Trago uma notícia de grande alegria para todo o povo: nasceu hoje o Salvador! E de repente, um coro de anjos celestiais cantou louvores: Glória a Deus nas alturas e paz na terra! Os pastores correram até Belém e encontraram o bebezinho radiante. Jesus veio ao mundo para nos ensinar o amor mais puro e ser o melhor amigo de todas as crianças!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_21_vovo.mp3?v=81"
       },
       "6-8": {
         "text": "Depois de séculos de espera, Jesus nasceu em Belém cumprindo todas as promessas! Ele acalmou a tempestade no barco e acolheu as crianças com amor!",
-        "verse": "Deixai vir a mim os pequeninos e não os impeçais. (Marcos 10:14)",
+        "verse": "Deixai vir a mim os pequeninos. (Marcos 10:14)",
         "verseWords": [
           "Deixai",
           "vir",
@@ -3885,7 +3885,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "pequeninos",
           "sempre."
         ],
-        "actionTitle": "Missão Explorador: Incluir e Acolher",
+        "actionTitle": "Missão da Semana: Incluir e Acolher",
         "actionDesc": "Convide uma criança tímida para brincar com você nesta semana!",
         "vovoStoryScript": "Se o Rei mais poderoso do universo viesse visitar a Terra, onde vocês acham que Ele nasceria? Num castelo com tapetes vermelhos e coroas de diamante? Cheguem bem pertinho do vovô! Na noite mais especial da história, Jesus nasceu num lugar bem simples e acolhedor, numa cidadezinha chamada Belém. Maria e José viajaram de longe e não encontraram quarto na hospedaria. Então, foram acolhidos num estábulo quentinho. Quando o bebezinho Jesus nasceu, Maria O enrolou em panos macios e O deitou com amor numa manjedoura de palha limpa. No campo ali perto, pastores cuidavam das suas ovelhas quando, de repente, um anjo brilhante apareceu no céu iluminando a noite! O anjo disse: Não tenham medo! Trago uma notícia de grande alegria para todo o povo: nasceu hoje o Salvador! E de repente, um coro de anjos celestiais cantou louvores: Glória a Deus nas alturas e paz na terra! Os pastores correram até Belém e encontraram o bebezinho radiante. Jesus veio ao mundo para nos ensinar o amor mais puro e ser o melhor amigo de todas as crianças!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_21_vovo.mp3?v=81"
@@ -4045,7 +4045,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "byAge": {
       "3-5": {
         "text": "Os amigos de Jesus, como Pedro, João e Paulo, viajaram de barquinho levando o amor do Papai do Céu para o mundo inteiro!",
-        "verse": "Ide por todo o mundo e pregai o evangelho. (Marcos 16:15)",
+        "verse": "Ide por todo o mundo e pregai. (Marcos 16:15)",
         "verseWords": [
           "Levai",
           "o",
@@ -4055,14 +4055,14 @@ window.EBD_LESSONS_CURRICULUM = [
           "ao",
           "mundo."
         ],
-        "actionTitle": "Missão dos Pequenininhos: Pequeno Mensageiro",
+        "actionTitle": "Adaptação 3 a 5 anos: Pequeno Mensageiro",
         "actionDesc": "Conte para alguém que você ama a história bíblica que você mais gostou de aprender!",
         "vovoStoryScript": "Vocês já andaram de barquinho na água quando o vento começa a soprar mais forte e a balançar o barco? Sentem-se aqui com o vovô para a nossa última história desta série! Certa tarde, depois de ensinar muitas pessoas na praia, Jesus entrou num barquinho de madeira com Seus discípulos para atravessar o mar da Galileia. Jesus estava cansado e pegou no sono, deitado num travesseiro na popa do barco. De repente, o céu escureceu e começou uma tempestade violenta! O vento uivava forte, e ondas altas começaram a encher o barquinho de água! Os amigos de Jesus ficaram apavorados e foram acordá-Lo: Mestre, salve-nos, nós vamos afundar! Jesus Se levantou tranquilamente, olhou para o céu escuro e disse com autoridade e paz: Acalme-se, vento! Fique em silêncio, mar! No mesmo instante, o vento parou e as águas ficaram calminhas como um espelho de cristal! Os discípulos olharam maravilhados: Até o vento e o mar obedecem a Ele! Quando Jesus está no nosso barquinho, nenhuma tempestade pode nos assustar. Ele sempre traz paz ao nosso coração!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_22_vovo.mp3?v=81"
       },
       "6-8": {
         "text": "No livro de Atos dos Apóstolos, Pedro e Paulo viajaram por muitas cidades ensinando sobre Jesus e escrevendo cartas cheias de sabedoria!",
-        "verse": "Combati o bom combate, acabei a carreira, guardei a fé. (2 Timóteo 4:7)",
+        "verse": "Ide por todo o mundo e pregai. (Marcos 16:15)",
         "verseWords": [
           "Combati",
           "o",
@@ -4072,7 +4072,7 @@ window.EBD_LESSONS_CURRICULUM = [
           "a",
           "fé."
         ],
-        "actionTitle": "Missão Explorador: Carta de Carinho",
+        "actionTitle": "Missão da Semana: Carta de Carinho",
         "actionDesc": "Escreva um bilhetinho de carinho e fé para alguém da sua família ou professor da EBD!",
         "vovoStoryScript": "Vocês já andaram de barquinho na água quando o vento começa a soprar mais forte e a balançar o barco? Sentem-se aqui com o vovô para a nossa última história desta série! Certa tarde, depois de ensinar muitas pessoas na praia, Jesus entrou num barquinho de madeira com Seus discípulos para atravessar o mar da Galileia. Jesus estava cansado e pegou no sono, deitado num travesseiro na popa do barco. De repente, o céu escureceu e começou uma tempestade violenta! O vento uivava forte, e ondas altas começaram a encher o barquinho de água! Os amigos de Jesus ficaram apavorados e foram acordá-Lo: Mestre, salve-nos, nós vamos afundar! Jesus Se levantou tranquilamente, olhou para o céu escuro e disse com autoridade e paz: Acalme-se, vento! Fique em silêncio, mar! No mesmo instante, o vento parou e as águas ficaram calminhas como um espelho de cristal! Os discípulos olharam maravilhados: Até o vento e o mar obedecem a Ele! Quando Jesus está no nosso barquinho, nenhuma tempestade pode nos assustar. Ele sempre traz paz ao nosso coração!",
         "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_22_vovo.mp3?v=81"
@@ -8794,17 +8794,19 @@ window.advanceStageSWPhase = function() {
 
 // ============================================================================
 // 12. REVISTA DIGITAL • TRONO DA PROMESSA EBD (#screen-teacher-portal)
-// 100% Fundo Branco Editorial (#ffffff) para Impressão Econômica e Nítida!
-// 7 Blocos Pedagógicos + Folha A4 de Colorir (PNG/WhatsApp/PDF) + Modo Slides TV!
+// Faixa Unificada (3 a 8 anos) + Pílulas Práticas de Orientação (3–5 e 6–8 anos)
+// 100% Sincronizada 1:1 com o Aplicativo Infantil e 100% Fundo Branco (#ffffff)!
 // ============================================================================
 
 window.EBD_MAGAZINE_STATE = {
   activeTab: "magazine", // "magazine" | "slides"
+  portalWeek: 1,
   slideIndex: 0,
   slideAnswerRevealed: false,
   fullscreenActive: false
 };
 
+// Dinâmicas Lúdicas de Memorização — Turma 3 a 5 anos (Gestos, Eco e Movimento)
 window.EBD_SEMENTINHA_MEMO_TIPS = [
   "Brincadeira do Eco e Gestos: o professor fala metade do versículo abrindo bem os braços em 'céus' e apontando para o chão em 'terra', e a turma repete batendo uma palma por palavra!",
   "Arco da Promessa: faça um grande arco no ar com os braços enquanto a turma repete o versículo primeiro bem baixinho (sussurrando) e depois com voz alegre e firme!",
@@ -8821,13 +8823,65 @@ window.EBD_SEMENTINHA_MEMO_TIPS = [
   "Duas Tábuas com as Mãos: abra as duas palmas das mãos à frente como um livro aberto e leia 'imaginariamente' o versículo junto com o professor!",
   "Tocha Brilhante de Gideão: levante uma mão fechada como se segurasse uma lanterninha acesa e repita o versículo iluminando a sala!",
   "Ouvidos Atentos de Samuel: coloque a mão atrás da orelhinha na primeira frase e no coração na segunda frase, repetindo com atenção!",
-  "Desafio da Palavra Escondida: escreva ou fale o versículo omitindo uma palavra por vez para a turma descobrir e completar de memória!",
+  "Coroa de Sabedoria: coloque as duas mãos na cabeça formando uma coroa imaginária e repita o versículo com voz calma e serena!",
   "Príncipe da Paz: coloque as duas mãos sobre o coração, respire fundo e recite o versículo em tom calmo, doce e cheio de paz!",
   "Trio de Amigos Fiéis: junte as crianças de três em três; cada trio recita o versículo unido em uma só voz!",
-  "Coroa de Coragem de Ester: faça uma coroa imaginária sobre a cabeça e diga o versículo com postura firme e confiante!",
+  "Cetro Real de Ester: estenda o braço à frente com delicadeza e diga o versículo com postura firme e confiante!",
   "Tijolinho por Tijolinho: empilhe uma mão sobre a outra a cada palavra falada, construindo juntos o 'muro' completo do versículo!",
-  "Brilho da Estrela de Belém: aponte para o alto como a estrela guia e termine abrindo os braços para acolher os colegas ao repetir o versículo!",
-  "Barquinho calmo na Palavra: balance o corpo como um barquinho e, na última frase do versículo, fique paradinho em total tranquilidade!"
+  "Abraço Acolhedor de Jesus: abra bem os braços com alegria e feche num abraço em si mesmo ao concluir a referência bíblica!",
+  "Passos pelo Mundo: marche suavemente no lugar anunciando o versículo com entusiasmo e um grande sorriso!"
+];
+
+// Dinâmicas Desafiadoras de Memorização — Turma 6 a 8 anos (Leitura, Equipes e Raciocínio)
+window.EBD_SEMENTINHA_MEMO_TIPS_6A8 = [
+  "Quadro que Apaga: escreva o versículo no quadro (ou em tiras de papel), leia com a turma e apague 1 palavra por rodada até recitarem tudo + referência de olhos fechados!",
+  "Construtor de Versículos ao Vivo: entregue cada palavra em uma folha para 9 crianças da fila e desafie a turma a colocá-las na ordem exata igual ao jogo Versículo Secreto do App!",
+  "Pingue-Pongue Bíblico: divida em duas equipes; Equipe A diz a 1ª palavra, Equipe B a 2ª, alternando rapidamente até dizerem a referência Gênesis 15:5 sem errar!",
+  " Palavra Misteriosa: o professor lê o versículo trocando 1 palavra de propósito (ex.: 'montanha' em vez de 'guardarei') para os alunos de 6 a 8 anos levantarem a mão e corrigirem!",
+  "Ordem Relâmpago em Duplas: embaralhe cartões com as palavras do versículo sobre a mesa e veja qual dupla monta Gênesis 45:5 primeiro e explica o sentido de 'conservar a vida'!",
+  "Maestro do Volume: o professor rege com a mão (baixo = sussurro, médio = voz normal, alto = voz firme) enquanto a turma recita Êxodo 15:2 sem perder o compasso!",
+  "Desafio da Referência Bíblica: abra uma Bíblia física em Josué 1:9 com um voluntário leitor e desafie a turma a recitar em uníssono batendo o ritmo na mesa!",
+  "Detetive da Palavra-Chave: esconda o cartão 'CORAÇÃO' na sala; quem encontrar lê 1 Samuel 16:7 completo e explica o que significa Deus olhar para o coração!",
+  "Telefone com Eco Bíblico: passe o versículo sussurrado na fila e o último aluno escreve ou fala em voz alta conferindo na Bíblia Jeremias 33:3!",
+  "Estátua da Fé: enquanto a turma recita Daniel 6:22, quando o professor disser 'Leões!', todos param imóveis e completam a referência bíblica juntos!",
+  "Repórter do Éden: escolha dois alunos para 'entrevistar' a turma perguntando onde Deus colocou o homem e qual referência bíblica ensina a cuidar da criação (Gênesis 2:15)!",
+  "Código das Iniciais: escreva apenas a primeira letra de cada palavra no quadro (C E S C T O D — Êxodo 3:12) para a turma decifrar e recitar completa!",
+  "Lanterna na Palavra: apague ou reduza a luz por 15 segundos, ilumine a Bíblia com a lanterna do celular e peça que recitem Salmos 119:105 explicando por que a Bíblia guia nossos passos!",
+  "Revezamento dos Valentes: cada fileira fala dois vocábulos de Juízes 6:12 em pé rapidamente como uma ola de estádio terminando na referência!",
+  "Voz e Silêncio: a turma fala a 1ª palavra em voz alta, a 2ª só mexendo os lábios em silêncio, a 3ª em voz alta, até cravar 1 Samuel 3:10 com atenção total!",
+  " Dupla Sabedoria & Entendimento: metade da sala levanta ao dizer 'sabedoria' e a outra metade ao dizer 'entendimento', finalizando juntos Provérbios 2:6!",
+  " Mensagem Real de Isaías: entregue um rolo de papel (pergaminho) que passa de mão em mão; quem recebe lê ou recita Isaías 9:6 como arauto real!",
+  "Firmeza dos Três Amigos: em trios, cada aluno fala um terço de Daniel 3:17 e os três dizem a referência juntos batendo as mãos!",
+  "Escudo e Fortaleza: desenhe um escudo no quadro com palavras faltando de Salmos 46:1 para voluntários preencherem e explicarem o que é 'refúgio'!",
+  "Muro de Palavras: desenhe 8 tijolos no quadro; a cada acerto de pergunta da aula, preencha um tijolo com uma palavra de Neemias 8:10 até lerem tudo!",
+  "Círculo de Acolhimento: um aluno no centro diz o início de Marcos 10:14 e aponta para um colega completar a referência, trocando de lugar!",
+  "Mapa Missionário: aponte os quatro cantos da sala (Norte, Sul, Leste, Oeste) enquanto a turma recita Marcos 16:15 lembrando de levar o amor de Jesus a todos!"
+];
+
+// Pílulas de Adaptação Prática da Dinâmica de Sala (Bloco 05: 3 a 5 anos vs 6 a 8 anos)
+window.EBD_CLASSROOM_ADAPT_TIPS = [
+  { a35: "Use figuras grandes, sons dos bichinhos e deixe que toquem elementos concretos (folha, flor, algodão) celebrando cada criação.", a68: "Peça que numerem oralmente a ordem exata dos 6 dias da Criação + 7º dia de descanso e relacionem um cuidado diário com a natureza." },
+  { a35: "Foque nos pares de animaizinhos entrando na arca, no som da chuva com os dedinhos e nas cores alegres do arco-íris.", a68: "Converse sobre perseverar fazendo o certo mesmo quando colegas zombam, destacando a obediência fiel de Noé." },
+  { a35: "Deixe colarem estrelinhas douradas no papel escuro enquanto contam juntos até dez lembrando que Deus cumpre promessas.", a68: "Explique o conceito de 'aliança' e peça exemplos de quando precisamos esperar com paciência pelo tempo de Deus." },
+  { a35: "Use almofadinha ou rolinho de papel para dramatizar Jacó dormindo tranquilo sabendo que Deus cuida de nós à noite.", a68: "Reflita sobre como Deus está presente em qualquer lugar (em casa, na escola, em viagem) e peça que escrevam um motivo de gratidão." },
+  { a35: "Trabalhe tiras de papel colorido na túnica e pratique o gesto concreto do abraço e das palavras 'Eu perdoo você'.", a68: "Debata situações reais de chateação entre irmãos ou colegas e como José escolheu retribuir o mal com bondade." },
+  { a35: "Abra um tecido azul no chão como 'mar aberto' para passarem cantando com chocalhos e palmas de alegria.", a68: "Analise o momento em que o povo teve medo diante do mar e como confiar em Deus nos ajuda a vencer desafios difíceis." },
+  { a35: "Conte de 1 a 7 em voz alta marchando em volta de caixinhas de papelão e derrubando-as com alegria na 7ª volta.", a68: "Destaque a disciplina de obedecer às instruções exatas de Deus em equipe sem desistir na metade das voltas." },
+  { a35: "Contraste 'pequenininho' e 'grandão' com gestos e mostre um coraçãozinho de papel ensinando que Deus vê nosso interior.", a68: "Compare a confiança de Davi no Senhor com a autossuficiência de Golias e pergunte quais 'gigantes' enfrentamos hoje." },
+  { a35: "Brinque de escutar a brisa suave (assoprando levemente) e de obedecer rápido quando a mamãe, o papai ou Deus chamam.", a68: "Compare a atitude de Elias no Carmelo com a fuga e o arrependimento de Jonas, mostrando a misericórdia de Deus." },
+  { a35: "Imite leõezinhos de boquinha fechada pelo anjo enquanto Daniel ora tranquilo de mãos postas perto da janela.", a68: "Converse sobre manter hábitos de oração e integridade na escola mesmo quando ninguém está olhando." },
+  { a35: "Brinque de dar nomes fofos aos animais de brinquedo e regar uma plantinha de verdade com um copinho.", a68: "Trabalhe o conceito bíblico de mordomia: somos guardiões responsáveis pelo que Deus criou em casa e na escola." },
+  { a35: "Use uma bonequinha num cestinho para mostrar o cuidado carinhoso da irmã Miriã e da mamãe com o bebê Moisés.", a68: "Conecte o livramento de Moisés bebê ao chamado na sarça ardente, mostrando que Deus prepara nossa história desde cedo." },
+  { a35: "Use algodão branco como 'pãozinho do céu' e foque em agradecer pelo alimento e obedecer com carinho ao papai e à mamãe.", a68: "Relacione os Dez Mandamentos a regras de amor que protegem a convivência com Deus, com os pais e com o próximo." },
+  { a35: "Use lanterninhas acesas em copinhos plásticos e espigas de papel amarelo celebrando coragem e partilha.", a68: "Destaque duas virtudes complementares: a fé corajosa de Gideão com poucos recursos e a lealdade familiar de Rute." },
+  { a35: "Faça silêncio de 5 segundos com a mão na orelhinha para brincarem de responder 'Fala, Senhor!' igual ao pequeno Samuel.", a68: "Ensine como ouvimos a voz de Deus hoje por meio da leitura da Bíblia, da oração sincera e dos conselhos sábios." },
+  { a35: "Traga uma caixinha dourada com um coração dentro mostrando que ser sábio é escolher fazer o bem aos amigos.", a68: "Proponha pequenos dilemas do cotidiano escolar para a turma decidir qual atitude demonstra a sabedoria de Salomão." },
+  { a35: "Mostre um potinho despejando água em vários copinhos para visualizar a multiplicação e o cuidado de Deus com a família.", a68: "Mostre a linha profética: séculos antes de Belém, Isaías já anunciava Jesus como o Príncipe da Paz prometido!" },
+  { a35: "Junte as crianças de mãos dadas em trios mostrando como amigos de verdade ajudam uns aos outros a fazer o certo.", a68: "Discuta pressão de grupo: como dizer 'não' com educação e firmeza quando colegas convidam para algo errado." },
+  { a35: "Coloque uma coroa de papel dourado nas crianças lembrando que usamos nossa voz para defender e ajudar quem precisa.", a68: "Explore a frase 'para um tempo como este', ajudando-os a perceber talentos que Deus lhes deu para abençoar pessoas." },
+  { a35: "Monte um murinho coletivo com blocos de montar ou caixas onde cada criança encaixa sua peça sorrindo.", a68: "Trabalhe cooperação, divisão de tarefas e perseverança diante de críticas, inspirados na liderança de Neemias." },
+  { a35: "Destaque o menino Jesus na manjedoura e Jesus abraçando as crianças, reforçando o quanto cada aluno é amado.", a68: "Conecte todas as promessas do Antigo Testamento ao nascimento de Jesus e desafie a turma a acolher colegas tímidos ou novos." },
+  { a35: "Balance um tecido como ondas fortes que ficam lisinhas e calmas assim que falamos da paz de Jesus no barquinho!", a68: "Trace no mapa imaginário as viagens de Paulo e incentive cada aluno a escrever um bilhete real de encorajamento cristão." }
 ];
 
 window.escapeEbdHtml = function(str) {
@@ -8836,6 +8890,12 @@ window.escapeEbdHtml = function(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+};
+
+window.getActiveTeacherPortalLessonObj = function() {
+  const arr = window.EBD_LESSONS_CURRICULUM || [];
+  const wk = Number(window.EBD_MAGAZINE_STATE.portalWeek || (window.EBD_STATE && window.EBD_STATE.currentWeek) || 1);
+  return arr.find(l => Number(l.week) === wk) || arr[0] || null;
 };
 
 window.getLessonColoringOutlineInfo = function(lesson) {
@@ -8852,10 +8912,12 @@ window.getLessonColoringOutlineInfo = function(lesson) {
   const seqPaint = (found && found.seqPaint) ? found.seqPaint : "39";
   const seqColor = (found && found.seqColor) ? found.seqColor : "29";
   const artTitle = (found && found.title) ? found.title : (lesson ? lesson.title : "Atividade Bíblica");
+  const superCardLesson = storiesArr.find(s => Number(s.id) === Number(lesson ? lesson.week : 1)) || found;
   return {
     outlineUrl: `./4_ASSETS_PINTURA/pintura_contorno_${seqPaint}.jpg`,
     colorUrl: `./3_ASSETS_QUEBRA_CABECA/cena_colorida_${seqColor}.jpg`,
     artTitle: artTitle,
+    superCardTitle: (superCardLesson && superCardLesson.title) ? superCardLesson.title : artTitle,
     seqPaint: seqPaint
   };
 };
@@ -8888,13 +8950,18 @@ window.splitStoryIntoEditorialMoments = function(rawScript) {
 
 window.getLessonPedagogicalExtras = function(weekNum) {
   const wk = Math.max(1, Math.min(22, Number(weekNum) || 1));
+  const quizVisual = (window.QUIZ_VISUAL_22_PHASES || []).find(x => Number(x.lessonWeek) === wk) || (window.QUIZ_VISUAL_22_PHASES || [])[wk - 1] || null;
+  const chronoGame = (window.CHRONOLOGY_LEVELS || []).find(x => Number(x.lessonWeek) === wk) || (window.CHRONOLOGY_LEVELS || [])[wk - 1] || null;
+  const verseGame = (window.VERSE_BUILDER_BANK || []).find(x => Number(x.lessonWeek) === wk) || (window.VERSE_BUILDER_BANK || [])[wk - 1] || null;
   const whoAmI = (window.WHO_AM_I_BANK || []).find(x => Number(x.lessonWeek) === wk) || (window.WHO_AM_I_BANK || [])[wk - 1] || null;
   const trueMyth = (window.TRUE_OR_MYTH_BANK || []).find(x => Number(x.lessonWeek) === wk) || (window.TRUE_OR_MYTH_BANK || [])[wk - 1] || null;
   const secretWord = (window.SECRET_WORD_BANK || []).find(x => Number(x.lessonWeek) === wk) || (window.SECRET_WORD_BANK || [])[wk - 1] || null;
   const wordSearch = (window.WORD_SEARCH_LEVELS || []).find(x => Number(x.lessonWeek) === wk) || (window.WORD_SEARCH_LEVELS || [])[wk - 1] || null;
   const mimica = (window.MIMICA_CARDS || []).find(x => Number(x.lessonWeek) === wk) || (window.MIMICA_CARDS || [])[wk - 1] || null;
   const memoTip = window.EBD_SEMENTINHA_MEMO_TIPS[(wk - 1) % window.EBD_SEMENTINHA_MEMO_TIPS.length];
-  return { whoAmI, trueMyth, secretWord, wordSearch, mimica, memoTip };
+  const memoTip68 = window.EBD_SEMENTINHA_MEMO_TIPS_6A8[(wk - 1) % window.EBD_SEMENTINHA_MEMO_TIPS_6A8.length];
+  const adaptTip = window.EBD_CLASSROOM_ADAPT_TIPS[(wk - 1) % window.EBD_CLASSROOM_ADAPT_TIPS.length];
+  return { quizVisual, chronoGame, verseGame, whoAmI, trueMyth, secretWord, wordSearch, mimica, memoTip, memoTip68, adaptTip };
 };
 
 window.ensureEbdMagazineStyles = function() {
@@ -9079,8 +9146,42 @@ window.ensureEbdMagazineStyles = function() {
       background: #ffffff !important;
       border: 2px dashed #d97706;
       border-radius: 10px;
-      padding: 8px 10px;
-      margin: 5px 0 7px 0;
+      padding: 9px 11px;
+      margin: 5px 0 8px 0;
+      text-align: center;
+    }
+    /* Pílulas de Orientação Pedagógica por Idade (3 a 5 anos vs 6 a 8 anos) — 100% Fundo Branco! */
+    .ebd-age-pills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin: 6px 0;
+    }
+    @media (max-width: 520px) {
+      .ebd-age-pills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .ebd-age-pill-card {
+      background: #ffffff !important;
+      border: 1.5px solid #cbd5e1;
+      border-left-width: 4px;
+      border-radius: 8px;
+      padding: 7px 9px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .ebd-age-pill-badge {
+      display: inline-block;
+      background: #ffffff !important;
+      border: 1.5px solid currentColor;
+      border-radius: 999px;
+      padding: 1px 8px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 10.5px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 4px;
     }
     .ebd-mag-word-tag {
       display: inline-block;
@@ -9143,6 +9244,9 @@ window.ensureEbdMagazineStyles = function() {
         background: #ffffff !important;
         color: #0f172a !important;
       }
+      .ebd-age-pills-grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
       .ebd-print-page {
         background: #ffffff !important;
         color: #0f172a !important;
@@ -9179,7 +9283,7 @@ window.buildColoringPageA4Html = function(lesson) {
         Lição ${lesson.week}: ${esc(lesson.title)}
       </div>
       <div style="font-size:12px; font-weight:800; color:#0369a1; text-align:center; margin-bottom:10px;">
-        Base Bíblica: ${esc(lesson.bibleRef)} • Ilustração: ${esc(col.artTitle)}
+        Base Bíblica: ${esc(lesson.bibleRef)} • Ilustração Oficial do App: ${esc(col.artTitle)}
       </div>
       <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:14px; font-size:12.5px; font-weight:800; color:#1e293b; border:1.5px solid #94a3b8; border-radius:8px; padding:9px 12px; margin-bottom:10px; background:#ffffff !important;">
         <div style="flex:1; display:flex; align-items:flex-end; gap:6px;"><span>ALUNO(A):</span><span style="flex:1; border-bottom:1.5px solid #334155; height:14px;"></span></div>
@@ -9189,7 +9293,7 @@ window.buildColoringPageA4Html = function(lesson) {
         <img src="${col.outlineUrl}" alt="${esc(col.artTitle)}" style="max-width:100%; max-height:560px; width:auto; height:auto; object-fit:contain; background:#ffffff !important; mix-blend-mode:multiply; filter:contrast(1.15) brightness(1.04);">
       </div>
       <div style="margin-top:10px; border:2px dashed #059669; border-radius:8px; padding:8px 12px; text-align:center; background:#ffffff !important;">
-        <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; color:#047857; text-transform:uppercase; margin-bottom:2px;">Sementinha no Coração (Versículo para Memorizar)</div>
+        <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; color:#047857; text-transform:uppercase; margin-bottom:2px;">Sementinha no Coração (Versículo Oficial da Lição)</div>
         <div style="font-size:13px; font-weight:800; color:#0f172a;">${esc(verseTxt)}</div>
       </div>
     </div>
@@ -9205,8 +9309,33 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
   const extras = window.getLessonPedagogicalExtras(lesson.week);
   const col = window.getLessonColoringOutlineInfo(lesson);
   const moments = window.splitStoryIntoEditorialMoments(lesson.vovoStoryScript);
-  const devDays = (lesson.devotional5Days || []).slice(0, 5);
+  const devDays = lesson.devotional5Days || [];
+  const weekdayNames = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
   const words = (extras.wordSearch && extras.wordSearch.words) ? extras.wordSearch.words : (lesson.wordSearchWords || []);
+  const unifiedVerse = age68.verse || age35.verse || "";
+  const unifiedMissionTitle = age68.actionTitle || "Missão da Semana";
+  const unifiedMissionDesc = age68.actionDesc || "";
+
+  // Gabarito exato do Quiz da Bíblia no App
+  let quizHtml = "";
+  if (extras.quizVisual && Array.isArray(extras.quizVisual.opts)) {
+    const winOpt = extras.quizVisual.opts.find(o => o.ok) || extras.quizVisual.opts[0];
+    quizHtml = `
+      <div class="ebd-mag-sub" style="color:#be123c;">1. Quiz da Bíblia (Pergunta Oficial do App nesta Lição):</div>
+      <p class="ebd-mag-p"><em>"${esc(extras.quizVisual.q)}"</em></p>
+      <p class="ebd-mag-p"><strong style="color:#047857;">Resposta Correta no App:</strong> <strong>${esc(winOpt ? winOpt.label : "")}</strong></p>
+    `;
+  }
+
+  // Gabarito exato da Ordem Cronológica (4 Cenas do App)
+  let chronoHtml = "";
+  if (extras.chronoGame && Array.isArray(extras.chronoGame.cards)) {
+    const ordered = extras.chronoGame.cards.slice().sort((a, b) => Number(a.correctOrder) - Number(b.correctOrder));
+    chronoHtml = `
+      <div class="ebd-mag-sub" style="color:#be123c;">2. Ordem Cronológica (Sequência das 4 Cenas do App):</div>
+      <p class="ebd-mag-p">${ordered.map((c, idx) => `<strong style="color:#0369a1;">${idx + 1}º:</strong> ${esc(c.label)}`).join(" &nbsp;→&nbsp; ")}</p>
+    `;
+  }
 
   const block7InteractiveButtons = forPrintMode ? "" : `
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:10px;">
@@ -9228,7 +9357,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
         <span class="ebd-mag-num">07</span>
         <div class="ebd-mag-block-title">Folha de Atividade para Colorir (Fundo Branco A4)</div>
       </div>
-      <p class="ebd-mag-p">Folha oficial em <strong>fundo 100% branco</strong> pronta para baixar no celular, enviar no WhatsApp ou imprimir direto na igreja:</p>
+      <p class="ebd-mag-p">Mesma ilustração oficial da <strong>Pintura Mágica</strong> do aplicativo na Lição ${lesson.week} em <strong>fundo 100% branco</strong> para baixar, enviar no WhatsApp ou imprimir:</p>
       <div class="ebd-coloring-preview-card">
         <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; color:#6d28d9; text-transform:uppercase;">TRONO DA PROMESSA EBD • LIÇÃO ${lesson.week}</div>
         <div style="font-family:'Fredoka',sans-serif; font-size:14px; font-weight:900; color:#1e293b; margin-bottom:4px;">${esc(col.artTitle)}</div>
@@ -9237,7 +9366,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
           <span style="white-space:nowrap;">DATA: &nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </div>
         <img src="${col.outlineUrl}" alt="${esc(col.artTitle)}" class="ebd-coloring-img-clean" loading="lazy">
-        <div style="font-size:11.5px; font-weight:800; color:#047857; border-top:1px dashed #059669; padding-top:5px;">${esc(age68.verse || age35.verse || "")}</div>
+        <div style="font-size:11.5px; font-weight:800; color:#047857; border-top:1px dashed #059669; padding-top:5px;">${esc(unifiedVerse)}</div>
       </div>
       ${block7InteractiveButtons}
     </div>
@@ -9256,7 +9385,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
       <div class="ebd-mag-header">
         <div class="ebd-mag-kicker">
           <span>REVISTA DIGITAL • TRONO DA PROMESSA EBD</span>
-          <span class="ebd-mag-pill-outline">LIÇÃO ${lesson.week} DE 22 • GUIA DO PROFESSOR E FAMÍLIA</span>
+          <span class="ebd-mag-pill-outline">LIÇÃO ${lesson.week} DE 22 • FAIXA UNIFICADA 3 A 8 ANOS</span>
         </div>
         <div class="ebd-mag-main-title">Lição ${lesson.week}: ${esc(lesson.title)}</div>
         <div class="ebd-mag-ref-line">
@@ -9272,7 +9401,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
         </div>
         <div class="ebd-mag-sub" style="color:#0369a1;">Objetivo Central da Aula:</div>
         <p class="ebd-mag-p">${esc(tg.objective || "")}</p>
-        <div class="ebd-mag-sub" style="color:#0369a1;">Conexão Cronológica na Bíblia:</div>
+        <div class="ebd-mag-sub" style="color:#0369a1;">Conexão Cronológica (Espelho do botão "Cronologia Bíblica" do App):</div>
         <ul class="ebd-mag-list">
           ${ch.before ? `<li><strong style="color:#0369a1;">O que veio antes:</strong> ${esc(ch.before.replace(/^Antes desta história:\s*/i, ""))}</li>` : ""}
           ${ch.now ? `<li><strong style="color:#0369a1;">Nesta Lição:</strong> ${esc(ch.now.replace(/^Nesta Lição[^:]*:\s*/i, ""))}</li>` : ""}
@@ -9285,21 +9414,30 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
       <div class="ebd-mag-block" style="border-left-color:#059669;">
         <div class="ebd-mag-block-head" style="color:#047857;">
           <span class="ebd-mag-num">02</span>
-          <div class="ebd-mag-block-title">Ponte Casa ↔ Igreja (Acolhimento Inicial • 5 min)</div>
+          <div class="ebd-mag-block-title">Ponte Casa ↔ Igreja (Fé em Ação &amp; Devocional 7 Dias • 5 min)</div>
         </div>
-        <p class="ebd-mag-p">Durante a semana, os pais trabalharam esta lição em casa com a criança. Comece a aula conectando o lar à sala da EBD:</p>
-        <div class="ebd-mag-sub" style="color:#047857;">Missões enviadas para a Família nesta semana (Fé em Ação):</div>
+        <p class="ebd-mag-p"><strong style="color:#047857;">${esc(unifiedMissionTitle)} (Botão "Fé em Ação" do App):</strong> ${esc(unifiedMissionDesc)}</p>
+        <div class="ebd-age-pills-grid">
+          <div class="ebd-age-pill-card" style="border-left-color:#0d9488;">
+            <span class="ebd-age-pill-badge" style="color:#0f766e;">Pílula • Turma 3 a 5 anos</span>
+            <p class="ebd-mag-p" style="margin:0; font-size:12px;">${esc(age35.actionDesc || "")}</p>
+          </div>
+          <div class="ebd-age-pill-card" style="border-left-color:#0284c7;">
+            <span class="ebd-age-pill-badge" style="color:#0369a1;">Pílula • Turma 6 a 8 anos</span>
+            <p class="ebd-mag-p" style="margin:0; font-size:12px;">Peça que relatem na roda como praticaram a missão durante a semana e que conselho dariam a um amigo com base nesta lição.</p>
+          </div>
+        </div>
+        <div class="ebd-mag-sub" style="color:#047857;">Trilha Completa do Devocional Familiar no App (Segunda a Domingo • 7 Dias):</div>
+        <p class="ebd-mag-p">${devDays.map((d, idx) => {
+          const wLabel = weekdayNames[idx] || `${d.day}º Dia`;
+          const cleanT = String(d.title || "").replace(/^Dia\s*\d+\s*[•\-:]\s*/i, "").trim();
+          return `<strong>${esc(wLabel)}:</strong> ${esc(cleanT)}`;
+        }).join(" &nbsp;•&nbsp; ")}</p>
+        <p class="ebd-mag-p" style="font-size:12px;"><strong style="color:#4c1d95;">Conquista no Álbum da Fé:</strong> Ao concluir os 6 passos da Lição ${lesson.week} no App, a criança ilumina a <strong>Casinha ${lesson.week}</strong> e ganha o Super Card 9:16 <em>"${esc(col.superCardTitle)}"</em>.</p>
+        <div class="ebd-mag-sub" style="color:#047857;">Perguntas Rápidas de Acolhimento para o Professor:</div>
         <ul class="ebd-mag-list">
-          <li><strong style="color:#047857;">3 a 5 anos (${esc(age35.actionTitle || "Pequenininhos")}):</strong> ${esc(age35.actionDesc || "")}</li>
-          <li><strong style="color:#047857;">6 a 8 anos (${esc(age68.actionTitle || "Exploradores")}):</strong> ${esc(age68.actionDesc || "")}</li>
-        </ul>
-        <div class="ebd-mag-sub" style="color:#047857;">Temas do Devocional Familiar da Semana:</div>
-        <p class="ebd-mag-p">${devDays.map(d => esc(String(d.title || "").replace(/^Dia\s*\d+\s*•\s*/i, `${d.day}º Dia: `))).join(" &nbsp;|&nbsp; ")}</p>
-        <div class="ebd-mag-sub" style="color:#047857;">Perguntas Prontas de Check-in para o Professor:</div>
-        <ul class="ebd-mag-list">
-          <li><em>"Quem ouviu ou estudou a história desta semana em casa com a família?"</em></li>
-          <li><em>"Quem conseguiu cumprir a Missão da Semana em casa? Conte para a turma como foi!"</em></li>
-          <li><em>"Pelo que a sua família agradeceu a Deus durante esta semana?"</em></li>
+          <li><em>"Quem ouviu a História do Vovô desta semana e fez os 7 dias do Devocional em família?"</em></li>
+          <li><em>"Quem cumpriu a Missão da Semana em casa e já liberou o Super Card da Casinha ${lesson.week}?"</em></li>
         </ul>
       </div>
 
@@ -9307,74 +9445,99 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
       <div class="ebd-mag-block" style="border-left-color:#6d28d9;">
         <div class="ebd-mag-block-head" style="color:#6d28d9;">
           <span class="ebd-mag-num">03</span>
-          <div class="ebd-mag-block-title">Roteiro da História Bíblica para Contar (15 min)</div>
+          <div class="ebd-mag-block-title">Roteiro da História Bíblica &amp; Abordagem por Idade (15 min)</div>
         </div>
-        <p class="ebd-mag-p"><strong style="color:#581c87;">Resumo Rápido (3 a 5 anos):</strong> ${esc(age35.text || "")}</p>
-        <p class="ebd-mag-p"><strong style="color:#581c87;">Síntese Didática (6 a 8 anos):</strong> ${esc(age68.text || "")}</p>
-        <div class="ebd-mag-sub" style="color:#6d28d9;">Narrativa Completa Dividida por Momentos (Guia de Ministração):</div>
+        <div class="ebd-age-pills-grid">
+          <div class="ebd-age-pill-card" style="border-left-color:#0d9488;">
+            <span class="ebd-age-pill-badge" style="color:#0f766e;">Pílula • Como Contar p/ 3 a 5 anos</span>
+            <p class="ebd-mag-p" style="margin:0; font-size:12px;">${esc(age35.text || "")}</p>
+          </div>
+          <div class="ebd-age-pill-card" style="border-left-color:#0284c7;">
+            <span class="ebd-age-pill-badge" style="color:#0369a1;">Pílula • Como Aprofundar p/ 6 a 8 anos</span>
+            <p class="ebd-mag-p" style="margin:0; font-size:12px;">${esc(age68.text || "")}</p>
+          </div>
+        </div>
+        <div class="ebd-mag-sub" style="color:#6d28d9;">Narrativa Completa da "História do Vovô" no App (Dividida em 4 Momentos):</div>
         ${moments.map(m => `
           <p class="ebd-mag-p"><strong style="color:#581c87;">${esc(m.label)}:</strong> ${esc(m.text)}</p>
         `).join("")}
         ${openSlidesShortcut}
       </div>
 
-      <!-- BLOCO 04: SEMENTINHA NO CORAÇÃO -->
+      <!-- BLOCO 04: SEMENTINHA NO CORAÇÃO (VERSÍCULO ÚNICO OFICIAL + 2 DINÂMICAS) -->
       <div class="ebd-mag-block" style="border-left-color:#d97706;">
         <div class="ebd-mag-block-head" style="color:#b45309;">
           <span class="ebd-mag-num">04</span>
-          <div class="ebd-mag-block-title">Sementinha no Coração &amp; Memorização (5 min)</div>
+          <div class="ebd-mag-block-title">Sementinha no Coração &amp; Dinâmicas de Memorização (5 min)</div>
         </div>
         <div class="ebd-mag-verse-box">
-          <div style="font-size:11.5px; font-weight:900; color:#b45309; text-transform:uppercase; margin-bottom:2px;">Versículo Chave (3 a 5 anos):</div>
-          <div style="font-size:13.2px; font-weight:800; color:#0f172a; margin-bottom:6px;">${esc(age35.verse || "")}</div>
-          <div style="font-size:11.5px; font-weight:900; color:#b45309; text-transform:uppercase; margin-bottom:2px;">Versículo Completo (6 a 8 anos):</div>
-          <div style="font-size:13.2px; font-weight:800; color:#0f172a;">${esc(age68.verse || "")}</div>
+          <div style="font-size:11px; font-weight:900; color:#b45309; text-transform:uppercase; margin-bottom:3px;">Versículo Oficial da Lição (100% igual ao App "Sementinha" e "Versículo Secreto"):</div>
+          <div style="font-family:'Fredoka',sans-serif; font-size:14.8px; font-weight:900; color:#0f172a; line-height:1.32;">${esc(unifiedVerse)}</div>
         </div>
-        <div class="ebd-mag-sub" style="color:#b45309;">Dinâmica Lúdica de Memorização em Sala:</div>
-        <p class="ebd-mag-p">${esc(extras.memoTip)}</p>
+        <div class="ebd-age-pills-grid">
+          <div class="ebd-age-pill-card" style="border-left-color:#0d9488;">
+            <span class="ebd-age-pill-badge" style="color:#0f766e;">Dinâmica 3 a 5 anos • Gestos e Eco</span>
+            <p class="ebd-mag-p" style="margin:0; font-size:12px;">${esc(extras.memoTip)}</p>
+          </div>
+          <div class="ebd-age-pill-card" style="border-left-color:#0284c7;">
+            <span class="ebd-age-pill-badge" style="color:#0369a1;">Dinâmica 6 a 8 anos • Desafio em Equipe</span>
+            <p class="ebd-mag-p" style="margin:0; font-size:12px;">${esc(extras.memoTip68)}</p>
+          </div>
+        </div>
       </div>
 
       <!-- BLOCO 05: DINÂMICA PRÁTICA & MATERIAIS -->
       <div class="ebd-mag-block" style="border-left-color:#ea580c;">
         <div class="ebd-mag-block-head" style="color:#c2410c;">
           <span class="ebd-mag-num">05</span>
-          <div class="ebd-mag-block-title">Dinâmica Prática de Sala &amp; Materiais de Apoio (10 min)</div>
+          <div class="ebd-mag-block-title">Dinâmica Prática de Sala &amp; Adaptação Pedagógica (10 min)</div>
         </div>
         <div class="ebd-mag-sub" style="color:#c2410c;">Materiais Visuais Simples:</div>
         <p class="ebd-mag-p">${esc(tg.materials || "")}</p>
-        <div class="ebd-mag-sub" style="color:#c2410c;">Passo a Passo da Dinâmica de Aula:</div>
+        <div class="ebd-mag-sub" style="color:#c2410c;">Passo a Passo da Dinâmica Central:</div>
         <p class="ebd-mag-p">${esc(tg.classroomDynamic || "")}</p>
+        ${extras.adaptTip ? `
+          <div class="ebd-age-pills-grid">
+            <div class="ebd-age-pill-card" style="border-left-color:#0d9488;">
+              <span class="ebd-age-pill-badge" style="color:#0f766e;">Adaptação em Sala • 3 a 5 anos</span>
+              <p class="ebd-mag-p" style="margin:0; font-size:12px;">${esc(extras.adaptTip.a35)}</p>
+            </div>
+            <div class="ebd-age-pill-card" style="border-left-color:#0284c7;">
+              <span class="ebd-age-pill-badge" style="color:#0369a1;">Adaptação em Sala • 6 a 8 anos</span>
+              <p class="ebd-mag-p" style="margin:0; font-size:12px;">${esc(extras.adaptTip.a68)}</p>
+            </div>
+          </div>
+        ` : ""}
         ${extras.mimica ? `
-          <div class="ebd-mag-sub" style="color:#c2410c;">Brincadeira Rápida de Expressão Corporal (Opcional):</div>
+          <div class="ebd-mag-sub" style="color:#c2410c;">Expressão Corporal Rápida:</div>
           <p class="ebd-mag-p"><strong>Tema:</strong> ${esc(extras.mimica.target)} — ${esc(extras.mimica.tip)}</p>
         ` : ""}
       </div>
 
-      <!-- BLOCO 06: RODA DE PERGUNTAS & GABARITO -->
+      <!-- BLOCO 06: RODA DE PERGUNTAS & GABARITO 100% SINCRONIZADO COM OS JOGOS DA LIÇÃO -->
       <div class="ebd-mag-block" style="border-left-color:#be123c;">
         <div class="ebd-mag-block-head" style="color:#be123c;">
           <span class="ebd-mag-num">06</span>
-          <div class="ebd-mag-block-title">Roda de Perguntas, Fixação &amp; Gabarito (5 min)</div>
+          <div class="ebd-mag-block-title">Revisão em Roda &amp; Gabarito dos 8 Jogos da Lição no App (5 min)</div>
         </div>
-        ${extras.whoAmI ? `
-          <div class="ebd-mag-sub" style="color:#be123c;">1. Desafio das 3 Pistas ("Quem Sou Eu na Bíblia?"):</div>
-          <ul class="ebd-mag-list">
-            ${(extras.whoAmI.clues || []).map(c => `<li>${esc(c)}</li>`).join("")}
-            <li><strong style="color:#047857;">Gabarito do Professor:</strong> <strong>${esc(extras.whoAmI.answer)}</strong></li>
-          </ul>
-        ` : ""}
+        ${quizHtml}
+        ${chronoHtml}
         ${extras.trueMyth ? `
-          <div class="ebd-mag-sub" style="color:#be123c;">2. Pergunta "Verdadeiro ou Mito?" para a Turma:</div>
+          <div class="ebd-mag-sub" style="color:#be123c;">3. Verdadeiro ou Mito? (Desafio Oficial do App):</div>
           <p class="ebd-mag-p"><em>"${esc(String(extras.trueMyth.statement || "").replace(/^Lição\s*\d+:\s*/i, ""))}"</em></p>
-          <p class="ebd-mag-p"><strong style="color:#047857;">Resposta Oficial:</strong> ${esc(extras.trueMyth.explanation)}</p>
+          <p class="ebd-mag-p"><strong style="color:#047857;">Gabarito Oficial (${extras.trueMyth.isTrue ? "VERDADEIRO" : "MITO"}):</strong> ${esc(extras.trueMyth.explanation)}</p>
         ` : ""}
         ${extras.secretWord ? `
-          <div class="ebd-mag-sub" style="color:#be123c;">3. Palavra-Chave da Lição:</div>
-          <p class="ebd-mag-p">${esc(String(extras.secretWord.hint || "").replace(/^Lição\s*\d+:\s*/i, ""))} → <strong style="color:#4c1d95;">${esc(extras.secretWord.word)}</strong></p>
+          <div class="ebd-mag-sub" style="color:#be123c;">4. Palavra Secreta &amp; Quebra-Cabeça da Lição:</div>
+          <p class="ebd-mag-p"><strong>Pista no App:</strong> ${esc(String(extras.secretWord.hint || "").replace(/^Lição\s*\d+:\s*/i, ""))} → <strong style="color:#4c1d95;">${esc(extras.secretWord.word)}</strong> &nbsp;|&nbsp; <strong>Quadro/Pintura:</strong> ${esc(col.artTitle)}</p>
         ` : ""}
         ${words.length ? `
-          <div class="ebd-mag-sub" style="color:#be123c;">Palavras Bíblicas Trabalhadas na Semana:</div>
-          <div>${words.map(w => `<span class="ebd-mag-word-tag">${esc(w)}</span>`).join("")}</div>
+          <div class="ebd-mag-sub" style="color:#be123c;">5. Caça-Palavras da Lição (5 Palavras Oficiais do App):</div>
+          <div style="margin-bottom:4px;">${words.map(w => `<span class="ebd-mag-word-tag">${esc(w)}</span>`).join("")}</div>
+        ` : ""}
+        ${extras.whoAmI ? `
+          <div class="ebd-mag-sub" style="color:#be123c;">6. Dinâmica Oral Extra ("Quem Sou Eu na Bíblia?"):</div>
+          <p class="ebd-mag-p">${(extras.whoAmI.clues || []).map(c => esc(c)).join(" • ")} → <strong style="color:#047857;">${esc(extras.whoAmI.answer)}</strong></p>
         ` : ""}
       </div>
 
@@ -9394,7 +9557,7 @@ window.buildLessonSlidesArray = function(lesson) {
 
   slides.push({
     type: "cover",
-    badge: `TRONO DA PROMESSA EBD • LIÇÃO ${lesson.week}`,
+    badge: `TRONO DA PROMESSA EBD • LIÇÃO ${lesson.week} (3 A 8 ANOS)`,
     title: lesson.title,
     subtitle: `Base Bíblica: ${lesson.bibleRef} • ${lesson.eraName || ""}`,
     img: lesson.thumbImg || (scenes[1] && scenes[1].img) || (scenes[0] && scenes[0].img) || "",
@@ -9414,7 +9577,7 @@ window.buildLessonSlidesArray = function(lesson) {
   scenes.forEach((sc, idx) => {
     slides.push({
       type: "scene",
-      badge: `HISTÓRIA BÍBLICA • QUADRO ${idx + 1} DE ${scenes.length}`,
+      badge: `HISTÓRIA DO VOVÔ • QUADRO ${idx + 1} DE ${scenes.length}`,
       title: `Lição ${lesson.week}: ${lesson.title}`,
       img: sc.img,
       caption: String(sc.caption || "").replace(/^Cena\s*\d+\/\d+\s*•\s*/i, "")
@@ -9424,21 +9587,26 @@ window.buildLessonSlidesArray = function(lesson) {
   slides.push({
     type: "verse",
     badge: `SEMENTINHA NO CORAÇÃO • LIÇÃO ${lesson.week}`,
-    title: "Versículo para Memorizar",
+    title: "Versículo Oficial da Lição",
     verse: age68.verse || age35.verse || "",
-    tip: extras.memoTip
+    tip35: extras.memoTip,
+    tip68: extras.memoTip68
   });
+
+  const quizWin = (extras.quizVisual && Array.isArray(extras.quizVisual.opts))
+    ? (extras.quizVisual.opts.find(o => o.ok) || extras.quizVisual.opts[0])
+    : null;
 
   slides.push({
     type: "quiz_action",
-    badge: `REVISÃO & MISSÃO DA SEMANA • LIÇÃO ${lesson.week}`,
+    badge: `REVISÃO DOS JOGOS & MISSÃO • LIÇÃO ${lesson.week}`,
     title: "Desafio da Turma & Fé em Ação",
+    quizQ: extras.quizVisual ? extras.quizVisual.q : "",
+    quizAns: quizWin ? quizWin.label : "",
     statement: extras.trueMyth ? String(extras.trueMyth.statement || "").replace(/^Lição\s*\d+:\s*/i, "") : "",
     explanation: extras.trueMyth ? extras.trueMyth.explanation : "",
-    whoClue: (extras.whoAmI && extras.whoAmI.clues) ? extras.whoAmI.clues.join(" ") : "",
-    whoAnswer: extras.whoAmI ? extras.whoAmI.answer : "",
-    missionTitle: age68.actionTitle || age35.actionTitle || "Missão em Família",
-    missionDesc: age68.actionDesc || age35.actionDesc || ""
+    missionTitle: age68.actionTitle || "Missão da Semana",
+    missionDesc: age68.actionDesc || ""
   });
 
   return slides;
@@ -9485,28 +9653,33 @@ window.renderSingleSlideCardHtml = function(slide, idx, total, isFullscreen) {
       <div style="border:2.5px dashed #d97706; border-radius:12px; padding:14px 12px; background:#ffffff; margin-bottom:10px;">
         <div style="font-family:'Fredoka',sans-serif; font-size:${isFullscreen ? "24px" : "16.5px"}; font-weight:900; color:#0f172a; line-height:1.3;">${esc(slide.verse)}</div>
       </div>
-      <div style="text-align:left; border-left:4px solid #059669; padding-left:9px; font-size:${isFullscreen ? "15.5px" : "12.5px"}; font-weight:700; color:#334155;">
-        <strong style="color:#047857;">Dinâmica com a Turma:</strong> ${esc(slide.tip)}
+      <div style="display:flex; flex-direction:column; gap:6px; text-align:left;">
+        <div style="border:1.5px solid #cbd5e1; border-left:4px solid #0d9488; border-radius:8px; padding:7px 9px; background:#ffffff; font-size:${isFullscreen ? "14.5px" : "12px"}; font-weight:700; color:#334155;">
+          <strong style="color:#0f766e;">3 a 5 anos:</strong> ${esc(slide.tip35 || "")}
+        </div>
+        <div style="border:1.5px solid #cbd5e1; border-left:4px solid #0284c7; border-radius:8px; padding:7px 9px; background:#ffffff; font-size:${isFullscreen ? "14.5px" : "12px"}; font-weight:700; color:#334155;">
+          <strong style="color:#0369a1;">6 a 8 anos:</strong> ${esc(slide.tip68 || "")}
+        </div>
       </div>
     `;
   } else if (slide.type === "quiz_action") {
     inner = `
       <div style="text-align:left; display:flex; flex-direction:column; gap:8px;">
+        <div style="border:1.5px solid #6d28d9; border-left:5px solid #6d28d9; border-radius:8px; padding:8px 10px; background:#ffffff;">
+          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; color:#6d28d9;">QUIZ DA BÍBLIA (OFICIAL DO APP):</div>
+          <div style="font-size:12.5px; font-weight:800; color:#1e293b; margin-top:2px;">${esc(slide.quizQ)}</div>
+          ${revealed ? `<div style="margin-top:5px; font-size:13px; font-weight:900; color:#047857;">✔ Resposta: ${esc(slide.quizAns)}</div>` : ""}
+        </div>
         <div style="border:1.5px solid #be123c; border-left:5px solid #be123c; border-radius:8px; padding:8px 10px; background:#ffffff;">
           <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; color:#be123c;">VERDADEIRO OU MITO?</div>
           <div style="font-size:${bodySize}; font-weight:800; color:#0f172a; margin-top:2px;">"${esc(slide.statement)}"</div>
           ${revealed ? `<div style="margin-top:5px; font-size:12.5px; font-weight:900; color:#047857;">✔ ${esc(slide.explanation)}</div>` : ""}
         </div>
-        <div style="border:1.5px solid #6d28d9; border-left:5px solid #6d28d9; border-radius:8px; padding:8px 10px; background:#ffffff;">
-          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; color:#6d28d9;">QUEM SOU EU NA BÍBLIA?</div>
-          <div style="font-size:12.5px; font-weight:700; color:#1e293b; margin-top:2px;">${esc(slide.whoClue)}</div>
-          ${revealed ? `<div style="margin-top:5px; font-size:13px; font-weight:900; color:#047857;">✔ Resposta: ${esc(slide.whoAnswer)}</div>` : ""}
-        </div>
         <button type="button" onclick="window.toggleSlideAnswerReveal()" style="padding:8px 12px; border-radius:8px; border:2px solid #047857; background:#ffffff; color:#047857; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; cursor:pointer;">
           ${revealed ? "OCULTAR GABARITO" : "REVELAR RESPOSTAS PARA A TURMA"}
         </button>
         <div style="border:1.5px solid #0284c7; border-left:5px solid #0284c7; border-radius:8px; padding:8px 10px; background:#ffffff;">
-          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; color:#0369a1;">MISSÃO EM CASA (${esc(slide.missionTitle)}):</div>
+          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; color:#0369a1;">${esc(slide.missionTitle)} (FÉ EM AÇÃO):</div>
           <div style="font-size:12.5px; font-weight:700; color:#1e293b;">${esc(slide.missionDesc)}</div>
         </div>
       </div>
@@ -9567,47 +9740,75 @@ window.renderTeacherSlidesSectionHtml = function(lesson) {
           `).join("")}
         </div>
       </div>
+
+      <button type="button" onclick="window.switchEbdMagazineTab('magazine')" style="padding:10px; border-radius:10px; border:2px solid #6d28d9; background:#ffffff; color:#581c87; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; cursor:pointer;">
+        ◀ VOLTAR PARA A REVISTA DESTA LIÇÃO
+      </button>
     </div>
   `;
 };
 
+window.backFromTeacherPortal = function() {
+  if (window.EBD_MAGAZINE_STATE && window.EBD_MAGAZINE_STATE.fullscreenActive) {
+    window.closeFullscreenLessonSlides();
+    return;
+  }
+  if (window.EBD_MAGAZINE_STATE && window.EBD_MAGAZINE_STATE.activeTab === "slides") {
+    window.switchEbdMagazineTab("magazine");
+    return;
+  }
+  if (typeof goHome === "function") {
+    goHome();
+  } else if (typeof showScreen === "function") {
+    showScreen("screen-home");
+  }
+};
+
 window.openTeacherAndFamilyPortal = function() {
   window.ebdClick();
+  window.EBD_MAGAZINE_STATE.portalWeek = (window.EBD_STATE && window.EBD_STATE.currentWeek) ? Number(window.EBD_STATE.currentWeek) : 1;
+  window.EBD_MAGAZINE_STATE.activeTab = "magazine";
   window.renderTeacherPortalContent();
   if (typeof showScreen === "function") showScreen("screen-teacher-portal");
 };
 
 window.renderTeacherPortalContent = function() {
   window.ensureEbdMagazineStyles();
-  const lesson = window.getCurrentLessonObj();
+  if (!window.EBD_MAGAZINE_STATE.portalWeek) {
+    window.EBD_MAGAZINE_STATE.portalWeek = (window.EBD_STATE && window.EBD_STATE.currentWeek) ? Number(window.EBD_STATE.currentWeek) : 1;
+  }
+  const lesson = window.getActiveTeacherPortalLessonObj();
   if (!lesson) return;
 
-  // Renderiza a esteira superior deslizante LIÇÃO 1 .. LIÇÃO 22
+  // Renderiza a esteira superior deslizante completa: LIÇÃO 1 .. LIÇÃO 22 (100% acessível para Pais e Professores!)
   const trailEl = document.getElementById("teacher-weeks-trail");
   if (trailEl) {
     let pillsHtml = "";
     (window.EBD_LESSONS_CURRICULUM || []).forEach(item => {
-      const unlocked = window.isLessonWeekUnlocked(item.week);
-      const isCur = item.week === lesson.week;
-      pillsHtml += `<button type="button" id="teacher-pill-${item.week}" class="lesson-scroll-pill ${unlocked ? "" : "locked-week"} ${isCur ? "current" : ""}" onclick="selectTeacherPortalWeek(${item.week})" title="Lição ${item.week}: ${window.escapeEbdHtml(item.title)}">LIÇÃO ${item.week}</button>`;
+      const isCur = Number(item.week) === Number(lesson.week);
+      pillsHtml += `<button type="button" id="teacher-pill-${item.week}" class="lesson-scroll-pill ${isCur ? "current" : ""}" onclick="selectTeacherPortalWeek(${item.week})" title="Lição ${item.week}: ${window.escapeEbdHtml(item.title)}">LIÇÃO ${item.week}</button>`;
     });
     trailEl.innerHTML = pillsHtml;
     if (typeof window.enableHorizontalDragScroll === "function") {
       window.enableHorizontalDragScroll(trailEl);
     }
     setTimeout(() => {
-      const curBtn = document.getElementById(`teacher-pill-${lesson.week}`);
-      if (curBtn && typeof curBtn.scrollIntoView === "function") {
-        curBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      if (lesson.week <= 2) {
+        trailEl.scrollLeft = 0;
+      } else {
+        const curBtn = document.getElementById(`teacher-pill-${lesson.week}`);
+        if (curBtn && typeof curBtn.scrollIntoView === "function") {
+          curBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }
       }
-    }, 50);
+    }, 45);
   }
 
   const box = document.getElementById("teacher-portal-content");
   if (!box) return;
 
   const activeTab = window.EBD_MAGAZINE_STATE.activeTab || "magazine";
-  const unlockedLessonsCount = (window.EBD_LESSONS_CURRICULUM || []).filter(l => window.isLessonWeekUnlocked(l.week)).length;
+  const totalLessonsCount = (window.EBD_LESSONS_CURRICULUM || []).length || 22;
 
   box.innerHTML = `
     <div class="ebd-mag-toolbar">
@@ -9627,7 +9828,7 @@ window.renderTeacherPortalContent = function() {
           BAIXAR DESENHO<br>(PNG BRANCO)
         </button>
         <button type="button" class="ebd-mag-act-btn" style="border-color:#0284c7; color:#0369a1;" onclick="window.printFullEbdMagazine()">
-          IMPRIMIR REVISTA<br>TODA (${unlockedLessonsCount} LIÇÕES)
+          IMPRIMIR REVISTA<br>TODA (${totalLessonsCount} LIÇÕES)
         </button>
       </div>
     </div>
@@ -9654,7 +9855,7 @@ window.switchEbdMagazineTab = function(tabName) {
 
 window.stepEbdLessonSlide = function(delta) {
   window.ebdClick();
-  const lesson = window.getCurrentLessonObj();
+  const lesson = window.getActiveTeacherPortalLessonObj();
   const slides = window.buildLessonSlidesArray(lesson);
   let next = (window.EBD_MAGAZINE_STATE.slideIndex || 0) + delta;
   if (next < 0) next = slides.length - 1;
@@ -9709,7 +9910,7 @@ window.openFullscreenLessonSlides = function() {
 window.renderFullscreenSlideModalContent = function() {
   const modal = document.getElementById("ebd-fullscreen-slide-modal");
   if (!modal || !window.EBD_MAGAZINE_STATE.fullscreenActive) return;
-  const lesson = window.getCurrentLessonObj();
+  const lesson = window.getActiveTeacherPortalLessonObj();
   const slides = window.buildLessonSlidesArray(lesson);
   const curIdx = Math.max(0, Math.min(slides.length - 1, window.EBD_MAGAZINE_STATE.slideIndex || 0));
   modal.innerHTML = `
@@ -9718,7 +9919,7 @@ window.renderFullscreenSlideModalContent = function() {
         TRONO DA PROMESSA EBD • MODO APRESENTAÇÃO EM SALA
       </div>
       <button type="button" onclick="window.closeFullscreenLessonSlides()" style="padding:7px 14px; border-radius:999px; border:2px solid #be123c; background:#ffffff; color:#be123c; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; cursor:pointer;">
-        FECHAR TELA CHEIA ✕
+        VOLTAR AOS SLIDES ✕
       </button>
     </div>
     <div style="flex:1; width:100%; display:flex; align-items:center; justify-content:center;">
@@ -9750,12 +9951,13 @@ window.closeFullscreenLessonSlides = function() {
 
 window.selectTeacherPortalWeek = function(weekNum) {
   window.ebdClick();
-  if (!window.isLessonWeekUnlocked(weekNum)) {
-    window.ebdAskSubscribe(`Liberar Revista Digital Completa (Lição ${weekNum} • Série 2 da EBD)`);
-    return;
+  const total = (window.EBD_LESSONS_CURRICULUM || []).length || 22;
+  const wk = Math.max(1, Math.min(total, Number(weekNum) || 1));
+  window.EBD_MAGAZINE_STATE.portalWeek = wk;
+  if (typeof window.isLessonWeekUnlocked === "function" && window.isLessonWeekUnlocked(wk)) {
+    window.EBD_STATE.currentWeek = wk;
+    localStorage.setItem("trono_ebd_week", String(wk));
   }
-  window.EBD_STATE.currentWeek = weekNum;
-  localStorage.setItem("trono_ebd_week", String(weekNum));
   window.EBD_MAGAZINE_STATE.slideIndex = 0;
   window.EBD_MAGAZINE_STATE.slideAnswerRevealed = false;
   window.renderTeacherPortalContent();
@@ -9764,8 +9966,8 @@ window.selectTeacherPortalWeek = function(weekNum) {
 window.stepTeacherPortalWeek = function(delta) {
   window.ebdClick();
   const total = (window.EBD_LESSONS_CURRICULUM || []).length || 22;
-  let next = (window.EBD_STATE.currentWeek || 1) + delta;
-  if (next < 1) next = 1;
+  let next = (window.EBD_MAGAZINE_STATE.portalWeek || window.EBD_STATE.currentWeek || 1) + delta;
+  if (next < 1) next = total;
   if (next > total) next = 1;
   window.selectTeacherPortalWeek(next);
 };
@@ -9826,7 +10028,7 @@ window.triggerEbdWhitePrint = async function(pagesHtml, docTitle) {
 
 window.printSingleEbdLesson = function(weekNum) {
   window.ebdClick();
-  const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getCurrentLessonObj();
+  const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getActiveTeacherPortalLessonObj();
   if (!lesson) return;
   const html = window.buildLessonMagazineHtml(lesson, true);
   const pad = String(lesson.week).padStart(2, "0");
@@ -9835,7 +10037,7 @@ window.printSingleEbdLesson = function(weekNum) {
 
 window.printOnlyColoringSheetA4 = function(weekNum) {
   window.ebdClick();
-  const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getCurrentLessonObj();
+  const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getActiveTeacherPortalLessonObj();
   if (!lesson) return;
   const html = window.buildColoringPageA4Html(lesson);
   const pad = String(lesson.week).padStart(2, "0");
@@ -9844,7 +10046,7 @@ window.printOnlyColoringSheetA4 = function(weekNum) {
 
 window.printLessonSlidesHandoutWhite = function(weekNum) {
   window.ebdClick();
-  const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getCurrentLessonObj();
+  const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getActiveTeacherPortalLessonObj();
   if (!lesson) return;
   const slides = window.buildLessonSlidesArray(lesson);
   window.EBD_MAGAZINE_STATE.slideAnswerRevealed = true;
@@ -9863,25 +10065,25 @@ window.printLessonSlidesHandoutWhite = function(weekNum) {
 window.printFullEbdMagazine = function() {
   window.ebdClick();
   const esc = window.escapeEbdHtml;
-  const lessons = (window.EBD_LESSONS_CURRICULUM || []).filter(l => window.isLessonWeekUnlocked(l.week));
+  const lessons = window.EBD_LESSONS_CURRICULUM || [];
   if (!lessons.length) return;
 
   const coverAndTocHtml = `
     <div class="ebd-print-page" style="background:#ffffff !important; border:3px solid #4c1d95; border-radius:12px; padding:26px 22px; font-family:'Nunito','Segoe UI',Arial,sans-serif; color:#0f172a;">
       <div style="text-align:center; border-bottom:3px solid #6d28d9; padding-bottom:16px; margin-bottom:18px;">
         <div style="font-family:'Fredoka',sans-serif; font-size:14px; font-weight:900; color:#0369a1; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:6px;">
-          CURRÍCULO OFICIAL DE ESCOLA BÍBLICA DOMINICAL
+          CURRÍCULO OFICIAL DE ESCOLA BÍBLICA DOMINICAL (3 A 8 ANOS)
         </div>
         <div style="font-family:'Fredoka',sans-serif; font-size:30px; font-weight:900; color:#4c1d95; line-height:1.15; margin-bottom:6px;">
           REVISTA DIGITAL<br>TRONO DA PROMESSA EBD
         </div>
         <div style="font-size:14px; font-weight:800; color:#047857;">
-          Guia Completo do Professor &amp; Família • Planos de Aula, Dinâmicas e Folhas A4 para Colorir
+          Guia Completo de Família &amp; Professor • 22 Lições Unificadas com Pílulas Pedagógicas (3–5 e 6–8 anos) e Folhas A4
         </div>
       </div>
 
       <div style="font-family:'Fredoka',sans-serif; font-size:16px; font-weight:900; color:#4c1d95; margin-bottom:8px; text-transform:uppercase;">
-        Sumário das Lições (${lessons.length} Lições em Fundo Branco para Impressão):
+        Sumário Oficial das ${lessons.length} Lições (Fundo Branco para Impressão):
       </div>
       <table style="width:100%; border-collapse:collapse; font-size:12px; background:#ffffff !important;">
         <thead>
@@ -9928,7 +10130,7 @@ window.wrapCanvasTextLines = function(ctx, text, maxWidth) {
 
 window.downloadColoringSheetWhiteA4 = async function(weekNum, shareMode) {
   window.ebdClick();
-  const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getCurrentLessonObj();
+  const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getActiveTeacherPortalLessonObj();
   if (!lesson) return;
   const col = window.getLessonColoringOutlineInfo(lesson);
   const age68 = (lesson.byAge && lesson.byAge["6-8"]) || {};
@@ -10056,7 +10258,7 @@ window.downloadColoringSheetWhiteA4 = async function(weekNum, shareMode) {
     ctx.textAlign = "center";
     ctx.fillStyle = "#047857";
     ctx.font = "900 22px 'Fredoka', Arial, sans-serif";
-    ctx.fillText("SEMENTINHA NO CORAÇÃO (VERSÍCULO PARA MEMORIZAR)", W / 2, fy + 36);
+    ctx.fillText("SEMENTINHA NO CORAÇÃO (VERSÍCULO OFICIAL DA LIÇÃO)", W / 2, fy + 36);
 
     ctx.fillStyle = "#0f172a";
     ctx.font = "800 24px 'Nunito', Arial, sans-serif";

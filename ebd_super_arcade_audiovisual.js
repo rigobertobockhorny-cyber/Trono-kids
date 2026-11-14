@@ -6641,6 +6641,8 @@
     }
   ];
 
+  window.QUIZ_VISUAL_22_PHASES = QUIZ_VISUAL_22_PHASES;
+
   function getQuizVisualPhaseObj(phase) {
     const idx = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % QUIZ_VISUAL_22_PHASES.length);
     return QUIZ_VISUAL_22_PHASES[idx];
