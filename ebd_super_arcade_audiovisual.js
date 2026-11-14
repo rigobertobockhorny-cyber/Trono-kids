@@ -3080,7 +3080,7 @@
       const game = currentActiveGame || {
         title: "Desvie da Lança",
         sub: "Desvie no Salão Real",
-        icon: "./2_ASSETS_UI_BOTOES/ico_jogo_04_davi_lanca_v130.png?v=130"
+        icon: "./2_ASSETS_UI_BOTOES/ico_jogo_04_lanca_v130.png?v=130"
       };
 
       const isVip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked) || localStorage.getItem('trono_vip_active_v4') === '1';

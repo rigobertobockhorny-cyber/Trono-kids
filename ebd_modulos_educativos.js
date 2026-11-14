@@ -6969,15 +6969,15 @@ window.openLessonModule = function(modType) {
     }
     const prog = window.getLessonProgress(lesson.week);
     const gamesMap = prog.games || {};
-    const lessonGames = [
-      { key: "chronology", title: "ORDEM CRONOLÓGICA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_12_criacao_v130.png" },
-      { key: "verse_builder", title: "VERSÍCULO SECRETO", icon: "./2_ASSETS_UI_BOTOES/ui_icon_06.png" },
-      { key: "lesson_puzzle", title: "QUEBRA-CABEÇA 3D", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_16_puzzle_v130.png" },
-      { key: "lesson_paint", title: "PINTURA MÁGICA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_17_pintura_v130.png" },
-      { key: "word_search", title: "CAÇA-PALAVRAS", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_11_erros_v130.png" },
-      { key: "secret_word", title: "PALAVRA SECRETA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_10_pontos_v130.png" },
-      { key: "who_am_i", title: "QUIZ DA BÍBLIA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png" },
-      { key: "true_or_myth", title: "VERDADEIRO OU MITO", icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png" }
+    const lessonGames = window.LESSON_GAMES_CATALOG_META || [
+      { key: "chronology", title: "ORDEM CRONOLÓGICA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_12_criacao_v130.png?v=130" },
+      { key: "verse_builder", title: "VERSÍCULO SECRETO", icon: "./2_ASSETS_UI_BOTOES/ui_icon_06.png?v=160" },
+      { key: "lesson_puzzle", title: "QUEBRA-CABEÇA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_16_puzzle_v130.png?v=130" },
+      { key: "lesson_paint", title: "PINTURA MÁGICA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_17_pintura_v130.png?v=130" },
+      { key: "word_search", title: "CAÇA-PALAVRAS", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png?v=161" },
+      { key: "secret_word", title: "PALAVRA SECRETA", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png?v=161" },
+      { key: "who_am_i", title: "QUIZ DA BÍBLIA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png?v=130" },
+      { key: "true_or_myth", title: "VERDADEIRO OU MITO", icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png?v=161" }
     ];
     box.innerHTML = `
       <div class="arcade-hub-clean-grid">
@@ -7557,15 +7557,15 @@ window.openGamesHubScreen = function(filterCat) {
 
   // Fallback legado caso o módulo principal ainda não tenha carregado
   const allGames = [
-    { id: "chronology", title: "ORDEM CRONOLÓGICA", sub: "Ordene as Cenas", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_cronologia.png", action: "openEduGame('chronology', false)" },
-    { id: "verse_builder", title: "VERSÍCULO SECRETO", sub: "Monte a Palavra", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png", action: "openEduGame('verse_builder', false)" },
-    { id: "puzzle", title: "QUEBRA-CABEÇA 3D", sub: "Monte a Cena", icon: "./2_ASSETS_UI_BOTOES/ui_icon_02.png", action: "openGalleryFor('puzzle')" },
-    { id: "paint", title: "PINTURA MÁGICA", sub: "Colorir a Lição", icon: "./2_ASSETS_UI_BOTOES/ui_icon_03.png", action: "openGalleryFor('paint')" },
-    { id: "word_search", title: "CAÇA-PALAVRAS", sub: "Ache os Termos", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png", action: "openEduGame('word_search', false)" },
-    { id: "secret_word", title: "PALAVRA SECRETA", sub: "Descubra as Letras", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png", action: "openEduGame('secret_word', false)" },
-    { id: "quiz_visual", title: "QUIZ DA BÍBLIA", sub: "Perguntas e Pistas", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png", action: "openEduGame('who_am_i', false)" },
-    { id: "true_or_myth", title: "VERDADEIRO OU MITO", sub: "Desafio Rápido", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png", action: "openEduGame('true_or_myth', false)" },
-    { id: "memory", title: "JOGO DA MEMÓRIA", sub: "Encontre os Pares", icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png", action: "openModule('memory')" }
+    { id: "chronology", title: "ORDEM CRONOLÓGICA", sub: "Ordene as Cenas", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_12_criacao_v130.png?v=130", action: "openEduGame('chronology', false)" },
+    { id: "verse_builder", title: "VERSÍCULO SECRETO", sub: "Monte a Palavra", icon: "./2_ASSETS_UI_BOTOES/ui_icon_06.png?v=160", action: "openEduGame('verse_builder', false)" },
+    { id: "puzzle", title: "QUEBRA-CABEÇA", sub: "Monte a Cena", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_16_puzzle_v130.png?v=130", action: "openGalleryFor('puzzle')" },
+    { id: "paint", title: "PINTURA MÁGICA", sub: "Colorir a Lição", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_17_pintura_v130.png?v=130", action: "openGalleryFor('paint')" },
+    { id: "word_search", title: "CAÇA-PALAVRAS", sub: "Ache os Termos", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png?v=161", action: "openEduGame('word_search', false)" },
+    { id: "secret_word", title: "PALAVRA SECRETA", sub: "Descubra as Letras", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png?v=161", action: "openEduGame('secret_word', false)" },
+    { id: "quiz_visual", title: "QUIZ DA BÍBLIA", sub: "Perguntas e Pistas", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png?v=130", action: "openEduGame('who_am_i', false)" },
+    { id: "true_or_myth", title: "VERDADEIRO OU MITO", sub: "Desafio Rápido", icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png?v=161", action: "openEduGame('true_or_myth', false)" },
+    { id: "memory", title: "JOGO DA MEMÓRIA", sub: "Encontre os Pares", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_13_memoria_v130.png?v=130", action: "openModule('memory')" }
   ];
 
   const gridEl = document.getElementById("games-hub-grid");
@@ -7603,14 +7603,14 @@ window._lessonVicSafetyTimer = null;
 window._lessonVicActive = false;
 
 window.LESSON_GAMES_CATALOG_META = [
-  { key: "chronology",    title: "ORDEM CRONOLÓGICA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_12_criacao_v130.png" },
-  { key: "verse_builder", title: "VERSÍCULO SECRETO", icon: "./2_ASSETS_UI_BOTOES/ui_icon_06.png" },
-  { key: "lesson_puzzle", title: "QUEBRA-CABEÇA 3D",  icon: "./2_ASSETS_UI_BOTOES/ico_jogo_16_puzzle_v130.png" },
-  { key: "lesson_paint",  title: "PINTURA MÁGICA",    icon: "./2_ASSETS_UI_BOTOES/ico_jogo_17_pintura_v130.png" },
-  { key: "word_search",   title: "CAÇA-PALAVRAS",     icon: "./2_ASSETS_UI_BOTOES/ico_jogo_11_erros_v130.png" },
-  { key: "secret_word",   title: "PALAVRA SECRETA",   icon: "./2_ASSETS_UI_BOTOES/ico_jogo_10_pontos_v130.png" },
-  { key: "who_am_i",      title: "QUIZ DA BÍBLIA",    icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png" },
-  { key: "true_or_myth",  title: "VERDADEIRO OU MITO",icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png" }
+  { key: "chronology",    title: "ORDEM CRONOLÓGICA", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_12_criacao_v130.png?v=130" },
+  { key: "verse_builder", title: "VERSÍCULO SECRETO", icon: "./2_ASSETS_UI_BOTOES/ui_icon_06.png?v=160" },
+  { key: "lesson_puzzle", title: "QUEBRA-CABEÇA",     icon: "./2_ASSETS_UI_BOTOES/ico_jogo_16_puzzle_v130.png?v=130" },
+  { key: "lesson_paint",  title: "PINTURA MÁGICA",    icon: "./2_ASSETS_UI_BOTOES/ico_jogo_17_pintura_v130.png?v=130" },
+  { key: "word_search",   title: "CAÇA-PALAVRAS",     icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png?v=161" },
+  { key: "secret_word",   title: "PALAVRA SECRETA",   icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png?v=161" },
+  { key: "who_am_i",      title: "QUIZ DA BÍBLIA",    icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png?v=130" },
+  { key: "true_or_myth",  title: "VERDADEIRO OU MITO",icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png?v=161" }
 ];
 
 window.closeLessonGameVictoryModal = function(goBackToLessonGames) {
