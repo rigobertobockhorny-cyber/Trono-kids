@@ -1929,7 +1929,10 @@
     if (gameId === "versiculo_secreto") {
       return (window.VERSE_BUILDER_BANK && window.VERSE_BUILDER_BANK.length) ? window.VERSE_BUILDER_BANK.length : 22;
     }
-    if (gameId === "puzzle_3d" || gameId === "pintura_magica") {
+    if (gameId === "pintura_magica") {
+      return 15;
+    }
+    if (gameId === "puzzle_3d") {
       return (window.EBD_LESSONS_CURRICULUM && window.EBD_LESSONS_CURRICULUM.length) ? window.EBD_LESSONS_CURRICULUM.length : 22;
     }
     if (gameId === "caca_palavras") {
@@ -2263,7 +2266,7 @@
     window._arcadeVisualAlreadyReady = false;
   }
 
-  window.openTronoArcadeGame = function(gameId) {
+  window.openTronoArcadeGame = function(gameId, customBackScreenId) {
     if (gameId === "animais_eden") gameId = "quem_entrou_arca";
     if (gameId === "quem_sou_eu") gameId = "quiz_visual";
     // Escudo anti-ghost-click: bloqueia clique fantasma do celular nos 550ms após fechar um jogo!
@@ -2272,7 +2275,7 @@
     }
     _arcadeLessonSingleMode = false;
     _arcadeLessonGameKey = "";
-    _arcadeCustomBackScreen = "";
+    _arcadeCustomBackScreen = (typeof customBackScreenId === "string" && customBackScreenId) ? customBackScreenId : "";
     window._arcadeDirectStoryOverride = null;
     window._userEnteredModule = true;
     try { history.pushState({ screen: "arcade-stage", gameId: gameId }, ""); } catch(e){}
@@ -2297,6 +2300,17 @@
     }
 
     loadPhase(currentPhase);
+  };
+
+  // Abre a SALINHA DE PINTURA direto no Estúdio Novo Tela Cheia (1 única imagem por vez, começando na Fase 1 do Vovô Nésio, Pedrinho e Aninha!)
+  window.openSalinhaDePinturaFromHome = function() {
+    if (window._arcadeClosingUntil && Date.now() < window._arcadeClosingUntil) {
+      return;
+    }
+    if (typeof window.saveArcadeLastPhase === "function") {
+      window.saveArcadeLastPhase("pintura_magica", 1);
+    }
+    window.openTronoArcadeGame("pintura_magica", "screen-home");
   };
 
   // Abre o mesmo palco de jogo em tela cheia para "Jogos da Lição" (1 única fase correspondente à lição atual!)
@@ -2656,7 +2670,7 @@
     const wasLessonSingleMode = _arcadeLessonSingleMode;
     const wasCustomBackScreen = _arcadeCustomBackScreen;
     // Se a criança saiu no meio da partida na Sala de Jogos (sem estar na tela de vitória), salva imediatamente a fase atual!
-    if (!wasLessonSingleMode && !wasCustomBackScreen && !_isVictoryActive && currentActiveGame && currentActiveGame.id) {
+    if (!wasLessonSingleMode && !window._arcadeDirectStoryOverride && !_isVictoryActive && currentActiveGame && currentActiveGame.id) {
       window.saveArcadeLastPhase(currentActiveGame.id, currentPhase);
     }
     _arcadeLessonSingleMode = false;
@@ -2735,6 +2749,7 @@
   window.openVipFromArcade = function() {
     window._arcadeClosingUntil = Date.now() + 700;
     window._returnToGamesHubAfterModal = !_arcadeLessonSingleMode;
+    if (_arcadeCustomBackScreen) window._returnToGamesHubAfterModal = false;
     window.closeTronoArcadeStage();
     setTimeout(() => {
       if (typeof openSubscribeModal === 'function') {
@@ -2769,7 +2784,7 @@
     TronoAudio.play("click");
     stopArcadeCelebrationConfetti();
     if (typeof window.stopCelebrationConfetti === 'function') window.stopCelebrationConfetti();
-    if (_arcadeCustomBackScreen) {
+    if (_arcadeCustomBackScreen && window._arcadeDirectStoryOverride) {
       window.closeTronoArcadeStage();
       return;
     }
@@ -3029,7 +3044,7 @@
     }
 
     // 2. Registra vitória permanente da fase no localStorage (libera a próxima fase!) e monta o CARD CANÔNICO OFICIAL
-    if (!_arcadeCustomBackScreen && currentActiveGame && currentActiveGame.id && typeof window.recordArcadePhaseVictory === "function") {
+    if (!window._arcadeDirectStoryOverride && currentActiveGame && currentActiveGame.id && typeof window.recordArcadePhaseVictory === "function") {
       window.recordArcadePhaseVictory(currentActiveGame.id, currentPhase);
       updateArcadeTopPhaseNavState();
     }
@@ -11400,6 +11415,23 @@
     return String(raw || "").replace(/^Lição\s*\d+\s*[•\-:]\s*/i, "").trim();
   }
 
+  // 15 fases da SALINHA DE PINTURA (Fase 1 obrigatória = Vovô Nésio, Pedrinho e Aninha; Fases 1..3 = 100% inéditas fora das 22 lições; Fases 4..15 = reservadas para catálogo geral)
+  const GENERAL_PAINT_15_STORY_IDS = [1, 5, 20, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  window.GENERAL_PAINT_15_STORY_IDS = GENERAL_PAINT_15_STORY_IDS;
+
+  function getGeneralPaintStoryForPhase(phase) {
+    if (window._arcadeDirectStoryOverride && window._arcadeDirectStoryOverride.seqPaint) {
+      return window._arcadeDirectStoryOverride;
+    }
+    const idx = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % GENERAL_PAINT_15_STORY_IDS.length);
+    const targetId = GENERAL_PAINT_15_STORY_IDS[idx];
+    const stories = window.STORIES || [];
+    const found = stories.find(s => Number(s.id) === Number(targetId));
+    if (found) return found;
+    if (stories.length > 0) return stories[0];
+    return { id: 1, seqColor: "09", seqPaint: "19", title: "Vovô Nésio, Pedrinho e Aninha" };
+  }
+
   function getLessonStoryForPhase(phase) {
     if (window._arcadeDirectStoryOverride && window._arcadeDirectStoryOverride.seqColor) {
       return window._arcadeDirectStoryOverride;
@@ -11452,10 +11484,16 @@
       const st = (phaseOrStory && typeof phaseOrStory === "object" && (phaseOrStory.seqPaint || phaseOrStory.seqColor))
         ? phaseOrStory
         : getLessonStoryForPhase(phaseOrStory || 1);
+      const genSt = (phaseOrStory && typeof phaseOrStory === "object")
+        ? null
+        : getGeneralPaintStoryForPhase(phaseOrStory || 1);
       window.preloadArcadeImageUrl("./2_ASSETS_UI_BOTOES/bg_jogo_17_pintura_v161.jpg?v=161");
       window.preloadArcadeImageUrl("./2_ASSETS_UI_BOTOES/bg_jogo_16_puzzle_v161.jpg?v=161");
       if (st && st.seqPaint) {
         window.preloadArcadeImageUrl(`./4_ASSETS_PINTURA/pintura_contorno_${st.seqPaint}.jpg?v=164`);
+      }
+      if (genSt && genSt.seqPaint) {
+        window.preloadArcadeImageUrl(`./4_ASSETS_PINTURA/pintura_contorno_${genSt.seqPaint}.jpg?v=164`);
       }
       if (st && st.seqColor) {
         window.preloadArcadeImageUrl(`./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor}.jpg?v=161`);
@@ -12026,7 +12064,9 @@
   function runPinturaMagicaArcade(container, phase) {
     window._arcadeWaitVisualBeforeVovo = true;
     injectLessonArcadeV161Styles();
-    const st = getLessonStoryForPhase(phase);
+    const st = (window._arcadeDirectStoryOverride && window._arcadeDirectStoryOverride.seqPaint)
+      ? window._arcadeDirectStoryOverride
+      : (_arcadeLessonSingleMode ? getLessonStoryForPhase(phase) : getGeneralPaintStoryForPhase(phase));
     window._arcadeActivePaintStory = st;
     if (typeof currentStory !== "undefined") {
       try { currentStory = st; } catch (e) {}
@@ -13531,11 +13571,23 @@
     if (typeof showScreen === "function") showScreen("screen-games-hub");
   };
 
-  // Inicializa assim que o DOM estiver pronto
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", ensureArcadeStageInDOM);
-  } else {
+  // Inicializa assim que o DOM estiver pronto + aquece Fase 1 da Salinha de Pintura (Vovô Nésio, Pedrinho e Aninha)
+  function initArcadeStageAndPreloadHomePaint() {
     ensureArcadeStageInDOM();
+    setTimeout(() => {
+      if (typeof window.preloadArcadeImageUrl === "function") {
+        window.preloadArcadeImageUrl("./2_ASSETS_UI_BOTOES/bg_jogo_17_pintura_v161.jpg?v=161");
+        window.preloadArcadeImageUrl("./4_ASSETS_PINTURA/pintura_contorno_19.jpg?v=164");
+      }
+      if (typeof window.preloadArcadeAudioUrl === "function") {
+        window.preloadArcadeAudioUrl("./6_ASSETS_AUDIO/jogos_vovo/vovo_jogo_17_v162.mp3?v=162");
+      }
+    }, 350);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initArcadeStageAndPreloadHomePaint);
+  } else {
+    initArcadeStageAndPreloadHomePaint();
   }
 
   console.log("[Trono Kids] Super Arcade Audiovisual (16 Jogos Oficiais + 32 Super Cards 16:9) carregado.");
