@@ -5452,7 +5452,7 @@ window.openLessonGamesScreen = function() {
   const lesson = window.getCurrentLessonObj();
   const titleEl = document.getElementById("lesson-games-screen-title");
   const subEl = document.getElementById("lesson-games-screen-subtitle");
-  if (titleEl) titleEl.textContent = `Salinha de Jogos • Lição ${lesson.week}`;
+  if (titleEl) titleEl.textContent = `Jogos da Lição ${lesson.week}`;
   if (subEl) subEl.textContent = `Atividades exclusivas sobre: ${lesson.title} (${lesson.bibleRef})`;
 
   if (typeof showScreen === "function") showScreen("screen-lesson-games");
@@ -7714,7 +7714,7 @@ window.showLessonGameVictoryModal = function(gameKey) {
     const btn = document.getElementById("btn-lesson-vic-return");
     if (!btn || btn.dataset.unlocked === "1") return;
     btn.dataset.unlocked = "1";
-    btn.textContent = "VOLTAR À SALINHA DE JOGOS";
+    btn.textContent = "VOLTAR AOS JOGOS DA LIÇÃO";
     btn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
     btn.style.border = "2.5px solid #ffffff";
     btn.style.boxShadow = "0 0 22px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75)";
@@ -8294,7 +8294,7 @@ window.renderStageMimica = function() {
         <button type="button" id="btn-mimica-team-a" class="btn-gold" style="padding:10px;" onclick="scoreMimicaTeamStage('A')">Ponto Equipe A (${window.EBD_STATE.mimicaTeamA})</button>
         <button type="button" id="btn-mimica-team-b" class="btn-gold" style="padding:10px; background:linear-gradient(180deg,#00b0ff,#0066ff);" onclick="scoreMimicaTeamStage('B')">Ponto Equipe B (${window.EBD_STATE.mimicaTeamB})</button>
       </div>
-      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar à Salinha de Jogos</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageMimicaPhase()">Próximo Desafio </button>`}
+      ${window.EBD_STATE.fromLessonGames ? `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="ebdStopConfetti(); openLessonModule('jogos_licao')">Voltar aos Jogos da Lição</button>` : `<button type="button" class="btn-gold" style="width:100%; padding:9px;" onclick="advanceStageMimicaPhase()">Próximo Desafio </button>`}
     </div>
   `;
 };
@@ -9518,7 +9518,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
       <div class="ebd-mag-block" style="border-left-color:#be123c;">
         <div class="ebd-mag-block-head" style="color:#be123c;">
           <span class="ebd-mag-num">06</span>
-          <div class="ebd-mag-block-title">Revisão em Roda &amp; Gabarito da Salinha de Jogos no App (5 min)</div>
+          <div class="ebd-mag-block-title">Revisão em Roda &amp; Gabarito dos Jogos da Lição no App (5 min)</div>
         </div>
         ${quizHtml}
         ${chronoHtml}

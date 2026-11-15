@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v188.0';
+        const CURRENT_VER = 'v189.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=188.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=189.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -2251,8 +2251,8 @@
 
       <div class="module-card" id="lesson-hub-card-jogos_licao" onclick="openLessonModule('jogos_licao')">
         <div class="lesson-hub-green-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png" alt="Salinha de Jogos" class="mod-icon-3d">
-        <div class="mod-title">SALINHA DE JOGOS</div>
+        <img src="./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png" alt="Jogos da Lição" class="mod-icon-3d">
+        <div class="mod-title">JOGOS DA LIÇÃO</div>
       </div>
     </div>
   </section>
@@ -2317,7 +2317,7 @@
   <!-- ==================================================================== -->
   <section id="screen-edu-game" class="screen">
     <div class="module-header">
-      <button class="btn-nav-circle" onclick="backFromEduGameStage()" title="Voltar para a Salinha de Jogos">
+      <button class="btn-nav-circle" onclick="backFromEduGameStage()" title="Voltar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="puzzle-diff-bar">
@@ -2838,7 +2838,7 @@
         <div style="margin-bottom:1px; color:#86efac;">• <strong>3. Sementinha:</strong> Ler e guardar o versículo</div>
         <div style="margin-bottom:1px; color:#86efac;">• <strong>4. Fé em Ação:</strong> Ler a missão da semana</div>
         <div style="margin-bottom:1px; color:#86efac;">• <strong>5. Devocional:</strong> Concluir de <strong>Segunda a Domingo</strong></div>
-        <div style="margin-bottom:3px; color:#86efac;">• <strong>6. Salinha de Jogos:</strong> Deixar os <strong>8 jogos verdinhos</strong></div>
+        <div style="margin-bottom:3px; color:#86efac;">• <strong>6. Jogos da Lição:</strong> Deixar os <strong>8 jogos verdinhos</strong></div>
         <div style="color:#fef08a;">• Completou os <strong>6 botões da Lição</strong> = <strong>Casinha Verde + Super Card 9:16 Colorido Liberado!</strong></div>
       </div>
 
@@ -2858,8 +2858,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=188.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=188.0"></script>
+<script src="ebd_modulos_educativos.js?v=189.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=189.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -2943,7 +2943,7 @@ const SLEEP_TRACKS = [
   { id: 10, title: 'Chuvinha de Paz para Dormir', file: './6_ASSETS_AUDIO/10_chuva_suave_dormir.mp3' }
 ];
 
-// Hierarquia Oficial de Volume (v188.0):
+// Hierarquia Oficial de Volume (v189.0):
 // Música ambiente sempre macia e baixinha (22%) para a voz do Vovô Nésio (100% + presença vocal) SEMPRE se sobressair!
 // Quando o Vovô fala, o fundo cai automaticamente para 5% (ducking) e volta suavemente depois que ele termina!
 window.BG_AMBIENT_BASE_VOL = 0.22;
@@ -3628,14 +3628,17 @@ function showScreen(screenId) {
         vovo: 'HISTÓRIA DO VOVÔ',
         sementinha: 'SEMENTINHA',
         fe_acao: 'FÉ EM AÇÃO',
-        jogos_licao: 'SALINHA DE JOGOS',
+        jogos_licao: 'JOGOS DA LIÇÃO',
         devocional: 'DEVOCIONAL'
       };
       topTitleEl.textContent = modTitles[mType] || 'SALINHA DA LIÇÃO';
     } else if (screenId === 'screen-chronology') {
       topTitleEl.textContent = 'CRONOLOGIA BÍBLICA';
-    } else if (screenId === 'screen-games-hub' || screenId === 'screen-edu-game') {
+    } else if (screenId === 'screen-games-hub') {
       topTitleEl.textContent = 'SALINHA DE JOGOS';
+    } else if (screenId === 'screen-edu-game') {
+      const fromLesson = !!(window.EBD_STATE && window.EBD_STATE.fromLessonGames);
+      topTitleEl.textContent = fromLesson ? 'JOGOS DA LIÇÃO' : 'SALINHA DE JOGOS';
     } else if (screenId === 'screen-teacher-portal') {
       topTitleEl.textContent = 'FAMÍLIA E PROFESSOR';
     }
@@ -3667,8 +3670,7 @@ function showScreen(screenId) {
       shell.style.backgroundImage = '';
     } else {
       shell.classList.remove('sleep-dark-mode');
-      const isLessonGamesHub = (screenId === 'screen-lesson-module' && window.EBD_STATE && window.EBD_STATE.activeLessonModuleType === 'jogos_licao');
-      if (screenId === 'screen-games-hub' || isLessonGamesHub) {
+      if (screenId === 'screen-games-hub') {
         shell.style.backgroundImage = "linear-gradient(180deg, rgba(10, 18, 42, 0.30) 0%, rgba(10, 18, 42, 0.45) 100%), url('./2_ASSETS_UI_BOTOES/bg_ebd_02_jardim.jpg')";
       } else {
         shell.style.backgroundImage = "url('./2_ASSETS_UI_BOTOES/ui_asset_01.jpg')";
@@ -6628,7 +6630,7 @@ startInitialThemeMusic();
           }
 
           // 2. Se houver modal de vitória dos Jogos da Lição aberto, volta aos Jogos da Lição
-          const lessonWinModal = document.getElementById('ebd-lesson-victory-modal');
+          const lessonWinModal = document.getElementById('trono-lesson-victory-modal') || document.getElementById('ebd-lesson-victory-modal');
           if (lessonWinModal && isElementVisible(lessonWinModal)) {
             if (typeof window.closeLessonGameVictoryModal === 'function') {
               window.closeLessonGameVictoryModal(true);

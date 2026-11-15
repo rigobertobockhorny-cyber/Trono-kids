@@ -2734,7 +2734,7 @@
 
   window.openVipFromArcade = function() {
     window._arcadeClosingUntil = Date.now() + 700;
-    window._returnToGamesHubAfterModal = true;
+    window._returnToGamesHubAfterModal = !_arcadeLessonSingleMode;
     window.closeTronoArcadeStage();
     setTimeout(() => {
       if (typeof openSubscribeModal === 'function') {
@@ -13446,11 +13446,12 @@
           max-width: 420px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          column-gap: 14px;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          column-gap: 10px;
           row-gap: 20px;
-          padding: 4px 6px 38px 6px;
-          justify-items: center;
+          padding: 4px 8px 38px 8px;
+          justify-items: stretch;
+          align-items: start;
           box-sizing: border-box;
         }
         .arcade-hub-item {
@@ -13465,6 +13466,9 @@
           cursor: pointer;
           padding: 4px 2px;
           width: 100%;
+          min-width: 0;
+          max-width: 100%;
+          box-sizing: border-box;
           transition: transform 0.14s ease;
           -webkit-tap-highlight-color: transparent;
           user-select: none;
@@ -13481,14 +13485,17 @@
         }
         .arcade-hub-title {
           margin-top: 3px;
+          width: 100%;
+          max-width: 100%;
           font-family: 'Fredoka', sans-serif;
           font-weight: 800;
-          font-size: 15.5px;
-          line-height: 1.12;
+          font-size: clamp(12px, 3.65vw, 15px);
+          line-height: 1.14;
           color: #fde047;
           text-shadow: 0 2px 0 #3b1704, 0 0 3px #3b1704, 0 4px 8px rgba(0, 0, 0, 0.96);
           text-align: center;
-          letter-spacing: 0.25px;
+          letter-spacing: 0px;
+          white-space: nowrap;
           pointer-events: none;
         }
       </style>
