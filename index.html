@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v187.0';
+        const CURRENT_VER = 'v188.0';
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +61,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=187.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=188.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -88,6 +88,10 @@
       height: 0 !important;
     }
 
+    html, body {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
     body {
       background: #000000;
       color: #fde68a;
@@ -262,8 +266,10 @@
 
     .topbar-screen-title {
       flex: 1;
+      min-width: 0;
       text-align: center;
-      font-size: 22px;
+      font-size: clamp(14.5px, 4.45vw, 19.5px);
+      letter-spacing: 0px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -363,11 +369,13 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 14px max(20px, env(safe-area-inset-bottom, 20px)) 14px;
+      width: 100%;
+      padding: 2px 8px max(16px, env(safe-area-inset-bottom, 16px)) 8px;
       gap: 0;
       flex: 1;
       min-height: 0;
       box-sizing: border-box;
+      overflow: hidden;
     }
 
     .dashboard-grid {
@@ -375,25 +383,31 @@
       max-width: 410px;
       flex: 1;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-template-rows: repeat(3, auto);
       align-content: space-evenly;
-      justify-items: center;
-      column-gap: 22px;
-      row-gap: clamp(12px, 2.5vh, 26px);
+      align-items: start;
+      justify-items: stretch;
+      column-gap: 8px;
+      row-gap: clamp(10px, 2.2vh, 22px);
       margin: 0 auto;
       min-height: 0;
+      box-sizing: border-box;
     }
 
     .module-card {
       background: transparent;
       border: none;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       cursor: pointer;
-      padding: 2px;
+      padding: 2px 2px;
       transition: transform 0.15s ease;
       -webkit-tap-highlight-color: transparent;
     }
@@ -402,30 +416,55 @@
     }
 
     .mod-icon-3d {
-      width: 114px;
-      height: 114px;
-      max-width: 28.5vw;
-      max-height: 13.8vh;
+      width: clamp(92px, 25.5vw, 108px);
+      height: clamp(90px, 12.6vh, 108px);
       object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      flex-shrink: 0;
+      box-sizing: border-box;
       filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.88));
       animation: floatGentle 3.2s ease-in-out infinite;
     }
-    .module-card:nth-child(even) .mod-icon-3d {
-      animation-delay: 1.5s;
+    /* Sincronia por LINHA (par esquerda+direita sempre alinhado na mesma altura horizontal) */
+    .dashboard-grid > .module-card:nth-child(1) .mod-icon-3d,
+    .dashboard-grid > .module-card:nth-child(2) .mod-icon-3d {
+      animation-delay: 0s;
+    }
+    .dashboard-grid > .module-card:nth-child(3) .mod-icon-3d,
+    .dashboard-grid > .module-card:nth-child(4) .mod-icon-3d {
+      animation-delay: 0.7s;
+    }
+    .dashboard-grid > .module-card:nth-child(5) .mod-icon-3d,
+    .dashboard-grid > .module-card:nth-child(6) .mod-icon-3d {
+      animation-delay: 1.4s;
+    }
+    /* Equilíbrio óptico dos 6 ícones da Home */
+    #screen-home .module-card:nth-child(1) .mod-icon-3d {
+      width: clamp(98px, 27.5vw, 114px);
+    }
+    #screen-home .module-card:nth-child(3) .mod-icon-3d,
+    #screen-home .module-card:nth-child(4) .mod-icon-3d {
+      padding: 5px;
     }
 
     .mod-title {
       margin-top: 4px;
+      display: block;
+      width: 100%;
+      max-width: 100%;
       font-family: 'Fredoka', sans-serif;
       font-weight: 800;
-      font-size: 17px;
+      font-size: clamp(11.8px, 3.65vw, 14.8px);
+      line-height: 1.15;
       background: linear-gradient(180deg, #fffde7 0%, #fde047 50%, #f59e0b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       filter: drop-shadow(0 2px 0 #3b1704) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.95));
       text-align: center;
       white-space: nowrap;
-      letter-spacing: 0.2px;
+      letter-spacing: 0px;
+      box-sizing: border-box;
     }
 
     .btn-parents-home {
@@ -1518,9 +1557,12 @@
     #screen-lesson-hub .dashboard-grid {
       flex: 1;
       min-height: 0;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
       row-gap: 2px !important;
-      column-gap: 16px !important;
+      column-gap: 8px !important;
       align-content: space-evenly;
+      align-items: start;
+      justify-items: stretch;
     }
     #screen-lesson-hub .mod-icon-3d {
       width: 64px !important;
@@ -1562,19 +1604,20 @@
   
     /* === UPGRADE V52: ÍCONES GRANDES NA TELA DA LIÇÃO (SEM BANNER DO VOVÔ) + 22 PÍLULAS IGUAIS + PLAYER VOVÔ === */
     #screen-lesson-hub .dashboard-grid.lesson-big-grid {
-      gap: 8px 10px !important;
-      padding: 2px 4px 6px 4px !important;
+      gap: 8px 8px !important;
+      padding: 2px 2px 6px 2px !important;
     }
     #screen-lesson-hub .dashboard-grid.lesson-big-grid .mod-icon-3d {
-      width: 98px !important;
-      height: 98px !important;
+      width: clamp(86px, 24.5vw, 98px) !important;
+      height: clamp(86px, 12.2vh, 98px) !important;
       max-height: 12.8vh !important;
-      margin-bottom: -4px !important;
+      margin-bottom: -2px !important;
       filter: drop-shadow(0 8px 14px rgba(0,0,0,0.92)) !important;
     }
     #screen-lesson-hub .dashboard-grid.lesson-big-grid .mod-title {
-      font-size: 14.5px !important;
-      padding: 2px 6px !important;
+      font-size: clamp(11.8px, 3.6vw, 14.4px) !important;
+      padding: 2px 2px !important;
+      letter-spacing: 0px !important;
     }
     #lesson-weeks-trail .lesson-scroll-pill,
     #teacher-weeks-trail .lesson-scroll-pill {
@@ -1669,11 +1712,12 @@
       max-width: 420px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      column-gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 10px;
       row-gap: 20px;
       padding: 4px 6px 38px 6px;
-      justify-items: center;
+      align-items: start;
+      justify-items: stretch;
       box-sizing: border-box;
     }
     .arcade-hub-item {
@@ -1688,6 +1732,9 @@
       cursor: pointer;
       padding: 4px 2px;
       width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
       transition: transform 0.14s ease;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
@@ -1723,16 +1770,21 @@
     }
     .arcade-hub-title {
       margin-top: 3px;
+      display: block;
+      width: 100%;
+      max-width: 100%;
       font-family: 'Fredoka', sans-serif;
       font-weight: 800;
-      font-size: 15.5px;
+      font-size: clamp(12px, 3.65vw, 15px);
       line-height: 1.12;
       color: #fde047;
       text-shadow: 0 2px 0 #3b1704, 0 0 3px #3b1704, 0 4px 8px rgba(0, 0, 0, 0.96);
       text-align: center;
-      letter-spacing: 0.25px;
+      letter-spacing: 0px;
+      white-space: nowrap;
       text-transform: uppercase;
       pointer-events: none;
+      box-sizing: border-box;
     }
 
     /* === UPGRADE V65: TODOS OS TÍTULOS E NOMES DE BOTÕES EM LETRAS MAIÚSCULAS + SEM FAIXA ETÁRIA NA LIÇÃO === */
@@ -2806,8 +2858,8 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=187.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=187.0"></script>
+<script src="ebd_modulos_educativos.js?v=188.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=188.0"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -2891,7 +2943,7 @@ const SLEEP_TRACKS = [
   { id: 10, title: 'Chuvinha de Paz para Dormir', file: './6_ASSETS_AUDIO/10_chuva_suave_dormir.mp3' }
 ];
 
-// Hierarquia Oficial de Volume (v187.0):
+// Hierarquia Oficial de Volume (v188.0):
 // Música ambiente sempre macia e baixinha (22%) para a voz do Vovô Nésio (100% + presença vocal) SEMPRE se sobressair!
 // Quando o Vovô fala, o fundo cai automaticamente para 5% (ducking) e volta suavemente depois que ele termina!
 window.BG_AMBIENT_BASE_VOL = 0.22;
@@ -3623,7 +3675,66 @@ function showScreen(screenId) {
       }
     }
   }
+  if (typeof window.fitResponsiveGridTitles === 'function') {
+    requestAnimationFrame(window.fitResponsiveGridTitles);
+    setTimeout(window.fitResponsiveGridTitles, 80);
+  }
 }
+
+window.fitResponsiveGridTitles = function() {
+  try {
+    var grids = document.querySelectorAll('.screen.active .dashboard-grid, .screen.active .arcade-hub-clean-grid');
+    for (var g = 0; g < grids.length; g++) {
+      var grid = grids[g];
+      if (!grid || !grid.offsetWidth) continue;
+      var titles = grid.querySelectorAll('.mod-title, .arcade-hub-title');
+      if (!titles.length) continue;
+      for (var i = 0; i < titles.length; i++) {
+        titles[i].style.removeProperty('font-size');
+      }
+      var maxScroll = 0;
+      var minAvail = 9999;
+      var basePx = 0;
+      for (var j = 0; j < titles.length; j++) {
+        var el = titles[j];
+        var card = el.parentElement;
+        var avail = (card ? card.clientWidth : el.clientWidth) - 4;
+        if (avail > 0 && avail < minAvail) minAvail = avail;
+        if (el.scrollWidth > maxScroll) maxScroll = el.scrollWidth;
+        if (!basePx) basePx = parseFloat(window.getComputedStyle(el).fontSize) || 13;
+      }
+      if (minAvail < 9999 && maxScroll > minAvail && basePx > 0) {
+        var fitted = Math.max(9.5, Math.floor((basePx * (minAvail / maxScroll)) * 10) / 10);
+        for (var k = 0; k < titles.length; k++) {
+          titles[k].style.setProperty('font-size', fitted + 'px', 'important');
+        }
+      }
+    }
+    var topEl = document.getElementById('topbar-game-title');
+    if (topEl) {
+      topEl.style.removeProperty('font-size');
+      if (topEl.textContent && topEl.clientWidth > 0 && topEl.scrollWidth > topEl.clientWidth) {
+        var topBase = parseFloat(window.getComputedStyle(topEl).fontSize) || 16;
+        var topFit = Math.max(11, Math.floor((topBase * ((topEl.clientWidth - 4) / topEl.scrollWidth)) * 10) / 10);
+        topEl.style.setProperty('font-size', topFit + 'px', 'important');
+      }
+    }
+  } catch (e) {}
+};
+window.addEventListener('resize', function() {
+  if (typeof window.fitResponsiveGridTitles === 'function') window.fitResponsiveGridTitles();
+});
+window.addEventListener('DOMContentLoaded', function() {
+  if (typeof window.fitResponsiveGridTitles === 'function') {
+    window.fitResponsiveGridTitles();
+    setTimeout(window.fitResponsiveGridTitles, 180);
+  }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function() {
+      if (typeof window.fitResponsiveGridTitles === 'function') window.fitResponsiveGridTitles();
+    }).catch(function() {});
+  }
+});
 
 function goHome() {
   showScreen('screen-home');
