@@ -1177,17 +1177,18 @@
       }
       .arcade-top-bar {
         position: relative;
-        height: 60px;
-        min-height: 60px;
+        height: calc(66px + env(safe-area-inset-top, 0px));
+        min-height: calc(66px + env(safe-area-inset-top, 0px));
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 6px 14px;
+        padding: calc(10px + env(safe-area-inset-top, 0px)) 20px 10px 20px;
         background: rgba(15, 12, 41, 0.85);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 2px solid rgba(253, 224, 71, 0.4);
         z-index: 160;
+        box-sizing: border-box;
       }
       .arcade-btn-circle {
         width: 48px;
@@ -1749,7 +1750,7 @@
       /* BARRA DE CONTROLES HORIZONTAL (SOMENTE ESQUERDA E DIREITA — SEM COBRIR DAVI) */
       .davi-controls-bar {
         position: absolute;
-        bottom: 14px;
+        bottom: calc(22px + env(safe-area-inset-bottom, 0px));
         left: 50%;
         transform: translateX(-50%);
         z-index: 25;
@@ -2346,13 +2347,10 @@
     loadPhase(currentPhase);
   };
 
-  // Abre a SALINHA DE PINTURA direto no Estúdio Novo Tela Cheia (1 única imagem por vez, começando na Fase 1 do Vovô Nésio, Pedrinho e Aninha!)
+  // Abre a SALINHA DE PINTURA direto no Estúdio Novo Tela Cheia (1 única imagem por fase: Fase 1 = Vovô e netos, e cada lição vira 1 fase!)
   window.openSalinhaDePinturaFromHome = function() {
     if (window._arcadeClosingUntil && Date.now() < window._arcadeClosingUntil) {
       return;
-    }
-    if (typeof window.saveArcadeLastPhase === "function") {
-      window.saveArcadeLastPhase("pintura_magica", 1);
     }
     window.openTronoArcadeGame("pintura_magica", "screen-home");
   };
@@ -2532,6 +2530,9 @@
     }
     window._arcadeCurrentPhaseNum = currentPhase;
     updateArcadeTopPhaseNavState();
+    if (currentActiveGame && currentActiveGame.id && typeof window.setGameMusicForActiveGame === "function") {
+      window.setGameMusicForActiveGame(currentActiveGame.id);
+    }
 
     const modal = document.getElementById("trono-victory-modal");
     if (modal) {
@@ -2544,10 +2545,6 @@
       replayBtnEl.classList.remove("vovo-speaking");
     }
     stopArcadeCelebrationConfetti();
-    if (window._arcadeQuickNextTimer) { clearTimeout(window._arcadeQuickNextTimer); window._arcadeQuickNextTimer = null; }
-    if (window._apriscoPeekTimer) { clearInterval(window._apriscoPeekTimer); window._apriscoPeekTimer = null; }
-    const oldQuickBanner = document.getElementById("trono-quick-phase-banner");
-    if (oldQuickBanner && oldQuickBanner.parentNode) { try { oldQuickBanner.parentNode.removeChild(oldQuickBanner); } catch(e){} }
     if (window._arcadeQuickNextTimer) { clearTimeout(window._arcadeQuickNextTimer); window._arcadeQuickNextTimer = null; }
     if (window._apriscoPeekTimer) { clearInterval(window._apriscoPeekTimer); window._apriscoPeekTimer = null; }
     const oldQuickBanner = document.getElementById("trono-quick-phase-banner");
@@ -12315,8 +12312,8 @@
           <div id="arcade-paint-floating-pencil">${buildPencilSvg(curColor.hex)}</div>
         </div>
 
-        <!-- BARRA ÚNICA DE EDIÇÃO EMBAIXO (6 Ferramentas + 20 Cores no mesmo bloco roxo com margem colorida!) -->
-        <div id="arcade-paint-unified-dock" class="arc-v161-rainbow-card" style="z-index:12; width:calc(100% - 12px); max-width:520px; margin:0 6px max(6px, env(safe-area-inset-bottom, 6px)) 6px; padding:7px 8px 8px 8px; border-radius:18px; display:flex; flex-direction:column; gap:6px;">
+        <!-- BARRA ÚNICA DE EDIÇÃO EMBAIXO COM SUSPIRO NAS BORDAS (6 Ferramentas + 20 Cores) -->
+        <div id="arcade-paint-unified-dock" class="arc-v161-rainbow-card" style="z-index:12; width:calc(100% - 24px); max-width:520px; margin:0 12px calc(16px + env(safe-area-inset-bottom, 0px)) 12px; padding:9px 12px 11px 12px; border-radius:18px; display:flex; flex-direction:column; gap:8px; box-sizing:border-box;">
           <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:4px; width:100%;">
             <button type="button" id="arc-ptool-bucket" class="arc-paint-tool-btn active">TOQUE</button>
             <button type="button" id="arc-ptool-brush" class="arc-paint-tool-btn">LÁPIS</button>

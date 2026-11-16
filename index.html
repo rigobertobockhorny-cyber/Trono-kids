@@ -17,7 +17,8 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v191.0';
+        const CURRENT_VER = 'v192.0';
+        window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
         const urlParams = new URLSearchParams(window.location.search);
@@ -38,20 +39,21 @@
           }
         }
 
-        // Checagem rápida da versão apenas nos primeiros 3.5s da abertura (NUNCA recarrega no meio de um jogo!)
+        // Checagem garantida de nova versão na nuvem (funciona mesmo se o Render levar 10s+ para acordar no celular!)
         fetch('./version.json?t=' + Date.now(), { cache: 'no-store' })
           .then(r => r.ok ? r.json() : null)
           .then(data => {
             if (data && data.version && data.version !== CURRENT_VER) {
-              const elapsed = Date.now() - (window._appBootTs || 0);
-              if (!window._userEnteredModule && elapsed < 3500 && sessionStorage.getItem('trono_ver_sync') !== data.version) {
+              const p1 = ('caches' in window) ? caches.keys().then(ks => Promise.all(ks.map(k => caches.delete(k)))) : Promise.resolve();
+              const p2 = ('serviceWorker' in navigator) ? navigator.serviceWorker.getRegistrations().then(rs => Promise.all(rs.map(r => r.unregister()))) : Promise.resolve();
+              if (!window._userEnteredModule && sessionStorage.getItem('trono_ver_sync') !== data.version) {
                 sessionStorage.setItem('trono_ver_sync', data.version);
                 sessionStorage.setItem('trono_skip_intro_once', '1');
-                const p1 = ('caches' in window) ? caches.keys().then(ks => Promise.all(ks.map(k => caches.delete(k)))) : Promise.resolve();
-                const p2 = ('serviceWorker' in navigator) ? navigator.serviceWorker.getRegistrations().then(rs => Promise.all(rs.map(r => r.unregister()))) : Promise.resolve();
                 Promise.all([p1, p2]).finally(() => {
                   window.location.replace(window.location.pathname + '?_v=' + encodeURIComponent(data.version));
                 });
+              } else {
+                localStorage.setItem('trono_pending_ver_reload', data.version);
               }
             }
           })
@@ -61,13 +63,12 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=191.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=192.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
     window.addEventListener('load', () => {
-      // Registra o Service Worker somente após a vinheta/abertura estabilizar (zero concorrência com o vídeo!)
-      setTimeout(() => { window._registerAppSW(); }, 18000);
+      setTimeout(() => { window._registerAppSW(); }, 3500);
     });
   </script>
   <style>
@@ -216,7 +217,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 10px 14px 4px 14px;
+      padding: calc(12px + env(safe-area-inset-top, 0px)) 18px 6px 18px;
       flex-shrink: 0;
       gap: 8px;
     }
@@ -258,10 +259,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 6px;
+      padding: 0 8px;
       margin-top: 0px;
       margin-bottom: 4px;
-      gap: 8px;
+      gap: 10px;
     }
 
     .topbar-screen-title {
@@ -342,7 +343,7 @@
       flex: 1;
       display: none;
       flex-direction: column;
-      padding: 2px 10px 8px 10px;
+      padding: 6px 16px calc(18px + env(safe-area-inset-bottom, 0px)) 16px;
       overflow-y: auto;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
@@ -370,7 +371,7 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      padding: 2px 8px max(16px, env(safe-area-inset-bottom, 16px)) 8px;
+      padding: 4px 14px calc(22px + env(safe-area-inset-bottom, 0px)) 14px;
       gap: 0;
       flex: 1;
       min-height: 0;
@@ -1180,8 +1181,8 @@
       -webkit-overflow-scrolling: touch;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      padding: 2px 2px 14px 2px;
+      gap: 10px;
+      padding: 6px 4px calc(22px + env(safe-area-inset-bottom, 0px)) 4px;
       min-height: 0;
       scrollbar-width: none;
     }
@@ -1189,14 +1190,14 @@
       display: none;
     }
     .sleep-track {
-      min-height: 52px;
-      height: 52px;
+      min-height: 56px;
+      height: 56px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 12px;
-      border-radius: 13px;
+      padding: 0 18px;
+      border-radius: 15px;
       background: linear-gradient(180deg, #aa00ff 0%, #6b21a8 100%);
       border: 1.5px solid #e9d5ff;
       box-shadow: 0 4px 10px rgba(0,0,0,0.85);
@@ -1212,7 +1213,7 @@
       font-size: 13.5px;
       color: #ffffff;
       flex: 1;
-      padding-right: 8px;
+      padding-right: 12px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -1222,10 +1223,10 @@
       color: #ffffff;
       border: 1.5px solid #b9f6ca;
       border-radius: 999px;
-      padding: 3px 12px;
+      padding: 7px 18px;
       font-family: 'Fredoka', sans-serif;
       font-weight: 700;
-      font-size: 12px;
+      font-size: 12.5px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.5);
       cursor: pointer;
     }
@@ -1830,9 +1831,9 @@
     }
     #app-shell.vovo-player-fullscreen-mode #screen-lesson-module .module-header {
       position: absolute !important;
-      top: max(12px, env(safe-area-inset-top, 12px)) !important;
-      left: 14px !important;
-      right: 14px !important;
+      top: calc(18px + env(safe-area-inset-top, 0px)) !important;
+      left: 22px !important;
+      right: 22px !important;
       margin: 0 !important;
       padding: 0 !important;
       background: transparent !important;
@@ -2174,7 +2175,7 @@
         <div class="mod-title">SALINHA DE JOGOS</div>
       </div>
 
-      <div class="module-card" onclick="window.openSalinhaDePinturaFromHome ? window.openSalinhaDePinturaFromHome() : openGalleryFor('paint')">
+      <div class="module-card" onclick="window.openSalinhaDePinturaFromHome ? window.openSalinhaDePinturaFromHome() : window._ensureArcadeScriptLoaded(function(){ if(window.openSalinhaDePinturaFromHome) window.openSalinhaDePinturaFromHome(); })">
         <img src="./2_ASSETS_UI_BOTOES/ui_icon_03.png" alt="Salinha de Pintura" class="mod-icon-3d">
         <div class="mod-title">SALINHA DE PINTURA</div>
       </div>
@@ -2858,8 +2859,32 @@
   </div>
 </div>
 
-<script src="ebd_modulos_educativos.js?v=191.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=191.0"></script>
+<script>
+  window._arcadeScriptLoading = false;
+  window._ensureArcadeScriptLoaded = function(onReady) {
+    if (typeof window.openTronoArcadeGame === 'function' && typeof window.renderAll17ArcadeGamesInHub === 'function') {
+      if (typeof onReady === 'function') onReady();
+      return;
+    }
+    if (window._arcadeScriptLoading) {
+      setTimeout(() => { window._ensureArcadeScriptLoaded(onReady); }, 120);
+      return;
+    }
+    window._arcadeScriptLoading = true;
+    const sc = document.createElement('script');
+    sc.src = 'ebd_super_arcade_audiovisual.js?v=192.0&r=' + Date.now();
+    sc.onload = () => {
+      window._arcadeScriptLoading = false;
+      if (typeof onReady === 'function') onReady();
+    };
+    sc.onerror = () => {
+      window._arcadeScriptLoading = false;
+    };
+    document.head.appendChild(sc);
+  };
+</script>
+<script src="ebd_modulos_educativos.js?v=192.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=192.0" onerror="window._ensureArcadeScriptLoaded()"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -2943,19 +2968,59 @@ let currentGalleryTarget = 'puzzle';
 let currentStory = STORIES[0];
 let lastCompletedMode = 'puzzle';
 
+// ============================================================================
+// SEPARAÇÃO OFICIAL v192.0: SALINHA DE DORMIR (10 PURAS) vs. JOGOS (6 EM 3 ESTILOS)
+// ============================================================================
 const SLEEP_TRACKS = [
-  { id: 2,  title: 'A Harpa Dourada de Davi', file: './6_ASSETS_AUDIO/02_melodia_familiar_01.mp3' },
-  { id: 3,  title: 'A Grande Arca de Noé', file: './6_ASSETS_AUDIO/03_melodia_familiar_02.mp3' },
-  { id: 4,  title: 'As Estrelas de Abraão', file: './6_ASSETS_AUDIO/04_melodia_familiar_03.mp3' },
-  { id: 5,  title: 'Davi e o Gigante Golias', file: './6_ASSETS_AUDIO/05_melodia_familiar_04.mp3' },
-  { id: 6,  title: 'O Sonho de Jacó', file: './6_ASSETS_AUDIO/06_melodia_criacao_01.mp3' },
-  { id: 7,  title: 'Daniel na Cova dos Leões', file: './6_ASSETS_AUDIO/07_melodia_criacao_02.mp3' },
-  { id: 8,  title: 'Paz no Barquinho com Jesus', file: './6_ASSETS_AUDIO/08_melodia_criacao_03.mp3' },
-  { id: 9,  title: 'Caminhando na Luz de Deus', file: './6_ASSETS_AUDIO/09_melodia_criacao_04.mp3' },
-  { id: 10, title: 'Chuvinha de Paz para Dormir', file: './6_ASSETS_AUDIO/10_chuva_suave_dormir.mp3' }
+  { id: 101, title: 'Ninar no Colo de Deus (Violão e Flauta)', file: './6_ASSETS_AUDIO/ninar_01_violao_flauta.mp3?v=192', trimTail: 1.2 },
+  { id: 102, title: 'Piano Docinho de Boa Noite',              file: './6_ASSETS_AUDIO/ninar_02_piano_feltro_paz.mp3?v=192', trimTail: 1.2 },
+  { id: 103, title: 'Balanço dos Anjos (Harpa e Violoncelo)',  file: './6_ASSETS_AUDIO/ninar_03_harpa_violoncelo.mp3?v=192', trimTail: 1.2 },
+  { id: 104, title: 'Caixinha de Estrelinhas (Kalimba)',       file: './6_ASSETS_AUDIO/ninar_04_kalimba_estrelinhas.mp3?v=192', trimTail: 1.2 },
+  { id: 105, title: 'Brisa Mansa do Jardim (Violão Suave)',    file: './6_ASSETS_AUDIO/07_melodia_criacao_02.mp3?v=192', trimTail: 3.0 },
+  { id: 106, title: 'Soninho de Paz no Céu Azul',              file: './6_ASSETS_AUDIO/ninar_05_piano_celesta.mp3?v=192', trimTail: 1.2 },
+  { id: 107, title: 'Abraço Quentinho da Promessa',            file: './6_ASSETS_AUDIO/ninar_06_abraco_violoncelo.mp3?v=192', trimTail: 1.2 },
+  { id: 108, title: 'Noite Serena com o Bom Pastor',           file: './6_ASSETS_AUDIO/ninar_07_harpa_noite_calma.mp3?v=192', trimTail: 1.2 },
+  { id: 109, title: 'Estrelinha Brilhando no Berço',           file: './6_ASSETS_AUDIO/ninar_08_celesta_harpa.mp3?v=192', trimTail: 1.2 },
+  { id: 110, title: 'Chuvinha de Paz para Dormir',             file: './6_ASSETS_AUDIO/10_chuva_suave_dormir.mp3?v=192', trimTail: 2.2 }
 ];
+window.SLEEP_TRACKS = SLEEP_TRACKS;
 
-// Hierarquia Oficial de Volume (v191.0):
+const GAME_MUSIC_TRACKS = [
+  { id: 202, style: 'concentracao', title: 'Harpa e Violão da Criação', file: './6_ASSETS_AUDIO/02_melodia_familiar_01.mp3?v=192', trimTail: 3.2 },
+  { id: 203, style: 'bichinhos',    title: 'A Grande Arca de Noé',      file: './6_ASSETS_AUDIO/03_melodia_familiar_02.mp3?v=192', trimTail: 3.2 },
+  { id: 204, style: 'concentracao', title: 'Estrelinhas para Pintar',   file: './6_ASSETS_AUDIO/04_melodia_familiar_03.mp3?v=192', trimTail: 3.2 },
+  { id: 205, style: 'acao',         title: 'Aventura de Davi',          file: './6_ASSETS_AUDIO/05_melodia_familiar_04.mp3?v=192', trimTail: 3.2 },
+  { id: 206, style: 'bichinhos',    title: 'Passeio Alegre no Jardim',  file: './6_ASSETS_AUDIO/06_melodia_criacao_01.mp3?v=192', trimTail: 3.2 },
+  { id: 208, style: 'acao',         title: 'Barquinho da Alegria',      file: './6_ASSETS_AUDIO/08_melodia_criacao_03.mp3?v=192', trimTail: 3.2 }
+];
+window.GAME_MUSIC_TRACKS = GAME_MUSIC_TRACKS;
+
+const GAME_ID_TO_MUSIC_STYLE = {
+  pesca_maravilhosa: 'acao',
+  pombo_arca:        'acao',
+  jonatas_alvo:      'acao',
+  ovelha_fujona:     'acao',
+  dracma_perdida:    'acao',
+  ovelha_perdida:    'bichinhos',
+  quem_entrou_arca:  'bichinhos',
+  tabernaculo_cesto: 'bichinhos',
+  mana_deserto:      'bichinhos',
+  memoria_sonoro:    'bichinhos',
+  pintura_magica:    'concentracao',
+  puzzle_3d:         'concentracao',
+  ligue_pontos:      'concentracao',
+  seis_erros:        'concentracao',
+  criacao_ordem:     'concentracao',
+  quiz_visual:       'concentracao',
+  versiculo_secreto: 'concentracao',
+  caca_palavras:     'concentracao',
+  palavra_secreta:   'concentracao',
+  verdadeiro_mito:   'concentracao'
+};
+
+window._activeGameMusicStyle = '';
+
+// Hierarquia Oficial de Volume (v192.0):
 // Música ambiente sempre macia e baixinha (22%) para a voz do Vovô Nésio (100% + presença vocal) SEMPRE se sobressair!
 // Quando o Vovô fala, o fundo cai automaticamente para 5% (ducking) e volta suavemente depois que ele termina!
 window.BG_AMBIENT_BASE_VOL = 0.22;
@@ -3013,27 +3078,89 @@ window.setVovoVoiceDucking = function(active) {
 
 let bgAudioPlayer = new Audio();
 bgAudioPlayer.loop = false;
-let activeTrackId = 2; // Inicia em "A Harpa Dourada de Davi" (a música da vinheta fica EXCLUSIVA da vinheta de abertura!)
+let activeTrackId = 202; // Inicia em trilha alegre/suave dos Jogos/Menus (separada da Salinha de Dormir!)
 let ambientPlaying = true;
 let audioCtx = null;
 
-// Inicializa na Música Suave Familiar ("A Harpa Dourada de Davi") em volume ambiente baixinho (22%)
-bgAudioPlayer.src = SLEEP_TRACKS[0].file;
+bgAudioPlayer.src = GAME_MUSIC_TRACKS[0].file;
 bgAudioPlayer.volume = window.BG_AMBIENT_BASE_VOL;
 
-// Loop Contínuo Infinito (1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> volta para 1ª melodia!):
-// Fora do Cantinho de Dormir gira exclusivamente pelas melodias musicais (sem cair na chuva silenciosa);
-// Dentro do Cantinho de Dormir gira por toda a lista e volta para a primeira ao terminar a última!
 const FREE_SLEEP_TRACKS_COUNT = 5;
 window.FREE_SLEEP_TRACKS_COUNT = FREE_SLEEP_TRACKS_COUNT;
 let _preloadedNextBgAudio = null;
 let _bgTrackAdvancingLock = false;
 
-function getUnlockedBgLoopPool(inSleepCorner) {
-  const basePool = inSleepCorner ? SLEEP_TRACKS : SLEEP_TRACKS.filter(t => t.id !== 10);
-  if (isVipUnlocked) return basePool;
-  return SLEEP_TRACKS.slice(0, FREE_SLEEP_TRACKS_COUNT);
+function findAnyTrackById(id) {
+  return SLEEP_TRACKS.find(t => t.id === id) || GAME_MUSIC_TRACKS.find(t => t.id === id) || null;
 }
+
+function getUnlockedBgLoopPool(inSleepCorner) {
+  if (inSleepCorner) {
+    return isVipUnlocked ? SLEEP_TRACKS : SLEEP_TRACKS.slice(0, FREE_SLEEP_TRACKS_COUNT);
+  }
+  const arcadeStage = document.getElementById('screen-trono-arcade-stage');
+  const inArcadeStage = !!(arcadeStage && arcadeStage.classList.contains('active'));
+  if (inArcadeStage && window._activeGameMusicStyle) {
+    const stylePool = GAME_MUSIC_TRACKS.filter(t => t.style === window._activeGameMusicStyle);
+    if (stylePool.length > 0) return stylePool;
+  }
+  return GAME_MUSIC_TRACKS;
+}
+
+window.setGameMusicForActiveGame = function(gameId) {
+  const nextStyle = GAME_ID_TO_MUSIC_STYLE[gameId] || 'concentracao';
+  window._activeGameMusicStyle = nextStyle;
+  if (!ambientPlaying || window._arcadeAudioMuted || !bgAudioPlayer) return;
+  const sleepScreenEl = document.getElementById('screen-sleep');
+  if (sleepScreenEl && sleepScreenEl.classList.contains('active')) return;
+  const stylePool = GAME_MUSIC_TRACKS.filter(t => t.style === nextStyle);
+  if (!stylePool.length) return;
+  if (!stylePool.some(t => t.id === activeTrackId)) {
+    const chosen = stylePool[Math.floor(Math.random() * stylePool.length)] || stylePool[0];
+    activeTrackId = chosen.id;
+    bgAudioPlayer.src = chosen.file;
+    try { bgAudioPlayer.currentTime = 0.15; } catch (e) {}
+    window.syncBgAmbientVolume(false);
+    if (window._introDismissed) {
+      const p = bgAudioPlayer.play();
+      if (p && typeof p.catch === 'function') p.catch(() => {});
+    }
+    setTimeout(preloadNextBgAmbientTrack, 400);
+  }
+};
+
+window.syncMusicPoolForScreen = function(screenId) {
+  const enteringSleep = (screenId === 'screen-sleep');
+  if (enteringSleep) {
+    window._activeGameMusicStyle = '';
+    const sleepPool = getUnlockedBgLoopPool(true);
+    if (!sleepPool.some(t => t.id === activeTrackId)) {
+      const firstSleep = sleepPool[0] || SLEEP_TRACKS[0];
+      activeTrackId = firstSleep.id;
+      bgAudioPlayer.src = firstSleep.file;
+      try { bgAudioPlayer.currentTime = 0.08; } catch (e) {}
+      window.syncBgAmbientVolume(false);
+      if (ambientPlaying && !window._arcadeAudioMuted && window._introDismissed) {
+        bgAudioPlayer.play().catch(() => {});
+      }
+      setTimeout(preloadNextBgAmbientTrack, 400);
+    }
+  } else {
+    window._activeGameMusicStyle = '';
+    const isCurrentlySleepTrack = SLEEP_TRACKS.some(t => t.id === activeTrackId);
+    if (isCurrentlySleepTrack) {
+      const firstGame = GAME_MUSIC_TRACKS[0];
+      activeTrackId = firstGame.id;
+      bgAudioPlayer.src = firstGame.file;
+      try { bgAudioPlayer.currentTime = 0.15; } catch (e) {}
+      window.syncBgAmbientVolume(false);
+      if (ambientPlaying && !window._arcadeAudioMuted && window._introDismissed && !(window.EBD_STATE && window.EBD_STATE.vovoAudioPlaying)) {
+        bgAudioPlayer.play().catch(() => {});
+      }
+      setTimeout(preloadNextBgAmbientTrack, 400);
+    }
+  }
+};
 
 function preloadNextBgAmbientTrack() {
   try {
@@ -3066,7 +3193,7 @@ window.advanceBgAmbientTrack = function() {
   const nextTrack = loopPool[nextIndex] || loopPool[0];
   activeTrackId = nextTrack.id;
   bgAudioPlayer.src = nextTrack.file;
-  try { bgAudioPlayer.currentTime = 0.22; } catch (e) {}
+  try { bgAudioPlayer.currentTime = inSleepCorner ? 0.05 : 0.18; } catch (e) {}
   window.syncBgAmbientVolume(false);
   const p = bgAudioPlayer.play();
   if (p && typeof p.catch === 'function') p.catch(() => {});
@@ -3082,7 +3209,8 @@ window.ensureBgAmbientLoopAlive = function() {
   if (vovoStoryActive || !bgAudioPlayer) return;
   const sleepScreenEl = document.getElementById('screen-sleep');
   const inSleepCorner = !!(sleepScreenEl && sleepScreenEl.classList.contains('active'));
-  if (!inSleepCorner && activeTrackId === 10) {
+  const loopPool = getUnlockedBgLoopPool(inSleepCorner);
+  if (!loopPool.some(t => t.id === activeTrackId)) {
     window.advanceBgAmbientTrack();
     return;
   }
@@ -3092,7 +3220,7 @@ window.ensureBgAmbientLoopAlive = function() {
   }
   if (bgAudioPlayer.paused) {
     if (!bgAudioPlayer.src) {
-      const tr = SLEEP_TRACKS.find(t => t.id === activeTrackId) || SLEEP_TRACKS[0];
+      const tr = findAnyTrackById(activeTrackId) || loopPool[0];
       activeTrackId = tr.id;
       bgAudioPlayer.src = tr.file;
     }
@@ -3104,12 +3232,14 @@ window.ensureBgAmbientLoopAlive = function() {
   }
 };
 
-// Transição Contínua Zero-Delay (corta os ~3.4s finais de cauda silenciosa das trilhas e já entra suave na próxima já pré-carregada!)
+// Transição Contínua Zero-Delay sem silêncio entre músicas!
 bgAudioPlayer.addEventListener('timeupdate', () => {
   if (!ambientPlaying || window._arcadeAudioMuted || _bgTrackAdvancingLock) return;
   const dur = bgAudioPlayer.duration;
   const cur = bgAudioPlayer.currentTime;
-  if (dur && isFinite(dur) && dur > 15 && (dur - cur) <= 3.4) {
+  const curObj = findAnyTrackById(activeTrackId);
+  const cutSec = (curObj && typeof curObj.trimTail === 'number') ? curObj.trimTail : 2.2;
+  if (dur && isFinite(dur) && dur > 15 && (dur - cur) <= cutSec) {
     window.advanceBgAmbientTrack();
   }
 });
@@ -3513,19 +3643,21 @@ function updateSoundButtonIcon() {
 
 function toggleAmbientSound() {
   playSoundClick();
+  const sleepEl = document.getElementById('screen-sleep');
+  const inSleep = !!(sleepEl && sleepEl.classList.contains('active'));
+  const pool = getUnlockedBgLoopPool(inSleep);
   if (ambientPlaying && !bgAudioPlayer.paused) {
     bgAudioPlayer.pause();
     ambientPlaying = false;
   } else if (ambientPlaying && bgAudioPlayer.paused) {
-    // Se estava marcado como ativo mas o navegador bloqueou autoplay antes do clique, toca agora!
-    const tr = SLEEP_TRACKS.find(t => t.id === activeTrackId) || SLEEP_TRACKS[0];
+    const tr = pool.find(t => t.id === activeTrackId) || pool[0];
     activeTrackId = tr.id;
     if (!bgAudioPlayer.src) bgAudioPlayer.src = tr.file;
     window.syncBgAmbientVolume(false);
     bgAudioPlayer.play().catch(() => {});
     ambientPlaying = true;
   } else {
-    const tr = SLEEP_TRACKS.find(t => t.id === activeTrackId) || SLEEP_TRACKS[0];
+    const tr = pool.find(t => t.id === activeTrackId) || pool[0];
     activeTrackId = tr.id;
     bgAudioPlayer.src = tr.file;
     window.syncBgAmbientVolume(false);
@@ -3533,7 +3665,7 @@ function toggleAmbientSound() {
     ambientPlaying = true;
   }
   updateSoundButtonIcon();
-  if (document.getElementById('screen-sleep').classList.contains('active')) {
+  if (inSleep) {
     renderSleepCorner();
   }
 }
@@ -3644,6 +3776,9 @@ function showScreen(screenId) {
   }
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(screenId).classList.add('active');
+  if (typeof window.syncMusicPoolForScreen === 'function') {
+    window.syncMusicPoolForScreen(screenId);
+  }
   if (typeof window.syncBgAmbientVolume === 'function') {
     window.syncBgAmbientVolume(false);
   }
@@ -4180,24 +4315,24 @@ window.backFromLudoTrailScreen = function() {
 };
 
 function openGalleryFor(mode) {
+  const targetGameId = mode === 'puzzle' ? 'puzzle_3d' : 'pintura_magica';
   if (mode === 'paint' && typeof window.openSalinhaDePinturaFromHome === 'function') {
     window.openSalinhaDePinturaFromHome();
     return;
   }
-  const activeScr = document.querySelector('.screen.active');
-  if (activeScr && activeScr.id !== 'screen-puzzle' && activeScr.id !== 'screen-paint' && activeScr.id !== 'screen-gallery') {
-    window._galleryOriginScreen = activeScr.id;
+  if (typeof window.openTronoArcadeGame === 'function') {
+    window.openTronoArcadeGame(targetGameId, 'screen-home');
+    return;
   }
-  if (window.EBD_STATE) window.EBD_STATE.fromLessonGames = false;
-  currentGalleryTarget = mode;
-  const doneSet = mode === 'puzzle' ? completedPuzzles : completedPaints;
-  const nextStep = getNextUncompletedStep(doneSet, 10);
-  // Abre a galeria mostrando automaticamente onde a criança parou (se já fez 1..4, já mostra 5 e 6!)
-  galleryOffset = nextStep <= 4 ? 0 : 2;
-  document.getElementById('gallery-header-title').textContent =
-    mode === 'puzzle' ? 'Quebra-Cabeça' : 'Pintura Mágica';
-  renderGalleryPage();
-  showScreen('screen-gallery');
+  if (typeof window._ensureArcadeScriptLoaded === 'function') {
+    window._ensureArcadeScriptLoaded(() => {
+      if (mode === 'paint' && typeof window.openSalinhaDePinturaFromHome === 'function') {
+        window.openSalinhaDePinturaFromHome();
+      } else if (typeof window.openTronoArcadeGame === 'function') {
+        window.openTronoArcadeGame(targetGameId, 'screen-home');
+      }
+    });
+  }
 }
 
 function stepGallery(delta) {

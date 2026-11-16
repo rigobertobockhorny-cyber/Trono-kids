@@ -6840,41 +6840,41 @@ window.openLessonModule = function(modType) {
         <!-- Sombra sutil no topo apenas para destacar as 2 bolinhas de navegação -->
         <div style="position:absolute; top:0; left:0; right:0; height:86px; background:linear-gradient(180deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0) 100%); pointer-events:none; z-index:10;"></div>
 
-        <!-- BARRA DE PLAYER LIMPA SOBRE A PRÓPRIA IMAGEM (CONTADOR + DEDINHO + 3 BOTÕES) -->
-        <div onclick="event.stopPropagation()" style="position:absolute; left:0; right:0; bottom:0; padding:38px 18px max(16px, env(safe-area-inset-bottom, 14px)) 18px; background:linear-gradient(0deg, rgba(0,0,0,0.84) 0%, rgba(0,0,0,0.46) 60%, rgba(0,0,0,0) 100%); z-index:22; display:flex; flex-direction:column; gap:11px;">
+        <!-- BARRA DE PLAYER COM AMPLO SUSPIRO NAS BORDAS (CONTADOR + DEDINHO + 3 BOTÕES AFASTADOS DAS BORDAS) -->
+        <div onclick="event.stopPropagation()" style="position:absolute; left:0; right:0; bottom:0; padding:48px 28px calc(32px + env(safe-area-inset-bottom, 0px)) 28px; background:linear-gradient(0deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.52) 64%, rgba(0,0,0,0) 100%); z-index:22; display:flex; flex-direction:column; gap:16px; box-sizing:border-box;">
           <!-- Contador de Tempo + Barra Deslizante com o Dedinho -->
-          <div style="display:flex; align-items:center; gap:10px; width:100%;">
-            <span id="vovo-video-time-current" style="font-size:12.5px; font-weight:800; color:#ffffff; min-width:34px; text-align:left; text-shadow:0 1px 4px rgba(0,0,0,0.9); font-variant-numeric:tabular-nums;">${initCurStr}</span>
-            <div style="position:relative; flex:1; height:6px; background:rgba(255,255,255,0.32); border-radius:999px;">
+          <div style="display:flex; align-items:center; gap:12px; width:100%; padding:0 4px; box-sizing:border-box;">
+            <span id="vovo-video-time-current" style="font-size:13px; font-weight:800; color:#ffffff; min-width:36px; text-align:left; text-shadow:0 1px 4px rgba(0,0,0,0.9); font-variant-numeric:tabular-nums;">${initCurStr}</span>
+            <div style="position:relative; flex:1; height:7px; background:rgba(255,255,255,0.34); border-radius:999px;">
               <div id="vovo-video-progress-fill" style="width:${initPctCss}; height:100%; background:linear-gradient(90deg, #fde047, #f59e0b); border-radius:999px;"></div>
-              <div id="vovo-video-progress-thumb" style="position:absolute; top:50%; left:${initPctCss}; width:15px; height:15px; border-radius:50%; background:#ffffff; border:2.5px solid #fde047; transform:translate(-50%, -50%); box-shadow:0 2px 6px rgba(0,0,0,0.85); pointer-events:none;"></div>
+              <div id="vovo-video-progress-thumb" style="position:absolute; top:50%; left:${initPctCss}; width:17px; height:17px; border-radius:50%; background:#ffffff; border:2.5px solid #fde047; transform:translate(-50%, -50%); box-shadow:0 2px 6px rgba(0,0,0,0.85); pointer-events:none;"></div>
               <input id="vovo-video-scrubber" type="range" min="0" max="1000" value="${Math.round(initPct * 1000)}"
                 onmousedown="window._vovoIsDraggingScrub=true" ontouchstart="window._vovoIsDraggingScrub=true"
                 onmouseup="window._vovoIsDraggingScrub=false" ontouchend="window._vovoIsDraggingScrub=false"
                 oninput="onScrubVovoStory(this.value)" onchange="window._vovoIsDraggingScrub=false; onScrubVovoStory(this.value)"
-                style="position:absolute; left:-6px; right:-6px; top:-13px; width:calc(100% + 12px); height:32px; opacity:0; cursor:pointer; margin:0; z-index:5;">
+                style="position:absolute; left:-6px; right:-6px; top:-14px; width:calc(100% + 12px); height:34px; opacity:0; cursor:pointer; margin:0; z-index:5;">
             </div>
-            <span id="vovo-video-time-total" style="font-size:12.5px; font-weight:800; color:rgba(255,255,255,0.88); min-width:34px; text-align:right; text-shadow:0 1px 4px rgba(0,0,0,0.9); font-variant-numeric:tabular-nums;">${initTotStr}</span>
+            <span id="vovo-video-time-total" style="font-size:13px; font-weight:800; color:rgba(255,255,255,0.90); min-width:36px; text-align:right; text-shadow:0 1px 4px rgba(0,0,0,0.9); font-variant-numeric:tabular-nums;">${initTotStr}</span>
           </div>
 
-          <!-- Os 3 Botões Característicos de Player: -10s | Play/Pause | +10s -->
-          <div style="display:flex; align-items:center; justify-content:center; gap:28px;">
+          <!-- Os 3 Botões Característicos de Player com Amplo Respiro: -10s | Play/Pause | +10s -->
+          <div style="display:flex; align-items:center; justify-content:center; gap:32px; padding-bottom:4px;">
             <button type="button" onclick="stepVovoStoryTime(-10)" title="Voltar 10 segundos" aria-label="Voltar 10 segundos"
-              style="width:46px; height:46px; border-radius:50%; background:rgba(15,23,42,0.58); border:1.8px solid rgba(255,255,255,0.72); color:#ffffff; display:inline-flex; align-items:center; justify-content:center; gap:1px; cursor:pointer; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 4px 12px rgba(0,0,0,0.6);">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              style="width:50px; height:50px; border-radius:50%; background:rgba(15,23,42,0.64); border:2px solid rgba(255,255,255,0.78); color:#ffffff; display:inline-flex; align-items:center; justify-content:center; gap:1px; cursor:pointer; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 4px 14px rgba(0,0,0,0.65);">
+              <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>
                 <text x="12" y="15.3" text-anchor="middle" fill="#ffffff" stroke="none" font-size="7.6" font-weight="900" font-family="Nunito, sans-serif">10</text>
               </svg>
             </button>
 
             <button id="vovo-play-btn" type="button" onclick="toggleVovoStoryNarration()" title="Play / Pausar" aria-label="Tocar história"
-              style="width:60px; height:60px; border-radius:50%; background:linear-gradient(180deg, #fde047 0%, #f59e0b 100%); border:2.5px solid #ffffff; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 5px 18px rgba(0,0,0,0.72), 0 0 16px rgba(253,224,71,0.42);">
+              style="width:64px; height:64px; border-radius:50%; background:linear-gradient(180deg, #fde047 0%, #f59e0b 100%); border:2.5px solid #ffffff; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 6px 20px rgba(0,0,0,0.75), 0 0 18px rgba(253,224,71,0.45);">
               ${window.VOVO_ICON_PLAY_SVG}
             </button>
 
             <button type="button" onclick="stepVovoStoryTime(10)" title="Avançar 10 segundos" aria-label="Avançar 10 segundos"
-              style="width:46px; height:46px; border-radius:50%; background:rgba(15,23,42,0.58); border:1.8px solid rgba(255,255,255,0.72); color:#ffffff; display:inline-flex; align-items:center; justify-content:center; gap:1px; cursor:pointer; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 4px 12px rgba(0,0,0,0.6);">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              style="width:50px; height:50px; border-radius:50%; background:rgba(15,23,42,0.64); border:2px solid rgba(255,255,255,0.78); color:#ffffff; display:inline-flex; align-items:center; justify-content:center; gap:1px; cursor:pointer; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 4px 14px rgba(0,0,0,0.65);">
+              <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>
                 <text x="12" y="15.3" text-anchor="middle" fill="#ffffff" stroke="none" font-size="7.6" font-weight="900" font-family="Nunito, sans-serif">10</text>
               </svg>
@@ -6892,10 +6892,10 @@ window.openLessonModule = function(modType) {
     const isMemorized = savedSeeds.includes(lesson.week);
     const parsedSeedVerse = window.parseDevotionalVerse(ageData.verse || "", lesson.bibleRef || "");
     box.innerHTML = `
-      <div style="flex:1; height:100%; min-height:0; display:flex; flex-direction:column; justify-content:space-evenly; align-items:center; gap:10px; padding:4px 6px 8px 6px; overflow:hidden; box-sizing:border-box;">
+      <div style="flex:1; height:100%; min-height:0; display:flex; flex-direction:column; justify-content:space-evenly; align-items:center; gap:12px; padding:8px 12px calc(18px + env(safe-area-inset-bottom, 0px)) 12px; overflow:hidden; box-sizing:border-box;">
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_sementinha.png" alt="Sementinha" style="width:clamp(84px, 15vh, 118px); height:clamp(84px, 15vh, 118px); object-fit:contain; filter:drop-shadow(0 6px 14px rgba(0,0,0,0.88)); flex-shrink:0;">
 
-        <div style="width:100%; background:linear-gradient(180deg, rgba(147,51,234,0.92) 0%, rgba(76,29,149,0.96) 100%); border:3px solid #fde047; border-radius:20px; padding:16px 14px; box-shadow:0 8px 22px rgba(0,0,0,0.88); text-align:center;">
+        <div style="width:100%; background:linear-gradient(180deg, rgba(147,51,234,0.92) 0%, rgba(76,29,149,0.96) 100%); border:3px solid #fde047; border-radius:20px; padding:18px 16px; box-shadow:0 8px 22px rgba(0,0,0,0.88); text-align:center;">
           <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:800; color:#fde047; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:8px;">Versículo para Decorar</div>
           <div style="font-size:clamp(17px, 2.5vh, 21px); font-weight:900; color:#ffffff; line-height:1.36; margin-bottom:10px; text-shadow:0 2px 6px rgba(0,0,0,0.88);">
             "${parsedSeedVerse.quote}"
@@ -6903,7 +6903,7 @@ window.openLessonModule = function(modType) {
           ${parsedSeedVerse.ref ? `<div style="font-size:14px; font-weight:900; color:#86efac;">${parsedSeedVerse.ref}</div>` : ""}
         </div>
 
-        <button type="button" class="btn-gold" style="width:100%; padding:13px; font-size:15px; border-radius:999px; flex-shrink:0; ${isMemorized ? "background:linear-gradient(180deg,#00e676,#00c853); color:#ffffff;" : ""}" onclick="markLessonSeedMemorized(${lesson.week})">
+        <button type="button" class="btn-gold" style="width:calc(100% - 8px); padding:14px 18px; font-size:15px; border-radius:999px; flex-shrink:0; ${isMemorized ? "background:linear-gradient(180deg,#00e676,#00c853); color:#ffffff;" : ""}" onclick="markLessonSeedMemorized(${lesson.week})">
           ${isMemorized ? "Versículo Guardado no Coração!" : "Já Memorizei este Versículo!"}
         </button>
       </div>
@@ -6915,17 +6915,17 @@ window.openLessonModule = function(modType) {
     const savedActions = JSON.parse(localStorage.getItem("trono_ebd_actions_done") || "[]");
     const isActionDone = savedActions.includes(lesson.week);
     box.innerHTML = `
-      <div style="flex:1; height:100%; min-height:0; display:flex; flex-direction:column; justify-content:space-evenly; align-items:center; gap:10px; padding:4px 6px 8px 6px; overflow:hidden; box-sizing:border-box;">
+      <div style="flex:1; height:100%; min-height:0; display:flex; flex-direction:column; justify-content:space-evenly; align-items:center; gap:12px; padding:8px 12px calc(18px + env(safe-area-inset-bottom, 0px)) 12px; overflow:hidden; box-sizing:border-box;">
         <img src="./2_ASSETS_UI_BOTOES/ebd_icon_fe_acao.png" alt="Fé em Ação" style="width:clamp(84px, 15vh, 118px); height:clamp(84px, 15vh, 118px); object-fit:contain; filter:drop-shadow(0 6px 14px rgba(0,0,0,0.88)); flex-shrink:0;">
 
-        <div style="width:100%; background:linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(4,47,46,0.95) 100%); border:3px solid #00e676; border-radius:20px; padding:16px 14px; box-shadow:0 8px 22px rgba(0,0,0,0.88); text-align:center;">
+        <div style="width:100%; background:linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(4,47,46,0.95) 100%); border:3px solid #00e676; border-radius:20px; padding:18px 16px; box-shadow:0 8px 22px rgba(0,0,0,0.88); text-align:center;">
           <div style="font-family:'Fredoka',sans-serif; font-size:clamp(15px, 2.2vh, 18px); font-weight:800; color:#fde047; text-transform:uppercase; line-height:1.22; margin-bottom:8px; text-shadow:0 2px 6px rgba(0,0,0,0.9);">${ageData.actionTitle}</div>
           <div style="font-size:clamp(14.5px, 2.1vh, 17px); font-weight:800; color:#ffffff; line-height:1.4;">
             ${ageData.actionDesc}
           </div>
         </div>
 
-        <button type="button" class="btn-gold" style="width:100%; padding:13px; font-size:15px; border-radius:999px; flex-shrink:0; ${isActionDone ? "background:linear-gradient(180deg,#00e676,#00c853); color:#ffffff;" : ""}" onclick="markLessonActionCompleted(${lesson.week})">
+        <button type="button" class="btn-gold" style="width:calc(100% - 8px); padding:14px 18px; font-size:15px; border-radius:999px; flex-shrink:0; ${isActionDone ? "background:linear-gradient(180deg,#00e676,#00c853); color:#ffffff;" : ""}" onclick="markLessonActionCompleted(${lesson.week})">
           ${isActionDone ? "Missão da Lição Concluída!" : "Marcar Missão como Concluída!"}
         </button>
       </div>
@@ -7525,41 +7525,15 @@ window.openGamesHubScreen = function(filterCat) {
     return;
   }
 
-  // Fallback legado caso o módulo principal ainda não tenha carregado
-  const allGames = [
-    { id: "chronology", title: "ORDEM CRONOLÓGICA", sub: "Ordene as Cenas", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_12_criacao_v130.png?v=130", action: "openEduGame('chronology', false)" },
-    { id: "verse_builder", title: "VERSÍCULO SECRETO", sub: "Monte a Palavra", icon: "./2_ASSETS_UI_BOTOES/ui_icon_06.png?v=160", action: "openEduGame('verse_builder', false)" },
-    { id: "puzzle", title: "QUEBRA-CABEÇA", sub: "Monte a Cena", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_16_puzzle_v130.png?v=130", action: "openGalleryFor('puzzle')" },
-    { id: "paint", title: "PINTURA MÁGICA", sub: "Colorir a Lição", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_17_pintura_v130.png?v=130", action: "openGalleryFor('paint')" },
-    { id: "word_search", title: "CAÇA-PALAVRAS", sub: "Ache os Termos", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_bau_jogos.png?v=161", action: "openEduGame('word_search', false)" },
-    { id: "secret_word", title: "PALAVRA SECRETA", sub: "Descubra as Letras", icon: "./2_ASSETS_UI_BOTOES/ebd_icon_licao.png?v=161", action: "openEduGame('secret_word', false)" },
-    { id: "quiz_visual", title: "QUIZ DA BÍBLIA", sub: "Perguntas e Pistas", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_09_quiz_v130.png?v=130", action: "openEduGame('who_am_i', false)" },
-    { id: "true_or_myth", title: "VERDADEIRO OU MITO", sub: "Desafio Rápido", icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png?v=161", action: "openEduGame('true_or_myth', false)" },
-    { id: "memory", title: "JOGO DA MEMÓRIA", sub: "Encontre os Pares", icon: "./2_ASSETS_UI_BOTOES/ico_jogo_13_memoria_v130.png?v=130", action: "openModule('memory')" }
-  ];
-
-  const gridEl = document.getElementById("games-hub-grid");
-  if (gridEl) {
-    gridEl.innerHTML = `
-      <div class="ebd-glass-card" style="padding:8px; margin-bottom:0;">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:6px;">
-          <div style="font-size:13px; font-weight:900; color:#fde047; text-align:left; line-height:1.15;">ESCOLHA SEU JOGO BÍBLICO</div>
-          <span style="background:linear-gradient(180deg,#00e676,#00c853); color:#052e16; font-size:10px; font-weight:900; padding:2px 8px; border-radius:999px; border:1.5px solid #ffffff; white-space:nowrap;">10 JOGOS ATIVOS</span>
-        </div>
-        <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:6px;">
-          ${allGames.map(g => `
-            <div class="inner-purple-green" onclick="${g.action}" style="border-radius:14px; padding:5px 4px; display:flex; flex-direction:column; align-items:center; text-align:center; cursor:pointer;">
-              <img src="${g.icon}" alt="${g.title}" style="width:40px; height:40px; object-fit:contain; margin-bottom:2px; filter:drop-shadow(0 2px 5px rgba(0,0,0,0.65));">
-              <div style="font-size:11.5px; font-weight:900; color:#fde047; line-height:1.12;">${g.title}</div>
-              <div style="font-size:9.5px; font-weight:800; color:#f3e8ff; margin-top:1px;">${g.sub}</div>
-            </div>
-          `).join("")}
-        </div>
-      </div>
-    `;
+  // NUNCA renderiza hub legado ("10 JOGOS ATIVOS"): garante o carregamento do Hub Oficial de 20 Jogos!
+  if (typeof window._ensureArcadeScriptLoaded === "function") {
+    window._ensureArcadeScriptLoaded(() => {
+      if (typeof window.renderAll17ArcadeGamesInHub === "function") {
+        window.renderAll17ArcadeGamesInHub();
+        if (typeof showScreen === "function") showScreen("screen-games-hub");
+      }
+    });
   }
-
-  if (typeof showScreen === "function") showScreen("screen-games-hub");
 };
 
 // ============================================================================
