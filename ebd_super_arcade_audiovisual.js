@@ -1263,34 +1263,52 @@
         0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,0.6), 0 0 10px rgba(253,224,71,0.55); }
         50% { transform: scale(1.06); box-shadow: 0 6px 16px rgba(0,0,0,0.72), 0 0 22px rgba(253,224,71,0.95); }
       }
-      .arcade-btn-replay-vovo {
-        position: absolute;
-        top: 64px;
-        right: 10px;
-        z-index: 155;
-        height: 34px;
-        padding: 0 11px 0 9px;
+      .arcade-btn-replay-vovo,
+      .arcade-twin-counter-pill {
+        height: 40px;
+        min-height: 40px;
+        min-width: 116px;
+        padding: 0 16px;
         border-radius: 999px;
         border: none;
-        background: linear-gradient(180deg, rgba(126, 34, 206, 0.92) 0%, rgba(76, 29, 149, 0.96) 100%);
+        background: linear-gradient(180deg, rgba(126, 34, 206, 0.94) 0%, rgba(76, 29, 149, 0.98) 100%);
         color: #ffffff;
         font-family: 'Fredoka', sans-serif;
-        font-size: 12px;
+        font-size: 13.5px;
         font-weight: 900;
+        line-height: 1;
         letter-spacing: 0.4px;
         display: inline-flex;
         align-items: center;
-        gap: 5px;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.65);
-        pointer-events: auto;
+        justify-content: center;
+        gap: 7px;
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.68);
+        box-sizing: border-box;
+        white-space: nowrap;
         user-select: none;
         -webkit-user-select: none;
+      }
+      .arcade-btn-replay-vovo {
+        position: absolute;
+        top: calc(66px + env(safe-area-inset-top, 0px) + 12px);
+        right: 16px;
+        z-index: 165;
+        cursor: pointer;
+        pointer-events: auto;
         touch-action: manipulation;
         transition: transform 0.14s ease, filter 0.14s ease;
         -webkit-tap-highlight-color: transparent;
       }
-      .arcade-btn-replay-vovo::before {
+      .arcade-twin-counter-pill {
+        position: absolute;
+        top: 12px;
+        left: 16px;
+        z-index: 48;
+        font-size: 14px;
+        pointer-events: none;
+      }
+      .arcade-btn-replay-vovo::before,
+      .arcade-twin-counter-pill::before {
         content: "";
         position: absolute;
         inset: 0;
@@ -1334,9 +1352,9 @@
       }
       .arcade-game-canvas-area {
         flex: 1;
+        min-height: 0;
         width: 100%;
-        height: calc(100vh - 60px);
-        height: calc(100dvh - 60px);
+        height: auto;
         position: relative;
         z-index: 1;
         isolation: isolate;
@@ -1542,35 +1560,50 @@
       }
       .davi-top-spear-tracker {
         position: absolute;
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 30;
-        display: flex;
+        top: 12px;
+        left: 16px;
+        z-index: 48;
+        height: 40px;
+        min-height: 40px;
+        min-width: 116px;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        background: rgba(15, 23, 42, 0.72);
-        border: 2px solid rgba(253, 224, 71, 0.65);
+        gap: 7px;
+        background: linear-gradient(180deg, rgba(126, 34, 206, 0.94) 0%, rgba(76, 29, 149, 0.98) 100%);
+        border: none;
         border-radius: 999px;
-        padding: 5px 14px;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.55);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        padding: 0 14px;
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.68);
+        box-sizing: border-box;
+      }
+      .davi-top-spear-tracker::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 2.5px;
+        background: linear-gradient(125deg, #38bdf8, #a855f7, #fde047, #34d399, #ec4899, #38bdf8);
+        background-size: 250% 250%;
+        animation: vovoReplayBorderFlow 4s ease infinite;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
       }
       .davi-top-spear-tracker.tracker-reset-shake {
         animation: trackerShake 0.45s ease;
       }
       @keyframes trackerShake {
-        0%, 100% { transform: translateX(-50%); }
-        20% { transform: translateX(calc(-50% - 8px)); }
-        40% { transform: translateX(calc(-50% + 8px)); }
-        60% { transform: translateX(calc(-50% - 5px)); }
-        80% { transform: translateX(calc(-50% + 5px)); }
+        0%, 100% { transform: translateX(0); }
+        20% { transform: translateX(-7px); }
+        40% { transform: translateX(7px); }
+        60% { transform: translateX(-4px); }
+        80% { transform: translateX(4px); }
       }
       .davi-check-slot {
-        width: 30px;
-        height: 30px;
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -3954,10 +3987,10 @@
           ${oilLampSvg}
         </div>
 
-        <!-- 5. CONTADOR OFICIAL DE DRACMAS ENCONTRADAS (ZERO EMOJI / ZERO DUPLICIDADE) -->
-        <div style="position:absolute; top:14px; left:14px; background:rgba(18, 11, 6, 0.88); border:2.5px solid #fde047; padding:6px 14px; border-radius:999px; color:#fde047; font-weight:900; font-size:17px; z-index:10; box-shadow:0 6px 16px rgba(0,0,0,0.75); display:flex; align-items:center; gap:7px; pointer-events:none;">
-          <span style="width:22px; height:22px; display:inline-flex;">${dracmaCoinSvg}</span>
-          <span><span id="dracmas-count">0</span> / ${totalMoedas}</span>
+        <!-- 5. CONTADOR OFICIAL DE DRACMAS ENCONTRADAS (PÍLULA GÊMEA SIMÉTRICA AO BOTÃO OUVIR) -->
+        <div class="arcade-twin-counter-pill">
+          <span style="width:20px; height:20px; display:inline-flex; flex-shrink:0;">${dracmaCoinSvg}</span>
+          <span><span id="dracmas-count">0</span> <span style="color:#fde047;">/ ${totalMoedas}</span></span>
         </div>
       </div>
     `;
@@ -4881,12 +4914,12 @@
   function runOvelhaPerdida(container, phase) {
     if (window._apriscoPeekTimer) { clearInterval(window._apriscoPeekTimer); window._apriscoPeekTimer = null; }
     const pNum = Math.max(1, Math.min(25, Math.floor(Number(phase) || 1)));
-    // ESCONDE-ESCONDE VIVO v191.0 (25 Fases):
-    // Fases 1..3: aquecimento acolhedor (2, 3, 4 ovelhinhas espiando paradinhas).
-    // Fases 4..25: Esconde-Esconde Vivo! As ovelhinhas levantam a cabecinha atrás de pedras sorteadas por alguns segundos,
-    // mexem a orelhinha e, se a criança não tocar logo, abaixam e aparecem espiando atrás de OUTRA pedra diferente!
+    // ESCONDE-ESCONDE VIVO v193.0 (25 Fases • OVELHINHAS ACHADAS FICAM TRAVADAS E VISÍVEIS NA TELA!):
+    // Fases 1..3: aquecimento acolhedor (2, 3, 3 ovelhinhas espiando paradinhas).
+    // Fases 4..25: Esconde-Esconde Vivo! Cada ovelhinha clicada fica TRAVADA e 100% visível ao lado da pedra até achar todas!
     const isLivePeekMode = pNum >= 4;
-    const totalOvelhas = pNum <= 3 ? (pNum + 1) : Math.min(10, 4 + Math.floor((pNum - 4) / 3));
+    const SHEEP_COUNTS_25 = [2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8];
+    const totalOvelhas = SHEEP_COUNTS_25[pNum - 1] || 8;
     const hideProgress = Math.min(0.68, 0.12 + Math.min(pNum - 1, 12) * 0.045);
     const hitSizePx = Math.max(52, 74 - Math.min(pNum - 1, 11) * 2);
     const simultaneousPeeks = pNum <= 10 ? 2 : (pNum % 3 === 0 ? 1 : 2);
@@ -4895,6 +4928,7 @@
     let achadas = 0;
     let isGameUnlocked = false;
     let isVictoryTriggered = false;
+    const rescuedSpotsSet = new Set();
 
     // 8 Pedras Oficiais Calibradas e Salvas pelo Rigoberto (calibracao_pedras_ovelha.json • palco base 390x750):
     const CALIBRATED_APRISCO_ROCKS = [
@@ -4909,8 +4943,9 @@
     ];
 
     function getShuffledRockIds(excludeSet) {
-      const ids = [0, 1, 2, 3, 4, 5, 6, 7].filter(id => !(excludeSet && excludeSet.has(id)));
-      const src = ids.length > 0 ? ids : [0, 1, 2, 3, 4, 5, 6, 7];
+      const available = [0, 1, 2, 3, 4, 5, 6, 7].filter(id => !rescuedSpotsSet.has(id));
+      const preferred = available.filter(id => !(excludeSet && excludeSet.has(id)));
+      const src = preferred.length > 0 ? preferred.slice() : available.slice();
       for (let i = src.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         const tmp = src[i];
@@ -5000,40 +5035,6 @@
         .aprisco-unlocked .aprisco-sheep-wrap:not(.rescued) .aprisco-sheep-img {
           animation: ovelhaPeekTwitch 3.4s ease-in-out infinite;
         }
-        .aprisco-counter-pill {
-          position: absolute;
-          top: 4px;
-          left: 10px;
-          z-index: 45;
-          height: 34px;
-          padding: 0 12px 0 8px;
-          border-radius: 999px;
-          background: linear-gradient(180deg, rgba(126, 34, 206, 0.92) 0%, rgba(76, 29, 149, 0.96) 100%);
-          color: #ffffff;
-          font-family: 'Fredoka', sans-serif;
-          font-size: 14px;
-          font-weight: 900;
-          letter-spacing: 0.4px;
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.65);
-          pointer-events: none;
-        }
-        .aprisco-counter-pill::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          border-radius: inherit;
-          padding: 2.5px;
-          background: linear-gradient(125deg, #38bdf8, #a855f7, #fde047, #34d399, #ec4899, #38bdf8);
-          background-size: 250% 250%;
-          animation: vovoReplayBorderFlow 4s ease infinite;
-          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          pointer-events: none;
-        }
       </style>
       <div id="ovelha-aprisco-stage" style="position:relative; width:100%; height:100%; overflow:hidden; user-select:none; -webkit-user-select:none; touch-action:manipulation; background:#1c140d;">
         <!-- CAMADA 1 (FUNDO): CENÁRIO 3D PIXAR DO APRISCO MONTANHOSO COM GRUTA (9:16) -->
@@ -5044,11 +5045,11 @@
           ${spotsHtml}
         </div>
 
-        <!-- PLACAR VISUAL 3D NO CANTO SUPERIOR ESQUERDO (SIMÉTRICO AO BOTÃO OUVIR COM CORPO ROXO + BORDA COLORIDA ANIMADA) -->
-        <div class="aprisco-counter-pill">
-          <img src="./2_ASSETS_UI_BOTOES/ovelha_3d_06_v135.png?v=135" style="width:23px; height:23px; object-fit:contain; filter:drop-shadow(0 1px 3px rgba(0,0,0,0.45));" alt="Ovelhinha">
+        <!-- PLACAR VISUAL 3D NO CANTO SUPERIOR ESQUERDO (PÍLULA GÊMEA IDÊNTICA AO BOTÃO OUVIR) -->
+        <div class="arcade-twin-counter-pill">
+          <img src="./2_ASSETS_UI_BOTOES/ovelha_3d_06_v135.png?v=135" style="width:22px; height:22px; object-fit:contain; filter:drop-shadow(0 1px 3px rgba(0,0,0,0.45)); flex-shrink:0;" alt="Ovelhinha">
           <span id="ovelha-aprisco-count" style="color:#ffffff; display:inline-block; transition:transform 0.22s ease;">0</span>
-          <span style="color:#fde047; opacity:0.9;">/</span>
+          <span style="color:#fde047; opacity:0.95;">/</span>
           <span style="color:#fde047;">${totalOvelhas}</span>
         </div>
       </div>
@@ -5058,6 +5059,7 @@
     const countEl = document.getElementById("ovelha-aprisco-count");
 
     function setSpotPeekVisible(spotId, visible) {
+      if (rescuedSpotsSet.has(spotId)) return;
       const g = spotPeekGeom[spotId];
       const sheepWrap = document.getElementById(`aprisco-sheep-wrap-${spotId}`);
       const hitEl = document.getElementById(`aprisco-peek-hit-${spotId}`);
@@ -5088,8 +5090,13 @@
       const candidates = getShuffledRockIds(prevSet);
       setTimeout(() => {
         if (!isGameUnlocked || isVictoryTriggered || !stageRoot || !stageRoot.isConnected) return;
-        for (let i = 0; i < wantCount && i < candidates.length; i++) {
-          setSpotPeekVisible(candidates[i], true);
+        let spawned = 0;
+        for (let i = 0; i < candidates.length && spawned < wantCount; i++) {
+          const cid = candidates[i];
+          if (!rescuedSpotsSet.has(cid)) {
+            setSpotPeekVisible(cid, true);
+            spawned++;
+          }
         }
       }, 170);
     }
@@ -5107,7 +5114,7 @@
     };
 
     function wobbleRockOnly(spotId) {
-      if (!isGameUnlocked || isVictoryTriggered) return;
+      if (!isGameUnlocked || isVictoryTriggered || rescuedSpotsSet.has(spotId)) return;
       const groupEl = document.getElementById(`aprisco-spot-${spotId}`);
       if (!groupEl || groupEl.dataset.rescued === "1") return;
       const frontRock = document.getElementById(`aprisco-front-rock-${spotId}`);
@@ -5120,10 +5127,11 @@
     }
 
     function rescueSheep(spotId) {
-      if (!isGameUnlocked || isVictoryTriggered) return;
+      if (!isGameUnlocked || isVictoryTriggered || rescuedSpotsSet.has(spotId)) return;
       if (!activeSheepSet.has(spotId)) return;
       const groupEl = document.getElementById(`aprisco-spot-${spotId}`);
       if (!groupEl || groupEl.dataset.rescued === "1") return;
+      rescuedSpotsSet.add(spotId);
       groupEl.dataset.rescued = "1";
       activeSheepSet.delete(spotId);
       const hitEl = document.getElementById(`aprisco-peek-hit-${spotId}`);
@@ -5132,27 +5140,20 @@
       const sheepWrap = document.getElementById(`aprisco-sheep-wrap-${spotId}`);
       if (sheepWrap) {
         const flipDir = Number(sheepWrap.dataset.flip || "1");
+        const g = spotPeekGeom[spotId];
+        const lockedDx = g ? Math.round(g.sdx * 1.12) : 0;
         sheepWrap.classList.add("rescued");
-        // Fica 100% visível pulando alegre para a frente/topo da pedra!
+        // Fica TRAVADA E 100% VISÍVEL NA TELA até encontrar todas as demais ovelhinhas!
         sheepWrap.style.zIndex = "18";
         sheepWrap.style.opacity = "1";
-        sheepWrap.style.transform = `translateX(-50%) translate(0px, -44px) scaleX(${flipDir * 1.18}) scaleY(1.18)`;
-        groupEl.style.zIndex = "32";
+        sheepWrap.style.transform = `translateX(-50%) translate(${lockedDx}px, -30px) scaleX(${flipDir * 1.16}) scaleY(1.16)`;
+        groupEl.style.zIndex = String(32 + achadas);
 
         const burst = document.createElement("div");
         burst.innerHTML = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 2px 6px rgba(250,204,21,0.75));"><path d="M12 2L14.8 8.5L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.2 8.5L12 2Z" fill="#fde047" stroke="#f59e0b" stroke-width="1.5"/></svg>`;
         burst.style.cssText = "position:absolute; left:50%; top:0%; pointer-events:none; z-index:25; animation:ovelhaHeartFloat 0.85s ease-out forwards;";
         groupEl.appendChild(burst);
         setTimeout(() => { try { burst.remove(); } catch(e){} }, 900);
-
-        if (isLivePeekMode) {
-          setTimeout(() => {
-            if (!isVictoryTriggered && sheepWrap && groupEl) {
-              setSpotPeekVisible(spotId, false);
-              groupEl.dataset.rescued = "0";
-            }
-          }, 560);
-        }
       }
 
       // 1º: A OVELHINHA DÁ O GRITINHO REAL "BÉÉÉ!" EM DESTAQUE ABSOLUTO!
@@ -11419,29 +11420,31 @@
         z-index: 10;
         width: 100%;
         max-width: 520px;
-        height: 40px;
-        min-height: 40px;
-        padding: 4px 104px 2px 10px;
+        height: 58px;
+        min-height: 58px;
+        padding: 12px 140px 6px 16px;
         display: flex;
         align-items: center;
         gap: 6px;
         box-sizing: border-box;
       }
       .arc-v161-diff-btn {
-        height: 32px;
-        padding: 0 11px;
+        height: 40px;
+        min-height: 40px;
+        padding: 0 13px;
         border-radius: 999px;
-        border: 2px solid rgba(253, 224, 71, 0.78);
-        background: linear-gradient(180deg, rgba(88, 28, 135, 0.92) 0%, rgba(46, 16, 101, 0.96) 100%);
+        border: 2px solid rgba(253, 224, 71, 0.82);
+        background: linear-gradient(180deg, rgba(88, 28, 135, 0.94) 0%, rgba(46, 16, 101, 0.98) 100%);
         color: #ffffff;
         font-family: 'Fredoka', sans-serif;
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 900;
         letter-spacing: 0.3px;
         cursor: pointer;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.55);
+        box-shadow: 0 5px 12px rgba(0,0,0,0.6);
         transition: transform 0.12s ease, background 0.15s ease;
         white-space: nowrap;
+        box-sizing: border-box;
       }
       .arc-v161-diff-btn.active {
         background: linear-gradient(180deg, #00e676 0%, #00c853 100%);
@@ -12296,10 +12299,10 @@
         <img src="./2_ASSETS_UI_BOTOES/bg_jogo_17_pintura_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
-        <!-- Faixa compacta superior (divide a linha com o botão OUVIR à direita) -->
+        <!-- Faixa compacta superior (PÍLULA GÊMEA SIMÉTRICA AO BOTÃO OUVIR À DIREITA) -->
         <div class="arc-v161-top-strip">
-          <button type="button" id="arcade-btn-paint-finish" class="arc-v161-diff-btn active" style="padding:0 14px; display:inline-flex; align-items:center; gap:5px;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <button type="button" id="arcade-btn-paint-finish" class="arc-v161-diff-btn active" style="min-width:116px; height:40px; padding:0 16px; font-size:13.5px; display:inline-flex; align-items:center; justify-content:center; gap:7px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span>PRONTO!</span>
           </button>
         </div>
@@ -13090,7 +13093,7 @@
     }
 
     container.innerHTML = `
-      <div class="arc-v161-stage" style="padding:44px 10px 14px 10px; justify-content:space-evenly;">
+      <div class="arc-v161-stage" style="padding:58px 12px 18px 12px; justify-content:space-evenly;">
         <img src="./2_ASSETS_UI_BOTOES/bg_jogo_19_cacapalavras_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
@@ -13304,7 +13307,7 @@
     let solved = false;
 
     container.innerHTML = `
-      <div class="arc-v161-stage" style="padding:44px 10px 14px 10px; justify-content:space-evenly;">
+      <div class="arc-v161-stage" style="padding:58px 12px 18px 12px; justify-content:space-evenly;">
         <img src="./2_ASSETS_UI_BOTOES/bg_jogo_20_palavrasecreta_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
@@ -13534,7 +13537,7 @@
     let solved = false;
 
     container.innerHTML = `
-      <div class="arc-v161-stage" style="padding:48px 14px 24px 14px; justify-content:space-evenly;">
+      <div class="arc-v161-stage" style="padding:58px 14px 24px 14px; justify-content:space-evenly;">
         <img id="arcade-tm-bg-img" src="./2_ASSETS_UI_BOTOES/bg_jogo_22_verdadeiromito_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
