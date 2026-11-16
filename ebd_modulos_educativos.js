@@ -10,10 +10,10 @@ window.EBD_WHITE_LABEL_CONFIG = {
   churchName: "Currículo Oficial Trono da Promessa • Escola Bíblica Dominical",
   quarterTitle: "Série 1: Grandes Começos e Heróis da Fé • Série 2: Jornada Completa da Promessa",
   version: "4.0.0-EBD",
-  defaultUnlockedWeeks: 10,
-  freeWeeksLimit: 10,
+  defaultUnlockedWeeks: 5,
+  freeWeeksLimit: 5,
   totalWeeksInTrimester: 22,
-  freeGamePhasesCount: 10,
+  freeGamePhasesCount: 5,
   ageBrackets: [
     { id: "3-5", label: "3 a 5 anos", sub: "Educação Infantil" },
     { id: "6-8", label: "6 a 8 anos", sub: "Anos Iniciais" }
@@ -4757,10 +4757,10 @@ window.EBD_STATE = {
   vovoActiveSceneIdx: 0
 };
 
-// Verifica se uma semana da Lição (1..10 grátis, 11..22 estritamente VIP) está liberada
+// Verifica se uma semana da Lição (1..5 grátis, 6..22 estritamente Assinantes) está liberada
 window.isLessonWeekUnlocked = function(weekNum) {
   if (typeof isVipUnlocked !== "undefined" && isVipUnlocked) return true;
-  const maxFree = 10;
+  const maxFree = 5;
   return weekNum <= maxFree;
 };
 
@@ -6275,10 +6275,10 @@ window.ebdAskSubscribe = function(title) {
   }
 };
 
-// 8.2 Verifica VIP e Desbloqueio de Lições (10 Lições Grátis na Série 1 + 12 Lições Bloqueadas na Série 2)
+// 8.2 Verifica VIP e Desbloqueio de Lições (5 Lições Grátis + 17 Lições Bloqueadas para Assinantes)
 window.isLessonWeekUnlocked = function(weekNum) {
   if (typeof isVipUnlocked !== "undefined" && isVipUnlocked) return true;
-  const maxFree = 10;
+  const maxFree = 5;
   return weekNum <= maxFree;
 };
 
@@ -6308,7 +6308,7 @@ window.stepLessonWeek = function(delta) {
   }
   if (next >total) next = 1;
   if (!window.isLessonWeekUnlocked(next)) {
-    window.ebdAskSubscribe("Liberar Série 2 Completa (Lições 11 a 22 da EBD)");
+    window.ebdAskSubscribe("Liberar Lições 6 a 22 da EBD!");
     return;
   }
   window.EBD_STATE.currentWeek = next;
@@ -9786,7 +9786,9 @@ window.renderTeacherPortalContent = function() {
     let pillsHtml = "";
     (window.EBD_LESSONS_CURRICULUM || []).forEach(item => {
       const isCur = Number(item.week) === Number(lesson.week);
-      pillsHtml += `<button type="button" id="teacher-pill-${item.week}" class="lesson-scroll-pill ${isCur ? "current" : ""}" onclick="selectTeacherPortalWeek(${item.week})" title="Lição ${item.week}: ${window.escapeEbdHtml(item.title)}">LIÇÃO ${item.week}</button>`;
+      const unl = typeof window.isLessonWeekUnlocked === "function" ? window.isLessonWeekUnlocked(item.week) : (item.week <= 5);
+      const lockIcon = unl ? "" : ` <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" style="width:12px;height:12px;vertical-align:-1px;object-fit:contain;" alt="VIP">`;
+      pillsHtml += `<button type="button" id="teacher-pill-${item.week}" class="lesson-scroll-pill ${isCur ? "current" : ""} ${unl ? "" : "locked-vip"}" onclick="selectTeacherPortalWeek(${item.week})" title="Lição ${item.week}: ${window.escapeEbdHtml(item.title)}">LIÇÃO ${item.week}${lockIcon}</button>`;
     });
     trailEl.innerHTML = pillsHtml;
     if (typeof window.enableHorizontalDragScroll === "function") {
@@ -9953,11 +9955,13 @@ window.selectTeacherPortalWeek = function(weekNum) {
   window.ebdClick();
   const total = (window.EBD_LESSONS_CURRICULUM || []).length || 22;
   const wk = Math.max(1, Math.min(total, Number(weekNum) || 1));
-  window.EBD_MAGAZINE_STATE.portalWeek = wk;
-  if (typeof window.isLessonWeekUnlocked === "function" && window.isLessonWeekUnlocked(wk)) {
-    window.EBD_STATE.currentWeek = wk;
-    localStorage.setItem("trono_ebd_week", String(wk));
+  if (typeof window.isLessonWeekUnlocked === "function" && !window.isLessonWeekUnlocked(wk)) {
+    window.ebdAskSubscribe("Liberar Revista Digital e Slides das Lições 6 a 22!");
+    return;
   }
+  window.EBD_MAGAZINE_STATE.portalWeek = wk;
+  window.EBD_STATE.currentWeek = wk;
+  localStorage.setItem("trono_ebd_week", String(wk));
   window.EBD_MAGAZINE_STATE.slideIndex = 0;
   window.EBD_MAGAZINE_STATE.slideAnswerRevealed = false;
   window.renderTeacherPortalContent();
@@ -9967,7 +9971,7 @@ window.stepTeacherPortalWeek = function(delta) {
   window.ebdClick();
   const total = (window.EBD_LESSONS_CURRICULUM || []).length || 22;
   let next = (window.EBD_MAGAZINE_STATE.portalWeek || window.EBD_STATE.currentWeek || 1) + delta;
-  if (next < 1) next = total;
+  if (next < 1) next = 1;
   if (next > total) next = 1;
   window.selectTeacherPortalWeek(next);
 };
@@ -10064,6 +10068,10 @@ window.printLessonSlidesHandoutWhite = function(weekNum) {
 
 window.printFullEbdMagazine = function() {
   window.ebdClick();
+  if (!(typeof isVipUnlocked !== "undefined" && isVipUnlocked)) {
+    window.ebdAskSubscribe("Liberar Impressão da Apostila Completa (22 Lições)!");
+    return;
+  }
   const esc = window.escapeEbdHtml;
   const lessons = window.EBD_LESSONS_CURRICULUM || [];
   if (!lessons.length) return;

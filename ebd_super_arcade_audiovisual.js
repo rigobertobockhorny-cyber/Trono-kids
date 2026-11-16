@@ -833,7 +833,8 @@
       gameTitle: "PESCA MARAVILHOSA",
       milestones: {
         5:  { code: "CARD_01_F05", num: 1,  phase: 5,  tier: "GRÁTIS",   title: "As Redes Cheias na Galileia",      img: "./5_ASSETS_CARDS_JOGOS/card_01_pesca_f05.jpg?v=147" },
-        15: { code: "CARD_02_F15", num: 2,  phase: 15, tier: "CAMPEÃO",  title: "Encontro na Praia com Jesus",      img: "./5_ASSETS_CARDS_JOGOS/card_02_pesca_f15.jpg?v=147" }
+        15: { code: "CARD_02_F15", num: 2,  phase: 15, tier: "CAMPEÃO",  title: "Encontro na Praia com Jesus",      img: "./5_ASSETS_CARDS_JOGOS/card_02_pesca_f15.jpg?v=147" },
+        25: { code: "CARD_01_F25", num: 33, phase: 25, tier: "CAMPEÃO",  title: "Pescadores de Homens com Jesus",   img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_22_dia_01.jpg?v=191" }
       }
     },
     dracma_perdida: {
@@ -841,7 +842,8 @@
       gameTitle: "ACHE A MOEDA",
       milestones: {
         5:  { code: "CARD_03_F05", num: 3,  phase: 5,  tier: "GRÁTIS",   title: "A Moeda de Prata Encontrada",      img: "./5_ASSETS_CARDS_JOGOS/card_03_moeda_f05.jpg?v=147" },
-        15: { code: "CARD_04_F15", num: 4,  phase: 15, tier: "CAMPEÃO",  title: "Festa com as Vizinhas",            img: "./5_ASSETS_CARDS_JOGOS/card_04_moeda_f15.jpg?v=147" }
+        15: { code: "CARD_04_F15", num: 4,  phase: 15, tier: "CAMPEÃO",  title: "Festa com as Vizinhas",            img: "./5_ASSETS_CARDS_JOGOS/card_04_moeda_f15.jpg?v=147" },
+        25: { code: "CARD_02_F25", num: 34, phase: 25, tier: "CAMPEÃO",  title: "Tesouro Precioso do Reino",        img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_16_dia_01.jpg?v=191" }
       }
     },
     pombo_arca: {
@@ -849,7 +851,8 @@
       gameTitle: "POMBINHA DA PAZ",
       milestones: {
         5:  { code: "CARD_05_F05", num: 5,  phase: 5,  tier: "GRÁTIS",   title: "O Raminho de Oliveira",            img: "./5_ASSETS_CARDS_JOGOS/card_05_pombo_f05.jpg?v=147" },
-        15: { code: "CARD_06_F15", num: 6,  phase: 15, tier: "CAMPEÃO",  title: "A Pombinha Pousa nas Mãos de Noé", img: "./5_ASSETS_CARDS_JOGOS/card_06_pombo_f15.jpg?v=147" }
+        15: { code: "CARD_06_F15", num: 6,  phase: 15, tier: "CAMPEÃO",  title: "A Pombinha Pousa nas Mãos de Noé", img: "./5_ASSETS_CARDS_JOGOS/card_06_pombo_f15.jpg?v=147" },
+        25: { code: "CARD_03_F25", num: 35, phase: 25, tier: "CAMPEÃO",  title: "Céu Azul da Nova Manhã",           img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_02_dia_01.jpg?v=191" }
       }
     },
     jonatas_alvo: {
@@ -857,7 +860,8 @@
       gameTitle: "DESVIE DA LANÇA",
       milestones: {
         5:  { code: "CARD_07_F05", num: 7,  phase: 5,  tier: "GRÁTIS",   title: "A Amizade de Davi e Jônatas",      img: "./5_ASSETS_CARDS_JOGOS/card_07_davi_f05.jpg?v=147" },
-        15: { code: "CARD_08_F15", num: 8,  phase: 15, tier: "CAMPEÃO",  title: "A Harpa de Paz de Davi",           img: "./5_ASSETS_CARDS_JOGOS/card_08_davi_f15.jpg?v=147" }
+        15: { code: "CARD_08_F15", num: 8,  phase: 15, tier: "CAMPEÃO",  title: "A Harpa de Paz de Davi",           img: "./5_ASSETS_CARDS_JOGOS/card_08_davi_f15.jpg?v=147" },
+        25: { code: "CARD_04_F25", num: 36, phase: 25, tier: "CAMPEÃO",  title: "Deus Guarda o Coração Fiel",       img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_15_dia_01.jpg?v=191" }
       }
     },
     ovelha_perdida: {
@@ -865,7 +869,8 @@
       gameTitle: "CADÊ A OVELHA?",
       milestones: {
         5:  { code: "CARD_09_F05", num: 9,  phase: 5,  tier: "GRÁTIS",   title: "Achando a Ovelhinha nas Pedras",   img: "./5_ASSETS_CARDS_JOGOS/card_09_ovelha1_f05.jpg?v=147" },
-        15: { code: "CARD_10_F15", num: 10, phase: 15, tier: "CAMPEÃO",  title: "De Volta ao Aprisco nos Ombros",   img: "./5_ASSETS_CARDS_JOGOS/card_10_ovelha1_f15.jpg?v=147" }
+        15: { code: "CARD_10_F15", num: 10, phase: 15, tier: "CAMPEÃO",  title: "De Volta ao Aprisco nos Ombros",   img: "./5_ASSETS_CARDS_JOGOS/card_10_ovelha1_f15.jpg?v=147" },
+        25: { code: "CARD_05_F25", num: 37, phase: 25, tier: "CAMPEÃO",  title: "O Bom Pastor Cuida de Todas",      img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_08_dia_01.jpg?v=191" }
       }
     },
     ovelha_fujona: {
@@ -873,7 +878,8 @@
       gameTitle: "PEGA A OVELHA!",
       milestones: {
         5:  { code: "CARD_11_F05", num: 11, phase: 5,  tier: "GRÁTIS",   title: "Alegria nos Campos de Belém",      img: "./5_ASSETS_CARDS_JOGOS/card_11_ovelha2_f05.jpg?v=147" },
-        15: { code: "CARD_12_F15", num: 12, phase: 15, tier: "CAMPEÃO",  title: "Pastos Verdes e Águas Tranquilas", img: "./5_ASSETS_CARDS_JOGOS/card_12_ovelha2_f15.jpg?v=147" }
+        15: { code: "CARD_12_F15", num: 12, phase: 15, tier: "CAMPEÃO",  title: "Pastos Verdes e Águas Tranquilas", img: "./5_ASSETS_CARDS_JOGOS/card_12_ovelha2_f15.jpg?v=147" },
+        25: { code: "CARD_06_F25", num: 38, phase: 25, tier: "CAMPEÃO",  title: "Festa no Rebanho do Pastor",       img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_15_dia_02.jpg?v=191" }
       }
     },
     quem_entrou_arca: {
@@ -881,7 +887,8 @@
       gameTitle: "ARCA DE NOÉ",
       milestones: {
         5:  { code: "CARD_13_F05", num: 13, phase: 5,  tier: "GRÁTIS",   title: "Os Bichinhos Entrando na Arca",    img: "./5_ASSETS_CARDS_JOGOS/card_13_arca_f05.jpg?v=147" },
-        15: { code: "CARD_14_F15", num: 14, phase: 15, tier: "CAMPEÃO",  title: "A Aliança do Arco-Íris",           img: "./5_ASSETS_CARDS_JOGOS/card_14_arca_f15.jpg?v=147" }
+        15: { code: "CARD_14_F15", num: 14, phase: 15, tier: "CAMPEÃO",  title: "A Aliança do Arco-Íris",           img: "./5_ASSETS_CARDS_JOGOS/card_14_arca_f15.jpg?v=147" },
+        25: { code: "CARD_07_F25", num: 39, phase: 25, tier: "CAMPEÃO",  title: "Família de Noé Agradecendo a Deus",img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_02_dia_02.jpg?v=191" }
       }
     },
     quiz_visual: {
@@ -889,7 +896,8 @@
       gameTitle: "QUIZ DA BÍBLIA",
       milestones: {
         5:  { code: "CARD_15_F05", num: 15, phase: 5,  tier: "GRÁTIS",   title: "Os Reis Magos e a Estrela Guia",   img: "./5_ASSETS_CARDS_JOGOS/card_15_quiz_f05.jpg?v=147" },
-        15: { code: "CARD_16_F15", num: 16, phase: 15, tier: "CAMPEÃO",  title: "O Menino Jesus no Templo",         img: "./5_ASSETS_CARDS_JOGOS/card_16_quiz_f15.jpg?v=147" }
+        15: { code: "CARD_16_F15", num: 16, phase: 15, tier: "CAMPEÃO",  title: "O Menino Jesus no Templo",         img: "./5_ASSETS_CARDS_JOGOS/card_16_quiz_f15.jpg?v=147" },
+        25: { code: "CARD_08_F25", num: 40, phase: 25, tier: "CAMPEÃO",  title: "Sábios na Palavra de Deus",        img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_21_dia_01.jpg?v=191" }
       }
     },
     ligue_pontos: {
@@ -897,7 +905,8 @@
       gameTitle: "LIGUE OS PONTOS",
       milestones: {
         5:  { code: "CARD_17_F05", num: 17, phase: 5,  tier: "GRÁTIS",   title: "Abraão e o Céu de Estrelas",       img: "./5_ASSETS_CARDS_JOGOS/card_17_pontos_f05.jpg?v=147" },
-        15: { code: "CARD_18_F15", num: 18, phase: 15, tier: "CAMPEÃO",  title: "A Escada Iluminada de Jacó",       img: "./5_ASSETS_CARDS_JOGOS/card_18_pontos_f15.jpg?v=147" }
+        15: { code: "CARD_18_F15", num: 18, phase: 15, tier: "CAMPEÃO",  title: "A Escada Iluminada de Jacó",       img: "./5_ASSETS_CARDS_JOGOS/card_18_pontos_f15.jpg?v=147" },
+        25: { code: "CARD_09_F25", num: 41, phase: 25, tier: "CAMPEÃO",  title: "A Promessa Brilha no Céu",         img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_03_dia_01.jpg?v=191" }
       }
     },
     seis_erros: {
@@ -905,7 +914,8 @@
       gameTitle: "JOGO DOS ERROS",
       milestones: {
         5:  { code: "CARD_19_F05", num: 19, phase: 5,  tier: "GRÁTIS",   title: "O Jardim Florido da Criação",      img: "./5_ASSETS_CARDS_JOGOS/card_19_erros_f05.jpg?v=147" },
-        15: { code: "CARD_20_F15", num: 20, phase: 15, tier: "CAMPEÃO",  title: "Daniel na Cova dos Leões",         img: "./5_ASSETS_CARDS_JOGOS/card_20_erros_f15.jpg?v=147" }
+        15: { code: "CARD_20_F15", num: 20, phase: 15, tier: "CAMPEÃO",  title: "Daniel na Cova dos Leões",         img: "./5_ASSETS_CARDS_JOGOS/card_20_erros_f15.jpg?v=147" },
+        25: { code: "CARD_10_F25", num: 42, phase: 25, tier: "CAMPEÃO",  title: "Olhos Atentos na Criação",         img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_10_dia_01.jpg?v=191" }
       }
     },
     criacao_ordem: {
@@ -913,7 +923,8 @@
       gameTitle: "ORDEM CRONOLÓGICA",
       milestones: {
         5:  { code: "CARD_21_F05", num: 21, phase: 5,  tier: "GRÁTIS",   title: "O Sol, a Lua e as Estrelinhas",    img: "./5_ASSETS_CARDS_JOGOS/card_21_criacao_f05.jpg?v=147" },
-        15: { code: "CARD_22_F15", num: 22, phase: 15, tier: "CAMPEÃO",  title: "A Grande Festa da Criação",        img: "./5_ASSETS_CARDS_JOGOS/card_22_criacao_f15.jpg?v=147" }
+        15: { code: "CARD_22_F15", num: 22, phase: 15, tier: "CAMPEÃO",  title: "A Grande Festa da Criação",        img: "./5_ASSETS_CARDS_JOGOS/card_22_criacao_f15.jpg?v=147" },
+        25: { code: "CARD_11_F25", num: 43, phase: 25, tier: "CAMPEÃO",  title: "A História da Grande Promessa",    img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_01_dia_01.jpg?v=191" }
       }
     },
     memoria_sonoro: {
@@ -921,7 +932,8 @@
       gameTitle: "JOGO DA MEMÓRIA",
       milestones: {
         5:  { code: "CARD_23_F05", num: 23, phase: 5,  tier: "GRÁTIS",   title: "Amiguinhos da Natureza de Deus",   img: "./5_ASSETS_CARDS_JOGOS/card_23_memoria_f05.jpg?v=147" },
-        15: { code: "CARD_24_F15", num: 24, phase: 15, tier: "CAMPEÃO",  title: "Jonas e a Grande Baleia Azul",     img: "./5_ASSETS_CARDS_JOGOS/card_24_memoria_f15.jpg?v=147" }
+        15: { code: "CARD_24_F15", num: 24, phase: 15, tier: "CAMPEÃO",  title: "Jonas e a Grande Baleia Azul",     img: "./5_ASSETS_CARDS_JOGOS/card_24_memoria_f15.jpg?v=147" },
+        25: { code: "CARD_12_F25", num: 44, phase: 25, tier: "CAMPEÃO",  title: "Guardando a Palavra na Memória",   img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_09_dia_01.jpg?v=191" }
       }
     },
     mana_deserto: {
@@ -929,7 +941,8 @@
       gameTitle: "ACHE A FIGURA!",
       milestones: {
         5:  { code: "CARD_25_F05", num: 25, phase: 5,  tier: "GRÁTIS",   title: "Colhendo o Maná ao Amanhecer",     img: "./5_ASSETS_CARDS_JOGOS/card_25_mana_f05.jpg?v=147" },
-        15: { code: "CARD_26_F15", num: 26, phase: 15, tier: "CAMPEÃO",  title: "Água Viva da Rocha de Horebe",     img: "./5_ASSETS_CARDS_JOGOS/card_26_mana_f15.jpg?v=147" }
+        15: { code: "CARD_26_F15", num: 26, phase: 15, tier: "CAMPEÃO",  title: "Água Viva da Rocha de Horebe",     img: "./5_ASSETS_CARDS_JOGOS/card_26_mana_f15.jpg?v=147" },
+        25: { code: "CARD_13_F25", num: 45, phase: 25, tier: "CAMPEÃO",  title: "Provisão Diária do Céu",           img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_11_dia_01.jpg?v=191" }
       }
     },
     tabernaculo_cesto: {
@@ -937,7 +950,8 @@
       gameTitle: "PARES DA ARCA",
       milestones: {
         5:  { code: "CARD_27_F05", num: 27, phase: 5,  tier: "GRÁTIS",   title: "O Cestinho do Bebê Moisés no Nilo",img: "./5_ASSETS_CARDS_JOGOS/card_27_moises_f05.jpg?v=147" },
-        15: { code: "CARD_28_F15", num: 28, phase: 15, tier: "CAMPEÃO",  title: "A Travessia do Mar Vermelho",      img: "./5_ASSETS_CARDS_JOGOS/card_28_moises_f15.jpg?v=147" }
+        15: { code: "CARD_28_F15", num: 28, phase: 15, tier: "CAMPEÃO",  title: "A Travessia do Mar Vermelho",      img: "./5_ASSETS_CARDS_JOGOS/card_28_moises_f15.jpg?v=147" },
+        25: { code: "CARD_14_F25", num: 46, phase: 25, tier: "CAMPEÃO",  title: "Todos os Pares Seguros na Arca",   img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_02_dia_03.jpg?v=191" }
       }
     },
     puzzle_3d: {
@@ -945,7 +959,8 @@
       gameTitle: "QUEBRA-CABEÇA",
       milestones: {
         5:  { code: "CARD_29_F05", num: 29, phase: 5,  tier: "GRÁTIS",   title: "Cinco Pães e Dois Peixinhos",      img: "./5_ASSETS_CARDS_JOGOS/card_29_puzzle_f05.jpg?v=147" },
-        15: { code: "CARD_30_F15", num: 30, phase: 15, tier: "CAMPEÃO",  title: "Jesus Acalma a Tempestade",        img: "./5_ASSETS_CARDS_JOGOS/card_30_puzzle_f15.jpg?v=147" }
+        15: { code: "CARD_30_F15", num: 30, phase: 15, tier: "CAMPEÃO",  title: "Jesus Acalma a Tempestade",        img: "./5_ASSETS_CARDS_JOGOS/card_30_puzzle_f15.jpg?v=147" },
+        25: { code: "CARD_15_F25", num: 47, phase: 25, tier: "CAMPEÃO",  title: "Mestre dos Quebra-Cabeças Bíblicos",img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_07_dia_01.jpg?v=191" }
       }
     },
     pintura_magica: {
@@ -953,7 +968,44 @@
       gameTitle: "PINTURA MÁGICA",
       milestones: {
         5:  { code: "CARD_31_F05", num: 31, phase: 5,  tier: "GRÁTIS",   title: "A Túnica Colorida de José",        img: "./5_ASSETS_CARDS_JOGOS/card_31_pintura_f05.jpg?v=147" },
-        15: { code: "CARD_32_F15", num: 32, phase: 15, tier: "CAMPEÃO",  title: "Jesus Abençoando as Crianças",     img: "./5_ASSETS_CARDS_JOGOS/card_32_pintura_f15.jpg?v=147" }
+        15: { code: "CARD_32_F15", num: 32, phase: 15, tier: "CAMPEÃO",  title: "Jesus Abençoando as Crianças",     img: "./5_ASSETS_CARDS_JOGOS/card_32_pintura_f15.jpg?v=147" },
+        25: { code: "CARD_16_F25", num: 48, phase: 25, tier: "CAMPEÃO",  title: "Artista do Reino da Promessa",     img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_05_dia_01.jpg?v=191" }
+      }
+    },
+    versiculo_secreto: {
+      gameNum: 17,
+      gameTitle: "VERSÍCULO SECRETO",
+      milestones: {
+        5:  { code: "CARD_33_F05", num: 49, phase: 5,  tier: "GRÁTIS",   title: "Sementinha no Coração",            img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_04_dia_01.jpg?v=191" },
+        15: { code: "CARD_34_F15", num: 50, phase: 15, tier: "CAMPEÃO",  title: "Lâmpada para os Meus Pés",         img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_13_dia_01.jpg?v=191" },
+        25: { code: "CARD_35_F25", num: 51, phase: 25, tier: "CAMPEÃO",  title: "Guardião dos Versículos",          img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_20_dia_01.jpg?v=191" }
+      }
+    },
+    caca_palavras: {
+      gameNum: 18,
+      gameTitle: "CAÇA-PALAVRAS",
+      milestones: {
+        5:  { code: "CARD_36_F05", num: 52, phase: 5,  tier: "GRÁTIS",   title: "Descobrindo Palavras de Fé",       img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_06_dia_01.jpg?v=191" },
+        15: { code: "CARD_37_F15", num: 53, phase: 15, tier: "CAMPEÃO",  title: "Sabedoria nas Escrituras",         img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_17_dia_01.jpg?v=191" },
+        25: { code: "CARD_38_F25", num: 54, phase: 25, tier: "CAMPEÃO",  title: "Campeão do Caça-Palavras",         img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_19_dia_01.jpg?v=191" }
+      }
+    },
+    palavra_secreta: {
+      gameNum: 19,
+      gameTitle: "PALAVRA SECRETA",
+      milestones: {
+        5:  { code: "CARD_39_F05", num: 55, phase: 5,  tier: "GRÁTIS",   title: "Letrinhas da Promessa",            img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_12_dia_01.jpg?v=191" },
+        15: { code: "CARD_40_F15", num: 56, phase: 15, tier: "CAMPEÃO",  title: "Coragem dos Heróis da Fé",         img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_14_dia_01.jpg?v=191" },
+        25: { code: "CARD_41_F25", num: 57, phase: 25, tier: "CAMPEÃO",  title: "Mestre da Palavra Secreta",        img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_18_dia_01.jpg?v=191" }
+      }
+    },
+    verdadeiro_mito: {
+      gameNum: 20,
+      gameTitle: "VERDADEIRO OU MITO",
+      milestones: {
+        5:  { code: "CARD_42_F05", num: 58, phase: 5,  tier: "GRÁTIS",   title: "A Verdade da Bíblia Sagrada",      img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_01_dia_02.jpg?v=191" },
+        15: { code: "CARD_43_F15", num: 59, phase: 15, tier: "CAMPEÃO",  title: "Firme na Rocha Verdadeira",        img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_13_dia_02.jpg?v=191" },
+        25: { code: "CARD_44_F25", num: 60, phase: 25, tier: "CAMPEÃO",  title: "Campeão da Verdade Bíblica",       img: "./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_21_dia_02.jpg?v=191" }
       }
     }
   };
@@ -1915,38 +1967,12 @@
   // ==========================================================================
   let currentActiveGame = null;
   let currentPhase = 1;
-  const TOTAL_PHASES = 15;
+  const TOTAL_PHASES = 25;
   const FREE_PHASES = 5;
   const ARCADE_PROGRESS_STORAGE_KEY = "trono_arcade_progress_v1";
 
+  // REGRA MESTRA OFICIAL v191.0: 100% dos jogos possuem padronização unificada de 25 Fases!
   function getGameTotalPhases(gameId) {
-    if (gameId === "quiz_visual") {
-      return QUIZ_VISUAL_22_PHASES.length;
-    }
-    if (gameId === "criacao_ordem") {
-      return (window.CHRONOLOGY_LEVELS && window.CHRONOLOGY_LEVELS.length) ? window.CHRONOLOGY_LEVELS.length : 22;
-    }
-    if (gameId === "versiculo_secreto") {
-      return (window.VERSE_BUILDER_BANK && window.VERSE_BUILDER_BANK.length) ? window.VERSE_BUILDER_BANK.length : 22;
-    }
-    if (gameId === "pintura_magica") {
-      return 15;
-    }
-    if (gameId === "puzzle_3d") {
-      return (window.EBD_LESSONS_CURRICULUM && window.EBD_LESSONS_CURRICULUM.length) ? window.EBD_LESSONS_CURRICULUM.length : 22;
-    }
-    if (gameId === "caca_palavras") {
-      return (window.WORD_SEARCH_LEVELS && window.WORD_SEARCH_LEVELS.length) ? window.WORD_SEARCH_LEVELS.length : 22;
-    }
-    if (gameId === "palavra_secreta") {
-      return (window.SECRET_WORD_BANK && window.SECRET_WORD_BANK.length) ? window.SECRET_WORD_BANK.length : 22;
-    }
-    if (gameId === "quem_sou_eu") {
-      return (window.WHO_AM_I_BANK && window.WHO_AM_I_BANK.length) ? window.WHO_AM_I_BANK.length : 22;
-    }
-    if (gameId === "verdadeiro_mito") {
-      return (window.TRUE_OR_MYTH_BANK && window.TRUE_OR_MYTH_BANK.length) ? window.TRUE_OR_MYTH_BANK.length : 22;
-    }
     return TOTAL_PHASES;
   }
 
@@ -1977,7 +2003,11 @@
     const saved = map[gameId];
     if (saved && typeof saved === "object") {
       const mc = Math.max(0, Math.min(totPh, Math.floor(Number(saved.maxCompleted) || 0)));
-      const lp = Math.max(1, Math.min(totPh, Math.floor(Number(saved.lastPhase) || 1)));
+      let lp = Math.max(1, Math.min(totPh, Math.floor(Number(saved.lastPhase) || 1)));
+      // Se houve atualização futura (+10 fases) e o jogador VIP tinha zerado o teto anterior, aponta direto para a 1ª fase inédita!
+      if (isArcadeVipActive() && saved.completedCap && Number(saved.completedCap) < totPh && mc >= Number(saved.completedCap) && mc < totPh && lp === 1) {
+        lp = mc + 1;
+      }
       return { maxCompleted: mc, lastPhase: lp };
     }
     // Migração automática caso o jogador já tenha conquistado Super Cards (Fase 5 ou Fase 15) antes do motor de save
@@ -2013,9 +2043,11 @@
     const prog = window.getArcadeGameProgress(gameId);
     const maxUnl = window.getArcadeGameMaxUnlocked(gameId);
     const clamped = Math.max(1, Math.min(maxUnl, Math.floor(Number(phase) || 1)));
+    const prevCap = (map[gameId] && map[gameId].completedCap) ? Number(map[gameId].completedCap) : 0;
     map[gameId] = {
       maxCompleted: prog.maxCompleted,
-      lastPhase: clamped
+      lastPhase: clamped,
+      completedCap: prevCap
     };
     writeAllArcadeProgressMap(map);
   };
@@ -2031,10 +2063,22 @@
     const newMaxUnlocked = !isVip
       ? FREE_PHASES
       : (newMaxCompleted < FREE_PHASES ? FREE_PHASES : Math.min(totPh, newMaxCompleted + 1));
-    const nextResumePhase = (pWon < newMaxUnlocked) ? (pWon + 1) : pWon;
+    // REGRA OFICIAL v191.0: Ao concluir a última fase disponível (Fase 25 VIP ou Fase 5 Grátis),
+    // reseta automaticamente lastPhase para a Fase 1 para NUNCA ficar preso na última fase ao entrar de novo!
+    let nextResumePhase = 1;
+    let completedCap = (map[gameId] && map[gameId].completedCap) ? Number(map[gameId].completedCap) : 0;
+    if (isVip && pWon >= totPh) {
+      nextResumePhase = 1;
+      completedCap = totPh;
+    } else if (!isVip && pWon >= FREE_PHASES) {
+      nextResumePhase = 1;
+    } else {
+      nextResumePhase = Math.max(1, Math.min(newMaxUnlocked, pWon + 1));
+    }
     map[gameId] = {
       maxCompleted: newMaxCompleted,
-      lastPhase: Math.max(1, Math.min(newMaxUnlocked, nextResumePhase))
+      lastPhase: nextResumePhase,
+      completedCap: completedCap
     };
     writeAllArcadeProgressMap(map);
   };
@@ -2500,6 +2544,14 @@
       replayBtnEl.classList.remove("vovo-speaking");
     }
     stopArcadeCelebrationConfetti();
+    if (window._arcadeQuickNextTimer) { clearTimeout(window._arcadeQuickNextTimer); window._arcadeQuickNextTimer = null; }
+    if (window._apriscoPeekTimer) { clearInterval(window._apriscoPeekTimer); window._apriscoPeekTimer = null; }
+    const oldQuickBanner = document.getElementById("trono-quick-phase-banner");
+    if (oldQuickBanner && oldQuickBanner.parentNode) { try { oldQuickBanner.parentNode.removeChild(oldQuickBanner); } catch(e){} }
+    if (window._arcadeQuickNextTimer) { clearTimeout(window._arcadeQuickNextTimer); window._arcadeQuickNextTimer = null; }
+    if (window._apriscoPeekTimer) { clearInterval(window._apriscoPeekTimer); window._apriscoPeekTimer = null; }
+    const oldQuickBanner = document.getElementById("trono-quick-phase-banner");
+    if (oldQuickBanner && oldQuickBanner.parentNode) { try { oldQuickBanner.parentNode.removeChild(oldQuickBanner); } catch(e){} }
     if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
     if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
     if (TronoAudio.vovoVictoryPlayer) { try { TronoAudio.vovoVictoryPlayer.pause(); } catch(e){} }
@@ -2693,6 +2745,10 @@
       window.setVovoVoiceDucking(false);
     }
     if (celebrationClapAudio) { try { celebrationClapAudio.pause(); } catch(e){} }
+    if (window._arcadeQuickNextTimer) { clearTimeout(window._arcadeQuickNextTimer); window._arcadeQuickNextTimer = null; }
+    if (window._apriscoPeekTimer) { clearInterval(window._apriscoPeekTimer); window._apriscoPeekTimer = null; }
+    const oldQuickBanner = document.getElementById("trono-quick-phase-banner");
+    if (oldQuickBanner && oldQuickBanner.parentNode) { try { oldQuickBanner.parentNode.removeChild(oldQuickBanner); } catch(e){} }
     if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
     if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
     if (window._daviSpearTimer) { clearTimeout(window._daviSpearTimer); window._daviSpearTimer = null; }
@@ -3007,6 +3063,10 @@
     if (window._paresArcaWinTimer) { clearTimeout(window._paresArcaWinTimer); window._paresArcaWinTimer = null; }
     if (window._paresResizeHandler) { window.removeEventListener("resize", window._paresResizeHandler); window._paresResizeHandler = null; }
     if (window._dracmaCheckInterval) { clearInterval(window._dracmaCheckInterval); window._dracmaCheckInterval = null; }
+    if (window._arcadeQuickNextTimer) { clearTimeout(window._arcadeQuickNextTimer); window._arcadeQuickNextTimer = null; }
+    if (window._apriscoPeekTimer) { clearInterval(window._apriscoPeekTimer); window._apriscoPeekTimer = null; }
+    const oldQuickBanner = document.getElementById("trono-quick-phase-banner");
+    if (oldQuickBanner && oldQuickBanner.parentNode) { try { oldQuickBanner.parentNode.removeChild(oldQuickBanner); } catch(e){} }
     if (window._arcadeVictoryVoiceTimer) { clearTimeout(window._arcadeVictoryVoiceTimer); window._arcadeVictoryVoiceTimer = null; }
     if (window._arcadeVictorySafetyTimer) { clearTimeout(window._arcadeVictorySafetyTimer); window._arcadeVictorySafetyTimer = null; }
     if (TronoAudio.vovoPlayer) {
@@ -3027,7 +3087,44 @@
       TronoAudio._vovoTimer = null;
     }
 
-    // 1. Áudio oficial canônico: Palmas + Crianças Comemorando + Fanfarra
+    // Registra vitória permanente da fase no localStorage (libera a próxima fase ou reseta para Fase 1 ao concluir a 25!)
+    if (!window._arcadeDirectStoryOverride && currentActiveGame && currentActiveGame.id && typeof window.recordArcadePhaseVictory === "function") {
+      window.recordArcadePhaseVictory(currentActiveGame.id, currentPhase);
+      updateArcadeTopPhaseNavState();
+    }
+
+    // ESCADA DE OURO v191.0:
+    // - Fases comuns (1..4, 6..9, 11..14, 16..19, 21..24): avanço automático fluido em ~0.92s SEM tela roxa e SEM fala repetitiva do Vovô!
+    // - Múltiplos de 5 (5, 10, 15, 20, 25): Festa com voz carinhosa do Vovô (com Super Card nas fases 5, 15 e 25)!
+    const totPhForGame = currentActiveGame ? getGameTotalPhases(currentActiveGame.id) : TOTAL_PHASES;
+    const isVovoMilestonePhase = !!window._arcadeDirectStoryOverride || (currentPhase % 5 === 0) || (currentPhase >= totPhForGame);
+
+    if (!isVovoMilestonePhase) {
+      try { TronoAudio.play("fanfare"); } catch (e) {}
+      const stgEl = document.getElementById("screen-trono-arcade-stage");
+      if (stgEl) {
+        const oldB = document.getElementById("trono-quick-phase-banner");
+        if (oldB && oldB.parentNode) oldB.parentNode.removeChild(oldB);
+        const banner = document.createElement("div");
+        banner.id = "trono-quick-phase-banner";
+        banner.style.cssText = "position:absolute; inset:0; z-index:9990; display:flex; align-items:center; justify-content:center; pointer-events:none; background:radial-gradient(circle, rgba(88,28,135,0.34) 0%, rgba(15,23,42,0.12) 70%);";
+        banner.innerHTML = `
+          <div style="background:linear-gradient(180deg, #7e22ce 0%, #4c1d95 100%); border:3px solid #fde047; border-radius:999px; padding:14px 28px; box-shadow:0 0 28px rgba(253,224,71,0.85), 0 10px 24px rgba(0,0,0,0.65); color:#fde047; font-family:'Fredoka',sans-serif; font-size:22px; font-weight:900; letter-spacing:0.6px; text-shadow:0 2px 6px rgba(0,0,0,0.85); animation:vicCardPop 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+            MUITO BEM! &bull; FASE ${currentPhase + 1}
+          </div>
+        `;
+        stgEl.appendChild(banner);
+      }
+      window._arcadeQuickNextTimer = setTimeout(() => {
+        window._arcadeQuickNextTimer = null;
+        const b = document.getElementById("trono-quick-phase-banner");
+        if (b && b.parentNode) { try { b.parentNode.removeChild(b); } catch(e){} }
+        window.advanceArcadePhase();
+      }, 920);
+      return;
+    }
+
+    // 1. Áudio oficial canônico nos Marcos (5, 10, 15, 20, 25): Palmas + Crianças Comemorando + Fanfarra
     try {
       TronoAudio.play("fanfare");
       if (!window._arcadeAudioMuted) {
@@ -3041,12 +3138,6 @@
       }
     } catch(e) {
       console.warn("Celebration audio err:", e);
-    }
-
-    // 2. Registra vitória permanente da fase no localStorage (libera a próxima fase!) e monta o CARD CANÔNICO OFICIAL
-    if (!window._arcadeDirectStoryOverride && currentActiveGame && currentActiveGame.id && typeof window.recordArcadePhaseVictory === "function") {
-      window.recordArcadePhaseVictory(currentActiveGame.id, currentPhase);
-      updateArcadeTopPhaseNavState();
     }
     renderCanonicalVictoryModal();
 
@@ -3142,9 +3233,9 @@
           `;
         }
 
-        // 6ª Bolinha com Cadeado Oficial 3D (+10 Fases VIP — sem emoji!)
+        // 6ª Bolinha com Cadeado Oficial 3D (+20 Fases VIP — sem emoji!)
         dotsHtml += `
-          <div onclick="window.openVipFromArcade()" style="position:relative; width:${dotSizePx}px; height:${dotSizePx}px; border-radius:50%; background:linear-gradient(180deg, #f59e0b 0%, #b45309 100%); border:2.5px solid #fde047; box-shadow:0 0 14px rgba(253,224,71,0.7), 0 4px 8px rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; color:#ffffff; cursor:pointer;" title="Liberar +10 Fases VIP">
+          <div onclick="window.openVipFromArcade()" style="position:relative; width:${dotSizePx}px; height:${dotSizePx}px; border-radius:50%; background:linear-gradient(180deg, #f59e0b 0%, #b45309 100%); border:2.5px solid #fde047; box-shadow:0 0 14px rgba(253,224,71,0.7), 0 4px 8px rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; color:#ffffff; cursor:pointer;" title="Liberar +20 Fases VIP">
             <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Bloqueado" style="width:18px; height:18px; object-fit:contain;">
           </div>
         `;
@@ -3188,10 +3279,10 @@
 
       let actionsHtml = "";
       if (!isVip && current >= 5) {
-        // FASE 5 NO MODO GRÁTIS: Botão de Assinar (+10 Fases) + Botão Continuar Brincando (soltos no roxo, sem bloco extra!)
+        // FASE 5 NO MODO GRÁTIS: Botão de Assinar (+20 Fases) + Botão Continuar Brincando (soltos no roxo, sem bloco extra!)
         actionsHtml = `
           <button id="btn-canonical-subscribe" type="button" data-unlocked="1" style="position:relative; z-index:2; width:100%; padding:11px 14px; font-size:15px; font-weight:900; color:#ffffff; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2.5px solid #fde047; border-radius:999px; box-shadow:0 0 18px rgba(245,158,11,0.7), 0 5px 14px rgba(0,0,0,0.65); margin-bottom:8px; cursor:pointer; pointer-events:auto; touch-action:manipulation; animation:btnGlowPulse 1.8s ease-in-out infinite;">
-            ASSINAR O APP (+10 FASES)
+            ASSINAR O APP (+20 FASES)
           </button>
           <button id="btn-canonical-continue" type="button" style="position:relative; z-index:2; width:100%; padding:12px 14px; font-size:15.5px; font-weight:900; color:#94a3b8; background:#1e293b; border:2.5px solid #475569; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; pointer-events:none; touch-action:manipulation;">
             MUITO BEM!...
@@ -3220,7 +3311,7 @@
 
           <!-- 2. Título Amarelo Dourado Brilhante Solto na Tela Roxa -->
           <div style="position:relative; z-index:2; font-size:${titleFontPx}px; font-weight:900; color:#fde047; text-shadow:0 4px 12px rgba(0,0,0,0.9), 0 0 22px rgba(253,224,71,0.6); line-height:1.1; margin-bottom:${spacingPx}px; letter-spacing:0.5px; animation:titlePopBounce 1.4s ease-in-out infinite;">
-            PARABÉNS!<br>MUITO BEM!
+            ${current >= totGamePhases ? "PARABÉNS!<br>JOGO COMPLETO!" : "PARABÉNS!<br>MUITO BEM!"}
           </div>
 
           <!-- 3. Bolinhas de Progresso Soltas (1 a 5 + Cadeado Oficial) -->
@@ -3467,12 +3558,13 @@
 
   // --- JOGO 1: PESCA MARAVILHOSA (BARRA DE TIMING) ---
   function runPescaMaravilhosa(container, phase) {
-    // Curva Suave Rigoberto: Fase 1 a 5 fáceis e amigáveis; Fase 15 nível mestre!
-    const targetWidth = Math.max(46 - phase * 1.85, 18);
-    const speed = 0.95 + phase * 0.115;
+    // TETO CONFORTÁVEL INFANTIL v191.0 (25 Fases): sobe suavemente até a Fase 12 e mantém velocidade gostosa/jogável até a 25!
+    const effP = Math.min(Math.max(1, Number(phase) || 1), 12);
+    const targetWidth = Math.max(46 - effP * 1.65, 24);
+    const speed = 0.90 + effP * 0.085;
 
-    // REGRA DE OURO RIGOBERTO: Fase 1 = 1 peixinho, Fase 2 = 2 peixinhos, Fase 3 = 3 peixinhos...
-    const totalPeixes = Math.min(phase, 5);
+    // Fase 1 = 1 peixinho ... a partir da 5 alterna cardumes ricos de 3 a 5 peixinhos!
+    const totalPeixes = phase <= 5 ? Math.min(phase, 5) : (3 + ((phase - 1) % 3));
 
     // Trava de Tempo / Segurança Pedagógica (Rigoberto UX):
     // O jogo inicia travado enquanto o Vovô Nésio fala a instrução!
@@ -3747,15 +3839,15 @@
       window._dracmaCheckInterval = null;
     }
 
-    const pNum = Math.max(1, Math.min(15, Math.floor(Number(phase) || 1)));
-    // Progressão real de 1 a 15 fases: Fase 1 = 1 dracma ... Fase 5 = 5 ... Fase 10 = 10 ... Fase 15 = 15 dracmas!
-    const totalMoedas = pNum;
+    const pNum = Math.max(1, Math.min(25, Math.floor(Number(phase) || 1)));
+    // Progressão suave nas 25 fases: de 1 até 16 dracmas sorteadas em lugares sempre diferentes!
+    const totalMoedas = pNum <= 6 ? pNum : Math.min(16, 6 + Math.ceil((pNum - 6) * 0.55));
 
-    // Foco da lamparina diminui gradualmente da Fase 1 (136px) até a Fase 15 (52px)
-    const raioLuz = Math.round(Math.max(52, 142 - (pNum - 1) * 6.4));
+    // Foco da lamparina mantém teto confortável infantil (>= 62px) mesmo nas fases 15 a 25!
+    const raioLuz = Math.round(Math.max(62, 142 - Math.min(pNum - 1, 13) * 6.0));
 
-    // Tamanho da dracma diminui levemente nas fases avançadas para ficar mais desafiador sem sobrepor
-    const coinSizePx = pNum <= 4 ? 44 : (pNum <= 9 ? 38 : 34);
+    // Tamanho da dracma confortável para toque infantil
+    const coinSizePx = pNum <= 5 ? 44 : (pNum <= 12 ? 39 : 36);
 
     let moedasAchadas = 0;
     let isInteractionLocked = true;
@@ -4431,16 +4523,17 @@
     // Fases 6 a 15 (VIP): modo lenda acelerando até 0.44s!
     const PHASE_PRESETS = {
       1: { windup: 950, fly: 1900, gap: 1250, smartAim: 0.00 },
-      2: { windup: 760, fly: 1420, gap: 1000, smartAim: 0.45 },
-      3: { windup: 580, fly: 1050, gap: 780,  smartAim: 0.68 },
-      4: { windup: 440, fly: 780,  gap: 600,  smartAim: 0.80 },
-      5: { windup: 320, fly: 580,  gap: 460,  smartAim: 0.90 }
+      2: { windup: 780, fly: 1480, gap: 1020, smartAim: 0.42 },
+      3: { windup: 620, fly: 1120, gap: 820,  smartAim: 0.62 },
+      4: { windup: 490, fly: 860,  gap: 660,  smartAim: 0.75 },
+      5: { windup: 390, fly: 700,  gap: 540,  smartAim: 0.84 }
     };
+    const effSpearStep = Math.min(Math.max(0, currentPhaseNum - 5), 8);
     const preset = PHASE_PRESETS[currentPhaseNum] || {
-      windup: Math.max(230, 320 - (currentPhaseNum - 5) * 10),
-      fly: Math.max(440, 580 - (currentPhaseNum - 5) * 15),
-      gap: Math.max(360, 460 - (currentPhaseNum - 5) * 11),
-      smartAim: 0.92
+      windup: Math.max(310, 390 - effSpearStep * 10),
+      fly: Math.max(560, 700 - effSpearStep * 17),
+      gap: Math.max(450, 540 - effSpearStep * 11),
+      smartAim: 0.88
     };
     const windupMs = preset.windup;
     const flyDurationMs = preset.fly;
@@ -4789,32 +4882,18 @@
 
   // --- JOGO 5: CADÊ A OVELHA? (APRISCO 3D • 8 PEDRAS CALIBRADAS NO CHÃO PELO RIGOBERTO + OVELHAS APOIADAS NO SOLO v174.0) ---
   function runOvelhaPerdida(container, phase) {
-    const pNum = Math.max(1, Math.min(15, phase || 1));
-
-    // CURVA HÍBRIDA DE 15 FASES NAS 8 PEDRAS CALIBRADAS:
-    // Todas as 8 pedras calibradas permanecem firmes em suas posições exatas no chão;
-    // a dificuldade avança subindo de 2 até 8 ovelhinhas e escondendo-as cada vez mais atrás das rochas!
-    const PHASE_CURVE = {
-      1:  { sheep: 2, rocks: 8, hide: 0.00, hitPx: 74 },
-      2:  { sheep: 3, rocks: 8, hide: 0.16, hitPx: 70 },
-      3:  { sheep: 3, rocks: 8, hide: 0.30, hitPx: 66 },
-      4:  { sheep: 4, rocks: 8, hide: 0.42, hitPx: 62 },
-      5:  { sheep: 4, rocks: 8, hide: 0.52, hitPx: 58 },
-      6:  { sheep: 5, rocks: 8, hide: 0.60, hitPx: 56 },
-      7:  { sheep: 5, rocks: 8, hide: 0.66, hitPx: 54 },
-      8:  { sheep: 6, rocks: 8, hide: 0.71, hitPx: 52 },
-      9:  { sheep: 6, rocks: 8, hide: 0.75, hitPx: 50 },
-      10: { sheep: 7, rocks: 8, hide: 0.79, hitPx: 48 },
-      11: { sheep: 7, rocks: 8, hide: 0.82, hitPx: 48 },
-      12: { sheep: 7, rocks: 8, hide: 0.84, hitPx: 46 },
-      13: { sheep: 8, rocks: 8, hide: 0.86, hitPx: 46 },
-      14: { sheep: 8, rocks: 8, hide: 0.87, hitPx: 45 },
-      15: { sheep: 8, rocks: 8, hide: 0.88, hitPx: 44 }
-    };
-    const cfg = PHASE_CURVE[pNum] || PHASE_CURVE[15];
-    const totalOvelhas = cfg.sheep;
-    const hideProgress = cfg.hide;
-    const hitSizePx = cfg.hitPx;
+    if (window._apriscoPeekTimer) { clearInterval(window._apriscoPeekTimer); window._apriscoPeekTimer = null; }
+    const pNum = Math.max(1, Math.min(25, Math.floor(Number(phase) || 1)));
+    // ESCONDE-ESCONDE VIVO v191.0 (25 Fases):
+    // Fases 1..3: aquecimento acolhedor (2, 3, 4 ovelhinhas espiando paradinhas).
+    // Fases 4..25: Esconde-Esconde Vivo! As ovelhinhas levantam a cabecinha atrás de pedras sorteadas por alguns segundos,
+    // mexem a orelhinha e, se a criança não tocar logo, abaixam e aparecem espiando atrás de OUTRA pedra diferente!
+    const isLivePeekMode = pNum >= 4;
+    const totalOvelhas = pNum <= 3 ? (pNum + 1) : Math.min(10, 4 + Math.floor((pNum - 4) / 3));
+    const hideProgress = Math.min(0.68, 0.12 + Math.min(pNum - 1, 12) * 0.045);
+    const hitSizePx = Math.max(52, 74 - Math.min(pNum - 1, 11) * 2);
+    const simultaneousPeeks = pNum <= 10 ? 2 : (pNum % 3 === 0 ? 1 : 2);
+    const peekCycleMs = Math.max(1950, 3150 - Math.min(pNum - 4, 12) * 100);
 
     let achadas = 0;
     let isGameUnlocked = false;
@@ -4832,16 +4911,20 @@
       { id: 7, x: 83.27, y: 18.90, img: "pedra_aprisco_05_v135.png", w: 122, flip: true,  peekSide: "left"  }
     ];
 
-    // Embaralha quais pedras escondem ovelhinhas a cada partida para nunca repetir os mesmos esconderijos!
-    const allIds = [0, 1, 2, 3, 4, 5, 6, 7];
-    for (let i = allIds.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const tmp = allIds[i];
-      allIds[i] = allIds[j];
-      allIds[j] = tmp;
+    function getShuffledRockIds(excludeSet) {
+      const ids = [0, 1, 2, 3, 4, 5, 6, 7].filter(id => !(excludeSet && excludeSet.has(id)));
+      const src = ids.length > 0 ? ids : [0, 1, 2, 3, 4, 5, 6, 7];
+      for (let i = src.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = src[i];
+        src[i] = src[j];
+        src[j] = tmp;
+      }
+      return src;
     }
 
-    const activeSheepSet = new Set(allIds.slice(0, totalOvelhas));
+    const initialIds = getShuffledRockIds(null);
+    const activeSheepSet = new Set(isLivePeekMode ? [] : initialIds.slice(0, totalOvelhas));
 
     // Escala proporcional fiel ao palco base 390px do calibrador
     const stgW = container.clientWidth || Math.min(window.innerWidth, 450);
@@ -4849,6 +4932,7 @@
 
     // Ordena de cima para baixo (menor Y primeiro) para perspectiva natural de profundidade no chão
     const orderedSpots = CALIBRATED_APRISCO_ROCKS.slice().sort((a, b) => a.y - b.y);
+    const spotPeekGeom = {};
 
     const spotsHtml = orderedSpots.map((spot, depthOrder) => {
       const hasSheep = activeSheepSet.has(spot.id);
@@ -4863,20 +4947,26 @@
       const deepDx = sign * Math.round(spot.w * 0.25);
       const sdx = Math.round(openDx + (deepDx - openDx) * hideProgress);
       const sdy = Math.round(spot.w * 0.04);
+      spotPeekGeom[spot.id] = { sdx, sdy, sFlip };
 
       // Zona de toque ampla e generosa cobrindo 100% da ovelhinha (cabeça, orelhas, corpo, patinhas) + pedra
       const hitW = Math.max(98, Math.round(spot.w * 1.18), hitSizePx + 36);
       const hitH = Math.max(108, Math.round(spot.w * 1.15), hitSizePx + 44);
       const hitShiftX = Math.round(sdx * 0.55);
+      const initTransform = hasSheep
+        ? `translateX(-50%) translate(${sdx}px, ${sdy}px) scaleX(${sFlip})`
+        : `translateX(-50%) translate(0px, 14px) scaleX(${sFlip * 0.25}) scaleY(0.25)`;
+      const initOpacity = hasSheep ? "1" : "0";
+      const initHitPtr = hasSheep ? "auto" : "none";
 
-      const sheepLayerHtml = hasSheep ? `
+      const sheepLayerHtml = `
         <!-- OVELHINHA 3D APOIADA NO CHÃO ATRÁS DA PEDRA CALIBRADA -->
-        <div id="aprisco-sheep-wrap-${spot.id}" class="aprisco-sheep-wrap" data-flip="${sFlip}" style="position:absolute; left:50%; bottom:4px; width:${sheepW}px; transform:translateX(-50%) translate(${sdx}px, ${sdy}px) scaleX(${sFlip}); z-index:3; pointer-events:none; filter:drop-shadow(0 4px 6px rgba(0,0,0,0.48)); transition:transform 0.46s cubic-bezier(0.22, 1.35, 0.36, 1);">
+        <div id="aprisco-sheep-wrap-${spot.id}" class="aprisco-sheep-wrap" data-flip="${sFlip}" style="position:absolute; left:50%; bottom:4px; width:${sheepW}px; transform:${initTransform}; opacity:${initOpacity}; z-index:3; pointer-events:none; filter:drop-shadow(0 4px 6px rgba(0,0,0,0.48)); transition:transform 0.36s cubic-bezier(0.22, 1.35, 0.36, 1), opacity 0.22s ease;">
           <img src="./2_ASSETS_UI_BOTOES/ovelha_3d_01_v135.png?v=135" class="aprisco-sheep-img" style="width:100%; height:auto; display:block;" alt="Ovelhinha 3D" draggable="false">
         </div>
         <!-- ZONA DE TOQUE AMPLA E ACOLHEDORA SOBRE TODA A OVELHINHA + PEDRA -->
-        <div class="aprisco-peek-hit" data-spot="${spot.id}" style="position:absolute; left:50%; bottom:-10px; width:${hitW}px; height:${hitH}px; transform:translateX(-50%) translate(${hitShiftX}px, 0px); z-index:12; cursor:pointer; border-radius:36px;"></div>
-      ` : "";
+        <div id="aprisco-peek-hit-${spot.id}" class="aprisco-peek-hit" data-spot="${spot.id}" style="position:absolute; left:50%; bottom:-10px; width:${hitW}px; height:${hitH}px; transform:translateX(-50%) translate(${hitShiftX}px, 0px); z-index:12; cursor:pointer; border-radius:36px; pointer-events:${initHitPtr};"></div>
+      `;
 
       return `
         <div id="aprisco-spot-${spot.id}" class="aprisco-spot-group" data-spot="${spot.id}" style="position:absolute; left:${spot.x.toFixed(2)}%; top:${spot.y.toFixed(2)}%; transform:translate(-50%, -50%) scale(${spotScale}); z-index:${baseZ};">
@@ -4970,12 +5060,53 @@
     const stageRoot = document.getElementById("ovelha-aprisco-stage");
     const countEl = document.getElementById("ovelha-aprisco-count");
 
+    function setSpotPeekVisible(spotId, visible) {
+      const g = spotPeekGeom[spotId];
+      const sheepWrap = document.getElementById(`aprisco-sheep-wrap-${spotId}`);
+      const hitEl = document.getElementById(`aprisco-peek-hit-${spotId}`);
+      const groupEl = document.getElementById(`aprisco-spot-${spotId}`);
+      if (!g || !sheepWrap) return;
+      if (visible) {
+        activeSheepSet.add(spotId);
+        if (groupEl) groupEl.dataset.rescued = "0";
+        sheepWrap.classList.remove("rescued");
+        sheepWrap.style.zIndex = "3";
+        sheepWrap.style.opacity = "1";
+        sheepWrap.style.transform = `translateX(-50%) translate(${g.sdx}px, ${g.sdy}px) scaleX(${g.sFlip})`;
+        if (hitEl) hitEl.style.pointerEvents = "auto";
+      } else {
+        activeSheepSet.delete(spotId);
+        sheepWrap.style.opacity = "0";
+        sheepWrap.style.transform = `translateX(-50%) translate(0px, 14px) scaleX(${g.sFlip * 0.25}) scaleY(0.25)`;
+        if (hitEl) hitEl.style.pointerEvents = "none";
+      }
+    }
+
+    function cycleLivePeekSheep() {
+      if (!isLivePeekMode || !isGameUnlocked || isVictoryTriggered || !stageRoot || !stageRoot.isConnected) return;
+      const prevSet = new Set(activeSheepSet);
+      prevSet.forEach(id => setSpotPeekVisible(id, false));
+      const remainingNeeded = Math.max(1, totalOvelhas - achadas);
+      const wantCount = Math.min(simultaneousPeeks, remainingNeeded);
+      const candidates = getShuffledRockIds(prevSet);
+      setTimeout(() => {
+        if (!isGameUnlocked || isVictoryTriggered || !stageRoot || !stageRoot.isConnected) return;
+        for (let i = 0; i < wantCount && i < candidates.length; i++) {
+          setSpotPeekVisible(candidates[i], true);
+        }
+      }, 170);
+    }
+
     // REGRA SUPREMA RIGOBERTO: Só libera o toque nas ovelhinhas DEPOIS que o Vovô terminar 100% da explicação! (Zero texto/pílula na tela)
     window._arcadeUnlockGameAction = function() {
       if (isGameUnlocked) return;
       isGameUnlocked = true;
       if (stageRoot) stageRoot.classList.add("aprisco-unlocked");
       TronoAudio.play("pop");
+      if (isLivePeekMode) {
+        cycleLivePeekSheep();
+        window._apriscoPeekTimer = setInterval(cycleLivePeekSheep, peekCycleMs);
+      }
     };
 
     function wobbleRockOnly(spotId) {
@@ -4993,9 +5124,13 @@
 
     function rescueSheep(spotId) {
       if (!isGameUnlocked || isVictoryTriggered) return;
+      if (!activeSheepSet.has(spotId)) return;
       const groupEl = document.getElementById(`aprisco-spot-${spotId}`);
       if (!groupEl || groupEl.dataset.rescued === "1") return;
       groupEl.dataset.rescued = "1";
+      activeSheepSet.delete(spotId);
+      const hitEl = document.getElementById(`aprisco-peek-hit-${spotId}`);
+      if (hitEl) hitEl.style.pointerEvents = "none";
 
       const sheepWrap = document.getElementById(`aprisco-sheep-wrap-${spotId}`);
       if (sheepWrap) {
@@ -5003,6 +5138,7 @@
         sheepWrap.classList.add("rescued");
         // Fica 100% visível pulando alegre para a frente/topo da pedra!
         sheepWrap.style.zIndex = "18";
+        sheepWrap.style.opacity = "1";
         sheepWrap.style.transform = `translateX(-50%) translate(0px, -44px) scaleX(${flipDir * 1.18}) scaleY(1.18)`;
         groupEl.style.zIndex = "32";
 
@@ -5011,6 +5147,15 @@
         burst.style.cssText = "position:absolute; left:50%; top:0%; pointer-events:none; z-index:25; animation:ovelhaHeartFloat 0.85s ease-out forwards;";
         groupEl.appendChild(burst);
         setTimeout(() => { try { burst.remove(); } catch(e){} }, 900);
+
+        if (isLivePeekMode) {
+          setTimeout(() => {
+            if (!isVictoryTriggered && sheepWrap && groupEl) {
+              setSpotPeekVisible(spotId, false);
+              groupEl.dataset.rescued = "0";
+            }
+          }, 560);
+        }
       }
 
       // 1º: A OVELHINHA DÁ O GRITINHO REAL "BÉÉÉ!" EM DESTAQUE ABSOLUTO!
@@ -5029,11 +5174,20 @@
 
       if (achadas >= totalOvelhas) {
         isVictoryTriggered = true;
+        if (window._apriscoPeekTimer) { clearInterval(window._apriscoPeekTimer); window._apriscoPeekTimer = null; }
         // Deixa o "BÉÉÉ!" da última ovelhinha tocar limpo antes de entrar a comemoração!
         setTimeout(() => {
           TronoAudio.play("success");
         }, 550);
         setTimeout(triggerArcadeVictory, 1050);
+      } else if (isLivePeekMode && activeSheepSet.size === 0) {
+        if (window._apriscoPeekTimer) { clearInterval(window._apriscoPeekTimer); }
+        setTimeout(() => {
+          if (!isVictoryTriggered) {
+            cycleLivePeekSheep();
+            window._apriscoPeekTimer = setInterval(cycleLivePeekSheep, peekCycleMs);
+          }
+        }, 320);
       }
     }
 
@@ -5073,8 +5227,10 @@
     if (window._paresResizeHandler) { window.removeEventListener("resize", window._paresResizeHandler); window._paresResizeHandler = null; }
     if (window._dracmaCheckInterval) { clearInterval(window._dracmaCheckInterval); window._dracmaCheckInterval = null; }
 
-    const pNum = Math.min(15, Math.max(1, Number(phase) || 1));
-    const diffT = (pNum - 1) / 14; // 0.0 na Fase 1 -> 1.0 na Fase 15
+    const rawPNum = Math.max(1, Math.min(25, Math.floor(Number(phase) || 1)));
+    const pNum = Math.min(15, rawPNum);
+    // TETO CONFORTÁVEL INFANTIL v191.0: trava a curva de velocidade em 0.80 para continuar jogável e divertido até a Fase 25!
+    const diffT = Math.min(0.80, (rawPNum - 1) / 17);
 
     // Quantidade progressiva de Pedras 3D no caminho: 1 na Fase 1 até 15 pedras na Fase 15!
     // Todas espaçadas com corredores largos (>= 70px) e sem árvores para zero sobreposição estranha!
@@ -5097,8 +5253,11 @@
       { rxPct: 0.66, ryPct: 0.32, img: 3 }
     ];
 
-    const mirrorHoriz = (pNum % 2 === 0);
-    const chosenPreset = MASTER_ROCK_SLOTS.slice(0, pNum).map((s, idx) => ({
+    const mirrorHoriz = (rawPNum % 2 === 0);
+    const rotStart = rawPNum <= 15 ? 0 : ((rawPNum * 3) % MASTER_ROCK_SLOTS.length);
+    const rotatedSlots = MASTER_ROCK_SLOTS.slice(rotStart).concat(MASTER_ROCK_SLOTS.slice(0, rotStart));
+    const rockCountForPhase = rawPNum <= 15 ? rawPNum : (10 + (rawPNum % 6));
+    const chosenPreset = rotatedSlots.slice(0, rockCountForPhase).map((s, idx) => ({
       rxPct: s.rxPct,
       ryPct: s.ryPct,
       img: s.img,
@@ -5766,7 +5925,8 @@
 
   // --- JOGO 8: ARCA DE NOÉ 3D PIXAR (15 FASES / 15 JANELAS DE SILHUETA + VOZ DO VOVÔ EM CADA BICHINHO) ---
   function runQuemEntrouArca(container, phase) {
-    const pNum = Math.max(1, Math.min(15, parseInt(phase, 10) || 1));
+    const rawArcaPhase = Math.max(1, Math.min(25, parseInt(phase, 10) || 1));
+    const pNum = rawArcaPhase <= 15 ? rawArcaPhase : (6 + ((rawArcaPhase - 16) % 10));
 
     const ARCA_ANIMALS_DB = [
       { id: "leao",      img: "./2_ASSETS_UI_BOTOES/arca_bicho_01_leao_v142.png?v=142",      audio: "./6_ASSETS_AUDIO/arca_bichos/bicho_01_leao_v142.mp3?v=142",      durMs: 1580 },
@@ -7924,7 +8084,7 @@
       }
     ];
 
-    const pIdx = Math.max(0, Math.min(14, (phase || 1) - 1));
+    const pIdx = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % JOGO_ERROS_15_PHASES.length);
     const pData = JOGO_ERROS_15_PHASES[pIdx];
     const totalDiffs = pData.spots.length;
     const foundFlags = new Array(totalDiffs).fill(false);
@@ -10105,7 +10265,9 @@
     // DIFICULDADE PROGRESSIVA NAS 15 FASES (de 1 até 8 figuras P&B para encontrar na bagunça!)
     // F1:1 | F2-3:2 | F4-5:3 | F6-7:4 | F8-9:5 | F10-11:6 | F12-13:7 | F14-15:8
     const PHASE_TARGET_COUNTS = [1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
-    const targetCount = PHASE_TARGET_COUNTS[pNum - 1] || 1;
+    const PHASE_TARGET_COUNTS_EXT_25 = [5, 6, 6, 7, 7, 7, 8, 8, 8, 8];
+    const pClamped = Math.max(1, Math.min(25, Math.floor(Number(phase) || 1)));
+    const targetCount = pClamped <= 15 ? (PHASE_TARGET_COUNTS[pClamped - 1] || 1) : (PHASE_TARGET_COUNTS_EXT_25[pClamped - 16] || 8);
 
     // Distribuição simétrica em 1 ou 2 fileiras na área clara superior (sem cards quadrados!)
     const TOP_ROW_SPLITS = {
@@ -10131,8 +10293,8 @@
       return a;
     }
 
-    // Seleciona N alvos distintos girando por todo o banco de 30 figuras ao longo das 15 fases
-    const startOffset = ((pNum - 1) * 5) % ALL_30_ITEMS.length;
+    // Seleciona N alvos distintos girando por todo o banco de 30 figuras ao longo das 25 fases
+    const startOffset = ((pClamped - 1) * 5 + (pClamped > 15 ? 2 : 0)) % ALL_30_ITEMS.length;
     const phaseTargets = [];
     for (let k = 0; k < targetCount; k++) {
       const idx = (startOffset + k * 7) % ALL_30_ITEMS.length;
@@ -10337,7 +10499,10 @@
     const chosenSet = new Set(chosenTargetCells);
     const remainingCells = shuffleList(allCells.filter(idx => !chosenSet.has(idx)));
 
-    const distractorDefs = shuffleList(ALL_30_ITEMS.filter(it => !targetIdSet.has(it.id)));
+    // Bagunça progressiva nas 25 fases: começa leve para os pequenininhos e vai enchendo a mesa até todos os distratores nas fases altas!
+    const allDistractorsShuffled = shuffleList(ALL_30_ITEMS.filter(it => !targetIdSet.has(it.id)));
+    const maxDistractorsForPhase = Math.min(allDistractorsShuffled.length, 7 + Math.floor((pClamped - 1) * 0.72));
+    const distractorDefs = allDistractorsShuffled.slice(0, maxDistractorsForPhase);
     const pieces = [];
     const targetPieces = [];
 
@@ -11415,8 +11580,8 @@
     return String(raw || "").replace(/^Lição\s*\d+\s*[•\-:]\s*/i, "").trim();
   }
 
-  // 15 fases da SALINHA DE PINTURA (Fase 1 obrigatória = Vovô Nésio, Pedrinho e Aninha; Fases 1..3 = 100% inéditas fora das 22 lições; Fases 4..15 = reservadas para catálogo geral)
-  const GENERAL_PAINT_15_STORY_IDS = [1, 5, 20, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  // 25 fases da SALINHA DE PINTURA (Fase 1 obrigatória = Vovô Nésio, Pedrinho e Aninha; Fases 1..3 = 100% inéditas fora das 22 lições; 25 desenhos únicos sem repetição!)
+  const GENERAL_PAINT_15_STORY_IDS = [1, 5, 20, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25];
   window.GENERAL_PAINT_15_STORY_IDS = GENERAL_PAINT_15_STORY_IDS;
 
   function getGeneralPaintStoryForPhase(phase) {
@@ -13540,12 +13705,23 @@
         }
       </style>
       <div class="arcade-hub-clean-grid">
-        ${SUPER_ARCADE_GAMES.filter(g => g.id !== "quem_sou_eu").map(g => `
-          <div class="arcade-hub-item" onclick="window.openTronoArcadeGame('${g.id}')">
-            <img src="${g.icon}" alt="${g.title}" class="arcade-hub-icon-3d" decoding="async">
-            <div class="arcade-hub-title">${g.title}</div>
-          </div>
-        `).join("")}
+        ${SUPER_ARCADE_GAMES.filter(g => g.id !== "quem_sou_eu").map(g => {
+          const totPh = getGameTotalPhases(g.id);
+          const prog = (typeof window.getArcadeGameProgress === "function") ? window.getArcadeGameProgress(g.id) : { maxCompleted: 0, lastPhase: 1 };
+          const isAllDone = prog.maxCompleted >= totPh;
+          const doneBadge = isAllDone
+            ? `<div style="position:absolute; top:2px; right:14%; z-index:6; width:28px; height:28px; border-radius:50%; background:linear-gradient(180deg, #00e676 0%, #00c853 100%); border:2.5px solid #fde047; box-shadow:0 0 12px rgba(0,230,118,0.9), 0 3px 8px rgba(0,0,0,0.75); display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+               </div>`
+            : "";
+          return `
+            <div class="arcade-hub-item" onclick="window.openTronoArcadeGame('${g.id}')">
+              ${doneBadge}
+              <img src="${g.icon}" alt="${g.title}" class="arcade-hub-icon-3d" decoding="async">
+              <div class="arcade-hub-title">${g.title}</div>
+            </div>
+          `;
+        }).join("")}
       </div>
     `;
 
