@@ -8144,7 +8144,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 40px 8px 8px;
+          padding: 58px 10px calc(12px + env(safe-area-inset-bottom, 0px)) 10px;
           box-sizing: border-box;
           user-select: none;
           -webkit-user-select: none;
@@ -8693,7 +8693,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: space-between;
-          padding: 48px 8px clamp(12px, 2.5vh, 22px) 8px;
+          padding: 60px 10px clamp(14px, 2.5vh, 24px) 10px;
           box-sizing: border-box;
           touch-action: none;
           user-select: none;
@@ -9430,7 +9430,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: space-between;
-          padding: 50px 12px clamp(20px, 4.5vh, 38px) 12px;
+          padding: 60px 12px clamp(20px, 4.5vh, 38px) 12px;
           box-sizing: border-box;
           touch-action: none;
           user-select: none;
@@ -11701,18 +11701,29 @@
     const TRAY  = { x: 14, y: 590, w: 512, h: 258 };
 
     container.innerHTML = `
-      <div class="arc-v161-stage">
+      <div class="arc-v161-stage" style="position:relative;">
         <img src="./2_ASSETS_UI_BOTOES/bg_jogo_16_puzzle_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
-        <div class="arc-v161-top-strip">
-          <button type="button" class="arc-v161-diff-btn active" data-puz-diff="6">6 PEÇAS</button>
-          <button type="button" class="arc-v161-diff-btn" data-puz-diff="9">9 PEÇAS</button>
-          <button type="button" class="arc-v161-diff-btn" data-puz-diff="12">12 PEÇAS</button>
+        <!-- PÍLULA GÊMEA SIMÉTRICA AO BOTÃO OUVIR NO CANTO SUPERIOR ESQUERDO (ZERO SOBREPOSIÇÃO!) -->
+        <div class="arcade-twin-counter-pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#fde047" style="flex-shrink:0;"><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg>
+          <span><span id="arcade-puz-count">0</span> <span style="color:#fde047;">/ <span id="arcade-puz-total">6</span></span></span>
         </div>
 
-        <div style="position:relative; z-index:5; flex:1; min-height:0; width:100%; display:flex; align-items:center; justify-content:center; padding:0 6px 8px 6px; box-sizing:border-box;">
+        <!-- Espaço superior limpo para as duas pílulas gêmeas (Contador à esquerda + OUVIR à direita) -->
+        <div style="height:58px; min-height:58px; width:100%; flex-shrink:0;"></div>
+
+        <!-- Tabuleiro + Bandeja Central Maximizada -->
+        <div style="position:relative; z-index:5; flex:1; min-height:0; width:100%; display:flex; align-items:center; justify-content:center; padding:0 8px 4px 8px; box-sizing:border-box;">
           <canvas id="arcade-puzzle-canvas" width="540" height="860" style="width:100%; height:100%; max-width:520px; object-fit:contain; touch-action:none; display:block;"></canvas>
+        </div>
+
+        <!-- BARRA INFERIOR CENTRALIZADA COM SUSPIRO PARA ESCOLHER 6, 9 OU 12 PEÇAS (SEM COLIDIR COM OUVIR!) -->
+        <div style="position:relative; z-index:12; width:100%; max-width:520px; display:flex; align-items:center; justify-content:center; gap:10px; padding:4px 16px calc(18px + env(safe-area-inset-bottom, 0px)) 16px; box-sizing:border-box; flex-shrink:0;">
+          <button type="button" class="arc-v161-diff-btn active" data-puz-diff="6" style="min-width:94px; padding:0 14px; font-size:13.5px;">6 PEÇAS</button>
+          <button type="button" class="arc-v161-diff-btn" data-puz-diff="9" style="min-width:94px; padding:0 14px; font-size:13.5px;">9 PEÇAS</button>
+          <button type="button" class="arc-v161-diff-btn" data-puz-diff="12" style="min-width:98px; padding:0 14px; font-size:13.5px;">12 PEÇAS</button>
         </div>
       </div>
     `;
@@ -11876,6 +11887,10 @@
         p.y = p.homeY;
       });
       pieces = list;
+      const cntEl = container.querySelector("#arcade-puz-count");
+      const totEl = container.querySelector("#arcade-puz-total");
+      if (cntEl) cntEl.textContent = "0";
+      if (totEl) totEl.textContent = String(list.length);
       drawScene();
     }
 
@@ -12137,6 +12152,10 @@
         p.x = p.targetX;
         p.y = p.targetY;
         p.locked = true;
+        const cntEl = container.querySelector("#arcade-puz-count");
+        if (cntEl) {
+          cntEl.textContent = String(pieces.filter(it => it.locked).length);
+        }
         TronoAudio.play("success");
         flashPiece(p, "green", () => {
           if (pieces.every(it => it.locked) && !puzSolved) {
