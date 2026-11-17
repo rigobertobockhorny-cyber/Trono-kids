@@ -51,7 +51,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_01_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_01_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Na sala aconchegante, Vovô Nésio abre a Bíblia com Pedrinho e Aninha para contar a Criação do mundo!",
         "timePct": 0.0
       },
@@ -242,7 +242,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_02_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_02_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Vovô Nésio reúne Pedrinho e Aninha perto da poltrona para contar a história de Noé e a grande arca!",
         "timePct": 0.0
       },
@@ -430,7 +430,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_03_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_03_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Com a Bíblia aberta na sala, Vovô Nésio convida os netos para viajar pela história da fé de Abraão!",
         "timePct": 0.0
       },
@@ -618,7 +618,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_04_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_04_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Vovô Nésio acolhe Pedrinho e Aninha na sala para revelar o sonho maravilhoso da Escada de Jacó!",
         "timePct": 0.0
       },
@@ -805,7 +805,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_05_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_05_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Na poltrona da sala, Vovô Nésio abre a Bíblia Sagrada para contar aos netos a história de José e o perdão!",
         "timePct": 0.0
       },
@@ -991,7 +991,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_06_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_06_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Pedrinho e Aninha se aproximam do Vovô Nésio na sala para ouvir a grande travessia do Mar Vermelho!",
         "timePct": 0.0
       },
@@ -1178,7 +1178,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_07_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_07_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Com carinho e fé, Vovô Nésio abre a Bíblia para contar aos netos a vitória de Josué em Jericó!",
         "timePct": 0.0
       },
@@ -1365,7 +1365,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_08_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_08_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Na sala iluminada, Vovô Nésio mostra a Pedrinho e Aninha como o pequeno Davi venceu o gigante pela fé!",
         "timePct": 0.0
       },
@@ -1552,7 +1552,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_09_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_09_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Vovô Nésio convida seus netos queridos para ouvir a incrível aventura do profeta Jonas e o grande peixe!",
         "timePct": 0.0
       },
@@ -1740,7 +1740,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_10_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_10_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Ao lado de Pedrinho e Aninha na sala, Vovô Nésio abre a Bíblia na história da oração fiel de Daniel!",
         "timePct": 0.0
       },
@@ -1934,7 +1934,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_11_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_11_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Da poltrona aconchegante, Vovô Nésio apresenta aos netos a beleza do Jardim do Éden e o cuidado com a criação!",
         "timePct": 0.0
       },
@@ -2124,7 +2124,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_12_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_12_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Vovô Nésio reúne Pedrinho e Aninha com ternura para contar o livramento do bebê Moisés e a sarça ardente!",
         "timePct": 0.0
       },
@@ -2308,7 +2308,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_13_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_13_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Com a Bíblia aberta, Vovô Nésio ensina a Pedrinho e Aninha os Dez Mandamentos do amor de Deus no Monte Sinai!",
         "timePct": 0.0
       },
@@ -2496,7 +2496,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_14_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_14_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Na sala de estar, Vovô Nésio conta aos netinhos a coragem de Gideão e a bondade da jovem Rute!",
         "timePct": 0.0
       },
@@ -2683,7 +2683,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_15_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_15_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Vovô Nésio chama Pedrinho e Aninha pertinho da poltrona para contar como o menino Samuel ouviu a voz de Deus!",
         "timePct": 0.0
       },
@@ -2869,7 +2869,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_16_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_16_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Com a Bíblia iluminada na sala, Vovô Nésio conta aos netos o pedido de sabedoria do jovem rei Salomão!",
         "timePct": 0.0
       },
@@ -3055,7 +3055,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_17_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_17_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Vovô Nésio reúne Pedrinho e Aninha para contar os milagres do profeta Eliseu e a promessa do Príncipe da Paz!",
         "timePct": 0.0
       },
@@ -3242,7 +3242,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_18_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_18_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Na sala aquecida, Vovô Nésio conta aos netos a amizade e a fé inabalável dos três amigos de Daniel!",
         "timePct": 0.0
       },
@@ -3428,7 +3428,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_19_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_19_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Vovô Nésio abre a Bíblia Sagrada com Pedrinho e Aninha para contar a coragem da bondosa Rainha Ester!",
         "timePct": 0.0
       },
@@ -3615,7 +3615,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_20_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_20_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Com alegria na sala, Vovô Nésio mostra aos netos como Neemias e as famílias reconstruíram os muros em união!",
         "timePct": 0.0
       },
@@ -3799,7 +3799,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_21_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_21_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Sob a luz acolhedora da sala, Vovô Nésio emociona Pedrinho e Aninha contando o nascimento de Jesus em Belém!",
         "timePct": 0.0
       },
@@ -3985,7 +3985,7 @@ window.EBD_LESSONS_CURRICULUM = [
     "vovoAudioMp3": "./6_ASSETS_AUDIO/licoes_vovo/licao_22_vovo.mp3?v=81",
     "storyScenes": [
       {
-        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_00_vovo.jpg?v=78",
+        "img": "./3_ASSETS_HISTORIA_VOVO/licao_22_cena_00_vovo.jpg?v=194",
         "caption": "Cena 1/11 • Vovô Nésio abre a Bíblia com os netos para celebrar os milagres de Jesus e as viagens do apóstolo Paulo!",
         "timePct": 0.0
       },
@@ -4994,7 +4994,7 @@ window.preloadVovoLessonImages = function(lessonObj) {
   if (!lesson || !lesson.storyScenes) return;
   lesson.storyScenes.forEach(sc => {
     if (!sc || !sc.img) return;
-    const baseSrc = String(sc.img).split("?")[0] + "?v=78";
+    const baseSrc = String(sc.img).split("?")[0] + "?v=194";
     if (!window._vovoPreloadedCache[baseSrc]) {
       const im = new Image();
       im.decoding = "async";
@@ -6827,7 +6827,7 @@ window.openLessonModule = function(modType) {
       window.markLessonModuleDone(lesson.week, "vovo");
     }
 
-    const initImgSrc = String((scenes[initSceneIdx] && scenes[initSceneIdx].img) || scenes[0].img).split("?")[0] + "?v=78";
+    const initImgSrc = String((scenes[initSceneIdx] && scenes[initSceneIdx].img) || scenes[0].img).split("?")[0] + "?v=194";
     const initCurStr = saved && saved.time > 1.5 ? window.formatVovoTime(saved.time) : "0:00";
     const initTotStr = saved && saved.duration > 0 ? window.formatVovoTime(saved.duration) : "0:00";
     const initPctCss = `${(initPct * 100).toFixed(1)}%`;
@@ -7176,7 +7176,7 @@ window.selectVovoStoryScene = function(sceneIdx, silent) {
 
   const imgEl = document.getElementById("vovo-story-scene-img");
   if (imgEl && scenes[idx]) {
-    const nextSrc = String(scenes[idx].img || "").split("?")[0] + "?v=78";
+    const nextSrc = String(scenes[idx].img || "").split("?")[0] + "?v=194";
     if (imgEl.getAttribute("src") !== nextSrc) {
       imgEl.src = nextSrc;
     }
