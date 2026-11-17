@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v194.0';
+        const CURRENT_VER = 'v195.0';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -63,7 +63,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=194.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=195.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -493,16 +493,16 @@
       justify-content: space-between;
       gap: 6px;
       margin-top: 2px;
-      padding: 3px 2px 4px 2px;
+      padding: 7px 4px 7px 4px;
       flex-shrink: 0;
       z-index: 25;
-      overflow: hidden;
+      overflow: visible !important;
     }
 
     /* 2ª COR: BOLINHAS DE DIREITA E ESQUERDA (SETINHAS) -> VERDE BEM VIVO (SEM LINHA DURA EMBAIXO!) */
     .btn-nav-circle {
-      width: 38px;
-      height: 38px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: linear-gradient(180deg, #00e676 0%, #00c853 55%, #009624 100%);
       border: 2px solid #b9f6ca;
@@ -561,8 +561,9 @@
       border-radius: 999px;
       padding: 4px 8px;
       box-shadow: 0 5px 12px rgba(0, 0, 0, 0.72);
-      scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
+      touch-action: pan-x !important;
+      overscroll-behavior-x: contain;
     }
 
     .house-step {
@@ -1328,9 +1329,7 @@
     .mem-card,
     .ludo-house,
     .color-swatch,
-    .puzzle-diff-bar,
-    .paint-toolbar-modes,
-    .houses-trail {
+    .paint-toolbar-modes {
       animation: aliveBtnFloat 2.8s ease-in-out infinite;
     }
 
@@ -1488,14 +1487,22 @@
       overflow-x: auto !important;
       overflow-y: hidden !important;
       gap: 7px !important;
-      padding: 4px 10px !important;
-      scroll-snap-type: x proximity;
+      padding: 5px 12px !important;
+      scroll-snap-type: none !important;
+      scroll-behavior: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      touch-action: pan-x !important;
+      overscroll-behavior-x: contain;
       cursor: grab;
     }
     #lesson-weeks-trail:active,
     #teacher-weeks-trail:active,
     .ebd-phases-scroll-trail:active {
       cursor: grabbing;
+    }
+    .lesson-scroll-pill,
+    .devocional-weekday-pill {
+      touch-action: pan-x !important;
     }
     .lesson-scroll-pill {
       flex: 0 0 calc(25% - 6px);
@@ -1831,11 +1838,12 @@
     }
     #app-shell.vovo-player-fullscreen-mode #screen-lesson-module .module-header {
       position: absolute !important;
-      top: calc(18px + env(safe-area-inset-top, 0px)) !important;
+      top: calc(20px + env(safe-area-inset-top, 0px)) !important;
       left: 22px !important;
       right: 22px !important;
       margin: 0 !important;
-      padding: 0 !important;
+      padding: 10px 4px !important;
+      overflow: visible !important;
       background: transparent !important;
       border: none !important;
       box-shadow: none !important;
@@ -1849,8 +1857,14 @@
       display: none !important;
     }
     #app-shell.vovo-player-fullscreen-mode #screen-lesson-module .module-header .btn-nav-circle {
+      width: 50px !important;
+      height: 50px !important;
       pointer-events: auto !important;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.72) !important;
+      box-shadow: 0 5px 16px rgba(0, 0, 0, 0.78) !important;
+    }
+    #app-shell.vovo-player-fullscreen-mode #screen-lesson-module .module-header .btn-nav-circle svg {
+      width: 23px !important;
+      height: 23px !important;
     }
   
     /* === UPGRADE V76: ONDE TEM IMAGEM (ORDEM CRONOLÓGICA, JOGO DA MEMÓRIA, QUEBRA-CABEÇA, PINTURA) -> MARGEM COLORIDA ÚNICA MUDANDO DE COR (SEM LINHA AZUL DUPLICADA!) === */
@@ -2872,7 +2886,7 @@
     }
     window._arcadeScriptLoading = true;
     const sc = document.createElement('script');
-    sc.src = 'ebd_super_arcade_audiovisual.js?v=194.0&r=' + Date.now();
+    sc.src = 'ebd_super_arcade_audiovisual.js?v=195.0&r=' + Date.now();
     sc.onload = () => {
       window._arcadeScriptLoading = false;
       if (typeof onReady === 'function') onReady();
@@ -2883,8 +2897,8 @@
     document.head.appendChild(sc);
   };
 </script>
-<script src="ebd_modulos_educativos.js?v=194.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=194.0" onerror="window._ensureArcadeScriptLoaded()"></script>
+<script src="ebd_modulos_educativos.js?v=195.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=195.0" onerror="window._ensureArcadeScriptLoaded()"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!

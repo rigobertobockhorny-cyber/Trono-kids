@@ -5065,8 +5065,8 @@ window.clearVovoSavedResume = function(weekNum) {
   } catch (e) {}
 };
 
-window.VOVO_ICON_PLAY_SVG = '<svg width="26" height="26" viewBox="0 0 24 24" fill="#0f172a" style="margin-left:3px; display:block;"><path d="M6 4.5L19.5 12L6 19.5V4.5Z" stroke="#0f172a" stroke-width="1.5" stroke-linejoin="round"/></svg>';
-window.VOVO_ICON_PAUSE_SVG = '<svg width="24" height="24" viewBox="0 0 24 24" fill="#0f172a" style="display:block;"><rect x="6" y="4.5" width="4.2" height="15" rx="1.4"/><rect x="13.8" y="4.5" width="4.2" height="15" rx="1.4"/></svg>';
+window.VOVO_ICON_PLAY_SVG = '<svg width="30" height="30" viewBox="0 0 24 24" fill="#0f172a" style="margin-left:3px; display:block;"><path d="M6 4.5L19.5 12L6 19.5V4.5Z" stroke="#0f172a" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+window.VOVO_ICON_PAUSE_SVG = '<svg width="28" height="28" viewBox="0 0 24 24" fill="#0f172a" style="display:block;"><rect x="6" y="4.5" width="4.2" height="15" rx="1.4"/><rect x="13.8" y="4.5" width="4.2" height="15" rx="1.4"/></svg>';
 
 window.setVovoPlayBtnState = function(isPlaying) {
   const playBtnEl = document.getElementById("vovo-play-btn");
@@ -6361,11 +6361,14 @@ window.openLessonHubScreen = function() {
 window.enableHorizontalDragScroll = function(el) {
   if (!el || el._dragScrollAttached) return;
   el._dragScrollAttached = true;
+  el.style.scrollBehavior = "auto";
+  el.style.touchAction = "pan-x";
 
   el.addEventListener("wheel", function(e) {
-    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+    const delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+    if (delta !== 0) {
       e.preventDefault();
-      el.scrollLeft += e.deltaY;
+      el.scrollLeft += delta;
     }
   }, { passive: false });
 
@@ -6377,21 +6380,28 @@ window.enableHorizontalDragScroll = function(el) {
   el.addEventListener("mousedown", function(e) {
     isDown = true;
     moved = false;
-    startX = e.pageX - el.offsetLeft;
+    startX = e.clientX;
     scrollLeftStart = el.scrollLeft;
   });
-  el.addEventListener("mouseleave", function() { isDown = false; });
-  el.addEventListener("mouseup", function() { isDown = false; });
+  window.addEventListener("mouseup", function() {
+    if (isDown) isDown = false;
+  });
   el.addEventListener("mousemove", function(e) {
     if (!isDown) return;
-    const x = e.pageX - el.offsetLeft;
-    const walk = (x - startX) * 1.4;
-    if (Math.abs(walk) > 5) moved = true;
+    const walk = (e.clientX - startX) * 1.35;
+    if (Math.abs(walk) > 6) moved = true;
     if (moved) {
       e.preventDefault();
       el.scrollLeft = scrollLeftStart - walk;
     }
   });
+  el.addEventListener("click", function(e) {
+    if (moved) {
+      e.preventDefault();
+      e.stopPropagation();
+      moved = false;
+    }
+  }, true);
 };
 
 // ============================================================================
@@ -6598,10 +6608,11 @@ window.renderLessonHubScreen = function() {
 
     setTimeout(() => {
       const curBtn = document.getElementById(`lesson-pill-${lesson.week}`);
-      if (curBtn && typeof curBtn.scrollIntoView === "function") {
-        curBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      if (curBtn && trailEl) {
+        const targetLeft = Math.max(0, curBtn.offsetLeft - Math.round((trailEl.clientWidth - curBtn.offsetWidth) / 2));
+        trailEl.scrollLeft = targetLeft;
       }
-    }, 40);
+    }, 30);
   }
 
   // Pílulas das 2 Faixas Etárias (APENAS na tela principal da Lição!)
@@ -6840,41 +6851,41 @@ window.openLessonModule = function(modType) {
         <!-- Sombra sutil no topo apenas para destacar as 2 bolinhas de navegação -->
         <div style="position:absolute; top:0; left:0; right:0; height:86px; background:linear-gradient(180deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0) 100%); pointer-events:none; z-index:10;"></div>
 
-        <!-- BARRA DE PLAYER COM AMPLO SUSPIRO NAS BORDAS (CONTADOR + DEDINHO + 3 BOTÕES AFASTADOS DAS BORDAS) -->
-        <div onclick="event.stopPropagation()" style="position:absolute; left:0; right:0; bottom:0; padding:48px 28px calc(32px + env(safe-area-inset-bottom, 0px)) 28px; background:linear-gradient(0deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.52) 64%, rgba(0,0,0,0) 100%); z-index:22; display:flex; flex-direction:column; gap:16px; box-sizing:border-box;">
+        <!-- BARRA DE PLAYER COM AMPLO SUSPIRO NAS BORDAS (CONTADOR + DEDINHO + 3 BOTÕES GRANDES SEM CORTE) -->
+        <div onclick="event.stopPropagation()" style="position:absolute; left:0; right:0; bottom:0; padding:54px 30px calc(38px + env(safe-area-inset-bottom, 0px)) 30px; background:linear-gradient(0deg, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.54) 65%, rgba(0,0,0,0) 100%); z-index:22; display:flex; flex-direction:column; gap:18px; box-sizing:border-box; overflow:visible;">
           <!-- Contador de Tempo + Barra Deslizante com o Dedinho -->
-          <div style="display:flex; align-items:center; gap:12px; width:100%; padding:0 4px; box-sizing:border-box;">
-            <span id="vovo-video-time-current" style="font-size:13px; font-weight:800; color:#ffffff; min-width:36px; text-align:left; text-shadow:0 1px 4px rgba(0,0,0,0.9); font-variant-numeric:tabular-nums;">${initCurStr}</span>
-            <div style="position:relative; flex:1; height:7px; background:rgba(255,255,255,0.34); border-radius:999px;">
+          <div style="display:flex; align-items:center; gap:12px; width:100%; padding:0 4px; box-sizing:border-box; overflow:visible;">
+            <span id="vovo-video-time-current" style="font-size:13.5px; font-weight:800; color:#ffffff; min-width:38px; text-align:left; text-shadow:0 1px 4px rgba(0,0,0,0.9); font-variant-numeric:tabular-nums;">${initCurStr}</span>
+            <div style="position:relative; flex:1; height:7px; background:rgba(255,255,255,0.34); border-radius:999px; overflow:visible;">
               <div id="vovo-video-progress-fill" style="width:${initPctCss}; height:100%; background:linear-gradient(90deg, #fde047, #f59e0b); border-radius:999px;"></div>
-              <div id="vovo-video-progress-thumb" style="position:absolute; top:50%; left:${initPctCss}; width:17px; height:17px; border-radius:50%; background:#ffffff; border:2.5px solid #fde047; transform:translate(-50%, -50%); box-shadow:0 2px 6px rgba(0,0,0,0.85); pointer-events:none;"></div>
+              <div id="vovo-video-progress-thumb" style="position:absolute; top:50%; left:${initPctCss}; width:18px; height:18px; border-radius:50%; background:#ffffff; border:2.5px solid #fde047; transform:translate(-50%, -50%); box-shadow:0 2px 6px rgba(0,0,0,0.85); pointer-events:none;"></div>
               <input id="vovo-video-scrubber" type="range" min="0" max="1000" value="${Math.round(initPct * 1000)}"
                 onmousedown="window._vovoIsDraggingScrub=true" ontouchstart="window._vovoIsDraggingScrub=true"
                 onmouseup="window._vovoIsDraggingScrub=false" ontouchend="window._vovoIsDraggingScrub=false"
                 oninput="onScrubVovoStory(this.value)" onchange="window._vovoIsDraggingScrub=false; onScrubVovoStory(this.value)"
-                style="position:absolute; left:-6px; right:-6px; top:-14px; width:calc(100% + 12px); height:34px; opacity:0; cursor:pointer; margin:0; z-index:5;">
+                style="position:absolute; left:-6px; right:-6px; top:-14px; width:calc(100% + 12px); height:36px; opacity:0; cursor:pointer; margin:0; z-index:5;">
             </div>
-            <span id="vovo-video-time-total" style="font-size:13px; font-weight:800; color:rgba(255,255,255,0.90); min-width:36px; text-align:right; text-shadow:0 1px 4px rgba(0,0,0,0.9); font-variant-numeric:tabular-nums;">${initTotStr}</span>
+            <span id="vovo-video-time-total" style="font-size:13.5px; font-weight:800; color:rgba(255,255,255,0.92); min-width:38px; text-align:right; text-shadow:0 1px 4px rgba(0,0,0,0.9); font-variant-numeric:tabular-nums;">${initTotStr}</span>
           </div>
 
-          <!-- Os 3 Botões Característicos de Player com Amplo Respiro: -10s | Play/Pause | +10s -->
-          <div style="display:flex; align-items:center; justify-content:center; gap:32px; padding-bottom:4px;">
+          <!-- Os 3 Botões Característicos de Player Grandes e Sem Corte: -10s | Play/Pause | +10s -->
+          <div style="display:flex; align-items:center; justify-content:center; gap:34px; padding:6px 0; overflow:visible;">
             <button type="button" onclick="stepVovoStoryTime(-10)" title="Voltar 10 segundos" aria-label="Voltar 10 segundos"
-              style="width:50px; height:50px; border-radius:50%; background:rgba(15,23,42,0.64); border:2px solid rgba(255,255,255,0.78); color:#ffffff; display:inline-flex; align-items:center; justify-content:center; gap:1px; cursor:pointer; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 4px 14px rgba(0,0,0,0.65);">
-              <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              style="width:56px; height:56px; border-radius:50%; background:rgba(15,23,42,0.68); border:2.2px solid rgba(255,255,255,0.82); color:#ffffff; display:inline-flex; align-items:center; justify-content:center; gap:1px; cursor:pointer; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 5px 16px rgba(0,0,0,0.68); flex-shrink:0;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>
                 <text x="12" y="15.3" text-anchor="middle" fill="#ffffff" stroke="none" font-size="7.6" font-weight="900" font-family="Nunito, sans-serif">10</text>
               </svg>
             </button>
 
             <button id="vovo-play-btn" type="button" onclick="toggleVovoStoryNarration()" title="Play / Pausar" aria-label="Tocar história"
-              style="width:64px; height:64px; border-radius:50%; background:linear-gradient(180deg, #fde047 0%, #f59e0b 100%); border:2.5px solid #ffffff; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 6px 20px rgba(0,0,0,0.75), 0 0 18px rgba(253,224,71,0.45);">
+              style="width:72px; height:72px; border-radius:50%; background:linear-gradient(180deg, #fde047 0%, #f59e0b 100%); border:3px solid #ffffff; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 6px 22px rgba(0,0,0,0.78), 0 0 20px rgba(253,224,71,0.50); flex-shrink:0;">
               ${window.VOVO_ICON_PLAY_SVG}
             </button>
 
             <button type="button" onclick="stepVovoStoryTime(10)" title="Avançar 10 segundos" aria-label="Avançar 10 segundos"
-              style="width:50px; height:50px; border-radius:50%; background:rgba(15,23,42,0.64); border:2px solid rgba(255,255,255,0.78); color:#ffffff; display:inline-flex; align-items:center; justify-content:center; gap:1px; cursor:pointer; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 4px 14px rgba(0,0,0,0.65);">
-              <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              style="width:56px; height:56px; border-radius:50%; background:rgba(15,23,42,0.68); border:2.2px solid rgba(255,255,255,0.82); color:#ffffff; display:inline-flex; align-items:center; justify-content:center; gap:1px; cursor:pointer; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 5px 16px rgba(0,0,0,0.68); flex-shrink:0;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>
                 <text x="12" y="15.3" text-anchor="middle" fill="#ffffff" stroke="none" font-size="7.6" font-weight="900" font-family="Nunito, sans-serif">10</text>
               </svg>
