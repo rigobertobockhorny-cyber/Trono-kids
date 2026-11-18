@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "Trono da Promessa EBD",
-  "short_name": "Trono EBD",
-  "description": "Aplicativo oficial infantil e Revista Digital EBD do canal Trono da Promessa.",
+  "name": "Trono da Promessa",
+  "short_name": "Trono da Promessa",
+  "description": "Aplicativo oficial do canal Trono da Promessa: histórias do Vovô Nésio, lições bíblicas, 10 jogos 3D, pintura mágica e canções de ninar.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
