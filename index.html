@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v196.0';
+        const CURRENT_VER = 'v197.0';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -2557,7 +2557,7 @@
   <div id="modal-parental-gate" class="modal-backdrop purple-full-modal">
     <div class="purple-loose-wrap" style="max-width: 355px;">
       <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Proteção Parental" style="width: 54px; height: 54px; object-fit: contain; margin-bottom: 8px; animation: floatGentle 2.5s ease-in-out infinite;">
-      <div onclick="window.openDeveloperDialog()" style="font-size: 23px; font-weight: 900; color: #fde047; text-shadow: 0 3px 10px rgba(0, 0, 0, 0.9); line-height: 1.2; margin-bottom: 10px; cursor:pointer;" title="Toque para Modo Desenvolvedor (12345)">
+      <div onclick="window.openDeveloperDialog()" style="font-size: 23px; font-weight: 900; color: #fde047; text-shadow: 0 3px 10px rgba(0, 0, 0, 0.9); line-height: 1.2; margin-bottom: 10px; cursor:pointer;">
         Área para Papai e Mamãe
       </div>
       <div class="modal-subtitle" style="font-size: 13.5px; color: #f8fafc; text-shadow: 0 2px 5px rgba(0,0,0,0.8); line-height: 1.42; margin-bottom: 20px;">
@@ -2614,7 +2614,7 @@
         </button>
 
         <button type="button" class="btn-gold" style="width: 100%; padding: 11px 12px; font-size: 14px; margin-bottom: 9px;" onclick="window.setDeveloperVipMode(true)">
-          ATIVAR MODO ASSINANTE (15 FASES)
+          ATIVAR MODO ASSINANTE (25 FASES)
         </button>
 
         <button type="button" class="btn-gold" style="width: 100%; padding: 11px 12px; font-size: 14px; background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%); border-color: #bae6fd; margin-bottom: 10px;" onclick="window.setDeveloperVipMode(false)">
@@ -2636,11 +2636,11 @@
       <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Cadeado VIP" style="width: 56px; height: 56px; object-fit: contain; margin-bottom: 6px; animation: floatGentle 2.5s ease-in-out infinite;">
 
       <div id="subscribe-modal-title" style="width: 100%; white-space: nowrap; font-size: clamp(13.2px, 4.0vw, 17px); font-weight: 900; color: #fde047; text-shadow: 0 3px 8px rgba(0,0,0,0.88); margin-bottom: 8px; letter-spacing: -0.1px;">
-        Área dos Pais • Desbloquear Fases 6 a 15
+        Área dos Pais • Desbloquear Fases 6 a 25
       </div>
 
       <div id="subscribe-modal-desc" style="width: 100%; font-size: 13.5px; font-weight: 700; color: #f8fafc; text-shadow: 0 2px 6px rgba(0,0,0,0.8); line-height: 1.38; margin-bottom: 10px;">
-        As fases 1 a 5 de todos os joguinhos são grátis — a criança pode continuar brincando à vontade nos outros jogos! Para liberar todas as 15 fases e todo o aplicativo sem limites, escolha um plano:
+        As fases 1 a 5 de todos os joguinhos e lições são grátis — a criança pode continuar brincando à vontade! Para liberar todas as 25 fases, as 22 lições e todo o aplicativo sem limites, escolha um plano:
       </div>
 
       <div class="plan-card" onclick="startGooglePlayCheckout('mensal')">
@@ -2659,13 +2659,13 @@
         <button class="btn-gold" style="white-space: nowrap; flex-shrink: 0;">R$ 59,90/ano</button>
       </div>
 
-      <!-- CUPOM OU CÓDIGO DE ACESSO SOLTO COM MARGEM E BOTÃO AZUL OFICIAL -->
+      <!-- CÓDIGO DE ACESSO INSTITUCIONAL / IGREJA / FAMÍLIA -->
       <div class="vip-coupon-box" style="width: 100%; margin: 12px 0 8px 0; text-align: center;">
         <div style="font-weight: 800; font-size: 12.5px; color: #fde047; text-shadow: 0 2px 5px rgba(0,0,0,0.85); margin-bottom: 7px;">
-          Possui um cupom de desconto ou código de acesso?
+          Possui código de acesso da Igreja ou Família?
         </div>
         <div style="display: flex; gap: 8px; justify-content: center; align-items: center; width: 100%;">
-          <input type="text" id="input-vip-code" placeholder="Digite seu cupom..." style="flex: 1; min-width: 0; padding: 10px 14px; border-radius: 999px; border: 2px solid rgba(255, 255, 255, 0.65); background: rgba(46, 16, 101, 0.72); color: #ffffff; font-size: 13.5px; text-align: center; font-weight: 800; text-transform: uppercase; box-shadow: inset 0 2px 6px rgba(0,0,0,0.45);">
+          <input type="text" id="input-vip-code" placeholder="Digite seu código..." style="flex: 1; min-width: 0; padding: 10px 14px; border-radius: 999px; border: 2px solid rgba(255, 255, 255, 0.65); background: rgba(46, 16, 101, 0.72); color: #ffffff; font-size: 13.5px; text-align: center; font-weight: 800; text-transform: uppercase; box-shadow: inset 0 2px 6px rgba(0,0,0,0.45);">
           <button type="button" class="btn-gold" style="padding: 10px 18px; font-size: 13px; font-weight: 900; border-radius: 999px; background: linear-gradient(180deg, #00b0ff 0%, #0066ff 100%); border-color: #b3e5fc; white-space: nowrap; flex-shrink: 0;" onclick="redeemVipCoupon()">Aplicar</button>
         </div>
         <div id="vip-feedback-msg" style="font-size: 12px; margin-top: 5px; min-height: 15px; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.85);"></div>
@@ -2730,17 +2730,17 @@
 
         <p style="margin-bottom:8px; color:#fde047; font-weight:700;">PARTE II — TERMOS E CONDIÇÕES GERAIS DE USO E ASSINATURA (EULA)</p>
 
-        <p style="margin-bottom:8px;"><strong>Cláusula 13ª — Licença de Uso e Propriedade Intelectual (Leis nº 9.609/1998 e nº 9.610/1998):</strong> A Vórtice Mídia concede licença pessoal, familiar, não exclusiva, intransferível e não comercial de uso do aplicativo. Todos os personagens originais (<em>Vovô Nésio, Pedrinho, Aninha e Ovelhinha</em>), as 20 ilustrações 3D, contornos de pintura, quizes, músicas originais e código-fonte são propriedade intelectual exclusiva da Vórtice Mídia.</p>
+        <p style="margin-bottom:8px;"><strong>Cláusula 13ª — Licença de Uso e Propriedade Intelectual (Leis nº 9.609/1998 e nº 9.610/1998):</strong> A Vórtice Mídia concede licença pessoal, familiar, não exclusiva, intransferível e não comercial de uso do aplicativo. Todos os personagens originais (<em>Vovô Nésio, Pedrinho, Aninha e Ovelhinha</em>), ilustrações 3D, contornos de pintura, quizes, músicas originais e código-fonte são propriedade intelectual exclusiva da Vórtice Mídia.</p>
 
-        <p style="margin-bottom:8px;"><strong>Cláusula 14ª — Conteúdo Gratuito e Assinatura Opcional ("Clube Trono da Promessa"):</strong> O aplicativo oferece gratuitamente as 6 primeiras fases de cada jogo (Quebra-Cabeça, Pintura Mágica, Quiz do Vovô e Jogo da Memória), as 4 primeiras Casinhas do Álbum da Fé e as músicas do Cantinho de Dormir. A assinatura opcional libera todas as 20 histórias bíblicas nos 4 jogos (80 atividades), as 20 Casinhas e Cards do Álbum da Fé e a exportação em alta resolução / PDF para impressão e envio no WhatsApp.</p>
+        <p style="margin-bottom:8px;"><strong>Cláusula 14ª — Conteúdo Gratuito e Assinatura Opcional ("Clube Trono da Promessa"):</strong> O aplicativo oferece gratuitamente as fases 1 a 5 de todos os jogos educativos e da Salinha de Pintura, as Lições 1 a 5 completas da Salinha da Lição / Revista Digital EBD e as 5 primeiras músicas da Salinha de Dormir. A assinatura opcional libera todas as 25 fases em todos os jogos, todas as 22 lições completas da EBD, todas as canções da Salinha de Dormir, o Álbum completo de Super Cards e a exportação em alta resolução / PDF para impressão.</p>
 
-        <p style="margin-bottom:8px;"><strong>Cláusula 15ª — Preços, Renovação Automática, Cancelamento e Direito de Arrependimento (Art. 49 do CDC):</strong> Planos disponíveis via Google Play: <strong>Plano Mensal (R$ 14,90/mês)</strong> e <strong>Plano Anual com 50% de desconto (R$ 89,90/ano)</strong>. A renovação é automática ao fim de cada ciclo, podendo ser cancelada a qualquer momento sem multa diretamente no app <strong>Google Play Store  Perfil  Pagamentos e assinaturas  Assinaturas  Trono da Promessa Kids  Cancelar assinatura</strong>. É garantido o <strong>Direito de Arrependimento em até 7 (sete) dias corridos</strong> após a contratação inicial com reembolso integral nos termos do Art. 49 do Código de Defesa do Consumidor. O botão <em>"Restaurar Assinatura"</em> permite reativar o acesso gratuitamente ao trocar de aparelho.</p>
+        <p style="margin-bottom:8px;"><strong>Cláusula 15ª — Preços, Renovação Automática, Cancelamento e Direito de Arrependimento (Art. 49 do CDC):</strong> Planos disponíveis via Google Play: <strong>Plano Mensal (R$ 7,90/mês)</strong> e <strong>Plano Anual com Desconto Família (R$ 59,90/ano, equivalente a R$ 4,99/mês)</strong>. A renovação é automática ao fim de cada ciclo, podendo ser cancelada a qualquer momento sem multa diretamente no app <strong>Google Play Store &rarr; Perfil &rarr; Pagamentos e assinaturas &rarr; Assinaturas &rarr; Trono da Promessa Kids &rarr; Cancelar assinatura</strong>. É garantido o <strong>Direito de Arrependimento em até 7 (sete) dias corridos</strong> após a contratação inicial com reembolso integral nos termos do Art. 49 do Código de Defesa do Consumidor. O botão <em>"Restaurar Assinatura"</em> permite reativar o acesso gratuitamente ao trocar de aparelho.</p>
 
-        <p style="margin-bottom:8px;"><strong>Cláusula 16ª — Disponibilidade Offline e Requisitos:</strong> Todos os jogos e músicas funcionam 100% offline após a instalação, exigindo internet apenas para processar ou restaurar a assinatura junto ao Google Play.</p>
+        <p style="margin-bottom:8px;"><strong>Cláusula 16ª — Disponibilidade e Requisitos:</strong> As atividades educativas operam com alta estabilidade em dispositivos Android, exigindo internet para processar ou restaurar a assinatura junto ao Google Play.</p>
 
         <p style="margin-bottom:8px;"><strong>Cláusula 17ª — Atualizações deste Instrumento:</strong> Eventuais revisões jurídicas ou técnicas serão atualizadas neste documento com indicação da data de vigência.</p>
 
-        <p style="margin-bottom:4px;"><strong>Cláusula 18ª — Encarregado de Dados (DPO), Suporte e Foro (Art. 101, I, do CDC):</strong> Controladora: <strong>Vórtice Mídia Produções e Tecnologia Digital</strong> • Canal Oficial de Suporte e Privacidade (DPO): <strong>suporte@vorticemidia.com</strong>. Regido pelas leis da República Federativa do Brasil, ficando assegurado o foro do domicílio do consumidor/responsável legal.</p>
+        <p style="margin-bottom:4px;"><strong>Cláusula 18ª — Encarregado de Dados (DPO), Suporte e Foro (Art. 101, I, do CDC):</strong> Controladora: <strong>Vórtice Mídia (Google Play Console ID 5718212858824055574)</strong> • Canal Oficial de Suporte e Privacidade (DPO): <strong>rigobertobockhorny@gmail.com</strong>. Regido pelas leis da República Federativa do Brasil, ficando assegurado o foro do domicílio do consumidor/responsável legal.</p>
       </div>
       <button class="btn-gold" style="width:100%; padding:10px; font-size:13.5px; margin-bottom:8px; background:linear-gradient(180deg, #00b0ff 0%, #0066ff 100%); border-color:#b3e5fc;" onclick="window.open('politica_privacidade.html', '_blank')">
         Abrir Documento Completo em Tela Cheia (Público)
@@ -2886,7 +2886,7 @@
     }
     window._arcadeScriptLoading = true;
     const sc = document.createElement('script');
-    sc.src = 'ebd_super_arcade_audiovisual.js?v=196.0&r=' + Date.now();
+    sc.src = 'ebd_super_arcade_audiovisual.js?v=197.0&r=' + Date.now();
     sc.onload = () => {
       window._arcadeScriptLoading = false;
       if (typeof onReady === 'function') onReady();
@@ -2897,8 +2897,8 @@
     document.head.appendChild(sc);
   };
 </script>
-<script src="ebd_modulos_educativos.js?v=196.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=196.0" onerror="window._ensureArcadeScriptLoaded()"></script>
+<script src="ebd_modulos_educativos.js?v=197.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=197.0" onerror="window._ensureArcadeScriptLoaded()"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -3749,10 +3749,10 @@ function openSubscribeModal(titleText, customDesc) {
     const titleEl = document.getElementById('subscribe-modal-title');
     const descEl = document.getElementById('subscribe-modal-desc');
     if (titleEl) {
-      titleEl.textContent = 'Área dos Pais • Desbloquear Fases 6 a 15';
+      titleEl.textContent = 'Área dos Pais • Desbloquear Fases 6 a 25';
     }
     if (descEl) {
-      descEl.textContent = 'As fases 1 a 5 de todos os joguinhos são grátis — a criança pode continuar brincando à vontade nos outros jogos! Para liberar todas as 15 fases e todo o aplicativo sem limites, escolha um plano:';
+      descEl.textContent = 'As fases 1 a 5 de todos os joguinhos e lições são grátis — a criança pode continuar brincando à vontade! Para liberar todas as 25 fases, as 22 lições e todo o aplicativo sem limites, escolha um plano:';
     }
     const msgEl = document.getElementById('vip-feedback-msg');
     if (msgEl) msgEl.textContent = '';
@@ -4468,21 +4468,85 @@ function attachFourCardSwipeAndWheel(gridId, onStep) {
   });
 }
 
-function startGooglePlayCheckout(plano) {
-  playSoundSnapGreen();
-  const liberarTeste = confirm(
-    `Na Google Play Store, este botão abre o pagamento oficial (${plano === 'anual' ? 'Plano Anual R$ 59,90/ano (R$ 4,99/mês)' : 'Plano Mensal R$ 7,90/mês'}).\n\nDeseja SIMULAR a assinatura ativa agora para testar todas as 15 fases dos jogos e todo o aplicativo?`
-  );
-  if (liberarTeste) {
-    isVipUnlocked = true;
-    localStorage.setItem('trono_vip_active_v4', '1');
-    updateTopCounters();
-    if (document.getElementById('screen-gallery').classList.contains('active')) renderGalleryPage();
-    if (document.getElementById('screen-album').classList.contains('active')) renderStickerAlbum();
-    if (document.getElementById('screen-ludo-trail').classList.contains('active')) renderLudoTrailBoard();
-    if (typeof window.refreshArcadeUiAfterDevChange === 'function') window.refreshArcadeUiAfterDevChange();
+const GOOGLE_PLAY_BILLING_SKUS = {
+  mensal: 'clube_trono_mensal',
+  anual: 'clube_trono_anual'
+};
+
+function applyVerifiedVipActivation(feedbackText) {
+  isVipUnlocked = true;
+  localStorage.setItem('trono_vip_active_v4', '1');
+  const msgEl = document.getElementById('vip-feedback-msg');
+  if (msgEl && feedbackText) {
+    msgEl.style.color = '#34d399';
+    msgEl.textContent = feedbackText;
   }
-  closeModal('modal-subscribe');
+  updateTopCounters();
+  if (document.getElementById('screen-gallery') && document.getElementById('screen-gallery').classList.contains('active')) renderGalleryPage();
+  if (document.getElementById('screen-album') && document.getElementById('screen-album').classList.contains('active')) renderStickerAlbum();
+  if (document.getElementById('screen-ludo-trail') && document.getElementById('screen-ludo-trail').classList.contains('active')) renderLudoTrailBoard();
+  if (document.getElementById('screen-sleep') && document.getElementById('screen-sleep').classList.contains('active')) renderSleepCorner();
+  if (document.getElementById('screen-lesson-hub') && document.getElementById('screen-lesson-hub').classList.contains('active') && typeof renderLessonHubScreen === 'function') renderLessonHubScreen();
+  if (document.getElementById('screen-chronology') && document.getElementById('screen-chronology').classList.contains('active') && typeof openChronologyScreen === 'function') openChronologyScreen();
+  if (typeof window.refreshArcadeUiAfterDevChange === 'function') window.refreshArcadeUiAfterDevChange();
+}
+
+window.onNativePlayBillingSuccess = function(skuId) {
+  playSoundWinCelebration();
+  launchCelebrationConfetti();
+  applyVerifiedVipActivation('Assinatura Google Play confirmada! Acesso completo liberado!');
+  setTimeout(() => closeModal('modal-subscribe'), 1200);
+};
+
+async function startGooglePlayCheckout(plano) {
+  playSoundSnapGreen();
+  const sku = GOOGLE_PLAY_BILLING_SKUS[plano] || GOOGLE_PLAY_BILLING_SKUS.mensal;
+  const msgEl = document.getElementById('vip-feedback-msg');
+  if (msgEl) {
+    msgEl.style.color = '#fde047';
+    msgEl.textContent = 'Conectando ao Google Play Billing...';
+  }
+
+  // 1) Ponte Nativa Android (.aab WebView / Capacitor Google Play Billing Library)
+  if (window.TronoPlayBilling && typeof window.TronoPlayBilling.subscribe === 'function') {
+    try {
+      window.TronoPlayBilling.subscribe(sku);
+      return;
+    } catch (err) {}
+  }
+
+  // 2) Digital Goods API + PaymentRequest Oficial (Google Play TWA)
+  if ('getDigitalGoodsService' in window && 'PaymentRequest' in window) {
+    try {
+      const service = await window.getDigitalGoodsService('https://play.google.com/billing');
+      if (service) {
+        const request = new PaymentRequest([{
+          supportedMethods: 'https://play.google.com/billing',
+          data: { sku: sku }
+        }]);
+        const response = await request.show();
+        const details = response.details || {};
+        if (details.purchaseToken && typeof service.acknowledge === 'function') {
+          try { await service.acknowledge(details.purchaseToken, 'repeatable'); } catch (ackErr) {}
+        }
+        await response.complete('success');
+        window.onNativePlayBillingSuccess(sku);
+        return;
+      }
+    } catch (err) {
+      if (msgEl) {
+        msgEl.style.color = '#f87171';
+        msgEl.textContent = 'Operação cancelada ou assinatura ainda em ativação na Google Play.';
+      }
+      return;
+    }
+  }
+
+  // 3) Acesso via navegador fora do pacote instalado na Google Play Store
+  if (msgEl) {
+    msgEl.style.color = '#fde047';
+    msgEl.textContent = 'Assinatura processada pelo app instalado via Google Play Store. Se tiver código da Igreja/Família, aplique acima.';
+  }
 }
 
 
@@ -4514,7 +4578,7 @@ function renderDeveloperStatusSummary() {
     }
   } catch (e) {}
   summaryEl.innerHTML =
-    `Modo Atual: <span style="color:#fde047;">${isVip ? 'ASSINANTE VIP (15 Fases)' : 'GRÁTIS NORMAL (5 Fases)'}</span><br>` +
+    `Modo Atual: <span style="color:#fde047;">${isVip ? 'ASSINANTE VIP (25 Fases)' : 'GRÁTIS NORMAL (5 Fases)'}</span><br>` +
     `Super Cards Conquistados: <span style="color:#38bdf8;">${wonCount} de 54</span>`;
 }
 
@@ -4671,8 +4735,8 @@ function redeemVipCoupon() {
     localStorage.setItem('trono_vip_active_v4', '1');
     msgEl.style.color = '#34d399';
     msgEl.textContent = isDevPass
-      ? 'SENHA DO DESENVOLVEDOR (12345) ACEITA! Modo VIP e 15 Fases Liberadas!'
-      : 'Cupom aplicado com sucesso! Acesso completo ativado!';
+      ? 'SENHA DO DESENVOLVEDOR (12345) ACEITA! Modo VIP e 25 Fases Liberadas!'
+      : 'Código aplicado com sucesso! Acesso completo ativado!';
     playSoundWinCelebration();
     launchCelebrationConfetti();
 
@@ -4683,44 +4747,78 @@ function redeemVipCoupon() {
       if (document.getElementById('screen-lesson-hub') && document.getElementById('screen-lesson-hub').classList.contains('active') && typeof renderLessonHubScreen === 'function') renderLessonHubScreen();
       if (document.getElementById('screen-chronology') && document.getElementById('screen-chronology').classList.contains('active') && typeof openChronologyScreen === 'function') openChronologyScreen();
       if (document.getElementById('screen-edu-game') && document.getElementById('screen-edu-game').classList.contains('active') && typeof openEduGame === 'function') openEduGame(window.EBD_STATE.activeEduGameKey, window.EBD_STATE.fromLessonGames);
+      if (typeof window.refreshArcadeUiAfterDevChange === 'function') window.refreshArcadeUiAfterDevChange();
       updateTopCounters();
       closeModal('modal-subscribe');
     }, 1500);
   } else {
     msgEl.style.color = '#f87171';
-    msgEl.textContent = 'Cupom inválido ou expirado. Verifique a digitação.';
+    msgEl.textContent = 'Código inválido ou expirado. Verifique a digitação.';
     playSoundCardFlip();
   }
 }
 
-function restoreGooglePlayPurchases() {
+async function restoreGooglePlayPurchases() {
   playSoundSnapGreen();
+  const msgEl = document.getElementById('vip-feedback-msg');
+  if (msgEl) {
+    msgEl.style.color = '#fde047';
+    msgEl.textContent = 'Consultando assinaturas ativas na sua conta Google Play...';
+  }
+
+  // 1) Ponte Nativa Android (.aab)
+  if (window.TronoPlayBilling && typeof window.TronoPlayBilling.restorePurchases === 'function') {
+    try {
+      const restored = window.TronoPlayBilling.restorePurchases();
+      if (restored) {
+        window.onNativePlayBillingSuccess('restored');
+        return;
+      }
+    } catch (e) {}
+  }
+
+  // 2) Digital Goods API Oficial (Google Play TWA)
+  if ('getDigitalGoodsService' in window) {
+    try {
+      const service = await window.getDigitalGoodsService('https://play.google.com/billing');
+      if (service && typeof service.listPurchases === 'function') {
+        const purchases = await service.listPurchases();
+        if (Array.isArray(purchases) && purchases.length > 0) {
+          window.onNativePlayBillingSuccess(purchases[0].itemId || 'restored');
+          return;
+        }
+      }
+    } catch (e) {}
+  }
+
   if (isVipUnlocked) {
-    const voltarGratis = confirm(
-      'O Modo Assinante VIP está ativo neste aparelho.\n\nDeseja VOLTAR PARA O MODO GRÁTIS (6 Liberados + 14/44 Bloqueados com Cadeado) para testar os cadeados?'
-    );
-    if (voltarGratis) {
-      isVipUnlocked = false;
-      localStorage.removeItem('trono_vip_active_v4');
-      if (document.getElementById('screen-gallery').classList.contains('active')) renderGalleryPage();
-      if (document.getElementById('screen-album').classList.contains('active')) renderStickerAlbum();
-      if (document.getElementById('screen-ludo-trail').classList.contains('active')) renderLudoTrailBoard();
-      closeModal('modal-subscribe');
+    if (msgEl) {
+      msgEl.style.color = '#34d399';
+      msgEl.textContent = 'Seu acesso completo já está ativo neste aparelho!';
     }
     return;
   }
-  const restaurar = confirm(
-    'Verificando assinaturas ativas vinculadas à sua conta Google Play...\n\nDeseja ativar/simular o acesso Assinante neste aparelho? (Clique em Cancelar para manter o Modo Grátis com 6 Liberados e os demais Bloqueados com Cadeado)'
-  );
-  if (restaurar) {
-    isVipUnlocked = true;
-    localStorage.setItem('trono_vip_active_v4', '1');
-    if (document.getElementById('screen-gallery').classList.contains('active')) renderGalleryPage();
-    if (document.getElementById('screen-album').classList.contains('active')) renderStickerAlbum();
-    if (document.getElementById('screen-ludo-trail').classList.contains('active')) renderLudoTrailBoard();
-    closeModal('modal-subscribe');
+
+  if (msgEl) {
+    msgEl.style.color = '#f87171';
+    msgEl.textContent = 'Nenhuma assinatura ativa encontrada nesta conta Google Play.';
   }
 }
+
+// Sincroniza automaticamente assinaturas ativas da Google Play na abertura do app
+(async function syncGooglePlayEntitlementsOnBoot() {
+  try {
+    if ('getDigitalGoodsService' in window) {
+      const service = await window.getDigitalGoodsService('https://play.google.com/billing');
+      if (service && typeof service.listPurchases === 'function') {
+        const purchases = await service.listPurchases();
+        if (Array.isArray(purchases) && purchases.length > 0 && !isVipUnlocked) {
+          applyVerifiedVipActivation('');
+        }
+      }
+    }
+  } catch (e) {}
+})();
 
 function openPrivacyPolicyModal() {
   playSoundClick();
@@ -6508,18 +6606,20 @@ function downloadOrShareCollectorCard() {
 
   // 1) Imagem 16:9 interna da lição
   if (st.is16x9Download) {
-    const weekAllowed = !st.week || st.week <= 10 || isVipUnlocked;
+    const weekAllowed = !st.week || st.week <= 5 || isVipUnlocked;
     if (!weekAllowed) {
       closeModal('modal-collector-card');
-      openSubscribeModal('Baixar Imagens das Lições 11 a 22');
+      openSubscribeModal('Baixar Imagens das Lições 6 a 22');
       return;
     }
     closeModal('modal-collector-card');
-    if (typeof window.downloadLesson16x9Image === 'function') {
-      window.downloadLesson16x9Image(st.customImgSrc || st.superCardImg, st.title);
-    } else {
-      triggerDirectImageDownloadOrShare(st.customImgSrc || st.superCardImg, st.title, 'licao_16x9');
-    }
+    requestParentalGate(() => {
+      if (typeof window.downloadLesson16x9Image === 'function') {
+        window.downloadLesson16x9Image(st.customImgSrc || st.superCardImg, st.title);
+      } else {
+        triggerDirectImageDownloadOrShare(st.customImgSrc || st.superCardImg, st.title, 'licao_16x9');
+      }
+    });
     return;
   }
 
@@ -6536,17 +6636,21 @@ function downloadOrShareCollectorCard() {
     return;
   }
 
-  // 3) Super Card 16:9 conquistado nos Jogos
+  // 3) Super Card 16:9 conquistado nos Jogos (com Parental Gate Google Play Families)
   if (st.sourceType === 'arcade' && st.code && typeof window.shareOrDownloadArcadeRewardCard === 'function') {
     closeModal('modal-collector-card');
-    window.shareOrDownloadArcadeRewardCard(st.code);
+    requestParentalGate(() => {
+      window.shareOrDownloadArcadeRewardCard(st.code);
+    });
     return;
   }
 
-  // 4) Super Card 9:16 conquistado nas Lições
+  // 4) Super Card 9:16 conquistado nas Lições (com Parental Gate Google Play Families)
   closeModal('modal-collector-card');
   const imgUrl = st.superCardImg || `./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${st.seqColor || '09'}.jpg`;
-  triggerDirectImageDownloadOrShare(imgUrl, st.shortTitle || st.title, 'super_card_trono_kids');
+  requestParentalGate(() => {
+    triggerDirectImageDownloadOrShare(imgUrl, st.shortTitle || st.title, 'super_card_trono_kids');
+  });
 }
 
 // ============================================================================
