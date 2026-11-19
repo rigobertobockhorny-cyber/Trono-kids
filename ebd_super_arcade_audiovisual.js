@@ -3034,7 +3034,7 @@
       subBtn.style.animation = "btnGlowPulse 1.8s ease-in-out infinite";
     }
 
-    btn.textContent = "CONTINUAR BRINCANDO";
+    btn.textContent = (!isVip && current >= FREE_PHASES) ? "OUTROS JOGUINHOS (1 AO 5)" : "CONTINUAR BRINCANDO";
     btn.style.background = "linear-gradient(180deg, #00e676 0%, #00c853 100%)";
     btn.style.border = "2.5px solid #ffffff";
     btn.style.boxShadow = "0 0 22px rgba(0,230,118,0.85), 0 6px 16px rgba(0,0,0,0.75)";

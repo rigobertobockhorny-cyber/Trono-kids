@@ -1,5 +1,5 @@
 {
-  "version": "v198.1",
-  "buildDate": "2026-11-18T23:46:00-03:00",
-  "notes": "v198.1: Blindagem 100% Google Play Families / COPPA / LGPD — Parental Gate matematico obrigatorio em todos os downloads (Devocional, Licao, Vitoria, Album, Pintura) + Zero links/compartilhamento WhatsApp (100% download local na memoria do celular)"
+  "version": "v198.2",
+  "buildDate": "2026-11-19T01:18:00-03:00",
+  "notes": "v198.2: Reset limpo Modo Gratuito (Fases 1 a 5 gratis, Fase 6+ exclusivo assinantes) + botao Outros Joguinhos (1 ao 5) na conclusao da Fase 5 gratuita"
 }

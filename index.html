@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v198.1';
+        const CURRENT_VER = 'v198.2';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -2945,14 +2945,14 @@ window.STORIES = STORIES;
 // RESET GERAL ZERO KM DE LANÇAMENTO PLAY STORE (v191.0):
 // Zera 100% os dados de teste na primeira abertura desta versão oficial para entregar o app virgem (5 Lições + 5 Fases + 5 Músicas Grátis)!
 try {
-  if (localStorage.getItem('trono_playstore_zero_reset_v191') !== '1') {
+  if (localStorage.getItem('trono_playstore_zero_reset_v198_2') !== '1') {
     const _resetKeys = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
       if (k && k.indexOf('trono_') === 0) _resetKeys.push(k);
     }
     _resetKeys.forEach(k => localStorage.removeItem(k));
-    localStorage.setItem('trono_playstore_zero_reset_v191', '1');
+    localStorage.setItem('trono_playstore_zero_reset_v198_2', '1');
   }
 } catch (e) {}
 localStorage.removeItem('trono_vip_active');
