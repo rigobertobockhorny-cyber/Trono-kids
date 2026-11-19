@@ -13865,6 +13865,9 @@
     window._userEnteredModule = true;
     TronoAudio.play("click");
     showParentalGate(() => {
+      if (window.EBD_MAGAZINE_STATE) {
+        window.EBD_MAGAZINE_STATE.activeTab = "account";
+      }
       if (typeof window.renderTeacherPortalContent === "function") {
         window.renderTeacherPortalContent();
       } else if (typeof renderTeacherPortalScreen === "function") {

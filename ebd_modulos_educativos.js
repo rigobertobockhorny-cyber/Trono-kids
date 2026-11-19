@@ -8983,14 +8983,14 @@ window.ensureEbdMagazineStyles = function() {
     }
     .ebd-mag-tabs-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
     }
     .ebd-mag-tab-btn {
-      padding: 9px 8px;
-      border-radius: 12px;
+      padding: 8px 5px;
+      border-radius: 11px;
       font-family: 'Fredoka', sans-serif;
-      font-size: 12.5px;
+      font-size: 11px;
       font-weight: 900;
       cursor: pointer;
       border: 2px solid #cbd5e1;
@@ -9767,10 +9767,103 @@ window.backFromTeacherPortal = function() {
   }
 };
 
+window.renderFamilyAccountTabHtml = function() {
+  const isVip = (typeof isVipUnlocked !== "undefined" && isVipUnlocked) || localStorage.getItem("trono_vip_active_v4") === "1";
+  const statusBadgeHtml = isVip
+    ? `<div style="background:#ecfdf5; border:2px solid #059669; color:#065f46; border-radius:12px; padding:11px 12px; font-weight:900; font-size:13px; text-align:center; margin-bottom:12px;">
+         ASSINANTE ATIVO • ACESSO COMPLETO LIBERADO<br>
+         <span style="font-size:11.5px; font-weight:700; color:#047857;">Todas as 25 fases dos jogos, 22 lições completas e 10 canções de ninar desbloqueadas!</span>
+       </div>`
+    : `<div style="background:#eff6ff; border:2px solid #0284c7; color:#0c4a6e; border-radius:12px; padding:11px 12px; font-weight:900; font-size:13px; text-align:center; margin-bottom:12px;">
+         MODO GRATUITO ATIVO (FASES 1 A 5)<br>
+         <span style="font-size:11.5px; font-weight:700; color:#0369a1;">Fases 1 a 5 de todos os jogos, Lições 1 a 5 e 5 canções de ninar liberadas grátis.</span>
+       </div>`;
+
+  return `
+    <div class="ebd-mag-sheet">
+      <div class="ebd-mag-header" style="margin-bottom:10px;">
+        <div class="ebd-mag-kicker">
+          <span>ÁREA DA FAMÍLIA • GOOGLE PLAY</span>
+          <span class="ebd-mag-pill-outline">${isVip ? "PLANO ATIVO" : "GRATUITO"}</span>
+        </div>
+        <div class="ebd-mag-main-title">Assinatura, Renovação e Suporte</div>
+        <div class="ebd-mag-ref-line">Gerencie seu acesso familiar ao Clube Trono da Promessa com total segurança.</div>
+      </div>
+
+      ${statusBadgeHtml}
+
+      <div class="ebd-mag-block" style="border-left-color:#d97706;">
+        <div class="ebd-mag-block-head" style="color:#b45309;">
+          <span class="ebd-mag-num">01</span>
+          <div class="ebd-mag-block-title">Planos de Assinatura (Clube Trono da Promessa)</div>
+        </div>
+        <p class="ebd-mag-p">Desbloqueie todas as <strong>25 fases</strong> de todos os joguinhos, as <strong>22 lições completas</strong> da Revista Digital e todas as canções da Salinha de Dormir:</p>
+        <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
+          <div onclick="startGooglePlayCheckout('mensal')" style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding:10px 12px; border-radius:12px; border:2px solid #f59e0b; background:#fffbeb; cursor:pointer;">
+            <div>
+              <div style="font-family:'Fredoka',sans-serif; font-size:14px; font-weight:900; color:#78350f;">Plano Mensal</div>
+              <div style="font-size:11.5px; font-weight:700; color:#92400e;">Cancele quando quiser no Google Play</div>
+            </div>
+            <button type="button" style="padding:8px 14px; border-radius:999px; border:2px solid #b45309; background:linear-gradient(180deg,#fbbf24,#d97706); color:#fff; font-family:'Fredoka',sans-serif; font-size:13px; font-weight:900; cursor:pointer; white-space:nowrap;">R$ 7,90/mês</button>
+          </div>
+
+          <div onclick="startGooglePlayCheckout('anual')" style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding:10px 12px; border-radius:12px; border:2px solid #6d28d9; background:#f5f3ff; cursor:pointer;">
+            <div>
+              <div style="font-family:'Fredoka',sans-serif; font-size:14px; font-weight:900; color:#4c1d95;">Plano Anual (Família)</div>
+              <div style="font-size:11.5px; font-weight:700; color:#5b21b6;">Desconto especial • Equivale a R$ 4,99/mês</div>
+            </div>
+            <button type="button" style="padding:8px 14px; border-radius:999px; border:2px solid #4c1d95; background:linear-gradient(180deg,#8b5cf6,#6d28d9); color:#fff; font-family:'Fredoka',sans-serif; font-size:13px; font-weight:900; cursor:pointer; white-space:nowrap;">R$ 59,90/ano</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ebd-mag-block" style="border-left-color:#0284c7;">
+        <div class="ebd-mag-block-head" style="color:#0369a1;">
+          <span class="ebd-mag-num">02</span>
+          <div class="ebd-mag-block-title">Código de Acesso (Família ou Igreja)</div>
+        </div>
+        <div style="display:flex; gap:6px; margin-top:6px;">
+          <input type="text" id="portal-vip-code-input" placeholder="Digite seu código..." style="flex:1; min-width:0; padding:9px 12px; border-radius:10px; border:2px solid #94a3b8; background:#f8fafc; color:#0f172a; font-size:13px; font-weight:800; text-transform:uppercase;">
+          <button type="button" onclick="redeemVipCoupon('portal-vip-code-input', 'portal-vip-feedback')" style="padding:9px 16px; border-radius:10px; border:2px solid #0369a1; background:#0284c7; color:#ffffff; font-family:'Fredoka',sans-serif; font-size:12.5px; font-weight:900; cursor:pointer;">APLICAR</button>
+        </div>
+        <div id="portal-vip-feedback" style="font-size:12px; font-weight:800; margin-top:5px; min-height:16px; color:#047857;"></div>
+      </div>
+
+      <div class="ebd-mag-block" style="border-left-color:#059669;">
+        <div class="ebd-mag-block-head" style="color:#047857;">
+          <span class="ebd-mag-num">03</span>
+          <div class="ebd-mag-block-title">Renovação, Restauração e Cancelamento</div>
+        </div>
+        <p class="ebd-mag-p">Pagamentos e cancelamentos são processados diretamente pelo sistema oficial da <strong>Google Play Store</strong>, sem multa e a qualquer momento:</p>
+        <div style="display:grid; grid-template-columns:1fr; gap:7px; margin-top:8px;">
+          <button type="button" onclick="restoreGooglePlayPurchases()" style="padding:10px; border-radius:10px; border:2px solid #0284c7; background:#ffffff; color:#0369a1; font-family:'Fredoka',sans-serif; font-size:12.2px; font-weight:900; cursor:pointer;">
+            RESTAURAR ASSINATURA (TROCA DE APARELHO)
+          </button>
+          <button type="button" onclick="window.openGooglePlayManageSubscriptions()" style="padding:10px; border-radius:10px; border:2px solid #be123c; background:#ffffff; color:#be123c; font-family:'Fredoka',sans-serif; font-size:12.2px; font-weight:900; cursor:pointer;">
+            GERENCIAR OU CANCELAR ASSINATURA NO GOOGLE PLAY
+          </button>
+          <button type="button" onclick="openPrivacyPolicyModal()" style="padding:10px; border-radius:10px; border:2px solid #475569; background:#ffffff; color:#334155; font-family:'Fredoka',sans-serif; font-size:12.2px; font-weight:900; cursor:pointer;">
+            POLÍTICA DE PRIVACIDADE E TERMOS DE USO
+          </button>
+        </div>
+      </div>
+
+      <div class="ebd-mag-block" style="border-left-color:#6d28d9; margin-bottom:2px;">
+        <div class="ebd-mag-block-head" style="color:#581c87;">
+          <span class="ebd-mag-num">04</span>
+          <div class="ebd-mag-block-title">Suporte e Atendimento Oficial à Família</div>
+        </div>
+        <p class="ebd-mag-p" style="margin-bottom:2px;">Dúvidas, sugestões ou suporte ao assinante — fale diretamente com a equipe <strong>Vórtice Mídia</strong> pelo e-mail oficial:<br>
+        <strong style="color:#4c1d95; font-size:13px;">rigobertobockhorny@gmail.com</strong></p>
+      </div>
+    </div>
+  `;
+};
+
 window.openTeacherAndFamilyPortal = function() {
   window.ebdClick();
   window.EBD_MAGAZINE_STATE.portalWeek = (window.EBD_STATE && window.EBD_STATE.currentWeek) ? Number(window.EBD_STATE.currentWeek) : 1;
-  window.EBD_MAGAZINE_STATE.activeTab = "magazine";
+  window.EBD_MAGAZINE_STATE.activeTab = "account";
   window.renderTeacherPortalContent();
   if (typeof showScreen === "function") showScreen("screen-teacher-portal");
 };
@@ -9812,19 +9905,13 @@ window.renderTeacherPortalContent = function() {
   const box = document.getElementById("teacher-portal-content");
   if (!box) return;
 
-  const activeTab = window.EBD_MAGAZINE_STATE.activeTab || "magazine";
+  const activeTab = window.EBD_MAGAZINE_STATE.activeTab || "account";
+  if (trailEl) {
+    trailEl.style.display = activeTab === "account" ? "none" : "";
+  }
   const totalLessonsCount = (window.EBD_LESSONS_CURRICULUM || []).length || 22;
 
-  box.innerHTML = `
-    <div class="ebd-mag-toolbar">
-      <div class="ebd-mag-tabs-row">
-        <button type="button" class="ebd-mag-tab-btn ${activeTab === "magazine" ? "active-tab" : ""}" onclick="window.switchEbdMagazineTab('magazine')">
-          REVISTA DA LIÇÃO ${lesson.week} (IMPRIMIR)
-        </button>
-        <button type="button" class="ebd-mag-tab-btn ${activeTab === "slides" ? "active-tab" : ""}" onclick="window.switchEbdMagazineTab('slides')">
-          SLIDES DE AULA (TV / PROJETOR)
-        </button>
-      </div>
+  const actionsRowHtml = activeTab === "account" ? "" : `
       <div class="ebd-mag-actions-row">
         <button type="button" class="ebd-mag-act-btn" style="border-color:#6d28d9; color:#581c87;" onclick="window.printSingleEbdLesson(${lesson.week})">
           IMPRIMIR / PDF<br>DESTA LIÇÃO
@@ -9836,11 +9923,34 @@ window.renderTeacherPortalContent = function() {
           IMPRIMIR REVISTA<br>TODA (${totalLessonsCount} LIÇÕES)
         </button>
       </div>
+  `;
+
+  let bodySectionHtml = "";
+  if (activeTab === "account") {
+    bodySectionHtml = window.renderFamilyAccountTabHtml();
+  } else if (activeTab === "slides") {
+    bodySectionHtml = window.renderTeacherSlidesSectionHtml(lesson);
+  } else {
+    bodySectionHtml = window.buildLessonMagazineHtml(lesson, false);
+  }
+
+  box.innerHTML = `
+    <div class="ebd-mag-toolbar">
+      <div class="ebd-mag-tabs-row">
+        <button type="button" class="ebd-mag-tab-btn ${activeTab === "account" ? "active-tab" : ""}" onclick="window.switchEbdMagazineTab('account')">
+          ASSINATURA<br>E CONTA
+        </button>
+        <button type="button" class="ebd-mag-tab-btn ${activeTab === "magazine" ? "active-tab" : ""}" onclick="window.switchEbdMagazineTab('magazine')">
+          REVISTA DA<br>LIÇÃO ${lesson.week}
+        </button>
+        <button type="button" class="ebd-mag-tab-btn ${activeTab === "slides" ? "active-tab" : ""}" onclick="window.switchEbdMagazineTab('slides')">
+          SLIDES DE<br>AULA (TV)
+        </button>
+      </div>
+      ${actionsRowHtml}
     </div>
 
-    ${activeTab === "slides"
-      ? window.renderTeacherSlidesSectionHtml(lesson)
-      : window.buildLessonMagazineHtml(lesson, false)}
+    ${bodySectionHtml}
   `;
 
   if (window.EBD_MAGAZINE_STATE.fullscreenActive) {
@@ -9852,7 +9962,7 @@ window.renderTeacherPortalScreen = window.renderTeacherPortalContent;
 
 window.switchEbdMagazineTab = function(tabName) {
   window.ebdClick();
-  window.EBD_MAGAZINE_STATE.activeTab = tabName === "slides" ? "slides" : "magazine";
+  window.EBD_MAGAZINE_STATE.activeTab = (tabName === "slides" || tabName === "account") ? tabName : "magazine";
   window.EBD_MAGAZINE_STATE.slideIndex = 0;
   window.EBD_MAGAZINE_STATE.slideAnswerRevealed = false;
   window.renderTeacherPortalContent();

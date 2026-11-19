@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v198.2';
+        const CURRENT_VER = 'v199.0';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -2021,7 +2021,7 @@
 
     <!-- Bloco da Vinheta (16:9) - Sem margem amarela! Cantos arredondados com sombra profunda -->
     <div id="intro-video-container" onclick="window.handleIntroContainerTap()" style="position:relative; width:100%; max-width:540px; aspect-ratio:16/9; max-height:48vh; border-radius:20px; border:none; box-shadow:0 16px 44px rgba(0,0,0,0.65), 0 0 28px rgba(46,16,101,0.5); overflow:hidden; background:#000000; cursor:pointer;">
-      <video id="intro-video-player" playsinline webkit-playsinline x5-playsinline preload="auto" src="./2_ASSETS_UI_BOTOES/vinheta_abertura_trono.mp4?v=101" style="width:100%; height:100%; object-fit:cover; display:block;"></video>
+      <video id="intro-video-player" playsinline webkit-playsinline x5-playsinline preload="auto" poster="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" src="./2_ASSETS_UI_BOTOES/vinheta_abertura_trono.mp4?v=101" style="width:100%; height:100%; object-fit:cover; display:block; background:#000000;"></video>
       
       <!-- Botão de Play Flutuante (caso o navegador bloqueie autoplay com som) -->
       <div id="intro-play-tap-prompt" style="position:absolute; inset:0; background:rgba(0,0,0,0.45); display:none; flex-direction:column; align-items:center; justify-content:center; gap:10px; z-index:10; backdrop-filter:blur(2px);">
@@ -2730,7 +2730,7 @@
 
         <p style="margin-bottom:8px;"><strong>Cláusula 14ª — Conteúdo Gratuito e Assinatura Opcional ("Clube Trono da Promessa"):</strong> O aplicativo oferece gratuitamente as fases 1 a 5 de todos os jogos educativos e da Salinha de Pintura, as Lições 1 a 5 completas da Salinha da Lição / Revista Digital EBD e as 5 primeiras músicas da Salinha de Dormir. A assinatura opcional libera todas as 25 fases em todos os jogos, todas as 22 lições completas da EBD, todas as canções da Salinha de Dormir, o Álbum completo de Super Cards e a exportação em alta resolução / PDF para impressão.</p>
 
-        <p style="margin-bottom:8px;"><strong>Cláusula 15ª — Preços, Renovação Automática, Cancelamento e Direito de Arrependimento (Art. 49 do CDC):</strong> Planos disponíveis via Google Play: <strong>Plano Mensal (R$ 7,90/mês)</strong> e <strong>Plano Anual com Desconto Família (R$ 59,90/ano, equivalente a R$ 4,99/mês)</strong>. A renovação é automática ao fim de cada ciclo, podendo ser cancelada a qualquer momento sem multa diretamente no app <strong>Google Play Store &rarr; Perfil &rarr; Pagamentos e assinaturas &rarr; Assinaturas &rarr; Trono da Promessa Kids &rarr; Cancelar assinatura</strong>. É garantido o <strong>Direito de Arrependimento em até 7 (sete) dias corridos</strong> após a contratação inicial com reembolso integral nos termos do Art. 49 do Código de Defesa do Consumidor. O botão <em>"Restaurar Assinatura"</em> permite reativar o acesso gratuitamente ao trocar de aparelho.</p>
+        <p style="margin-bottom:8px;"><strong>Cláusula 15ª — Preços, Renovação Automática, Cancelamento e Direito de Arrependimento (Art. 49 do CDC):</strong> Planos disponíveis via Google Play: <strong>Plano Mensal (R$ 7,90/mês)</strong> e <strong>Plano Anual com Desconto Família (R$ 59,90/ano, equivalente a R$ 4,99/mês)</strong>. A renovação é automática ao fim de cada ciclo, podendo ser cancelada a qualquer momento sem multa diretamente no app <strong>Google Play Store &rarr; Perfil &rarr; Pagamentos e assinaturas &rarr; Assinaturas &rarr; Trono da Promessa &rarr; Cancelar assinatura</strong>. É garantido o <strong>Direito de Arrependimento em até 7 (sete) dias corridos</strong> após a contratação inicial com reembolso integral nos termos do Art. 49 do Código de Defesa do Consumidor. O botão <em>"Restaurar Assinatura"</em> permite reativar o acesso gratuitamente ao trocar de aparelho.</p>
 
         <p style="margin-bottom:8px;"><strong>Cláusula 16ª — Disponibilidade e Requisitos:</strong> As atividades educativas operam com alta estabilidade em dispositivos Android, exigindo internet para processar ou restaurar a assinatura junto ao Google Play.</p>
 
@@ -4676,10 +4676,21 @@ window.resetAllAppProgressToZero = function(btnEl) {
   }, 260);
 };
 
-function redeemVipCoupon() {
+window.openGooglePlayManageSubscriptions = function() {
   playSoundClick();
-  const inputEl = document.getElementById('input-vip-code');
-  const msgEl = document.getElementById('vip-feedback-msg');
+  if (window.TronoPlayBilling && typeof window.TronoPlayBilling.openManageSubscriptions === 'function') {
+    try {
+      window.TronoPlayBilling.openManageSubscriptions();
+      return;
+    } catch (e) {}
+  }
+  window.open('https://play.google.com/store/account/subscriptions?package=com.vorticemidia.tronodapromessa', '_blank');
+};
+
+function redeemVipCoupon(customInputId, customMsgId) {
+  playSoundClick();
+  const inputEl = document.getElementById(customInputId || 'input-vip-code');
+  const msgEl = document.getElementById(customMsgId || 'vip-feedback-msg');
   if (!inputEl || !msgEl) return;
 
   const rawCode = (inputEl.value || '').trim().toUpperCase();
@@ -4744,6 +4755,9 @@ function redeemVipCoupon() {
       if (document.getElementById('screen-chronology') && document.getElementById('screen-chronology').classList.contains('active') && typeof openChronologyScreen === 'function') openChronologyScreen();
       if (document.getElementById('screen-edu-game') && document.getElementById('screen-edu-game').classList.contains('active') && typeof openEduGame === 'function') openEduGame(window.EBD_STATE.activeEduGameKey, window.EBD_STATE.fromLessonGames);
       if (typeof window.refreshArcadeUiAfterDevChange === 'function') window.refreshArcadeUiAfterDevChange();
+      if (document.getElementById('screen-teacher-portal') && document.getElementById('screen-teacher-portal').classList.contains('active') && typeof window.renderTeacherPortalContent === 'function') {
+        window.renderTeacherPortalContent();
+      }
       updateTopCounters();
       closeModal('modal-subscribe');
     }, 1500);
