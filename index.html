@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v198.0';
+        const CURRENT_VER = 'v198.1';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -2526,13 +2526,13 @@
   </section>
 
   <!-- ==================================================================== -->
-  <!-- MODAL DE DOWNLOAD / IMPRESSÃO / WHATSAPP (EXCLUSIVO ASSINANTES)      -->
+  <!-- MODAL DE DOWNLOAD / IMPRESSÃO LOCAL (PROTEGIDO POR PARENTAL GATE)    -->
   <!-- ==================================================================== -->
   <div id="modal-download-paint" class="modal-backdrop">
     <div class="modal-card">
-      <div style="font-size:20px; font-weight:700; color:#fde047; margin-bottom:6px;">Baixar, Imprimir e WhatsApp</div>
+      <div style="font-size:20px; font-weight:700; color:#fde047; margin-bottom:6px;">Baixar ou Imprimir Desenho</div>
       <div class="modal-subtitle">
-        Escolha como deseja salvar ou enviar este desenho:
+        Escolha como deseja salvar este desenho na memória do seu aparelho:
       </div>
 
       <button class="btn-gold" style="width:100%; margin-bottom:9px; padding:11px; font-size:14.5px;" onclick="printOrSaveBlankPDF()">
@@ -2540,11 +2540,7 @@
       </button>
 
       <button class="btn-gold" style="width:100%; margin-bottom:9px; padding:11px; font-size:14.5px;" onclick="downloadColoredPaintingPNG()">
-        Baixar Pintura Colorida (Celular / PC)
-      </button>
-
-      <button class="btn-gold" style="width:100%; margin-bottom:9px; padding:11px; font-size:14.5px; background:linear-gradient(180deg, #22c55e 0%, #15803d 100%); color:#fff;" onclick="sharePaintingOnWhatsApp()">
-        Enviar pelo WhatsApp
+        Baixar Pintura Colorida (Memória do Celular / PC)
       </button>
 
       <button class="btn-gold" style="width:100%; margin-top:4px; padding:9px; font-size:14px;" onclick="closeModal('modal-download-paint')">Fechar</button>
@@ -6735,8 +6731,8 @@ function onPaintDownloadOrPrintClick() {
   const isFromFreeLesson = !!(window.EBD_STATE && window.EBD_STATE.fromLessonGames && (window.EBD_STATE.currentWeek || 1) <= 5) || isFreeArcadePaint || (currentStory && currentStory.free);
   if (!isVipUnlocked && !isFromFreeLesson) {
     openSubscribeModal(
-      'Baixar, Imprimir e WhatsApp',
-      'Exclusivo para Assinantes! Acesso para Pais: libere todas as 20 histórias para baixar em PDF/Imagem, imprimir ou enviar pelo WhatsApp:'
+      'Baixar ou Imprimir Desenhos',
+      'Exclusivo para Assinantes! Acesso para Pais: libere todas as 25 fases para baixar ou imprimir em PDF/Imagem na memória do seu aparelho:'
     );
     return;
   }
@@ -6812,30 +6808,8 @@ function printOrSaveBlankPDF() {
   closeModal('modal-download-paint');
 }
 
-async function sharePaintingOnWhatsApp() {
-  playSoundSnapGreen();
-  const activeArcadeCanvas = document.getElementById('arcade-paint-canvas');
-  const canvas = activeArcadeCanvas || document.getElementById('paint-canvas');
-  const storyObj = window._arcadeActivePaintStory || currentStory || { title: 'pintura', seqPaint: '19' };
-  try {
-    const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
-    const safeName = (storyObj.title || 'pintura').toLowerCase().replace(/[^a-z0-9]+/g, '_');
-    const file = new File([blob], `trono_da_promessa_${safeName}.png`, { type: 'image/png' });
-
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      await navigator.share({
-        title: `Trono da Promessa - ${storyObj.title}`,
-        text: `Olha a pintura da história "${storyObj.title}" que fizemos no app Trono da Promessa!`,
-        files: [file]
-      });
-      closeModal('modal-download-paint');
-      return;
-    }
-  } catch (e) {}
-
+function sharePaintingOnWhatsApp() {
   downloadColoredPaintingPNG();
-  const text = encodeURIComponent(`Olha a pintura da história "${storyObj.title}" do app Trono da Promessa! (A imagem foi baixada no seu aparelho para anexar na conversa)`);
-  window.open(`https://wa.me/?text=${text}`, '_blank');
 }
 
 // ============================================================================

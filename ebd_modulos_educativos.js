@@ -5356,6 +5356,27 @@ window.openLessonImageFullModal = function(imgSrc, titleText) {
   if (modalEl) modalEl.classList.add("active");
 };
 
+// Dispara Parental Gate (continha matemática dos pais) antes de salvar qualquer imagem 16:9 no celular!
+window.requestLesson16x9Download = function(imgSrc, titleText) {
+  if (typeof window.ebdClick === "function") window.ebdClick();
+  const lesson = window.getCurrentLessonObj();
+  const wk = lesson ? lesson.week : 1;
+  const vipOk = (typeof isVipUnlocked !== "undefined" && isVipUnlocked);
+  if (wk > 5 && !vipOk) {
+    if (typeof openSubscribeModal === "function") {
+      openSubscribeModal("Baixar Imagens das Lições 6 a 22");
+    }
+    return;
+  }
+  if (typeof requestParentalGate === "function") {
+    requestParentalGate(() => {
+      window.downloadLesson16x9Image(imgSrc, titleText);
+    });
+  } else {
+    window.downloadLesson16x9Image(imgSrc, titleText);
+  }
+};
+
 // Converte e baixa qualquer imagem da lição sempre em proporção horizontal 16:9 (1280x720)
 window.downloadLesson16x9Image = async function(imgSrc, titleText) {
   if (typeof window.ebdClick === "function") window.ebdClick();
@@ -6763,7 +6784,7 @@ window.openLessonModule = function(modType) {
               <div style="font-size:14.5px; font-weight:900; color:#fde047; text-align:left; line-height:1.18;">
                 ${st.shortTitle}
               </div>
-              <button type="button" class="btn-tool-3d" style="padding:4px 10px; font-size:10.5px; font-weight:900; white-space:nowrap;" onclick="downloadLesson16x9Image('${st.img}', 'Lição ${lesson.week}: ${safeTitle}')">Baixar 16:9</button>
+              <button type="button" class="btn-tool-3d" style="padding:4px 10px; font-size:10.5px; font-weight:900; white-space:nowrap;" onclick="requestLesson16x9Download('${st.img}', 'Lição ${lesson.week}: ${safeTitle}')">Baixar 16:9</button>
             </div>
           </div>
           ${connectorHtml}
@@ -7040,7 +7061,7 @@ window.openLessonModule = function(modType) {
           <div style="height:clamp(80px, 15.5vh, 138px); width:auto; max-width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:2px solid #fde047; background:#050b1a; position:relative; cursor:pointer; box-shadow:0 5px 14px rgba(0,0,0,0.85);" onclick="openLessonImageFullModal('${dayImg}', 'Lição ${lesson.week} • ${safeDayTitle}')">
             <img src="${dayImg}" alt="${safeDayTitle}" style="width:100%; height:100%; object-fit:cover; display:block;">
           </div>
-          <button type="button" class="btn-tool-3d" style="padding:3px 14px; font-size:clamp(10px, 1.35vh, 11.5px); font-weight:900; border-radius:999px; flex-shrink:0;" onclick="downloadLesson16x9Image('${dayImg}', 'Lição ${lesson.week} - ${safeDayTitle}')">
+          <button type="button" class="btn-tool-3d" style="padding:3px 14px; font-size:clamp(10px, 1.35vh, 11.5px); font-weight:900; border-radius:999px; flex-shrink:0;" onclick="requestLesson16x9Download('${dayImg}', 'Lição ${lesson.week} - ${safeDayTitle}')">
             Baixar Imagem (16:9)
           </button>
         </div>
@@ -9323,14 +9344,11 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
   }
 
   const block7InteractiveButtons = forPrintMode ? "" : `
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:10px;">
-      <button type="button" onclick="window.downloadColoringSheetWhiteA4(${lesson.week}, false)" style="padding:10px 8px; border-radius:10px; border:2px solid #047857; background:#ffffff; color:#047857; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; cursor:pointer;">
-        BAIXAR FOLHA A4 BRANCA (PNG)
+    <div style="display:grid; grid-template-columns:1fr; gap:6px; margin-top:10px;">
+      <button type="button" onclick="window.downloadColoringSheetWhiteA4(${lesson.week}, false)" style="padding:10px 8px; border-radius:10px; border:2px solid #047857; background:#ffffff; color:#047857; font-family:'Fredoka',sans-serif; font-size:12.2px; font-weight:900; cursor:pointer;">
+        BAIXAR FOLHA A4 BRANCA NO CELULAR (PNG)
       </button>
-      <button type="button" onclick="window.downloadColoringSheetWhiteA4(${lesson.week}, true)" style="padding:10px 8px; border-radius:10px; border:2px solid #0284c7; background:#ffffff; color:#0369a1; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:900; cursor:pointer;">
-        ENVIAR P/ WHATSAPP / CELULAR
-      </button>
-      <button type="button" onclick="window.printOnlyColoringSheetA4(${lesson.week})" style="grid-column:1 / -1; padding:10px 8px; border-radius:10px; border:2px solid #6d28d9; background:#ffffff; color:#581c87; font-family:'Fredoka',sans-serif; font-size:12.2px; font-weight:900; cursor:pointer;">
+      <button type="button" onclick="window.printOnlyColoringSheetA4(${lesson.week})" style="padding:10px 8px; border-radius:10px; border:2px solid #6d28d9; background:#ffffff; color:#581c87; font-family:'Fredoka',sans-serif; font-size:12.2px; font-weight:900; cursor:pointer;">
         IMPRIMIR SOMENTE ESTA FOLHA DE COLORIR (A4)
       </button>
     </div>
@@ -9342,7 +9360,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
         <span class="ebd-mag-num">07</span>
         <div class="ebd-mag-block-title">Folha de Atividade para Colorir (Fundo Branco A4)</div>
       </div>
-      <p class="ebd-mag-p">Mesma ilustração oficial da <strong>Pintura Mágica</strong> do aplicativo na Lição ${lesson.week} em <strong>fundo 100% branco</strong> para baixar, enviar no WhatsApp ou imprimir:</p>
+      <p class="ebd-mag-p">Mesma ilustração oficial da <strong>Pintura Mágica</strong> do aplicativo na Lição ${lesson.week} em <strong>fundo 100% branco</strong> para salvar na memória do celular ou imprimir:</p>
       <div class="ebd-coloring-preview-card">
         <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:900; color:#6d28d9; text-transform:uppercase;">TRONO DA PROMESSA EBD • LIÇÃO ${lesson.week}</div>
         <div style="font-family:'Fredoka',sans-serif; font-size:14px; font-weight:900; color:#1e293b; margin-bottom:4px;">${esc(col.artTitle)}</div>
@@ -10264,19 +10282,6 @@ window.downloadColoringSheetWhiteA4 = async function(weekNum, shareMode) {
     const fileName = `Trono_da_Promessa_EBD_Licao_${pad}_Colorir_A4.png`;
 
     const blob = await new Promise(res => canvas.toBlob(res, "image/png"));
-    if (shareMode && navigator.canShare && blob) {
-      const file = new File([blob], fileName, { type: "image/png" });
-      if (navigator.canShare({ files: [file] })) {
-        await navigator.share({
-          title: `Trono da Promessa EBD • Lição ${lesson.week}`,
-          text: `Folha de Atividade para Colorir (Fundo Branco A4) — Lição ${lesson.week}: ${lesson.title}`,
-          files: [file]
-        });
-        window.showEbdPrintToast("Folha enviada com sucesso!");
-        return;
-      }
-    }
-
     const url = blob ? URL.createObjectURL(blob) : canvas.toDataURL("image/png");
     const a = document.createElement("a");
     a.href = url;
