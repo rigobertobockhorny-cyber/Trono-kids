@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v197.1';
+        const CURRENT_VER = 'v198.0';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -2016,7 +2016,7 @@
     <div id="app-opening-splash" style="position:fixed; inset:0; z-index:999999; background:#000000; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px; box-sizing:border-box; user-select:none; touch-action:manipulation; transition:opacity 0.5s ease;">
     <!-- Logo 3D Oficial no Topo com brilho suave (acelerado por GPU sem repaint de drop-shadow) -->
     <div style="margin-bottom:14px; display:flex; justify-content:center; align-items:center;">
-      <img src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=128" style="width:190px; max-width:70vw; height:auto; object-fit:contain; will-change:transform; animation:introLogoFloat 2.6s ease-in-out infinite;" alt="Trono da Promessa EBD">
+      <img src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=198" style="width:190px; max-width:70vw; height:auto; object-fit:contain; will-change:transform; animation:introLogoFloat 2.6s ease-in-out infinite;" alt="Trono da Promessa">
     </div>
 
     <!-- Bloco da Vinheta (16:9) - Sem margem amarela! Cantos arredondados com sombra profunda -->
@@ -2149,7 +2149,7 @@
   <!-- TOPO COM AMPLO RESPIRO: LOGO EBD 3D EM CIMA + 2 BOLINHAS REDONDINHAS NOS CANTINHOS! -->
   <header class="topbar">
     <div class="brand-logo-wrap" onclick="goHome(); window.handleDevLogoTap();">
-      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=128" alt="Trono da Promessa EBD" class="brand-logo">
+      <img id="main-brand-logo" src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=198" alt="Trono da Promessa" class="brand-logo">
     </div>
 
     <div class="topbar-controls-row">
@@ -6886,7 +6886,7 @@ function renderSleepCorner() {
 }
 
 // Mantém a Logo 3D Oficial do Trono da Promessa EBD (sem sobrescrever pela logo antiga!)
-document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=128';
+document.getElementById('main-brand-logo').src = './2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=198';
 if (typeof syncWeeklyLessonsToStories === 'function') syncWeeklyLessonsToStories();
 if (typeof renderHomeEbdHeader === 'function') renderHomeEbdHeader();
 if (typeof applyEbdBackgroundForScreen === 'function') applyEbdBackgroundForScreen('screen-home');
