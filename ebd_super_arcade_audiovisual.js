@@ -13869,7 +13869,8 @@
     TronoAudio.play("click");
     showParentalGate(() => {
       if (window.EBD_MAGAZINE_STATE) {
-        window.EBD_MAGAZINE_STATE.activeTab = "account";
+        window.EBD_MAGAZINE_STATE.portalView = "hub";
+        window.EBD_MAGAZINE_STATE.activeTab = "magazine";
       }
       if (typeof window.renderTeacherPortalContent === "function") {
         window.renderTeacherPortalContent();

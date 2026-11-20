@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v202.0';
+        const CURRENT_VER = 'v203.0';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -132,6 +132,15 @@
     #app-shell.sleep-dark-mode {
       background: #000000 !important;
       background-image: none !important;
+    }
+
+    /* Modo Institucional Limpo — Família e Professor: Fundo Sólido Real (#0d0b1e) e ZERO Topbar Infantil! */
+    #app-shell.adult-portal-clean-mode {
+      background: #0d0b1e !important;
+      background-image: none !important;
+    }
+    #app-shell.adult-portal-clean-mode .topbar {
+      display: none !important;
     }
 
     @media (min-width: 480px) {
@@ -2463,17 +2472,8 @@
   <!-- ==================================================================== -->
   <!-- TELA EBD 6: REVISTA DIGITAL • TRONO DA PROMESSA EBD (PROFESSOR/PAIS) -->
   <!-- ==================================================================== -->
-  <section id="screen-teacher-portal" class="screen">
-    <div class="module-header">
-      <button class="btn-nav-circle" onclick="if(typeof backFromTeacherPortal==='function'){backFromTeacherPortal();}else{goHome();}" title="Voltar">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="houses-trail" id="teacher-weeks-trail"></div>
-      <button class="btn-nav-circle" onclick="if(typeof stepTeacherPortalWeek==='function'){stepTeacherPortalWeek(1);}" title="Próxima Lição da Revista">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
-    <div id="teacher-portal-content" style="flex:1; overflow-y:auto; padding:4px 2px 18px 2px;"></div>
+  <section id="screen-teacher-portal" class="screen" style="padding:14px 16px max(26px, calc(22px + env(safe-area-inset-bottom, 0px))) 16px; background:#0d0b1e;">
+    <div id="teacher-portal-content" style="flex:1; display:flex; flex-direction:column; overflow-y:auto; padding:0;"></div>
   </section>
 
   <!-- ==================================================================== -->
@@ -3354,6 +3354,8 @@ window.advanceBgAmbientTrack = function() {
 
 window.ensureBgAmbientLoopAlive = function() {
   if (window._appIsInBackground || !window._introDismissed || !ambientPlaying || window._arcadeAudioMuted) return;
+  const teacherPortalEl = document.getElementById('screen-teacher-portal');
+  if (teacherPortalEl && teacherPortalEl.classList.contains('active')) return;
   const vovoStoryActive = !!(window.EBD_STATE && window.EBD_STATE.vovoAudioPlaying);
   if (vovoStoryActive || !bgAudioPlayer) return;
   const sleepScreenEl = document.getElementById('screen-sleep');
@@ -4023,15 +4025,29 @@ function showScreen(screenId) {
 
   const shell = document.getElementById('app-shell');
   if (shell) {
-    if (screenId === 'screen-sleep') {
+    if (screenId === 'screen-teacher-portal') {
+      shell.classList.remove('sleep-dark-mode');
+      shell.classList.add('adult-portal-clean-mode');
+      shell.style.backgroundImage = 'none';
+      if (typeof bgAudioPlayer !== 'undefined' && bgAudioPlayer && !bgAudioPlayer.paused) {
+        try { bgAudioPlayer.pause(); } catch (e) {}
+      }
+    } else if (screenId === 'screen-sleep') {
+      shell.classList.remove('adult-portal-clean-mode');
       shell.classList.add('sleep-dark-mode');
       shell.style.backgroundImage = '';
     } else {
+      const wasInAdultPortal = shell.classList.contains('adult-portal-clean-mode');
       shell.classList.remove('sleep-dark-mode');
+      shell.classList.remove('adult-portal-clean-mode');
       if (screenId === 'screen-games-hub') {
         shell.style.backgroundImage = "linear-gradient(180deg, rgba(10, 18, 42, 0.30) 0%, rgba(10, 18, 42, 0.45) 100%), url('./2_ASSETS_UI_BOTOES/bg_ebd_02_jardim.jpg')";
       } else {
         shell.style.backgroundImage = "url('./2_ASSETS_UI_BOTOES/ui_asset_01.jpg')";
+      }
+      if (wasInAdultPortal && ambientPlaying && !window._arcadeAudioMuted && window._introDismissed && typeof bgAudioPlayer !== 'undefined' && bgAudioPlayer && bgAudioPlayer.paused) {
+        window.syncBgAmbientVolume(false);
+        bgAudioPlayer.play().catch(() => {});
       }
     }
   }
@@ -7268,7 +7284,9 @@ startInitialThemeMusic();
               return;
             }
 
-            if ((window._wasBgPlayingBeforeMinimize || (ambientPlaying && !window._arcadeAudioMuted && window._introDismissed))
+            const teacherPortalActive = !!(document.getElementById('screen-teacher-portal') && document.getElementById('screen-teacher-portal').classList.contains('active'));
+            if (!teacherPortalActive
+                && (window._wasBgPlayingBeforeMinimize || (ambientPlaying && !window._arcadeAudioMuted && window._introDismissed))
                 && typeof bgAudioPlayer !== 'undefined' && bgAudioPlayer && bgAudioPlayer.paused) {
               window._wasBgPlayingBeforeMinimize = false;
               window.syncBgAmbientVolume(false);
