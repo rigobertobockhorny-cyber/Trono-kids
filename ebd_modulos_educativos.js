@@ -6872,6 +6872,13 @@ window.openLessonModule = function(modType) {
         <!-- Sombra sutil no topo apenas para destacar as 2 bolinhas de navegação -->
         <div style="position:absolute; top:0; left:0; right:0; height:86px; background:linear-gradient(180deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0) 100%); pointer-events:none; z-index:10;"></div>
 
+        <!-- Botão Discreto no Canto Superior p/ Rever a Vinheta Oficial sob Demanda (Opção A) -->
+        <button type="button" onclick="event.stopPropagation(); if(window.playOfficialVinhetaOnDemand){window.playOfficialVinhetaOnDemand();}" title="Assistir Abertura Oficial"
+          style="position:absolute; top:14px; left:50%; transform:translateX(-50%); z-index:25; height:36px; padding:0 15px; border-radius:999px; background:linear-gradient(180deg, rgba(126,34,206,0.88) 0%, rgba(59,7,100,0.95) 100%); border:2px solid #fde047; color:#fde047; font-family:'Fredoka',sans-serif; font-size:12.5px; font-weight:900; letter-spacing:0.4px; display:inline-flex; align-items:center; gap:6px; box-shadow:0 4px 12px rgba(0,0,0,0.7); cursor:pointer; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#fde047"><path d="M8 5V19L19 12L8 5Z"/></svg>
+          <span>VINHETA</span>
+        </button>
+
         <!-- BARRA DE PLAYER COM AMPLO SUSPIRO NAS BORDAS (CONTADOR + DEDINHO + 3 BOTÕES GRANDES SEM CORTE) -->
         <div onclick="event.stopPropagation()" style="position:absolute; left:0; right:0; bottom:0; padding:54px 30px calc(38px + env(safe-area-inset-bottom, 0px)) 30px; background:linear-gradient(0deg, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.54) 65%, rgba(0,0,0,0) 100%); z-index:22; display:flex; flex-direction:column; gap:18px; box-sizing:border-box; overflow:visible;">
           <!-- Contador de Tempo + Barra Deslizante com o Dedinho -->

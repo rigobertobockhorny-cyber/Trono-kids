@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v201.0';
+        const CURRENT_VER = 'v202.0';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -63,7 +63,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=201.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=202.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -2012,16 +2012,11 @@
 <body>
 
 <div id="app-shell">
-  <!-- TELA DE ABERTURA CINEMATOGRÁFICA OFICIAL - VINHETA DO CANAL (17s) - 100% ROXA SEM MARGEM AMARELA -->
-    <div id="app-opening-splash" style="position:fixed; inset:0; z-index:999999; background:#000000; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px; box-sizing:border-box; user-select:none; touch-action:manipulation; transition:opacity 0.5s ease;">
-    <!-- Logo 3D Oficial no Topo com brilho suave (acelerado por GPU sem repaint de drop-shadow) -->
-    <div style="margin-bottom:14px; display:flex; justify-content:center; align-items:center;">
-      <img src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png?v=198" style="width:190px; max-width:70vw; height:auto; object-fit:contain; will-change:transform; animation:introLogoFloat 2.6s ease-in-out infinite;" alt="Trono da Promessa">
-    </div>
-
-    <!-- Bloco da Vinheta (16:9) - Sem margem amarela e ZERO tela cinza/preta de player! -->
-    <div id="intro-video-container" onclick="window.handleIntroContainerTap()" style="position:relative; width:100%; max-width:540px; aspect-ratio:16/9; max-height:48vh; border-radius:20px; border:none; box-shadow:none; overflow:hidden; background:#000000; cursor:pointer; transition:box-shadow 0.25s ease;">
-      <video id="intro-video-player" playsinline webkit-playsinline x5-playsinline disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback" preload="auto" src="./2_ASSETS_UI_BOTOES/vinheta_abertura_trono.mp4?v=101" style="width:100%; height:100%; object-fit:cover; display:block; background:#000000; opacity:0; visibility:hidden; transition:opacity 0.18s ease;"></video>
+  <!-- TELA DE ABERTURA CINEMATOGRÁFICA OFICIAL UNIFICADA (OPÇÃO A: 1ª VEZ DO DIA + SOB DEMANDA NAS HISTÓRIAS) -->
+    <div id="app-opening-splash" style="position:fixed; inset:0; z-index:999999; background:#000000; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px; box-sizing:border-box; user-select:none; touch-action:manipulation; transition:opacity 0.45s ease;">
+    <!-- Bloco da Vinheta Unificada (16:9) - Sem logo estática duplicada em cima e ZERO tela cinza/preta de player! -->
+    <div id="intro-video-container" onclick="window.handleIntroContainerTap()" style="position:relative; width:100%; max-width:560px; aspect-ratio:16/9; max-height:54vh; border-radius:20px; border:none; box-shadow:none; overflow:hidden; background:#000000; cursor:pointer; transition:box-shadow 0.25s ease;">
+      <video id="intro-video-player" playsinline webkit-playsinline x5-playsinline disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback" preload="auto" src="./2_ASSETS_UI_BOTOES/vinheta_abertura_trono.mp4?v=202" style="width:100%; height:100%; object-fit:cover; display:block; background:#000000; opacity:0; visibility:hidden; transition:opacity 0.18s ease;"></video>
 
       <!-- Cortina Preta 100% Opaca: esconde qualquer poster/ícone nativo do Android WebView até o frame real da vinheta estar rodando! -->
       <div id="intro-black-curtain" style="position:absolute; inset:0; background:#000000; z-index:6; pointer-events:none; opacity:1; transition:opacity 0.2s ease;"></div>
@@ -2036,12 +2031,12 @@
     </div>
 
     <!-- Barra de Progresso Suave sem margem amarela -->
-    <div style="width:80%; max-width:320px; height:7px; background:rgba(255,255,255,0.25); border-radius:999px; margin-top:16px; overflow:hidden;">
+    <div style="width:80%; max-width:320px; height:7px; background:rgba(255,255,255,0.25); border-radius:999px; margin-top:18px; overflow:hidden;">
       <div id="intro-progress-bar" style="width:0%; height:100%; background:linear-gradient(90deg, #c084fc 0%, #ffffff 100%); border-radius:999px; transition:width 0.2s linear; box-shadow:0 0 10px rgba(255,255,255,0.8);"></div>
     </div>
 
-    <!-- Botão Pular: Pílula Roxa Curta Embaixo da Linha de Progresso (Sem Emoji!) -->
-    <button id="btn-skip-intro" onclick="window.dismissIntroVideo(true)" style="margin-top:14px; padding:7px 24px; border-radius:999px; background:linear-gradient(135deg, #7e22ce 0%, #9333ea 100%); border:1.5px solid rgba(255,255,255,0.5); color:#ffffff; font-family:'Fredoka',sans-serif; font-weight:700; font-size:14px; letter-spacing:0.5px; cursor:pointer; opacity:1; pointer-events:auto; transition:transform 0.12s ease, box-shadow 0.2s ease; box-shadow:0 4px 14px rgba(126,34,206,0.6); outline:none;">Pular</button>
+    <!-- Botão Pular: Pílula Roxa Curta Embaixo da Linha de Progresso -->
+    <button id="btn-skip-intro" onclick="window.dismissIntroVideo(true)" style="margin-top:14px; padding:8px 26px; border-radius:999px; background:linear-gradient(135deg, #7e22ce 0%, #9333ea 100%); border:1.5px solid rgba(255,255,255,0.5); color:#ffffff; font-family:'Fredoka',sans-serif; font-weight:700; font-size:14.5px; letter-spacing:0.5px; cursor:pointer; opacity:1; pointer-events:auto; transition:transform 0.12s ease, box-shadow 0.2s ease; box-shadow:0 4px 14px rgba(126,34,206,0.6); outline:none;">Pular</button>
   </div>
 
   <style>
@@ -2072,6 +2067,7 @@
   <script>
     (function initIntroVideoOpening() {
       window._introDismissed = false;
+      window._introOnDemandActive = false;
       var video = document.getElementById('intro-video-player');
       var containerBox = document.getElementById('intro-video-container');
       var blackCurtain = document.getElementById('intro-black-curtain');
@@ -2079,11 +2075,15 @@
       var pBar = document.getElementById('intro-progress-bar');
       var skipBtn = document.getElementById('btn-skip-intro');
       var splash = document.getElementById('app-opening-splash');
-      var skipShown = false;
       var firstFrameRevealed = false;
 
+      function getLocalTodayKey() {
+        var d = new Date();
+        return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      }
+
       function revealRealVideoFrame() {
-        if (firstFrameRevealed || window._introDismissed) return;
+        if (firstFrameRevealed || (window._introDismissed && !window._introOnDemandActive)) return;
         firstFrameRevealed = true;
         if (video) {
           video.style.visibility = 'visible';
@@ -2094,20 +2094,35 @@
         }
         if (blackCurtain) {
           blackCurtain.style.opacity = '0';
-          setTimeout(function() {
-            if (blackCurtain && blackCurtain.parentNode) blackCurtain.parentNode.removeChild(blackCurtain);
-          }, 240);
         }
         if (tapPrompt) tapPrompt.style.display = 'none';
       }
 
-      // Se acabou de auto-atualizar versão em segundo plano, entra direto no app sem tela preta de vinheta!
+      function hideSplashImmediately() {
+        window._introDismissed = true;
+        window._introOnDemandActive = false;
+        if (video) {
+          try { video.pause(); } catch (e) {}
+        }
+        if (splash) {
+          splash.style.display = 'none';
+          splash.style.opacity = '0';
+          splash.style.pointerEvents = 'none';
+        }
+      }
+
+      // OPÇÃO A: Se acabou de auto-atualizar OU se já tocou a abertura hoje, entra DIRETO na Tela Principal em 0,3s!
       try {
-        if (sessionStorage.getItem('trono_skip_intro_once') === '1') {
+        var todayKey = getLocalTodayKey();
+        var skipOnce = sessionStorage.getItem('trono_skip_intro_once') === '1';
+        var alreadyPlayedToday = localStorage.getItem('trono_last_intro_date') === todayKey;
+        if (skipOnce) {
           sessionStorage.removeItem('trono_skip_intro_once');
-          if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
-          window._introDismissed = true;
-          return;
+        }
+        if (skipOnce || alreadyPlayedToday) {
+          hideSplashImmediately();
+        } else {
+          localStorage.setItem('trono_last_intro_date', todayKey);
         }
       } catch (e) {}
 
@@ -2124,24 +2139,26 @@
       };
 
       window.dismissIntroVideo = function(force) {
-        if (window._introDismissed) return;
+        if (window._introDismissed && !window._introOnDemandActive) return;
+        var wasOnDemand = window._introOnDemandActive;
         window._introDismissed = true;
-        if (typeof window._registerAppSW === 'function') {
+        window._introOnDemandActive = false;
+        if (!wasOnDemand && typeof window._registerAppSW === 'function') {
           setTimeout(function() { window._registerAppSW(); }, 1500);
         }
         if (video) {
           try { video.pause(); } catch(e) {}
         }
         if (splash) {
-          splash.style.transition = 'opacity 0.5s ease';
+          splash.style.transition = 'opacity 0.4s ease';
           splash.style.opacity = '0';
           splash.style.pointerEvents = 'none';
           setTimeout(function() {
-            if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+            if (splash) splash.style.display = 'none';
             if (typeof startInitialThemeMusic === 'function') {
               startInitialThemeMusic();
             }
-          }, 500);
+          }, 420);
         } else {
           if (typeof startInitialThemeMusic === 'function') {
             startInitialThemeMusic();
@@ -2149,17 +2166,50 @@
         }
       };
 
-      if (video) {
+      // Permite assistir à Vinheta Oficial sob demanda dentro da História do Vovô quantas vezes a criança quiser!
+      window.playOfficialVinhetaOnDemand = function() {
+        if (!splash || !video) return;
+        if (typeof window.stopVovoStoryNarration === 'function') {
+          try { window.stopVovoStoryNarration(); } catch (e) {}
+        }
+        if (typeof bgAudioPlayer !== 'undefined' && bgAudioPlayer && !bgAudioPlayer.paused) {
+          try { bgAudioPlayer.pause(); } catch (e) {}
+        }
+        window._introOnDemandActive = true;
+        firstFrameRevealed = false;
+        if (pBar) pBar.style.width = '0%';
+        if (skipBtn) skipBtn.textContent = 'Fechar';
+        if (containerBox) containerBox.style.boxShadow = 'none';
+        if (blackCurtain) blackCurtain.style.opacity = '1';
+        video.style.visibility = 'hidden';
+        video.style.opacity = '0';
+        video.muted = false;
+        try { video.currentTime = 0; } catch (e) {}
+
+        splash.style.display = 'flex';
+        splash.style.opacity = '1';
+        splash.style.pointerEvents = 'auto';
+
         if (typeof video.requestVideoFrameCallback === 'function') {
-          video.requestVideoFrameCallback(function onFirstDecodedFrame() {
+          video.requestVideoFrameCallback(function onReplayFrame() {
             if (!video.paused && video.readyState >= 2) {
               revealRealVideoFrame();
-            } else if (!window._introDismissed) {
-              video.requestVideoFrameCallback(onFirstDecodedFrame);
+            } else if (window._introOnDemandActive) {
+              video.requestVideoFrameCallback(onReplayFrame);
             }
           });
         }
+        var pr = video.play();
+        if (pr !== undefined) {
+          pr.then(function() {
+            if (tapPrompt) tapPrompt.style.display = 'none';
+          }).catch(function() {
+            if (tapPrompt) tapPrompt.style.display = 'flex';
+          });
+        }
+      };
 
+      if (video) {
         video.addEventListener('timeupdate', function() {
           if (!firstFrameRevealed && !video.paused && video.currentTime >= 0.06 && video.readyState >= 2) {
             revealRealVideoFrame();
@@ -2167,11 +2217,6 @@
           if (video.duration) {
             var pct = Math.min(100, (video.currentTime / video.duration) * 100);
             if (pBar) pBar.style.width = pct + '%';
-            if (video.currentTime >= 4 && !skipShown && skipBtn) {
-              skipShown = true;
-              skipBtn.style.opacity = '1';
-              skipBtn.style.pointerEvents = 'auto';
-            }
           }
         });
 
@@ -2184,23 +2229,34 @@
           window.dismissIntroVideo(true);
         });
 
-        var startPromise = video.play();
-        if (startPromise !== undefined) {
-          startPromise.then(function() {
-            if (tapPrompt) tapPrompt.style.display = 'none';
-          }).catch(function(err) {
-            // Na WebView nativa do Android nunca exibe overlay de player; se navegador bloquear som, tenta iniciar mudo primeiro
-            if (window.TronoPlayBilling) {
-              video.muted = true;
-              var mutedP = video.play();
-              if (mutedP !== undefined) {
-                mutedP.catch(function() { window.dismissIntroVideo(true); });
+        if (!window._introDismissed) {
+          if (typeof video.requestVideoFrameCallback === 'function') {
+            video.requestVideoFrameCallback(function onFirstDecodedFrame() {
+              if (!video.paused && video.readyState >= 2) {
+                revealRealVideoFrame();
+              } else if (!window._introDismissed) {
+                video.requestVideoFrameCallback(onFirstDecodedFrame);
               }
-            } else {
-              console.log('Autoplay com audio necessita de gesto do usuario:', err);
-              if (tapPrompt) tapPrompt.style.display = 'flex';
-            }
-          });
+            });
+          }
+
+          var startPromise = video.play();
+          if (startPromise !== undefined) {
+            startPromise.then(function() {
+              if (tapPrompt) tapPrompt.style.display = 'none';
+            }).catch(function(err) {
+              if (window.TronoPlayBilling) {
+                video.muted = true;
+                var mutedP = video.play();
+                if (mutedP !== undefined) {
+                  mutedP.catch(function() { window.dismissIntroVideo(true); });
+                }
+              } else {
+                console.log('Autoplay com audio necessita de gesto do usuario:', err);
+                if (tapPrompt) tapPrompt.style.display = 'flex';
+              }
+            });
+          }
         }
       }
     })();
@@ -3229,6 +3285,9 @@ window.syncMusicPoolForScreen = function(screenId) {
       setTimeout(preloadNextBgAmbientTrack, 400);
     }
   }
+  setTimeout(() => {
+    if (typeof window.syncNativeSleepBridge === 'function') window.syncNativeSleepBridge();
+  }, 20);
 };
 
 function preloadNextBgAmbientTrack() {
@@ -3249,8 +3308,28 @@ function preloadNextBgAmbientTrack() {
   } catch (e) {}
 }
 
+window._appIsInBackground = false;
+
+window.syncNativeSleepBridge = function() {
+  try {
+    if (!window.TronoPlayBilling || typeof window.TronoPlayBilling.syncSleepCornerState !== 'function') return;
+    const sleepScreenEl = document.getElementById('screen-sleep');
+    const inSleepCorner = !!(sleepScreenEl && sleepScreenEl.classList.contains('active'));
+    const activeSleep = !!(inSleepCorner && ambientPlaying && !window._arcadeAudioMuted);
+    if (!activeSleep) {
+      window.TronoPlayBilling.syncSleepCornerState(false, '[]', 0, 0);
+      return;
+    }
+    const sleepPool = getUnlockedBgLoopPool(true);
+    const relPaths = sleepPool.map(t => String(t.file || '').replace(/^\.\//, '').split('?')[0]).filter(Boolean);
+    const curIdx = Math.max(0, sleepPool.findIndex(t => t.id === activeTrackId));
+    const curPosMs = bgAudioPlayer && isFinite(bgAudioPlayer.currentTime) ? Math.round(bgAudioPlayer.currentTime * 1000) : 0;
+    window.TronoPlayBilling.syncSleepCornerState(true, JSON.stringify(relPaths), curIdx, curPosMs);
+  } catch (e) {}
+};
+
 window.advanceBgAmbientTrack = function() {
-  if (!ambientPlaying || window._arcadeAudioMuted || _bgTrackAdvancingLock) return;
+  if (window._appIsInBackground || !ambientPlaying || window._arcadeAudioMuted || _bgTrackAdvancingLock) return;
   _bgTrackAdvancingLock = true;
   setTimeout(() => { _bgTrackAdvancingLock = false; }, 600);
   const sleepScreenEl = document.getElementById('screen-sleep');
@@ -3267,13 +3346,14 @@ window.advanceBgAmbientTrack = function() {
   const p = bgAudioPlayer.play();
   if (p && typeof p.catch === 'function') p.catch(() => {});
   setTimeout(preloadNextBgAmbientTrack, 400);
+  window.syncNativeSleepBridge();
   if (inSleepCorner && typeof renderSleepCorner === 'function') {
     renderSleepCorner();
   }
 };
 
 window.ensureBgAmbientLoopAlive = function() {
-  if (!window._introDismissed || !ambientPlaying || window._arcadeAudioMuted) return;
+  if (window._appIsInBackground || !window._introDismissed || !ambientPlaying || window._arcadeAudioMuted) return;
   const vovoStoryActive = !!(window.EBD_STATE && window.EBD_STATE.vovoAudioPlaying);
   if (vovoStoryActive || !bgAudioPlayer) return;
   const sleepScreenEl = document.getElementById('screen-sleep');
@@ -3296,16 +3376,25 @@ window.ensureBgAmbientLoopAlive = function() {
     window.syncBgAmbientVolume(false);
     const p = bgAudioPlayer.play();
     if (p && typeof p.then === 'function') {
-      p.then(() => { updateSoundButtonIcon(); }).catch(() => {});
+      p.then(() => {
+        updateSoundButtonIcon();
+        window.syncNativeSleepBridge();
+      }).catch(() => {});
     }
   }
 };
 
 // Transição Contínua Zero-Delay sem silêncio entre músicas!
+let _lastSleepBridgeSyncSec = -1;
 bgAudioPlayer.addEventListener('timeupdate', () => {
-  if (!ambientPlaying || window._arcadeAudioMuted || _bgTrackAdvancingLock) return;
+  if (window._appIsInBackground || !ambientPlaying || window._arcadeAudioMuted || _bgTrackAdvancingLock) return;
   const dur = bgAudioPlayer.duration;
   const cur = bgAudioPlayer.currentTime;
+  const wholeSec = Math.floor(cur || 0);
+  if (wholeSec !== _lastSleepBridgeSyncSec) {
+    _lastSleepBridgeSyncSec = wholeSec;
+    window.syncNativeSleepBridge();
+  }
   const curObj = findAnyTrackById(activeTrackId);
   const cutSec = (curObj && typeof curObj.trimTail === 'number') ? curObj.trimTail : 2.2;
   if (dur && isFinite(dur) && dur > 15 && (dur - cur) <= cutSec) {
@@ -3315,6 +3404,13 @@ bgAudioPlayer.addEventListener('timeupdate', () => {
 
 bgAudioPlayer.addEventListener('playing', () => {
   preloadNextBgAmbientTrack();
+  window.syncNativeSleepBridge();
+});
+
+bgAudioPlayer.addEventListener('pause', () => {
+  if (!window._appIsInBackground) {
+    window.syncNativeSleepBridge();
+  }
 });
 
 bgAudioPlayer.addEventListener('ended', () => {
@@ -6945,13 +7041,15 @@ startInitialThemeMusic();
 </script>
 
   <script>
-    // BLINDAGEM DO BOTÃO "VOLTAR" DO CELULAR (ANDROID BACK & GESTURE SWIPE)
-    // Impede 100% que a criança ou usuário saia do aplicativo ou reinicie do zero ao tocar em Voltar!
+    // NAVEGAÇÃO INTELIGENTE DO BOTÃO "VOLTAR" DO CELULAR (ANDROID NATIVO & WEB)
+    // Nas telas internas: volta 1 nível por vez. Na Tela Principal: minimiza o app nativo para a tela inicial do celular!
     (function initMobileBackShield() {
       try {
-        // Mantém buffer de segurança na pilha de histórico
-        history.replaceState({ app: 'trono-kids-base' }, '');
-        history.pushState({ app: 'trono-kids-active' }, '');
+        const isNativePlayApp = !!(window.TronoPlayBilling);
+        if (!isNativePlayApp) {
+          history.replaceState({ app: 'trono-kids-base' }, '');
+          history.pushState({ app: 'trono-kids-active' }, '');
+        }
 
         const isElementVisible = (el) => {
           if (!el) return false;
@@ -6962,24 +7060,31 @@ startInitialThemeMusic();
           }
         };
 
-        window.addEventListener('popstate', function(event) {
-          // Re-empurra imediatamente para blindar contra fechamento da aba/PWA
-          history.pushState({ app: 'trono-kids-active' }, '');
-
-          // 0. Se os Slides em Tela Cheia da Revista Digital estiverem abertos, fecha apenas a Tela Cheia (permanece em Família e Professor!)
-          if (window.EBD_MAGAZINE_STATE && window.EBD_MAGAZINE_STATE.fullscreenActive && typeof window.closeFullscreenLessonSlides === 'function') {
-            window.closeFullscreenLessonSlides();
-            return;
+        window._tronoHandleAndroidBack = function() {
+          // 0a. Se estiver assistindo à vinheta sob demanda nas Histórias, fecha a vinheta; se for na abertura inicial, minimiza
+          const splashEl = document.getElementById('app-opening-splash');
+          if (splashEl && isElementVisible(splashEl)) {
+            if (window._introOnDemandActive && typeof window.dismissIntroVideo === 'function') {
+              window.dismissIntroVideo(true);
+              return 'handled';
+            }
+            return 'minimize';
           }
 
-          // 0b. Se o modal de acesso adulto (Parental Gate) estiver aberto, fecha apenas ele
+          // 0b. Se os Slides em Tela Cheia da Revista Digital estiverem abertos, fecha apenas a Tela Cheia
+          if (window.EBD_MAGAZINE_STATE && window.EBD_MAGAZINE_STATE.fullscreenActive && typeof window.closeFullscreenLessonSlides === 'function') {
+            window.closeFullscreenLessonSlides();
+            return 'handled';
+          }
+
+          // 0c. Se o modal de acesso adulto (Parental Gate) estiver aberto, fecha apenas ele
           const pgOverlay = document.getElementById('trono-parental-gate-modal');
           if (pgOverlay && isElementVisible(pgOverlay)) {
             pgOverlay.style.display = 'none';
-            return;
+            return 'handled';
           }
 
-          // 0c. Se qualquer modal secundário estiver aberto, fecha apenas o modal sem derrubar a tela atual!
+          // 0d. Se qualquer modal secundário estiver aberto, fecha apenas o modal sem derrubar a tela atual!
           const modalIds = [
             'modal-developer-admin',
             'modal-subscribe',
@@ -6995,7 +7100,7 @@ startInitialThemeMusic();
             if (mEl && mEl.classList.contains('active')) {
               if (typeof closeModal === 'function') closeModal(modalIds[i]);
               else mEl.classList.remove('active');
-              return;
+              return 'handled';
             }
           }
 
@@ -7004,12 +7109,12 @@ startInitialThemeMusic();
           if (isElementVisible(victoryModal)) {
             const elapsedSinceWin = Date.now() - (window._arcadeVictoryStartedAt || 0);
             if (elapsedSinceWin < 1100) {
-              return;
+              return 'handled';
             }
             if (typeof window.closeTronoArcadeStage === 'function') {
               window.closeTronoArcadeStage();
             }
-            return;
+            return 'handled';
           }
 
           // 2. Se houver modal de vitória dos Jogos da Lição aberto, volta aos Jogos da Lição
@@ -7018,7 +7123,7 @@ startInitialThemeMusic();
             if (typeof window.closeLessonGameVictoryModal === 'function') {
               window.closeLessonGameVictoryModal(true);
             }
-            return;
+            return 'handled';
           }
 
           // 3. Se o palco de arcade estiver ativo durante uma partida, salva a fase atual e volta para a origem correta!
@@ -7027,10 +7132,10 @@ startInitialThemeMusic();
             if (typeof window.closeTronoArcadeStage === 'function') {
               window.closeTronoArcadeStage();
             }
-            return;
+            return 'handled';
           }
 
-          // 4. Navegação hierárquica inteligente em Família e Professor (Slides -> Revista -> Início, sem pedir a soma de novo!)
+          // 4. Navegação hierárquica inteligente em Família e Professor (Slides -> Revista -> Início)
           const teacherPortal = document.getElementById('screen-teacher-portal');
           if (teacherPortal && teacherPortal.classList.contains('active')) {
             if (typeof window.backFromTeacherPortal === 'function') {
@@ -7038,7 +7143,7 @@ startInitialThemeMusic();
             } else if (typeof showScreen === 'function') {
               showScreen('screen-home');
             }
-            return;
+            return 'handled';
           }
 
           // 5. Navegação hierárquica inteligente nas subtelas da Lição e Jogos
@@ -7047,32 +7152,148 @@ startInitialThemeMusic();
             if (typeof window.stopVovoStoryNarration === 'function') window.stopVovoStoryNarration();
             if (typeof window.openLessonHubScreen === 'function') window.openLessonHubScreen();
             else if (typeof showScreen === 'function') showScreen('screen-lesson-hub');
-            return;
+            return 'handled';
           }
 
           const eduStage = document.getElementById('screen-edu-game');
           if (eduStage && eduStage.classList.contains('active') && typeof window.backFromEduGameStage === 'function') {
             window.backFromEduGameStage();
-            return;
+            return 'handled';
           }
 
           const galleryScr = document.getElementById('screen-gallery');
           if (galleryScr && galleryScr.classList.contains('active') && typeof window.backFromGalleryScreen === 'function') {
             window.backFromGalleryScreen();
-            return;
+            return 'handled';
           }
 
           const albumScr = document.getElementById('screen-album');
           if (albumScr && albumScr.classList.contains('active') && typeof openLudoTrailBoard === 'function') {
             openLudoTrailBoard();
-            return;
+            return 'handled';
           }
 
-          // 6. Se estiver em qualquer outra tela secundária, volta para a tela inicial
+          // 6. Se estiver em qualquer outra tela secundária, volta para a Tela Principal
           const homeScreen = document.getElementById('screen-home');
           if (homeScreen && !homeScreen.classList.contains('active')) {
-            if (typeof showScreen === 'function') showScreen('screen-home');
+            if (typeof goHome === 'function') goHome();
+            else if (typeof showScreen === 'function') showScreen('screen-home');
+            return 'handled';
+          }
+
+          // 7. JÁ ESTÁ NA TELA PRINCIPAL (screen-home): minimiza para a tela inicial do celular!
+          return 'minimize';
+        };
+
+        window._tronoOnAppMinimized = function() {
+          try {
+            // Sincroniza o milissegundo exato da Salinha de Dormir ANTES de silenciar a WebView!
+            if (typeof window.syncNativeSleepBridge === 'function') {
+              window.syncNativeSleepBridge();
+            }
+            window._appIsInBackground = true;
+            window._wasBgPlayingBeforeMinimize = false;
+
+            const sleepScreenEl = document.getElementById('screen-sleep');
+            const inSleepCorner = !!(sleepScreenEl && sleepScreenEl.classList.contains('active'));
+            const isNativePlay = !!(window.TronoPlayBilling && typeof window.TronoPlayBilling.syncSleepCornerState === 'function');
+
+            // No navegador externo (sem player nativo Android), só mantém bgAudioPlayer se estiver na Salinha de Dormir!
+            // No app Android da Play Store, SEMPRE pausa a WebView (na Salinha de Dormir o MediaPlayer nativo C++ assume na hora com tela apagada!)
+            if (isNativePlay || !inSleepCorner) {
+              if (typeof bgAudioPlayer !== 'undefined' && bgAudioPlayer && !bgAudioPlayer.paused) {
+                window._wasBgPlayingBeforeMinimize = true;
+                bgAudioPlayer.pause();
+              }
+            }
+
+            // Pausa todas as vozes/efeitos secundários para NUNCA escapar barulho em gravações ou outros apps!
+            if (typeof window.stopVovoStoryNarration === 'function') {
+              try { window.stopVovoStoryNarration(); } catch (e) {}
+            }
+            if (window.TronoAudio && typeof window.TronoAudio.falarVovo === 'function') {
+              try { window.TronoAudio.falarVovo(null); } catch (e) {}
+            }
+            if (window._arcaBichoPlayer) {
+              try { window._arcaBichoPlayer.pause(); } catch (e) {}
+            }
+            if (window._lessonVicVoicePlayer) {
+              try { window._lessonVicVoicePlayer.pause(); } catch (e) {}
+            }
+            if (typeof celebrationAudioPlayer !== 'undefined' && celebrationAudioPlayer) {
+              try { celebrationAudioPlayer.pause(); } catch (e) {}
+            }
+            const introVid = document.getElementById('intro-video-player');
+            if (introVid && !introVid.paused) {
+              try { introVid.pause(); } catch (e) {}
+            }
+            if (typeof audioCtx !== 'undefined' && audioCtx && audioCtx.state === 'running') {
+              try { audioCtx.suspend(); } catch (e) {}
+            }
+            if (window.TronoAudio && window.TronoAudio.ctx && window.TronoAudio.ctx.state === 'running') {
+              try { window.TronoAudio.ctx.suspend(); } catch (e) {}
+            }
+          } catch (e) {}
+        };
+
+        window._tronoOnAppResumed = function(resumedSleepIdx, resumedSleepPosMs) {
+          try {
+            window._appIsInBackground = false;
+            if (typeof audioCtx !== 'undefined' && audioCtx && audioCtx.state === 'suspended') {
+              try { audioCtx.resume(); } catch (e) {}
+            }
+            if (window.TronoAudio && window.TronoAudio.ctx && window.TronoAudio.ctx.state === 'suspended') {
+              try { window.TronoAudio.ctx.resume(); } catch (e) {}
+            }
+
+            const sleepScreenEl = document.getElementById('screen-sleep');
+            const inSleepCorner = !!(sleepScreenEl && sleepScreenEl.classList.contains('active'));
+
+            if (inSleepCorner && typeof resumedSleepIdx === 'number' && resumedSleepIdx >= 0 && ambientPlaying && !window._arcadeAudioMuted) {
+              const sleepPool = getUnlockedBgLoopPool(true);
+              const targetTrack = sleepPool[resumedSleepIdx % Math.max(1, sleepPool.length)];
+              if (targetTrack && bgAudioPlayer) {
+                if (activeTrackId !== targetTrack.id) {
+                  activeTrackId = targetTrack.id;
+                  bgAudioPlayer.src = targetTrack.file;
+                }
+                if (typeof resumedSleepPosMs === 'number' && resumedSleepPosMs > 200) {
+                  try { bgAudioPlayer.currentTime = resumedSleepPosMs / 1000; } catch (e) {}
+                }
+                window.syncBgAmbientVolume(false);
+                bgAudioPlayer.play().catch(function(){});
+                if (typeof renderSleepCorner === 'function') renderSleepCorner();
+              }
+              window._wasBgPlayingBeforeMinimize = false;
+              return;
+            }
+
+            if ((window._wasBgPlayingBeforeMinimize || (ambientPlaying && !window._arcadeAudioMuted && window._introDismissed))
+                && typeof bgAudioPlayer !== 'undefined' && bgAudioPlayer && bgAudioPlayer.paused) {
+              window._wasBgPlayingBeforeMinimize = false;
+              window.syncBgAmbientVolume(false);
+              bgAudioPlayer.play().catch(function(){});
+            }
+          } catch (e) {}
+        };
+
+        document.addEventListener('visibilitychange', function() {
+          if (window.TronoPlayBilling) return; // No Android nativo MainActivity.onPause/onResume já gerencia com precisão milimétrica
+          if (document.hidden) {
+            window._tronoOnAppMinimized();
+          } else {
+            window._tronoOnAppResumed(-1, 0);
+          }
+        });
+
+        window.addEventListener('popstate', function(event) {
+          const action = window._tronoHandleAndroidBack();
+          if (action === 'minimize' && window.TronoPlayBilling && typeof window.TronoPlayBilling.minimizeApp === 'function') {
+            window.TronoPlayBilling.minimizeApp();
             return;
+          }
+          if (!window.TronoPlayBilling) {
+            history.pushState({ app: 'trono-kids-active' }, '');
           }
         });
       } catch (e) {}
