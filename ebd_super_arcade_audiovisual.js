@@ -1469,7 +1469,7 @@
       }
       .pombo-v110-controller-area {
         position: absolute;
-        bottom: max(24px, calc(18px + env(safe-area-inset-bottom, 0px)));
+        bottom: max(36px, calc(26px + env(safe-area-inset-bottom, 0px)));
         left: 50%;
         transform: translateX(-50%);
         z-index: 50;
@@ -1723,7 +1723,7 @@
       /* DAVI NO PRIMEIRO PLANO (DE COSTAS NO TAPETE, 100% ACIMA DO CONTROLE FLUTUANTE) */
       .davi-hero-box {
         position: absolute;
-        bottom: 148px;
+        bottom: 158px;
         left: 50%;
         transform: translateX(-50%);
         width: 64px;
@@ -1783,7 +1783,7 @@
       /* BARRA DE CONTROLES HORIZONTAL (SOMENTE ESQUERDA E DIREITA — SEM COBRIR DAVI) */
       .davi-controls-bar {
         position: absolute;
-        bottom: max(28px, calc(24px + env(safe-area-inset-bottom, 0px)));
+        bottom: max(38px, calc(28px + env(safe-area-inset-bottom, 0px)));
         left: 50%;
         transform: translateX(-50%);
         z-index: 25;
@@ -3682,7 +3682,7 @@
         </div>
 
         <!-- 4. PAINEL DE CONTROLE / TIMING E BOTÃO DE LANÇAMENTO COM SUSPIRO EM CIMA E EMBAIXO -->
-        <div style="position:relative; width:100%; padding:14px 18px max(26px, calc(22px + env(safe-area-inset-bottom, 0px))) 18px; background:rgba(15, 23, 42, 0.85); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-top:2.5px solid #fde047; box-shadow:0 -8px 25px rgba(0,0,0,0.7); display:flex; flex-direction:column; align-items:center; gap:12px; z-index:30; box-sizing:border-box;">
+        <div style="position:relative; width:100%; padding:16px 18px max(38px, calc(28px + env(safe-area-inset-bottom, 0px))) 18px; background:rgba(15, 23, 42, 0.85); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-top:2.5px solid #fde047; box-shadow:0 -8px 25px rgba(0,0,0,0.7); display:flex; flex-direction:column; align-items:center; gap:12px; z-index:30; box-sizing:border-box;">
           <!-- Barra de Precisão da Agulha -->
           <div style="width:100%; max-width:440px; background:#1e293b; border:2.5px solid #ca8a04; border-radius:999px; padding:4px; box-shadow:inset 0 3px 6px rgba(0,0,0,0.6);">
             <div style="position:relative; width:100%; height:32px; background:linear-gradient(90deg, #ef4444 0%, #dc2626 100%); border-radius:999px; overflow:hidden;">
@@ -3917,9 +3917,9 @@
       { id: "s19_atras_vasos_costas", x: 74, y: 65.5 },
       { id: "s20_pe_sandalia_mulher", x: 86, y: 73.5 },
       { id: "s21_canto_parede_esq",   x:  7, y: 52.0 },
-      { id: "s22_chao_baixo_esq",     x:  9, y: 94.0 },
-      { id: "s23_chao_baixo_meio",    x: 23, y: 94.5 },
-      { id: "s24_chao_baixo_dir",     x: 36, y: 93.5 }
+      { id: "s22_chao_baixo_esq",     x:  9, y: 86.5 },
+      { id: "s23_chao_baixo_meio",    x: 23, y: 87.0 },
+      { id: "s24_chao_baixo_dir",     x: 36, y: 86.0 }
     ];
 
     const pool = allHidingSpots.map((sp) => ({ id: sp.id, x: sp.x, y: sp.y }));
@@ -5349,7 +5349,7 @@
         minX: Math.max(34, W * 0.09),
         maxX: Math.min(W - 34, W * 0.91),
         minY: Math.max(126, H * 0.29),
-        maxY: Math.min(H - 32, H * 0.90)
+        maxY: Math.min(H - 46, H * 0.88)
       };
     }
 
@@ -5893,7 +5893,7 @@
     ];
 
     container.innerHTML = `
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:space-around; padding:15px; background:radial-gradient(circle,#a7f3d0,#065f46);">
+      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:space-evenly; padding:64px 16px 46px 16px; box-sizing:border-box; background:radial-gradient(circle,#a7f3d0,#065f46);">
         <!-- Silhuetas -->
         <div style="display:flex; gap:20px;">
           ${bichos.map(b => `
@@ -6218,9 +6218,9 @@
         slot.el.style.top = `${cy.toFixed(1)}px`;
       });
 
-      // Zona do gramado embaixo: de wallBot + 10px até H - 8px
-      const grassTop = Math.max(wallBot + 10, Math.min(H * 0.685, imgOy + dispH * 0.69));
-      const grassBot = H - 8;
+      // Zona do gramado embaixo com amplo suspiro inferior (padrão Quebra-Cabeça)
+      const grassTop = Math.max(wallBot + 10, Math.min(H * 0.675, imgOy + dispH * 0.68));
+      const grassBot = H - 40;
       const grassH = Math.max(110, grassBot - grassTop);
       const grassLeft = Math.max(stageLeftLimit + 6, W * 0.05);
       const grassRight = Math.min(stageRightLimit - 6, W * 0.95);
@@ -6923,7 +6923,7 @@
           transform: translateX(-6px);
         }
       </style>
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:linear-gradient(180deg, rgba(10,18,42,0.18) 0%, rgba(10,18,42,0.34) 100%), url('./3_ASSETS_QUIZ_ARCADE/quiz_bg_monte_sinai_v154.jpg?v=154') center/cover no-repeat; padding:66px 14px max(24px, calc(18px + env(safe-area-inset-bottom, 0px))) 14px; box-sizing:border-box;">
+      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:space-evenly; gap:10px; background:linear-gradient(180deg, rgba(10,18,42,0.18) 0%, rgba(10,18,42,0.34) 100%), url('./3_ASSETS_QUIZ_ARCADE/quiz_bg_monte_sinai_v154.jpg?v=154') center/cover no-repeat; padding:62px 14px max(40px, calc(28px + env(safe-area-inset-bottom, 0px))) 14px; box-sizing:border-box;">
         <button type="button" id="quiz-vis-question-card" class="quiz-vis-question-btn" onclick="window._quizReplayVovo()" title="Toque para ouvir a pergunta novamente" aria-label="Toque para ouvir a pergunta novamente">
           <span style="display:block; font-family:'Fredoka',sans-serif; color:#ffffff; font-size:${qFontSize}; font-weight:800; line-height:1.23; text-align:center; text-shadow:0 2px 5px rgba(0,0,0,0.92); pointer-events:none;">
             ${qData.q}
@@ -7197,12 +7197,12 @@
         </div>
 
         <!-- Placar Discreto de Pinos na Base -->
-        <div id="ligue-bottom-pill" style="position:absolute; bottom:max(26px, calc(20px + env(safe-area-inset-bottom, 0px))); left:50%; transform:translateX(-50%); z-index:8; background:linear-gradient(180deg, rgba(30,58,138,0.88) 0%, rgba(49,46,129,0.92) 100%); border:2px solid rgba(255,255,255,0.85); border-radius:999px; padding:6px 18px; color:#ffffff; font-weight:900; font-size:14px; letter-spacing:0.5px; box-shadow:0 6px 16px rgba(0,0,0,0.35); pointer-events:none; white-space:nowrap; transition:opacity 0.35s ease;">
+        <div id="ligue-bottom-pill" style="position:absolute; bottom:max(36px, calc(28px + env(safe-area-inset-bottom, 0px))); left:50%; transform:translateX(-50%); z-index:8; background:linear-gradient(180deg, rgba(30,58,138,0.88) 0%, rgba(49,46,129,0.92) 100%); border:2px solid rgba(255,255,255,0.85); border-radius:999px; padding:6px 18px; color:#ffffff; font-weight:900; font-size:14px; letter-spacing:0.5px; box-shadow:0 6px 16px rgba(0,0,0,0.35); pointer-events:none; white-space:nowrap; transition:opacity 0.35s ease;">
           PONTINHOS: <span id="ligue-step-count" style="color:#00e676;">0</span> / ${totalSegments}
         </div>
 
         <!-- Selo de Revelação Colorida da Figura -->
-        <div id="ligue-reveal-badge" style="display:none; position:absolute; bottom:max(30px, calc(24px + env(safe-area-inset-bottom, 0px))); left:50%; transform:translateX(-50%); z-index:12; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2.8px solid #ffffff; border-radius:999px; padding:9px 24px; color:#ffffff; font-weight:900; font-size:17px; letter-spacing:0.6px; text-shadow:0 2px 5px rgba(0,0,0,0.5); box-shadow:0 0 24px rgba(253,224,71,0.9), 0 8px 18px rgba(0,0,0,0.45); pointer-events:none; white-space:nowrap;">
+        <div id="ligue-reveal-badge" style="display:none; position:absolute; bottom:max(40px, calc(32px + env(safe-area-inset-bottom, 0px))); left:50%; transform:translateX(-50%); z-index:12; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2.8px solid #ffffff; border-radius:999px; padding:9px 24px; color:#ffffff; font-weight:900; font-size:17px; letter-spacing:0.6px; text-shadow:0 2px 5px rgba(0,0,0,0.5); box-shadow:0 0 24px rgba(253,224,71,0.9), 0 8px 18px rgba(0,0,0,0.45); pointer-events:none; white-space:nowrap;">
           ⭐ ${pData.title.toUpperCase()} ⭐
         </div>
 
@@ -8154,7 +8154,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 60px 10px max(22px, calc(16px + env(safe-area-inset-bottom, 0px))) 10px;
+          padding: 60px 12px max(38px, calc(26px + env(safe-area-inset-bottom, 0px))) 12px;
           box-sizing: border-box;
           user-select: none;
           -webkit-user-select: none;
@@ -8702,8 +8702,9 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: space-between;
-          padding: 62px 10px max(24px, clamp(18px, 3vh, 28px)) 10px;
+          justify-content: space-evenly;
+          gap: 14px;
+          padding: 58px 14px max(46px, calc(34px + env(safe-area-inset-bottom, 0px))) 14px;
           box-sizing: border-box;
           touch-action: none;
           user-select: none;
@@ -9439,8 +9440,9 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: space-between;
-          padding: 62px 12px max(26px, clamp(22px, 4.5vh, 38px)) 12px;
+          justify-content: space-evenly;
+          gap: 16px;
+          padding: 58px 14px max(46px, calc(34px + env(safe-area-inset-bottom, 0px))) 14px;
           box-sizing: border-box;
           touch-action: none;
           user-select: none;
@@ -9983,7 +9985,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 76px 12px 16px 12px;
+        padding: 68px 18px max(46px, calc(34px + env(safe-area-inset-bottom, 0px))) 18px;
         box-sizing: border-box;
         user-select: none;
         -webkit-user-select: none;
@@ -10009,12 +10011,13 @@
         position: relative;
         z-index: 5;
         width: 100%;
-        max-width: 430px;
+        max-width: 420px;
+        max-height: min(100%, 640px);
         flex: 1;
         min-height: 0;
         display: grid;
         gap: 8px;
-        padding: 2px;
+        padding: 6px 4px 10px 4px;
         box-sizing: border-box;
       }
       .arc-mem171-card {
@@ -10625,10 +10628,10 @@
 
       topZoneBottomY = topSafeMaxY + 14;
 
-      // 2. Posiciona as 30 figuras embaralhadas na mesa de madeira (53.5% a 91.5% da altura)
+      // 2. Posiciona as 30 figuras embaralhadas na mesa de madeira com amplo suspiro inferior
       const padX = Math.max(28, W * 0.10);
-      const pileTop = Math.max(topSafeMaxY + 26, H * 0.54);
-      const pileBot = H - Math.max(28, H * 0.085);
+      const pileTop = Math.max(topSafeMaxY + 24, H * 0.53);
+      const pileBot = H - Math.max(48, H * 0.105);
       const stepX = (W - padX * 2) / 5;
       const stepY = Math.max(32, (pileBot - pileTop) / 4);
       const itemSz = Math.max(52, Math.min(76, Math.min(W * 0.168, (pileBot - pileTop) * 0.30)));
@@ -11143,8 +11146,8 @@
       const pairGap = Math.max(topAnimalSize * 0.98, Math.min(W * 0.28, 136));
       waitX = W * 0.5 - pairGap * 0.5;
       spotX = W * 0.5 + pairGap * 0.5;
-      waitY = H * 0.535;
-      spotY = H * 0.535;
+      waitY = H * 0.50;
+      spotY = H * 0.50;
 
       waitingWrap.style.width = `${topAnimalSize.toFixed(1)}px`;
       waitingWrap.style.height = `${topAnimalSize.toFixed(1)}px`;
@@ -11157,10 +11160,10 @@
       mateSpot.style.left = `${spotX.toFixed(1)}px`;
       mateSpot.style.top = `${spotY.toFixed(1)}px`;
 
-      // Animais de baixo em escala adulta equivalente ao animal do topo (zero efeito de filhote/miniatura!)
+      // Animais de baixo em escala adulta equivalente ao animal do topo com amplo suspiro inferior
       const choiceSz = Math.min(Math.floor(W * 0.295), Math.round(topAnimalSize * 0.97));
       const xPositions = [W * 0.185, W * 0.50, W * 0.815];
-      const yPositions = [H * 0.815, H * 0.832, H * 0.815];
+      const yPositions = [H * 0.78, H * 0.795, H * 0.78];
 
       choiceItems.forEach((it, idx) => {
         it.size = choiceSz;
@@ -11730,7 +11733,7 @@
         </div>
 
         <!-- BARRA INFERIOR CENTRALIZADA COM SUSPIRO PARA ESCOLHER 6, 9 OU 12 PEÇAS (SEM COLIDIR COM OUVIR!) -->
-        <div style="position:relative; z-index:12; width:100%; max-width:520px; display:flex; align-items:center; justify-content:center; gap:10px; padding:8px 16px max(24px, calc(20px + env(safe-area-inset-bottom, 0px))) 16px; box-sizing:border-box; flex-shrink:0;">
+        <div style="position:relative; z-index:12; width:100%; max-width:520px; display:flex; align-items:center; justify-content:center; gap:10px; padding:8px 16px max(34px, calc(24px + env(safe-area-inset-bottom, 0px))) 16px; box-sizing:border-box; flex-shrink:0;">
           <button type="button" class="arc-v161-diff-btn active" data-puz-diff="6" style="min-width:94px; padding:0 14px; font-size:13.5px;">6 PEÇAS</button>
           <button type="button" class="arc-v161-diff-btn" data-puz-diff="9" style="min-width:94px; padding:0 14px; font-size:13.5px;">9 PEÇAS</button>
           <button type="button" class="arc-v161-diff-btn" data-puz-diff="12" style="min-width:98px; padding:0 14px; font-size:13.5px;">12 PEÇAS</button>
@@ -12345,7 +12348,7 @@
         </div>
 
         <!-- BARRA ÚNICA DE EDIÇÃO EMBAIXO COM SUSPIRO NAS BORDAS (6 Ferramentas + 20 Cores) -->
-        <div id="arcade-paint-unified-dock" class="arc-v161-rainbow-card" style="z-index:12; width:calc(100% - 24px); max-width:520px; margin:0 12px max(22px, calc(18px + env(safe-area-inset-bottom, 0px))) 12px; padding:10px 12px 12px 12px; border-radius:18px; display:flex; flex-direction:column; gap:8px; box-sizing:border-box;">
+        <div id="arcade-paint-unified-dock" class="arc-v161-rainbow-card" style="z-index:12; width:calc(100% - 24px); max-width:520px; margin:0 12px max(34px, calc(24px + env(safe-area-inset-bottom, 0px))) 12px; padding:10px 12px 12px 12px; border-radius:18px; display:flex; flex-direction:column; gap:8px; box-sizing:border-box;">
           <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:4px; width:100%;">
             <button type="button" id="arc-ptool-bucket" class="arc-paint-tool-btn active">TOQUE</button>
             <button type="button" id="arc-ptool-brush" class="arc-paint-tool-btn">LÁPIS</button>
@@ -13122,7 +13125,7 @@
     }
 
     container.innerHTML = `
-      <div class="arc-v161-stage" style="padding:60px 12px max(24px, calc(20px + env(safe-area-inset-bottom, 0px))) 12px; justify-content:space-evenly;">
+      <div class="arc-v161-stage" style="padding:60px 14px max(42px, calc(30px + env(safe-area-inset-bottom, 0px))) 14px; justify-content:space-evenly;">
         <img src="./2_ASSETS_UI_BOTOES/bg_jogo_19_cacapalavras_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
@@ -13336,7 +13339,7 @@
     let solved = false;
 
     container.innerHTML = `
-      <div class="arc-v161-stage" style="padding:60px 12px max(24px, calc(20px + env(safe-area-inset-bottom, 0px))) 12px; justify-content:space-evenly;">
+      <div class="arc-v161-stage" style="padding:60px 14px max(42px, calc(30px + env(safe-area-inset-bottom, 0px))) 14px; justify-content:space-evenly;">
         <img src="./2_ASSETS_UI_BOTOES/bg_jogo_20_palavrasecreta_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
@@ -13454,7 +13457,7 @@
     let solved = false;
 
     container.innerHTML = `
-      <div class="arc-v161-stage" style="padding:48px 12px max(24px, calc(18px + env(safe-area-inset-bottom, 0px))) 12px; justify-content:space-evenly;">
+      <div class="arc-v161-stage" style="padding:50px 14px max(38px, calc(26px + env(safe-area-inset-bottom, 0px))) 14px; justify-content:space-evenly;">
         <img src="./2_ASSETS_UI_BOTOES/bg_jogo_21_quemsoueu_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
@@ -13566,7 +13569,7 @@
     let solved = false;
 
     container.innerHTML = `
-      <div class="arc-v161-stage" style="padding:60px 14px max(28px, calc(24px + env(safe-area-inset-bottom, 0px))) 14px; justify-content:space-evenly;">
+      <div class="arc-v161-stage" style="padding:60px 14px max(42px, calc(30px + env(safe-area-inset-bottom, 0px))) 14px; justify-content:space-evenly;">
         <img id="arcade-tm-bg-img" src="./2_ASSETS_UI_BOTOES/bg_jogo_22_verdadeiromito_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 

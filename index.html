@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v200.0';
+        const CURRENT_VER = 'v201.0';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -63,7 +63,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=200.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=201.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
