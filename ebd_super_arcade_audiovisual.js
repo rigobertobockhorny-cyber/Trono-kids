@@ -9127,7 +9127,9 @@
         height: ${gh}px;
         border-radius: 15px;
         padding: 3px;
-        background: linear-gradient(125deg, #fde047, #38bdf8, #00e676);
+        background: linear-gradient(125deg, #38bdf8, #a855f7, #fde047, #34d399, #ec4899, #38bdf8);
+        background-size: 260% 260%;
+        animation: magicFlow 3.5s ease infinite;
         box-shadow: 0 16px 36px rgba(0, 0, 0, 0.85), 0 0 22px rgba(253, 224, 71, 0.82);
         pointer-events: none;
         z-index: 10000050;
@@ -9750,7 +9752,9 @@
         height: ${rect.height}px;
         border-radius: 999px;
         padding: 3px;
-        background: linear-gradient(125deg, #fde047, #38bdf8, #00e676);
+        background: linear-gradient(125deg, #38bdf8, #a855f7, #fde047, #34d399, #ec4899, #38bdf8);
+        background-size: 260% 260%;
+        animation: magicFlow 3.5s ease infinite;
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.85), 0 0 18px rgba(253, 224, 71, 0.8);
         pointer-events: none;
         z-index: 10000050;

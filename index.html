@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v205.0';
+        const CURRENT_VER = 'v206.0';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -141,6 +141,20 @@
     }
     #app-shell.adult-portal-clean-mode .topbar {
       display: none !important;
+    }
+    @keyframes magicBorderBoxFlow {
+      0%   { background-position: 0% 0%, 0% 50%; }
+      50%  { background-position: 0% 0%, 100% 50%; }
+      100% { background-position: 0% 0%, 0% 50%; }
+    }
+    .trono-magic-border-card {
+      border: 2.5px solid transparent !important;
+      background-image: linear-gradient(180deg, #0c193a 0%, #071026 100%),
+                        linear-gradient(125deg, #38bdf8, #a855f7, #facc15, #34d399, #ec4899, #38bdf8) !important;
+      background-origin: padding-box, border-box !important;
+      background-clip: padding-box, border-box !important;
+      background-size: 100% 100%, 280% 280% !important;
+      animation: magicBorderBoxFlow 3.6s ease infinite !important;
     }
 
     @media (min-width: 480px) {
@@ -2814,7 +2828,7 @@
         <div style="font-family:'Fredoka',sans-serif; font-size:15px; font-weight:800; color:#ffffff; letter-spacing:0.3px;">PRIVACIDADE E TERMOS</div>
       </div>
 
-      <div style="flex:1; min-height:0; display:flex; flex-direction:column; border-radius:20px; border:2px solid transparent; background:linear-gradient(180deg, #0c193a 0%, #071026 100%) padding-box, linear-gradient(135deg, #00d2ff 0%, #8b5cf6 36%, #ec4899 70%, #10b981 100%) border-box; padding:16px 14px; box-shadow:0 14px 34px rgba(0,0,0,0.85); text-align:left; box-sizing:border-box;">
+      <div class="trono-magic-border-card" style="flex:1; min-height:0; display:flex; flex-direction:column; border-radius:20px; padding:16px 14px; box-shadow:0 14px 34px rgba(0,0,0,0.85); text-align:left; box-sizing:border-box;">
         <div style="text-align:center; margin-bottom:12px; flex-shrink:0;">
           <div style="font-family:'Fredoka',sans-serif; font-size:clamp(15.5px, 4.3vw, 18.5px); font-weight:800; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:3px;">
             Política de Privacidade e Termos
