@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v207.0';
+        const CURRENT_VER = 'v208.0';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -1888,6 +1888,17 @@
     #app-shell.vovo-player-fullscreen-mode #screen-lesson-module .module-header .btn-nav-circle svg {
       width: 23px !important;
       height: 23px !important;
+    }
+    #app-shell.vovo-player-fullscreen-mode #screen-lesson-module .module-header,
+    #app-shell.vovo-player-fullscreen-mode #screen-lesson-module .module-header .btn-nav-circle {
+      transition: opacity 0.35s ease !important;
+    }
+    #app-shell.vovo-player-fullscreen-mode.vovo-hud-hidden #screen-lesson-module .module-header,
+    #app-shell.vovo-player-fullscreen-mode.vovo-hud-hidden #screen-lesson-module .module-header .btn-nav-circle,
+    #app-shell.vovo-player-fullscreen-mode.vovo-hud-hidden #vovo-player-controls-dock,
+    #app-shell.vovo-player-fullscreen-mode.vovo-hud-hidden #vovo-top-shadow {
+      opacity: 0 !important;
+      pointer-events: none !important;
     }
   
     /* === UPGRADE V76: ONDE TEM IMAGEM (ORDEM CRONOLÓGICA, JOGO DA MEMÓRIA, QUEBRA-CABEÇA, PINTURA) -> MARGEM COLORIDA ÚNICA MUDANDO DE COR (SEM LINHA AZUL DUPLICADA!) === */

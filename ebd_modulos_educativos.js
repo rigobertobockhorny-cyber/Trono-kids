@@ -5188,6 +5188,9 @@ window.ensureVovoAudioElement = function(lesson) {
     if (typeof window.markLessonModuleDone === "function" && lesson && lesson.week) {
       window.markLessonModuleDone(lesson.week, "vovo");
     }
+    if (typeof window.wakeVovoPlayerHud === "function") {
+      window.wakeVovoPlayerHud(0);
+    }
   };
 
   audio.onerror = function() {
@@ -5200,7 +5203,39 @@ window.ensureVovoAudioElement = function(lesson) {
   return audio;
 };
 
+window.wakeVovoPlayerHud = function(hideDelayMs) {
+  clearTimeout(window._vovoHudHideTimer);
+  const sh = document.getElementById("app-shell");
+  if (sh) {
+    sh.classList.remove("vovo-hud-hidden");
+  }
+  const ms = (typeof hideDelayMs === "number") ? hideDelayMs : 5000;
+  if (ms <= 0) return;
+  window._vovoHudHideTimer = setTimeout(function() {
+    if (window._vovoIsDraggingScrub) {
+      window.wakeVovoPlayerHud(5000);
+      return;
+    }
+    const shellNow = document.getElementById("app-shell");
+    if (shellNow && shellNow.classList.contains("vovo-player-fullscreen-mode")) {
+      shellNow.classList.add("vovo-hud-hidden");
+    }
+  }, ms);
+};
+
+window.handleVovoStageBackgroundTap = function() {
+  const sh = document.getElementById("app-shell");
+  if (sh && sh.classList.contains("vovo-hud-hidden")) {
+    window.wakeVovoPlayerHud(5000);
+    return;
+  }
+  window.toggleVovoStoryNarration();
+};
+
 window.toggleVovoStoryNarration = function() {
+  if (typeof window.wakeVovoPlayerHud === "function") {
+    window.wakeVovoPlayerHud(5000);
+  }
   const lesson = window.getCurrentLessonObj();
   window.preloadVovoLessonImages(lesson);
   const imgEl = document.getElementById("vovo-story-scene-img");
@@ -5251,6 +5286,9 @@ window.toggleVovoStoryNarration = function() {
 };
 
 window.stepVovoStoryTime = function(deltaSeconds) {
+  if (typeof window.wakeVovoPlayerHud === "function") {
+    window.wakeVovoPlayerHud(5000);
+  }
   const lesson = window.getCurrentLessonObj();
   window.preloadVovoLessonImages(lesson);
   const audio = window.ensureVovoAudioElement(lesson);
@@ -5267,6 +5305,9 @@ window.stepVovoStoryTime = function(deltaSeconds) {
 };
 
 window.onScrubVovoStory = function(sliderVal) {
+  if (typeof window.wakeVovoPlayerHud === "function") {
+    window.wakeVovoPlayerHud(5000);
+  }
   const lesson = window.getCurrentLessonObj();
   window.preloadVovoLessonImages(lesson);
   const ratio = Math.min(1, Math.max(0, (Number(sliderVal) || 0) / 1000));
@@ -5301,6 +5342,9 @@ window.restartVovoStoryFromZero = function() {
 };
 
 window.stopVovoStoryNarration = function(forceReset) {
+  clearTimeout(window._vovoHudHideTimer);
+  const sh = document.getElementById("app-shell");
+  if (sh) sh.classList.remove("vovo-hud-hidden");
   if (window.EBD_STATE.vovoAudioEl) {
     const wk = window.EBD_STATE.vovoAudioWeek;
     const cur = window.EBD_STATE.vovoAudioEl.currentTime || 0;
@@ -6865,22 +6909,15 @@ window.openLessonModule = function(modType) {
     const initPctCss = `${(initPct * 100).toFixed(1)}%`;
 
     box.innerHTML = `
-      <div id="vovo-fullscreen-stage" onclick="toggleVovoStoryNarration()" style="position:relative; width:100%; height:100%; flex:1; min-height:0; overflow:hidden; background:#000000; cursor:pointer;">
+      <div id="vovo-fullscreen-stage" onclick="handleVovoStageBackgroundTap()" style="position:relative; width:100%; height:100%; flex:1; min-height:0; overflow:hidden; background:#000000; cursor:pointer;">
         <!-- IMAGEM 100% TELA CHEIA (SEM MOLDURA, SEM BLOCO) -->
         <img id="vovo-story-scene-img" src="${initImgSrc}" alt="" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; border:none; border-radius:0; display:block; user-select:none; -webkit-user-drag:none;">
 
-        <!-- Sombra sutil no topo apenas para destacar as 2 bolinhas de navegação -->
-        <div style="position:absolute; top:0; left:0; right:0; height:86px; background:linear-gradient(180deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0) 100%); pointer-events:none; z-index:10;"></div>
+        <!-- Sombra sutil no topo apenas para destacar as 2 bolinhas de navegação (some junto após 5s!) -->
+        <div id="vovo-top-shadow" style="position:absolute; top:0; left:0; right:0; height:86px; background:linear-gradient(180deg, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0) 100%); pointer-events:none; z-index:10; transition:opacity 0.35s ease;"></div>
 
-        <!-- Botão Discreto no Canto Superior p/ Rever a Vinheta Oficial sob Demanda (Opção A) -->
-        <button type="button" onclick="event.stopPropagation(); if(window.playOfficialVinhetaOnDemand){window.playOfficialVinhetaOnDemand();}" title="Assistir Abertura Oficial"
-          style="position:absolute; top:14px; left:50%; transform:translateX(-50%); z-index:25; height:36px; padding:0 15px; border-radius:999px; background:linear-gradient(180deg, rgba(126,34,206,0.88) 0%, rgba(59,7,100,0.95) 100%); border:2px solid #fde047; color:#fde047; font-family:'Fredoka',sans-serif; font-size:12.5px; font-weight:900; letter-spacing:0.4px; display:inline-flex; align-items:center; gap:6px; box-shadow:0 4px 12px rgba(0,0,0,0.7); cursor:pointer; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#fde047"><path d="M8 5V19L19 12L8 5Z"/></svg>
-          <span>VINHETA</span>
-        </button>
-
-        <!-- BARRA DE PLAYER COM AMPLO SUSPIRO NAS BORDAS (CONTADOR + DEDINHO + 3 BOTÕES GRANDES SEM CORTE) -->
-        <div onclick="event.stopPropagation()" style="position:absolute; left:0; right:0; bottom:0; padding:54px 30px calc(38px + env(safe-area-inset-bottom, 0px)) 30px; background:linear-gradient(0deg, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.54) 65%, rgba(0,0,0,0) 100%); z-index:22; display:flex; flex-direction:column; gap:18px; box-sizing:border-box; overflow:visible;">
+        <!-- BARRA DE PLAYER COM AMPLO SUSPIRO NAS BORDAS (SOME SOZINHA APÓS 5 SEGUNDOS PARA A CRIANÇA VER SÓ A IMAGEM!) -->
+        <div id="vovo-player-controls-dock" onclick="event.stopPropagation()" style="position:absolute; left:0; right:0; bottom:0; padding:54px 30px calc(38px + env(safe-area-inset-bottom, 0px)) 30px; background:linear-gradient(0deg, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.54) 65%, rgba(0,0,0,0) 100%); z-index:22; display:flex; flex-direction:column; gap:18px; box-sizing:border-box; overflow:visible; transition:opacity 0.35s ease;">
           <!-- Contador de Tempo + Barra Deslizante com o Dedinho -->
           <div style="display:flex; align-items:center; gap:12px; width:100%; padding:0 4px; box-sizing:border-box; overflow:visible;">
             <span id="vovo-video-time-current" style="font-size:13.5px; font-weight:800; color:#ffffff; min-width:38px; text-align:left; text-shadow:0 1px 4px rgba(0,0,0,0.9); font-variant-numeric:tabular-nums;">${initCurStr}</span>
@@ -6922,7 +6959,12 @@ window.openLessonModule = function(modType) {
         </div>
       </div>
     `;
-    setTimeout(() => { window.ensureVovoAudioElement(lesson); }, 30);
+    setTimeout(() => {
+      window.ensureVovoAudioElement(lesson);
+      if (typeof window.wakeVovoPlayerHud === "function") {
+        window.wakeVovoPlayerHud(5000);
+      }
+    }, 30);
   }
   // 3) SEMENTINHA (TELA ÚNICA SEM BLOCO ROXO EXTERNO • APENAS VERSÍCULO + REFERÊNCIA ÚNICA!)
   else if (modType === "sementinha") {
