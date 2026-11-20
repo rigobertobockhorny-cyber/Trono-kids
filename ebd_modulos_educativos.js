@@ -9631,7 +9631,6 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
       <div class="ebd-mag-header">
         <div class="ebd-mag-kicker">
           <span>REVISTA DIGITAL • TRONO DA PROMESSA EBD</span>
-          <span class="ebd-mag-pill-outline">LIÇÃO ${lesson.week} DE 22 • FAIXA UNIFICADA 3 A 8 ANOS</span>
         </div>
         <div class="ebd-mag-main-title">Lição ${lesson.week}: ${esc(lesson.title)}</div>
         <div class="ebd-mag-ref-line">
@@ -9665,11 +9664,11 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
         <p class="ebd-mag-p"><strong style="color:#047857;">${esc(unifiedMissionTitle)} (Botão "Fé em Ação" do App):</strong> ${esc(unifiedMissionDesc)}</p>
         <div class="ebd-age-pills-grid">
           <div class="ebd-age-pill-card" style="border-left-color:#0d9488;">
-            <span class="ebd-age-pill-badge" style="color:#0f766e;">Pílula • Turma 3 a 5 anos</span>
+            <span class="ebd-age-pill-badge" style="color:#0f766e;">Turma 3 a 5 anos</span>
             <p class="ebd-mag-p" style="margin:0; font-size:12px;">${esc(age35.actionDesc || "")}</p>
           </div>
           <div class="ebd-age-pill-card" style="border-left-color:#0284c7;">
-            <span class="ebd-age-pill-badge" style="color:#0369a1;">Pílula • Turma 6 a 8 anos</span>
+            <span class="ebd-age-pill-badge" style="color:#0369a1;">Turma 6 a 8 anos</span>
             <p class="ebd-mag-p" style="margin:0; font-size:12px;">Peça que relatem na roda como praticaram a missão durante a semana e que conselho dariam a um amigo com base nesta lição.</p>
           </div>
         </div>
@@ -9695,11 +9694,11 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
         </div>
         <div class="ebd-age-pills-grid">
           <div class="ebd-age-pill-card" style="border-left-color:#0d9488;">
-            <span class="ebd-age-pill-badge" style="color:#0f766e;">Pílula • Como Contar p/ 3 a 5 anos</span>
+            <span class="ebd-age-pill-badge" style="color:#0f766e;">Como Contar p/ 3 a 5 anos</span>
             <p class="ebd-mag-p" style="margin:0; font-size:12px;">${esc(age35.text || "")}</p>
           </div>
           <div class="ebd-age-pill-card" style="border-left-color:#0284c7;">
-            <span class="ebd-age-pill-badge" style="color:#0369a1;">Pílula • Como Aprofundar p/ 6 a 8 anos</span>
+            <span class="ebd-age-pill-badge" style="color:#0369a1;">Como Aprofundar p/ 6 a 8 anos</span>
             <p class="ebd-mag-p" style="margin:0; font-size:12px;">${esc(age68.text || "")}</p>
           </div>
         </div>
@@ -10214,11 +10213,6 @@ window.renderTeacherPortalContent = function() {
 
   box.innerHTML = `
     ${topNavHtml}
-
-    <button type="button" class="adult-full-curriculum-btn" onclick="window.printFullEbdMagazine()">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 2H20V22H6.5A2.5 2.5 0 0 1 4 19.5V4.5A2.5 2.5 0 0 1 6.5 2Z" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span>APOSTILA COMPLETA • ${totalLessonsCount} LIÇÕES (PDF)</span>
-    </button>
 
     <div class="houses-trail" id="teacher-weeks-trail" style="flex-shrink:0;">
       ${pillsHtml}
