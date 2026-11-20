@@ -10126,7 +10126,7 @@ window.renderFamilyAccountTabHtml = function() {
         <div class="adult-section-title">Código de Acesso</div>
         <p class="adult-section-text" style="margin:0 0 10px 0;">Possui um código de convite familiar ou da sua igreja? Ative abaixo:</p>
         <div style="display:flex; gap:8px;">
-          <input type="text" id="portal-vip-code-input" placeholder="DIGITE SEU CÓDIGO" style="flex:1; min-width:0; padding:11px 12px; border-radius:11px; border:1.5px solid rgba(148,163,184,0.35); background:#040814; color:#ffffff; font-size:13px; font-weight:800; text-transform:uppercase; outline:none;">
+          <input type="text" id="portal-vip-code-input" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="Digite seu código..." style="flex:1; min-width:0; padding:11px 12px; border-radius:11px; border:1.5px solid rgba(148,163,184,0.35); background:#040814; color:#ffffff; font-size:13.5px; font-weight:800; outline:none;">
           <button type="button" onclick="redeemVipCoupon('portal-vip-code-input', 'portal-vip-feedback')" style="padding:11px 18px; border-radius:11px; border:1.5px solid rgba(167,243,208,0.85); background:linear-gradient(180deg, #10b981 0%, #059669 55%, #047857 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:13px; font-weight:800; cursor:pointer; box-shadow:0 5px 14px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.32);">ATIVAR</button>
         </div>
         <div id="portal-vip-feedback" style="font-size:12px; font-weight:800; margin-top:6px; min-height:16px; color:#6ee7b7;"></div>

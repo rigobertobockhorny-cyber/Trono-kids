@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v208.0';
+        const CURRENT_VER = 'v209.0';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -2710,27 +2710,30 @@
   </div>
 
   <!-- ==================================================================== -->
-  <!-- PAINEL SECRETO DO CRIADOR (INVISÍVEL P/ USUÁRIOS • SENHA 12345)       -->
+  <!-- PAINEL SECRETO DO CRIADOR (INVISÍVEL P/ USUÁRIOS)                     -->
   <!-- ==================================================================== -->
   <div id="modal-developer-admin" class="modal-backdrop" style="z-index: 10000500;">
-    <div class="modal-card" style="padding: 24px 20px; max-width: 365px; border: 2.5px solid #fde047;">
+    <div class="modal-card trono-magic-border-card" style="padding: 24px 20px; max-width: 365px;">
       <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Painel Secreto" style="width: 50px; height: 50px; object-fit: contain; margin-bottom: 6px;">
-      <div style="font-size: 20px; font-weight: 800; color: #fde047; margin-bottom: 6px; line-height: 1.2;">
-        Painel Secreto do Criador
+      <div style="font-size: 20px; font-weight: 800; color: #ffffff; margin-bottom: 6px; line-height: 1.2;">
+        Painel da Equipe Dev
       </div>
 
       <!-- ETAPA 1: DIGITAR SENHA -->
       <div id="dev-auth-step">
-        <div class="modal-subtitle" style="font-size: 13px; color: #e2e8f0; margin-bottom: 14px; line-height: 1.4;">
-          Acesso restrito para testes. Digite sua senha exclusiva:
+        <div class="modal-subtitle" style="font-size: 13px; color: #cbd5e1; margin-bottom: 14px; line-height: 1.4;">
+          Acesso restrito da equipe de desenvolvimento:
         </div>
         <input
           type="password"
           id="input-dev-secret-pass"
-          inputmode="numeric"
-          placeholder="Digite a senha..."
+          inputmode="text"
+          autocapitalize="none"
+          autocorrect="off"
+          spellcheck="false"
+          placeholder="desenvolvedor01"
           onkeydown="if(event.key==='Enter'){ window.submitDeveloperPassword(); }"
-          style="width: 100%; padding: 12px; border-radius: 12px; border: 2px solid rgba(253, 224, 71, 0.65); background: #0f172a; color: #ffffff; font-size: 18px; text-align: center; font-weight: 900; letter-spacing: 3px; margin-bottom: 8px;"
+          style="width: 100%; padding: 12px; border-radius: 12px; border: 1.5px solid rgba(148, 163, 184, 0.45); background: #040814; color: #ffffff; font-size: 16px; text-align: center; font-weight: 800; letter-spacing: 1px; margin-bottom: 8px;"
         >
         <div id="dev-secret-feedback" style="font-size: 12px; font-weight: 800; color: #f87171; min-height: 16px; margin-bottom: 10px;"></div>
         <button type="button" class="btn-gold" style="width: 100%; padding: 12px; font-size: 15.5px; margin-bottom: 8px;" onclick="window.submitDeveloperPassword()">
@@ -2801,7 +2804,7 @@
           Possui código de acesso da Igreja ou Família?
         </div>
         <div style="display: flex; gap: 8px; justify-content: center; align-items: center; width: 100%;">
-          <input type="text" id="input-vip-code" placeholder="Digite seu código..." style="flex: 1; min-width: 0; padding: 10px 14px; border-radius: 999px; border: 2px solid rgba(255, 255, 255, 0.65); background: rgba(46, 16, 101, 0.72); color: #ffffff; font-size: 13.5px; text-align: center; font-weight: 800; text-transform: uppercase; box-shadow: inset 0 2px 6px rgba(0,0,0,0.45);">
+          <input type="text" id="input-vip-code" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="Digite seu código..." style="flex: 1; min-width: 0; padding: 10px 14px; border-radius: 999px; border: 2px solid rgba(255, 255, 255, 0.65); background: rgba(46, 16, 101, 0.72); color: #ffffff; font-size: 13.5px; text-align: center; font-weight: 800; box-shadow: inset 0 2px 6px rgba(0,0,0,0.45);">
           <button type="button" class="btn-gold" style="padding: 10px 18px; font-size: 13px; font-weight: 900; border-radius: 999px; background: linear-gradient(180deg, #00b0ff 0%, #0066ff 100%); border-color: #b3e5fc; white-space: nowrap; flex-shrink: 0;" onclick="redeemVipCoupon()">Aplicar</button>
         </div>
         <div id="vip-feedback-msg" style="font-size: 12px; margin-top: 5px; min-height: 15px; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.85);"></div>
@@ -4759,9 +4762,22 @@ async function startGooglePlayCheckout(plano) {
 
 
 // ============================================================================
-// MODO DESENVOLVEDOR OFICIAL (SENHA: 12345) - EXCLUSIVO DO CRIADOR RIGOBERTO
+// MODO DESENVOLVEDOR OFICIAL (EQUIPE DEV: desenvolvedor01 a desenvolvedor06)
 // ============================================================================
-window.DEVELOPER_PASSWORD = '12345';
+window.DEV_TEAM_PASSWORDS = new Set([
+  'desenvolvedor01',
+  'desenvolvedor02',
+  'desenvolvedor03',
+  'desenvolvedor04',
+  'desenvolvedor05',
+  'desenvolvedor06'
+]);
+window.BETA_TESTER_CODES = new Set([
+  'teste-01', 'teste-02', 'teste-03', 'teste-04', 'teste-05',
+  'teste-06', 'teste-07', 'teste-08', 'teste-09', 'teste-10',
+  'teste-11', 'teste-12', 'teste-13', 'teste-14', 'teste-15',
+  'teste-16', 'teste-17', 'teste-18', 'teste-19', 'teste-20'
+]);
 let devLogoTapCount = 0;
 let devLogoTapTimer = null;
 
@@ -4813,20 +4829,19 @@ window.submitDeveloperPassword = function() {
   const fbEl = document.getElementById('dev-secret-feedback');
   const authStep = document.getElementById('dev-auth-step');
   const actionsStep = document.getElementById('dev-actions-step');
-  const code = (inputEl ? inputEl.value : '').trim().toUpperCase();
+  const code = (inputEl ? inputEl.value : '').trim().toLowerCase();
 
   if (!code) {
     if (fbEl) fbEl.textContent = 'Digite sua senha exclusiva.';
     return;
   }
 
-  // Atalho ultra-rápido: digitar 00000 já zera tudo direto!
-  if (code === '00000') {
+  if (code === 'zerardev01') {
     window.resetAllAppProgressToZero(document.getElementById('btn-dev-reset-all'));
     return;
   }
 
-  if (code === window.DEVELOPER_PASSWORD) {
+  if (window.DEV_TEAM_PASSWORDS.has(code)) {
     try { playSoundWinCelebration(); } catch (e) {}
     if (fbEl) fbEl.textContent = '';
     if (authStep) authStep.style.display = 'none';
@@ -4905,57 +4920,33 @@ function redeemVipCoupon(customInputId, customMsgId) {
   const msgEl = document.getElementById(customMsgId || 'vip-feedback-msg');
   if (!inputEl || !msgEl) return;
 
-  const rawCode = (inputEl.value || '').trim().toUpperCase();
+  const rawCode = (inputEl.value || '').trim().toLowerCase();
   if (!rawCode) {
     msgEl.style.color = '#f87171';
-    msgEl.textContent = 'Por favor, digite o código do seu cupom.';
+    msgEl.textContent = 'Por favor, digite o seu código de acesso.';
     return;
   }
 
-  // Atalho secreto exclusivo do Criador também no campo de cupom:
-  if (rawCode === 'ZERAR12345' || rawCode === '00000') {
-    msgEl.style.color = '#fde047';
-    msgEl.textContent = 'Zerando todo o aplicativo para teste do início...';
+  // Comando exclusivo da equipe dev para zerar progresso local de teste:
+  if (rawCode === 'zerardev01') {
+    msgEl.style.color = '#93c5fd';
+    msgEl.textContent = 'Zerando todo o aplicativo neste aparelho para teste do início...';
     window.resetAllAppProgressToZero();
     return;
   }
 
-  // Lista de Códigos Promocionais Válidos:
-  const isDevPass = (rawCode === '12345');
+  const isDevPass = window.DEV_TEAM_PASSWORDS && window.DEV_TEAM_PASSWORDS.has(rawCode);
+  const isBetaTester = window.BETA_TESTER_CODES && window.BETA_TESTER_CODES.has(rawCode);
 
-  // Lista de Códigos Promocionais Válidos:
-  const validPromoCodes = new Set([
-    '12345',
-    'BOCK-FAMILIA-2026',
-    'TRONO-01-A7',
-    'TRONO-02-B3',
-    'TRONO-03-C9',
-    'TRONO-04-D2',
-    'TRONO-05-E8',
-    'TRONO-06-F4',
-    'TRONO-07-G1',
-    'TRONO-08-H5',
-    'TRONO-09-J6',
-    'TRONO-10-K2',
-    'TRONO-11-L9',
-    'TRONO-12-M7',
-    'TRONO-13-N4',
-    'TRONO-14-P8',
-    'TRONO-15-R3',
-    'TRONO-16-S5',
-    'TRONO-17-T1',
-    'TRONO-18-V6',
-    'TRONO-19-W2',
-    'TRONO-20-Z9'
-  ]);
-
-  if (validPromoCodes.has(rawCode)) {
+  if (isDevPass || isBetaTester) {
     isVipUnlocked = true;
     localStorage.setItem('trono_vip_active_v4', '1');
+    localStorage.setItem('trono_vip_source', isDevPass ? 'dev_team_phase_1' : 'beta_test_phase_1');
+    localStorage.setItem('trono_vip_code_used', rawCode);
     msgEl.style.color = '#34d399';
     msgEl.textContent = isDevPass
-      ? 'SENHA DO DESENVOLVEDOR (12345) ACEITA! Modo VIP e 25 Fases Liberadas!'
-      : 'Código aplicado com sucesso! Acesso completo ativado!';
+      ? `Acesso Desenvolvedor (${rawCode}) ativado neste aparelho!`
+      : `Código de Testador (${rawCode}) ativado com sucesso!`;
     playSoundWinCelebration();
     launchCelebrationConfetti();
 
