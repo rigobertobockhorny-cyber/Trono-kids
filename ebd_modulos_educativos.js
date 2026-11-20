@@ -8984,7 +8984,7 @@ window.ensureEbdMagazineStyles = function() {
   st.id = "ebd-magazine-white-styles";
   st.textContent = `
     /* ===================================================================== */
-    /* PORTAL INSTITUCIONAL SÓBRIO — FAMÍLIA E PROFESSOR (PALETA REAL ESCURA) */
+    /* PORTAL INSTITUCIONAL — FUNDO PRETO + BLOCO AZUL + MARGEM COLORIDA     */
     /* ===================================================================== */
     .adult-portal-top-nav {
       display: flex;
@@ -8992,7 +8992,7 @@ window.ensureEbdMagazineStyles = function() {
       justify-content: space-between;
       gap: 10px;
       padding: 4px 0 14px 0;
-      border-bottom: 1px solid rgba(253, 224, 71, 0.18);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
       margin-bottom: 14px;
       flex-shrink: 0;
     }
@@ -9001,90 +9001,92 @@ window.ensureEbdMagazineStyles = function() {
       align-items: center;
       gap: 6px;
       height: 38px;
-      padding: 0 14px;
+      padding: 0 15px;
       border-radius: 999px;
-      background: #171336;
-      border: 1.5px solid rgba(253, 224, 71, 0.45);
-      color: #f8fafc;
+      background: linear-gradient(180deg, #8b5cf6 0%, #6d28d9 55%, #4c1d95 100%);
+      border: 1.5px solid rgba(233, 213, 255, 0.82);
+      color: #ffffff;
       font-family: 'Fredoka', sans-serif;
       font-size: 13px;
       font-weight: 800;
       cursor: pointer;
-      transition: transform 0.12s ease, background 0.15s ease;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.68), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+      transition: transform 0.12s ease;
     }
     .adult-portal-back-btn:active {
       transform: scale(0.95);
-      background: #231c4f;
     }
     .adult-portal-top-title {
       font-family: 'Fredoka', sans-serif;
-      font-size: 15px;
-      font-weight: 900;
-      color: #fde047;
-      letter-spacing: 0.4px;
+      font-size: 15.5px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.3px;
       text-align: right;
     }
     .adult-hub-card {
       width: 100%;
-      background: linear-gradient(180deg, #19143a 0%, #120e29 100%);
-      border: 1.8px solid rgba(253, 224, 71, 0.42);
       border-radius: 20px;
+      border: 2px solid transparent;
+      background: linear-gradient(180deg, #0d1c42 0%, #071026 100%) padding-box,
+                  linear-gradient(135deg, #00d2ff 0%, #8b5cf6 36%, #ec4899 70%, #10b981 100%) border-box;
       padding: 20px 18px;
       display: flex;
       align-items: center;
       gap: 16px;
       cursor: pointer;
       text-align: left;
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
-      transition: transform 0.14s ease, border-color 0.16s ease;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.82);
+      transition: transform 0.14s ease;
     }
     .adult-hub-card:active {
       transform: scale(0.98);
-      border-color: #fde047;
     }
     .adult-section-card {
-      background: #15112e;
-      border: 1.5px solid #2d2559;
-      border-radius: 16px;
-      padding: 15px 14px;
-      margin-bottom: 12px;
+      border-radius: 18px;
+      border: 2px solid transparent;
+      background: linear-gradient(180deg, #0c193a 0%, #071026 100%) padding-box,
+                  linear-gradient(135deg, #00d2ff 0%, #8b5cf6 36%, #ec4899 70%, #10b981 100%) border-box;
+      padding: 16px 15px;
+      margin-bottom: 14px;
       text-align: left;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.78);
     }
     .adult-section-title {
       font-family: 'Fredoka', sans-serif;
-      font-size: 14.5px;
+      font-size: 15.5px;
       font-weight: 800;
-      color: #fde047;
+      color: #ffffff;
       margin-bottom: 6px;
       letter-spacing: 0.2px;
     }
     .adult-section-text {
       font-size: 13px;
-      line-height: 1.45;
+      line-height: 1.48;
       color: #cbd5e1;
       font-weight: 600;
     }
     .adult-ghost-btn {
       width: 100%;
-      padding: 11px 12px;
-      border-radius: 11px;
-      border: 1.5px solid #332a66;
-      background: #1b163b;
-      color: #e2e8f0;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(233, 213, 255, 0.82);
+      background: linear-gradient(180deg, #8b5cf6 0%, #6d28d9 52%, #4c1d95 100%);
+      color: #ffffff;
       font-family: 'Fredoka', sans-serif;
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 800;
       cursor: pointer;
       text-align: center;
-      transition: transform 0.12s ease, border-color 0.15s ease;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.34);
+      transition: transform 0.12s ease;
     }
     .adult-ghost-btn:active {
-      transform: scale(0.98);
-      border-color: #fde047;
+      transform: translateY(1px) scale(0.98);
     }
 
     /* ===================================================================== */
-    /* REVISTA DIGITAL NA TELA DO CELULAR (TEMA REAL ESCURO — ZERO BRANCO!)   */
+    /* REVISTA DIGITAL NA TELA DO CELULAR (BLOCO AZUL + MARGEM COLORIDA)     */
     /* ===================================================================== */
     .ebd-mag-toolbar {
       display: flex;
@@ -9098,24 +9100,24 @@ window.ensureEbdMagazineStyles = function() {
       gap: 8px;
     }
     .ebd-mag-tab-btn {
-      padding: 10px 8px;
+      padding: 11px 8px;
       border-radius: 12px;
       font-family: 'Fredoka', sans-serif;
-      font-size: 12.5px;
+      font-size: 12.8px;
       font-weight: 800;
       cursor: pointer;
-      border: 1.5px solid #312863;
-      background: #161233;
+      border: 1.5px solid rgba(148, 163, 184, 0.32);
+      background: #0b1530;
       color: #cbd5e1;
       transition: transform 0.12s ease;
       text-align: center;
       line-height: 1.2;
     }
     .ebd-mag-tab-btn.active-tab {
-      background: linear-gradient(180deg, #3b1d7a 0%, #261254 100%);
-      border: 2px solid #fde047;
-      color: #fde047;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+      background: linear-gradient(180deg, #8b5cf6 0%, #6d28d9 55%, #4c1d95 100%);
+      border: 1.8px solid rgba(233, 213, 255, 0.9);
+      color: #ffffff;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.32);
     }
     .ebd-mag-actions-row {
       display: grid;
@@ -9124,14 +9126,15 @@ window.ensureEbdMagazineStyles = function() {
     }
     .ebd-mag-act-btn {
       padding: 9px 5px;
-      border-radius: 10px;
+      border-radius: 11px;
       font-family: 'Fredoka', sans-serif;
       font-size: 10.8px;
       font-weight: 800;
       cursor: pointer;
-      background: #171336 !important;
-      color: #e2e8f0 !important;
-      border: 1.5px solid #362c6b !important;
+      background: linear-gradient(180deg, #1e3a8a 0%, #172554 100%) !important;
+      color: #ffffff !important;
+      border: 1.5px solid rgba(147, 197, 253, 0.65) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
       line-height: 1.15;
       text-align: center;
     }
@@ -9139,19 +9142,20 @@ window.ensureEbdMagazineStyles = function() {
       transform: scale(0.96);
     }
     #screen-teacher-portal .ebd-mag-sheet {
-      background: #14102c !important;
+      border-radius: 18px;
+      border: 2px solid transparent !important;
+      background: linear-gradient(180deg, #0c193a 0%, #071026 100%) padding-box,
+                  linear-gradient(135deg, #00d2ff 0%, #8b5cf6 36%, #ec4899 70%, #10b981 100%) border-box !important;
       color: #f1f5f9 !important;
-      border-radius: 16px;
-      border: 1.5px solid #2d2559;
-      padding: 15px 13px 18px 13px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+      padding: 16px 14px 18px 14px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.75);
       font-family: 'Nunito', 'Segoe UI', Arial, sans-serif;
       text-align: left;
     }
     #screen-teacher-portal .ebd-mag-header {
       background: transparent !important;
       border-top: none;
-      border-bottom: 1px solid #2d2559;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.22);
       padding: 2px 2px 12px 2px;
       margin-bottom: 14px;
     }
@@ -9164,16 +9168,16 @@ window.ensureEbdMagazineStyles = function() {
       font-family: 'Fredoka', sans-serif;
       font-size: 11px;
       font-weight: 800;
-      color: #93c5fd !important;
+      color: #7dd3fc !important;
       letter-spacing: 0.4px;
       text-transform: uppercase;
       margin-bottom: 6px;
     }
     #screen-teacher-portal .ebd-mag-pill-outline {
       display: inline-block;
-      background: rgba(253, 224, 71, 0.12) !important;
-      border: 1px solid rgba(253, 224, 71, 0.5);
-      color: #fde047 !important;
+      background: rgba(56, 189, 248, 0.14) !important;
+      border: 1px solid rgba(125, 211, 252, 0.55);
+      color: #e0f2fe !important;
       padding: 2px 9px;
       border-radius: 999px;
       font-size: 10.5px;
@@ -9182,21 +9186,21 @@ window.ensureEbdMagazineStyles = function() {
     #screen-teacher-portal .ebd-mag-main-title {
       font-family: 'Fredoka', sans-serif;
       font-size: 19px;
-      font-weight: 900;
-      color: #fde047 !important;
+      font-weight: 800;
+      color: #ffffff !important;
       line-height: 1.2;
       margin: 2px 0 5px 0;
     }
     #screen-teacher-portal .ebd-mag-ref-line {
       font-size: 12.5px;
       font-weight: 700;
-      color: #cbd5e1 !important;
+      color: #94a3b8 !important;
       line-height: 1.35;
     }
     #screen-teacher-portal .ebd-mag-block {
-      background: #1a1538 !important;
-      border: 1px solid #2f275c !important;
-      border-left: 4px solid #fde047 !important;
+      background: #050b18 !important;
+      border: 1px solid rgba(148, 163, 184, 0.2) !important;
+      border-left: 4px solid #8b5cf6 !important;
       border-radius: 12px;
       padding: 12px;
       margin-bottom: 12px;
@@ -9208,7 +9212,7 @@ window.ensureEbdMagazineStyles = function() {
       margin-bottom: 8px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       padding-bottom: 6px;
-      color: #fde047 !important;
+      color: #ffffff !important;
     }
     #screen-teacher-portal .ebd-mag-num {
       display: inline-flex;
@@ -9218,12 +9222,12 @@ window.ensureEbdMagazineStyles = function() {
       height: 24px;
       padding: 0 5px;
       border-radius: 6px;
-      background: rgba(253, 224, 71, 0.14) !important;
-      border: 1.5px solid #fde047 !important;
-      color: #fde047 !important;
+      background: linear-gradient(180deg, #8b5cf6 0%, #5b21b6 100%) !important;
+      border: 1px solid rgba(233, 213, 255, 0.7) !important;
+      color: #ffffff !important;
       font-family: 'Fredoka', sans-serif;
       font-size: 11.5px;
-      font-weight: 900;
+      font-weight: 800;
       flex-shrink: 0;
     }
     #screen-teacher-portal .ebd-mag-block-title {
@@ -9231,26 +9235,26 @@ window.ensureEbdMagazineStyles = function() {
       font-size: 13.8px;
       font-weight: 800;
       line-height: 1.2;
-      color: #fde047 !important;
+      color: #ffffff !important;
       text-transform: uppercase;
       letter-spacing: 0.2px;
     }
     #screen-teacher-portal .ebd-mag-sub {
       font-size: 12.5px;
       font-weight: 800;
-      color: #93c5fd !important;
+      color: #7dd3fc !important;
       margin: 8px 0 4px 0;
     }
     #screen-teacher-portal .ebd-mag-p,
     #screen-teacher-portal .ebd-mag-list {
       font-size: 13px;
-      line-height: 1.48;
-      color: #e2e8f0 !important;
+      line-height: 1.5;
+      color: #cbd5e1 !important;
       font-weight: 600;
     }
     #screen-teacher-portal .ebd-mag-p strong,
     #screen-teacher-portal .ebd-mag-list strong {
-      color: #fde68a !important;
+      color: #ffffff !important;
     }
     #screen-teacher-portal .ebd-mag-list {
       margin: 4px 0 4px 17px;
@@ -9260,15 +9264,15 @@ window.ensureEbdMagazineStyles = function() {
       margin-bottom: 4px;
     }
     #screen-teacher-portal .ebd-mag-verse-box {
-      background: #130f2b !important;
-      border: 1.5px dashed rgba(253, 224, 71, 0.65) !important;
+      background: #081229 !important;
+      border: 1.5px solid rgba(139, 92, 246, 0.55) !important;
       border-radius: 10px;
-      padding: 11px 12px;
+      padding: 12px;
       margin: 6px 0 10px 0;
       text-align: center;
     }
     #screen-teacher-portal .ebd-mag-verse-box div {
-      color: #fde047 !important;
+      color: #ffffff !important;
     }
     .ebd-age-pills-grid {
       display: grid;
@@ -9282,8 +9286,8 @@ window.ensureEbdMagazineStyles = function() {
       }
     }
     #screen-teacher-portal .ebd-age-pill-card {
-      background: #14102c !important;
-      border: 1px solid #312863 !important;
+      background: #081229 !important;
+      border: 1px solid rgba(148, 163, 184, 0.22) !important;
       border-left: 3px solid #38bdf8 !important;
       border-radius: 9px;
       padding: 8px 10px;
@@ -9303,9 +9307,9 @@ window.ensureEbdMagazineStyles = function() {
     }
     #screen-teacher-portal .ebd-mag-word-tag {
       display: inline-block;
-      background: #14102c !important;
-      border: 1.5px solid rgba(253, 224, 71, 0.55) !important;
-      color: #fde047 !important;
+      background: #081229 !important;
+      border: 1px solid rgba(139, 92, 246, 0.6) !important;
+      color: #ffffff !important;
       border-radius: 6px;
       padding: 2px 8px;
       font-size: 11px;
@@ -9313,8 +9317,8 @@ window.ensureEbdMagazineStyles = function() {
       margin: 2px 4px 2px 0;
     }
     #screen-teacher-portal .ebd-coloring-preview-card {
-      background: #14102c !important;
-      border: 1.5px solid #312863 !important;
+      background: #081229 !important;
+      border: 1px solid rgba(148, 163, 184, 0.25) !important;
       border-radius: 12px;
       padding: 10px;
       text-align: center;
@@ -9516,7 +9520,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
 
   const openSlidesShortcut = forPrintMode ? "" : `
     <div style="margin-top:9px;">
-      <button type="button" class="adult-ghost-btn" style="border-color:rgba(253,224,71,0.55); color:#fde047;" onclick="window.switchEbdMagazineTab('slides')">
+      <button type="button" class="adult-ghost-btn" onclick="window.switchEbdMagazineTab('slides')">
         ABRIR ${(lesson.storyScenes || []).length} SLIDES DE AULA DESTA LIÇÃO (TV / PROJETOR)
       </button>
     </div>
@@ -9764,75 +9768,75 @@ window.renderSingleSlideCardHtml = function(slide, idx, total, isFullscreen) {
   let inner = "";
   if (slide.type === "cover") {
     inner = `
-      ${slide.img ? `<img src="${slide.img}" alt="${esc(slide.title)}" style="width:100%; max-height:${imgMaxH}; object-fit:cover; border-radius:12px; border:1.5px solid #332a66; margin-bottom:10px;">` : ""}
-      <div style="font-family:'Fredoka',sans-serif; font-size:${titleSize}; font-weight:900; color:#fde047; line-height:1.18; margin-bottom:5px;">${esc(slide.title)}</div>
-      <div style="font-size:${bodySize}; font-weight:800; color:#93c5fd; margin-bottom:6px;">${esc(slide.subtitle)}</div>
+      ${slide.img ? `<img src="${slide.img}" alt="${esc(slide.title)}" style="width:100%; max-height:${imgMaxH}; object-fit:cover; border-radius:12px; border:1.5px solid rgba(148,163,184,0.3); margin-bottom:10px;">` : ""}
+      <div style="font-family:'Fredoka',sans-serif; font-size:${titleSize}; font-weight:800; color:#ffffff; line-height:1.18; margin-bottom:5px;">${esc(slide.title)}</div>
+      <div style="font-size:${bodySize}; font-weight:800; color:#7dd3fc; margin-bottom:6px;">${esc(slide.subtitle)}</div>
       <div style="font-size:${isFullscreen ? "15px" : "12.4px"}; font-weight:600; color:#cbd5e1;">${esc(slide.note)}</div>
     `;
   } else if (slide.type === "timeline") {
     inner = `
-      <div style="font-family:'Fredoka',sans-serif; font-size:${titleSize}; font-weight:900; color:#fde047; margin-bottom:10px;">${esc(slide.title)}</div>
+      <div style="font-family:'Fredoka',sans-serif; font-size:${titleSize}; font-weight:800; color:#ffffff; margin-bottom:10px;">${esc(slide.title)}</div>
       <div style="display:flex; flex-direction:column; gap:8px; text-align:left;">
-        <div style="border:1px solid #2f275c; border-left:4px solid #94a3b8; border-radius:10px; padding:9px 11px; background:#1a1538;">
+        <div style="border:1px solid rgba(148,163,184,0.24); border-left:4px solid #94a3b8; border-radius:10px; padding:9px 11px; background:#050b18;">
           <strong style="color:#cbd5e1;">1. ANTES:</strong> <span style="color:#f1f5f9; font-size:${bodySize}; font-weight:600;">${esc(slide.before)}</span>
         </div>
-        <div style="border:1px solid #38bdf8; border-left:4px solid #fde047; border-radius:10px; padding:9px 11px; background:#1c163d;">
-          <strong style="color:#fde047;">2. NESTA LIÇÃO:</strong> <span style="color:#ffffff; font-size:${bodySize}; font-weight:700;">${esc(slide.now)}</span>
+        <div style="border:1px solid rgba(139,92,246,0.55); border-left:4px solid #8b5cf6; border-radius:10px; padding:9px 11px; background:#09142e;">
+          <strong style="color:#ffffff;">2. NESTA LIÇÃO:</strong> <span style="color:#f8fafc; font-size:${bodySize}; font-weight:700;">${esc(slide.now)}</span>
         </div>
-        <div style="border:1px solid #2f275c; border-left:4px solid #38bdf8; border-radius:10px; padding:9px 11px; background:#1a1538;">
-          <strong style="color:#93c5fd;">3. RUMO À PROMESSA:</strong> <span style="color:#f1f5f9; font-size:${bodySize}; font-weight:600;">${esc(slide.after || slide.connection)}</span>
+        <div style="border:1px solid rgba(148,163,184,0.24); border-left:4px solid #38bdf8; border-radius:10px; padding:9px 11px; background:#050b18;">
+          <strong style="color:#7dd3fc;">3. RUMO À PROMESSA:</strong> <span style="color:#f1f5f9; font-size:${bodySize}; font-weight:600;">${esc(slide.after || slide.connection)}</span>
         </div>
       </div>
     `;
   } else if (slide.type === "scene") {
     inner = `
-      <img src="${slide.img}" alt="${esc(slide.title)}" style="width:100%; max-height:${imgMaxH}; object-fit:contain; border-radius:12px; border:1.5px solid #332a66; background:#0d0a1f; margin-bottom:10px;">
+      <img src="${slide.img}" alt="${esc(slide.title)}" style="width:100%; max-height:${imgMaxH}; object-fit:contain; border-radius:12px; border:1.5px solid rgba(148,163,184,0.28); background:#040814; margin-bottom:10px;">
       <div style="font-size:${isFullscreen ? "19px" : "14px"}; font-weight:700; color:#f1f5f9; line-height:1.42; padding:4px 2px;">${esc(slide.caption)}</div>
     `;
   } else if (slide.type === "verse") {
     inner = `
-      <div style="font-family:'Fredoka',sans-serif; font-size:${titleSize}; font-weight:900; color:#fde047; margin-bottom:8px;">${esc(slide.title)}</div>
-      <div style="border:1.8px dashed rgba(253,224,71,0.65); border-radius:12px; padding:14px 12px; background:#110d26; margin-bottom:10px;">
-        <div style="font-family:'Fredoka',sans-serif; font-size:${isFullscreen ? "24px" : "16.5px"}; font-weight:900; color:#fde047; line-height:1.32;">${esc(slide.verse)}</div>
+      <div style="font-family:'Fredoka',sans-serif; font-size:${titleSize}; font-weight:800; color:#ffffff; margin-bottom:8px;">${esc(slide.title)}</div>
+      <div style="border:1.5px solid rgba(139,92,246,0.55); border-radius:12px; padding:14px 12px; background:#050b18; margin-bottom:10px;">
+        <div style="font-family:'Fredoka',sans-serif; font-size:${isFullscreen ? "24px" : "16.5px"}; font-weight:800; color:#ffffff; line-height:1.32;">${esc(slide.verse)}</div>
       </div>
       <div style="display:flex; flex-direction:column; gap:7px; text-align:left;">
-        <div style="border:1px solid #2f275c; border-left:3.5px solid #38bdf8; border-radius:9px; padding:8px 10px; background:#1a1538; font-size:${isFullscreen ? "14.5px" : "12.2px"}; font-weight:600; color:#e2e8f0;">
+        <div style="border:1px solid rgba(148,163,184,0.22); border-left:3.5px solid #38bdf8; border-radius:9px; padding:8px 10px; background:#050b18; font-size:${isFullscreen ? "14.5px" : "12.2px"}; font-weight:600; color:#e2e8f0;">
           <strong style="color:#7dd3fc;">3 a 5 anos:</strong> ${esc(slide.tip35 || "")}
         </div>
-        <div style="border:1px solid #2f275c; border-left:3.5px solid #fde047; border-radius:9px; padding:8px 10px; background:#1a1538; font-size:${isFullscreen ? "14.5px" : "12.2px"}; font-weight:600; color:#e2e8f0;">
-          <strong style="color:#fde68a;">6 a 8 anos:</strong> ${esc(slide.tip68 || "")}
+        <div style="border:1px solid rgba(148,163,184,0.22); border-left:3.5px solid #8b5cf6; border-radius:9px; padding:8px 10px; background:#050b18; font-size:${isFullscreen ? "14.5px" : "12.2px"}; font-weight:600; color:#e2e8f0;">
+          <strong style="color:#c4b5fd;">6 a 8 anos:</strong> ${esc(slide.tip68 || "")}
         </div>
       </div>
     `;
   } else if (slide.type === "quiz_action") {
     inner = `
       <div style="text-align:left; display:flex; flex-direction:column; gap:8px;">
-        <div style="border:1px solid #2f275c; border-left:4px solid #fde047; border-radius:10px; padding:9px 11px; background:#1a1538;">
-          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:800; color:#fde047;">QUIZ DA BÍBLIA (OFICIAL DO APP):</div>
-          <div style="font-size:13px; font-weight:700; color:#f1f5f9; margin-top:3px;">${esc(slide.quizQ)}</div>
+        <div style="border:1px solid rgba(148,163,184,0.22); border-left:4px solid #8b5cf6; border-radius:10px; padding:9px 11px; background:#050b18;">
+          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:800; color:#c4b5fd;">QUIZ DA BÍBLIA (OFICIAL DO APP):</div>
+          <div style="font-size:13px; font-weight:700; color:#ffffff; margin-top:3px;">${esc(slide.quizQ)}</div>
           ${revealed ? `<div style="margin-top:6px; font-size:13px; font-weight:800; color:#6ee7b7;">✔ Resposta: ${esc(slide.quizAns)}</div>` : ""}
         </div>
-        <div style="border:1px solid #2f275c; border-left:4px solid #38bdf8; border-radius:10px; padding:9px 11px; background:#1a1538;">
-          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:800; color:#93c5fd;">VERDADEIRO OU MITO?</div>
-          <div style="font-size:${bodySize}; font-weight:700; color:#f1f5f9; margin-top:3px;">"${esc(slide.statement)}"</div>
+        <div style="border:1px solid rgba(148,163,184,0.22); border-left:4px solid #38bdf8; border-radius:10px; padding:9px 11px; background:#050b18;">
+          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:800; color:#7dd3fc;">VERDADEIRO OU MITO?</div>
+          <div style="font-size:${bodySize}; font-weight:700; color:#ffffff; margin-top:3px;">"${esc(slide.statement)}"</div>
           ${revealed ? `<div style="margin-top:6px; font-size:12.5px; font-weight:800; color:#6ee7b7;">✔ ${esc(slide.explanation)}</div>` : ""}
         </div>
-        <button type="button" class="adult-ghost-btn" style="border-color:#fde047; color:#fde047;" onclick="window.toggleSlideAnswerReveal()">
+        <button type="button" class="adult-ghost-btn" onclick="window.toggleSlideAnswerReveal()">
           ${revealed ? "OCULTAR GABARITO" : "REVELAR RESPOSTAS PARA A TURMA"}
         </button>
-        <div style="border:1px solid #2f275c; border-left:4px solid #a78bfa; border-radius:10px; padding:9px 11px; background:#1a1538;">
-          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:800; color:#c4b5fd;">${esc(slide.missionTitle)} (FÉ EM AÇÃO):</div>
-          <div style="font-size:12.5px; font-weight:600; color:#e2e8f0; margin-top:2px;">${esc(slide.missionDesc)}</div>
+        <div style="border:1px solid rgba(148,163,184,0.22); border-left:4px solid #10b981; border-radius:10px; padding:9px 11px; background:#050b18;">
+          <div style="font-family:'Fredoka',sans-serif; font-size:12px; font-weight:800; color:#6ee7b7;">${esc(slide.missionTitle)} (FÉ EM AÇÃO):</div>
+          <div style="font-size:12.5px; font-weight:600; color:#cbd5e1; margin-top:2px;">${esc(slide.missionDesc)}</div>
         </div>
       </div>
     `;
   }
 
   return `
-    <div style="background:#14102c !important; color:#f1f5f9; border:1.5px solid #2d2559; border-top:4px solid #fde047; border-radius:16px; padding:${isFullscreen ? "18px 22px" : "13px"}; text-align:center; width:100%; max-width:${isFullscreen ? "920px" : "100%"}; box-sizing:border-box; box-shadow:0 8px 24px rgba(0,0,0,0.48);">
-      <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; border-bottom:1px solid #2d2559; padding-bottom:7px; margin-bottom:10px;">
-        <span style="font-family:'Fredoka',sans-serif; font-size:${isFullscreen ? "13px" : "10.8px"}; font-weight:800; color:#93c5fd; text-transform:uppercase;">${esc(slide.badge)}</span>
-        <span style="font-family:'Fredoka',sans-serif; font-size:${isFullscreen ? "13px" : "11px"}; font-weight:800; color:#fde047;">SLIDE ${idx + 1} / ${total}</span>
+    <div style="border:2px solid transparent; background:linear-gradient(180deg, #0c193a 0%, #071026 100%) padding-box, linear-gradient(135deg, #00d2ff 0%, #8b5cf6 36%, #ec4899 70%, #10b981 100%) border-box; color:#f1f5f9; border-radius:18px; padding:${isFullscreen ? "18px 22px" : "14px"}; text-align:center; width:100%; max-width:${isFullscreen ? "920px" : "100%"}; box-sizing:border-box; box-shadow:0 10px 28px rgba(0,0,0,0.75);">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; border-bottom:1px solid rgba(148,163,184,0.22); padding-bottom:7px; margin-bottom:10px;">
+        <span style="font-family:'Fredoka',sans-serif; font-size:${isFullscreen ? "13px" : "10.8px"}; font-weight:800; color:#7dd3fc; text-transform:uppercase;">${esc(slide.badge)}</span>
+        <span style="font-family:'Fredoka',sans-serif; font-size:${isFullscreen ? "13px" : "11px"}; font-weight:800; color:#ffffff;">SLIDE ${idx + 1} / ${total}</span>
       </div>
       ${inner}
     </div>
@@ -9855,16 +9859,16 @@ window.renderTeacherSlidesSectionHtml = function(lesson) {
         <button type="button" class="adult-ghost-btn" onclick="window.stepEbdLessonSlide(-1)">
           ◀ ANTERIOR
         </button>
-        <div style="background:#171336; border:1.5px solid rgba(253,224,71,0.55); color:#fde047; border-radius:999px; padding:8px 13px; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:800;">
+        <div style="background:#0c193a; border:1.5px solid rgba(147,197,253,0.55); color:#ffffff; border-radius:999px; padding:8px 13px; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:800;">
           ${curIdx + 1} DE ${slides.length}
         </div>
-        <button type="button" class="adult-ghost-btn" style="border-color:rgba(253,224,71,0.55); color:#fde047;" onclick="window.stepEbdLessonSlide(1)">
+        <button type="button" class="adult-ghost-btn" onclick="window.stepEbdLessonSlide(1)">
           PRÓXIMO ▶
         </button>
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-        <button type="button" class="adult-ghost-btn" style="border-color:rgba(253,224,71,0.45); color:#fde047;" onclick="window.openFullscreenLessonSlides()">
+        <button type="button" class="adult-ghost-btn" onclick="window.openFullscreenLessonSlides()">
           TELA CHEIA (TV / PROJETOR)
         </button>
         <button type="button" class="adult-ghost-btn" onclick="window.printLessonSlidesHandoutWhite(${lesson.week})">
@@ -9872,11 +9876,11 @@ window.renderTeacherSlidesSectionHtml = function(lesson) {
         </button>
       </div>
 
-      <div style="background:#15112e; border:1.5px solid #2d2559; border-radius:12px; padding:10px;">
-        <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:800; color:#93c5fd; margin-bottom:7px;">IR DIRETO PARA O SLIDE:</div>
+      <div class="adult-section-card" style="margin-bottom:0; padding:12px;">
+        <div style="font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:800; color:#7dd3fc; margin-bottom:8px;">IR DIRETO PARA O SLIDE:</div>
         <div style="display:flex; flex-wrap:wrap; gap:6px;">
           ${slides.map((s, i) => `
-            <button type="button" onclick="window.jumpToEbdLessonSlide(${i})" style="min-width:34px; height:32px; border-radius:8px; border:${i === curIdx ? "2px solid #fde047" : "1.5px solid #332a66"}; background:${i === curIdx ? "#2b195c" : "#181336"}; color:${i === curIdx ? "#fde047" : "#cbd5e1"}; font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:800; cursor:pointer;">
+            <button type="button" onclick="window.jumpToEbdLessonSlide(${i})" style="min-width:34px; height:32px; border-radius:8px; border:${i === curIdx ? "1.8px solid rgba(233,213,255,0.9)" : "1px solid rgba(148,163,184,0.3)"}; background:${i === curIdx ? "linear-gradient(180deg, #8b5cf6 0%, #5b21b6 100%)" : "#050b18"}; color:#ffffff; font-family:'Fredoka',sans-serif; font-size:11.5px; font-weight:800; cursor:pointer;">
               ${i + 1}
             </button>
           `).join("")}
@@ -9931,70 +9935,89 @@ window.backFromTeacherPortal = function() {
 
 window.renderFamilyAccountTabHtml = function() {
   const isVip = (typeof isVipUnlocked !== "undefined" && isVipUnlocked) || localStorage.getItem("trono_vip_active_v4") === "1";
-  const statusBadgeHtml = isVip
-    ? `<div style="background:#132a24; border:1.5px solid #10b981; color:#a7f3d0; border-radius:14px; padding:12px 14px; font-weight:800; font-size:13px; text-align:center; margin-bottom:14px;">
-         ASSINANTE ATIVO • ACESSO COMPLETO LIBERADO<br>
-         <span style="font-size:12px; font-weight:600; color:#d1fae5;">Todas as 25 fases dos jogos, 22 lições completas e todas as canções liberadas.</span>
+  const statusHeaderHtml = isVip
+    ? `<div style="padding:2px 4px 16px 4px; text-align:left;">
+         <div style="display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:800; color:#6ee7b7; letter-spacing:0.6px; text-transform:uppercase; margin-bottom:4px;">
+           <span style="width:8px; height:8px; border-radius:50%; background:#10b981; display:inline-block; box-shadow:0 0 8px #10b981;"></span>
+           STATUS DA CONTA • ASSINANTE ATIVO
+         </div>
+         <div style="font-family:'Fredoka',sans-serif; font-size:20px; font-weight:800; color:#ffffff; line-height:1.2; margin-bottom:4px;">
+           Assinatura Familiar Liberada
+         </div>
+         <div style="font-size:13px; font-weight:600; color:#cbd5e1; line-height:1.45;">
+           Você tem acesso ilimitado às 25 fases de todos os jogos, às 22 lições completas da Revista Digital e a todas as canções de ninar.
+         </div>
        </div>`
-    : `<div style="background:#171336; border:1.5px solid rgba(253,224,71,0.42); color:#fde047; border-radius:14px; padding:12px 14px; font-weight:800; font-size:13px; text-align:center; margin-bottom:14px;">
-         MODO GRATUITO • ACESSO INICIAL ATIVO<br>
-         <span style="font-size:12px; font-weight:600; color:#cbd5e1;">Fases 1 a 5 de todos os jogos, Lições 1 a 5 e 5 canções de ninar liberadas grátis.</span>
+    : `<div style="padding:2px 4px 16px 4px; text-align:left;">
+         <div style="display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:800; color:#7dd3fc; letter-spacing:0.6px; text-transform:uppercase; margin-bottom:4px;">
+           <span style="width:8px; height:8px; border-radius:50%; background:#38bdf8; display:inline-block; box-shadow:0 0 8px #38bdf8;"></span>
+           STATUS DA CONTA • ACESSO GRATUITO
+         </div>
+         <div style="font-family:'Fredoka',sans-serif; font-size:20px; font-weight:800; color:#ffffff; line-height:1.2; margin-bottom:4px;">
+           Acesso Inicial Liberado Grátis
+         </div>
+         <div style="font-size:13px; font-weight:600; color:#cbd5e1; line-height:1.45;">
+           Estão liberadas gratuitamente as <strong style="color:#ffffff;">Fases 1 a 5</strong> de todos os jogos, as <strong style="color:#ffffff;">Lições 1 a 5</strong> e <strong style="color:#ffffff;">5 canções</strong> da Salinha de Dormir.
+         </div>
        </div>`;
 
   return `
-    <div style="display:flex; flex-direction:column; gap:2px; padding-bottom:10px;">
-      ${statusBadgeHtml}
+    <div style="display:flex; flex-direction:column; gap:0px; padding-bottom:12px;">
+      ${statusHeaderHtml}
 
       <div class="adult-section-card">
         <div class="adult-section-title">Planos de Assinatura</div>
-        <p class="adult-section-text" style="margin:0 0 12px 0;">Libere o acesso completo às 25 fases de todos os jogos educativos, às 22 lições da Revista Digital e a todas as canções da Salinha de Dormir:</p>
+        <p class="adult-section-text" style="margin:0 0 12px 0;">Libere todas as 25 fases dos jogos, as 22 lições completas da Revista Digital e todas as canções da Salinha de Dormir:</p>
 
         <div style="display:flex; flex-direction:column; gap:10px;">
-          <div onclick="startGooglePlayCheckout('anual')" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 14px; border-radius:14px; border:2px solid #fde047; background:linear-gradient(180deg, #24194a 0%, #171133 100%); cursor:pointer;">
+          <div onclick="startGooglePlayCheckout('anual')" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 14px; border-radius:14px; border:1.5px solid rgba(16,185,129,0.65); background:#060e21; cursor:pointer; box-shadow:0 6px 16px rgba(0,0,0,0.55);">
             <div>
-              <div style="display:inline-block; background:rgba(253,224,71,0.16); border:1px solid rgba(253,224,71,0.55); color:#fde047; font-size:10px; font-weight:800; padding:1px 8px; border-radius:999px; margin-bottom:4px;">MAIS VANTAJOSO</div>
-              <div style="font-family:'Fredoka',sans-serif; font-size:15px; font-weight:900; color:#ffffff;">Plano Anual Familiar</div>
+              <div style="display:inline-block; background:rgba(16,185,129,0.18); border:1px solid rgba(110,231,183,0.55); color:#6ee7b7; font-size:10px; font-weight:800; padding:1px 8px; border-radius:999px; margin-bottom:4px;">MAIS VANTAJOSO</div>
+              <div style="font-family:'Fredoka',sans-serif; font-size:15px; font-weight:800; color:#ffffff;">Plano Anual Familiar</div>
               <div style="font-size:12px; font-weight:600; color:#cbd5e1;">Equivale a R$ 4,99 por mês</div>
             </div>
-            <button type="button" style="padding:9px 15px; border-radius:999px; border:none; background:linear-gradient(180deg,#fde047,#eab308); color:#1e1b4b; font-family:'Fredoka',sans-serif; font-size:13.5px; font-weight:900; cursor:pointer; white-space:nowrap; box-shadow:0 4px 12px rgba(0,0,0,0.4);">R$ 59,90/ano</button>
+            <button type="button" style="padding:10px 15px; border-radius:999px; border:1.5px solid rgba(167,243,208,0.85); background:linear-gradient(180deg, #10b981 0%, #059669 55%, #047857 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:13.5px; font-weight:800; cursor:pointer; white-space:nowrap; box-shadow:0 5px 14px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.32);">R$ 59,90/ano</button>
           </div>
 
-          <div onclick="startGooglePlayCheckout('mensal')" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 14px; border-radius:14px; border:1.5px solid #382e6e; background:#191438; cursor:pointer;">
+          <div onclick="startGooglePlayCheckout('mensal')" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 14px; border-radius:14px; border:1.5px solid rgba(148,163,184,0.28); background:#060e21; cursor:pointer; box-shadow:0 6px 16px rgba(0,0,0,0.55);">
             <div>
-              <div style="font-family:'Fredoka',sans-serif; font-size:14.5px; font-weight:800; color:#f1f5f9;">Plano Mensal</div>
+              <div style="font-family:'Fredoka',sans-serif; font-size:14.5px; font-weight:800; color:#ffffff;">Plano Mensal</div>
               <div style="font-size:12px; font-weight:600; color:#94a3b8;">Cancele quando quiser no Google Play</div>
             </div>
-            <button type="button" style="padding:9px 15px; border-radius:999px; border:1.5px solid rgba(253,224,71,0.55); background:#251d52; color:#fde047; font-family:'Fredoka',sans-serif; font-size:13px; font-weight:800; cursor:pointer; white-space:nowrap;">R$ 7,90/mês</button>
+            <button type="button" style="padding:10px 15px; border-radius:999px; border:1.5px solid rgba(233,213,255,0.82); background:linear-gradient(180deg, #8b5cf6 0%, #6d28d9 55%, #4c1d95 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:13px; font-weight:800; cursor:pointer; white-space:nowrap; box-shadow:0 5px 14px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.32);">R$ 7,90/mês</button>
           </div>
         </div>
       </div>
 
       <div class="adult-section-card">
         <div class="adult-section-title">Código de Acesso</div>
-        <p class="adult-section-text" style="margin:0 0 8px 0;">Possui um código de convite familiar ou da sua igreja? Ative abaixo:</p>
+        <p class="adult-section-text" style="margin:0 0 10px 0;">Possui um código de convite familiar ou da sua igreja? Ative abaixo:</p>
         <div style="display:flex; gap:8px;">
-          <input type="text" id="portal-vip-code-input" placeholder="DIGITE SEU CÓDIGO" style="flex:1; min-width:0; padding:10px 12px; border-radius:10px; border:1.5px solid #382e6e; background:#0e0b20; color:#ffffff; font-size:13px; font-weight:800; text-transform:uppercase; outline:none;">
-          <button type="button" onclick="redeemVipCoupon('portal-vip-code-input', 'portal-vip-feedback')" style="padding:10px 18px; border-radius:10px; border:none; background:linear-gradient(180deg,#fde047,#eab308); color:#1e1b4b; font-family:'Fredoka',sans-serif; font-size:12.5px; font-weight:900; cursor:pointer;">ATIVAR</button>
+          <input type="text" id="portal-vip-code-input" placeholder="DIGITE SEU CÓDIGO" style="flex:1; min-width:0; padding:11px 12px; border-radius:11px; border:1.5px solid rgba(148,163,184,0.35); background:#040814; color:#ffffff; font-size:13px; font-weight:800; text-transform:uppercase; outline:none;">
+          <button type="button" onclick="redeemVipCoupon('portal-vip-code-input', 'portal-vip-feedback')" style="padding:11px 18px; border-radius:11px; border:1.5px solid rgba(167,243,208,0.85); background:linear-gradient(180deg, #10b981 0%, #059669 55%, #047857 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:13px; font-weight:800; cursor:pointer; box-shadow:0 5px 14px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.32);">ATIVAR</button>
         </div>
         <div id="portal-vip-feedback" style="font-size:12px; font-weight:800; margin-top:6px; min-height:16px; color:#6ee7b7;"></div>
       </div>
 
       <div class="adult-section-card" style="margin-bottom:4px;">
         <div class="adult-section-title">Gerenciamento e Suporte</div>
-        <p class="adult-section-text" style="margin:0 0 10px 0;">Pagamentos e cancelamentos são protegidos diretamente pela Google Play Store, sem fidelidade ou multa:</p>
-        <div style="display:flex; flex-direction:column; gap:8px;">
+        <p class="adult-section-text" style="margin:0 0 12px 0;">Pagamentos e cancelamentos são protegidos diretamente pela Google Play Store, sem fidelidade ou multa:</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
           <button type="button" class="adult-ghost-btn" onclick="restoreGooglePlayPurchases()">
-            Restaurar Assinatura (Troca de Aparelho)
+            Restaurar Assinatura
           </button>
+          <div id="portal-restore-feedback" style="display:none; font-size:12.2px; font-weight:800; text-align:center; padding:6px 10px; border-radius:9px; background:#040814; border:1px solid rgba(148,163,184,0.25);"></div>
+
           <button type="button" class="adult-ghost-btn" onclick="window.openGooglePlayManageSubscriptions()">
             Gerenciar ou Cancelar no Google Play
           </button>
+
           <button type="button" class="adult-ghost-btn" onclick="openPrivacyPolicyModal()">
-            Política de Privacidade e Termos de Uso
+            Política de Privacidade e Termos
           </button>
         </div>
-        <div style="margin-top:12px; padding-top:10px; border-top:1px solid #28214f; font-size:12px; color:#94a3b8; text-align:center;">
-          Atendimento Vórtice Mídia: <strong style="color:#e2e8f0;">rigobertobockhorny@gmail.com</strong>
+        <div style="margin-top:14px; padding-top:10px; border-top:1px solid rgba(148,163,184,0.18); font-size:12px; color:#94a3b8; text-align:center;">
+          Atendimento Vórtice Mídia: <strong style="color:#ffffff;">rigobertobockhorny@gmail.com</strong>
         </div>
       </div>
     </div>
@@ -10022,14 +10045,14 @@ window.renderTeacherPortalContent = function() {
   if (!box) return;
 
   const portalView = window.EBD_MAGAZINE_STATE.portalView || "hub";
-  let topTitleText = "FAMÍLIA E PROFESSOR";
-  if (portalView === "family") topTitleText = "FAMÍLIA • ASSINATURA";
-  else if (portalView === "teacher") topTitleText = "PROFESSOR • MATERIAL";
+  let topTitleText = "Família e Professor";
+  if (portalView === "family") topTitleText = "Família • Assinatura";
+  else if (portalView === "teacher") topTitleText = "Professor • Material";
 
   const topNavHtml = `
     <div class="adult-portal-top-nav">
       <button type="button" class="adult-portal-back-btn" onclick="window.backFromTeacherPortal()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#fde047" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span>Voltar</span>
       </button>
       <div class="adult-portal-top-title">${topTitleText}</div>
@@ -10042,30 +10065,30 @@ window.renderTeacherPortalContent = function() {
       ${topNavHtml}
       <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:16px; padding:6px 2px 18px 2px; max-width:480px; width:100%; margin:0 auto;">
         <div style="text-align:center; margin-bottom:4px;">
-          <img src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png" alt="Trono da Promessa" style="width:154px; max-width:52vw; height:auto; object-fit:contain; filter:drop-shadow(0 6px 16px rgba(0,0,0,0.65)); margin-bottom:8px;">
-          <div style="font-size:13.5px; font-weight:700; color:#cbd5e1;">Selecione a área desejada:</div>
+          <img src="./2_ASSETS_UI_BOTOES/logo_oficial_ebd_v50.png" alt="Trono da Promessa" style="width:154px; max-width:52vw; height:auto; object-fit:contain; filter:drop-shadow(0 6px 16px rgba(0,0,0,0.85)); margin-bottom:8px;">
+          <div style="font-size:13.5px; font-weight:700; color:#cbd5e1;">Selecione o ambiente desejado:</div>
         </div>
 
         <button type="button" class="adult-hub-card" onclick="window.openAdultPortalSection('family')">
-          <div style="width:58px; height:58px; border-radius:16px; background:#231b4d; border:1.5px solid rgba(253,224,71,0.45); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <div style="width:58px; height:58px; border-radius:16px; background:linear-gradient(180deg, #1e3a8a 0%, #0f172a 100%); border:1.5px solid rgba(147,197,253,0.55); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
             <img src="./2_ASSETS_UI_BOTOES/ui_icon_08.png" alt="Família" style="width:40px; height:40px; object-fit:contain;">
           </div>
           <div style="flex:1; min-width:0;">
-            <div style="font-family:'Fredoka',sans-serif; font-size:16.5px; font-weight:900; color:#fde047; margin-bottom:3px; line-height:1.15;">FAMÍLIA • ASSINATURA</div>
-            <div style="font-size:12.5px; font-weight:600; color:#cbd5e1; line-height:1.35;">Planos de acesso, código de convite, restauração e suporte familiar.</div>
+            <div style="font-family:'Fredoka',sans-serif; font-size:16.5px; font-weight:800; color:#ffffff; margin-bottom:3px; line-height:1.15;">Família • Assinatura</div>
+            <div style="font-size:12.5px; font-weight:600; color:#cbd5e1; line-height:1.38;">Planos de acesso, código de convite, restauração e suporte familiar.</div>
           </div>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M9 6L15 12L9 18" stroke="#fde047" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M9 6L15 12L9 18" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
 
         <button type="button" class="adult-hub-card" onclick="window.openAdultPortalSection('teacher')">
-          <div style="width:58px; height:58px; border-radius:16px; background:#231b4d; border:1.5px solid rgba(253,224,71,0.45); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <div style="width:58px; height:58px; border-radius:16px; background:linear-gradient(180deg, #1e3a8a 0%, #0f172a 100%); border:1.5px solid rgba(147,197,253,0.55); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
             <img src="./2_ASSETS_UI_BOTOES/ebd_icon_professor.png" alt="Professor" style="width:44px; height:44px; object-fit:contain;">
           </div>
           <div style="flex:1; min-width:0;">
-            <div style="font-family:'Fredoka',sans-serif; font-size:16.5px; font-weight:900; color:#fde047; margin-bottom:3px; line-height:1.15;">PROFESSOR • MATERIAL DIDÁTICO</div>
-            <div style="font-size:12.5px; font-weight:600; color:#cbd5e1; line-height:1.35;">Revista das 22 lições, folhas de atividades A4 e Slides de Aula para TV.</div>
+            <div style="font-family:'Fredoka',sans-serif; font-size:16.5px; font-weight:800; color:#ffffff; margin-bottom:3px; line-height:1.15;">Professor • Material Didático</div>
+            <div style="font-size:12.5px; font-weight:600; color:#cbd5e1; line-height:1.38;">Revista das 22 lições, folhas de atividades A4 e Slides de Aula para TV.</div>
           </div>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M9 6L15 12L9 18" stroke="#fde047" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M9 6L15 12L9 18" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
     `;
@@ -10200,7 +10223,7 @@ window.openFullscreenLessonSlides = function() {
     modal.id = "ebd-fullscreen-slide-modal";
     document.body.appendChild(modal);
   }
-  modal.style.cssText = "position:fixed; inset:0; z-index:10000300; background:#0b091a; display:flex; flex-direction:column; align-items:center; justify-content:space-between; padding:14px; box-sizing:border-box; overflow-y:auto;";
+  modal.style.cssText = "position:fixed; inset:0; z-index:10000300; background:#000000; display:flex; flex-direction:column; align-items:center; justify-content:space-between; padding:14px; box-sizing:border-box; overflow-y:auto;";
   window.renderFullscreenSlideModalContent();
   if (!window._ebdSlideKeyBound) {
     window._ebdSlideKeyBound = true;
@@ -10228,10 +10251,10 @@ window.renderFullscreenSlideModalContent = function() {
   const curIdx = Math.max(0, Math.min(slides.length - 1, window.EBD_MAGAZINE_STATE.slideIndex || 0));
   modal.innerHTML = `
     <div style="width:100%; max-width:920px; display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
-      <div style="font-family:'Fredoka',sans-serif; font-size:13.5px; font-weight:800; color:#fde047;">
+      <div style="font-family:'Fredoka',sans-serif; font-size:13.5px; font-weight:800; color:#ffffff;">
         TRONO DA PROMESSA EBD • APRESENTAÇÃO EM SALA
       </div>
-      <button type="button" onclick="window.closeFullscreenLessonSlides()" style="padding:7px 14px; border-radius:999px; border:1.5px solid rgba(253,224,71,0.55); background:#171336; color:#f8fafc; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:800; cursor:pointer;">
+      <button type="button" onclick="window.closeFullscreenLessonSlides()" style="padding:7px 14px; border-radius:999px; border:1.5px solid rgba(233,213,255,0.78); background:linear-gradient(180deg, #8b5cf6 0%, #4c1d95 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:12px; font-weight:800; cursor:pointer;">
         FECHAR ✕
       </button>
     </div>
@@ -10239,13 +10262,13 @@ window.renderFullscreenSlideModalContent = function() {
       ${window.renderSingleSlideCardHtml(slides[curIdx], curIdx, slides.length, true)}
     </div>
     <div style="width:100%; max-width:920px; display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:10px;">
-      <button type="button" onclick="window.stepEbdLessonSlide(-1)" style="flex:1; max-width:220px; padding:11px; border-radius:999px; border:1.5px solid #382e6e; background:#171336; color:#f1f5f9; font-family:'Fredoka',sans-serif; font-size:13.5px; font-weight:800; cursor:pointer;">
+      <button type="button" onclick="window.stepEbdLessonSlide(-1)" style="flex:1; max-width:220px; padding:11px; border-radius:999px; border:1.5px solid rgba(233,213,255,0.78); background:linear-gradient(180deg, #8b5cf6 0%, #4c1d95 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:13.5px; font-weight:800; cursor:pointer;">
         ◀ ANTERIOR
       </button>
-      <div style="font-family:'Fredoka',sans-serif; font-size:13.5px; font-weight:800; color:#fde047;">
+      <div style="font-family:'Fredoka',sans-serif; font-size:13.5px; font-weight:800; color:#ffffff;">
         SLIDE ${curIdx + 1} DE ${slides.length}
       </div>
-      <button type="button" onclick="window.stepEbdLessonSlide(1)" style="flex:1; max-width:220px; padding:11px; border-radius:999px; border:1.5px solid rgba(253,224,71,0.65); background:#251d52; color:#fde047; font-family:'Fredoka',sans-serif; font-size:13.5px; font-weight:800; cursor:pointer;">
+      <button type="button" onclick="window.stepEbdLessonSlide(1)" style="flex:1; max-width:220px; padding:11px; border-radius:999px; border:1.5px solid rgba(233,213,255,0.78); background:linear-gradient(180deg, #8b5cf6 0%, #4c1d95 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:13.5px; font-weight:800; cursor:pointer;">
         PRÓXIMO ▶
       </button>
     </div>
@@ -10294,7 +10317,7 @@ window.showEbdPrintToast = function(msg) {
     toast.id = "ebd-print-toast";
     document.body.appendChild(toast);
   }
-  toast.style.cssText = "position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:10000400; background:#171336; color:#fde047; border:1.8px solid #fde047; border-radius:999px; padding:10px 18px; font-family:'Fredoka',sans-serif; font-size:13px; font-weight:800; box-shadow:0 8px 24px rgba(0,0,0,0.65); text-align:center; max-width:90vw;";
+  toast.style.cssText = "position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:10000400; border:2px solid transparent; background:linear-gradient(180deg, #0c193a 0%, #071026 100%) padding-box, linear-gradient(135deg, #00d2ff 0%, #8b5cf6 50%, #10b981 100%) border-box; color:#ffffff; border-radius:999px; padding:10px 18px; font-family:'Fredoka',sans-serif; font-size:13px; font-weight:800; box-shadow:0 8px 24px rgba(0,0,0,0.8); text-align:center; max-width:90vw;";
   toast.textContent = msg;
   toast.style.display = "block";
   clearTimeout(window._ebdPrintToastTimer);

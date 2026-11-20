@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v203.0';
+        const CURRENT_VER = 'v204.0';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -134,9 +134,9 @@
       background-image: none !important;
     }
 
-    /* Modo Institucional Limpo — Família e Professor: Fundo Sólido Real (#0d0b1e) e ZERO Topbar Infantil! */
+    /* Modo Institucional Limpo — Família e Professor: Fundo Preto Puro (#000000) e ZERO Topbar Infantil! */
     #app-shell.adult-portal-clean-mode {
-      background: #0d0b1e !important;
+      background: #000000 !important;
       background-image: none !important;
     }
     #app-shell.adult-portal-clean-mode .topbar {
@@ -2472,7 +2472,7 @@
   <!-- ==================================================================== -->
   <!-- TELA EBD 6: REVISTA DIGITAL • TRONO DA PROMESSA EBD (PROFESSOR/PAIS) -->
   <!-- ==================================================================== -->
-  <section id="screen-teacher-portal" class="screen" style="padding:14px 16px max(26px, calc(22px + env(safe-area-inset-bottom, 0px))) 16px; background:#0d0b1e;">
+  <section id="screen-teacher-portal" class="screen" style="padding:14px 16px max(26px, calc(22px + env(safe-area-inset-bottom, 0px))) 16px; background:#000000;">
     <div id="teacher-portal-content" style="flex:1; display:flex; flex-direction:column; overflow-y:auto; padding:0;"></div>
   </section>
 
@@ -2802,63 +2802,79 @@
   </div>
 
   <!-- ==================================================================== -->
-  <!-- MODAL DE POLÍTICA DE PRIVACIDADE E TERMOS (DOCUMENTO COMPLETO 18 CLÁUSULAS) -->
+  <!-- MODAL DE POLÍTICA DE PRIVACIDADE E TERMOS (FUNDO PRETO + BLOCO AZUL COM MARGEM COLORIDA) -->
   <!-- ==================================================================== -->
-  <div id="modal-privacy-policy" class="modal-backdrop" style="z-index: 10000180;">
-    <div class="modal-card" style="max-width:368px; text-align:left; padding:18px 16px;">
-      <div style="font-size:18px; font-weight:700; color:#00e5ff; text-align:center; margin-bottom:4px;">
-        Política de Privacidade e Termos de Uso
+  <div id="modal-privacy-policy" class="modal-backdrop" style="z-index: 10000180; background: #000000 !important; backdrop-filter: none !important; padding: max(14px, env(safe-area-inset-top, 14px)) 16px max(24px, calc(20px + env(safe-area-inset-bottom, 0px))) 16px; align-items: stretch; justify-content: flex-start;">
+    <div style="width:100%; max-width:480px; margin:0 auto; display:flex; flex-direction:column; height:100%; max-height:100%; box-sizing:border-box;">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:4px 0 14px 0; border-bottom:1px solid rgba(148,163,184,0.2); margin-bottom:14px; flex-shrink:0;">
+        <button type="button" onclick="closeModal('modal-privacy-policy')" style="display:inline-flex; align-items:center; gap:6px; height:38px; padding:0 15px; border-radius:999px; border:1.5px solid rgba(233,213,255,0.78); background:linear-gradient(180deg, #8b5cf6 0%, #6d28d9 55%, #4c1d95 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:13px; font-weight:800; cursor:pointer; box-shadow:0 5px 14px rgba(0,0,0,0.65);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Voltar</span>
+        </button>
+        <div style="font-family:'Fredoka',sans-serif; font-size:15px; font-weight:800; color:#ffffff; letter-spacing:0.3px;">PRIVACIDADE E TERMOS</div>
       </div>
-      <div style="font-size:11px; color:#fde047; text-align:center; margin-bottom:10px; font-weight:600;">
-        Documento Oficial • LGPD • ECA • CDC • Marco Civil • COPPA • Google Play
+
+      <div style="flex:1; min-height:0; display:flex; flex-direction:column; border-radius:20px; border:2px solid transparent; background:linear-gradient(180deg, #0c193a 0%, #071026 100%) padding-box, linear-gradient(135deg, #00d2ff 0%, #8b5cf6 36%, #ec4899 70%, #10b981 100%) border-box; padding:16px 14px; box-shadow:0 14px 34px rgba(0,0,0,0.85); text-align:left; box-sizing:border-box;">
+        <div style="text-align:center; margin-bottom:12px; flex-shrink:0;">
+          <div style="font-family:'Fredoka',sans-serif; font-size:clamp(15.5px, 4.3vw, 18.5px); font-weight:800; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:3px;">
+            Política de Privacidade e Termos
+          </div>
+          <div style="font-size:12px; color:#94a3b8; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+            Proteção Infantil • LGPD, ECA e Google Play
+          </div>
+        </div>
+
+        <div style="flex:1; min-height:0; font-size:12.5px; color:#cbd5e1; line-height:1.55; overflow-y:auto; padding:12px; margin-bottom:12px; background:#03060f; border:1px solid rgba(148,163,184,0.22); border-radius:14px;">
+          <p style="margin:0 0 10px 0; color:#ffffff; font-size:13px; font-weight:800; border-bottom:1px solid rgba(148,163,184,0.2); padding-bottom:6px;">PARTE I — PRIVACIDADE E PROTEÇÃO DE DADOS INFANTIS</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 1ª — Identificação do Controlador e Escopo Legal:</strong> O aplicativo <strong style="color:#ffffff;">Trono da Promessa</strong> (pacote oficial <code>com.vorticemidia.tronodapromessa</code>) é desenvolvido, mantido e licenciado por <strong style="color:#ffffff;">Vórtice Mídia Produções e Tecnologia Digital ("Vórtice Mídia")</strong>. Este instrumento rege o uso do aplicativo em total conformidade com o Art. 227 da Constituição Federal, a <strong style="color:#ffffff;">Lei Geral de Proteção de Dados Pessoais (LGPD — Lei Federal nº 13.709/2018, Art. 14)</strong>, o Enunciado CD/ANPD nº 1/2023, o <strong style="color:#ffffff;">Estatuto da Criança e do Adolescente (ECA — Lei Federal nº 8.069/1990)</strong>, o Marco Legal da Primeira Infância (Lei nº 13.257/2016), o <strong style="color:#ffffff;">ECA Digital (Lei Federal nº 15.211/2025)</strong>, o <strong style="color:#ffffff;">Marco Civil da Internet (Lei nº 12.965/2014)</strong>, o <strong style="color:#ffffff;">Código de Defesa do Consumidor (CDC — Lei nº 8.078/1990)</strong>, a legislação <strong style="color:#ffffff;">COPPA (FTC)</strong>, o Art. 8º do <strong style="color:#ffffff;">GDPR Europeu</strong> e a <strong style="color:#ffffff;">Política do Programa para a Família do Google Play (Designed for Families)</strong>.</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 2ª — Definições Legais (Art. 5º da LGPD e Art. 2º do ECA):</strong> Considera-se <em>Criança</em> a pessoa até 12 anos incompletos (ECA) ou menor de 13 anos (COPPA); <em>Dado Pessoal</em> qualquer informação relacionada a pessoa natural identificada ou identificável; <em>Responsável Legal</em> o pai, mãe, tutor ou guardião legal; <em>Armazenamento Local (localStorage)</em> a memória interna restrita e isolada do próprio aparelho do usuário; e <em>Portão Parental (Parental Gate)</em> a verificação cognitiva adulta ("Área para Papai e Mamãe").</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 3ª — Melhor Interesse da Criança e Não Condicionamento (Art. 14, § 4º, da LGPD):</strong> O aplicativo foi projetado sob os princípios de <em>Privacy by Design</em> e <em>Privacy by Default</em>. Nos termos do § 4º do Art. 14 da LGPD, a participação da criança nos jogos jamais é condicionada ao fornecimento de dados pessoais: o aplicativo funciona 100% sem cadastro, sem criação de conta, sem login e sem senha.</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 4ª — Declaração Expressa de Zero Coleta de Dados Pessoais de Crianças:</strong> A Vórtice Mídia declara formalmente que o aplicativo <strong style="color:#ffffff;">NÃO coleta, NÃO solicita, NÃO acessa e NÃO transmite para servidores externos</strong>: (a) nome, apelido, data de nascimento, CPF ou RG; (b) endereço de e-mail, número de telefone ou lista de contatos; (c) geolocalização precisa ou aproximada via GPS, Wi-Fi ou rede móvel; (d) fotos, câmera fotográfica, microfone, gravação de voz ou dados biométricos; (e) Identificador de Publicidade do Android (AAID/GAID) ou histórico de navegação.</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 5ª — Armazenamento Estritamente Local (No Aparelho) e Exportação de Desenhos:</strong> O progresso das casinhas e figurinhas do <em>Álbum da Fé</em> e os desenhos coloridos na <em>Oficina da Pintura Mágica</em> são salvos exclusivamente na memória interna do próprio aparelho (<code>localStorage</code>), sem envio para nuvem. A função de baixar desenhos ou compartilhar imagens exige aprovação prévia do adulto no <em>Parental Gate</em> e gera o arquivo diretamente no aparelho via sistema nativo do Android.</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 6ª — Mecanismo Obrigatório de Verificação Parental (Parental Gate):</strong> Em cumprimento às regras da Google Play Families, da COPPA e do ECA Digital, o acesso a planos de assinatura, restauração de compras, abertura de páginas externas e exportação de arquivos é protegido pela barreira adulta, exigindo a resolução de desafio aritmético dinâmico por um responsável.</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 7ª — Ausência Total de Publicidade de Terceiros e de Práticas Manipulativas (Dark Patterns):</strong> O aplicativo não exibe anúncios de terceiros (zero banners, zero vídeos publicitários e zero SDKs de redes de anúncios) e veda o uso de <em>dark patterns</em> (pressão psicológica, temporizadores punitivos ou indução a compras acidentais).</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 8ª — Processamento de Assinaturas e Pagamentos via Google Play Billing:</strong> Todas as transações financeiras do <em>Clube Trono da Promessa</em> são processadas exclusiva e diretamente pela <strong style="color:#ffffff;">Google LLC / Google Brasil Internet Ltda.</strong> por meio do sistema oficial <strong style="color:#ffffff;">Google Play Billing</strong>. A Vórtice Mídia jamais visualiza, recebe ou armazena números de cartão de crédito, código CVV, chave PIX ou dados bancários dos pais, recebendo apenas o token anônimo de confirmação de licença ativa.</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 9ª — Compartilhamento de Dados e Transferência Internacional:</strong> Como não há coleta de dados pessoais em servidores próprios, a Vórtice Mídia não vende, não aluga, não cede e não compartilha dados com terceiros, anunciantes ou corretores de dados (<em>data brokers</em>).</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 10ª — Segurança da Informação (Art. 46 a 49 da LGPD):</strong> O aplicativo opera em ambiente isolado (<em>Application Sandbox</em>) do Android, com pacote assinado criptograficamente via <em>Google Play App Signing</em> e funcionamento offline integral das atividades educativas.</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 11ª — Retenção e Exclusão Imediata de Dados Locais (Art. 15 e 16 da LGPD):</strong> Os registros locais de progresso permanecem no aparelho apenas enquanto o aplicativo estiver instalado e podem ser apagados instantaneamente pelos pais limpando o armazenamento do aplicativo nas Configurações do Android ou desinstalando-o.</p>
+
+          <p style="margin-bottom:14px;"><strong style="color:#ffffff;">Cláusula 12ª — Direitos dos Pais e Titulares (Art. 18 da LGPD e COPPA):</strong> Os pais e responsáveis têm direito gratuito à confirmação da inexistência de tratamento de dados pessoais da criança em servidores, transparência técnica e atendimento direto pelo Encarregado de Dados (DPO), além do direito de petição perante a ANPD e órgãos de defesa do consumidor.</p>
+
+          <p style="margin:4px 0 10px 0; color:#ffffff; font-size:13px; font-weight:800; border-bottom:1px solid rgba(148,163,184,0.2); padding-bottom:6px;">PARTE II — TERMOS DE USO E ASSINATURA (EULA)</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 13ª — Licença de Uso e Propriedade Intelectual (Leis nº 9.609/1998 e nº 9.610/1998):</strong> A Vórtice Mídia concede licença pessoal, familiar, não exclusiva, intransferível e não comercial de uso do aplicativo. Todos os personagens originais (<em>Vovô Nésio, Pedrinho, Aninha e Ovelhinha</em>), ilustrações 3D, contornos de pintura, quizes, músicas originais e código-fonte são propriedade intelectual exclusiva da Vórtice Mídia.</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 14ª — Conteúdo Gratuito e Assinatura Opcional ("Clube Trono da Promessa"):</strong> O aplicativo oferece gratuitamente as fases 1 a 5 de todos os jogos educativos e da Salinha de Pintura, as Lições 1 a 5 completas da Salinha da Lição / Revista Digital EBD e as 5 primeiras músicas da Salinha de Dormir. A assinatura opcional libera todas as 25 fases em todos os jogos, todas as 22 lições completas da EBD, todas as canções da Salinha de Dormir, o Álbum completo de Super Cards e a exportação em alta resolução / PDF para impressão.</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 15ª — Preços, Renovação Automática, Cancelamento e Direito de Arrependimento (Art. 49 do CDC):</strong> Planos disponíveis via Google Play: <strong style="color:#ffffff;">Plano Mensal (R$ 7,90/mês)</strong> e <strong style="color:#ffffff;">Plano Anual Familiar (R$ 59,90/ano, equivalente a R$ 4,99/mês)</strong>. A renovação é automática ao fim de cada ciclo, podendo ser cancelada a qualquer momento sem multa diretamente no app <strong style="color:#ffffff;">Google Play Store &rarr; Perfil &rarr; Pagamentos e assinaturas &rarr; Assinaturas &rarr; Trono da Promessa &rarr; Cancelar assinatura</strong>. É garantido o <strong style="color:#ffffff;">Direito de Arrependimento em até 7 (sete) dias corridos</strong> após a contratação inicial com reembolso integral nos termos do Art. 49 do Código de Defesa do Consumidor. O botão <em>"Restaurar Assinatura"</em> permite reativar o acesso gratuitamente ao trocar de aparelho.</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 16ª — Disponibilidade e Requisitos:</strong> As atividades educativas operam com alta estabilidade em dispositivos Android, exigindo internet para processar ou restaurar a assinatura junto ao Google Play.</p>
+
+          <p style="margin-bottom:9px;"><strong style="color:#ffffff;">Cláusula 17ª — Atualizações deste Instrumento:</strong> Eventuais revisões jurídicas ou técnicas serão atualizadas neste documento com indicação da data de vigência.</p>
+
+          <p style="margin-bottom:4px;"><strong style="color:#ffffff;">Cláusula 18ª — Encarregado de Dados (DPO), Suporte e Foro (Art. 101, I, do CDC):</strong> Controladora: <strong style="color:#ffffff;">Vórtice Mídia (Google Play Console ID 5718212858824055574)</strong> • Canal Oficial de Suporte e Privacidade (DPO): <strong style="color:#ffffff;">rigobertobockhorny@gmail.com</strong>. Regido pelas leis da República Federativa do Brasil, ficando assegurado o foro do domicílio do consumidor/responsável legal.</p>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px; flex-shrink:0;">
+          <button type="button" onclick="window.openPublicPrivacyUrl()" style="width:100%; padding:11px 14px; border-radius:12px; border:1.5px solid rgba(233,213,255,0.82); background:linear-gradient(180deg, #8b5cf6 0%, #6d28d9 55%, #4c1d95 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:13.5px; font-weight:800; cursor:pointer; box-shadow:0 6px 14px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.32);">
+            Ver Versão Web Pública
+          </button>
+          <button type="button" onclick="closeModal('modal-privacy-policy')" style="width:100%; padding:11px 14px; border-radius:12px; border:1.5px solid rgba(167,243,208,0.85); background:linear-gradient(180deg, #10b981 0%, #059669 55%, #047857 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:14px; font-weight:800; cursor:pointer; box-shadow:0 6px 14px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.32);">
+            Fechar
+          </button>
+        </div>
       </div>
-      <div style="font-size:12px; color:#f1f5f9; line-height:1.5; max-height:385px; overflow-y:auto; padding:10px 10px; margin-bottom:12px; background:rgba(9,13,22,0.72); border:1.5px solid rgba(0,229,255,0.35); border-radius:14px;">
-        <p style="margin-bottom:8px; color:#86efac; font-weight:700;">PARTE I — POLÍTICA DE PRIVACIDADE E PROTEÇÃO DE DADOS INFANTIS</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 1ª — Identificação do Controlador e Escopo Legal:</strong> O aplicativo <strong>Trono da Promessa</strong> (pacote oficial <code>com.vorticemidia.tronodapromessa</code>) é desenvolvido, mantido e licenciado por <strong>Vórtice Mídia Produções e Tecnologia Digital ("Vórtice Mídia")</strong>. Este instrumento rege o uso do aplicativo em total conformidade com o Art. 227 da Constituição Federal, a <strong>Lei Geral de Proteção de Dados Pessoais (LGPD — Lei Federal nº 13.709/2018, em especial seu Art. 14)</strong>, o Enunciado CD/ANPD nº 1/2023, o <strong>Estatuto da Criança e do Adolescente (ECA — Lei Federal nº 8.069/1990)</strong>, o Marco Legal da Primeira Infância (Lei nº 13.257/2016), o <strong>ECA Digital (Lei Federal nº 15.211/2025)</strong>, o <strong>Marco Civil da Internet (Lei nº 12.965/2014)</strong>, o <strong>Código de Defesa do Consumidor (CDC — Lei nº 8.078/1990)</strong>, a legislação norte-americana <strong>COPPA (15 U.S.C. §§ 6501–6506 — FTC)</strong>, o Art. 8º do <strong>GDPR Europeu</strong> e a <strong>Política do Programa para a Família do Google Play (Designed for Families)</strong>.</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 2ª — Definições Legais (Art. 5º da LGPD e Art. 2º do ECA):</strong> Considera-se <em>Criança</em> a pessoa até 12 anos incompletos (ECA) ou menor de 13 anos (COPPA); <em>Dado Pessoal</em> qualquer informação relacionada a pessoa natural identificada ou identificável; <em>Responsável Legal</em> o pai, mãe, tutor ou guardião legal; <em>Armazenamento Local (localStorage)</em> a memória interna restrita e isolada do próprio aparelho do usuário; e <em>Portão Parental (Parental Gate)</em> a verificação cognitiva adulta ("Área para Papai e Mamãe").</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 3ª — Melhor Interesse da Criança e Não Condicionamento (Art. 14, § 4º, da LGPD):</strong> O aplicativo foi projetado sob os princípios de <em>Privacy by Design</em> e <em>Privacy by Default</em>. Nos termos do § 4º do Art. 14 da LGPD, a participação da criança nos jogos jamais é condicionada ao fornecimento de dados pessoais: o aplicativo funciona 100% sem cadastro, sem criação de conta, sem login e sem senha.</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 4ª — Declaração Expressa de Zero Coleta de Dados Pessoais de Crianças:</strong> A Vórtice Mídia declara formalmente que o aplicativo <strong>NÃO coleta, NÃO solicita, NÃO acessa e NÃO transmite para servidores externos</strong>: (a) nome, apelido, data de nascimento, CPF ou RG; (b) endereço de e-mail, número de telefone ou lista de contatos; (c) geolocalização precisa ou aproximada via GPS, Wi-Fi ou rede móvel; (d) fotos, câmera fotográfica, microfone, gravação de voz ou dados biométricos; (e) Identificador de Publicidade do Android (AAID/GAID) ou histórico de navegação.</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 5ª — Armazenamento Estritamente Local (No Aparelho) e Exportação de Desenhos:</strong> O progresso das 20 casinhas e figurinhas do <em>Álbum da Fé</em> e os desenhos coloridos na <em>Oficina da Pintura Mágica</em> são salvos exclusivamente na memória interna do próprio aparelho (<code>localStorage</code>: chaves técnicas <code>trono_unlocked_stickers_v1</code>, <code>trono_house_step_progress_v1</code>, <code>trono_vip_subscriber_v1</code> e <code>trono_saved_paintings_v1</code>), sem envio para nuvem. A função de baixar desenhos ou compartilhar imagens exige aprovação prévia do adulto no <em>Parental Gate</em> e gera o arquivo diretamente no aparelho via sistema nativo do Android.</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 6ª — Mecanismo Obrigatório de Verificação Parental (Parental Gate):</strong> Em cumprimento às regras da Google Play Families, da COPPA e do ECA Digital, o acesso a planos de assinatura, restauração de compras, abertura de páginas externas e exportação de arquivos é protegido pela barreira <em>"Área para Papai e Mamãe"</em>, exigindo a resolução de desafio aritmético dinâmico por um adulto.</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 7ª — Ausência Total de Publicidade de Terceiros e de Práticas Manipulativas (Dark Patterns):</strong> O aplicativo não exibe anúncios de terceiros (zero banners, zero vídeos publicitários e zero SDKs de redes de anúncios) e veda o uso de <em>dark patterns</em> (pressão psicológica, temporizadores punitivos ou indução a compras acidentais).</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 8ª — Processamento de Assinaturas e Pagamentos via Google Play Billing:</strong> Todas as transações financeiras do <em>Clube Trono da Promessa</em> são processadas exclusiva e diretamente pela <strong>Google LLC / Google Brasil Internet Ltda.</strong> por meio do sistema oficial <strong>Google Play Billing</strong>. A Vórtice Mídia jamais visualiza, recebe ou armazena números de cartão de crédito, código CVV, chave PIX ou dados bancários dos pais, recebendo apenas o token anônimo de confirmação de licença ativa.</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 9ª — Compartilhamento de Dados e Transferência Internacional:</strong> Como não há coleta de dados pessoais em servidores próprios, a Vórtice Mídia não vende, não aluga, não cede e não compartilha dados com terceiros, anunciantes ou corretores de dados (<em>data brokers</em>).</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 10ª — Segurança da Informação (Art. 46 a 49 da LGPD):</strong> O aplicativo opera em ambiente isolado (<em>Application Sandbox</em>) do Android, com pacote assinado criptograficamente via <em>Google Play App Signing</em> e funcionamento offline integral das atividades educativas.</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 11ª — Retenção e Exclusão Imediata de Dados Locais (Art. 15 e 16 da LGPD):</strong> Os registros locais de progresso permanecem no aparelho apenas enquanto o aplicativo estiver instalado e podem ser apagados instantaneamente pelos pais limpando o armazenamento do aplicativo nas Configurações do Android ou desinstalando-o.</p>
-
-        <p style="margin-bottom:10px;"><strong>Cláusula 12ª — Direitos dos Pais e Titulares (Art. 18 da LGPD e COPPA):</strong> Os pais e responsáveis têm direito gratuito à confirmação da inexistência de tratamento de dados pessoais da criança em servidores, transparência técnica e atendimento direto pelo Encarregado de Dados (DPO), além do direito de petição perante a ANPD e órgãos de defesa do consumidor.</p>
-
-        <p style="margin-bottom:8px; color:#fde047; font-weight:700;">PARTE II — TERMOS E CONDIÇÕES GERAIS DE USO E ASSINATURA (EULA)</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 13ª — Licença de Uso e Propriedade Intelectual (Leis nº 9.609/1998 e nº 9.610/1998):</strong> A Vórtice Mídia concede licença pessoal, familiar, não exclusiva, intransferível e não comercial de uso do aplicativo. Todos os personagens originais (<em>Vovô Nésio, Pedrinho, Aninha e Ovelhinha</em>), ilustrações 3D, contornos de pintura, quizes, músicas originais e código-fonte são propriedade intelectual exclusiva da Vórtice Mídia.</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 14ª — Conteúdo Gratuito e Assinatura Opcional ("Clube Trono da Promessa"):</strong> O aplicativo oferece gratuitamente as fases 1 a 5 de todos os jogos educativos e da Salinha de Pintura, as Lições 1 a 5 completas da Salinha da Lição / Revista Digital EBD e as 5 primeiras músicas da Salinha de Dormir. A assinatura opcional libera todas as 25 fases em todos os jogos, todas as 22 lições completas da EBD, todas as canções da Salinha de Dormir, o Álbum completo de Super Cards e a exportação em alta resolução / PDF para impressão.</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 15ª — Preços, Renovação Automática, Cancelamento e Direito de Arrependimento (Art. 49 do CDC):</strong> Planos disponíveis via Google Play: <strong>Plano Mensal (R$ 7,90/mês)</strong> e <strong>Plano Anual com Desconto Família (R$ 59,90/ano, equivalente a R$ 4,99/mês)</strong>. A renovação é automática ao fim de cada ciclo, podendo ser cancelada a qualquer momento sem multa diretamente no app <strong>Google Play Store &rarr; Perfil &rarr; Pagamentos e assinaturas &rarr; Assinaturas &rarr; Trono da Promessa &rarr; Cancelar assinatura</strong>. É garantido o <strong>Direito de Arrependimento em até 7 (sete) dias corridos</strong> após a contratação inicial com reembolso integral nos termos do Art. 49 do Código de Defesa do Consumidor. O botão <em>"Restaurar Assinatura"</em> permite reativar o acesso gratuitamente ao trocar de aparelho.</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 16ª — Disponibilidade e Requisitos:</strong> As atividades educativas operam com alta estabilidade em dispositivos Android, exigindo internet para processar ou restaurar a assinatura junto ao Google Play.</p>
-
-        <p style="margin-bottom:8px;"><strong>Cláusula 17ª — Atualizações deste Instrumento:</strong> Eventuais revisões jurídicas ou técnicas serão atualizadas neste documento com indicação da data de vigência.</p>
-
-        <p style="margin-bottom:4px;"><strong>Cláusula 18ª — Encarregado de Dados (DPO), Suporte e Foro (Art. 101, I, do CDC):</strong> Controladora: <strong>Vórtice Mídia (Google Play Console ID 5718212858824055574)</strong> • Canal Oficial de Suporte e Privacidade (DPO): <strong>rigobertobockhorny@gmail.com</strong>. Regido pelas leis da República Federativa do Brasil, ficando assegurado o foro do domicílio do consumidor/responsável legal.</p>
-      </div>
-      <button class="btn-gold" style="width:100%; padding:10px; font-size:13.5px; margin-bottom:8px; background:linear-gradient(180deg, #00b0ff 0%, #0066ff 100%); border-color:#b3e5fc;" onclick="window.open('politica_privacidade.html', '_blank')">
-        Abrir Documento Completo em Tela Cheia (Público)
-      </button>
-      <button class="btn-gold" style="width:100%; padding:10px; font-size:15px;" onclick="closeModal('modal-privacy-policy')">
-        Fechar e Voltar
-      </button>
     </div>
   </div>
 
@@ -4939,13 +4955,51 @@ function redeemVipCoupon(customInputId, customMsgId) {
   }
 }
 
-async function restoreGooglePlayPurchases() {
-  playSoundSnapGreen();
-  const msgEl = document.getElementById('vip-feedback-msg');
-  if (msgEl) {
-    msgEl.style.color = '#fde047';
-    msgEl.textContent = 'Consultando assinaturas ativas na sua conta Google Play...';
+window.openPublicPrivacyUrl = function() {
+  playSoundClick();
+  const pubUrl = 'https://trono-kids.onrender.com/politica_privacidade.html';
+  if (window.TronoPlayBilling && typeof window.TronoPlayBilling.openExternalUrl === 'function') {
+    try {
+      window.TronoPlayBilling.openExternalUrl(pubUrl);
+      return;
+    } catch (e) {}
   }
+  window.open('politica_privacidade.html', '_blank');
+};
+
+window.openPlayStoreAppPage = function() {
+  playSoundClick();
+  if (window.TronoPlayBilling && typeof window.TronoPlayBilling.openPlayStoreListing === 'function') {
+    try {
+      window.TronoPlayBilling.openPlayStoreListing();
+      return;
+    } catch (e) {}
+  }
+  window.open('https://play.google.com/store/apps/details?id=com.vorticemidia.tronodapromessa', '_blank');
+};
+
+async function restoreGooglePlayPurchases() {
+  playSoundClick();
+  const msgEl = document.getElementById('vip-feedback-msg');
+  const portalMsgEl = document.getElementById('portal-restore-feedback');
+  const setRestoreMsg = (txt, colorHex) => {
+    if (msgEl) {
+      msgEl.style.color = colorHex;
+      msgEl.textContent = txt;
+    }
+    if (portalMsgEl) {
+      portalMsgEl.style.display = 'block';
+      portalMsgEl.style.color = colorHex;
+      portalMsgEl.textContent = txt;
+    }
+  };
+
+  setRestoreMsg('Consultando assinaturas ativas na sua conta Google Play...', '#93c5fd');
+  if (typeof window.showEbdPrintToast === 'function') {
+    window.showEbdPrintToast('Consultando sua conta Google Play...');
+  }
+
+  await new Promise(r => setTimeout(r, 450));
 
   // 1) Ponte Nativa Android (.aab)
   if (window.TronoPlayBilling && typeof window.TronoPlayBilling.restorePurchases === 'function') {
@@ -4953,6 +5007,13 @@ async function restoreGooglePlayPurchases() {
       const restored = window.TronoPlayBilling.restorePurchases();
       if (restored) {
         window.onNativePlayBillingSuccess('restored');
+        setRestoreMsg('✔ Assinatura encontrada! Acesso completo reativado neste aparelho.', '#6ee7b7');
+        if (typeof window.showEbdPrintToast === 'function') {
+          window.showEbdPrintToast('Assinatura restaurada com sucesso!');
+        }
+        if (typeof window.renderTeacherPortalContent === 'function') {
+          setTimeout(() => window.renderTeacherPortalContent(), 900);
+        }
         return;
       }
     } catch (e) {}
@@ -4966,6 +5027,13 @@ async function restoreGooglePlayPurchases() {
         const purchases = await service.listPurchases();
         if (Array.isArray(purchases) && purchases.length > 0) {
           window.onNativePlayBillingSuccess(purchases[0].itemId || 'restored');
+          setRestoreMsg('✔ Assinatura encontrada! Acesso completo reativado neste aparelho.', '#6ee7b7');
+          if (typeof window.showEbdPrintToast === 'function') {
+            window.showEbdPrintToast('Assinatura restaurada com sucesso!');
+          }
+          if (typeof window.renderTeacherPortalContent === 'function') {
+            setTimeout(() => window.renderTeacherPortalContent(), 900);
+          }
           return;
         }
       }
@@ -4973,16 +5041,16 @@ async function restoreGooglePlayPurchases() {
   }
 
   if (isVipUnlocked) {
-    if (msgEl) {
-      msgEl.style.color = '#34d399';
-      msgEl.textContent = 'Seu acesso completo já está ativo neste aparelho!';
+    setRestoreMsg('✔ Seu acesso completo já está ativo neste aparelho!', '#6ee7b7');
+    if (typeof window.showEbdPrintToast === 'function') {
+      window.showEbdPrintToast('Seu acesso completo já está ativo!');
     }
     return;
   }
 
-  if (msgEl) {
-    msgEl.style.color = '#f87171';
-    msgEl.textContent = 'Nenhuma assinatura ativa encontrada nesta conta Google Play.';
+  setRestoreMsg('Nenhuma assinatura ativa foi encontrada nesta conta Google Play.', '#fca5a5');
+  if (typeof window.showEbdPrintToast === 'function') {
+    window.showEbdPrintToast('Nenhuma assinatura ativa encontrada nesta conta.');
   }
 }
 
@@ -7102,6 +7170,7 @@ startInitialThemeMusic();
 
           // 0d. Se qualquer modal secundário estiver aberto, fecha apenas o modal sem derrubar a tela atual!
           const modalIds = [
+            'modal-privacy-policy',
             'modal-developer-admin',
             'modal-subscribe',
             'modal-parental-gate',
