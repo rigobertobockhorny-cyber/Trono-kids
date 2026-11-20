@@ -1158,9 +1158,9 @@
       #screen-trono-arcade-stage {
         position: fixed !important;
         inset: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        height: 100dvh !important;
+        width: 100% !important;
+        height: 100% !important;
+        box-sizing: border-box !important;
         z-index: 9999999 !important;
         display: none !important;
         flex-direction: column !important;
@@ -1177,12 +1177,12 @@
       }
       .arcade-top-bar {
         position: relative;
-        height: calc(66px + env(safe-area-inset-top, 0px));
-        min-height: calc(66px + env(safe-area-inset-top, 0px));
+        height: calc(70px + env(safe-area-inset-top, 0px));
+        min-height: calc(70px + env(safe-area-inset-top, 0px));
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: calc(10px + env(safe-area-inset-top, 0px)) 20px 10px 20px;
+        padding: calc(12px + env(safe-area-inset-top, 0px)) 20px 12px 20px;
         background: rgba(15, 12, 41, 0.85);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
@@ -1290,7 +1290,7 @@
       }
       .arcade-btn-replay-vovo {
         position: absolute;
-        top: calc(66px + env(safe-area-inset-top, 0px) + 12px);
+        top: calc(70px + env(safe-area-inset-top, 0px) + 12px);
         right: 16px;
         z-index: 165;
         cursor: pointer;
@@ -1469,7 +1469,7 @@
       }
       .pombo-v110-controller-area {
         position: absolute;
-        bottom: 12px;
+        bottom: max(24px, calc(18px + env(safe-area-inset-bottom, 0px)));
         left: 50%;
         transform: translateX(-50%);
         z-index: 50;
@@ -1723,7 +1723,7 @@
       /* DAVI NO PRIMEIRO PLANO (DE COSTAS NO TAPETE, 100% ACIMA DO CONTROLE FLUTUANTE) */
       .davi-hero-box {
         position: absolute;
-        bottom: 142px;
+        bottom: 148px;
         left: 50%;
         transform: translateX(-50%);
         width: 64px;
@@ -1783,7 +1783,7 @@
       /* BARRA DE CONTROLES HORIZONTAL (SOMENTE ESQUERDA E DIREITA — SEM COBRIR DAVI) */
       .davi-controls-bar {
         position: absolute;
-        bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+        bottom: max(28px, calc(24px + env(safe-area-inset-bottom, 0px)));
         left: 50%;
         transform: translateX(-50%);
         z-index: 25;
@@ -3681,8 +3681,8 @@
           </div>
         </div>
 
-        <!-- 4. PAINEL DE CONTROLE / TIMING E BOTÃO DE LANÇAMENTO -->
-        <div style="position:relative; width:100%; padding:10px 16px 16px 16px; background:rgba(15, 23, 42, 0.82); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-top:2.5px solid #fde047; box-shadow:0 -8px 25px rgba(0,0,0,0.7); display:flex; flex-direction:column; align-items:center; gap:10px; z-index:30;">
+        <!-- 4. PAINEL DE CONTROLE / TIMING E BOTÃO DE LANÇAMENTO COM SUSPIRO EM CIMA E EMBAIXO -->
+        <div style="position:relative; width:100%; padding:14px 18px max(26px, calc(22px + env(safe-area-inset-bottom, 0px))) 18px; background:rgba(15, 23, 42, 0.85); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-top:2.5px solid #fde047; box-shadow:0 -8px 25px rgba(0,0,0,0.7); display:flex; flex-direction:column; align-items:center; gap:12px; z-index:30; box-sizing:border-box;">
           <!-- Barra de Precisão da Agulha -->
           <div style="width:100%; max-width:440px; background:#1e293b; border:2.5px solid #ca8a04; border-radius:999px; padding:4px; box-shadow:inset 0 3px 6px rgba(0,0,0,0.6);">
             <div style="position:relative; width:100%; height:32px; background:linear-gradient(90deg, #ef4444 0%, #dc2626 100%); border-radius:999px; overflow:hidden;">
@@ -3694,7 +3694,7 @@
           </div>
 
           <!-- Botão com Trava de Segurança Pedagógica (Ouve o Vovô antes de liberar) -->
-          <button id="btn-pescar-action" style="width:90%; max-width:360px; background:#1e293b; color:#94a3b8; font-weight:900; font-size:18px; padding:15px; border-radius:999px; border:2.5px solid #475569; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:all 0.35s ease; pointer-events:none;">
+          <button id="btn-pescar-action" style="width:90%; max-width:360px; margin-bottom:2px; background:#1e293b; color:#94a3b8; font-weight:900; font-size:18px; padding:15px; border-radius:999px; border:2.5px solid #475569; box-shadow:0 4px 12px rgba(0,0,0,0.5); cursor:not-allowed; opacity:0.85; transition:all 0.35s ease; pointer-events:none;">
             PREPARE-SE...
           </button>
         </div>
@@ -6923,7 +6923,7 @@
           transform: translateX(-6px);
         }
       </style>
-      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:linear-gradient(180deg, rgba(10,18,42,0.18) 0%, rgba(10,18,42,0.34) 100%), url('./3_ASSETS_QUIZ_ARCADE/quiz_bg_monte_sinai_v154.jpg?v=154') center/cover no-repeat; padding:66px 14px 14px 14px; box-sizing:border-box;">
+      <div style="position:relative; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:linear-gradient(180deg, rgba(10,18,42,0.18) 0%, rgba(10,18,42,0.34) 100%), url('./3_ASSETS_QUIZ_ARCADE/quiz_bg_monte_sinai_v154.jpg?v=154') center/cover no-repeat; padding:66px 14px max(24px, calc(18px + env(safe-area-inset-bottom, 0px))) 14px; box-sizing:border-box;">
         <button type="button" id="quiz-vis-question-card" class="quiz-vis-question-btn" onclick="window._quizReplayVovo()" title="Toque para ouvir a pergunta novamente" aria-label="Toque para ouvir a pergunta novamente">
           <span style="display:block; font-family:'Fredoka',sans-serif; color:#ffffff; font-size:${qFontSize}; font-weight:800; line-height:1.23; text-align:center; text-shadow:0 2px 5px rgba(0,0,0,0.92); pointer-events:none;">
             ${qData.q}
@@ -7197,12 +7197,12 @@
         </div>
 
         <!-- Placar Discreto de Pinos na Base -->
-        <div id="ligue-bottom-pill" style="position:absolute; bottom:max(18px, env(safe-area-inset-bottom, 14px)); left:50%; transform:translateX(-50%); z-index:8; background:linear-gradient(180deg, rgba(30,58,138,0.88) 0%, rgba(49,46,129,0.92) 100%); border:2px solid rgba(255,255,255,0.85); border-radius:999px; padding:6px 18px; color:#ffffff; font-weight:900; font-size:14px; letter-spacing:0.5px; box-shadow:0 6px 16px rgba(0,0,0,0.35); pointer-events:none; white-space:nowrap; transition:opacity 0.35s ease;">
+        <div id="ligue-bottom-pill" style="position:absolute; bottom:max(26px, calc(20px + env(safe-area-inset-bottom, 0px))); left:50%; transform:translateX(-50%); z-index:8; background:linear-gradient(180deg, rgba(30,58,138,0.88) 0%, rgba(49,46,129,0.92) 100%); border:2px solid rgba(255,255,255,0.85); border-radius:999px; padding:6px 18px; color:#ffffff; font-weight:900; font-size:14px; letter-spacing:0.5px; box-shadow:0 6px 16px rgba(0,0,0,0.35); pointer-events:none; white-space:nowrap; transition:opacity 0.35s ease;">
           PONTINHOS: <span id="ligue-step-count" style="color:#00e676;">0</span> / ${totalSegments}
         </div>
 
         <!-- Selo de Revelação Colorida da Figura -->
-        <div id="ligue-reveal-badge" style="display:none; position:absolute; bottom:max(24px, env(safe-area-inset-bottom, 18px)); left:50%; transform:translateX(-50%); z-index:12; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2.8px solid #ffffff; border-radius:999px; padding:9px 24px; color:#ffffff; font-weight:900; font-size:17px; letter-spacing:0.6px; text-shadow:0 2px 5px rgba(0,0,0,0.5); box-shadow:0 0 24px rgba(253,224,71,0.9), 0 8px 18px rgba(0,0,0,0.45); pointer-events:none; white-space:nowrap;">
+        <div id="ligue-reveal-badge" style="display:none; position:absolute; bottom:max(30px, calc(24px + env(safe-area-inset-bottom, 0px))); left:50%; transform:translateX(-50%); z-index:12; background:linear-gradient(180deg, #f59e0b 0%, #d97706 100%); border:2.8px solid #ffffff; border-radius:999px; padding:9px 24px; color:#ffffff; font-weight:900; font-size:17px; letter-spacing:0.6px; text-shadow:0 2px 5px rgba(0,0,0,0.5); box-shadow:0 0 24px rgba(253,224,71,0.9), 0 8px 18px rgba(0,0,0,0.45); pointer-events:none; white-space:nowrap;">
           ⭐ ${pData.title.toUpperCase()} ⭐
         </div>
 
@@ -8154,7 +8154,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 58px 10px calc(12px + env(safe-area-inset-bottom, 0px)) 10px;
+          padding: 60px 10px max(22px, calc(16px + env(safe-area-inset-bottom, 0px))) 10px;
           box-sizing: border-box;
           user-select: none;
           -webkit-user-select: none;
@@ -8703,7 +8703,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: space-between;
-          padding: 60px 10px clamp(14px, 2.5vh, 24px) 10px;
+          padding: 62px 10px max(24px, clamp(18px, 3vh, 28px)) 10px;
           box-sizing: border-box;
           touch-action: none;
           user-select: none;
@@ -9440,7 +9440,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: space-between;
-          padding: 60px 12px clamp(20px, 4.5vh, 38px) 12px;
+          padding: 62px 12px max(26px, clamp(22px, 4.5vh, 38px)) 12px;
           box-sizing: border-box;
           touch-action: none;
           user-select: none;
@@ -11730,7 +11730,7 @@
         </div>
 
         <!-- BARRA INFERIOR CENTRALIZADA COM SUSPIRO PARA ESCOLHER 6, 9 OU 12 PEÇAS (SEM COLIDIR COM OUVIR!) -->
-        <div style="position:relative; z-index:12; width:100%; max-width:520px; display:flex; align-items:center; justify-content:center; gap:10px; padding:4px 16px calc(18px + env(safe-area-inset-bottom, 0px)) 16px; box-sizing:border-box; flex-shrink:0;">
+        <div style="position:relative; z-index:12; width:100%; max-width:520px; display:flex; align-items:center; justify-content:center; gap:10px; padding:8px 16px max(24px, calc(20px + env(safe-area-inset-bottom, 0px))) 16px; box-sizing:border-box; flex-shrink:0;">
           <button type="button" class="arc-v161-diff-btn active" data-puz-diff="6" style="min-width:94px; padding:0 14px; font-size:13.5px;">6 PEÇAS</button>
           <button type="button" class="arc-v161-diff-btn" data-puz-diff="9" style="min-width:94px; padding:0 14px; font-size:13.5px;">9 PEÇAS</button>
           <button type="button" class="arc-v161-diff-btn" data-puz-diff="12" style="min-width:98px; padding:0 14px; font-size:13.5px;">12 PEÇAS</button>
@@ -12345,7 +12345,7 @@
         </div>
 
         <!-- BARRA ÚNICA DE EDIÇÃO EMBAIXO COM SUSPIRO NAS BORDAS (6 Ferramentas + 20 Cores) -->
-        <div id="arcade-paint-unified-dock" class="arc-v161-rainbow-card" style="z-index:12; width:calc(100% - 24px); max-width:520px; margin:0 12px calc(16px + env(safe-area-inset-bottom, 0px)) 12px; padding:9px 12px 11px 12px; border-radius:18px; display:flex; flex-direction:column; gap:8px; box-sizing:border-box;">
+        <div id="arcade-paint-unified-dock" class="arc-v161-rainbow-card" style="z-index:12; width:calc(100% - 24px); max-width:520px; margin:0 12px max(22px, calc(18px + env(safe-area-inset-bottom, 0px))) 12px; padding:10px 12px 12px 12px; border-radius:18px; display:flex; flex-direction:column; gap:8px; box-sizing:border-box;">
           <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:4px; width:100%;">
             <button type="button" id="arc-ptool-bucket" class="arc-paint-tool-btn active">TOQUE</button>
             <button type="button" id="arc-ptool-brush" class="arc-paint-tool-btn">LÁPIS</button>
@@ -13122,7 +13122,7 @@
     }
 
     container.innerHTML = `
-      <div class="arc-v161-stage" style="padding:58px 12px 18px 12px; justify-content:space-evenly;">
+      <div class="arc-v161-stage" style="padding:60px 12px max(24px, calc(20px + env(safe-area-inset-bottom, 0px))) 12px; justify-content:space-evenly;">
         <img src="./2_ASSETS_UI_BOTOES/bg_jogo_19_cacapalavras_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
@@ -13336,7 +13336,7 @@
     let solved = false;
 
     container.innerHTML = `
-      <div class="arc-v161-stage" style="padding:58px 12px 18px 12px; justify-content:space-evenly;">
+      <div class="arc-v161-stage" style="padding:60px 12px max(24px, calc(20px + env(safe-area-inset-bottom, 0px))) 12px; justify-content:space-evenly;">
         <img src="./2_ASSETS_UI_BOTOES/bg_jogo_20_palavrasecreta_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
@@ -13454,7 +13454,7 @@
     let solved = false;
 
     container.innerHTML = `
-      <div class="arc-v161-stage" style="padding:44px 12px 14px 12px; justify-content:space-evenly;">
+      <div class="arc-v161-stage" style="padding:48px 12px max(24px, calc(18px + env(safe-area-inset-bottom, 0px))) 12px; justify-content:space-evenly;">
         <img src="./2_ASSETS_UI_BOTOES/bg_jogo_21_quemsoueu_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
@@ -13566,7 +13566,7 @@
     let solved = false;
 
     container.innerHTML = `
-      <div class="arc-v161-stage" style="padding:58px 14px 24px 14px; justify-content:space-evenly;">
+      <div class="arc-v161-stage" style="padding:60px 14px max(28px, calc(24px + env(safe-area-inset-bottom, 0px))) 14px; justify-content:space-evenly;">
         <img id="arcade-tm-bg-img" src="./2_ASSETS_UI_BOTOES/bg_jogo_22_verdadeiromito_v161.jpg?v=161" alt="" class="arc-v161-bg" decoding="async">
         <div class="arc-v161-vignette"></div>
 
