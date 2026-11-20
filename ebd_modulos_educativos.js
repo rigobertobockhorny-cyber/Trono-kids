@@ -9086,13 +9086,50 @@ window.ensureEbdMagazineStyles = function() {
     }
 
     /* ===================================================================== */
-    /* REVISTA DIGITAL NA TELA DO CELULAR (BLOCO AZUL + MARGEM COLORIDA)     */
+    /* REVISTA DIGITAL NA TELA DO CELULAR (PROFESSOR • MATERIAL DIDÁTICO)    */
     /* ===================================================================== */
+    #screen-teacher-portal #teacher-weeks-trail {
+      height: auto !important;
+      min-height: 56px !important;
+      padding: 9px 12px !important;
+      margin-bottom: 12px !important;
+      border-radius: 16px !important;
+      gap: 9px !important;
+      border: 2px solid transparent !important;
+      background: linear-gradient(180deg, #0b1633 0%, #060d20 100%) padding-box,
+                  linear-gradient(135deg, #00d2ff 0%, #8b5cf6 36%, #ec4899 70%, #10b981 100%) border-box !important;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.72) !important;
+      align-items: center !important;
+    }
+    #screen-teacher-portal #teacher-weeks-trail .lesson-scroll-pill {
+      flex: 0 0 auto !important;
+      min-width: 98px !important;
+      height: 39px !important;
+      padding: 0 15px !important;
+      border-radius: 11px !important;
+      font-family: 'Fredoka', sans-serif !important;
+      font-size: 13.5px !important;
+      font-weight: 800 !important;
+      color: #cbd5e1 !important;
+      background: linear-gradient(180deg, #162652 0%, #0d1736 100%) !important;
+      border: 1.5px solid rgba(148, 163, 184, 0.36) !important;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55) !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 5px !important;
+    }
+    #screen-teacher-portal #teacher-weeks-trail .lesson-scroll-pill.current {
+      background: linear-gradient(180deg, #8b5cf6 0%, #6d28d9 55%, #4c1d95 100%) !important;
+      border: 1.8px solid rgba(233, 213, 255, 0.92) !important;
+      color: #ffffff !important;
+      box-shadow: 0 5px 15px rgba(139, 92, 246, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+    }
     .ebd-mag-toolbar {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 9px;
+      margin-bottom: 14px;
     }
     .ebd-mag-tabs-row {
       display: grid;
@@ -9100,42 +9137,46 @@ window.ensureEbdMagazineStyles = function() {
       gap: 8px;
     }
     .ebd-mag-tab-btn {
-      padding: 11px 8px;
-      border-radius: 12px;
+      padding: 12px 8px;
+      border-radius: 13px;
       font-family: 'Fredoka', sans-serif;
-      font-size: 12.8px;
+      font-size: 13px;
       font-weight: 800;
       cursor: pointer;
-      border: 1.5px solid rgba(148, 163, 184, 0.32);
-      background: #0b1530;
+      border: 2px solid transparent;
+      background: linear-gradient(180deg, #0b1633 0%, #070e22 100%) padding-box,
+                  linear-gradient(135deg, #00d2ff 0%, #8b5cf6 36%, #ec4899 70%, #10b981 100%) border-box;
       color: #cbd5e1;
       transition: transform 0.12s ease;
       text-align: center;
       line-height: 1.2;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.65);
     }
     .ebd-mag-tab-btn.active-tab {
-      background: linear-gradient(180deg, #8b5cf6 0%, #6d28d9 55%, #4c1d95 100%);
-      border: 1.8px solid rgba(233, 213, 255, 0.9);
+      border: 2px solid transparent;
+      background: linear-gradient(180deg, #7c3aed 0%, #4c1d95 100%) padding-box,
+                  linear-gradient(135deg, #00d2ff 0%, #8b5cf6 36%, #ec4899 70%, #10b981 100%) border-box;
       color: #ffffff;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
     .ebd-mag-actions-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
+      gap: 7px;
     }
     .ebd-mag-act-btn {
-      padding: 9px 5px;
-      border-radius: 11px;
+      padding: 10px 5px;
+      border-radius: 12px;
       font-family: 'Fredoka', sans-serif;
-      font-size: 10.8px;
+      font-size: 11px;
       font-weight: 800;
       cursor: pointer;
-      background: linear-gradient(180deg, #1e3a8a 0%, #172554 100%) !important;
+      border: 1.8px solid transparent !important;
+      background: linear-gradient(180deg, #132554 0%, #0a1430 100%) padding-box,
+                  linear-gradient(135deg, #00d2ff 0%, #8b5cf6 36%, #ec4899 70%, #10b981 100%) border-box !important;
       color: #ffffff !important;
-      border: 1.5px solid rgba(147, 197, 253, 0.65) !important;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
-      line-height: 1.15;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.65) !important;
+      line-height: 1.18;
       text-align: center;
     }
     .ebd-mag-act-btn:active, .ebd-mag-tab-btn:active {
@@ -9143,9 +9184,8 @@ window.ensureEbdMagazineStyles = function() {
     }
     #screen-teacher-portal .ebd-mag-sheet {
       border-radius: 18px;
-      border: 2px solid transparent !important;
-      background: linear-gradient(180deg, #0c193a 0%, #071026 100%) padding-box,
-                  linear-gradient(135deg, #00d2ff 0%, #8b5cf6 36%, #ec4899 70%, #10b981 100%) border-box !important;
+      border: 1.5px solid rgba(148, 163, 184, 0.24) !important;
+      background: #081022 !important;
       color: #f1f5f9 !important;
       padding: 16px 14px 18px 14px;
       box-shadow: 0 10px 28px rgba(0,0,0,0.75);
@@ -9198,13 +9238,28 @@ window.ensureEbdMagazineStyles = function() {
       line-height: 1.35;
     }
     #screen-teacher-portal .ebd-mag-block {
-      background: #050b18 !important;
-      border: 1px solid rgba(148, 163, 184, 0.2) !important;
-      border-left: 4px solid #8b5cf6 !important;
-      border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 12px;
+      background: #040914 !important;
+      border: 1px solid rgba(148, 163, 184, 0.18) !important;
+      border-left: 4px solid #38bdf8 !important;
+      border-radius: 13px;
+      padding: 13px 12px;
+      margin-bottom: 13px;
     }
+    /* Cada seção pedagógica (01 a 07) com uma cor própria de identificação lateral */
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-01 { border-left-color: #0ea5e9 !important; }
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-01 .ebd-mag-num { background: #0284c7 !important; border-color: #7dd3fc !important; }
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-02 { border-left-color: #10b981 !important; }
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-02 .ebd-mag-num { background: #059669 !important; border-color: #6ee7b7 !important; }
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-03 { border-left-color: #8b5cf6 !important; }
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-03 .ebd-mag-num { background: #6d28d9 !important; border-color: #ddd6fe !important; }
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-04 { border-left-color: #f97316 !important; }
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-04 .ebd-mag-num { background: #ea580c !important; border-color: #fdba74 !important; }
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-05 { border-left-color: #14b8a6 !important; }
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-05 .ebd-mag-num { background: #0d9488 !important; border-color: #99f6e4 !important; }
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-06 { border-left-color: #ec4899 !important; }
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-06 .ebd-mag-num { background: #db2777 !important; border-color: #fbcfe8 !important; }
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-07 { border-left-color: #6366f1 !important; }
+    #screen-teacher-portal .ebd-mag-block.ebd-sec-07 .ebd-mag-num { background: #4f46e5 !important; border-color: #c7d2fe !important; }
     #screen-teacher-portal .ebd-mag-block-head {
       display: flex;
       align-items: center;
@@ -9498,7 +9553,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
   `;
 
   const inlineBlock7 = forPrintMode ? "" : `
-    <div class="ebd-mag-block" style="border-left-color:#334155;">
+    <div class="ebd-mag-block ebd-sec-07">
       <div class="ebd-mag-block-head" style="color:#334155;">
         <span class="ebd-mag-num">07</span>
         <div class="ebd-mag-block-title">Folha de Atividade para Colorir (Fundo Branco A4)</div>
@@ -9540,7 +9595,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
       </div>
 
       <!-- BLOCO 01: OBJETIVO & LINHA DO TEMPO -->
-      <div class="ebd-mag-block" style="border-left-color:#0284c7;">
+      <div class="ebd-mag-block ebd-sec-01">
         <div class="ebd-mag-block-head" style="color:#0284c7;">
           <span class="ebd-mag-num">01</span>
           <div class="ebd-mag-block-title">Objetivo Pedagógico &amp; Linha do Tempo da Promessa</div>
@@ -9557,7 +9612,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
       </div>
 
       <!-- BLOCO 02: PONTE CASA <-> IGREJA -->
-      <div class="ebd-mag-block" style="border-left-color:#059669;">
+      <div class="ebd-mag-block ebd-sec-02">
         <div class="ebd-mag-block-head" style="color:#047857;">
           <span class="ebd-mag-num">02</span>
           <div class="ebd-mag-block-title">Ponte Casa ↔ Igreja (Fé em Ação &amp; Devocional 7 Dias • 5 min)</div>
@@ -9588,7 +9643,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
       </div>
 
       <!-- BLOCO 03: ROTEIRO DA HISTÓRIA BÍBLICA -->
-      <div class="ebd-mag-block" style="border-left-color:#6d28d9;">
+      <div class="ebd-mag-block ebd-sec-03">
         <div class="ebd-mag-block-head" style="color:#6d28d9;">
           <span class="ebd-mag-num">03</span>
           <div class="ebd-mag-block-title">Roteiro da História Bíblica &amp; Abordagem por Idade (15 min)</div>
@@ -9611,7 +9666,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
       </div>
 
       <!-- BLOCO 04: SEMENTINHA NO CORAÇÃO (VERSÍCULO ÚNICO OFICIAL + 2 DINÂMICAS) -->
-      <div class="ebd-mag-block" style="border-left-color:#d97706;">
+      <div class="ebd-mag-block ebd-sec-04">
         <div class="ebd-mag-block-head" style="color:#b45309;">
           <span class="ebd-mag-num">04</span>
           <div class="ebd-mag-block-title">Sementinha no Coração &amp; Dinâmicas de Memorização (5 min)</div>
@@ -9633,7 +9688,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
       </div>
 
       <!-- BLOCO 05: DINÂMICA PRÁTICA & MATERIAIS -->
-      <div class="ebd-mag-block" style="border-left-color:#ea580c;">
+      <div class="ebd-mag-block ebd-sec-05">
         <div class="ebd-mag-block-head" style="color:#c2410c;">
           <span class="ebd-mag-num">05</span>
           <div class="ebd-mag-block-title">Dinâmica Prática de Sala &amp; Adaptação Pedagógica (10 min)</div>
@@ -9661,7 +9716,7 @@ window.buildLessonMagazineHtml = function(lesson, forPrintMode) {
       </div>
 
       <!-- BLOCO 06: RODA DE PERGUNTAS & GABARITO 100% SINCRONIZADO COM OS JOGOS DA LIÇÃO -->
-      <div class="ebd-mag-block" style="border-left-color:#be123c;">
+      <div class="ebd-mag-block ebd-sec-06">
         <div class="ebd-mag-block-head" style="color:#be123c;">
           <span class="ebd-mag-num">06</span>
           <div class="ebd-mag-block-title">Revisão em Roda &amp; Gabarito dos Jogos da Lição no App (5 min)</div>
@@ -10290,7 +10345,8 @@ window.selectTeacherPortalWeek = function(weekNum) {
   const total = (window.EBD_LESSONS_CURRICULUM || []).length || 22;
   const wk = Math.max(1, Math.min(total, Number(weekNum) || 1));
   if (typeof window.isLessonWeekUnlocked === "function" && !window.isLessonWeekUnlocked(wk)) {
-    window.ebdAskSubscribe("Liberar Revista Digital e Slides das Lições 6 a 22!");
+    window.showEbdPrintToast("Assine o plano familiar para abrir as Lições 6 a 22 na tela.");
+    window.openAdultPortalSection("family");
     return;
   }
   window.EBD_MAGAZINE_STATE.portalWeek = wk;
@@ -10326,8 +10382,280 @@ window.showEbdPrintToast = function(msg) {
   }, 3200);
 };
 
-// Motor Universal de Impressão / PDF em Fundo 100% Branco (#ebd-print-mount + @media print)
-window.triggerEbdWhitePrint = async function(pagesHtml, docTitle) {
+// ============================================================================
+// MOTOR EDITORIAL PADRÃO ABNT NBR 14724 (A4 RETRATO: 3cm SUP/ESQ, 2cm INF/DIR)
+// ============================================================================
+window.buildStandaloneAbntDocumentHtml = function(bodyContentHtml, docTitle) {
+  const safeTitle = window.escapeEbdHtml(docTitle || "Material_Didatico_Trono_da_Promessa_EBD");
+  return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>${safeTitle}</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 30mm 20mm 20mm 30mm;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #000000;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .abnt-doc-header {
+      text-align: center;
+      border-bottom: 1.5pt solid #000000;
+      padding-bottom: 8pt;
+      margin-bottom: 14pt;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .abnt-inst-kicker {
+      font-size: 9.5pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.4pt;
+      margin-bottom: 3pt;
+    }
+    .abnt-main-title {
+      font-size: 14pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      line-height: 1.25;
+      margin: 2pt 0 4pt 0;
+    }
+    .abnt-meta-line {
+      font-size: 10.5pt;
+      font-weight: normal;
+    }
+    .abnt-h1 {
+      font-size: 11.5pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 14pt 0 5pt 0;
+      padding-bottom: 2pt;
+      border-bottom: 0.75pt solid #333333;
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+    .abnt-p {
+      margin: 0 0 7pt 0;
+      text-align: justify;
+      orphans: 3;
+      widows: 3;
+    }
+    .abnt-list {
+      margin: 0 0 8pt 18pt;
+      padding: 0;
+    }
+    .abnt-list li {
+      margin-bottom: 4pt;
+      text-align: justify;
+    }
+    .abnt-quote-box {
+      margin: 8pt 0 10pt 20mm;
+      padding: 6pt 0 6pt 10pt;
+      border-left: 2pt solid #000000;
+      font-size: 10.5pt;
+      line-height: 1.4;
+      text-align: justify;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .abnt-new-page {
+      page-break-before: always;
+      break-before: page;
+    }
+    .abnt-avoid-break {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    table.abnt-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5pt;
+      margin: 8pt 0 12pt 0;
+    }
+    table.abnt-table th,
+    table.abnt-table td {
+      border-top: 0.75pt solid #000000;
+      border-bottom: 0.75pt solid #000000;
+      padding: 5pt 6pt;
+      text-align: left;
+      vertical-align: top;
+    }
+    table.abnt-table thead th {
+      border-top: 1.2pt solid #000000;
+      border-bottom: 1.2pt solid #000000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+${bodyContentHtml}
+</body>
+</html>`;
+};
+
+window.buildAbntColoringSheetBodyHtml = function(lesson, startOnNewPage) {
+  const esc = window.escapeEbdHtml;
+  const col = window.getLessonColoringOutlineInfo(lesson);
+  const age68 = (lesson.byAge && lesson.byAge["6-8"]) || {};
+  const age35 = (lesson.byAge && lesson.byAge["3-5"]) || {};
+  const verseTxt = age68.verse || age35.verse || "";
+  return `
+    <div class="${startOnNewPage ? "abnt-new-page" : ""} abnt-avoid-break" style="text-align:center;">
+      <div class="abnt-doc-header">
+        <div class="abnt-inst-kicker">TRONO DA PROMESSA EBD • FOLHA DE ATIVIDADE PEDAGÓGICA</div>
+        <div class="abnt-main-title">LIÇÃO ${lesson.week}: ${esc(lesson.title)}</div>
+        <div class="abnt-meta-line">Base Bíblica: ${esc(lesson.bibleRef)} • Ilustração: ${esc(col.artTitle)}</div>
+      </div>
+
+      <table style="width:100%; border-collapse:collapse; margin-bottom:12pt; font-size:10.5pt;">
+        <tr>
+          <td style="text-align:left; padding-bottom:3pt; border-bottom:0.75pt solid #000000; width:72%;"><strong>ALUNO(A):</strong></td>
+          <td style="text-align:right; padding-bottom:3pt; border-bottom:0.75pt solid #000000; width:28%;"><strong>DATA:</strong> ____/____/________</td>
+        </tr>
+      </table>
+
+      <div style="margin:8pt auto; padding:6pt; border:0.75pt solid #000000;">
+        <img src="${col.outlineUrl}" alt="${esc(col.artTitle)}" style="width:100%; max-height:168mm; object-fit:contain; display:block; margin:0 auto;">
+      </div>
+
+      <p style="margin:10pt 0 0 0; font-size:10.5pt; font-weight:bold; text-align:center;">
+        ${esc(verseTxt)}
+      </p>
+    </div>
+  `;
+};
+
+window.buildAbntLessonBodyHtml = function(lesson, startOnNewPage) {
+  if (!lesson) return "";
+  const esc = window.escapeEbdHtml;
+  const tg = lesson.teacherGuide || {};
+  const ch = lesson.chronology || {};
+  const age35 = (lesson.byAge && lesson.byAge["3-5"]) || {};
+  const age68 = (lesson.byAge && lesson.byAge["6-8"]) || {};
+  const extras = window.getLessonSyncedPedagogicalData(lesson);
+  const col = window.getLessonColoringOutlineInfo(lesson);
+  const moments = window.splitVovoStoryMoments(lesson);
+  const unifiedVerse = age68.verse || age35.verse || "";
+  const unifiedMissionTitle = age68.actionTitle || age35.actionTitle || "Missão da Semana";
+  const unifiedMissionDesc = age68.actionDesc || age35.actionDesc || "";
+  const devDays = Array.isArray(lesson.devotional7Days) ? lesson.devotional7Days : [];
+  const weekdayNames = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
+  const words = (extras.wordSearch && Array.isArray(extras.wordSearch.words)) ? extras.wordSearch.words : [];
+
+  let quizAnsLabel = "";
+  if (extras.quizVisual && Array.isArray(extras.quizVisual.opts)) {
+    const winOpt = extras.quizVisual.opts.find(o => o.win);
+    quizAnsLabel = winOpt ? winOpt.label : "";
+  }
+  let orderedChrono = [];
+  if (extras.chronoGame && Array.isArray(extras.chronoGame.cards)) {
+    orderedChrono = extras.chronoGame.cards.slice().sort((a, b) => Number(a.correctOrder) - Number(b.correctOrder));
+  }
+
+  return `
+    <div class="${startOnNewPage ? "abnt-new-page" : ""}">
+      <div class="abnt-doc-header">
+        <div class="abnt-inst-kicker">CURRÍCULO DE ESCOLA BÍBLICA DOMINICAL (3 A 8 ANOS) • TRONO DA PROMESSA EBD</div>
+        <div class="abnt-main-title">LIÇÃO ${lesson.week}: ${esc(lesson.title)}</div>
+        <div class="abnt-meta-line"><strong>Base Bíblica:</strong> ${esc(lesson.bibleRef)} &nbsp;|&nbsp; <strong>Período:</strong> ${esc(lesson.eraName || "")} ${ch.testament ? `(${esc(ch.testament)})` : ""}</div>
+      </div>
+
+      <div class="abnt-h1">1 OBJETIVO PEDAGÓGICO E CONEXÃO CRONOLÓGICA</div>
+      <p class="abnt-p"><strong>Objetivo Central da Aula:</strong> ${esc(tg.objective || "")}</p>
+      <ul class="abnt-list">
+        ${ch.before ? `<li><strong>Contexto Anterior:</strong> ${esc(ch.before.replace(/^Antes desta história:\s*/i, ""))}</li>` : ""}
+        ${ch.now ? `<li><strong>Evento Central desta Lição:</strong> ${esc(ch.now.replace(/^Nesta Lição[^:]*:\s*/i, ""))}</li>` : ""}
+        ${ch.after ? `<li><strong>Continuidade Bíblica:</strong> ${esc(ch.after.replace(/^O que vem depois:\s*/i, ""))}</li>` : ""}
+        ${lesson.chronologyConnection ? `<li><strong>Conexão com a Promessa:</strong> ${esc(lesson.chronologyConnection)}</li>` : ""}
+      </ul>
+
+      <div class="abnt-h1">2 PONTE CASA E IGREJA (DEVOCIONAL FAMILIAR E MISSÃO)</div>
+      <p class="abnt-p"><strong>${esc(unifiedMissionTitle)}:</strong> ${esc(unifiedMissionDesc)}</p>
+      <p class="abnt-p"><strong>Abordagem 3 a 5 anos:</strong> ${esc(age35.actionDesc || "")}</p>
+      <p class="abnt-p"><strong>Trilha Devocional da Semana (Segunda a Domingo):</strong> ${devDays.map((d, idx) => {
+        const wLabel = weekdayNames[idx] || `${d.day}º Dia`;
+        const cleanT = String(d.title || "").replace(/^Dia\s*\d+\s*[•\-:]\s*/i, "").trim();
+        return `<strong>${esc(wLabel)}:</strong> ${esc(cleanT)}`;
+      }).join("; ")}.</p>
+
+      <div class="abnt-h1">3 ROTEIRO DA HISTÓRIA BÍBLICA E ADAPTAÇÃO POR FAIXA ETÁRIA</div>
+      <p class="abnt-p"><strong>Síntese para 3 a 5 anos:</strong> ${esc(age35.text || "")}</p>
+      <p class="abnt-p"><strong>Aprofundamento para 6 a 8 anos:</strong> ${esc(age68.text || "")}</p>
+      ${moments.map(m => `<p class="abnt-p"><strong>${esc(m.label)}:</strong> ${esc(m.text)}</p>`).join("")}
+
+      <div class="abnt-h1">4 VERSÍCULO DE MEMORIZAÇÃO</div>
+      <div class="abnt-quote-box">
+        <strong>Versículo Oficial:</strong> ${esc(unifiedVerse)}
+      </div>
+      <p class="abnt-p"><strong>Dinâmica Oral (3 a 5 anos):</strong> ${esc(extras.memoTip || "")}</p>
+      <p class="abnt-p"><strong>Dinâmica em Equipe (6 a 8 anos):</strong> ${esc(extras.memoTip68 || "")}</p>
+
+      <div class="abnt-h1">5 DINÂMICA PRÁTICA DE SALA E MATERIAIS</div>
+      <p class="abnt-p"><strong>Materiais Sugeridos:</strong> ${esc(tg.materials || "")}</p>
+      <p class="abnt-p"><strong>Condução Passo a Passo:</strong> ${esc(tg.classroomDynamic || "")}</p>
+      ${extras.adaptTip ? `
+        <p class="abnt-p"><strong>Adaptação (3 a 5 anos):</strong> ${esc(extras.adaptTip.a35)}</p>
+        <p class="abnt-p"><strong>Adaptação (6 a 8 anos):</strong> ${esc(extras.adaptTip.a68)}</p>
+      ` : ""}
+
+      <div class="abnt-h1">6 REVISÃO EM RODA E GABARITO DAS ATIVIDADES</div>
+      <ul class="abnt-list">
+        ${extras.quizVisual ? `<li><strong>Pergunta de Revisão (Quiz):</strong> "${esc(extras.quizVisual.q)}" — <strong>Resposta:</strong> ${esc(quizAnsLabel)}.</li>` : ""}
+        ${orderedChrono.length ? `<li><strong>Ordem Cronológica das Cenas:</strong> ${orderedChrono.map((c, idx) => `${idx + 1}º) ${esc(c.label)}`).join("; ")}.</li>` : ""}
+        ${extras.trueMyth ? `<li><strong>Verdadeiro ou Mito:</strong> "${esc(String(extras.trueMyth.statement || "").replace(/^Lição\s*\d+:\s*/i, ""))}" — <strong>${extras.trueMyth.isTrue ? "VERDADEIRO" : "MITO"}:</strong> ${esc(extras.trueMyth.explanation)}</li>` : ""}
+        ${extras.secretWord ? `<li><strong>Palavra-Chave da Lição:</strong> ${esc(extras.secretWord.word)} (${esc(String(extras.secretWord.hint || "").replace(/^Lição\s*\d+:\s*/i, ""))}).</li>` : ""}
+        ${words.length ? `<li><strong>Vocabulário do Caça-Palavras:</strong> ${words.map(w => esc(w)).join(", ")}.</li>` : ""}
+      </ul>
+    </div>
+    ${window.buildAbntColoringSheetBodyHtml(lesson, true)}
+  `;
+};
+
+window.triggerEbdWhitePrint = async function(abntBodyHtml, docTitle) {
+  const fullHtml = window.buildStandaloneAbntDocumentHtml(abntBodyHtml, docTitle);
+  window.showEbdPrintToast("Preparando documento A4 padrão ABNT...");
+
+  // 1) Motor Nativo Android (WebView dedicada ISO_A4 sem interferir na tela mobile!)
+  if (window.TronoPlayBilling && typeof window.TronoPlayBilling.printHtmlDocument === "function") {
+    try {
+      setTimeout(() => {
+        const toast = document.getElementById("ebd-print-toast");
+        if (toast) toast.style.display = "none";
+      }, 900);
+      window.TronoPlayBilling.printHtmlDocument(fullHtml, docTitle || "Trono_da_Promessa_EBD");
+      return;
+    } catch (e) {}
+  }
+
+  // 2) Navegadores Desktop / Web: janela limpa A4 padrão ABNT
+  const w = window.open("", "_blank");
+  if (w && w.document) {
+    w.document.open();
+    w.document.write(fullHtml);
+    w.document.close();
+    setTimeout(() => {
+      const toast = document.getElementById("ebd-print-toast");
+      if (toast) toast.style.display = "none";
+      w.focus();
+      w.print();
+    }, 500);
+    return;
+  }
+
+  // 3) Fallback em página caso popups estejam bloqueados
   window.ensureEbdMagazineStyles();
   let mount = document.getElementById("ebd-print-mount");
   if (!mount) {
@@ -10335,112 +10663,103 @@ window.triggerEbdWhitePrint = async function(pagesHtml, docTitle) {
     mount.id = "ebd-print-mount";
     document.body.appendChild(mount);
   }
-  mount.innerHTML = pagesHtml;
-  window.showEbdPrintToast("Preparando folhas em fundo branco para impressão / PDF...");
-
-  const imgs = Array.from(mount.querySelectorAll("img"));
-  await Promise.all(imgs.map(im => {
-    if (im.complete && im.naturalWidth > 0) return Promise.resolve();
-    return new Promise(res => {
-      const t = setTimeout(res, 2600);
-      im.onload = () => { clearTimeout(t); res(); };
-      im.onerror = () => { clearTimeout(t); res(); };
-    });
-  }));
-
-  const prevTitle = document.title;
-  if (docTitle) document.title = docTitle;
-
-  const cleanup = () => {
-    document.title = prevTitle;
-  };
-  window.addEventListener("afterprint", cleanup, { once: true });
-
+  mount.innerHTML = `<div style="padding:10mm; font-family:Arial,sans-serif; font-size:11pt; line-height:1.5; text-align:justify;">${abntBodyHtml}</div>`;
   setTimeout(() => {
     const toast = document.getElementById("ebd-print-toast");
     if (toast) toast.style.display = "none";
     window.print();
-    setTimeout(cleanup, 1800);
-  }, 120);
+  }, 200);
 };
 
 window.printSingleEbdLesson = function(weekNum) {
   window.ebdClick();
   const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getActiveTeacherPortalLessonObj();
   if (!lesson) return;
-  const html = window.buildLessonMagazineHtml(lesson, true);
+  const bodyHtml = window.buildAbntLessonBodyHtml(lesson, false);
   const pad = String(lesson.week).padStart(2, "0");
-  window.triggerEbdWhitePrint(html, `Revista_Trono_da_Promessa_EBD_Licao_${pad}`);
+  window.triggerEbdWhitePrint(bodyHtml, `Revista_ABNT_Trono_da_Promessa_Licao_${pad}`);
 };
 
 window.printOnlyColoringSheetA4 = function(weekNum) {
   window.ebdClick();
   const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getActiveTeacherPortalLessonObj();
   if (!lesson) return;
-  const html = window.buildColoringPageA4Html(lesson);
+  const bodyHtml = window.buildAbntColoringSheetBodyHtml(lesson, false);
   const pad = String(lesson.week).padStart(2, "0");
-  window.triggerEbdWhitePrint(html, `Atividade_Colorir_Trono_da_Promessa_EBD_Licao_${pad}`);
+  window.triggerEbdWhitePrint(bodyHtml, `Folha_Atividade_A4_Licao_${pad}`);
 };
 
 window.printLessonSlidesHandoutWhite = function(weekNum) {
   window.ebdClick();
   const lesson = (window.EBD_LESSONS_CURRICULUM || []).find(l => Number(l.week) === Number(weekNum)) || window.getActiveTeacherPortalLessonObj();
   if (!lesson) return;
+  const esc = window.escapeEbdHtml;
   const slides = window.buildLessonSlidesArray(lesson);
-  window.EBD_MAGAZINE_STATE.slideAnswerRevealed = true;
-  let pagesHtml = "";
-  for (let i = 0; i < slides.length; i += 2) {
-    const s1 = window.renderSingleSlideCardHtml(slides[i], i, slides.length, false);
-    const s2 = (i + 1 < slides.length)
-      ? `<div style="margin-top:14px;">${window.renderSingleSlideCardHtml(slides[i + 1], i + 1, slides.length, false)}</div>`
-      : "";
-    pagesHtml += `<div class="ebd-print-page" style="background:#ffffff !important; padding:4px 0;">${s1}${s2}</div>`;
-  }
+  const rowsHtml = slides.map((sl, idx) => {
+    let contentTxt = "";
+    if (sl.type === "cover") contentTxt = `${esc(sl.title)} — ${esc(sl.subtitle)} (${esc(sl.note)})`;
+    else if (sl.type === "timeline") contentTxt = `Antes: ${esc(sl.before)} | Nesta Lição: ${esc(sl.now)} | Rumo à Promessa: ${esc(sl.after || sl.connection)}`;
+    else if (sl.type === "scene") contentTxt = esc(sl.caption);
+    else if (sl.type === "verse") contentTxt = `${esc(sl.verse)} — 3 a 5 anos: ${esc(sl.tip35 || "")} | 6 a 8 anos: ${esc(sl.tip68 || "")}`;
+    else if (sl.type === "quiz_action") contentTxt = `Quiz: ${esc(sl.quizQ)} (Resp.: ${esc(sl.quizAns)}) | Missão: ${esc(sl.missionDesc)}`;
+    return `
+      <div class="abnt-avoid-break" style="border:0.75pt solid #000000; padding:8pt 10pt; margin-bottom:10pt;">
+        <div style="font-size:10pt; font-weight:bold; text-transform:uppercase; border-bottom:0.5pt solid #666666; padding-bottom:3pt; margin-bottom:6pt;">
+          SLIDE ${idx + 1} DE ${slides.length} — ${esc(sl.badge)}
+        </div>
+        ${sl.img ? `<img src="${sl.img}" alt="" style="width:100%; max-height:68mm; object-fit:contain; display:block; margin:0 auto 6pt auto;">` : ""}
+        <p class="abnt-p" style="margin:0;">${contentTxt}</p>
+      </div>
+    `;
+  }).join("");
+
+  const bodyHtml = `
+    <div class="abnt-doc-header">
+      <div class="abnt-inst-kicker">ROTEIRO DE SLIDES DE AULA • TRONO DA PROMESSA EBD</div>
+      <div class="abnt-main-title">LIÇÃO ${lesson.week}: ${esc(lesson.title)}</div>
+      <div class="abnt-meta-line">Base Bíblica: ${esc(lesson.bibleRef)} • Total de ${slides.length} Slides</div>
+    </div>
+    ${rowsHtml}
+  `;
   const pad = String(lesson.week).padStart(2, "0");
-  window.triggerEbdWhitePrint(pagesHtml, `Slides_Trono_da_Promessa_EBD_Licao_${pad}`);
+  window.triggerEbdWhitePrint(bodyHtml, `Slides_ABNT_Trono_da_Promessa_Licao_${pad}`);
 };
 
 window.printFullEbdMagazine = function() {
   window.ebdClick();
-  if (!(typeof isVipUnlocked !== "undefined" && isVipUnlocked)) {
-    window.ebdAskSubscribe("Liberar Impressão da Apostila Completa (22 Lições)!");
-    return;
-  }
   const esc = window.escapeEbdHtml;
   const lessons = window.EBD_LESSONS_CURRICULUM || [];
   if (!lessons.length) return;
 
   const coverAndTocHtml = `
-    <div class="ebd-print-page" style="background:#ffffff !important; border:3px solid #4c1d95; border-radius:12px; padding:26px 22px; font-family:'Nunito','Segoe UI',Arial,sans-serif; color:#0f172a;">
-      <div style="text-align:center; border-bottom:3px solid #6d28d9; padding-bottom:16px; margin-bottom:18px;">
-        <div style="font-family:'Fredoka',sans-serif; font-size:14px; font-weight:900; color:#0369a1; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:6px;">
-          CURRÍCULO OFICIAL DE ESCOLA BÍBLICA DOMINICAL (3 A 8 ANOS)
+    <div>
+      <div style="text-align:center; padding:18mm 0 14mm 0; border-bottom:1.5pt solid #000000; margin-bottom:16pt;">
+        <div style="font-size:11pt; font-weight:bold; text-transform:uppercase; letter-spacing:0.6pt; margin-bottom:10pt;">
+          VÓRTICE MÍDIA • CURRÍCULO OFICIAL DE ESCOLA BÍBLICA DOMINICAL (3 A 8 ANOS)
         </div>
-        <div style="font-family:'Fredoka',sans-serif; font-size:30px; font-weight:900; color:#4c1d95; line-height:1.15; margin-bottom:6px;">
-          REVISTA DIGITAL<br>TRONO DA PROMESSA EBD
+        <div style="font-size:20pt; font-weight:bold; text-transform:uppercase; line-height:1.25; margin-bottom:8pt;">
+          REVISTA DO PROFESSOR<br>TRONO DA PROMESSA EBD
         </div>
-        <div style="font-size:14px; font-weight:800; color:#047857;">
-          Guia Completo de Família &amp; Professor • 22 Lições Unificadas com Pílulas Pedagógicas (3–5 e 6–8 anos) e Folhas A4
+        <div style="font-size:11pt;">
+          Apostila Pedagógica Completa • ${lessons.length} Lições Unificadas e Folhas de Atividade A4
         </div>
       </div>
 
-      <div style="font-family:'Fredoka',sans-serif; font-size:16px; font-weight:900; color:#4c1d95; margin-bottom:8px; text-transform:uppercase;">
-        Sumário Oficial das ${lessons.length} Lições (Fundo Branco para Impressão):
-      </div>
-      <table style="width:100%; border-collapse:collapse; font-size:12px; background:#ffffff !important;">
+      <div class="abnt-h1" style="text-align:center; border-bottom:none; margin-bottom:8pt;">SUMÁRIO GERAL DAS ${lessons.length} LIÇÕES</div>
+      <table class="abnt-table">
         <thead>
-          <tr style="border-bottom:2px solid #6d28d9; text-align:left; color:#4c1d95;">
-            <th style="padding:5px 6px;">Lição</th>
-            <th style="padding:5px 6px;">Título da Aula</th>
-            <th style="padding:5px 6px;">Base Bíblica</th>
+          <tr>
+            <th style="width:16%;">Lição</th>
+            <th style="width:52%;">Título da Aula</th>
+            <th style="width:32%;">Base Bíblica</th>
           </tr>
         </thead>
         <tbody>
           ${lessons.map(l => `
-            <tr style="border-bottom:1px solid #e2e8f0;">
-              <td style="padding:4.5px 6px; font-weight:900; color:#0369a1; white-space:nowrap;">Lição ${l.week}</td>
-              <td style="padding:4.5px 6px; font-weight:800; color:#0f172a;">${esc(l.title)}</td>
-              <td style="padding:4.5px 6px; font-weight:700; color:#475569;">${esc(l.bibleRef)}</td>
+            <tr>
+              <td><strong>Lição ${l.week}</strong></td>
+              <td>${esc(l.title)}</td>
+              <td>${esc(l.bibleRef)}</td>
             </tr>
           `).join("")}
         </tbody>
@@ -10448,8 +10767,8 @@ window.printFullEbdMagazine = function() {
     </div>
   `;
 
-  const allLessonsHtml = coverAndTocHtml + lessons.map(l => window.buildLessonMagazineHtml(l, true)).join("");
-  window.triggerEbdWhitePrint(allLessonsHtml, `Revista_Completa_Trono_da_Promessa_EBD_${lessons.length}_Licoes`);
+  const allLessonsHtml = coverAndTocHtml + lessons.map(l => window.buildAbntLessonBodyHtml(l, true)).join("");
+  window.triggerEbdWhitePrint(allLessonsHtml, `Apostila_ABNT_Completa_Trono_da_Promessa_${lessons.length}_Licoes`);
 };
 
 // Exportador HiDPI (1240x1754 A4 150dpi) 100% Fundo Branco Puro (#ffffff) para Celular / WhatsApp / Impressora!
