@@ -9526,6 +9526,7 @@ window.ensureEbdMagazineStyles = function() {
       #trono-arcade-overlay,
       #trono-parental-gate-modal,
       #ebd-fullscreen-slide-modal,
+      #ebd-abnt-pdf-preview-modal,
       #ebd-print-toast {
         display: none !important;
       }
@@ -10696,18 +10697,30 @@ window.buildAbntLessonBodyHtml = function(lesson, startOnNewPage) {
   `;
 };
 
-window.triggerEbdWhitePrint = async function(abntBodyHtml, docTitle) {
-  const fullHtml = window.buildStandaloneAbntDocumentHtml(abntBodyHtml, docTitle);
-  window.showEbdPrintToast("Preparando documento A4 padrão ABNT...");
+window._activeAbntPdfPayload = { bodyHtml: "", docTitle: "", label: "" };
 
-  // 1) Motor Nativo Android (WebView dedicada ISO_A4 sem interferir na tela mobile!)
+window.closeAbntPdfViewerModal = function() {
+  window.ebdClick();
+  const modal = document.getElementById("ebd-abnt-pdf-preview-modal");
+  if (modal) {
+    modal.style.display = "none";
+    modal.innerHTML = "";
+  }
+};
+
+window.executeNativeAbntPdfPrint = function() {
+  window.ebdClick();
+  const abntBodyHtml = (window._activeAbntPdfPayload && window._activeAbntPdfPayload.bodyHtml) || "";
+  const docTitle = (window._activeAbntPdfPayload && window._activeAbntPdfPayload.docTitle) || "Trono_da_Promessa_EBD";
+  if (!abntBodyHtml) return;
+
+  const fullHtml = window.buildStandaloneAbntDocumentHtml(abntBodyHtml, docTitle);
+  window.showEbdPrintToast("Abrindo seletor oficial de Salvar PDF / Impressora...");
+
+  // 1) Motor Nativo Android (WebView anexada na janela em tamanho real ISO_A4 794x1123!)
   if (window.TronoPlayBilling && typeof window.TronoPlayBilling.printHtmlDocument === "function") {
     try {
-      setTimeout(() => {
-        const toast = document.getElementById("ebd-print-toast");
-        if (toast) toast.style.display = "none";
-      }, 900);
-      window.TronoPlayBilling.printHtmlDocument(fullHtml, docTitle || "Trono_da_Promessa_EBD");
+      window.TronoPlayBilling.printHtmlDocument(fullHtml, docTitle);
       return;
     } catch (e) {}
   }
@@ -10723,11 +10736,11 @@ window.triggerEbdWhitePrint = async function(abntBodyHtml, docTitle) {
       if (toast) toast.style.display = "none";
       w.focus();
       w.print();
-    }, 500);
+    }, 450);
     return;
   }
 
-  // 3) Fallback em página caso popups estejam bloqueados
+  // 3) Fallback na própria página
   window.ensureEbdMagazineStyles();
   let mount = document.getElementById("ebd-print-mount");
   if (!mount) {
@@ -10737,10 +10750,125 @@ window.triggerEbdWhitePrint = async function(abntBodyHtml, docTitle) {
   }
   mount.innerHTML = `<div style="padding:10mm; font-family:Arial,sans-serif; font-size:11pt; line-height:1.5; text-align:justify;">${abntBodyHtml}</div>`;
   setTimeout(() => {
-    const toast = document.getElementById("ebd-print-toast");
-    if (toast) toast.style.display = "none";
     window.print();
   }, 200);
+};
+
+window.triggerEbdWhitePrint = function(abntBodyHtml, docTitle, customHeaderLabel) {
+  window._activeAbntPdfPayload = {
+    bodyHtml: abntBodyHtml,
+    docTitle: docTitle || "Material_Didatico_Trono_da_Promessa_EBD",
+    label: customHeaderLabel || "VISUALIZAÇÃO DO PDF (A4)"
+  };
+
+  let modal = document.getElementById("ebd-abnt-pdf-preview-modal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "ebd-abnt-pdf-preview-modal";
+    document.body.appendChild(modal);
+  }
+
+  modal.style.cssText = "position:fixed; inset:0; z-index:10000350; background:#000000; display:flex; flex-direction:column; padding:max(12px, env(safe-area-inset-top, 12px)) 12px max(22px, calc(16px + env(safe-area-inset-bottom, 0px))) 12px; box-sizing:border-box;";
+
+  // Separa visualmente cada folha A4 (Guia Pedagógico + Folha de Atividade) para o professor ler exatamente como ficará impresso!
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = abntBodyHtml;
+  const topChildren = Array.from(tempDiv.children);
+  const sheetsHtml = (topChildren.length ? topChildren : [tempDiv]).map((node, idx, arr) => `
+    <div style="background:#ffffff; color:#000000; width:100%; max-width:680px; margin:0 auto 18px auto; border-radius:8px; padding:26px 18px 20px 24px; box-shadow:0 12px 32px rgba(0,0,0,0.85); font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:1.52; text-align:justify; box-sizing:border-box;">
+      <div style="display:flex; justify-content:space-between; align-items:center; font-size:10.5px; font-weight:bold; color:#64748b; border-bottom:1px dashed #cbd5e1; padding-bottom:5px; margin-bottom:12px;">
+        <span>FOLHA A4 • PADRÃO ABNT</span>
+        <span>PÁGINA ${idx + 1} DE ${arr.length}</span>
+      </div>
+      <div class="abnt-preview-sheet-inner">
+        ${node.outerHTML || node.innerHTML}
+      </div>
+    </div>
+  `).join("");
+
+  modal.innerHTML = `
+    <style>
+      #ebd-abnt-pdf-preview-modal .abnt-doc-header {
+        text-align: center;
+        border-bottom: 1.5px solid #000000;
+        padding-bottom: 8px;
+        margin-bottom: 14px;
+      }
+      #ebd-abnt-pdf-preview-modal .abnt-inst-kicker {
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #111827;
+        margin-bottom: 3px;
+      }
+      #ebd-abnt-pdf-preview-modal .abnt-main-title {
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #000000;
+        line-height: 1.25;
+        margin: 2px 0 4px 0;
+      }
+      #ebd-abnt-pdf-preview-modal .abnt-meta-line {
+        font-size: 11.5px;
+        color: #1f2937;
+      }
+      #ebd-abnt-pdf-preview-modal .abnt-h1 {
+        font-size: 12.5px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #000000;
+        margin: 15px 0 6px 0;
+        padding-bottom: 3px;
+        border-bottom: 1px solid #334155;
+      }
+      #ebd-abnt-pdf-preview-modal .abnt-p {
+        margin: 0 0 8px 0;
+        text-align: justify;
+        color: #000000;
+      }
+      #ebd-abnt-pdf-preview-modal .abnt-list {
+        margin: 0 0 10px 18px;
+        padding: 0;
+        color: #000000;
+      }
+      #ebd-abnt-pdf-preview-modal .abnt-list li {
+        margin-bottom: 5px;
+        text-align: justify;
+      }
+      #ebd-abnt-pdf-preview-modal .abnt-quote-box {
+        margin: 8px 0 10px 16px;
+        padding: 7px 10px;
+        border-left: 3px solid #000000;
+        background: #f8fafc;
+        font-size: 12.2px;
+        line-height: 1.45;
+        color: #000000;
+      }
+    </style>
+
+    <div style="width:100%; max-width:680px; margin:0 auto 12px auto; display:flex; align-items:center; justify-content:space-between; gap:8px; padding-bottom:10px; border-bottom:1px solid rgba(148,163,184,0.25); flex-shrink:0;">
+      <button type="button" onclick="window.closeAbntPdfViewerModal()" style="display:inline-flex; align-items:center; gap:6px; height:38px; padding:0 14px; border-radius:999px; border:1.5px solid rgba(233,213,255,0.82); background:linear-gradient(180deg, #8b5cf6 0%, #6d28d9 55%, #4c1d95 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:13px; font-weight:800; cursor:pointer; box-shadow:0 5px 14px rgba(0,0,0,0.65);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Voltar</span>
+      </button>
+
+      <button type="button" onclick="window.executeNativeAbntPdfPrint()" style="display:inline-flex; align-items:center; gap:6px; height:38px; padding:0 16px; border-radius:999px; border:1.5px solid rgba(167,243,208,0.88); background:linear-gradient(180deg, #10b981 0%, #059669 55%, #047857 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:13px; font-weight:800; cursor:pointer; box-shadow:0 5px 14px rgba(0,0,0,0.65);">
+        <span>Salvar PDF / Imprimir</span>
+      </button>
+    </div>
+
+    <div style="flex:1; min-height:0; overflow-y:auto; padding:4px 2px 10px 2px; background:#0f172a; border-radius:14px; border:1px solid rgba(148,163,184,0.25);">
+      <div style="padding:12px 10px 4px 10px;">
+        ${sheetsHtml}
+        <div style="max-width:680px; margin:0 auto 14px auto; display:flex; flex-direction:column; gap:8px;">
+          <button type="button" onclick="window.executeNativeAbntPdfPrint()" style="width:100%; padding:13px 16px; border-radius:12px; border:1.5px solid rgba(167,243,208,0.88); background:linear-gradient(180deg, #10b981 0%, #059669 55%, #047857 100%); color:#ffffff; font-family:'Fredoka',sans-serif; font-size:14px; font-weight:800; cursor:pointer; box-shadow:0 6px 16px rgba(0,0,0,0.65);">
+            BAIXAR ARQUIVO PDF / IMPRIMIR (A4)
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
 };
 
 window.printSingleEbdLesson = function(weekNum) {
@@ -10749,7 +10877,7 @@ window.printSingleEbdLesson = function(weekNum) {
   if (!lesson) return;
   const bodyHtml = window.buildAbntLessonBodyHtml(lesson, false);
   const pad = String(lesson.week).padStart(2, "0");
-  window.triggerEbdWhitePrint(bodyHtml, `Revista_ABNT_Trono_da_Promessa_Licao_${pad}`);
+  window.triggerEbdWhitePrint(bodyHtml, `Revista_ABNT_Trono_da_Promessa_Licao_${pad}`, `PDF • LIÇÃO ${lesson.week}`);
 };
 
 window.printOnlyColoringSheetA4 = function(weekNum) {
@@ -10758,7 +10886,7 @@ window.printOnlyColoringSheetA4 = function(weekNum) {
   if (!lesson) return;
   const bodyHtml = window.buildAbntColoringSheetBodyHtml(lesson, false);
   const pad = String(lesson.week).padStart(2, "0");
-  window.triggerEbdWhitePrint(bodyHtml, `Folha_Atividade_A4_Licao_${pad}`);
+  window.triggerEbdWhitePrint(bodyHtml, `Folha_Atividade_A4_Licao_${pad}`, `ATIVIDADE A4 • LIÇÃO ${lesson.week}`);
 };
 
 window.printLessonSlidesHandoutWhite = function(weekNum) {

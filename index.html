@@ -17,7 +17,7 @@
   <script>
     (function purgeAndSync() {
       try {
-        const CURRENT_VER = 'v209.0';
+        const CURRENT_VER = 'v210.0';
         window.APP_CURRENT_VER = CURRENT_VER;
         window._appBootTs = Date.now();
         window._userEnteredModule = false;
@@ -7171,7 +7171,12 @@ startInitialThemeMusic();
             return 'minimize';
           }
 
-          // 0b. Se os Slides em Tela Cheia da Revista Digital estiverem abertos, fecha apenas a Tela Cheia
+          // 0b. Se o Visualizador de PDF A4 ou Slides em Tela Cheia estiverem abertos, fecha apenas eles
+          const pdfViewerModal = document.getElementById('ebd-abnt-pdf-preview-modal');
+          if (pdfViewerModal && isElementVisible(pdfViewerModal) && typeof window.closeAbntPdfViewerModal === 'function') {
+            window.closeAbntPdfViewerModal();
+            return 'handled';
+          }
           if (window.EBD_MAGAZINE_STATE && window.EBD_MAGAZINE_STATE.fullscreenActive && typeof window.closeFullscreenLessonSlides === 'function') {
             window.closeFullscreenLessonSlides();
             return 'handled';
