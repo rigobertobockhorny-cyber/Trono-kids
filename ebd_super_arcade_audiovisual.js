@@ -2714,8 +2714,7 @@
         if (shouldSpeakPares) {
           _vovoAlreadySpokeInSession = true;
           const paNum = ((pInt - 1) % 25) + 1;
-          const paAudioNum = ((paNum - 1) % 15) + 1;
-          const paAudio = `./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paAudioNum).padStart(2, "0")}.mp3?v=211`;
+          const paAudio = `./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paNum).padStart(2, "0")}.mp3?v=214`;
           TronoAudio.falarVovo(paAudio, () => {
             unlockStageAfterVovo();
           });
@@ -2998,8 +2997,7 @@
       audioTarget = `./6_ASSETS_AUDIO/verdadeiro_mito_vovo/verdadeiro_mito_vovo_${String(tmNum).padStart(2, "0")}.mp3?v=167`;
     } else if (currentActiveGame.id === "tabernaculo_cesto") {
       const paNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % 25) + 1;
-      const paAudioNum = ((paNum - 1) % 15) + 1;
-      audioTarget = `./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paAudioNum).padStart(2, "0")}.mp3?v=211`;
+      audioTarget = `./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paNum).padStart(2, "0")}.mp3?v=214`;
     } else if (currentActiveGame.id === "tabernaculo_cesto") {
       const paNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % 15) + 1;
       audioTarget = `./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paNum).padStart(2, "0")}.mp3?v=172`;
@@ -10992,9 +10990,8 @@
     // Pré-carrega o áudio da próxima fase para transição instantânea
     setTimeout(() => {
       const nextNum = (pNum % 25) + 1;
-      const paAudioNum = ((nextNum - 1) % 15) + 1;
       if (typeof window.preloadArcadeAudioUrl === "function") {
-        window.preloadArcadeAudioUrl(`./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paAudioNum).padStart(2, "0")}.mp3?v=211`);
+        window.preloadArcadeAudioUrl(`./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(nextNum).padStart(2, "0")}.mp3?v=214`);
       }
     }, 900);
 
