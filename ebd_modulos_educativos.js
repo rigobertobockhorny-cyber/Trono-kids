@@ -6728,7 +6728,7 @@ window.openLessonModule = function(modType) {
     } else {
       appShellEl.classList.remove("vovo-player-fullscreen-mode");
     }
-    if (["texto", "sementinha", "fe_acao", "devocional"].includes(modType)) {
+    if (["texto", "sementinha", "fe_acao", "jogos_licao", "devocional"].includes(modType)) {
       appShellEl.classList.add("lesson-subscreen-no-logo");
     } else {
       appShellEl.classList.remove("lesson-subscreen-no-logo");
@@ -7142,6 +7142,18 @@ window.openLessonModule = function(modType) {
     `;
   }
 
+    const topTitleEl = document.getElementById("topbar-game-title");
+  if (topTitleEl) {
+    const modTitles = {
+      texto: "CRONOLOGIA BÍBLICA",
+      vovo: "HISTÓRIA DO VOVÔ",
+      sementinha: "SEMENTINHA",
+      fe_acao: "FÉ EM AÇÃO",
+      jogos_licao: "JOGOS DA LIÇÃO",
+      devocional: "DEVOCIONAL"
+    };
+    topTitleEl.textContent = modTitles[modType] || "SALINHA DA LIÇÃO";
+  }
   if (typeof showScreen === "function") showScreen("screen-lesson-module");
   box.scrollTop = 0;
 };
