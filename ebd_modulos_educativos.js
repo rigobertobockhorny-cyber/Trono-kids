@@ -6746,7 +6746,7 @@ window.openLessonModule = function(modType) {
   if (!box) return;
 
   // Tela única sem scroll para História do Vovô, Sementinha, Fé em Ação e Devocional!
-  if (modType === "vovo" || modType === "sementinha" || modType === "fe_acao" || modType === "devocional") {
+  if (modType === "vovo" || modType === "sementinha" || modType === "fe_acao" || modType === "devocional" || modType === "jogos_licao") {
     box.style.overflowY = "hidden";
     if (modScreenEl) modScreenEl.style.overflowY = "hidden";
   } else {
@@ -7031,14 +7031,14 @@ window.openLessonModule = function(modType) {
       { key: "true_or_myth", title: "VERDADEIRO OU MITO", icon: "./2_ASSETS_UI_BOTOES/ui_icon_05.png?v=161" }
     ];
     box.innerHTML = `
-      <div class="arcade-hub-clean-grid">
+      <div class="lesson-games-fixed-grid">
         ${lessonGames.map(g => {
           const isGameDone = !!gamesMap[g.key];
           return `
-            <div class="arcade-hub-item ${isGameDone ? "game-item-done" : ""}" onclick="openGameFromLesson('${g.key}')">
-              ${isGameDone ? `<div class="arcade-hub-done-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>` : ""}
-              <img src="${g.icon}" alt="${g.title}" class="arcade-hub-icon-3d" decoding="async">
-              <div class="arcade-hub-title">${g.title}</div>
+            <div class="lesson-game-fixed-item ${isGameDone ? "game-item-done" : ""}" onclick="openGameFromLesson('${g.key}')">
+              ${isGameDone ? `<div class="lesson-game-fixed-tick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>` : ""}
+              <img src="${g.icon}" alt="${g.title}" class="lesson-game-fixed-icon" decoding="async">
+              <div class="arcade-hub-title lesson-game-fixed-title">${g.title}</div>
             </div>
           `;
         }).join("")}
