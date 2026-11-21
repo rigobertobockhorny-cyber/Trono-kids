@@ -325,12 +325,22 @@
       "par_arca_07.mp3": 9567,
       "par_arca_08.mp3": 8127,
       "par_arca_09.mp3": 7059,
-      "par_arca_10.mp3": 7895,
+      "par_arca_10.mp3": 7152,
       "par_arca_11.mp3": 6734,
       "par_arca_12.mp3": 8220,
       "par_arca_13.mp3": 7616,
       "par_arca_14.mp3": 8684,
-      "par_arca_15.mp3": 11424,
+      "par_arca_15.mp3": 8266,
+      "par_arca_16.mp3": 6966,
+      "par_arca_17.mp3": 7941,
+      "par_arca_18.mp3": 7848,
+      "par_arca_19.mp3": 8591,
+      "par_arca_20.mp3": 7988,
+      "par_arca_21.mp3": 8777,
+      "par_arca_22.mp3": 8034,
+      "par_arca_23.mp3": 6873,
+      "par_arca_24.mp3": 8591,
+      "par_arca_25.mp3": 12214,
       "vovo_jogo_16.mp3": 9535,
       "vovo_jogo_16_v161.mp3": 9535,
       "vovo_jogo_17.mp3": 18991,
@@ -2998,9 +3008,6 @@
     } else if (currentActiveGame.id === "tabernaculo_cesto") {
       const paNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % 25) + 1;
       audioTarget = `./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paNum).padStart(2, "0")}.mp3?v=214`;
-    } else if (currentActiveGame.id === "tabernaculo_cesto") {
-      const paNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % 15) + 1;
-      audioTarget = `./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paNum).padStart(2, "0")}.mp3?v=172`;
     }
     if (!audioTarget) return;
     TronoAudio.play("click");
