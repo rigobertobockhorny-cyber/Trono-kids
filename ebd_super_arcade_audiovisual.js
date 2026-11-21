@@ -2705,15 +2705,27 @@
         return;
       }
 
-      // PARES DA ARCA (15 FASES): Em cada fase o Vovô fala qual parzinho de animal procurar lá embaixo (com trava até terminar!)
+      // PARES DA ARCA (25 FASES): Vovô explica na 1ª fase (início da sessão) e nos marcos a cada 5 fases (5, 10, 15, 20, 25).
+      // Nas fases intermediárias da mesma jogada contínua, avança direto e ágil sem travar a criança!
       if (currentActiveGame && currentActiveGame.id === "tabernaculo_cesto") {
-        _vovoAlreadySpokeInSession = true;
-        const paNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % 15) + 1;
-        const paAudio = `./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paNum).padStart(2, "0")}.mp3?v=172`;
-        TronoAudio.falarVovo(paAudio, () => {
-          unlockStageAfterVovo();
-        });
-        return;
+        const pInt = Math.max(1, Math.floor(Number(currentPhase) || 1));
+        const isMilestone = (pInt === 1 || pInt % 5 === 0);
+        const shouldSpeakPares = !_vovoAlreadySpokeInSession || isMilestone;
+        if (shouldSpeakPares) {
+          _vovoAlreadySpokeInSession = true;
+          const paNum = ((pInt - 1) % 25) + 1;
+          const paAudioNum = ((paNum - 1) % 15) + 1;
+          const paAudio = `./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paAudioNum).padStart(2, "0")}.mp3?v=211`;
+          TronoAudio.falarVovo(paAudio, () => {
+            unlockStageAfterVovo();
+          });
+          return;
+        } else {
+          setTimeout(() => {
+            unlockStageAfterVovo();
+          }, 280);
+          return;
+        }
       }
 
       // REGRA DE SESSÃO INTELIGENTE (TRAVA UNIVERSAL RIGOBERTO UX):
@@ -2984,6 +2996,10 @@
       const tmBankLen = (window.TRUE_OR_MYTH_BANK && window.TRUE_OR_MYTH_BANK.length) ? window.TRUE_OR_MYTH_BANK.length : 22;
       const tmNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % tmBankLen) + 1;
       audioTarget = `./6_ASSETS_AUDIO/verdadeiro_mito_vovo/verdadeiro_mito_vovo_${String(tmNum).padStart(2, "0")}.mp3?v=167`;
+    } else if (currentActiveGame.id === "tabernaculo_cesto") {
+      const paNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % 25) + 1;
+      const paAudioNum = ((paNum - 1) % 15) + 1;
+      audioTarget = `./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paAudioNum).padStart(2, "0")}.mp3?v=211`;
     } else if (currentActiveGame.id === "tabernaculo_cesto") {
       const paNum = ((Math.max(1, Math.floor(Number(currentPhase) || 1)) - 1) % 15) + 1;
       audioTarget = `./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paNum).padStart(2, "0")}.mp3?v=172`;
@@ -10122,29 +10138,38 @@
       window._memoriaWinTimer = null;
     }
 
-    const p = Math.max(1, Number(phase) || 1);
-    let cols = 3;
-    let rows = 4;
-    let gapPx = 8;
-    if (p >= 12) {
-      cols = 4;
-      rows = 5;
-      gapPx = 6;
-    } else if (p >= 7) {
-      cols = 4;
-      rows = 4;
-      gapPx = 7;
-    }
-    const totalPairs = Math.floor((cols * rows) / 2);
+    const p = Math.max(1, Math.min(25, Math.floor(Number(phase) || 1)));
+    // TRAVADO RIGOROSAMENTE EM 12 CARTAS (3x4 = 6 PARES) EM TODAS AS 25 FASES!
+    // Cartas grandes, legíveis e perfeitas para os olhinhos e dedinhos das crianças, sem miniaturização!
+    const cols = 3;
+    const rows = 4;
+    const gapPx = 8;
+    const totalPairs = 6;
 
-    const startOffset = ((p - 1) * 3) % MEMORIA_3D_STORY_CODES.length;
-    const chosenCodes = [];
-    for (let i = 0; i < totalPairs; i++) {
-      const code = MEMORIA_3D_STORY_CODES[(startOffset + i) % MEMORIA_3D_STORY_CODES.length];
-      chosenCodes.push(code);
+    // DIVERSIFICAÇÃO TOTAL DAS 25 FASES: 6 imagens 3D Pixar temáticas exclusivas por fase!
+    // Fases 1 a 22: Usam 6 ilustrações bíblicas da lição correspondente (dev_16x9_licao_XX_dia_YY.jpg)
+    // Fases 23 a 25: Usam cenas bíblicas consagradas de crono_16x9_*.jpg (crono_101 a 118)
+    const phaseCards = [];
+    if (p <= 22) {
+      const licaoPad = String(p).padStart(2, "0");
+      for (let d = 1; d <= 6; d++) {
+        phaseCards.push({
+          code: `licao_${licaoPad}_d${d}`,
+          img: `./3_ASSETS_HISTORIA_VOVO/dev_16x9_licao_${licaoPad}_dia_${String(d).padStart(2, "0")}.jpg?v=211`
+        });
+      }
+    } else {
+      const baseCrono = 101 + (p - 23) * 6;
+      for (let c = 0; c < 6; c++) {
+        const cronoNum = baseCrono + c;
+        phaseCards.push({
+          code: `crono_${cronoNum}`,
+          img: `./3_ASSETS_QUEBRA_CABECA/crono_16x9_${cronoNum}.jpg?v=211`
+        });
+      }
     }
 
-    const deck = [...chosenCodes, ...chosenCodes];
+    const deck = [...phaseCards, ...phaseCards];
     for (let i = deck.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       const tmp = deck[i];
@@ -10157,14 +10182,14 @@
         <img id="arc-mem171-bg-img" class="arc-mem171-bg" src="./2_ASSETS_UI_BOTOES/bg_ebd_02_jardim.jpg?v=171" alt="">
         <div class="arc-mem171-vignette"></div>
         <div id="arc-mem171-grid" class="arc-mem171-grid" style="grid-template-columns:repeat(${cols}, 1fr); grid-template-rows:repeat(${rows}, 1fr); gap:${gapPx}px;">
-          ${deck.map((code, idx) => `
-            <div id="arc-mem171-card-${idx}" class="arc-mem171-card" data-code="${code}" onclick="window._flipMemCard171(${idx})">
+          ${deck.map((card, idx) => `
+            <div id="arc-mem171-card-${idx}" class="arc-mem171-card" data-code="${card.code}" onclick="window._flipMemCard171(${idx})">
               <div class="arc-mem171-inner">
                 <div class="arc-mem171-face arc-mem171-back">
                   <img src="./2_ASSETS_UI_BOTOES/ui_icon_04.png?v=171" alt="">
                 </div>
                 <div class="arc-mem171-face arc-mem171-front">
-                  <img src="./3_ASSETS_QUEBRA_CABECA/quebra_cabeca_${code}.jpg?v=171" alt="">
+                  <img src="${card.img}" alt="">
                 </div>
               </div>
             </div>
@@ -10227,7 +10252,7 @@
             if (b.el) b.el.classList.remove("flipped");
             flipped = [];
             lockFlip = false;
-          }, 780);
+          }, 880);
         }
       }
     };
@@ -10235,10 +10260,10 @@
 
   // --- JOGO 14: ACHE A FIGURA! 3D PIXAR (15 FASES PROGRESSIVAS: 1 ATÉ 8 FIGURAS P&B PARA ACHAR NA BAGUNÇA DE 30 ITENS!) ---
   function runManaDeserto(container, phase) {
-    const pNum = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 15) + 1;
+    const pNum = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 25) + 1;
     window._arcadeWaitVisualBeforeVovo = true;
 
-    // 15 Alvos principais + 15 Figurantes (Total = 30 figuras 3D únicas misturadas na mesa!)
+    // 15 Alvos bíblicos principais
     const ACHE_TARGETS_15 = [
       { id: "harpa",     img: "./2_ASSETS_UI_BOTOES/ache_item_01_harpa_v172.png?v=172" },
       { id: "leao",      img: "./2_ASSETS_UI_BOTOES/arca_bicho_01_leao_v142.png?v=142" },
@@ -10257,6 +10282,7 @@
       { id: "trombeta",  img: "./2_ASSETS_UI_BOTOES/ache_item_04_trombeta_v172.png?v=172" }
     ];
 
+    // 15 Distratores clássicos
     const ACHE_DISTRACTORS_15 = [
       { id: "cajado",      img: "./2_ASSETS_UI_BOTOES/ache_item_03_cajado_v172.png?v=172" },
       { id: "pergaminho",  img: "./2_ASSETS_UI_BOTOES/ache_item_07_pergaminho_v172.png?v=172" },
@@ -10275,16 +10301,38 @@
       { id: "coruja",      img: "./2_ASSETS_UI_BOTOES/arca_bicho_15_coruja_v142.png?v=142" }
     ];
 
-    const ALL_30_ITEMS = ACHE_TARGETS_15.concat(ACHE_DISTRACTORS_15);
+    // 20 Novos Animais Adultos 3D Pixar (Total = 50 FIGURAS ÚNICAS SEM REPETIÇÃO NAS 25 FASES!)
+    const ACHE_EXTRA_20 = [
+      { id: "pavao_m",       img: "./2_ASSETS_UI_BOTOES/par_adulto_16_pavao_m_v211.png?v=211" },
+      { id: "pavoa_f",       img: "./2_ASSETS_UI_BOTOES/par_adulto_16_pavoa_f_v211.png?v=211" },
+      { id: "raposa_m",      img: "./2_ASSETS_UI_BOTOES/par_adulto_17_raposa_m_v211.png?v=211" },
+      { id: "raposa_f",      img: "./2_ASSETS_UI_BOTOES/par_adulto_17_raposa_f_v211.png?v=211" },
+      { id: "lobo_m",        img: "./2_ASSETS_UI_BOTOES/par_adulto_18_lobo_m_v211.png?v=211" },
+      { id: "loba_f",        img: "./2_ASSETS_UI_BOTOES/par_adulto_18_loba_f_v211.png?v=211" },
+      { id: "gazela_m",      img: "./2_ASSETS_UI_BOTOES/par_adulto_19_gazela_m_v211.png?v=211" },
+      { id: "gazela_f",      img: "./2_ASSETS_UI_BOTOES/par_adulto_19_gazela_f_v211.png?v=211" },
+      { id: "hipopotamo_m",  img: "./2_ASSETS_UI_BOTOES/par_adulto_20_hipopotamo_m_v211.png?v=211" },
+      { id: "hipopotamo_f",  img: "./2_ASSETS_UI_BOTOES/par_adulto_20_hipopotamo_f_v211.png?v=211" },
+      { id: "rinoceronte_m", img: "./2_ASSETS_UI_BOTOES/par_adulto_21_rinoceronte_m_v211.png?v=211" },
+      { id: "rinoceronte_f", img: "./2_ASSETS_UI_BOTOES/par_adulto_21_rinoceronte_f_v211.png?v=211" },
+      { id: "avestruz_m",    img: "./2_ASSETS_UI_BOTOES/par_adulto_22_avestruz_m_v211.png?v=211" },
+      { id: "avestruz_f",    img: "./2_ASSETS_UI_BOTOES/par_adulto_22_avestruz_f_v211.png?v=211" },
+      { id: "aguia_m",        img: "./2_ASSETS_UI_BOTOES/par_adulto_23_aguia_m_v211.png?v=211" },
+      { id: "aguia_f",        img: "./2_ASSETS_UI_BOTOES/par_adulto_23_aguia_f_v211.png?v=211" },
+      { id: "panda_m",       img: "./2_ASSETS_UI_BOTOES/par_adulto_24_panda_m_v211.png?v=211" },
+      { id: "panda_f",       img: "./2_ASSETS_UI_BOTOES/par_adulto_24_panda_f_v211.png?v=211" },
+      { id: "esquilo_m",     img: "./2_ASSETS_UI_BOTOES/par_adulto_25_esquilo_m_v211.png?v=211" },
+      { id: "esquilo_f",     img: "./2_ASSETS_UI_BOTOES/par_adulto_25_esquilo_f_v211.png?v=211" }
+    ];
 
-    // DIFICULDADE PROGRESSIVA NAS 15 FASES (de 1 até 8 figuras P&B para encontrar na bagunça!)
-    // F1:1 | F2-3:2 | F4-5:3 | F6-7:4 | F8-9:5 | F10-11:6 | F12-13:7 | F14-15:8
+    const ALL_50_ITEMS = ACHE_TARGETS_15.concat(ACHE_DISTRACTORS_15, ACHE_EXTRA_20);
+
+    // DIFICULDADE PROGRESSIVA NAS 25 FASES (de 1 até 8 figuras para encontrar!)
     const PHASE_TARGET_COUNTS = [1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
     const PHASE_TARGET_COUNTS_EXT_25 = [5, 6, 6, 7, 7, 7, 8, 8, 8, 8];
     const pClamped = Math.max(1, Math.min(25, Math.floor(Number(phase) || 1)));
     const targetCount = pClamped <= 15 ? (PHASE_TARGET_COUNTS[pClamped - 1] || 1) : (PHASE_TARGET_COUNTS_EXT_25[pClamped - 16] || 8);
 
-    // Distribuição simétrica em 1 ou 2 fileiras na área clara superior (sem cards quadrados!)
     const TOP_ROW_SPLITS = {
       1: [1],
       2: [2],
@@ -10308,12 +10356,12 @@
       return a;
     }
 
-    // Seleciona N alvos distintos girando por todo o banco de 30 figuras ao longo das 25 fases
-    const startOffset = ((pClamped - 1) * 5 + (pClamped > 15 ? 2 : 0)) % ALL_30_ITEMS.length;
+    // Seleciona N alvos distintos girando por todo o banco de 50 figuras ao longo das 25 fases (passo 11 coprimo com 50)
+    const startOffset = ((pClamped - 1) * 7) % ALL_50_ITEMS.length;
     const phaseTargets = [];
     for (let k = 0; k < targetCount; k++) {
-      const idx = (startOffset + k * 7) % ALL_30_ITEMS.length;
-      phaseTargets.push(ALL_30_ITEMS[idx]);
+      const idx = (startOffset + k * 11) % ALL_50_ITEMS.length;
+      phaseTargets.push(ALL_50_ITEMS[idx]);
     }
     const targetIdSet = new Set(phaseTargets.map(t => t.id));
     const BG_SRC = "./2_ASSETS_UI_BOTOES/bg_jogo_14_ache_figura_v172.jpg?v=172";
@@ -10515,7 +10563,7 @@
     const remainingCells = shuffleList(allCells.filter(idx => !chosenSet.has(idx)));
 
     // Bagunça progressiva nas 25 fases: começa leve para os pequenininhos e vai enchendo a mesa até todos os distratores nas fases altas!
-    const allDistractorsShuffled = shuffleList(ALL_30_ITEMS.filter(it => !targetIdSet.has(it.id)));
+    const allDistractorsShuffled = shuffleList(ALL_50_ITEMS.filter(it => !targetIdSet.has(it.id)));
     const maxDistractorsForPhase = Math.min(allDistractorsShuffled.length, 7 + Math.floor((pClamped - 1) * 0.72));
     const distractorDefs = allDistractorsShuffled.slice(0, maxDistractorsForPhase);
     const pieces = [];
@@ -10899,26 +10947,36 @@
 
   // --- JOGO 15: PARES DA ARCA 3D PIXAR (15 FASES • ENCONTRE O PAR DE CADA ANIMALZINHO COM VOZ DO VOVÔ EM TODAS AS FASES!) ---
   function runTabernaculoCesto(container, phase) {
-    const pNum = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 15) + 1;
+    const pNum = ((Math.max(1, Math.floor(Number(phase) || 1)) - 1) % 25) + 1;
     window._arcadeWaitVisualBeforeVovo = true;
 
-    // 15 Pares 100% ADULTOS (Macho Adulto + Fêmea Adulta em proporção natural, olhando um para o outro — zero filhotes!)
-    const PARES_ARCA_15 = [
-      { id: "pomba",     topImg: "./2_ASSETS_UI_BOTOES/par_adulto_01_pombo_m_v178.png?v=178",     mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_01_pomba_f_v178.png?v=178" },
-      { id: "leao",      topImg: "./2_ASSETS_UI_BOTOES/par_adulto_02_leao_m_v178.png?v=178",      mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_02_leoa_f_v178.png?v=178" },
-      { id: "ovelha",    topImg: "./2_ASSETS_UI_BOTOES/par_adulto_03_carneiro_m_v178.png?v=178",  mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_03_ovelha_f_v178.png?v=178" },
-      { id: "galinha",   topImg: "./2_ASSETS_UI_BOTOES/par_adulto_04_galo_m_v178.png?v=178",      mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_04_galinha_f_v178.png?v=178" },
-      { id: "vaca",      topImg: "./2_ASSETS_UI_BOTOES/par_adulto_05_touro_m_v178.png?v=178",     mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_05_vaca_f_v178.png?v=178" },
-      { id: "elefante",  topImg: "./2_ASSETS_UI_BOTOES/par_adulto_06_elefante_m_v178.png?v=178",  mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_06_elefanta_f_v178.png?v=178" },
-      { id: "girafa",    topImg: "./2_ASSETS_UI_BOTOES/par_adulto_07_girafa_m_v178.png?v=178",    mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_07_girafa_f_v178.png?v=178" },
-      { id: "pato",      topImg: "./2_ASSETS_UI_BOTOES/par_adulto_08_pato_m_v178.png?v=178",      mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_08_pata_f_v178.png?v=178" },
-      { id: "cervo",     topImg: "./2_ASSETS_UI_BOTOES/par_adulto_09_cervo_m_v178.png?v=178",     mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_09_corca_f_v178.png?v=178" },
-      { id: "cavalo",    topImg: "./2_ASSETS_UI_BOTOES/par_adulto_10_cavalo_m_v178.png?v=178",    mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_10_egua_f_v178.png?v=178" },
-      { id: "coelho",    topImg: "./2_ASSETS_UI_BOTOES/par_adulto_11_coelho_m_v178.png?v=178",    mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_11_coelha_f_v178.png?v=178" },
-      { id: "urso",      topImg: "./2_ASSETS_UI_BOTOES/par_adulto_12_urso_m_v178.png?v=178",      mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_12_ursa_f_v178.png?v=178" },
-      { id: "macaco",    topImg: "./2_ASSETS_UI_BOTOES/par_adulto_13_macaco_m_v178.png?v=178",    mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_13_macaca_f_v178.png?v=178" },
-      { id: "camelo",    topImg: "./2_ASSETS_UI_BOTOES/par_adulto_14_camelo_m_v178.png?v=178",    mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_14_camela_f_v178.png?v=178" },
-      { id: "tartaruga", topImg: "./2_ASSETS_UI_BOTOES/par_adulto_15_tartaruga_m_v178.png?v=178", mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_15_tartaruga_f_v178.png?v=178" }
+    // 25 Pares 100% ADULTOS (Macho Adulto + Fêmea Adulta em proporção natural, olhando um para o outro — zero filhotes!)
+    const PARES_ARCA_25 = [
+      { id: "pomba",        topImg: "./2_ASSETS_UI_BOTOES/par_adulto_01_pombo_m_v178.png?v=178",      mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_01_pomba_f_v178.png?v=178" },
+      { id: "leao",         topImg: "./2_ASSETS_UI_BOTOES/par_adulto_02_leao_m_v178.png?v=178",       mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_02_leoa_f_v178.png?v=178" },
+      { id: "ovelha",       topImg: "./2_ASSETS_UI_BOTOES/par_adulto_03_carneiro_m_v178.png?v=178",   mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_03_ovelha_f_v178.png?v=178" },
+      { id: "galinha",      topImg: "./2_ASSETS_UI_BOTOES/par_adulto_04_galo_m_v178.png?v=178",       mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_04_galinha_f_v178.png?v=178" },
+      { id: "vaca",         topImg: "./2_ASSETS_UI_BOTOES/par_adulto_05_touro_m_v178.png?v=178",      mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_05_vaca_f_v178.png?v=178" },
+      { id: "elefante",     topImg: "./2_ASSETS_UI_BOTOES/par_adulto_06_elefante_m_v178.png?v=178",   mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_06_elefanta_f_v178.png?v=178" },
+      { id: "girafa",       topImg: "./2_ASSETS_UI_BOTOES/par_adulto_07_girafa_m_v178.png?v=178",     mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_07_girafa_f_v178.png?v=178" },
+      { id: "pato",         topImg: "./2_ASSETS_UI_BOTOES/par_adulto_08_pato_m_v178.png?v=178",       mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_08_pata_f_v178.png?v=178" },
+      { id: "cervo",        topImg: "./2_ASSETS_UI_BOTOES/par_adulto_09_cervo_m_v178.png?v=178",      mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_09_corca_f_v178.png?v=178" },
+      { id: "cavalo",       topImg: "./2_ASSETS_UI_BOTOES/par_adulto_10_cavalo_m_v178.png?v=178",     mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_10_egua_f_v178.png?v=178" },
+      { id: "coelho",       topImg: "./2_ASSETS_UI_BOTOES/par_adulto_11_coelho_m_v178.png?v=178",     mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_11_coelha_f_v178.png?v=178" },
+      { id: "urso",         topImg: "./2_ASSETS_UI_BOTOES/par_adulto_12_urso_m_v178.png?v=178",       mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_12_ursa_f_v178.png?v=178" },
+      { id: "macaco",       topImg: "./2_ASSETS_UI_BOTOES/par_adulto_13_macaco_m_v178.png?v=178",     mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_13_macaca_f_v178.png?v=178" },
+      { id: "camelo",       topImg: "./2_ASSETS_UI_BOTOES/par_adulto_14_camelo_m_v178.png?v=178",     mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_14_camela_f_v178.png?v=178" },
+      { id: "tartaruga",    topImg: "./2_ASSETS_UI_BOTOES/par_adulto_15_tartaruga_m_v178.png?v=178",  mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_15_tartaruga_f_v178.png?v=178" },
+      { id: "pavao",        topImg: "./2_ASSETS_UI_BOTOES/par_adulto_16_pavao_m_v211.png?v=211",      mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_16_pavoa_f_v211.png?v=211" },
+      { id: "raposa",       topImg: "./2_ASSETS_UI_BOTOES/par_adulto_17_raposa_m_v211.png?v=211",     mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_17_raposa_f_v211.png?v=211" },
+      { id: "lobo",         topImg: "./2_ASSETS_UI_BOTOES/par_adulto_18_lobo_m_v211.png?v=211",       mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_18_loba_f_v211.png?v=211" },
+      { id: "gazela",       topImg: "./2_ASSETS_UI_BOTOES/par_adulto_19_gazela_m_v211.png?v=211",     mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_19_gazela_f_v211.png?v=211" },
+      { id: "hipopotamo",   topImg: "./2_ASSETS_UI_BOTOES/par_adulto_20_hipopotamo_m_v211.png?v=211", mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_20_hipopotamo_f_v211.png?v=211" },
+      { id: "rinoceronte",  topImg: "./2_ASSETS_UI_BOTOES/par_adulto_21_rinoceronte_m_v211.png?v=211",mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_21_rinoceronte_f_v211.png?v=211" },
+      { id: "avestruz",     topImg: "./2_ASSETS_UI_BOTOES/par_adulto_22_avestruz_m_v211.png?v=211",   mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_22_avestruz_f_v211.png?v=211" },
+      { id: "aguia",        topImg: "./2_ASSETS_UI_BOTOES/par_adulto_23_aguia_m_v211.png?v=211",       mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_23_aguia_f_v211.png?v=211" },
+      { id: "panda",        topImg: "./2_ASSETS_UI_BOTOES/par_adulto_24_panda_m_v211.png?v=211",      mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_24_panda_f_v211.png?v=211" },
+      { id: "esquilo",      topImg: "./2_ASSETS_UI_BOTOES/par_adulto_25_esquilo_m_v211.png?v=211",    mateImg: "./2_ASSETS_UI_BOTOES/par_adulto_25_esquilo_f_v211.png?v=211" }
     ];
 
     const EXTRA_DISTRACTOR_ANIMALS = [
@@ -10927,15 +10985,16 @@
       { id: "tucano",  img: "./2_ASSETS_UI_BOTOES/arca_bicho_14_tucano_v142.png?v=142" }
     ];
 
-    const curPair = PARES_ARCA_15[pNum - 1];
+    const curPair = PARES_ARCA_25[pNum - 1];
     const BG_SRC = "./2_ASSETS_UI_BOTOES/bg_jogo_15_pares_arca_v172.jpg?v=172";
     const HEART_SRC = "./2_ASSETS_UI_BOTOES/coracao_3d_v138.png?v=138";
 
     // Pré-carrega o áudio da próxima fase para transição instantânea
     setTimeout(() => {
-      const nextNum = (pNum % 15) + 1;
+      const nextNum = (pNum % 25) + 1;
+      const paAudioNum = ((nextNum - 1) % 15) + 1;
       if (typeof window.preloadArcadeAudioUrl === "function") {
-        window.preloadArcadeAudioUrl(`./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(nextNum).padStart(2, "0")}.mp3?v=172`);
+        window.preloadArcadeAudioUrl(`./6_ASSETS_AUDIO/pares_arca_vovo/par_arca_${String(paAudioNum).padStart(2, "0")}.mp3?v=211`);
       }
     }, 900);
 
@@ -10952,7 +11011,7 @@
 
     // Monta pool de distratores de espécies totalmente diferentes da espécie atual
     const distractorPool = EXTRA_DISTRACTOR_ANIMALS.concat(
-      PARES_ARCA_15.filter(p => p.id !== curPair.id).map(p => ({ id: p.id, img: p.mateImg }))
+      PARES_ARCA_25.filter(p => p.id !== curPair.id).map(p => ({ id: p.id, img: p.mateImg }))
     );
     const chosenDistractors = shuffleArr(distractorPool).slice(0, 2);
 
