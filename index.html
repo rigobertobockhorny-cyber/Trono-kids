@@ -63,7 +63,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=217.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=218.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -1821,7 +1821,7 @@
     /* === GRADE FIXA DE JOGOS DA LIÇÃO (TELA FIXA SEM SCROLL • 8 JOGOS ALINHADOS) === */
     .lesson-games-fixed-grid {
       width: 100%;
-      max-width: 410px;
+      max-width: 420px;
       height: 100%;
       flex: 1;
       min-height: 0;
@@ -1829,9 +1829,9 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-template-rows: repeat(4, 1fr);
-      column-gap: 10px;
-      row-gap: clamp(2px, 0.8vh, 8px);
-      padding: clamp(2px, 0.6vh, 6px) 6px clamp(4px, 1vh, 8px) 6px;
+      column-gap: 12px;
+      row-gap: clamp(4px, 1vh, 8px);
+      padding: clamp(2px, 0.6vh, 6px) 8px clamp(4px, 1vh, 8px) 8px;
       align-items: center;
       justify-items: center;
       box-sizing: border-box;
@@ -1861,35 +1861,37 @@
     }
     .lesson-game-fixed-icon {
       width: auto;
-      height: clamp(46px, 7.5vh, 68px);
-      max-height: 8vh;
-      max-width: clamp(52px, 18vw, 76px);
+      height: clamp(68px, 10vh, 88px);
+      max-height: 10.8vh;
+      max-width: clamp(72px, 22vw, 94px);
       object-fit: contain;
       pointer-events: none;
-      filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.85));
+      filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.85));
       transition: transform 0.15s ease;
     }
     .lesson-game-fixed-item:hover .lesson-game-fixed-icon {
       transform: scale(1.05);
     }
     .lesson-game-fixed-item.game-item-done .lesson-game-fixed-icon {
-      filter: drop-shadow(0 0 10px rgba(0, 230, 118, 0.85)) drop-shadow(0 5px 10px rgba(0, 0, 0, 0.85));
+      filter: drop-shadow(0 0 12px rgba(0, 230, 118, 0.85)) drop-shadow(0 5px 12px rgba(0, 0, 0, 0.85));
     }
     .lesson-game-fixed-title {
-      margin-top: 1px !important;
-      font-size: clamp(10.5px, 2.9vw, 12.6px) !important;
-      line-height: 1.1 !important;
-      letter-spacing: 0px !important;
+      margin-top: 2px !important;
+      font-size: clamp(11.5px, 3.2vw, 13.5px) !important;
+      font-weight: 800 !important;
+      line-height: 1.15 !important;
+      letter-spacing: 0.2px !important;
       white-space: nowrap !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.7) !important;
     }
     .lesson-game-fixed-tick {
       position: absolute;
-      top: 0px;
-      right: clamp(12px, 5vw, 22px);
-      width: 22px;
-      height: 22px;
+      top: -2px;
+      right: clamp(14px, 6vw, 26px);
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: linear-gradient(180deg, #00e676 0%, #00c853 100%);
       border: 2px solid #ffffff;
@@ -3125,7 +3127,7 @@
     }
     window._arcadeScriptLoading = true;
     const sc = document.createElement('script');
-    sc.src = 'ebd_super_arcade_audiovisual.js?v=217.0&r=' + Date.now();
+    sc.src = 'ebd_super_arcade_audiovisual.js?v=218.0&r=' + Date.now();
     sc.onload = () => {
       window._arcadeScriptLoading = false;
       if (typeof onReady === 'function') onReady();
@@ -3136,8 +3138,8 @@
     document.head.appendChild(sc);
   };
 </script>
-<script src="ebd_modulos_educativos.js?v=217.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=217.0" onerror="window._ensureArcadeScriptLoaded()"></script>
+<script src="ebd_modulos_educativos.js?v=218.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=218.0" onerror="window._ensureArcadeScriptLoaded()"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
