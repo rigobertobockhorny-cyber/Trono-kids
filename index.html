@@ -63,7 +63,7 @@
     window._registerAppSW = function() {
       if (window._swRegisteredOnce || !('serviceWorker' in navigator)) return;
       window._swRegisteredOnce = true;
-      navigator.serviceWorker.register('./sw.js?v=218.0', { updateViaCache: 'none' }).then(reg => {
+      navigator.serviceWorker.register('./sw.js?v=219.0', { updateViaCache: 'none' }).then(reg => {
         reg.update().catch(() => {});
       }).catch(() => {});
     };
@@ -3127,7 +3127,7 @@
     }
     window._arcadeScriptLoading = true;
     const sc = document.createElement('script');
-    sc.src = 'ebd_super_arcade_audiovisual.js?v=218.0&r=' + Date.now();
+    sc.src = 'ebd_super_arcade_audiovisual.js?v=219.0&r=' + Date.now();
     sc.onload = () => {
       window._arcadeScriptLoading = false;
       if (typeof onReady === 'function') onReady();
@@ -3138,8 +3138,8 @@
     document.head.appendChild(sc);
   };
 </script>
-<script src="ebd_modulos_educativos.js?v=218.0"></script>
-<script src="ebd_super_arcade_audiovisual.js?v=218.0" onerror="window._ensureArcadeScriptLoaded()"></script>
+<script src="ebd_modulos_educativos.js?v=219.0"></script>
+<script src="ebd_super_arcade_audiovisual.js?v=219.0" onerror="window._ensureArcadeScriptLoaded()"></script>
 <script>
   // LAZY-LOAD SOB DEMANDA ESTRITA DE PINTURAS (Carrega APENAS se estiver em modo file:// offline!)
   // Na nuvem (HTTPS), cada contorno (~180 KB) já carrega direto de ./4_ASSETS_PINTURA/, poupando 6.3 MB de RAM e zero travamento na vinheta!
@@ -4032,11 +4032,13 @@ function openSubscribeModal(titleText, customDesc) {
     const titleEl = document.getElementById('subscribe-modal-title');
     const descEl = document.getElementById('subscribe-modal-desc');
     if (titleEl) {
-      titleEl.textContent = 'Área dos Pais • Desbloquear Fases 6 a 25';
+      titleEl.textContent = titleText || 'Área dos Pais • Desbloquear Acesso Completo';
     }
     if (descEl) {
-      descEl.textContent = 'As fases 1 a 5 de todos os joguinhos e lições são grátis — a criança pode continuar brincando à vontade! Para liberar todas as 25 fases, as 22 lições e todo o aplicativo sem limites, escolha um plano:';
+      descEl.textContent = customDesc || 'As fases 1 a 5 de todos os joguinhos e lições são grátis — a criança pode continuar brincando à vontade! Para liberar o download de imagens e Super Cards em alta resolução, todas as 25 fases, 22 lições e todo o aplicativo sem limites, escolha um plano ou digite seu código de acesso:';
     }
+    const inputEl = document.getElementById('input-vip-code');
+    if (inputEl) inputEl.value = '';
     const msgEl = document.getElementById('vip-feedback-msg');
     if (msgEl) msgEl.textContent = '';
     document.getElementById('modal-subscribe').classList.add('active');
@@ -4785,6 +4787,9 @@ function applyVerifiedVipActivation(feedbackText) {
   if (document.getElementById('screen-sleep') && document.getElementById('screen-sleep').classList.contains('active')) renderSleepCorner();
   if (document.getElementById('screen-lesson-hub') && document.getElementById('screen-lesson-hub').classList.contains('active') && typeof renderLessonHubScreen === 'function') renderLessonHubScreen();
   if (document.getElementById('screen-chronology') && document.getElementById('screen-chronology').classList.contains('active') && typeof openChronologyScreen === 'function') openChronologyScreen();
+  if (document.getElementById('screen-lesson-module') && document.getElementById('screen-lesson-module').classList.contains('active') && typeof openLessonModule === 'function') {
+    openLessonModule(window.EBD_STATE.activeLessonModuleType || 'texto');
+  }
   if (typeof window.refreshArcadeUiAfterDevChange === 'function') window.refreshArcadeUiAfterDevChange();
 }
 
@@ -5042,6 +5047,9 @@ function redeemVipCoupon(customInputId, customMsgId) {
       if (document.getElementById('screen-sleep').classList.contains('active')) renderSleepCorner();
       if (document.getElementById('screen-lesson-hub') && document.getElementById('screen-lesson-hub').classList.contains('active') && typeof renderLessonHubScreen === 'function') renderLessonHubScreen();
       if (document.getElementById('screen-chronology') && document.getElementById('screen-chronology').classList.contains('active') && typeof openChronologyScreen === 'function') openChronologyScreen();
+      if (document.getElementById('screen-lesson-module') && document.getElementById('screen-lesson-module').classList.contains('active') && typeof openLessonModule === 'function') {
+        openLessonModule(window.EBD_STATE.activeLessonModuleType || 'texto');
+      }
       if (document.getElementById('screen-edu-game') && document.getElementById('screen-edu-game').classList.contains('active') && typeof openEduGame === 'function') openEduGame(window.EBD_STATE.activeEduGameKey, window.EBD_STATE.fromLessonGames);
       if (typeof window.refreshArcadeUiAfterDevChange === 'function') window.refreshArcadeUiAfterDevChange();
       if (document.getElementById('screen-teacher-portal') && document.getElementById('screen-teacher-portal').classList.contains('active') && typeof window.renderTeacherPortalContent === 'function') {
@@ -6901,17 +6909,19 @@ function openCollectorCardModal(st) {
   }
 
   if (btnEl) {
+    const vip = (typeof isVipUnlocked !== 'undefined' && isVipUnlocked);
     if (st.is16x9Download) {
       btnEl.style.display = 'block';
-      btnEl.textContent = 'BAIXAR IMAGEM';
+      btnEl.textContent = vip ? 'BAIXAR IMAGEM (16:9)' : 'LIBERAR NO MODO ASSINANTE / CÓDIGO';
     } else if (isConquered) {
       btnEl.style.display = 'block';
-      btnEl.textContent = 'BAIXAR SUPER CARD';
-    } else if (!st.free && !isVipUnlocked) {
+      btnEl.textContent = vip ? 'BAIXAR SUPER CARD' : 'LIBERAR NO MODO ASSINANTE / CÓDIGO';
+    } else if (!st.free && !vip) {
       btnEl.style.display = 'block';
-      btnEl.textContent = 'LIBERAR NO MODO ASSINANTE';
+      btnEl.textContent = 'LIBERAR NO MODO ASSINANTE / CÓDIGO';
     } else {
-      btnEl.style.display = 'none';
+      btnEl.style.display = vip ? 'block' : 'none';
+      btnEl.textContent = 'BAIXAR SUPER CARD';
     }
   }
 
@@ -6941,6 +6951,7 @@ async function triggerDirectImageDownloadOrShare(imgUrl, titleText, filePrefix) 
     a.click();
     document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(blobUrl), 4000);
+    try { playSoundSnapGreen(); } catch (e) {}
     return;
   } catch (e) {}
 
@@ -6950,19 +6961,24 @@ async function triggerDirectImageDownloadOrShare(imgUrl, titleText, filePrefix) 
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  try { playSoundSnapGreen(); } catch (e) {}
 }
 
 function downloadOrShareCollectorCard() {
   const st = selectedCollectorStory || {};
 
-  // 1) Imagem 16:9 interna da lição
+  // Trava Suprema de Assinante / Código: Se não for VIP, SEMPRE direciona para Área dos Pais e Assinatura/Código
+  if (typeof isVipUnlocked === 'undefined' || !isVipUnlocked) {
+    closeModal('modal-collector-card');
+    openSubscribeModal(
+      st.is16x9Download ? 'Área dos Pais • Baixar Imagens da Lição' : `Área dos Pais • Liberar Super Card: ${st.shortTitle || st.title || 'Super Card'}`,
+      'O download de imagens e Super Cards em alta resolução, além do acesso completo a todas as lições e fases exclusivas, faz parte do Modo Assinante. Digite seu código promocional de Igreja/Família ou escolha um plano:'
+    );
+    return;
+  }
+
+  // 1) Imagem 16:9 interna da lição (já verificado VIP)
   if (st.is16x9Download) {
-    const weekAllowed = !st.week || st.week <= 5 || isVipUnlocked;
-    if (!weekAllowed) {
-      closeModal('modal-collector-card');
-      openSubscribeModal('Baixar Imagens das Lições 6 a 22');
-      return;
-    }
     closeModal('modal-collector-card');
     requestParentalGate(() => {
       if (typeof window.downloadLesson16x9Image === 'function') {
@@ -6981,9 +6997,7 @@ function downloadOrShareCollectorCard() {
 
   if (!isConquered) {
     closeModal('modal-collector-card');
-    if (!st.free && !isVipUnlocked) {
-      openSubscribeModal(`Liberar Super Card: ${st.shortTitle || st.title}`);
-    }
+    openSubscribeModal(`Área dos Pais • Liberar Super Card: ${st.shortTitle || st.title}`);
     return;
   }
 

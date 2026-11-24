@@ -5396,19 +5396,23 @@ window.openLessonImageFullModal = function(imgSrc, titleText) {
     imgEl.style.maxHeight = "38vh";
   }
   if (titleEl) titleEl.textContent = fakeStory.title;
-  if (btnEl) btnEl.textContent = "Baixar Imagem (16:9)";
+  if (btnEl) {
+    const vip = (typeof isVipUnlocked !== "undefined" && isVipUnlocked);
+    btnEl.textContent = vip ? "BAIXAR IMAGEM (16:9)" : "LIBERAR NO MODO ASSINANTE / CÓDIGO";
+  }
   if (modalEl) modalEl.classList.add("active");
 };
 
 // Dispara Parental Gate (continha matemática dos pais) antes de salvar qualquer imagem 16:9 no celular!
 window.requestLesson16x9Download = function(imgSrc, titleText) {
   if (typeof window.ebdClick === "function") window.ebdClick();
-  const lesson = window.getCurrentLessonObj();
-  const wk = lesson ? lesson.week : 1;
   const vipOk = (typeof isVipUnlocked !== "undefined" && isVipUnlocked);
-  if (wk > 5 && !vipOk) {
+  if (!vipOk) {
     if (typeof openSubscribeModal === "function") {
-      openSubscribeModal("Baixar Imagens das Lições 6 a 22");
+      openSubscribeModal(
+        "Área dos Pais • Baixar Imagens da Lição",
+        "O download de imagens da história em alta resolução (16:9) e o acesso completo a todas as lições é exclusivo para assinantes. Escolha um plano ou digite seu código promocional de Igreja/Família:"
+      );
     }
     return;
   }
@@ -5459,7 +5463,7 @@ window.downloadLesson16x9Image = async function(imgSrc, titleText) {
     a.click();
     document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 4000);
-    if (typeof window.ebdConfetti === "function") window.ebdConfetti();
+    if (typeof playSoundSnapGreen === "function") playSoundSnapGreen();
   } catch (err) {
     const a = document.createElement("a");
     a.href = imgSrc;
@@ -5467,7 +5471,7 @@ window.downloadLesson16x9Image = async function(imgSrc, titleText) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    if (typeof window.ebdConfetti === "function") window.ebdConfetti();
+    if (typeof playSoundSnapGreen === "function") playSoundSnapGreen();
   }
 };
 
